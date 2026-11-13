@@ -1,0 +1,46 @@
+{
+  "authorization": "MA-432",
+  "model": "JA-IB07A-SO",
+  "candidate_git_ref": "846f94fb9e4bc16edd926d9fd499a1381c5ec3c2",
+  "candidate_path": "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156",
+  "approved_path": "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156-release-r2",
+  "native_pages_identical": true,
+  "content_sha256": "1fa5bcdfbc81a69e2a35fc0089e28755191672a69f5ce4099bf379c4ba8ae686",
+  "source_pdf_identical": true,
+  "artwork_identical": true,
+  "non_IR_web_files_byte_identical": [
+    "_static/web_manual.css",
+    "assets/bottle.png",
+    "assets/contact-qr.png",
+    "conf.py",
+    "index.md",
+    "manual_jaib07aso_us_en.md"
+  ],
+  "approved_IR_sha256": "75581e2fd85eda4f6632cf8fecad4c7ab1bff6eeac2e1f4cde13e327a0bf6a01",
+  "metadata_changes_only": [
+    "approval provenance",
+    "publication eligibility",
+    "pending review resolution",
+    "technical snapshot identity"
+  ],
+  "audit_report_relocation": {
+    "authorization": "MA-432",
+    "publication_packaging_of": "manual_sources/JA-IB07A-SO/US/en/git-20261112-e1f2a5fa-m000156-release",
+    "v1_frozen_manifest_sha256": "50327975f022a96bfc30e339bf101cdb52b0fb13f676b8fc6a16a24a2611c7b2",
+    "change": "Move shared-style audit JSON from serving root to evidence; preserve its bytes.",
+    "relocated_from": "web/en/shared-style-admission.json",
+    "relocated_to": "evidence/publish_shared_style_admission.json",
+    "relocated_file_sha256": "9780a3b356440091e80f78d14952fa57320f6adefe827da34876e3ad04dc9388",
+    "native_pages_and_content_identical": true,
+    "body_artwork_CSS_and_remaining_web_files_identical": [
+      "_static/web_manual.css",
+      "assets/bottle.png",
+      "assets/contact-qr.png",
+      "conf.py",
+      "index.md",
+      "manual_jaib07aso_us_en.md"
+    ],
+    "existing_assembler_copy_inventory_exact": true,
+    "approved_IR_sha256": "75581e2fd85eda4f6632cf8fecad4c7ab1bff6eeac2e1f4cde13e327a0bf6a01"
+  }
+}

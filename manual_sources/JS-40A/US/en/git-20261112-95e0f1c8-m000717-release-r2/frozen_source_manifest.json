@@ -1,0 +1,541 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-40A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261112-95e0f1c8-m000717-release-r2"
+  },
+  "web_title": "Jackery SolarSaga 40 Mini",
+  "original_source": {
+    "filename": "38-0001-000717_Jackery_SolarSaga_40_Mini_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047",
+    "size": 1576156,
+    "physical_page_count": 9
+  },
+  "material": "38-0001-000717",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJiQvW",
+    "source_table_id": "tbl2tXQk8LnM2JKi",
+    "source_record_id": "reczz28Vph3XbXT0",
+    "source_field": "单语言说明书 -英语",
+    "source_file_token": "DQWQbmh58oGraSxmhRXcJzpWn1b"
+  },
+  "source_authority": "Operator selected US-region Y-marked unconverted manuals in the live publishing table on 2026-11-12; current single-language English attachment downloaded from the parent-child source mapping and SHA256 locked. This original source governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V2.0",
+  "language_scope": "single",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Native selectable headings, paragraphs and safety list",
+    "quick_start": "Five native step captions above nested HB-SPECIAL-REFERENCE-FIGURE components inside shared hb-text-panel groups",
+    "specifications": "HB-TABLE-SPEC for main specifications and multifunctional adapter",
+    "inbox": "HB-SPECIAL-INBOX with seven native labels and byte-bound product images",
+    "note": "HB-CALLOUT-STRIP",
+    "warranty": "HB-WARRANTY-YEARS plus HB-WARRANTY-SECTION for service/contact",
+    "power_illustration": "HB-SPECIAL-REFERENCE-FIGURE, complete source-English labels once; no duplicated visible caption list",
+    "contact_qr": "Source QR as a native inline contact image with bounded width; all four source code/frame edges preserved",
+    "symbols_lcd_app": "Not printed as independent source sections; none added"
+  },
+  "normalizations": [
+    "Join PDF outline line wraps; normalize word spacing and multiplication/temperature glyphs without changing values.",
+    "Omit only decorative cover product image, wordmarks, printed page numbers and printed TOC; title/model/version and all substantive copy remain native.",
+    "Five quick-start source step numbers become native numbered captions above byte-identical matching diagrams, within the shared panel style.",
+    "Seven source inbox items reflow through the shared responsive grid; item order, names and counts remain exact.",
+    "Warranty uses source-authored 36 MONTHS and 2 YEARS periods; no different-edition warranty imported.",
+    "Nine matching JP candidate donor art files reused byte-identically; wrong straight adapter and differently drawn case rejected in favor of exact current source geometry."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 1473,
+      "sha256": "0d5285e753adb0d42c07bc0b976898ae00dc57a509aef35f6189acc12f577c36"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 7004,
+      "sha256": "5bd8cff49238202778718385d034ef457400243751dba96b1b18ac6fe5e8bf47"
+    },
+    {
+      "path": "assets/inbox-adapter.png",
+      "size": 5709,
+      "sha256": "60f5ba1e4ca461dcdf1d3b599d128c8520ca03633ea37b6e3959b753faae91d0"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "size": 9574,
+      "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780"
+    },
+    {
+      "path": "assets/inbox-carabiner.png",
+      "size": 8639,
+      "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 5913,
+      "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2"
+    },
+    {
+      "path": "assets/inbox-panel.png",
+      "size": 11959,
+      "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b"
+    },
+    {
+      "path": "assets/inbox-pouch.png",
+      "size": 8758,
+      "sha256": "55d8c3c3d6f88252dbd98a9d6f09b70577458275924e8d89c2d41286bcc73161"
+    },
+    {
+      "path": "assets/inbox-usbc.png",
+      "size": 6739,
+      "sha256": "511ad02dfaa56121f3b664217628956a9109d43fb7b2dff19e5795cb78ce82d9"
+    },
+    {
+      "path": "assets/power-device.png",
+      "size": 177236,
+      "sha256": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78"
+    },
+    {
+      "path": "assets/unfold-1.png",
+      "size": 19693,
+      "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a"
+    },
+    {
+      "path": "assets/unfold-2.png",
+      "size": 94931,
+      "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60"
+    },
+    {
+      "path": "assets/unfold-3.png",
+      "size": 151475,
+      "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331"
+    },
+    {
+      "path": "assets/unfold-4.png",
+      "size": 173773,
+      "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570"
+    },
+    {
+      "path": "assets/unfold-5.png",
+      "size": 155332,
+      "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 2087,
+      "sha256": "710b4369afe4a34ac8012f740542408bbe86d1a7cd0e0889085e733ed63a3236"
+    },
+    {
+      "path": "evidence/art-edge-inventory.json",
+      "size": 6681,
+      "sha256": "8c552113da01e384053a6d9d2143a524bf921caf12158651ec88e5ff7f8c40ec"
+    },
+    {
+      "path": "evidence/art-reproduction.log",
+      "size": 574,
+      "sha256": "e4860bf7fb0fe8c1a560f4e6d3ea8f9922bb513aa73f33a4ea44c1adafc36973"
+    },
+    {
+      "path": "evidence/art-review/contact-qr-edges-12x.png",
+      "size": 15136,
+      "sha256": "918256fbeba55114d1081fcbde9118b2cf254c366f4183b55773a087d271de1b"
+    },
+    {
+      "path": "evidence/art-review/contact-qr-source-pair.jpg",
+      "size": 38547,
+      "sha256": "03e9c2f7b61778384c097732b81d2e958b3c347ac6ac88fa733e06850c9194ba"
+    },
+    {
+      "path": "evidence/art-review/inbox-adapter-edges-12x.png",
+      "size": 18948,
+      "sha256": "e6affc4b18a9ab82fd558b59cf69fffc2f5185c3d910344a6cb64a806c4bde52"
+    },
+    {
+      "path": "evidence/art-review/inbox-adapter-source-pair.jpg",
+      "size": 68072,
+      "sha256": "7c12de83e8f0b77867cb6fa7db22466a68e3acb234b07f5cc9a02598112e65ef"
+    },
+    {
+      "path": "evidence/art-review/inbox-cable-edges-12x.png",
+      "size": 19652,
+      "sha256": "ed6c0a8b5c2aa66ae2b180a377ada91f7463fd82076e21a036adb88607c738b8"
+    },
+    {
+      "path": "evidence/art-review/inbox-carabiner-edges-12x.png",
+      "size": 11130,
+      "sha256": "3d940ea6b02b1a18c603547caa5f93346665c92d9369ca4c89abcea91ea5c76e"
+    },
+    {
+      "path": "evidence/art-review/inbox-manual-edges-12x.png",
+      "size": 14348,
+      "sha256": "2c0ebbb5653efffc8272f687938029e2879bca42e6ac8663b089faecfbcab99c"
+    },
+    {
+      "path": "evidence/art-review/inbox-panel-edges-12x.png",
+      "size": 23813,
+      "sha256": "ae493652ffa7d40481db6fef9dd075498719a9b2dad27cd2705be20d3159e95d"
+    },
+    {
+      "path": "evidence/art-review/inbox-pouch-edges-12x.png",
+      "size": 27321,
+      "sha256": "4690c626ed06e2bb263c4b3a94281c12ae6819dc779094e3dda2ab8d3579628f"
+    },
+    {
+      "path": "evidence/art-review/inbox-pouch-source-pair.jpg",
+      "size": 69864,
+      "sha256": "8a26758c74c242d36c7633f1fb0f21574be784e8c2e6f61c7f1c30386d37901d"
+    },
+    {
+      "path": "evidence/art-review/inbox-usbc-edges-12x.png",
+      "size": 21559,
+      "sha256": "d3a4a4d17f01c8f5d93e630af49e7a081ba1bac2f4aac142b1dc410833b19ca7"
+    },
+    {
+      "path": "evidence/art-review/inbox-usbc-source-pair.jpg",
+      "size": 68046,
+      "sha256": "23024ef8bdff1689d9e1b5ba12664c6942cefbd7a59a5f3cf281feb910eafcf1"
+    },
+    {
+      "path": "evidence/art-review/power-device-edges-12x.png",
+      "size": 75062,
+      "sha256": "de285a7bff12ab70618154e6fa7ad930c8c44a301893fb0f09a027daf90e5f8d"
+    },
+    {
+      "path": "evidence/art-review/power-device-source-pair.jpg",
+      "size": 91125,
+      "sha256": "6bfcc129087095365963b0df8c0af24822856846e3ba4b41f3fecebd18ef70b8"
+    },
+    {
+      "path": "evidence/art-review/unfold-1-edges-12x.png",
+      "size": 28565,
+      "sha256": "740e742d7cfa04e1f341567393475505e9743126b5aebed8cfc3fd8a8c35b805"
+    },
+    {
+      "path": "evidence/art-review/unfold-2-edges-12x.png",
+      "size": 23930,
+      "sha256": "da1c28f26ac7d4d72de46b706dd42d9dd44fe599450ce77447e1169f0eb96f99"
+    },
+    {
+      "path": "evidence/art-review/unfold-3-edges-12x.png",
+      "size": 29069,
+      "sha256": "3e73f959cb1e2170d40496843eb86bc2accb7d90b20875f7891f4b48ba66df73"
+    },
+    {
+      "path": "evidence/art-review/unfold-4-edges-12x.png",
+      "size": 65820,
+      "sha256": "a8ef52271247b23bd522c9433b2b46e67194b7328aa143f4b958de996c683f53"
+    },
+    {
+      "path": "evidence/art-review/unfold-5-edges-12x.png",
+      "size": 21829,
+      "sha256": "23d8ca53bd688ee879a73004cedf5a16d5e17f4968325a65646d291fd970291a"
+    },
+    {
+      "path": "evidence/asset-intake.log",
+      "size": 497,
+      "sha256": "01eeee5827e8a454a6a171da3bb8430e92558ba8a5a083ae110acc56df436276"
+    },
+    {
+      "path": "evidence/browser-validation.json",
+      "size": 5759,
+      "sha256": "f09bb8063c930a6fca9e0a08c2cf3cc6131c05e8cef1224c848c14df1fea11c7"
+    },
+    {
+      "path": "evidence/candidate-validation.json",
+      "size": 3104,
+      "sha256": "0a1ff60f8ca238b88fb4632d12b0f5436fd71342ef8c12b17f40f93929310a99"
+    },
+    {
+      "path": "evidence/cold-source-rebuild.log",
+      "size": 344,
+      "sha256": "363608b7cdc2b81ff1ccdd622177377600c86a1f0f1505d0323834b24c55674f"
+    },
+    {
+      "path": "evidence/full-1280.png",
+      "size": 1017185,
+      "sha256": "3d7b6e6e2fc2f3d29fbf4087cb93ae35f197c22b910575515a56160db9e63f3c"
+    },
+    {
+      "path": "evidence/full-390.png",
+      "size": 624041,
+      "sha256": "bff1d6e6fa89228e98ab6f0113728b414d45783c12ee93761c089b5a5d14f310"
+    },
+    {
+      "path": "evidence/independent-body-qc.json",
+      "size": 2266,
+      "sha256": "39a64f27784a0fbb53dba7c81619d43a1f44b7a9883736af96d5defe07f23d79"
+    },
+    {
+      "path": "evidence/independent-full-1280.png",
+      "size": 1017185,
+      "sha256": "3d7b6e6e2fc2f3d29fbf4087cb93ae35f197c22b910575515a56160db9e63f3c"
+    },
+    {
+      "path": "evidence/independent-full-390.png",
+      "size": 624041,
+      "sha256": "bff1d6e6fa89228e98ab6f0113728b414d45783c12ee93761c089b5a5d14f310"
+    },
+    {
+      "path": "evidence/independent-source-browser-qc.json",
+      "size": 3755,
+      "sha256": "0a2eb9958e9283ceb34a3961aafb8154704a113583fe27faab836a39db91fd83"
+    },
+    {
+      "path": "evidence/ocr/001.txt",
+      "size": 157,
+      "sha256": "30d1b443e28f01d76d89eec68425b6aee3e335e42232f46bd4cf0d260dec95f6"
+    },
+    {
+      "path": "evidence/ocr/002.txt",
+      "size": 79,
+      "sha256": "fb739e712840cca6a5e0ab2e695ac29512571e58e55f0a5caa1d786984608046"
+    },
+    {
+      "path": "evidence/ocr/003.txt",
+      "size": 100,
+      "sha256": "91d80cc3bc1bfc555404ffa4db4d5413f43ed9d0bed79eb964cf291e15047041"
+    },
+    {
+      "path": "evidence/ocr/004.txt",
+      "size": 111,
+      "sha256": "aec2568139f5265e1ed48766c36127c4b60a1fb2a3656764b3a3099a7fdd1442"
+    },
+    {
+      "path": "evidence/ocr/005.txt",
+      "size": 33,
+      "sha256": "b565bcbfe071db00a91d78d72bfdcdae443b5568ea41b6bc69e507c2ea4ca8f8"
+    },
+    {
+      "path": "evidence/ocr/006.txt",
+      "size": 931,
+      "sha256": "aad1b454981d51438e9059a337ad1a56afaa487990c474ef19d551312860e5c1"
+    },
+    {
+      "path": "evidence/ocr/007.txt",
+      "size": 904,
+      "sha256": "3d48e8ee5060ef325b7f9809ffb50d9ead9275f3b7bcb2e25ea4dedcf4dcbbd4"
+    },
+    {
+      "path": "evidence/ocr/008.txt",
+      "size": 2163,
+      "sha256": "89545032b9a996c781b29745cf5b8a082f46e885b2943735ac03d4cad771526a"
+    },
+    {
+      "path": "evidence/ocr/009.txt",
+      "size": 123,
+      "sha256": "232df568f96e10f6e4bcf95c782a528e5c1bfcb460e7a367cd91a60e2ab8e1a0"
+    },
+    {
+      "path": "evidence/preparation-audit.initial.json",
+      "size": 5743,
+      "sha256": "7b8094706d7d05cf306c8d5d1945616520aff1fee1d11149a187efe647ec2418"
+    },
+    {
+      "path": "evidence/preparation-audit.json",
+      "size": 11929,
+      "sha256": "a1e629b4aa24fe291935f12405b45ec49efbed709d979e608086850164d5c0b7"
+    },
+    {
+      "path": "evidence/publish_packaging.json",
+      "size": 1296,
+      "sha256": "9cfb402f8c0cb5dc2acca7ff049d76d23f8e66bd4e6d0adf5b64ce5bcfd464ef"
+    },
+    {
+      "path": "evidence/publish_shared_style_admission.json",
+      "size": 175,
+      "sha256": "112f2b37228b95b9491111faf69936013359eb61a9702579b0a51243ba70c2b3"
+    },
+    {
+      "path": "evidence/release_derivation.json",
+      "size": 2658,
+      "sha256": "dbf2b3b1e94db5cbbc78ab4873872e435497b12402bf9c1d54f3003e964362e8"
+    },
+    {
+      "path": "evidence/replay-and-tamper.json",
+      "size": 772,
+      "sha256": "bede24c07e09c381a5be8afbae48e7edefa4b9b3598a4c1db3256af83a2213f0"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 1995,
+      "sha256": "9eecbb9fbad6e3364a1cd94069945775ca596593e76b52e5b621cfc75145e2a0"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2267,
+      "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261"
+    },
+    {
+      "path": "render.py",
+      "size": 16954,
+      "sha256": "4ce69b29b13ffe2c2209f0eb9517abec3251e892d36b35dd78de2bcc369ca5af"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 17838,
+      "sha256": "436b2dc6860d8c0d8c5922597c9dcde77c176448b642cc43307c36dda1452fd6"
+    },
+    {
+      "path": "source/asset_decisions.preparation.json",
+      "size": 14766,
+      "sha256": "33f9829c9673cb3829b1be4eaeb9ba3bef0715b0b34cefbb912e8aa29b7dc015"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 8692,
+      "sha256": "e13ef6ad5b06c4f8ca3427b65efdd8688721c45302e6d6c8ae0bf7c2999f9a7c"
+    },
+    {
+      "path": "source/discovery.md",
+      "size": 1987,
+      "sha256": "4a341514b42425d9352b948278000d4c0c6b21dbe8422c887dfa69458fddbeb5"
+    },
+    {
+      "path": "source/intake-source.json",
+      "size": 1781,
+      "sha256": "b899348dee7014b1ffc2e1aaa68b4de622f9d4c8ae50e271013751837561197e"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1576156,
+      "sha256": "95e0f1c8f544920b6709403d5c6e9c82d5779de42a9cbc928d5164f0a80a6047"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 1130,
+      "sha256": "dfac0fcb2de9d8dd0e1e331148ede7110376d1efbe644a925d786ea7d106dbb7"
+    },
+    {
+      "path": "source/release_approval.json",
+      "size": 1077,
+      "sha256": "412062586ddddeb2334c462fe28ab90c936959f5bf4421f0667126338b2ad5d5"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 13275,
+      "sha256": "c46188f8ec0ba5c4a91377cabe9c438c876720aa2e5b766897d242e4109841bb"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 7815,
+      "sha256": "e56c5b23375a7264994fbc4219201bccc4b2de2e53919ee27f70cc01f4e99116"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 7004,
+      "sha256": "5bd8cff49238202778718385d034ef457400243751dba96b1b18ac6fe5e8bf47"
+    },
+    {
+      "path": "web/en/assets/inbox-adapter.png",
+      "size": 5709,
+      "sha256": "60f5ba1e4ca461dcdf1d3b599d128c8520ca03633ea37b6e3959b753faae91d0"
+    },
+    {
+      "path": "web/en/assets/inbox-cable.png",
+      "size": 9574,
+      "sha256": "d9c356d52b20e072dec01d8fab552c9efbb652927da9ff9c659b74c1d7bfa780"
+    },
+    {
+      "path": "web/en/assets/inbox-carabiner.png",
+      "size": 8639,
+      "sha256": "41c5a19e743bd847fcae671c137989d2970c5ce5448e6eb42e4106f5c2cf1f79"
+    },
+    {
+      "path": "web/en/assets/inbox-manual.png",
+      "size": 5913,
+      "sha256": "5614a0dca59a649c1e9e8d519ff6f1586b704b3c53325e5d1deff29ff005e4a2"
+    },
+    {
+      "path": "web/en/assets/inbox-panel.png",
+      "size": 11959,
+      "sha256": "39f9ab6b4f6ca7dceef39bf435a736e9a196075704a0aea4c11c1fc529fe328b"
+    },
+    {
+      "path": "web/en/assets/inbox-pouch.png",
+      "size": 8758,
+      "sha256": "55d8c3c3d6f88252dbd98a9d6f09b70577458275924e8d89c2d41286bcc73161"
+    },
+    {
+      "path": "web/en/assets/inbox-usbc.png",
+      "size": 6739,
+      "sha256": "511ad02dfaa56121f3b664217628956a9109d43fb7b2dff19e5795cb78ce82d9"
+    },
+    {
+      "path": "web/en/assets/power-device.png",
+      "size": 177236,
+      "sha256": "0706ccc6053cf25026edd1aa8264c8b144db8873730ce365aed9359633874e78"
+    },
+    {
+      "path": "web/en/assets/unfold-1.png",
+      "size": 19693,
+      "sha256": "d4f192fb0e8b2e6c6fe9f62b4cfc00bc59ad12606ebc48b1b7b55c274b623a1a"
+    },
+    {
+      "path": "web/en/assets/unfold-2.png",
+      "size": 94931,
+      "sha256": "a71fb0738c120520516984c3d99cffffcaa1b1ad0f2f65c31771c9ee45404a60"
+    },
+    {
+      "path": "web/en/assets/unfold-3.png",
+      "size": 151475,
+      "sha256": "cc3bce48031cc93f8bde2651c84aa7052231a26214c2e7de88ee247b1b047331"
+    },
+    {
+      "path": "web/en/assets/unfold-4.png",
+      "size": 173773,
+      "sha256": "7159f9d8bddb88c5d2a7b4ab3e8e3ec349bf3f86ab7cc53fec58208576911570"
+    },
+    {
+      "path": "web/en/assets/unfold-5.png",
+      "size": 155332,
+      "sha256": "fd032a9605fc5e4e0c48e554410daec72cee1a8bbdfc6bca41439ac286e91266"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 820,
+      "sha256": "1043333c285eeda254f7c3eef93846737194983a9ad025ce00e66d137fd188c0"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 79,
+      "sha256": "43dac112a390ca525135dd8a20a11f27f0e38e3bc40da5d92afbc7373c95aa07"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 170552,
+      "sha256": "e9d58f514ba0c6a103968a9a37a9a2c162752e27e22c7ff3dc8e90429cd715ff"
+    },
+    {
+      "path": "web/en/manual_js40a_us_en.md",
+      "size": 16271,
+      "sha256": "acf1b1d84bae3f0337bedee770a06a60acf7ff2be81497d210041714a857707a"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    }
+  ],
+  "shared_component_exceptions": [],
+  "revision_of": "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717",
+  "operator_release_approval": {
+    "path": "source/release_approval.json",
+    "sha256": "412062586ddddeb2334c462fe28ab90c936959f5bf4421f0667126338b2ad5d5",
+    "authorization": "MA-432"
+  },
+  "publication_packaging_of": "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717-release"
+}

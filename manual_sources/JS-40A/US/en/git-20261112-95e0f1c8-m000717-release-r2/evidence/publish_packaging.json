@@ -1,0 +1,32 @@
+{
+  "authorization": "MA-432",
+  "publication_packaging_of": "manual_sources/JS-40A/US/en/git-20261112-95e0f1c8-m000717-release",
+  "v1_frozen_manifest_sha256": "1efc4c4f636a9a29a59cbc3ae47d2b7550c8bb14163880ee7fb5b2fcba21a713",
+  "change": "Move shared-style audit JSON from serving root to evidence; preserve its bytes.",
+  "relocated_from": "web/en/shared-style-admission.json",
+  "relocated_to": "evidence/publish_shared_style_admission.json",
+  "relocated_file_sha256": "112f2b37228b95b9491111faf69936013359eb61a9702579b0a51243ba70c2b3",
+  "native_pages_and_content_identical": true,
+  "body_artwork_CSS_and_remaining_web_files_identical": [
+    "_static/web_manual.css",
+    "assets/contact-qr.png",
+    "assets/inbox-adapter.png",
+    "assets/inbox-cable.png",
+    "assets/inbox-carabiner.png",
+    "assets/inbox-manual.png",
+    "assets/inbox-panel.png",
+    "assets/inbox-pouch.png",
+    "assets/inbox-usbc.png",
+    "assets/power-device.png",
+    "assets/unfold-1.png",
+    "assets/unfold-2.png",
+    "assets/unfold-3.png",
+    "assets/unfold-4.png",
+    "assets/unfold-5.png",
+    "conf.py",
+    "index.md",
+    "manual_js40a_us_en.md"
+  ],
+  "existing_assembler_copy_inventory_exact": true,
+  "approved_IR_sha256": "e9d58f514ba0c6a103968a9a37a9a2c162752e27e22c7ff3dc8e90429cd715ff"
+}

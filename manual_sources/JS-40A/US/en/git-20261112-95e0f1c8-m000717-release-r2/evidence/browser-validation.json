@@ -1,0 +1,260 @@
+[
+  {
+    "bodyWidth": 1280,
+    "viewport": 1280,
+    "images": [
+      {
+        "src": "assets/unfold-1.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-1.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-2.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-2.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-3.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-3.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-4.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-4.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-5.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-5.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/power-device.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/power-device.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-panel.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-cable.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-adapter.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-usbc.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-pouch.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-manual.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-carabiner.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/contact-qr.png",
+        "loaded": true
+      }
+    ],
+    "panels": [
+      {
+        "caption": "1. Release the magnetic buckle.",
+        "captionTop": 367,
+        "imageTop": 410.1875
+      },
+      {
+        "caption": "2. Extend both sides of the panel.",
+        "captionTop": 1143.8125,
+        "imageTop": 1187
+      },
+      {
+        "caption": "3. Pull the concealed latch from the center to release it.",
+        "captionTop": 1844.859375,
+        "imageTop": 1888.046875
+      },
+      {
+        "caption": "4. Unfold the panel completely.",
+        "captionTop": 2542.265625,
+        "imageTop": 2585.453125
+      },
+      {
+        "caption": "5. Position it towards the sun and connect it to a portable power station.",
+        "captionTop": 2870.734375,
+        "imageTop": 2913.921875
+      }
+    ],
+    "inboxCards": 7,
+    "components": [
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-INBOX",
+      "HB-WARRANTY-YEARS",
+      "HB-WARRANTY-SECTION",
+      "HB-WARRANTY-SECTION"
+    ],
+    "overflow": [],
+    "width": 1280,
+    "pageErrors": []
+  },
+  {
+    "bodyWidth": 390,
+    "viewport": 390,
+    "images": [
+      {
+        "src": "assets/unfold-1.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-1.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-2.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-2.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-3.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-3.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-4.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-4.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-5.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/unfold-5.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/power-device.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/power-device.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-panel.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-cable.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-adapter.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-usbc.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-pouch.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-manual.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/inbox-carabiner.png",
+        "loaded": true
+      },
+      {
+        "src": "assets/contact-qr.png",
+        "loaded": true
+      }
+    ],
+    "panels": [
+      {
+        "caption": "1. Release the magnetic buckle.",
+        "captionTop": 372.65625,
+        "imageTop": 415.84375
+      },
+      {
+        "caption": "2. Extend both sides of the panel.",
+        "captionTop": 826.640625,
+        "imageTop": 869.828125
+      },
+      {
+        "caption": "3. Pull the concealed latch from the center to release it.",
+        "captionTop": 1241.203125,
+        "imageTop": 1305.984375
+      },
+      {
+        "caption": "4. Unfold the panel completely.",
+        "captionTop": 1675.46875,
+        "imageTop": 1718.65625
+      },
+      {
+        "caption": "5. Position it towards the sun and connect it to a portable power station.",
+        "captionTop": 1896.21875,
+        "imageTop": 1961
+      }
+    ],
+    "inboxCards": 7,
+    "components": [
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-REFERENCE-FIGURE",
+      "HB-SPECIAL-INBOX",
+      "HB-WARRANTY-YEARS",
+      "HB-WARRANTY-SECTION",
+      "HB-WARRANTY-SECTION"
+    ],
+    "overflow": [],
+    "width": 390,
+    "pageErrors": []
+  }
+]

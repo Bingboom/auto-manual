@@ -1,0 +1,29 @@
+{
+  "status": "review-candidate-no-release-authorization",
+  "publication_eligible": false,
+  "source_sha256": "e1f2a5fad81afdca636bfcf7f619389caf9d367712be208664aa5e85bf2a1ca0",
+  "all_physical_pages_covered": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "cold_replay_markdown_identical": true,
+  "second_adapter_render_all_files_identical": true,
+  "asset_tamper_rejected": "document asset missing or changed: assets/bottle.png",
+  "stylesheet_tamper_rejected": "frozen Web stylesheet changed",
+  "strict_sphinx": "passed -n -W --keep-going",
+  "shared_style_issues": [],
+  "component_inventory": {
+    "HB-TABLE-SPEC": 1,
+    "HB-WARRANTY-SECTION": 3,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "python": "3.12.13 / requirements.lock",
+  "package_python_ruff": "pass",
+  "source_qc": "independent 19-page read-only QC by us_power; exact evidence attached in evidence/independent-source-qc.json",
+  "visual_pending": null,
+  "browser_acceptance": "1280 and 390 actual strict-Sphinx manual HTML; zero missing images; table containers inspected and scroll locally; no document overflow",
+  "artwork_review": "12x source crop rendering and all four edges checked; evidence/artwork-review.json",
+  "transcription_sha256": "57d2be9f0007370124bfae9205bade0ca701d32ae4a1d3bc242a6a0a334b420e"
+}

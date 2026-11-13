@@ -1,0 +1,372 @@
+{
+  "model": "JS-38A",
+  "language": "en",
+  "chapters": [
+    {
+      "id": "introduction",
+      "title": "SPECIFICATION SHEET",
+      "source_pages": [
+        1,
+        2,
+        3
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Jackery Solar Curved Tile TerraCotta"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Model: JS-38A"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Version: JAK-UM-V1.0"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Congratulations on your new Jackery Solar Curved Tile TerraCotta. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference."
+        },
+        {
+          "kind": "paragraph",
+          "text": "In compliance with laws and regulations, the right to the final interpretation of this document and all related documents of this product reside with the Company."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Please kindly note that no further notifications will be given in case of any update, revision, or termination."
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "TECHNICAL PARAMETER",
+      "source_pages": [
+        3
+      ],
+      "blocks": [
+        {
+          "kind": "specification",
+          "title": "TECHNICAL PARAMETER",
+          "rows": [
+            [
+              "Product Name",
+              "Jackery Solar Curved Tile TerraCotta"
+            ],
+            [
+              "Model Number",
+              "JS-38A"
+            ],
+            [
+              {
+                "before": "Rated Maximum Power (P",
+                "subscript": "max",
+                "after": ")"
+              },
+              "38W±5%"
+            ],
+            [
+              {
+                "before": "Rated Operating Current (I",
+                "subscript": "mp",
+                "after": ")"
+              },
+              "8.38A±5%"
+            ],
+            [
+              {
+                "before": "Rated Operating Voltage (V",
+                "subscript": "mp",
+                "after": ")"
+              },
+              "4.53V±5%"
+            ],
+            [
+              {
+                "before": "Short Circuit Current (I",
+                "subscript": "sc",
+                "after": ")"
+              },
+              "9.14A±5%"
+            ],
+            [
+              {
+                "before": "Open Circuit Voltage (V",
+                "subscript": "oc",
+                "after": ")"
+              },
+              "5.54V±5%"
+            ],
+            [
+              {
+                "before": "Nominal Module Operating Temperature (T",
+                "subscript": "nmot",
+                "after": ")"
+              },
+              "−40°C~85°C"
+            ],
+            [
+              "Weight",
+              "4.5kg"
+            ],
+            [
+              "Dimensions",
+              "720mm x 430mm x 35mm"
+            ],
+            [
+              "Maximum System Voltage",
+              "1000V"
+            ],
+            [
+              "Maximum Series Fuse Rating",
+              "20A"
+            ],
+            [
+              "Ingress Protection",
+              "IP68"
+            ],
+            [
+              "Fire Rating",
+              "Class C"
+            ],
+            [
+              "Impact Resistance Class",
+              "Class 3"
+            ],
+            [
+              "Cell Technology",
+              "IBC"
+            ],
+            [
+              "Application Class",
+              "Class A"
+            ],
+            [
+              "Min.Design Load",
+              "+3600Pa/−1600Pa"
+            ],
+            [
+              "Module [T98]max",
+              "70°C"
+            ],
+            [
+              "Connector Manufacturer",
+              "QC Solar (Suzhou)"
+            ],
+            [
+              "Connector Type",
+              "QC4.10-cds"
+            ],
+            [
+              "All Technical Data at Standard",
+              {
+                "before": "AM1.5, E=1000W/m², T",
+                "subscript": "c",
+                "after": "=25°C"
+              }
+            ]
+          ]
+        }
+      ],
+      "heading_from_first_component": true
+    },
+    {
+      "id": "in_the_box",
+      "title": "PACKAGE LIST",
+      "source_pages": [
+        4
+      ],
+      "blocks": [
+        {
+          "kind": "inbox",
+          "cards": [
+            [
+              "inbox-product",
+              "Jackery Solar Curved Tile TerraCotta"
+            ],
+            [
+              "inbox-sheet",
+              "Specification Sheet"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "WARRANTY",
+      "source_pages": [
+        4
+      ],
+      "blocks": [
+        {
+          "kind": "warranty",
+          "title": "LIMITED PRODUCT WARRANTY",
+          "paragraphs": [
+            "Within 10 years from the date of installation, Jackery guarantees that the solar roof system it supplies, under the condition that it is installed, used, and maintained in accordance with the installation manual, will not experience product component failures caused by material or process defects that affect the normal installation or use of the product. (Except as otherwise specified in other clauses)"
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "LIMITED POWER WARRANTY",
+          "paragraphs": [
+            "Jackery offers a 25-year power output warranty starting from the date of installation, with the following terms:",
+            "Years 1–10: Actual power output shall not be less than 90% of the nameplate rating",
+            "Years 11–25: Actual power output shall not be less than 80% of the nameplate rating",
+            "Power output must be measured only under Standard Test Conditions (STC: Air Mass 1.5, Irradiance 1000W/m², Module Temperature 25°C).",
+            "All measurements must be performed by a third-party measurement institution approved either by the supplier or mutually by both parties.",
+            "In accordance with IEC 60904, test uncertainty must be taken into account in all output measurements."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disclaimer",
+      "title": "DISCLAIMER",
+      "source_pages": [
+        5
+      ],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Jackery’s warranty does not apply to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Misuse, abuse, modification, accidental damage, or for any purpose other than normal consumer use as authorized by Jackery’s current product literature.",
+            "Repaired by anyone other than an authorized agency.",
+            "Any product purchased from an unauthorized distributor or other source.",
+            "Deformation, cracking, or other failure or movement of the walls or foundation of the roof deck or the building itself for the applicable product.",
+            "Shading, staining, or discoloration of the product caused by external sources including, but not limited to, algae, fungi, moss, lichen, or other vegetation, mold, or paint, chemicals, or other similar materials.",
+            "Damage caused by installation in an unsuitable location, such as a corrosive environment or a location exposed to damaging chemicals.",
+            "Damage caused by acts of God, power surges, lightning strikes, hurricanes, tornadoes, hail, earthquakes, floods, fires, vandalism, tampering, accidental damage, or other circumstances beyond the control of the Company.",
+            "Damage due to improper installation, storage, operation, or maintenance, or failure to comply with the product documentation or any local laws, regulations, codes, and requirements.",
+            "Any marked modification or removal, reverse engineering or alteration of the original Jackery product or its original identification and serial number.",
+            "This product has been proven to be free from any defects in quality after all the corresponding tests have been carried out by Jackery and Jackery’s authorized repair facilities.",
+            "Force Majeure: \"Force Majeure\" means any unforeseen, unavoidable, or insurmountable event beyond the control of the parties to this Agreement that makes the performance of this Limited Liability partially or totally impossible."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Such events include, but are not limited to, earthquakes, hurricanes, floods, fires, wars, strikes, epidemics, riots, acts of government, changes in laws and regulations or the application thereof, or any other events that cannot be foreseen, avoided or controlled, including events that are generally regarded as Force Majeure in business practice.",
+            "If a Force Majeure Event occurs, the obligations of any party affected by the Force Majeure Event under this Limited Warranty shall be automatically suspended for the duration of the delay caused by the Force Majeure Event and the period of performance shall be automatically extended. The extended period shall be the suspension period, and the other party shall not be liable for breach of contract. The party claiming to be affected by the Force Majeure shall promptly notify the other party in writing and provide the other party with sufficient evidence of the occurrence and duration of the Force Majeure within 15 days after the occurrence of the Force Majeure.",
+            "The party claiming to be affected by the Force Majeure shall also make all reasonable efforts to eliminate the Force Majeure, otherwise, the other party shall not compensate for the increased losses caused by the Force Majeure. In the event of Force Majeure, both parties shall immediately negotiate a fair solution and make all reasonable efforts to minimize the impact of Force Majeure."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "paragraph",
+          "text": "12. Other circumstances not covered by this policy but for which Jackery has sufficient evidence to refuse."
+        }
+      ]
+    },
+    {
+      "id": "after_sales",
+      "title": "AFTER-SALES WARRANTY",
+      "source_pages": [
+        6
+      ],
+      "blocks": [
+        {
+          "kind": "warranty",
+          "title": "AFTER-SALES WARRANTY",
+          "paragraphs": [
+            "If the product does not work properly within the warranty period, you can contact our customer service team at hello@jackery.com for after-sales service. You will need to provide a valid proof of purchase, proof of warranty, product serial number, photographic or video proof of failure, and other information required by our customer support team for after-sales service.",
+            "Jackery will be responsible for the repair or replacement (at Jackery’s expense) of any Jackery product that fails to operate during the applicable warranty period due to defective workmanship or materials. The repaired or replaced product will carry the remaining warranty period of the original purchase date."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "RIGHT OF INTERPRETATION",
+          "paragraphs": [
+            "Jackery reserves the right of final interpretation of the above Customer After-Sales Policy."
+          ]
+        },
+        {
+          "kind": "warranty",
+          "title": "CONTACT US",
+          "paragraphs": [
+            "hello@jackery.com (US)",
+            "hello.eu@jackery.com (EU)",
+            "jackery.jp@jackery.com (JP)"
+          ]
+        }
+      ],
+      "heading_from_first_component": true
+    },
+    {
+      "id": "contacts",
+      "title": "CONTACT INFORMATION",
+      "source_pages": [
+        7
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "JACKERY INC.",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+        },
+        {
+          "kind": "paragraph",
+          "text": "hello@jackery.com · 1-888-502-2236 · www.jackery.com"
+        },
+        {
+          "kind": "heading",
+          "text": "JACKERY TECHNOLOGY GMBH.",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Address: Bahnstraße 9, 40212 Düsseldorf, Germany"
+        },
+        {
+          "kind": "paragraph",
+          "text": "hello.eu@jackery.com · +49 800 028 0208 · www.jackery.com"
+        },
+        {
+          "kind": "heading",
+          "text": "JACKERY UK LTD.",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Address: Suite B Fairgate House, 205 Kings Road Tyseley Birmingham B11 2AA, GB"
+        },
+        {
+          "kind": "paragraph",
+          "text": "hello.eu@jackery.com · +44 808 164 2377 · www.jackery.com"
+        },
+        {
+          "kind": "heading",
+          "text": "Shenzhen Hello Tech Energy Co.,Ltd.",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China"
+        },
+        {
+          "kind": "paragraph",
+          "text": "sales@hello-tech.com · +86 400 668 9293 · http://www.hello-tech.com"
+        },
+        {
+          "kind": "image",
+          "asset": "contact-qr",
+          "alt": "Shenzhen Hello Tech contact QR code, complete printed frame",
+          "source_page": 7,
+          "width": 110
+        }
+      ]
+    }
+  ],
+  "source_concerns": [
+    "The printed Nominal Module Operating Temperature row gives −40°C~85°C; the heading/value combination is preserved, not technically corrected.",
+    "The source warranty exclusion item 10 states the product has been proven free of defects; preserved literally."
+  ]
+}

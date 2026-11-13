@@ -1,0 +1,57 @@
+{
+  "method": "Source crops rendered at 12x for boundary inspection; full source pages and desktop/mobile HTML checked separately. Agent visual QC is not operator acceptance.",
+  "assets": [
+    {
+      "asset": "port-usb-c",
+      "reuse": "byte-identical existing artwork",
+      "source_path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-usb-c.png",
+      "sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f",
+      "byte_match": true
+    },
+    {
+      "asset": "port-dc7909",
+      "reuse": "byte-identical existing artwork",
+      "source_path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-dc7909.png",
+      "sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8",
+      "byte_match": true
+    },
+    {
+      "asset": "port-dc8020",
+      "reuse": "byte-identical existing artwork",
+      "source_path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-dc8020.png",
+      "sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c",
+      "byte_match": true
+    },
+    {
+      "asset": "connection-dc7909",
+      "physical_page": 1,
+      "clip_points": [
+        266,
+        175,
+        713,
+        307
+      ],
+      "source_render_scale": 12,
+      "all_four_edges": "visually compared against the complete physical source page; connector tips, QR frame, lid/strap/base and panel leaders retained",
+      "bare_art": "no text stripped; no empty caption boxes created; complete English diagram boxes retain their captions",
+      "path": "assets/connection-dc7909.png",
+      "sha256": "d09e58e6ebb9c700448940f15430bd52dda03a85a585d4d84290f6ac20910ae5"
+    },
+    {
+      "asset": "connection-dc8020",
+      "physical_page": 1,
+      "clip_points": [
+        266,
+        331,
+        713,
+        494
+      ],
+      "source_render_scale": 12,
+      "all_four_edges": "visually compared against the complete physical source page; connector tips, QR frame, lid/strap/base and panel leaders retained",
+      "bare_art": "no text stripped; no empty caption boxes created; complete English diagram boxes retain their captions",
+      "path": "assets/connection-dc8020.png",
+      "sha256": "1a517fea783aefb850acf5ec1b58c52e12f6994fe5f5d513525a431b2104bb4a"
+    }
+  ],
+  "release_authorized": false
+}

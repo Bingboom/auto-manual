@@ -1,0 +1,15 @@
+{
+  "model": "JS-40A",
+  "pages": 8,
+  "components": {
+    "HB-CALLOUT-STRIP": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 6,
+    "HB-TABLE-SPEC": 2,
+    "HB-WARRANTY-SECTION": 2,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "publication_eligible": false,
+  "shared_style_issues": [],
+  "output": "/private/tmp/us-js40-cold-sealed"
+}

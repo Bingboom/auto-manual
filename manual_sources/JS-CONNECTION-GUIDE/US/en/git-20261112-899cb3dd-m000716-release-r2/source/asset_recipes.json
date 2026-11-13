@@ -1,0 +1,54 @@
+{
+  "source_sha256": "899cb3dd395903c4fa41ddbee282e70480e6ce39605107407cb1da295289bece",
+  "assets": {
+    "port-usb-c": {
+      "mode": "shared-reuse",
+      "repo_path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-usb-c.png",
+      "path": "assets/port-usb-c.png",
+      "reason": "Same USB-C/DC7909/DC8020 port photograph and dimension-marker geometry; no language-specific captions in artwork. English names and 0.9mm/2.0mm remain native table text.",
+      "repo_sha256": "253e6efc97b0505d7b966ececf0f6ad074e293eaeeae985316ae6ac574e1289f"
+    },
+    "port-dc7909": {
+      "mode": "shared-reuse",
+      "repo_path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-dc7909.png",
+      "path": "assets/port-dc7909.png",
+      "reason": "Same USB-C/DC7909/DC8020 port photograph and dimension-marker geometry; no language-specific captions in artwork. English names and 0.9mm/2.0mm remain native table text.",
+      "repo_sha256": "2ee981d5176fab8f58a6839465b3a52fdc0eebef4328391ebea3926769afeea8"
+    },
+    "port-dc8020": {
+      "mode": "shared-reuse",
+      "repo_path": "manual_sources/JS-CONNECTION-GUIDE/JP/ja/git-20261026-bc35fd65-connection-guide/assets/port-dc8020.png",
+      "path": "assets/port-dc8020.png",
+      "reason": "Same USB-C/DC7909/DC8020 port photograph and dimension-marker geometry; no language-specific captions in artwork. English names and 0.9mm/2.0mm remain native table text.",
+      "repo_sha256": "ac5ec92cf0865d45fd453f9f8b7fe43c435c6e4a5da0399952a9c2e254340e8c"
+    },
+    "connection-dc7909": {
+      "mode": "source-crop",
+      "physical_page": 1,
+      "clip_points": [
+        266,
+        175,
+        713,
+        307
+      ],
+      "path": "assets/connection-dc7909.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. JP guide finished diagram has Japanese label and a different source power-station body, sockets and lead positions.",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3
+    },
+    "connection-dc8020": {
+      "mode": "source-crop",
+      "physical_page": 1,
+      "clip_points": [
+        266,
+        331,
+        713,
+        494
+      ],
+      "path": "assets/connection-dc8020.png",
+      "reason": "No existing matching finished source-language/model illustration in the recorded inventories; full native illustration or item only, excluding external headings/numbers/body cells. JP guide finished diagram has Japanese label and a different source power-station body, sockets and lead positions.",
+      "boundary_strategy": "Keep all four illustration edges and source product surfaces; native external titles/body remain selectable. Complete English labelled connection diagrams retain their caption frame together with text; no text stripping or empty caption frames.",
+      "scale": 3
+    }
+  }
+}
