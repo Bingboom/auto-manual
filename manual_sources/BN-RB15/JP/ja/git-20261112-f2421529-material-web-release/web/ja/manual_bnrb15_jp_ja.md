@@ -353,7 +353,7 @@ This warranty is valid only in Japan.</p></figure>
 
 # 保証書（持込修理）
 
-<table class="manual-table"><tbody><tr><td>品名</td><td>ポータブル電源</td></tr><tr><td>型名</td><td>BN-RB15</td></tr><tr><td>製造番号</td><td></td></tr><tr><td>お客様 お名前（ふりがな）</td><td></td></tr><tr><td>ご住所</td><td></td></tr><tr><td>電話</td><td>（　　　）－</td></tr><tr><td>お買い上げ年月日</td><td>年　月　日</td></tr><tr><td>保証期間</td><td>お買い上げ日から 本体2年</td></tr><tr><td>お買い上げ店</td><td>住所・店名・電話</td></tr></tbody></table>
+<div class="table-wrapper docutils"><table class="manual-table"><tbody><tr><td>品名</td><td>ポータブル電源</td></tr><tr><td>型名</td><td>BN-RB15</td></tr><tr><td>製造番号</td><td></td></tr><tr><td>お客様 お名前（ふりがな）</td><td></td></tr><tr><td>ご住所</td><td></td></tr><tr><td>電話</td><td>（　　　）－</td></tr><tr><td>お買い上げ年月日</td><td>年　月　日</td></tr><tr><td>保証期間</td><td>お買い上げ日から 本体2年</td></tr><tr><td>お買い上げ店</td><td>住所・店名・電話</td></tr></tbody></table></div>
 
 ## お客様へのお願い
 

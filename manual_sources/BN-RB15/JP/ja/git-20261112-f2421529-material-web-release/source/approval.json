@@ -29,6 +29,6 @@
   },
   "scope": "Review and publish this derivative of the exact candidate. Japanese wording, technical facts, printed variant differences, source concerns and recycle-glyph standardization are retained. Only the recorded source-bound symbol repairs are applied; no live-table write.",
   "release_review_changes": [
-    "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison."
+    "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison. Wrap the unchanged warranty form table in the existing shared responsive table container so portal mobile layouts scroll inside the panel."
   ]
 }

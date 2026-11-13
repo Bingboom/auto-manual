@@ -8,6 +8,7 @@ import unittest
 
 import fitz
 
+from tools.manual_ir import read_manual_ir
 from tools.utils.path_utils import PathSegments
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -124,6 +125,8 @@ class ApprovedJapaneseReleaseTests(unittest.TestCase):
                 manifest = manifest_at(release)
                 self.assertFalse(manifest_at(candidate)["publication_eligible"])
                 self.assertTrue(manifest["publication_eligible"])
+                ir = read_manual_ir(release / "web" / "ja" / "manual.ir.json")
+                self.assertTrue(ir.metadata["publication_eligible"])
                 self.assertFalse(manifest["pending_source_review"])
                 self.assertEqual(manifest["original_source"]["sha256"], digest)
                 approval = json.loads((release / "source" / "approval.json").read_text())

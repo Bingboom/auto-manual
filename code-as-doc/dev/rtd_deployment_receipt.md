@@ -115,7 +115,12 @@ overall verdict.
 
 Frozen source includes self-contained release packages and the assembled Web tree. Its separate storage budget accommodates both copies without changing the served-output or network verification budget. The 96-target catalog after the approved JBP-3600A EU additions occupies 686,644,486 bytes (654.8 MiB) across 6,740 files; original assets stay byte-identical. This exceeded the previous 640 MiB source cap, so that release raised the bounded source allowance to 768 MiB; current budgets are listed below. The RTD portal callbacks must run in the aggregate preflight: plain Sphinx without `tools.rtd.portal` does not exercise this source inventory or receipt emission.
 
-Limits: frozen source allows 20,000 files and 1536 MiB (1280 MiB until
+The seven JP manuals in PR #1712 raise the 210-target source tree from
+1,598,881,965 bytes to 1,613,577,831 bytes in preflight (217 targets), exceeding
+the former 1536 MiB cap. The bounded source allowance is 1600 MiB from
+2026-11-12; the served, network, file-count and per-file limits are unchanged.
+
+Limits: frozen source allows 20,000 files and 1600 MiB (1280 MiB until
 2026-10-14, when the JBP-3600A US/JP release left the publish tree at
 1,261.6 MiB), counting both preserved packages and assembled Web copies.
 Served-output inventories, selected routes,

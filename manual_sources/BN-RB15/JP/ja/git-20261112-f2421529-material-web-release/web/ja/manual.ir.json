@@ -23,7 +23,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "e3d8a793bc029ae3b33d8a7b0abb40a011d1ecbad8837ff5ea1a344ccedfd2d2",
-  "content_sha256": "342e2bdf3d877c99799b035b47a63f09a266a89725a4f541aca476573ec0562f",
+  "content_sha256": "89ca0f17e5d7c6bedfd07e496ce5ca556b9cc5fbb0c1c25d709a954df64173ef",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2551,7 +2551,7 @@
       },
       "scope": "Review and publish this derivative of the exact candidate. Japanese wording, technical facts, printed variant differences, source concerns and recycle-glyph standardization are retained. Only the recorded source-bound symbol repairs are applied; no live-table write.",
       "release_review_changes": [
-        "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison."
+        "Restore the printed unplug glyph alongside the mandatory glyph; all three JVC symbol glyphs use hash-bound native PDF paths because existing shared candidates failed the fixed comparison. Wrap the unchanged warranty form table in the existing shared responsive table container so portal mobile layouts scroll inside the panel."
       ]
     }
   },
@@ -9390,9 +9390,19 @@
         {
           "asset_refs": [],
           "block_id": "warranty_form:block-0002",
-          "content_sha256": "4699c668c43bda8bd3b94f082285274b7199f3c771456c4d57108f7d439f424d",
+          "content_sha256": "16a452cbc89a1559e05468804ec11caf20c83b80315a5e5e8015c27dd9555156",
           "kind": "flow",
           "payload": {
+            "schema_version": "manual-flow/v2",
+            "kind": "group",
+            "role": "container",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "table-wrapper docutils"
+                }
+              }
+            },
             "children": [
               {
                 "children": [
@@ -9401,239 +9411,242 @@
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "品名"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "品名"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ポータブル電源"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "ポータブル電源"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "型名"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "型名"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "BN-RB15"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "BN-RB15"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "製造番号"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "製造番号"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": ""
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": ""
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "お客様 お名前（ふりがな）"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "お客様 お名前（ふりがな）"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": ""
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": ""
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "ご住所"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "ご住所"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": ""
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": ""
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "電話"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "電話"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "（　　　）－"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "（　　　）－"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "お買い上げ年月日"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "お買い上げ年月日"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "年　月　日"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "年　月　日"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "保証期間"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
                           {
-                            "kind": "text",
-                            "text": "保証期間"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "お買い上げ日から 本体2年"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       },
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "お買い上げ日から 本体2年"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "お買い上げ店"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "住所・店名・電話"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell"
                           }
                         ],
-                        "header": false,
-                        "kind": "table_cell"
+                        "kind": "table_row"
                       }
                     ],
-                    "kind": "table_row"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "お買い上げ店"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "住所・店名・電話"
-                          }
-                        ],
-                        "header": false,
-                        "kind": "table_cell"
-                      }
-                    ],
-                    "kind": "table_row"
+                    "kind": "table_body"
                   }
                 ],
-                "kind": "table_body"
-              }
-            ],
-            "kind": "table",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "manual-table"
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-table"
+                    }
+                  }
                 }
               }
-            },
-            "schema_version": "manual-flow/v2"
+            ]
           },
           "source_ref": "source/transcription.json#warranty_form#block-2"
         },

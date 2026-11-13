@@ -139,7 +139,7 @@ def _copy_markdown_source(target: WebPublishTarget, destination: Path) -> None:
     # Preserve generated Web sidecars included in sealed Markdown inventories.
     # They are optional for legacy releases; unknown files still fail evidence
     # verification instead of being silently added to the publication surface.
-    for filename in (PathSegments.MANUAL_IR_JSON, "manual_bundle.html"):
+    for filename in (PathSegments.MANUAL_IR_JSON, "manual_bundle.html", "shared-style-admission.json"):
         source = source_dir / filename
         if source.is_file():
             shutil.copy2(source, destination / filename)

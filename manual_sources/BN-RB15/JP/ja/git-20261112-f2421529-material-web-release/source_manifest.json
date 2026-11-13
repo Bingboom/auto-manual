@@ -56,8 +56,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 1438,
-      "sha256": "8d87105f814fb2841439e2cffc00796cc0a2641bf2c85c57f0767bac5f273dc0"
+      "size": 1577,
+      "sha256": "692a05a90e587c4a77dc10a3cd77be31e06f4e0166c10c5f677720b617358140"
     },
     {
       "path": "assets/charging-ac.png",
@@ -156,8 +156,8 @@
     },
     {
       "path": "source/approval.json",
-      "size": 1884,
-      "sha256": "4337c772ea9490ed8643f64d4413125f0072c157bf4bc090d44e850316396a56"
+      "size": 2023,
+      "sha256": "c798bdab0d69360644b42e4b9e2167b653437eab8eb608d43a3bfdf5ac646f76"
     },
     {
       "path": "source/asset_decisions.json",
@@ -265,9 +265,14 @@
       "sha256": "e34a10fe6896cf03152a73c6a9207ffed77a0d1465ebc0b4e10ae21b93f9a7ab"
     },
     {
+      "path": "source/release-layout-review.json",
+      "size": 554,
+      "sha256": "8301f37817f7201c1bbb15afce3367ffb0eb948210f50f7658558bbb23c40a10"
+    },
+    {
       "path": "source/reviewed-candidate.json",
-      "size": 4869,
-      "sha256": "b5f2238e0473920abd4e7511e0d6515c61df2f9732e5886aaf52d911f716ff41"
+      "size": 5008,
+      "sha256": "2606caa75dee6b5b2ce2a77c4ae5f9650343890d7b6bd00f557d8c7cf44ac49d"
     },
     {
       "path": "source/source-info.json",
@@ -401,13 +406,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 367990,
-      "sha256": "f74080681cbc1749e16e28ca624c4025109d601c6e4fcd130610c7fec66068e5"
+      "size": 369410,
+      "sha256": "dd0b17309cd69a430f825417e81ff34172f87d897d94fc6a98b4c6578fceca7a"
     },
     {
       "path": "web/ja/manual_bnrb15_jp_ja.md",
-      "size": 51004,
-      "sha256": "43ac2770bec29c3b31bedecdab9a58d07459b89a1f4ae48d1460bfbbdb2873a4"
+      "size": 51046,
+      "sha256": "2bd05332093ecaae13170fc59453c0f91b6496583840d0932b479448aae72923"
     },
     {
       "path": "web/ja/shared-style-admission.json",
@@ -630,5 +635,5 @@
     "manifest_sha256": "c0183c567246cd4a8e94073fb5ea74e2657ed7ec1e167c93e623eecf34413d82",
     "manual_ir_sha256": "dc68e79afdfe07b6146c134619fa16670ed4c289159b1a154b8cb495b9f7f17d"
   },
-  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs and the restored printed unplug row. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed."
+  "validation_boundary": "MA-432 delegates review then release. Candidate adapters independently rebuilt byte-identical Web trees and passed strict Sphinx. Release differences are enumerated in source/reviewed-candidate.json: authorization metadata, source-matching/existing canonical PTB glyphs, native source-bound JVC glyphs, restored printed unplug row and the existing responsive wrapper around the unchanged JVC warranty table. Japanese wording, specifications and source concerns are unchanged. The fixed symbol admission rule and existing canonical choices and captions are unchanged. No separate operator pixel inspection is claimed."
 }
