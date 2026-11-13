@@ -1,0 +1,581 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JS-500A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261113-4ab03268-m000346-release"
+  },
+  "web_title": "Jackery SolarSaga 500 X",
+  "original_source": {
+    "filename": "16-0102-000346_Jackery_SolarSaga_85_500X_EN.pdf",
+    "path": "source/original.pdf",
+    "sha256": "4ab03268f8f1390459cd20aeb77ec6efdc175775b73267fe861e453a24bcc7fc",
+    "size": 6296366,
+    "physical_page_count": 15
+  },
+  "material": "16-0102-000346",
+  "feishu_source": {
+    "conversion_record_id": "reczz28SlRGJgn6R",
+    "source_table_id": "tbljbjaXaTD6V9PO",
+    "source_view_id": "vewy95Gdrv",
+    "source_field": "单语言",
+    "source_file_token": "Kln6bwWRaox7cGxVPXYcBSU0nxg",
+    "project": "HTS021",
+    "finished_goods": "HTS021500A-US/CA-JAK",
+    "regions_on_row": [
+      "US",
+      "CA"
+    ]
+  },
+  "source_authority": "Operator request 2026-11-13 「把这几本说明书 转网页版」 for 发布文档管理 › 说明书网页 › 美规 rows marked 是否要转网页文档 = Y-待转. The row's 单语言 English attachment was downloaded read-only and SHA-256 locked; it is an image-only PDF (one 300-dpi raster per page, no text layer). This original governs all copy; no review acceptance or release approval inferred.",
+  "printed_manual_version": "JAK-UM-V1.0",
+  "printed_cover_model": "JS-85A",
+  "model_identity_note": "Shared booklet: cover prints JS-85A / SolarSaga 85; p.4 prints the SolarSaga 500 X (JS-500A) table; the kit is six SolarSaga 85 panels. Built as the JS-500A edition per the Feishu row; operator decision D1 pending.",
+  "language_scope": "single",
+  "publication_status": "operator-approved-git-only-release",
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "web_roots": {
+    "en": "web/en"
+  },
+  "component_map": {
+    "native_copy": "Native selectable headings, paragraphs and lists (storage numbered list; safety, installation-requirement, not-permitted, compliance, illustration and disclaimer bullet lists)",
+    "cover_facts": "Not rendered (operator rule 2026-11-13: Web body starts at TECHNICAL PARAMETERS). Cover title, model JS-85A, version JAK-UM-V1.0 and contact lines are kept in transcription.cover_facts and this manifest only.",
+    "technical_parameters": "Declared plain native table per printed table (shared table wrapper, printed column spans and bold Electrical Data | STC | BNPI header row); HB-TABLE-SPEC is two-column only — see shared_component_exceptions",
+    "inbox": "HB-SPECIAL-INBOX with ten native labels and quantities in printed order",
+    "how_to_use_figures": "HB-SPECIAL-REFERENCE-FIGURE for every complete source illustration (15 complete illustrations; the small standalone Assembly hinge is a bounded inline image so it is not upscaled; in-art labels Front/Back, Solar Charging Cable/DC8020/Anderson Connector, 35°, 90° kept inside the art)",
+    "note": "HB-CALLOUT-STRIP (variant note) for the printed 'Note:' with two numbered items; inline 'Note:' sentences stay native paragraphs as printed",
+    "fcc": "HB-SPECIAL-FCC with the shared fcc/nested-c-native-dark mark",
+    "warranty_contact_service": "HB-WARRANTY-SECTION cards under the printed WARRANTY, CONTACT US and CUSTOMER SERVICE headings (no warranty-years badge is printed, none added)",
+    "contact_qr": "Back-cover QR as a bounded native inline image",
+    "symbols_lcd_buttons_app": "Not printed; none added"
+  },
+  "normalizations": [
+    "Join printed line wraps; preserve wording, case, numbers and printed grammar.",
+    "Full-width punctuation in the spec tables normalized to ASCII without changing values: '，' -> ', ' and '（…）' -> ' (…)'; 'W/㎡' -> 'W/m²'; '℃' -> '°C'.",
+    "Printed '*' bullet markers, '1.'-'4.' numbering and the FCC '--' measure markers become shared list markers (not doubled).",
+    "The printed callout label 'Note:' is carried by the shared HB-CALLOUT-STRIP label 'Note' (the shared component draws the label; colon dropped as in JS-40A US/en).",
+    "Omit the whole cover (image, caption, wordmark, title, model, version, contact lines) and the contents page per operator rule 2026-11-13, plus US language tab, page numbers, package-list circled numbers and the three Customer Service marker icons; all substantive copy remains native.",
+    "The medium-weight sentence 'We recommend standing the solar panel vertically before hinge installation.' is rendered bold to keep its printed emphasis.",
+    "The package-list hinge reuses the identical p.7 hinge drawing (one crop for both slots).",
+    "Package-list quantities ('x 6', 'x 10', 'x 8', 'x 40', 'x 2') are joined to their item name with non-breaking spaces so a quantity never wraps onto its own line; characters are otherwise unchanged."
+  ],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 1653,
+      "sha256": "9fc149187dc6ff637bb7261b89eb49a851c635608bac9fd30d1c8e30e483cbf9"
+    },
+    {
+      "path": "assets/array-to-station.png",
+      "size": 388567,
+      "sha256": "f5adde87fe11fefa828e746c43ac6c75a26dbdde27b9015c7abdbacd65617887"
+    },
+    {
+      "path": "assets/balcony-railing.png",
+      "size": 64583,
+      "sha256": "d46077aefd7df0e0fc9cb759dd834851eeeeeafce9e66f9cc780c150bce720e2"
+    },
+    {
+      "path": "assets/carport-roof.png",
+      "size": 194371,
+      "sha256": "56259dc4f740080ea7461af855c4a4bfa5a0052605f5dbd67707a1fbff0b457c"
+    },
+    {
+      "path": "assets/connection.png",
+      "size": 108689,
+      "sha256": "2d53a30547156d395c29bc5e7751ef7d988b502543400d40be91bcaeb578bcde"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 5729,
+      "sha256": "30f8fa684b893e6050e0429411b451686b711e7c4f6d167a37de9036ff2a4dee"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/final-angle.png",
+      "size": 134252,
+      "sha256": "67e484c25e121fde458749bab09de570ae06d368120e56f76a5fd92252dcb92e"
+    },
+    {
+      "path": "assets/ground-stake.png",
+      "size": 422756,
+      "sha256": "dceff5e1abd7e33ff641add2e53c0939b069ea35403140e100b031e6b6849c59"
+    },
+    {
+      "path": "assets/hinge-pair.png",
+      "size": 71968,
+      "sha256": "2f3c16513853335343c2881125d8dd81ec56a7b56f8b4ef186b8b4c97b7ea358"
+    },
+    {
+      "path": "assets/hinge-step1.png",
+      "size": 552607,
+      "sha256": "cebbf5db07e61ac617a1f14fc6e597287a6af3b657238602e44716fa4e4bf19d"
+    },
+    {
+      "path": "assets/hinge-step2.png",
+      "size": 675348,
+      "sha256": "ca4c030d729ba1e28b7bd36a59780041015053956afb1b43cf3b15eb7a0748c4"
+    },
+    {
+      "path": "assets/hinge.png",
+      "size": 25644,
+      "sha256": "d90f6d2e22c6a6c0eedfb6f87db38e50140ece28081c561db69c62700914f4a8"
+    },
+    {
+      "path": "assets/inbox-bag.png",
+      "size": 8753,
+      "sha256": "b72b4e49bb02c8ac36cc06748dc8546b2f563bbee1bec1a47604d9b9318211b9"
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "size": 16032,
+      "sha256": "41a41a29c104f5ca1e3ba20420f1d4327b2b1ffc47824c5f7952e80036de6b62"
+    },
+    {
+      "path": "assets/inbox-carabiner.png",
+      "size": 12640,
+      "sha256": "afd97797892099453da88e9e48a3159d60e7991032a7aad0c875454906c2654f"
+    },
+    {
+      "path": "assets/inbox-hex-tool.png",
+      "size": 6650,
+      "sha256": "460157617c69e96ea301b7e281727ecad24b986119857ac057b70a497993254c"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 9435,
+      "sha256": "b44ab3bbb6764b7c20b948d0b69a6fd5506f30f34829c8dfbf9de3b5e56ff622"
+    },
+    {
+      "path": "assets/inbox-panel.png",
+      "size": 12556,
+      "sha256": "12b984d315d598835378256cdf0c4861a1fa2b91ead0dbef4a952a29a8a27357"
+    },
+    {
+      "path": "assets/inbox-plug.png",
+      "size": 8097,
+      "sha256": "5c7161d6021bd2eb3678782e2b7911824e2957127affc1bc5f24c38868c36b39"
+    },
+    {
+      "path": "assets/inbox-screw.png",
+      "size": 7654,
+      "sha256": "7689164bbed305190bddaf8f27663ca50b4fa83dcc150691ad050642c677d60e"
+    },
+    {
+      "path": "assets/inbox-stake.png",
+      "size": 6453,
+      "sha256": "96a8d2b3596db0deb4ab382ef92cb869156b8a7797f3d0c7d2479a19a56923ed"
+    },
+    {
+      "path": "assets/mounting-holes.png",
+      "size": 44986,
+      "sha256": "477e17a04a784c0e03c6b6740fdaa1776be75c8fafd95679119e3a8e845f2e89"
+    },
+    {
+      "path": "assets/panel-front-back.png",
+      "size": 50496,
+      "sha256": "bb939cf37d52005757181a473c2184ba15dc8f03f48fef926f6ed95afbf9299d"
+    },
+    {
+      "path": "assets/six-panels.png",
+      "size": 1345500,
+      "sha256": "9cdef5eb70f180f8d3e5d5ad18bb4965ebad437ecfeace44007d9604dd0df8ad"
+    },
+    {
+      "path": "assets/stake-locations.png",
+      "size": 217760,
+      "sha256": "7031f2fcbc75f40f04ed68215cc15c5036c91246dc86c4068d5152da6558c3d9"
+    },
+    {
+      "path": "assets/storage-fold.png",
+      "size": 222216,
+      "sha256": "d5f8844adc9e7a3eda4dca115284422c571286fe707ac4edf887c6d96628d537"
+    },
+    {
+      "path": "assets/wiring.png",
+      "size": 473542,
+      "sha256": "4a6455cb391964a1c2ce4df099569218c86506242560eba67be5c083116c5d79"
+    },
+    {
+      "path": "derive_assets.py",
+      "size": 3267,
+      "sha256": "b93cf760fe8c460adb99bcbf08735e8270fccb283ae561ebd8d2abcc8402ef7d"
+    },
+    {
+      "path": "evidence/art-reproduction.log",
+      "size": 47,
+      "sha256": "a73550dbcbdcb7de02679fc89b31deae66bebf7ba507017358636e0e98f02ce9"
+    },
+    {
+      "path": "evidence/browser-validation.json",
+      "size": 18850,
+      "sha256": "ed162cbefea8c7c1e5774d13a81a4213ffe899ae75651828b9cbde9e64ef0649"
+    },
+    {
+      "path": "evidence/full-1280.png",
+      "size": 1142089,
+      "sha256": "d380fc04c32befe00a2ab0dffbefc5efa6d3543085a568fbc227448c309b33c9"
+    },
+    {
+      "path": "evidence/full-390.png",
+      "size": 610523,
+      "sha256": "4de1da76b0ccffb4bae91f2173bde4de6a6a467b2e29aebe44911c4710f76197"
+    },
+    {
+      "path": "evidence/independent-body-qc.json",
+      "size": 8928,
+      "sha256": "70a1df2bc59ec2251109ffa3e8b8fa4da779ed585e2ca6c65a1fd127cd868cd5"
+    },
+    {
+      "path": "evidence/independent-delta-qc-cover-removal.json",
+      "size": 1764,
+      "sha256": "376b476991b999085068296fe9bc52a11f2150af9e6f35ddc2ce50f7fa26dc6e"
+    },
+    {
+      "path": "evidence/ocr/001.txt",
+      "size": 151,
+      "sha256": "003983f0657ac96d5bbbe137f8bd1e29bf204348f7e22f5e02163b33dc2d71d9"
+    },
+    {
+      "path": "evidence/ocr/002.txt",
+      "size": 57,
+      "sha256": "1975b27a02e446a21f1603c71a4b6183bc9192c99c76ec924d6e0982ee9e32da"
+    },
+    {
+      "path": "evidence/ocr/003.txt",
+      "size": 874,
+      "sha256": "371c9f25e617326b5fd75144682e7a764afcce236c44921bb21305222d329c3f"
+    },
+    {
+      "path": "evidence/ocr/004.txt",
+      "size": 955,
+      "sha256": "4c3e20d2e963152d9776efd94f8700532db274955b5a592d7e5a441998ad0ec3"
+    },
+    {
+      "path": "evidence/ocr/005.txt",
+      "size": 351,
+      "sha256": "9e907c7995c7c9ec4009f228b05e4a02928bc77d71a002b6fd75ac9a45233c36"
+    },
+    {
+      "path": "evidence/ocr/006.txt",
+      "size": 509,
+      "sha256": "a3991925c34e43db901a4835b38920901143571f9c65c32150db16b1189f3dac"
+    },
+    {
+      "path": "evidence/ocr/007.txt",
+      "size": 636,
+      "sha256": "78b7cbd5f74a73e5b489d17abae733c7e5405dc9276e6e6d32838bedc41034f4"
+    },
+    {
+      "path": "evidence/ocr/008.txt",
+      "size": 1466,
+      "sha256": "68b87c54a11c1e5754913fc40541f3c55862f10e5c9aaf8a3e098a406b9517c8"
+    },
+    {
+      "path": "evidence/ocr/009.txt",
+      "size": 1539,
+      "sha256": "1816af0549ce154188d1f7c0e54a7bf60e3e2039d1b851807383ce69287f9460"
+    },
+    {
+      "path": "evidence/ocr/010.txt",
+      "size": 855,
+      "sha256": "2a9efbdce814bcbabde9f92a8cedbe1ce9455ff5d1dc87d16a35b76885cd8025"
+    },
+    {
+      "path": "evidence/ocr/011.txt",
+      "size": 763,
+      "sha256": "0d8b0eea1f80558585dfe92bb16c6bdd5046c7d94946e95f8baa66d423226288"
+    },
+    {
+      "path": "evidence/ocr/012.txt",
+      "size": 2126,
+      "sha256": "4a3ce9e593c02c465f7d42204c974f44961396f0a18b388f5244aa6bdc9ce97a"
+    },
+    {
+      "path": "evidence/ocr/013.txt",
+      "size": 2556,
+      "sha256": "bbc47d80728be03640bc29e99cf0c2960afb580526dc08f624b5bdb371b37d50"
+    },
+    {
+      "path": "evidence/ocr/014.txt",
+      "size": 873,
+      "sha256": "648c88be2a28d51c50ae3210a8b1e2c47982f107a6317e2aa62bad7f08bf2033"
+    },
+    {
+      "path": "evidence/ocr/015.txt",
+      "size": 129,
+      "sha256": "6c7734d6bc47b5d5a4911a2cf3f724bf446021fa0bb9673603ccc5440f95b4aa"
+    },
+    {
+      "path": "evidence/publish_shared_style_admission.json",
+      "size": 176,
+      "sha256": "ef3ac545710c9f602ed06681e36fac5ca49574bb9c726b1a490858115b8485df"
+    },
+    {
+      "path": "evidence/release_derivation.json",
+      "size": 2112,
+      "sha256": "ac24bad86c8442f1da0ab71f95811384000898ab62cdd7d575dd7cdaa15b557c"
+    },
+    {
+      "path": "evidence/replay-and-tamper.json",
+      "size": 1237,
+      "sha256": "4a3c4e7d3ea7e9d391e9a32513c1fdc77beb3dc7ad798589232a50ce5f5cfd65"
+    },
+    {
+      "path": "evidence/strict-sphinx.log",
+      "size": 1907,
+      "sha256": "49c88f578a8c223c3215646346bd7c48b3de635bacf62df0640174419ff3b79d"
+    },
+    {
+      "path": "refresh_manifest.py",
+      "size": 2267,
+      "sha256": "80bde6d5126aa5d0aaed9353a745aa50b1bcc8592612794a3b4bbd8b92a95261"
+    },
+    {
+      "path": "render.py",
+      "size": 19081,
+      "sha256": "9e0683b37f561f72d52d6e671b0015bd2312a0d1c431df0de80e9d58ce94ea93"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 23812,
+      "sha256": "9c3b376c9290e70480c6074b254ab29b292cc02fa5f183812aa1d4f70924f15b"
+    },
+    {
+      "path": "source/asset_recipes.json",
+      "size": 19145,
+      "sha256": "82e146193ce7221d178f3ab130b94564916ee835abaea8db4599f0bc54552a1e"
+    },
+    {
+      "path": "source/block_map.json",
+      "size": 17864,
+      "sha256": "babf036ba211432a9bd9404a83ca1cefa28060c8bceae8a5a0b6b42a79148c9d"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 6296366,
+      "sha256": "4ab03268f8f1390459cd20aeb77ec6efdc175775b73267fe861e453a24bcc7fc"
+    },
+    {
+      "path": "source/page_map.json",
+      "size": 3018,
+      "sha256": "c899e61589b5d0f3f22f297d8b61004651b35ffa68be78b78d5dbcd922b56230"
+    },
+    {
+      "path": "source/release_approval.json",
+      "size": 1248,
+      "sha256": "362a7be7deb8db5931d6dd082fbd9b6107622f0b4dde45a8d587439cc4242d2f"
+    },
+    {
+      "path": "source/transcription.json",
+      "size": 32120,
+      "sha256": "65ec0b3233a43aa52ec7a5c84b646beca20dbc07330f0bfa785feba655e30f37"
+    },
+    {
+      "path": "source_manifest.json",
+      "size": 12573,
+      "sha256": "cb765b55ea50a508375ba961d250bdffea9c6aed82b12eea9f45e49e79ed1f54"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 126890,
+      "sha256": "5afdc1947b423c52850852eccc5bc0f398c820c45909690ff6e5cc7bb266dfdf"
+    },
+    {
+      "path": "web/en/assets/array-to-station.png",
+      "size": 388567,
+      "sha256": "f5adde87fe11fefa828e746c43ac6c75a26dbdde27b9015c7abdbacd65617887"
+    },
+    {
+      "path": "web/en/assets/balcony-railing.png",
+      "size": 64583,
+      "sha256": "d46077aefd7df0e0fc9cb759dd834851eeeeeafce9e66f9cc780c150bce720e2"
+    },
+    {
+      "path": "web/en/assets/carport-roof.png",
+      "size": 194371,
+      "sha256": "56259dc4f740080ea7461af855c4a4bfa5a0052605f5dbd67707a1fbff0b457c"
+    },
+    {
+      "path": "web/en/assets/connection.png",
+      "size": 108689,
+      "sha256": "2d53a30547156d395c29bc5e7751ef7d988b502543400d40be91bcaeb578bcde"
+    },
+    {
+      "path": "web/en/assets/contact-qr.png",
+      "size": 5729,
+      "sha256": "30f8fa684b893e6050e0429411b451686b711e7c4f6d167a37de9036ff2a4dee"
+    },
+    {
+      "path": "web/en/assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/en/assets/final-angle.png",
+      "size": 134252,
+      "sha256": "67e484c25e121fde458749bab09de570ae06d368120e56f76a5fd92252dcb92e"
+    },
+    {
+      "path": "web/en/assets/ground-stake.png",
+      "size": 422756,
+      "sha256": "dceff5e1abd7e33ff641add2e53c0939b069ea35403140e100b031e6b6849c59"
+    },
+    {
+      "path": "web/en/assets/hinge-pair.png",
+      "size": 71968,
+      "sha256": "2f3c16513853335343c2881125d8dd81ec56a7b56f8b4ef186b8b4c97b7ea358"
+    },
+    {
+      "path": "web/en/assets/hinge-step1.png",
+      "size": 552607,
+      "sha256": "cebbf5db07e61ac617a1f14fc6e597287a6af3b657238602e44716fa4e4bf19d"
+    },
+    {
+      "path": "web/en/assets/hinge-step2.png",
+      "size": 675348,
+      "sha256": "ca4c030d729ba1e28b7bd36a59780041015053956afb1b43cf3b15eb7a0748c4"
+    },
+    {
+      "path": "web/en/assets/hinge.png",
+      "size": 25644,
+      "sha256": "d90f6d2e22c6a6c0eedfb6f87db38e50140ece28081c561db69c62700914f4a8"
+    },
+    {
+      "path": "web/en/assets/inbox-bag.png",
+      "size": 8753,
+      "sha256": "b72b4e49bb02c8ac36cc06748dc8546b2f563bbee1bec1a47604d9b9318211b9"
+    },
+    {
+      "path": "web/en/assets/inbox-cable.png",
+      "size": 16032,
+      "sha256": "41a41a29c104f5ca1e3ba20420f1d4327b2b1ffc47824c5f7952e80036de6b62"
+    },
+    {
+      "path": "web/en/assets/inbox-carabiner.png",
+      "size": 12640,
+      "sha256": "afd97797892099453da88e9e48a3159d60e7991032a7aad0c875454906c2654f"
+    },
+    {
+      "path": "web/en/assets/inbox-hex-tool.png",
+      "size": 6650,
+      "sha256": "460157617c69e96ea301b7e281727ecad24b986119857ac057b70a497993254c"
+    },
+    {
+      "path": "web/en/assets/inbox-manual.png",
+      "size": 9435,
+      "sha256": "b44ab3bbb6764b7c20b948d0b69a6fd5506f30f34829c8dfbf9de3b5e56ff622"
+    },
+    {
+      "path": "web/en/assets/inbox-panel.png",
+      "size": 12556,
+      "sha256": "12b984d315d598835378256cdf0c4861a1fa2b91ead0dbef4a952a29a8a27357"
+    },
+    {
+      "path": "web/en/assets/inbox-plug.png",
+      "size": 8097,
+      "sha256": "5c7161d6021bd2eb3678782e2b7911824e2957127affc1bc5f24c38868c36b39"
+    },
+    {
+      "path": "web/en/assets/inbox-screw.png",
+      "size": 7654,
+      "sha256": "7689164bbed305190bddaf8f27663ca50b4fa83dcc150691ad050642c677d60e"
+    },
+    {
+      "path": "web/en/assets/inbox-stake.png",
+      "size": 6453,
+      "sha256": "96a8d2b3596db0deb4ab382ef92cb869156b8a7797f3d0c7d2479a19a56923ed"
+    },
+    {
+      "path": "web/en/assets/mounting-holes.png",
+      "size": 44986,
+      "sha256": "477e17a04a784c0e03c6b6740fdaa1776be75c8fafd95679119e3a8e845f2e89"
+    },
+    {
+      "path": "web/en/assets/panel-front-back.png",
+      "size": 50496,
+      "sha256": "bb939cf37d52005757181a473c2184ba15dc8f03f48fef926f6ed95afbf9299d"
+    },
+    {
+      "path": "web/en/assets/six-panels.png",
+      "size": 1345500,
+      "sha256": "9cdef5eb70f180f8d3e5d5ad18bb4965ebad437ecfeace44007d9604dd0df8ad"
+    },
+    {
+      "path": "web/en/assets/stake-locations.png",
+      "size": 217760,
+      "sha256": "7031f2fcbc75f40f04ed68215cc15c5036c91246dc86c4068d5152da6558c3d9"
+    },
+    {
+      "path": "web/en/assets/storage-fold.png",
+      "size": 222216,
+      "sha256": "d5f8844adc9e7a3eda4dca115284422c571286fe707ac4edf887c6d96628d537"
+    },
+    {
+      "path": "web/en/assets/wiring.png",
+      "size": 473542,
+      "sha256": "4a6455cb391964a1c2ce4df099569218c86506242560eba67be5c083116c5d79"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 818,
+      "sha256": "926f581f3519bb99836cb9e3135cb589972469569eb0967c61493acb1d2b8b8d"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 78,
+      "sha256": "9d06a53acfd75b785d9a1562ceb87369d7a83878f6a35944546efa6d01d3f4fc"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 260755,
+      "sha256": "7fd62e4ce4aea86a8cd976f4f4a7ef5eacc3998274f7b046eb0166594bd7a8d2"
+    },
+    {
+      "path": "web/en/manual_js500a_us_en.md",
+      "size": 30498,
+      "sha256": "fe0774819e94e22ab171f42ce71571688e75975031d905e7586eb6b37f142249"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "a2773f7e96849e176a9909e8221e37c20eb9005cd2639415bf6a112d7c86527f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    }
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "en",
+      "page_id": "specifications_85",
+      "kind": "table",
+      "text_sha256": "1b82fd584b9c794188af05d2d846b3d2c3cd7f43eabb6e678b148913a1129ad5",
+      "reason": "HB-TABLE-SPEC is a two-column label/value component; this printed table has a third column (an in-table 'Electrical Data | STC | BNPI' header row with two value columns, and single values spanning both columns). It is kept as one native shared-wrapper table with the printed row order, column spans and header row instead of splitting or re-shaping the source table."
+    },
+    {
+      "language": "en",
+      "page_id": "specifications_500x",
+      "kind": "table",
+      "text_sha256": "42f1efcb60ece396c3877aea71780f9685f6c003318f8d3c6f35956b47d13661",
+      "reason": "HB-TABLE-SPEC is a two-column label/value component; this printed table has a third column (an in-table 'Electrical Data | STC | BNPI' header row with two value columns, and single values spanning both columns). It is kept as one native shared-wrapper table with the printed row order, column spans and header row instead of splitting or re-shaping the source table."
+    }
+  ],
+  "printed_cover_title": "USER MANUAL / Jackery SolarSaga 85",
+  "revision_of": "manual_sources/JS-500A/US/en/git-20261113-4ab03268-m000346",
+  "operator_release_approval": {
+    "path": "source/release_approval.json",
+    "sha256": "362a7be7deb8db5931d6dd082fbd9b6107622f0b4dde45a8d587439cc4242d2f",
+    "authorization": "MA-438"
+  }
+}

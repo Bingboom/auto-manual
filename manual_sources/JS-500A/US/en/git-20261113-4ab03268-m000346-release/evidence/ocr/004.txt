@@ -1,0 +1,42 @@
+TECHNICAL PARAMETERS (Jackery SolarSaga 500 X)
+
+Product Name
+
+Jackery SolarSaga 500 X
+
+Model No. JS-SO00A
+
+Electrical Data STC BNPI
+Peak Power (Pmax) 500W+5% 545W+5%
+Open Circuit Voltage (Voc) 48.5V+5% 49.2V45%
+Short Circuit Current (Isc) 13.02A+5% 13.86A+5%
+Power Voltage (Vmp) 41.7V£5% 42.5Vt5%
+Power Current (Imp) 12.0A#5% 12.84A+5%
+Maximum System Voltage 9OV DC
+
+Maximum Reverse Current 15A
+
+Protection Class Against Electric Shock Class II
+
+Waterproof Level IP68
+
+Operating Temperature Range
+
+-40°C~85°C (-40°F~185°F )
+
+Unfolded Size
+
+Around 2493 « 996 x 294mm
+
+Folded Size Around 996 x 526 x 97mm
+Weight 93 kgt0.5 kg
+Bifaciality Coefficient (back/front) Pmax>80%, Voc>97%, Isc>80%
+Voltage Temperature Coefficient -0.26%/°C
+
+Power Temperature Coefficient -0.32%/°C
+
+STC (JOOOW/ ni, 25°C, AM 1.5). BNPI (Front IOOOW/m, Rear 135W/ m1, 25°C, AM 1.5).
+
+The above are the technical specifications for six solar panels connected in parallel.
+
+02

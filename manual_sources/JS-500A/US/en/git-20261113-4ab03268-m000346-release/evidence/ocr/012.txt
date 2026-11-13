@@ -1,0 +1,53 @@
+STORAGE AND TRANSPORTATION
+
+1. Avoid Contact with Corrosive Substances: Do not expose the product to highly
+corrosive materials.
+
+2. Prevent Physical Damage: Avoid impacts and scratches on the surface during use.
+3. Avoid Bending Stress: Do not subject the product to bending stress during
+transportation and assembly.
+
+4. Proper Storage Conditions: Store the product within a temperature range of 0°C to
+60°C(32°F to 140°F) and a humidity range of 0% to 60%.
+
+SAFETY INSTRUCTIONS
+
+* Please read the user manual carefully before using this product.
+
+* Do not bend the solar panels during use or transport.
+
+* Avoid dropping solar panels from high places. Any damage of product may lead to
+electric shock or fire.
+
+* Do not place the solar panels in trees, buildings or other shaded areas for use.
+*Do not immerse the solar panels in water or any other liquid.
+
+* Do not put solar panels in water directly, and use a damp cloth to gently wipe them
+when cleaning.
+
+* Do not use or store the solar panels near open flames or flammable materials.
+
+* Do not scratch the solar panels with sharp objects.
+
+* Do not put corrosive substance on the solar panels
+
+Do not step on or place heavy objects on the solar panels.
+
+*Do not disassemble the solar panels. Damage to the product may result in a risk of
+electric shock.
+
+* The output circuit of solar panel package must be connected to the equipment
+properly, and reverse connection of positive and negative poles is strictly prohibited.
+* Check the connection status of various components, wires, and plugs before use.
+
+* Please put away the solar panels in case of strong winds, hail and other severe
+weather to avoid product damage or other hazards.
+
+* Under normal circumstances, PV modules may be exposed to higher currents or
+voltages than under standard test conditions. Therefore, when calculating the rated
+voltage of component, the rated current of conductor, and the size of the control
+device connected to the PV output, it is required to multiply the short-circuit current
+(Isc) and open circuit voltage (Voc) values marked on the component by a factor of
+1.25.
+
+10
