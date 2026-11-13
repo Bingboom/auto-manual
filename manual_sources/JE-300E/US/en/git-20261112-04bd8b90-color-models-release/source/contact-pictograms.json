@@ -1,0 +1,34 @@
+{
+  "source_sha256": "04bd8b90f146ff9b65a3ee4b47327d76128c3110c8ef46ac4061e6b0e77b3c8c",
+  "physical_page": 17,
+  "crops": [
+    {
+      "asset": "assets/contact-phone.png",
+      "bbox_points": [
+        34.5,
+        467.5,
+        55.5,
+        489
+      ]
+    },
+    {
+      "asset": "assets/contact-mail.png",
+      "bbox_points": [
+        208,
+        468.5,
+        219,
+        478
+      ]
+    },
+    {
+      "asset": "assets/contact-web.png",
+      "bbox_points": [
+        208,
+        479,
+        220,
+        489
+      ]
+    }
+  ],
+  "operation": "unaltered own-source pictogram crops; all contact text remains native"
+}
