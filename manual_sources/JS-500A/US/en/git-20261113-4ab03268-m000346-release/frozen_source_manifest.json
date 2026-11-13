@@ -315,6 +315,11 @@
       "sha256": "6c7734d6bc47b5d5a4911a2cf3f724bf446021fa0bb9673603ccc5440f95b4aa"
     },
     {
+      "path": "evidence/publish_dryrun.json",
+      "size": 1097,
+      "sha256": "f2652ce7914ab4082585707eecd3d6c3fcdcf200030305ed6119e80c3456a402"
+    },
+    {
       "path": "evidence/publish_shared_style_admission.json",
       "size": 176,
       "sha256": "ef3ac545710c9f602ed06681e36fac5ca49574bb9c726b1a490858115b8485df"
