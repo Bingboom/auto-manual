@@ -78,7 +78,7 @@ Status: done · Owner: 夏冰 · Created: 2026-11-15
 - 符号页改按声明的页面角色认领（`tools/word/bundle_html.py` 约 424–431 行）。
 - 中立载荷通道已存在于日规目录页（见 N2）。
 - HB-TABLE-SYMBOL-SIGNAL 行只有 label / show_icon / meaning，没有信号键（`docs/renderers/contracts/component_registry.yaml` 该条目；`tools/component_specs/manual_tables.py` 约 189–194 行）。存储包中共 231 个该组件。
-- source_ref：页级与块级引用均为相对路径；ComponentSpec 的 `source_ref` 共 12,215 个，其中 850 个为绝对路径，分布在 2026-10 及以前构建的 47 个包；没有校验强制相对路径。
+- source_ref：页级与块级引用均为相对路径；ComponentSpec 的 `source_ref` 共 12,215 个，其中 850 个为绝对路径，分布在 47 个包里（日期取自快照目录名：17 个标为 2026-10，30 个未带完整日期，其中 26 个为 `native-0924`、4 个为 `batch1465-candidate`；目录名标为 2026-11 的 98 个包里没有绝对路径）；没有校验强制相对路径。
 - 语言：存储包只用 `ja`，没有 `jp`；150 个 HB-CALLOUT-STRIP 的语言为 `und`。
 - 参考图：3,438 个 HB-SPECIAL-REFERENCE-FIGURE 中 1,236 个用 `base-art-live-copy`（`tools/web/base_art_reference.py`），其中日文 294 个。
 
