@@ -59,26 +59,27 @@ Status: done · Owner: 夏冰 · Created: 2026-11-15
 
 **A9 试点补充页。** 问：试点补充素材页选 A（`connections_ja`）还是 B（`symbol_meaning_ja`）？
 - 决定：第一轮加 B `symbol_meaning_ja`；A `connections_ja` 作为第二个单元；第一轮不强制覆盖富文本与素材引用。
+- 依据：已发布的同型号 `JBP-2000B/EU/en` 中，`symbol_meaning_en` 页已产出 HB-TABLE-SYMBOL-SIGNAL 与 HB-TABLE-SYMBOL-ICON 各 1 个（`docs/renderers/contracts/prepared_component_admission.json` 该目标条目，约 368 行起）；JBP-2000B 日规的网页覆盖层 `jbp2000b-jp-v1` 没有 `reference_figures`，`capabilities.figures` 为 false（`docs/renderers/contracts/web_presentation/target_overlays.json` 约 469 行），连接页的图尚无约定可用。
 
 ## 新增四项决定
 
 - **N1** REV-40 的"同一份冻结整本包"指 IDML 直接读网页那份 v2 结构化文件（`manual.ir.json`），不是仅共用数据快照。
-- **N2** 中立的 `raw:: manual-ir` 载荷成为正式通道。今天只在一处使用：`docs/templates/page_jp/toc.rst` 在 `.. only:: idml` 下带 `raw:: manual-ir`（kind `toc`）；网页只读 `operation_panel_copy` 一种（`tools/web/document_source.py` 约 42–75 行）。
-- **N3** 图上的标注文字设为 HB-SPECIAL-REFERENCE-FIGURE 的正式槽位，不论网页显示的是成品图还是无字底图。今天 778 个该组件只在 `metadata.embedded_labels` 里留有烤进图里的标注文字。
+- **N2** 中立的 `raw:: manual-ir` 载荷成为正式通道。今天在用的有两种 kind：`toc` 只有一处，即 `docs/templates/page_jp/toc.rst` 的 `.. only:: idml` 分支内，只有 IDML 读取；`operation_panel_copy` 共 19 处，位于美规英、法、西三语的 `05_operation_guide_placeholder.rst` 模板（`docs/templates/page_us-en/`、`page_us-fr/`、`page_us-es/`）以及 `docs/_review/JE-1000F/US/` 与 `docs/_review/JE-3000C/KR/ko/` 的操作指南页，不在 `only` 分支内。网页只读 `operation_panel_copy`（`tools/web/document_source.py` 约 42–75 行），IDML 在 `tools/idml_rst_extract.py` 约 210 行处理 `raw:: manual-ir`。
+- **N3** 图上的标注文字设为 HB-SPECIAL-REFERENCE-FIGURE 的正式槽位，不论网页显示的是成品图还是无字底图。今天 778 个该组件只在 `metadata.embedded_labels` 里留有画在图里的标注文字。
 - **N4** 组件结构变化（例如给 HB-TABLE-SYMBOL-SIGNAL 加信号键）用给组件结构加版本的办法处理，不走漂移记录；旧冻结包保持原版本与哈希，读取端两种版本都要认。
 
 ## 草稿之后已变化的事实
 
-以下相对草稿基线 `804cede4` 已变，按 main `66709a9f` 核对；计数取自 `manual_sources` 与 `data/manual_sources` 下的 328 个 `manual.ir.json`，其中含同一本书的多个快照版本。
+以下相对草稿基线 `804cede4` 已变，按 main `66709a9f` 核对；计数取自 `manual_sources` 与 `data/manual_sources` 下的 328 个 `manual.ir.json`，其中含同一本书的多个快照版本。组件计数口径：凡 `schema_version` 为 `component-spec/v1` 的对象都计入，含嵌在其他载荷中的（实测没有组件嵌在另一个组件内），按出现次数计，不去重。
 
 - 冻结包已有登记：两类（phase2 数据根快照，如 `manual_sources/JBP-2000B/EU/en/2.0`；以及 `web/<lang>/…` 布局的纯网页包），`data/frozen_package_registry.json` 登记 265 个；未登记的包使维护性检查失败（`tools/web/frozen_package_registry.py` 顶部说明）。
-- IR 已保留：队列暂存与 Git-only 组装都复制 `manual.ir.json`；生产代码可从存储的 IR 重放（`tools/web/frozen_ai_web.py` `replay_package`；`tools/web/component_admission.py`）。Hello-Docs 镜像 2026-11-09 时 210 个网页目标中 185 个带 `manual.ir.json`（未复核，本次未读镜像）。
+- IR 已保留：队列暂存与 Git-only 组装都复制 `manual.ir.json`；生产代码可从存储的 IR 重放（`tools/web/frozen_ai_web.py` `replay_package`；`tools/web/component_admission.py`）。本地 Hello-Docs 镜像（HEAD `b6e71e23`，提交于 2026-11-09）`docs/publish/sources/web` 下，以 `<型号>/<区域>/<语言>/md` 目录为一个目标，共 210 个，其中 185 个带 `manual.ir.json`。
 - 队列 `web_publish` 通道仍传 `source="review"`（`tools/build_queue/build_execution.py` 约 359 行）；IDML 接受 `--data-root`（`tools/build_dispatch.py` 约 339 行）。
 - 符号页改按声明的页面角色认领（`tools/word/bundle_html.py` 约 424–431 行）。
 - 中立载荷通道已存在于日规目录页（见 N2）。
-- HB-TABLE-SYMBOL-SIGNAL 行只有 label / show_icon / meaning，没有信号键（`docs/renderers/contracts/component_registry.yaml` 该条目；`tools/component_specs/manual_tables.py` 约 189–194 行）。存储包中约 201 个该组件（未复核：本次换一种计数口径得 231）。
-- source_ref：页级与块级引用均为相对路径；ComponentSpec 的 `source_ref` 共 12,215 个（未复核：换口径得 12,223），其中 850 个为绝对路径，分布在 2026-10 及以前构建的 47 个包；没有校验强制相对路径。
-- 语言：存储包只用 `ja`，没有 `jp`；53 个 HB-CALLOUT-STRIP 的语言为 `und`（未复核：换口径得 150）。
+- HB-TABLE-SYMBOL-SIGNAL 行只有 label / show_icon / meaning，没有信号键（`docs/renderers/contracts/component_registry.yaml` 该条目；`tools/component_specs/manual_tables.py` 约 189–194 行）。存储包中共 231 个该组件。
+- source_ref：页级与块级引用均为相对路径；ComponentSpec 的 `source_ref` 共 12,215 个，其中 850 个为绝对路径，分布在 2026-10 及以前构建的 47 个包；没有校验强制相对路径。
+- 语言：存储包只用 `ja`，没有 `jp`；150 个 HB-CALLOUT-STRIP 的语言为 `und`。
 - 参考图：3,438 个 HB-SPECIAL-REFERENCE-FIGURE 中 1,236 个用 `base-art-live-copy`（`tools/web/base_art_reference.py`），其中日文 294 个。
 
 ## 后续事项
@@ -100,7 +101,7 @@ Status: done · Owner: 夏冰 · Created: 2026-11-15
 
 - 草稿 §6 的 B 组（10–16）与 C 组（17–18）未答。
 - `prepared-document` 来源标签是否拆分。
-- `approved_composite` 角色是否保留（196 个同时带两种角色的组件里两者是同一文件；计数未复核）。
+- `approved_composite` 角色是否保留（3,438 个 HB-SPECIAL-REFERENCE-FIGURE 都带 `source_art`，其中 196 个同时带 `approved_composite`，这 196 个里两者的 `asset_ref` 都是同一文件）。
 - `base_art_layout` 的坐标是否应移出共享元数据。
 - 日规 toc 页在网页端是否产生空页（需要构建确认）。
 - 语言为 `und` 的警示条组件在新版本里取什么值。
