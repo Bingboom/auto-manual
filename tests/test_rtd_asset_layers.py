@@ -9,7 +9,9 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
+from tools.rtd import asset_layer_data as ald
 from tools.rtd import asset_layers as al
+from tools.rtd import system_workspace as sw
 from tools.rtd import asset_media as am
 from tools.rtd.design_assets import REGISTRIES
 from tools.rtd.portal import ASSETS
@@ -151,3 +153,118 @@ class TemplateTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class LayerDataTests(unittest.TestCase):
+    """asset_layers.yaml: chips only from ledger rows, regrouping moves items only, the path cites rows or quotes."""
+
+    LEDGER = "\n".join(f'| <a id="rev-{n:02d}"></a>REV-{n:02d} | x | — | y | {state} | z |' for n, state in
+                       ((11, "done"), (15, "planned"), (18, "planned"), (35, "planned"), (36, "planned"),
+                        (37, "planned"), (38, "planned"), (41, "done"), (42, "deferred"), (43, "deferred"),
+                        (50, "planned"), (52, "planned"), (60, "deferred")))
+
+    def data(self):
+        return ald.load_layer_data(ASSETS)
+
+    def test_chips_come_from_ledger_rows_only(self):
+        ledger = sw.parse_ledger(self.LEDGER)
+        chips = ald.layer_chips(self.data(), ledger)
+        self.assertEqual({layer: chip and chip["status_label"] for layer, chip in chips.items()},
+                         {"product": "已规划", "content": "建设中", "media": None, "language": "建设中"})
+        self.assertIsNone(ald.chip(["REV-60"], ledger))  # every row deferred: no chip
+        self.assertEqual(ald.chip(["REV-11"], ledger)["status"], "validated")
+        self.assertEqual(ald.layer_chips(self.data(), None), dict.fromkeys(ald.LAYER_IDS))
+        with self.assertRaises(ald.LayerDataError):
+            ald.chip(["REV-99"], ledger)  # a row the ledger lacks is an authoring error
+        # Only the portal's status words.
+        self.assertTrue(set(ald.CHIP_STATUS.values()) <= set(sw.STATUS_LABELS))
+
+    def test_regrouping_places_every_item_once_and_changes_nothing(self):
+        contract = sw.load_contract(ASSETS / sw.CONTRACT_NAME)
+        cards = [{"id": card["id"], "entries": [{"id": item["id"], "status": item["status"],
+                                                 "evidence": item["evidence"]} for item in card["items"]]}
+                 for card in contract["capabilities"]]
+        result = ald.capability_map(self.data(), cards)
+        regrouped = [(e["card"], e["id"], e["status"], tuple(e["evidence"]))
+                     for layer in ald.LAYER_IDS for e in result["layers"][layer]["entries"]]
+        kept = [(card["id"], e["id"], e["status"], tuple(e["evidence"]))
+                for card in result["production"] for e in card["entries"]]
+        original = [(card["id"], e["id"], e["status"], tuple(e["evidence"])) for card in cards for e in card["entries"]]
+        self.assertEqual(sorted(regrouped + kept), sorted(original))
+        self.assertEqual(result["layers"]["language"]["anchors"], ["language"])
+        self.assertEqual(result["layers"]["content"]["anchors"], ["content_foundation"])
+        broken = self.data()
+        broken["items"]["media"] = []  # content_foundation.asset_library now placed nowhere
+        with self.assertRaises(ald.LayerDataError):
+            ald.capability_map(broken, cards)
+
+    def test_path_stages_without_rows_quote_the_positioning_document(self):
+        ledger = sw.parse_ledger(self.LEDGER)
+        path = ald.path_view(self.data(), ledger, "https://example.invalid/doc")
+        self.assertTrue(path["link"].startswith("https://example.invalid/doc#"))
+        chips = {stage["id"]: stage["chip"] for stage in path["stages"]}
+        self.assertIsNone(chips["web"])
+        self.assertEqual(chips["matrix"]["revs"], ["REV-50"])
+
+    def test_wording_is_kept_once(self):
+        text = (ASSETS / ald.DATA_NAME).read_text(encoding="utf-8")
+        data = self.data()
+        self.assertEqual(text.count(data["main_line"]), 1)
+        self.assertEqual(sum(line.startswith("umbrella:") for line in text.splitlines()), 1)
+
+
+class PositioningQuoteTests(unittest.TestCase):
+    def test_path_quotes_are_word_for_word_from_the_positioning_document(self):
+        doc = (repo_root() / "code-as-doc" / "architecture" / "Hello_Docs_Positioning.md").read_text(encoding="utf-8")
+        if "### 4.2" not in doc:
+            self.skipTest("positioning §4.2 not on this branch yet (#1734)")
+        plain = doc.replace("**", "")
+        data = ald.load_layer_data(ASSETS)
+        for stage in data["path"]["stages"]:
+            self.assertIn(stage["quote"], plain, stage["id"])
+        joined = plain.replace("\n", "")
+        self.assertIn(yaml_value("boundary"), joined)
+        self.assertIn(data["main_line"], joined)
+        # The operator's value statement, both of its sentences, as §4.1 carries it.
+        for sentence in data["product_value"].split("。")[:-1]:
+            self.assertIn(sentence + "。", joined)
+        self.assertIn(sw.load_contract(ASSETS / sw.CONTRACT_NAME)["hero"]["subtitle"], joined)
+
+
+def yaml_value(key: str) -> str:
+    import yaml
+
+    return yaml.safe_load((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8"))["path"][key]
+
+
+class CuratedTests(unittest.TestCase):
+    def test_an_unreadable_ledger_warns_and_shows_no_chip(self):
+        from tools.rtd import asset_pages
+
+        warnings = []
+        with tempfile.TemporaryDirectory() as tmp:  # a repository root without the ledger file
+            view = asset_pages.curated(ASSETS, Path(tmp), None, lambda *args: warnings.append(args[0] % args[1:]))
+        self.assertEqual(view["chips"], dict.fromkeys(ald.LAYER_IDS))
+        self.assertTrue(any("ledger" in warning for warning in warnings), warnings)
+
+
+class ProductValueTests(unittest.TestCase):
+    def test_the_operator_statement_leads_the_product_pages_only(self):
+        data = ald.load_layer_data(ASSETS)
+        value = data["product_value"]
+        self.assertEqual((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8").count(value), 1)
+        product = {**al.product_layer(None, {"total": 9}, topics=None, build_date="2026-11-16"), "value": value}
+        page = render("product_attributes.html", product=product, attributes=None)
+        self.assertEqual(page.select_one(".al-head-text > p:not(.al-eyebrow)").get_text(), value)
+        # No caption under the statement (operator, 2026-11-16); the matrix page keeps its own 建设中 note.
+        self.assertIsNone(page.select_one(".al-lead-note"))
+        cards = al.home_cards(product, {**al.layer("content")}, {**al.layer("media")}, {**al.layer("language")},
+                              dict.fromkeys(ald.LAYER_IDS))
+        self.assertNotIn(value, json.dumps(cards, ensure_ascii=False))
+
+
+class HeadlineTests(unittest.TestCase):
+    def test_system_headline_is_the_approved_sentence_without_its_removed_clause(self):
+        hero = sw.load_contract(ASSETS / sw.CONTRACT_NAME)["hero"]
+        self.assertEqual(hero["subtitle"], "以网页说明书为入口，把产品信息、内容与表现、视觉媒体、语言管成有来源、可核实的资产。")
+        self.assertIn("ack:操作者 2026-11-16「都按建议」", hero["evidence"])
