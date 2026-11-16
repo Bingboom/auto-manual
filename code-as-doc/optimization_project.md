@@ -525,7 +525,7 @@ completed CQ item has a record in [`code_optimization_log.md`](code_optimization
 
 ### Workstream Z: Engine And Business Data Decoupling
 
-Status: active — Stage 1 (sync overlay paths) is in review as PR #1724; operator decisions recorded 2026-11-16
+Status: active — Stage 1 (sync overlay paths) is in review as PR #1727 (which replaces #1724); operator decisions recorded 2026-11-16
 
 Plan document and authoritative item list:
 [`dev/engine_business_decoupling_checklist.md`](dev/engine_business_decoupling_checklist.md)
