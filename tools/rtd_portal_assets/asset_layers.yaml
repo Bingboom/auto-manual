@@ -7,14 +7,13 @@ schema: hello-docs-asset-layers/v1
 # Where the wording comes from: the positioning document, §1.2 (four layers) and §4.2 (staged path).
 source: "file:auto-manual:code-as-doc/architecture/Hello_Docs_Positioning.md"
 
-# Decided by the operator on 2026-11-16 (「都按建议」): the umbrella term and the main line. Each wording is kept
+# Decided by the operator on 2026-11-16 (「都按建议」; positioning §1.2): the umbrella term and the main line. Each wording is kept
 # here once, so a change is one line; pages may say 资产 for short.
 umbrella: 产品技术内容资产
-main_line: 新说明书在工作台写作；扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。
+main_line: 新说明书在工作台写作，是主线；扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。
 
-# The operator's own statement of the product matrix's value (2026-11-16), word for word; the source is that dated
-# statement until positioning §4.1 carries it (then cite §4.1). Shown as the lead of the 产品信息 pages only, never
-# paraphrased elsewhere, with no caption under it; the 产品矩阵 page keeps its own 建设中 note on sources and dates.
+# The operator's own statement of the product matrix's value (2026-11-16; positioning §4.1), word for word. Shown
+# as the lead of the 产品信息 pages only, with no caption, and never paraphrased elsewhere.
 product_value: 以项目为索引、以产品属性为核心、以时间为维度，持续整合说明书中的产品技术信息，建立可查询、可比较、可追溯的产品信息矩阵。通过集中管理分散在历史文档中的产品信息，降低信息查找、重复整理与人员交接成本，为说明书开发、产品信息复用及后续跨业务分析提供可靠的数据基础。
 
 # Each layer's status chip comes only from its registered ledger rows (decision 1 of the step-12 brief): the rows'
@@ -57,4 +56,4 @@ path:
       quote: 再用时间信息和历史产品规格书的数值补缺
       revs: [REV-52]
       scope: 台账只登记了时间回填（REV-52）；历史规格书补缺还没有台账行
-  boundary: 拆机报告、外部竞品数据和竞情分析是下游使用方，不在本系统内建设
+  boundary: 拆机报告、外部竞品数据和竞情分析是下游使用方，不在本系统内建设；竞品数据暂不做（操作者 2026-11-16），矩阵只收自有产品

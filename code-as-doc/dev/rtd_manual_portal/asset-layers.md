@@ -107,13 +107,13 @@ here from 系统建设 › 能力与架构 › 语言资产, which keeps a point
 assembled with the layer views by `tools/rtd/asset_pages.py`, holds everything about the
 layers that is not a figure:
 
-- **Wording, each kept once.** `umbrella` (产品技术内容资产) and `main_line` (新说明书在工作台写作；
+- **Wording, each kept once.** `umbrella` (产品技术内容资产) and `main_line` (新说明书在工作台写作，是主线；
   扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。). The operator adopted both on
-  2026-11-16; a later change is a one-line edit here. `product_value` is the operator's
+  2026-11-16 (positioning §1.2); a later change is a one-line edit here. `product_value` is the operator's
   own statement of the product matrix's value (2026-11-16), shown word for word as the
   lead of the three 产品信息 pages and nowhere else, with no caption under it (operator,
   2026-11-16); the 产品矩阵 page keeps its own 建设中 note on sources, verification and
-  dates. Its source is the dated statement until positioning §4.1 carries it.
+  dates. Its source is positioning §4.1.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and
   the state maps to a portal status word (`CHIP_STATUS`: all done → 已验证, any done,
@@ -138,6 +138,8 @@ layers that is not a figure:
   holds most of their items.
 - **Staged path** (positioning §4.2): each stage quotes the positioning document; a
   stage with ledger rows carries their chip, a stage without one shows the quote only.
+  The boundary quote includes 「竞品数据暂不做（操作者 2026-11-16），矩阵只收自有产品」: no
+  competitor data or competitive analysis appears as a stage, planned or under way.
   `tests/test_rtd_asset_layers.py` checks the quotes word for word once §4.2 is on the
   branch.
 

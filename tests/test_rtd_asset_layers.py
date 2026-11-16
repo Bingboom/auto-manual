@@ -222,8 +222,13 @@ class PositioningQuoteTests(unittest.TestCase):
         data = ald.load_layer_data(ASSETS)
         for stage in data["path"]["stages"]:
             self.assertIn(stage["quote"], plain, stage["id"])
-        self.assertIn(yaml_value("boundary"), plain)
-        self.assertIn(data["main_line"].rstrip("。"), plain.replace("\n", ""))
+        joined = plain.replace("\n", "")
+        self.assertIn(yaml_value("boundary"), joined)
+        self.assertIn(data["main_line"], joined)
+        # The operator's value statement, both of its sentences, as §4.1 carries it.
+        for sentence in data["product_value"].split("。")[:-1]:
+            self.assertIn(sentence + "。", joined)
+        self.assertIn(sw.load_contract(ASSETS / sw.CONTRACT_NAME)["hero"]["subtitle"], joined)
 
 
 def yaml_value(key: str) -> str:
