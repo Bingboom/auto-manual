@@ -12,7 +12,7 @@ from tools.product_matrix_base.reader.labels import UNMAPPED, map_label
 from tools.product_matrix_base.reader.values import parse_value
 from tools.product_matrix_base.rows import load_dictionary, stage_rows
 from tools.product_matrix_base.stage import (
-    BATCH, LoadError, PartialWrite, correct, fact_key, plan, preflight, provenance, read_rows, same, write,
+    BATCH, LoadError, PartialWrite, correct, correction_plan, fact_key, plan, preflight, provenance, read_rows, same, write,
 )
 
 MANIFEST = Path(__file__).resolve().parents[1] / "bitable_schema" / "product_matrix_base_manifest.json"
@@ -508,28 +508,72 @@ class ProjectsTest(unittest.TestCase):
 
 
 class CorrectionTest(StagingTest):
-    def test_differing_candidates_are_corrected_in_place_and_verified_rows_are_left(self):
+    KEY = "JE-A/US|{}|-|web/JE-A/US/en/v-en"
+
+    def loaded(self) -> tuple[MatrixBase, dict, dict]:
         staged = self.stage()
         base = MatrixBase()
         write(base, plan(base, staged), use_records_shape=True, sleep=lambda _s: None)
-        rows = {r["事实键"]: r for r in base.rows["事实"]}
-        ac_input = rows["JE-A/US|ac_input|-|web/JE-A/US/en/v-en"]
+        return base, staged, {r["事实键"]: r for r in base.rows["事实"]}
+
+    def test_only_text_and_unit_differences_of_candidates_are_corrected_in_place(self):
+        base, staged, rows = self.loaded()
+        ac_input = rows[self.KEY.format("ac_input")]
         ac_input.update({"文本值": "100~120", "原单位": "V", "备注": "old note"})  # what the seed batch held
-        verified = rows["JE-A/US|capacity_wh|-|web/JE-A/US/en/v-en"]
-        verified.update({"数值": 999, "核实状态": "已核实"})
+        rows[self.KEY.format("capacity_wh")].update({"数值": 999, "核实状态": "已核实"})  # verified: left alone
+        rows[self.KEY.format("weight_kg")]["数值"] = 9.9  # a number differs: outside the whitelist
+        rows[self.KEY.format("discharge_temp_range")].update({"文本值": "0~1", "来源位置": "elsewhere"})  # mixed
+        product_name = rows[self.KEY.format("product_name")]
+        product_name["文本值"] = "Old Name"
         planned = plan(base, staged)
-        self.assertEqual(sorted(item["key"] for item in planned["tables"]["事实"]["differ"]),
-                         ["JE-A/US|ac_input|-|web/JE-A/US/en/v-en", "JE-A/US|capacity_wh|-|web/JE-A/US/en/v-en"])
-        self.assertEqual(planned["tables"]["事实"]["create"], [])
+        product_name_key = self.KEY.format("product_name")
+        for item in planned["tables"]["事实"]["differ"]:  # make one correction empty the printed text value
+            if item["key"] == product_name_key:
+                item["fields"]["文本值"]["staged"] = None
+        chosen = correction_plan(planned)
+        self.assertEqual([item["key"] for item in chosen["correct"]], [self.KEY.format("ac_input")])
+        reasons = {entry["key"]: entry["reason"] for entry in chosen["decide"]}
+        self.assertEqual(reasons, {self.KEY.format("capacity_wh"): "核实状态为 已核实，不是候选",
+                                   self.KEY.format("weight_kg"): "差异含白名单以外的字段：数值",
+                                   self.KEY.format("discharge_temp_range"): "差异含白名单以外的字段：来源位置",
+                                   product_name_key: "修正会清空：文本值"})
         report = correct(base, planned, "fix-batch", sleep=lambda _s: None)
-        self.assertEqual((report["corrected"], report["skipped"], report["mismatched"]),
-                         (1, ["JE-A/US|capacity_wh|-|web/JE-A/US/en/v-en"], []))
+        self.assertEqual((report["corrected"], report["fields"], report["mismatched"]),
+                         (1, {"文本值": 1, "原单位": 1}, []))
         self.assertEqual((ac_input["文本值"], ac_input["原单位"], ac_input["写入批次"], ac_input["核实状态"]),
                          ("100-120 V~ 60 Hz, 12 A max.", None, "fix-batch", "候选"))
         self.assertEqual(ac_input["备注"], "old note；fix-batch 修正：文本值 原为「100~120」；原单位 原为「V」")
-        self.assertEqual(verified["数值"], 999)
-        again = plan(base, staged)["tables"]["事实"]["differ"]
-        self.assertEqual([item["key"] for item in again], ["JE-A/US|capacity_wh|-|web/JE-A/US/en/v-en"])
+        self.assertEqual((rows[self.KEY.format("weight_kg")]["数值"],
+                          rows[self.KEY.format("discharge_temp_range")]["文本值"]), (9.9, "0~1"))  # not half-corrected
+        self.assertNotIn(self.KEY.format("ac_input"), [i["key"] for i in plan(base, staged)["tables"]["事实"]["differ"]])
+
+    def test_a_row_verified_after_the_dry_run_is_not_corrected(self):
+        base, staged, rows = self.loaded()
+        row = rows[self.KEY.format("ac_input")]
+        row.update({"文本值": "100~120", "原单位": "V"})
+        planned = plan(base, staged)
+        row["核实状态"] = "已核实"  # someone verified it between the dry run and the write
+        report = correct(base, planned, "fix-batch", sleep=lambda _s: None)
+        self.assertEqual((report["corrected"], report["needs_decision"][0]["reason"]), (0, "写入前复查：已不是候选"))
+        self.assertEqual(row["文本值"], "100~120")
+
+    def test_a_failed_correction_still_reads_back_what_it_changed(self):
+        base, staged, rows = self.loaded()
+        for key in ("ac_input", "product_name"):
+            rows[self.KEY.format(key)]["文本值"] = "0~0"
+        planned = plan(base, staged)
+        calls = []
+
+        def failing(args):
+            if args[0] == "+record-upsert":
+                calls.append(args)
+                if len(calls) == 2:
+                    return {"ok": False, "error": {"message": "boom"}}
+            return base(args)
+
+        with self.assertRaises(PartialWrite) as caught:
+            correct(failing, planned, "fix-batch", sleep=lambda _s: None)
+        self.assertEqual(caught.exception.report["事实"]["corrected"], 1)
 
 
 if __name__ == "__main__":

@@ -19,6 +19,7 @@ import argparse
 import json
 import os
 import sys
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -26,7 +27,7 @@ from typing import Any
 from tools.product_matrix_base.reader import ReadingError, inside_git_work_tree, read_publication
 from tools.product_matrix_base.rows import stage_rows
 from tools.product_matrix_base.stage import (
-    TABLES, LoadError, PartialWrite, correct, lark_runner, plan, provenance, read_rows, records_shape, write,
+    TABLES, LoadError, PartialWrite, correct, correction_plan, lark_runner, plan, provenance, read_rows, records_shape, write,
 )
 from tools.rtd.production_evidence import read_publications
 from tools.utils.path_utils import Paths, PathSegments, docs_publish_of
@@ -100,6 +101,7 @@ def _live(args: argparse.Namespace, base: str, staged: dict[str, Any], report: d
             if info and info["differ"]:
                 fields = sorted({name for item in info["differ"] for name in item["fields"]})
                 print(f"  {table}: 已存在但本次读取不同 {len(info['differ'])} 行（字段：{'、'.join(fields)}）")
+        _print_corrections(planned, report)
         for problem in planned["problems"]:
             print(f"PROBLEM {problem}")
         report["plan"] = {t: {k: v for k, v in i.items() if k != "create"} for t, i in planned["tables"].items()}
@@ -108,17 +110,39 @@ def _live(args: argparse.Namespace, base: str, staged: dict[str, Any], report: d
                 print("--write/--correct ignored: add --write --yes once the dry run above has been confirmed")
             print("dry run: nothing written")
             return 0
-        written = _write(run, planned, args.lark_cli, report)
-        if args.correct:
-            fixed = correct(run, planned, args.batch)
-            report["corrected"] = fixed
-            print(f"  事实: 原地修正 {fixed['corrected']}，跳过（已有人核实或原文变了）{len(fixed['skipped'])}，"
-                  f"读回不符 {len(fixed['mismatched'])}")
-            written = written and not fixed["mismatched"]
-        return 0 if written else 1
+        if not _write(run, planned, args.lark_cli, report):
+            print("ERROR   created rows did not read back as written; no correction attempted")
+            return 1
+        return _correct(run, planned, args.batch, report) if args.correct else 0
     except LoadError as exc:
         print(f"ERROR   {exc}")
         return 2
+
+
+def _print_corrections(planned: dict[str, Any], report: dict[str, Any]) -> None:
+    chosen = correction_plan(planned)
+    if not chosen["correct"] and not chosen["decide"]:
+        return
+    fields = Counter(name for item in chosen["correct"] for name in item["fields"])
+    print(f"  事实: 可原地修正 {len(chosen['correct'])} 行（"
+          + "，".join(f"{name} {count}" for name, count in sorted(fields.items())) + "）")
+    reasons = Counter(entry["reason"] for entry in chosen["decide"])
+    for reason, count in sorted(reasons.items()):
+        print(f"  事实: 需人决定 {count} 行：{reason}")
+    report["correction_plan"] = {"correct": [item["key"] for item in chosen["correct"]], "decide": chosen["decide"]}
+
+
+def _correct(run: Any, planned: dict[str, Any], batch: str, report: dict[str, Any]) -> int:
+    try:
+        fixed = correct(run, planned, batch)
+    except PartialWrite as exc:
+        report["corrected"] = exc.report
+        print(f"  事实: 中途失败，已修正并读回 {exc.report['事实']['corrected']} 行")
+        raise
+    report["corrected"] = fixed
+    print(f"  事实: 原地修正 {fixed['corrected']}（" + "，".join(f"{n} {c}" for n, c in sorted(fixed["fields"].items()))
+          + f"），需人决定 {len(fixed['needs_decision'])}，读回不符 {len(fixed['mismatched'])}")
+    return 1 if fixed["mismatched"] else 0
 
 
 def _publications(root: Path | None) -> list[dict[str, Any]]:

@@ -10,6 +10,7 @@ The tool writes no verification state other than 候选 and leaves 当前值, �
 from __future__ import annotations
 
 import json
+from collections import Counter
 import subprocess
 import time
 from collections.abc import Callable, Iterable
@@ -282,33 +283,82 @@ def _equal_cell(want: Any, have: Any, kind: str) -> bool:
     return same(want, have, kind)
 
 
+# The only fields an in-place correction may change (operator, 2026-11-16), and the only one it may empty: a wrong
+# unit read from a power row is cleared, never a printed text value.
+CORRECTABLE = ("文本值", "原单位")
+CLEARABLE = ("原单位",)
+
+
+def correction_plan(planned: dict[str, Any]) -> dict[str, list]:
+    """Which differing 事实 rows may be corrected in place, and which need a person's decision (and why)."""
+    info = planned["tables"].get("事实") or {"differ": []}
+    allowed, decide = [], []
+    for item in info["differ"]:
+        outside = sorted(set(item["fields"]) - set(CORRECTABLE))
+        emptied = sorted(n for n, v in item["fields"].items() if v["staged"] in (None, "", []) and n not in CLEARABLE)
+        if item["state"] != CANDIDATE:
+            decide.append({"key": item["key"], "reason": f"核实状态为 {item['state'] or '空'}，不是候选"})
+        elif outside:
+            decide.append({"key": item["key"], "reason": f"差异含白名单以外的字段：{'、'.join(outside)}"})
+        elif emptied:
+            decide.append({"key": item["key"], "reason": f"修正会清空：{'、'.join(emptied)}"})
+        else:
+            allowed.append(item)
+    return {"correct": allowed, "decide": decide}
+
+
+def _current_states(run: Runner, table_id: str, items: list[dict[str, Any]]) -> dict[str, str]:
+    wanted = {item["record_id"] for item in items}
+    return {r["_record_id"]: _text(r.get("核实状态")) for r in read_rows(run, table_id, ["事实键", "核实状态"])
+            if r["_record_id"] in wanted}
+
+
 def correct(run: Runner, planned: dict[str, Any], batch: str, *, settle: float = 3.0,
             sleep: Callable[[float], None] = time.sleep) -> dict[str, Any]:
     """Correct 事实 rows in place whose printed source is unchanged but whose reading changed.
 
-    Only rows still 候选 (nobody has verified them) are corrected; each gets the new values, the new batch label and
-    a note of the old values; 原文 and 核实状态 are left as they are. Other rows are reported, never touched.
+    Only rows whose differences lie within CORRECTABLE and which are still 候选 — checked again right before the
+    write — are corrected: new values, the new batch label and a note of the old values; 原文 and 核实状态 stay.
+    Everything else is reported for a person, never touched. A failed write still reads back what it changed.
     """
-    info = planned["tables"].get("事实") or {"differ": []}
+    chosen = correction_plan(planned)
     table_id = planned["ids"]["事实"]
-    corrected, skipped = [], []
-    for item in info["differ"]:
-        if item["state"] != CANDIDATE or "原文" in item["fields"]:
-            skipped.append(item["key"])
+    states = _current_states(run, table_id, chosen["correct"])
+    decide = list(chosen["decide"])
+    corrected: list[tuple[dict[str, Any], dict[str, Any]]] = []
+    failure = None
+    for item in chosen["correct"]:
+        if states.get(item["record_id"]) != CANDIDATE:
+            decide.append({"key": item["key"], "reason": "写入前复查：已不是候选"})
             continue
         note = "；".join(f"{name} 原为「{_text(v['live'])}」" for name, v in item["fields"].items())
         patch = {name: v["staged"] if v["staged"] not in ("", []) else None for name, v in item["fields"].items()}
         patch.update({"写入批次": batch, "备注": f"{item['remark']}；{batch} 修正：{note}".lstrip("；")})
-        _check(run(["+record-upsert", "--table-id", table_id, "--record-id", item["record_id"], "--json",
-                    json.dumps(patch, ensure_ascii=False)]), f"事实 correct {item['key']}")
+        try:
+            _check(run(["+record-upsert", "--table-id", table_id, "--record-id", item["record_id"], "--json",
+                        json.dumps(patch, ensure_ascii=False)]), f"事实 correct {item['key']}")
+        except LoadError as exc:
+            failure = exc
+            break
         corrected.append((item, patch))
     sleep(settle)
+    report = _correction_read_back(run, planned, corrected, decide)
+    if failure:
+        raise PartialWrite(f"{failure}; the corrections made so far were read back", {"事实": report})
+    return report
+
+
+def _correction_read_back(run: Runner, planned: dict[str, Any], corrected: list[tuple[dict, dict]],
+                          decide: list[dict[str, Any]]) -> dict[str, Any]:
+    table_id = planned["ids"]["事实"]
     names = sorted({"事实键", *(n for _item, patch in corrected for n in patch)})
-    back = {r["_record_id"]: r for r in read_rows(run, table_id, names)}
+    back = {r["_record_id"]: r for r in read_rows(run, table_id, names)} if corrected else {}
     kinds = {name: (planned["schema"]["事实"].get(name) or {}).get("type", "text") for name in names}
     mismatched = [f"{item['key']} · {name}" for item, patch in corrected for name, value in patch.items()
                   if not _equal_cell(value, back.get(item["record_id"], {}).get(name), kinds.get(name, "text"))]
-    return {"corrected": len(corrected), "skipped": skipped, "mismatched": mismatched}
+    fields = Counter(name for item, _patch in corrected for name in item["fields"])
+    return {"corrected": len(corrected), "keys": [item["key"] for item, _patch in corrected], "fields": dict(fields),
+            "needs_decision": decide, "mismatched": mismatched}
 
 
 def write(run: Runner, planned: dict[str, Any], *, use_records_shape: bool, settle: float = 3.0,
@@ -363,4 +413,4 @@ def _read_back(run: Runner, planned: dict[str, Any], report: dict[str, Any]) -> 
 
 
 __all__ = ["LoadError", "PartialWrite", "PRIMARY", "TABLES", "correct", "fact_key", "lark_runner", "plan", "preflight",
-           "product_key", "provenance", "read_rows", "records_shape", "same", "write"]
+           "correction_plan", "product_key", "provenance", "read_rows", "records_shape", "same", "write"]
