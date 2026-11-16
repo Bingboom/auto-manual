@@ -75,10 +75,15 @@ def lark_runner(base_token: str, *, profile: str | None = None, identity: str = 
     return run
 
 
-def _check(result: dict[str, Any], what: str) -> dict[str, Any]:
+def _check(result: dict[str, Any], what: str, *, sensitive: bool = False) -> dict[str, Any]:
+    """The call's data, or a LoadError. ``sensitive``: the payload carries a project number, so the CLI's own error
+    text (which can echo the payload) is replaced by its error code or type."""
     if not result.get("ok"):
-        message = (result.get("error") or {}).get("message") or "no detail"
-        raise LoadError(f"{what} failed: {message}")
+        error = result.get("error") or {}
+        if sensitive:
+            code = error.get("code") or error.get("type") or error.get("subtype") or "unknown"
+            raise LoadError(f"{what} failed (lark-cli error {code}; details withheld: the payload carries project data)")
+        raise LoadError(f"{what} failed: {error.get('message') or 'no detail'}")
     return result.get("data") or {}
 
 

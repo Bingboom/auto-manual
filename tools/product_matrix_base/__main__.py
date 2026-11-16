@@ -216,8 +216,10 @@ def _matrix(args: argparse.Namespace) -> int:
             raise
         print(f"  加列 {written['columns_added']}，新建 {written['created']}，更新 {written['updated']}，"
               f"缺失 {len(written['missing'])}，字段不符 {len(written['mismatched'])}，表内现有 {written['rows_after']} 行")
-        if args.drop_unused:
-            print(f"  删除空列 {len(matrix.drop_unused(run, planned))}")
+        if args.drop and (written["missing"] or written["mismatched"]):
+            print("  读回有缺失或不符，不删列")
+        elif args.drop:
+            print(f"  删除空列 {len(matrix.drop_columns(run, planned, args.drop))}")
         return 1 if written["missing"] or written["mismatched"] else 0
     except LoadError as exc:
         print(f"ERROR   {exc}")
@@ -247,19 +249,33 @@ def _projects(args: argparse.Namespace) -> int:
               f"对到多个项目 {len(planned['ambiguous'])}，查不到 {len(planned['unknown'])}"
               f"（涉及项目 {planned['projects']} 个；项目号本身不打印、不写报告）")
         status = 0
+        if planned["differs"]:
+            print(f"  已有项目号但与网页文档不同 {len(planned['differs'])} 个（不改，按产品键列在报告里）")
+        summary = projects.summary(planned)
         if args.write and args.yes:
-            written = projects.write(run, planned)
+            try:
+                written = projects.write(run, planned)
+            except PartialWrite as exc:
+                summary["written"] = exc.report
+                _projects_report(args.report, summary)
+                print(f"  中途失败：已写 {exc.report['sent']}，读回一致 {exc.report['matched']}，"
+                      f"未写 {len(exc.report['not_written'])}（产品键见报告）")
+                raise
             print(f"  写入 {written['sent']}，读回一致 {written['matched']}，不一致或缺失 {len(written['problems'])}")
+            summary["written"] = written
             status = 1 if written["problems"] else 0
         else:
             print("dry run: nothing written")
-        if args.report:
-            args.report.write_text(json.dumps(projects.summary(planned), ensure_ascii=False, indent=1) + "\n",
-                                   encoding="utf-8")
+        _projects_report(args.report, summary)
         return status
     except LoadError as exc:
         print(f"ERROR   {exc}")
         return 2
+
+
+def _projects_report(path: Path | None, summary: dict[str, Any]) -> None:
+    if path:
+        path.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
 def _update_manifest(path: Path, matrix_fields: list[dict[str, str]]) -> None:
@@ -317,7 +333,9 @@ def main(argv: list[str] | None = None) -> int:
     mx.add_argument("--report", type=Path, help="columns, empty cells and plan, outside any git work tree")
     mx.add_argument("--write", action="store_true")
     mx.add_argument("--yes", action="store_true")
-    mx.add_argument("--drop-unused", action="store_true", help="after writing, delete matrix columns that are empty")
+    mx.add_argument("--drop", action="append", default=[], metavar="COLUMN",
+                    help="after a clean write, delete this matrix column if the generator no longer produces it and "
+                         "every row is empty (repeat per column; nothing is dropped by sweep)")
     mx.set_defaults(func=_matrix)
     args = parser.parse_args(argv)
     return args.func(args)
