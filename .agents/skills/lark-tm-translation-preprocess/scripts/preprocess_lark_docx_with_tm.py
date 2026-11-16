@@ -19,7 +19,10 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from urllib.parse import urlparse
 
-from lxml import etree
+try:
+    from lxml import etree
+except ImportError:  # pragma: no cover - optional in CI lockfile
+    etree = None  # type: ignore[assignment]
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 TM_SCRIPT = REPO_ROOT / ".agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py"
