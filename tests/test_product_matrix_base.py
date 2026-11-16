@@ -6,6 +6,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
+from tools.product_matrix_base import matrix
 from tools.product_matrix_base.extract import (
     compare, extract, inside_git_work_tree, load_dictionary, parse_value, quantities, spec_rows, table_rows,
 )
@@ -122,7 +123,7 @@ class DictionaryAndManifestTest(unittest.TestCase):
         tables = {t["name"]: t for t in manifest["tables"]}
         self.assertEqual(list(tables), ["产品", "属性", "来源", "事实", "矩阵"])
         matrix_columns = [f["name"] for f in tables["矩阵"]["fields"]]
-        self.assertTrue(set(keys) <= set(matrix_columns))
+        self.assertEqual((matrix_columns[0], matrix_columns[-1]), ("产品键", "生成时间"))
         primaries = {name: t["fields"][0]["name"] for name, t in tables.items()}
         self.assertEqual(primaries, {"产品": "产品键", "属性": "属性键", "来源": "来源键", "事实": "事实键",
                                      "矩阵": "产品键"})
@@ -302,6 +303,107 @@ class RenameMapTest(unittest.TestCase):
         finals = list(renames.values())
         self.assertEqual(len(finals), len(set(finals)))
         self.assertTrue({a["key"] for a in load_dictionary()} <= set(finals))
+
+
+PRODUCTS = [{"产品键": "JE-A/US", "型号": "JE-A", "市场": "US", "品牌": "自有"},
+            {"产品键": "JE-B/JP", "型号": "JE-B", "市场": "JP", "品牌": "自有"}]
+ATTRIBUTES = [
+    {"属性键": "capacity_wh", "中文名": "标称容量", "值类型": ["数值"], "规范单位": "Wh", "状态": ["启用"], "排序": 1},
+    {"属性键": "ac_input", "中文名": "AC 输入", "值类型": ["文本"], "规范单位": "W", "状态": ["启用"], "排序": 2},
+    {"属性键": "discharge_temp_range", "中文名": "放电温度范围", "值类型": ["范围"], "规范单位": "°C", "排序": 3},
+    {"属性键": "model_number", "中文名": "型号", "值类型": ["文本"], "规范单位": "", "排序": 4},
+    {"属性键": "unused_key", "中文名": "未用", "值类型": ["文本"], "规范单位": "", "排序": 5},
+]
+SOURCES = [{"来源键": "web/a", "来源类型": ["网页说明书"]}, {"来源键": "spec/a", "来源类型": ["规格书"]}]
+
+
+def fact(product, key, **fields):
+    return {"产品键": product, "属性键": key, "来源键": "web/a", "核实状态": ["候选"],
+            "记录时间": "2026-11-16T10:00:00.000+08:00", **fields}
+
+
+FACTS = [
+    fact("JE-A/US", "capacity_wh", 数值=512, 原文="Capacity: 512 Wh"),
+    fact("JE-A/US", "capacity_wh", 数值=500, 来源键="spec/a", 核实状态=["已核实"]),
+    fact("JE-A/US", "capacity_wh", 数值=999, 核实状态=["已驳回"]),
+    fact("JE-A/US", "ac_input", 文本值="100~120", 原文="AC Input: 100-120 V~ 60 Hz, 15 A max."),
+    fact("JE-A/US", "discharge_temp_range", 文本值="-10~45"),
+    fact("JE-A/US", "model_number", 文本值="JE-A"),
+    fact("JE-A/US", "capacity_wh", 文本值="5040Wh", 条件="组件:Pack"),
+    fact("JE-B/JP", "capacity_wh", 文本值="50/60", 原文="容量: 50/60"),
+]
+
+
+class MatrixBuildTest(unittest.TestCase):
+    def setUp(self):
+        self.built = matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES)
+
+    def test_columns_are_typed_readable_and_only_for_attributes_with_values(self):
+        self.assertEqual([(c["name"], c["type"]) for c in self.built["columns"]],
+                         [("标称容量（Wh）", "number"), ("AC 输入", "text"), ("放电温度范围", "text"),
+                          ("型号（说明书）", "text")])
+
+    def test_best_value_counts_and_components(self):
+        row = self.built["rows"]["JE-A/US"]
+        self.assertEqual(row["标称容量（Wh）"], 500)  # the verified fact wins over a newer candidate
+        self.assertEqual(row["AC 输入"], "100-120 V~ 60 Hz, 15 A max.")  # printed text, not a bare voltage range
+        self.assertEqual(row["放电温度范围"], "-10~45 °C")
+        self.assertEqual((row["已核实数"], row["候选数"], row["组件事实数"]), (1, 3, 1))
+        self.assertEqual(self.built["components"], 1)
+
+    def test_a_numeric_fact_without_a_number_stays_empty_and_is_listed(self):
+        self.assertNotIn("标称容量（Wh）", self.built["rows"]["JE-B/JP"])
+        self.assertEqual(self.built["empty"], [{"产品键": "JE-B/JP", "属性键": "capacity_wh", "原文": "容量: 50/60"}])
+        self.assertEqual(matrix.filled_cells(self.built), (4, 8))
+
+
+class MatrixBase(FakeBase):
+    def __init__(self):
+        super().__init__()
+        self.schema["矩阵"] = [{"name": "产品键", "type": "text"}, {"name": "capacity_wh", "type": "text"}]
+
+    def __call__(self, args: list[str]) -> dict:
+        command = args[0]
+        table = args[args.index("--table-id") + 1] if "--table-id" in args else None
+        if command == "+field-create":
+            self.schema[table].append(json.loads(args[args.index("--json") + 1]))
+            return {"ok": True, "data": {}}
+        if command == "+field-delete":
+            name = args[args.index("--field-id") + 1]
+            self.schema[table] = [f for f in self.schema[table] if f["name"] != name]
+            return {"ok": True, "data": {}}
+        if command == "+record-upsert":
+            record = args[args.index("--record-id") + 1]
+            row = next(r for r in self.rows[table] if r["_id"] == record)
+            row.update(json.loads(args[args.index("--json") + 1]))
+            return {"ok": True, "data": {}}
+        return super().__call__(args)
+
+
+class MatrixWriteTest(unittest.TestCase):
+    def test_write_read_back_rerun_and_update(self):
+        base = MatrixBase()
+        snapshot = {"ids": {name: name for name in base.schema}}
+        built = matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES)
+        planned = matrix.plan(base, snapshot, built)
+        self.assertIn("capacity_wh", planned["unused"])  # the manifest's key-named placeholder columns
+        report = matrix.write(base, planned, sleep=lambda _s: None)
+        self.assertEqual((report["created"], report["missing"], report["mismatched"]), (2, [], []))
+        self.assertEqual(matrix.drop_unused(base, planned), planned["unused"])
+        again = matrix.plan(base, snapshot, built)
+        self.assertEqual((again["add"], again["create"], again["update"], again["unused"]), ([], [], [], []))
+        changed = matrix.build(PRODUCTS, ATTRIBUTES, FACTS + [fact("JE-B/JP", "model_number", 文本值="JE-B")], SOURCES)
+        update = matrix.plan(base, snapshot, changed)["update"]
+        self.assertEqual([(u["key"], u["fields"]) for u in update],
+                         [("JE-B/JP", {"型号（说明书）": "JE-B", "候选数": 1})])
+
+    def test_columns_holding_values_are_never_dropped(self):
+        base = MatrixBase()
+        base.rows["矩阵"].append({"产品键": "X", "capacity_wh": "512", "_id": "rec0"})
+        planned = matrix.plan(base, {"ids": {name: name for name in base.schema}},
+                              matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        with self.assertRaises(LoadError):
+            matrix.drop_unused(base, planned)
 
 
 if __name__ == "__main__":

@@ -114,6 +114,54 @@ def _stage(args: argparse.Namespace) -> int:
     return status
 
 
+def _matrix(args: argparse.Namespace) -> int:
+    from tools.product_matrix_base import matrix
+
+    base = args.base_token or os.environ.get(BASE_ENV)
+    if not base:
+        print("ERROR   no base given")
+        return 2
+    run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli)
+    try:
+        snapshot = matrix.read_base(run)
+        built = matrix.build(snapshot["products"], snapshot["attributes"], snapshot["facts"], snapshot["sources"])
+        planned = matrix.plan(run, snapshot, built)
+        filled, possible = matrix.filled_cells(built)
+        print(f"矩阵: {len(built['rows'])} 行，属性列 {len(built['columns'])}（数值列 "
+              f"{sum(c['type'] == 'number' for c in built['columns'])}），有值单元格 {filled}/{possible}，"
+              f"有组件事实的产品 {built['components']}，数值缺失留空 {len(built['empty'])}")
+        print(f"  待加列 {len(planned['add'])}，待新建行 {len(planned['create'])}，待更新行 {len(planned['update'])}，"
+              f"不再使用的列 {len(planned['unused'])}，类型冲突列 {len(planned['clash'])}")
+        if args.manifest:
+            _update_manifest(args.manifest, matrix.manifest_fields(built))
+        if args.report:
+            _out(args.report).write_text(json.dumps({"columns": built["columns"], "empty": built["empty"],
+                                                     "plan": {k: v for k, v in planned.items() if k != "kinds"}},
+                                                    ensure_ascii=False, indent=1, default=str) + "\n",
+                                         encoding="utf-8")
+        if not (args.write and args.yes):
+            print("dry run: nothing written")
+            return 0
+        written = matrix.write(run, planned)
+        print(f"  加列 {written['columns_added']}，新建 {written['created']}，更新 {written['updated']}，"
+              f"缺失 {len(written['missing'])}，字段不符 {len(written['mismatched'])}，表内现有 {written['rows_after']} 行")
+        if args.drop_unused:
+            print(f"  删除空列 {len(matrix.drop_unused(run, planned))}")
+        return 1 if written["missing"] or written["mismatched"] else 0
+    except LoadError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+
+
+def _update_manifest(path: Path, matrix_fields: list[dict[str, str]]) -> None:
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+    for table in manifest["tables"]:
+        if table["name"] == "矩阵":
+            table["fields"] = matrix_fields
+    path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"manifest: {path} 矩阵 {len(matrix_fields)} fields")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Product information matrix: extract, stage and load.")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -139,6 +187,17 @@ def main(argv: list[str] | None = None) -> int:
     st.add_argument("--write", action="store_true", help="create the absent rows (needs --yes)")
     st.add_argument("--yes", action="store_true", help="confirm the dry run was reviewed")
     st.set_defaults(func=_stage)
+    mx = sub.add_parser("matrix", help="generate the 矩阵 table from the facts in the base")
+    mx.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
+    mx.add_argument("--profile")
+    mx.add_argument("--identity", default="bot", choices=["bot", "user"])
+    mx.add_argument("--lark-cli", default="lark-cli")
+    mx.add_argument("--manifest", type=Path, help="rewrite this schema manifest's 矩阵 fields to the generated columns")
+    mx.add_argument("--report", type=Path, help="columns, empty cells and plan, outside any git work tree")
+    mx.add_argument("--write", action="store_true")
+    mx.add_argument("--yes", action="store_true")
+    mx.add_argument("--drop-unused", action="store_true", help="after writing, delete matrix columns that are empty")
+    mx.set_defaults(func=_matrix)
     args = parser.parse_args(argv)
     return args.func(args)
 
