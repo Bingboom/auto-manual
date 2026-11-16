@@ -24,6 +24,25 @@
 #home .home-asset{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:12px;background:var(--app-bg);
   border:1px solid var(--app-divider,var(--app-line));color:var(--app-ink);text-decoration:none;transition:box-shadow .15s}
 #home a.home-asset:hover{box-shadow:0 2px 10px rgba(21,32,43,.08)}
+/* 四类资产 (step 12): numbered layer cards, the first one marked; 待统计 in place of a missing figure. */
+#home .home-layer{gap:10px;background:var(--surface)}
+#home .home-layer.is-first{border-color:#e8c3ae;box-shadow:inset 0 3px 0 var(--brand-strong)}
+#home .home-layer .home-asset-head .home-status{margin-left:auto}
+#home .home-layer-no{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:7px;background:var(--brand-soft);color:var(--brand-strong);font-size:13px;font-weight:800}
+#home .home-layer-line{font-size:13px;line-height:20px;color:var(--app-muted)}
+#home .home-layer-fig{display:inline-flex;flex-direction:column;gap:0}
+#home .home-layer-num{display:inline-flex;align-items:baseline;gap:3px}
+#home .home-layer-fig b.is-pending,#home .home-mainline .is-pending{font-size:15px;font-weight:600;color:var(--app-muted)}
+#home .home-layer-label{display:block}
+#home .home-layer-weak{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:9px;background:#fdf8ee;border:1px solid #efdcb4;font-size:12.5px;line-height:19px;color:#5c3d0a}
+#home .home-layer-weak b{font-weight:600}
+#home .home-mainline-text{margin:0;font-size:14px;line-height:22px;color:var(--app-ink)}
+#home .home-mainline li{flex-wrap:wrap;font-weight:500}
+#home .home-mainline li a{color:var(--brand-strong);text-decoration:none;font-weight:600}
+#home .home-mainline li span{font-weight:400;color:var(--app-muted)}
+#home .home-mainline li b{color:var(--app-ink)}
+#home .home-mainline-note{margin:0;font-size:12px;line-height:18px;color:var(--app-muted)}
+#home .home-mainline-note a{color:var(--brand-strong);text-decoration:none}
 #home .home-asset-head{display:flex;align-items:center;gap:8px}
 #home .home-asset-head strong{font-size:14px;line-height:20px;font-weight:600}
 #home .home-asset-icon{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--brand-soft);color:var(--brand-strong)}
@@ -32,18 +51,6 @@
 #home .home-asset-stock b{font-size:var(--text-2xl);line-height:28px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 #home .home-asset-stock small,#home .home-asset-label,#home .home-asset-caption{font-size:12px;line-height:18px;color:var(--app-muted)}
 #home .home-asset-stock em{font-style:normal;font-size:14px;color:var(--app-muted)}
-#home .home-asset-measure{display:flex;flex-direction:column;gap:6px}
-#home .home-asset-track{display:block;height:6px;border-radius:var(--radius-full);background:var(--app-track,#e5eaf0);overflow:hidden}
-#home .home-asset-track i{display:block;height:100%;border-radius:var(--radius-full);background:var(--brand)}
-#home .home-asset-label{display:flex;justify-content:space-between;gap:8px}
-#home .home-asset-label b{font-weight:600;color:var(--app-ink)}
-#home .home-asset-chips{display:flex;flex-wrap:wrap;gap:6px}
-#home .home-asset-chips span{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;background:var(--surface);
-  border:1px solid var(--app-divider,var(--app-line));font-size:12px;color:var(--app-text2,var(--app-muted))}
-#home .home-asset-spark{display:block}
-#home .home-asset-spark .area{fill:var(--brand-soft)}
-#home .home-asset-spark .line{fill:none;stroke:var(--brand);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-#home .home-asset-spark .end{fill:var(--brand)}
 #home .home-status-row{display:flex;flex-wrap:wrap;border-top:1px solid var(--app-divider,var(--app-line))}
 #home .home-lanes,#home .home-doing{display:flex;flex-direction:column;gap:10px;padding:20px 24px}
 #home .home-lanes{flex:1 1 220px}

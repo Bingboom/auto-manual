@@ -1,0 +1,54 @@
+# 四类资产 (step 12 of the 2026-11 redesign; REV-51): the curated half of the four asset layers, read by
+# tools/rtd/asset_layers.py for 知识库首页, the layer pages and 系统建设. Figures never appear here: every number
+# on those pages is read at build time by the layer views. This file sits in a public repository: write only what
+# may be published. Rules: code-as-doc/dev/rtd_manual_portal/asset-layers.md.
+schema: hello-docs-asset-layers/v1
+
+# Where the wording comes from: the positioning document, §1.2 (four layers) and §4.2 (staged path).
+source: "file:auto-manual:code-as-doc/architecture/Hello_Docs_Positioning.md"
+
+# Waiting for the operator (positioning §1.2, 2026-11-16). Each wording is kept here once, so a change is one line.
+umbrella: 产品技术内容资产
+main_line: 新说明书在工作台写作；扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。
+
+# Each layer's status chip comes only from its registered ledger rows (decision 1 of the step-12 brief): the rows'
+# progress (system_workspace's ledger reading) maps to a portal status word; a layer with no row gets no chip.
+# `items` regroup 系统建设's capability items (card.item) under the layer without changing their status or
+# evidence; every item of a regrouped card must be placed exactly once.
+layers:
+  product:
+    revs: [REV-50, REV-52]
+    items: [content_foundation.structured_data]
+  content:
+    revs: [REV-15, REV-41..REV-43]
+    items: [content_foundation.shared_templates, content_foundation.skeletons, content_foundation.reusable_blocks]
+  media:
+    revs: []
+    items: [content_foundation.asset_library]
+  language:
+    revs: [REV-11, REV-18, REV-35..REV-38]
+    items: [language.translation_memory, language.short_copy, language.correction_reflow, language.pretranslation,
+            language.terminology]
+
+# The capability cards kept whole, as the 生产 row under the four layers.
+production: [web_publishing, document_production, review_backport, agent_operations]
+
+# 长期方向 on 系统建设 (positioning §4.2). A stage with ledger rows carries their status; a stage without one shows only
+# the recorded direction, quoted from the positioning document, with no status (system-workspace.md#status-rules).
+path:
+  anchor: "42-分阶段路径与系统边界"
+  stages:
+    - id: web
+      title: 说明书网页化
+      quote: 说明书网页化是切入点，目标是可治理、可复用的产品技术内容资产
+      revs: []
+    - id: matrix
+      title: 产品信息矩阵
+      quote: 先从已发布的网页说明书取值，它是目前最完整的来源，尽量补全
+      revs: [REV-50]
+    - id: backfill
+      title: 用历史规格书与时间信息补缺
+      quote: 再用时间信息和历史产品规格书的数值补缺
+      revs: [REV-52]
+      scope: 台账只登记了时间回填（REV-52）；历史规格书补缺还没有台账行
+  boundary: 拆机报告、外部竞品数据和竞情分析是下游使用方，不在本系统内建设

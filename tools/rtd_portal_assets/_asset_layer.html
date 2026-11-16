@@ -1,7 +1,8 @@
 {#- 四类资产 (2026-11 design, step 12; REV-51): the shared anatomy of a layer page (tools/rtd/asset_layers.py).
     Import with context: {% import '_asset_layer.html' as al with context %}.
     The head names the layer's place in the priority order, its one line and the build date the page read its
-    figures on; it shows no maturity status (that will come from registered ledger rows). Six blocks follow, in
+    figures on, and since slice 2 the layer's status chip, only when its registered ledger rows give one
+    (asset_layers.yaml; a layer without rows shows none). Six blocks follow, in
     this order and with these ids: 规模 (#scale), 在哪里维护 (#maintained), 清单 (#inventory), 被谁使用 (#used-by),
     来源与时间 (#sources) and 质量与缺口 (#gaps). A block with nothing real to show says 待统计 or 建设中, never a
     made-up number. 产品信息 spreads its 清单 over three pages that share the head and a tab row (product_head). -#}
@@ -12,7 +13,10 @@
     <h1>{{ layer.title|e }}</h1>
     <p>{{ layer.lead|e }}</p>
   </div>
-  <span class="al-pill" title="本页数字在构建时从仓库与已发布说明书读取；各快照的日期写在数字旁">构建 <time datetime="{{ layer.build_date|e }}">{{ layer.build_date|e }}</time></span>
+  <span class="al-head-meta">
+    {%- if layer.chip %}<span class="al-chip is-{{ layer.chip.status|e }}" title="据台账 {{ layer.chip.revs|join('、')|e }}：{{ layer.chip.tally|e }}">{{ layer.chip.status_label|e }}<small>据台账 {{ layer.chip.revs|join('、')|e }}</small></span>{% endif %}
+    <span class="al-pill" title="本页数字在构建时从仓库与已发布说明书读取；各快照的日期写在数字旁">构建 <time datetime="{{ layer.build_date|e }}">{{ layer.build_date|e }}</time></span>
+  </span>
 </header>
 {%- endmacro -%}
 {%- macro block(id, number, title, wide=false, tone='') -%}
