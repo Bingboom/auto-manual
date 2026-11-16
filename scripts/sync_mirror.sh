@@ -11,6 +11,8 @@
 #   SOURCE_FORBIDDEN_PATHS  paths auto-manual must never contain (defaults to the kept paths)
 #   MIRROR_README           optional source file installed as the mirror's README.md
 #                           (mirrors/<repository>/README.md, maintained in auto-manual)
+#   MIRROR_DRY_RUN          when "1", compose the tree, print DRY_RUN composed_tree=<sha>,
+#                           and exit 0 without creating a commit or pushing (default "0")
 #   MIRROR_PUSH_ATTEMPTS    pushes to try (default 3); a rejected push is retried only when
 #                           the mirror branch moved meanwhile, recomposed on its new head
 #   MIRROR_BRANCH, SOURCE_REPOSITORY, SOURCE_SHA, SOURCE_RUN_URL
@@ -48,6 +50,9 @@ compose() {
   for content_path in ${keep_paths}; do
     content_tree="$(git -C mirror rev-parse --verify "${mirror_parent}:${content_path}" 2>/dev/null || true)"
     if [ -n "${content_tree}" ]; then
+      # Clear overlapping transitional entries inherited from source_tree before
+      # binding the mirror's authoritative subtree, avoiding `read-tree` bind collisions.
+      GIT_INDEX_FILE="${mirror_index}" git -C mirror rm -rf --cached --quiet --ignore-unmatch -- "${content_path}"
       GIT_INDEX_FILE="${mirror_index}" git -C mirror read-tree \
         --prefix="${content_path}/" "${content_tree}"
     fi
@@ -63,6 +68,12 @@ compose() {
   fi
   combined_tree="$(GIT_INDEX_FILE="${mirror_index}" git -C mirror write-tree)"
 }
+
+if [ "${MIRROR_DRY_RUN:-0}" = "1" ]; then
+  compose
+  echo "DRY_RUN composed_tree=${combined_tree}"
+  exit 0
+fi
 
 git -C mirror config user.name "github-actions[bot]"
 git -C mirror config user.email "41898282+github-actions[bot]@users.noreply.github.com"

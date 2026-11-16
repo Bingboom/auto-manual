@@ -13,6 +13,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "sync-hello-docs.yml"
 SCRIPT_PATH = REPO_ROOT / "scripts" / "sync_mirror.sh"
 ALL_CONTENT = "docs/publish docs/knowledge docs/review-drafts"
+HELLO_DOCS_KEEP = (
+    "docs/publish docs/knowledge manual_sources reports "
+    "data/business configs/targets bitable_schema/business"
+)
+REVIEW_KEEP = "docs/review-drafts review_sync_json site/review-preview"
 
 
 def sync_step(workflow: dict, job: str, name: str) -> dict:
@@ -28,9 +33,10 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
 
     def test_sync_preserves_the_main_publish_subtree(self) -> None:
         self.assertEqual(self.sync_step["run"], "bash source/scripts/sync_mirror.sh")
-        self.assertEqual(self.sync_step["env"]["MIRROR_KEEP_PATHS"], "docs/publish docs/knowledge")
+        self.assertEqual(self.sync_step["env"]["MIRROR_KEEP_PATHS"], HELLO_DOCS_KEEP)
         self.assertIn('for content_path in ${keep_paths}', self.command)
         self.assertIn('${mirror_parent}:${content_path}', self.command)
+        self.assertIn('rm -rf --cached --quiet --ignore-unmatch -- "${content_path}"', self.command)
         self.assertIn('${source_tree}:${content_path}', self.command)
         self.assertIn('--prefix="${content_path}/"', self.command)
         self.assertIn("combined_tree=", self.command)
@@ -40,7 +46,7 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
         # The public Hello-Docs mirror must also refuse review drafts, or a slip would publish them.
         for step in (self.sync_step, self.review_step):
             self.assertEqual(step["env"]["SOURCE_FORBIDDEN_PATHS"], ALL_CONTENT)
-        self.assertEqual(self.review_step["env"]["MIRROR_KEEP_PATHS"], "docs/review-drafts")
+        self.assertEqual(self.review_step["env"]["MIRROR_KEEP_PATHS"], REVIEW_KEEP)
         self.assertEqual(self.review_step["run"], "bash source/scripts/sync_mirror.sh")
 
     def test_pr_guardrail_refuses_the_same_paths_as_the_mirrors(self) -> None:
@@ -132,6 +138,81 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("auto-manual must not own docs/knowledge", result.stdout)
             self.assertEqual(git(mirror, "rev-parse", "HEAD"), preserved_head)
+
+    def test_real_sync_resolves_transitional_overlap_and_preserves_after_source_deletion(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+
+            def git(where, *args):
+                return subprocess.run(
+                    ["git", "-C", str(where), *args], check=True,
+                    capture_output=True, text=True,
+                ).stdout.strip()
+
+            git(root, "init", "--bare", "remote.git")
+            for name in ("source", "mirror"):
+                git(root, "init", "-b", "main", name)
+                tree = root / name
+                git(tree, "config", "user.name", "Test")
+                git(tree, "config", "user.email", "test@example.invalid")
+                (tree / "engine.txt").write_text(f"{name}-v1")
+                pkg = tree / "manual_sources" / "DEMO-100" / "spec.json"
+                pkg.parent.mkdir(parents=True)
+                pkg.write_text("mirror-owned" if name == "mirror" else "stale-source")
+                git(tree, "add", ".")
+                git(tree, "commit", "-m", "Initial overlap fixture")
+
+            mirror = root / "mirror"
+            source = root / "source"
+            git(mirror, "remote", "add", "origin", str(root / "remote.git"))
+            git(mirror, "push", "origin", "main")
+
+            def run_sync(**extra_env):
+                env = dict(
+                    os.environ,
+                    SOURCE_REPOSITORY="local/source",
+                    SOURCE_SHA=git(source, "rev-parse", "HEAD"),
+                    SOURCE_RUN_URL="local-test",
+                    MIRROR_BRANCH="main",
+                    MIRROR_KEEP_PATHS=HELLO_DOCS_KEEP,
+                    SOURCE_FORBIDDEN_PATHS=ALL_CONTENT,
+                    **extra_env,
+                )
+                return subprocess.run(
+                    ["bash", str(SCRIPT_PATH)],
+                    cwd=root, env=env, capture_output=True, text=True, check=False,
+                )
+
+            # Dry-run composes without mutating mirror HEAD or remote main.
+            before_head = git(mirror, "rev-parse", "HEAD")
+            dry = run_sync(MIRROR_DRY_RUN="1")
+            self.assertEqual(dry.returncode, 0, dry.stdout + dry.stderr)
+            self.assertIn("DRY_RUN composed_tree=", dry.stdout)
+            self.assertEqual(git(mirror, "rev-parse", "HEAD"), before_head)
+            self.assertEqual(git(root / "remote.git", "rev-parse", "main"), before_head)
+
+            # Real sync with overlapping manual_sources keeps mirror's copy without bind error.
+            first = run_sync()
+            self.assertEqual(first.returncode, 0, first.stdout + first.stderr)
+            self.assertEqual(git(mirror, "show", "HEAD:engine.txt"), "source-v1")
+            self.assertEqual(
+                git(mirror, "show", "HEAD:manual_sources/DEMO-100/spec.json"),
+                "mirror-owned",
+            )
+
+            # Stage 2 simulation: deleting manual_sources in source keeps mirror's subtree intact.
+            git(source, "rm", "-r", "manual_sources")
+            (source / "engine.txt").write_text("source-v2")
+            git(source, "add", "engine.txt")
+            git(source, "commit", "-m", "Remove transitional manual_sources from source")
+
+            second = run_sync()
+            self.assertEqual(second.returncode, 0, second.stdout + second.stderr)
+            self.assertEqual(git(mirror, "show", "HEAD:engine.txt"), "source-v2")
+            self.assertEqual(
+                git(mirror, "show", "HEAD:manual_sources/DEMO-100/spec.json"),
+                "mirror-owned",
+            )
 
     def test_real_review_sync_keeps_drafts_and_refuses_drafts_in_the_source(self) -> None:
         with TemporaryDirectory() as directory:

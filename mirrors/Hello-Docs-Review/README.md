@@ -31,7 +31,7 @@
 
 ## 边界
 
-- 本仓库只维护 `docs/review-drafts/`；其余文件是 auto-manual 的同步副本，下一次同步会覆盖。
+- 本仓库维护 `docs/review-drafts/`、`review_sync_json/` 与 `site/review-preview/`；其余文件是 auto-manual 的同步副本，下一次同步会覆盖。
 - 相似产品的措辞和参数不能当作目标事实；安全、警示、合规和规格须有依据，没有依据的留在审核意见里。
 - 实时飞书表、TM-B 和正式模板的写入各有批准流程，写作过程不直接改动它们。
 

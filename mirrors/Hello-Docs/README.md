@@ -17,7 +17,7 @@ Hello-Docs 是产品资料的业务面：存放业务数据与语料资产，发
 | 产品数据与翻译语料 | 业务飞书 base：文档构建（phase2 源表）、TM-B 翻译记忆、发布文档管理 | 在飞书维护，构建时冻结为快照；ID 见[双平面地图](/user-guide/two_plane_map.md) §1.1 |
 | 业务账本 | 本地 checkout 的 `reports/` | 修订台账、TM 命中率等，日常命令见[闭环运营手册](/user-guide/closed_loop_ops_guide.md) |
 
-`docs/publish/` 和 `docs/knowledge/` 之外的文件都是 auto-manual 的同步副本，下一次同步会覆盖：
+`docs/publish/`、`docs/knowledge/`、`manual_sources/`、`reports/`（以及解耦下沉后的 `data/business/`、`configs/targets/`、`bitable_schema/business/`）由本仓库保留，其余文件都是 auto-manual 的同步副本，下一次同步会覆盖：
 **不要在这里改代码、模板或文档。**
 
 ## 在这里做什么

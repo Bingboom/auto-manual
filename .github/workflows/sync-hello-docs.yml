@@ -53,7 +53,7 @@ jobs:
           SOURCE_REPOSITORY: ${{ github.repository }}
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          MIRROR_KEEP_PATHS: docs/publish docs/knowledge
+          MIRROR_KEEP_PATHS: docs/publish docs/knowledge manual_sources reports data/business configs/targets bitable_schema/business
           SOURCE_FORBIDDEN_PATHS: docs/publish docs/knowledge docs/review-drafts
           MIRROR_README: mirrors/Hello-Docs/README.md
         run: bash source/scripts/sync_mirror.sh
@@ -88,8 +88,8 @@ jobs:
             ].join('\n\n')});
 
   # Private review-draft mirror (Hello-Docs-Review → private Read the Docs project).
-  # It keeps only docs/review-drafts; without its token the job reports a notice and
-  # skips, so the Hello-Docs sync above never depends on it.
+  # It keeps review-owned paths (docs/review-drafts, review_sync_json, site/review-preview);
+  # without its token the job reports a notice and skips, so Hello-Docs never depends on it.
   sync-review:
     if: ${{ github.repository == 'Bingboom/auto-manual' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
@@ -131,7 +131,7 @@ jobs:
           SOURCE_REPOSITORY: ${{ github.repository }}
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          MIRROR_KEEP_PATHS: docs/review-drafts
+          MIRROR_KEEP_PATHS: docs/review-drafts review_sync_json site/review-preview
           SOURCE_FORBIDDEN_PATHS: docs/publish docs/knowledge docs/review-drafts
           MIRROR_README: mirrors/Hello-Docs-Review/README.md
         run: bash source/scripts/sync_mirror.sh
