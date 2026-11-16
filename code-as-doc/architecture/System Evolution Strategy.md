@@ -76,7 +76,7 @@ The strategic priority is to govern approved originals and reusable assets, reta
 Writing is the main production route. In the private document workbench
 (Hello-Docs-Review), agents draft with the engineering infrastructure, governed
 data, templates and corpus, and people review the drafts; automated assembly from
-data and templates is being phased down. Workbench drafting and its private review
+data and templates is retiring. Workbench drafting and its private review
 site exist; promoting a finalized draft into Hello-Docs publication and
 traceability as an approved original is the main Web route, rehearsed locally
 on 2026-11-06 and built with the first finalized draft (positioning §5.1). The repository
