@@ -2,7 +2,7 @@
 
 Status: proposed · Owner: 夏冰 · Created: 2026-11-16
 
-- 本文是**提案草稿**，尚未开始执行。执行状态将记在[执行台账](manual_revitalization_execution.md)中，前提是先登记台账行；目前**没有登记任何行**。
+- 本文是**提案草稿**，尚未开始执行。执行状态不记在本文里，要先登记台账行；登记在哪份台账尚未决定（§7 第 7 项），候选是[执行台账](manual_revitalization_execution.md)的 REV 行或[优化路线图](../optimization_project.md)。目前**没有登记任何行**。
 - 来源：操作者 2026-11-16 在飞书写的《auto-manual 引擎与硬件型号业务记录彻底解耦重构清单》（四个阶段、17 项）。本文把它收进仓库，并按下面的审查结果修订。
 - 核对基线：main `66709a9f`。
 - 方法：2026-11-16 对 main 做只读核对（`git ls-tree`、读代码与工作流），未运行任何构建或测试；另外参考了 [PR #1724](https://github.com/Bingboom/auto-manual/pull/1724)（阶段一的首个实现，未合入）的审查与原型实验。
@@ -32,7 +32,7 @@ Status: proposed · Owner: 夏冰 · Created: 2026-11-16
 
 ## 3. 归属矩阵
 
-"审查新增"列标 ✚ 的行是原清单遗漏、由审查补上的；标 ✎ 的行是原清单已有但事实或处置被修订的。
+“审查”列标 ✚ 的行是原清单遗漏、由审查补上的；标 ✎ 的行是原清单已有但事实或处置被修订的。✚ 行的“归属”是审查的建议，尚未经操作者确认（§7 第 8 项）。
 
 | 路径 | 现状（main `66709a9f`） | 归属 | 说明 | 审查 |
 | --- | --- | --- | --- | :---: |
@@ -78,7 +78,7 @@ Status: proposed · Owner: 夏冰 · Created: 2026-11-16
 - **keep 语义不适合迁移期。** 实验确认：把 `manual_sources`、`reports` 列为 keep 路径后，镜像副本整体胜出；从合并起，auto-manual 在这些路径下新增的内容都到不了 Hello-Docs，而 auto-manual 此时仍是唯一写入方。keep 路径的实际行为是"首次写入胜出，之后冻结"。
 - **改用 overlay（叠加）路径。** 单独设一张过渡期 overlay 列表，语义为文件级并集、源仓胜出：上游新增和修改照常传播；只在镜像存在的文件保留；上游删除不删下游。严格的"镜像胜出"只留给 auto-manual 从不写的路径（`docs/publish`、`docs/knowledge`、`docs/review-drafts`）。原型已用临时 git 仓验证（21 个测试）。
 - **建议列表。** overlay（两个镜像相同）= `manual_sources`、`reports`、`data/business`、`configs/targets`、`bitable_schema/business`、`site/review-preview`；源仓禁入列表 = 严格 keep 路径，不变。`review_sync_json` 不进任何列表（误提交物，见阶段二）。
-- **切换方式。** 整条路径 P 的切换是一个 auto-manual PR：删除 P，把 P 从 overlay 移到 keep，加入禁入列表和 [`MIRROR_OWNED_PATHS`](../../tools/check_maintainability_guardrails.py)。子目录的切换只需在上游删除它。
+- **切换方式。** 整条路径 P 的切换是一个 auto-manual PR：删除 P，把 P 从 overlay 移到 keep，加入禁入列表和 [`MIRROR_OWNED_PATHS`](../../tools/check_maintainability_guardrails.py)。子目录的切换只需在上游删除它；但子目录切换后默认没有防回流检查，若它被重新加回上游会覆盖下游副本，整条路径切换后才由禁入列表拦住。
 - **已知代价。** 上游删除的文件会留在下游，直到在下游手动删除；某文件仍在上游时，镜像里对它的修改会被覆盖——所以每条路径同一时刻只能有一个写入方。
 - **空跑要求。** 合并前后各做一次同步空跑，比较下游文件清单，证明没有下游删除。
 - 第 1 项中的 `data` 改为 `data/business`（或 §7 决定的具体子路径），不保护整个 `data/`，因为基线文件留在工程面。
@@ -148,11 +148,13 @@ Status: proposed · Owner: 夏冰 · Created: 2026-11-16
 
 ## 6. 验收与回滚
 
+本节由审查补充，原清单没有；具体门槛待操作者确认。
+
 | 阶段 | 验收（可检查） | 回滚 |
 | --- | --- | --- |
 | 一 | 合并前后的同步空跑均无下游删除；auto-manual 在 overlay 路径新增的文件出现在镜像；镜像独有文件保留；Web 发布流程不变 | revert 工作流列表改动 |
 | 二（准备） | 基线迁移后各 ratchet 检查与 `check_doc_link_integrity` 通过；合成夹具能独立跑通 doctor/check | revert 对应 PR |
-| 二（删除） | 被删路径在业务仓存在且其 CI 通过；auto-manual 的 manual-validation 全绿；同步后镜像副本完整 | 在 auto-manual revert 删除 PR，并把路径从 keep 移回 overlay（下游副本未被删，可直接恢复） |
+| 二（删除） | 被删路径在业务仓存在且其 CI 通过；auto-manual 的 manual-validation 全绿；同步后镜像副本完整 | 在 auto-manual revert 切换 PR（恢复上游副本，路径回到 overlay）。下游副本没有被删；但镜像若已在该路径下有新提交，须先把这些改动带回上游，否则下次同步会被上游旧副本覆盖 |
 | 三 | `--workspace-root` 指向外部目录时构建结果与仓内路径一致；`configs/` 中无 `default_model` 指向真实型号 | revert；旧的仓内相对路径保留为默认回退直到全部切换 |
 | 四 | 字面量护栏在 `tools/`、`build.py`、`configs/`、`integrations/` 中无未豁免命中；manual-validation 在零业务数据下全绿；禁入路径出现时 PR 失败 | revert 护栏或把命中加入基线 |
 
@@ -164,7 +166,8 @@ Status: proposed · Owner: 夏冰 · Created: 2026-11-16
 4. Hello-Docs-Review 是否保留一份冻结包副本作为语料，还是从 Hello-Docs 读。
 5. 业务面 PR 的 CI 放在哪里（Hello-Docs 自己的工作流，还是由 auto-manual 跨仓触发）。
 6. 历史：保持原样、改写历史，或其他方案。
-7. 是否为四个阶段登记执行台账行。
+7. 是否为四个阶段登记台账行，登记在哪份台账（执行台账的 REV 行，或优化路线图）。
+8. 矩阵中 ✚ 行（审查补上的路径）的归属是否按建议。
 
 ## 8. 与原清单的差异
 
@@ -191,3 +194,4 @@ Status: proposed · Owner: 夏冰 · Created: 2026-11-16
 | 日期 | 基线 | 变更 |
 | --- | --- | --- |
 | 2026-11-16 | main `66709a9f` | 初版：收入操作者清单，按只读审查与 PR #1724 审查修订 |
+| 2026-11-16 | main `66709a9f` | 标明审查建议的部分（✚ 行归属、验收与回滚）、台账未定、子目录切换与回滚的限制 |
