@@ -6,10 +6,12 @@ Add new notes for this topic here, not to the hub.
 ## Gemini CLI context
 
 [`GEMINI.md`](../../GEMINI.md) imports the shared agent rules and records the
-headless PR execution overlay. Configure the ignored project-local context
-settings as described in the [environment setup guide](../../user-guide/hello_auto-doc/environment-setup.md#13-gemini-cli-project-context).
-This context configuration does not create a GitHub Actions workflow; workflow
-changes still require explicit confirmation under `AGENTS.md` §8.7.
+headless PR execution overlay used by [`../.github/workflows/gemini-pr-agent.yml`](../../.github/workflows/gemini-pr-agent.yml).
+Configure the ignored project-local context settings as described in the
+[environment setup guide](../../user-guide/hello_auto-doc/environment-setup.md#13-gemini-cli-project-context).
+The workflow runs only on `Bingboom/auto-manual` (never on mirrors) for `workflow_dispatch`
+or `@gemini-cli` comments/reviews by repository owners, members or collaborators;
+further workflow changes still require explicit confirmation under `AGENTS.md` §8.7.
 
 ## Engineering and mirror validation
 

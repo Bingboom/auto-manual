@@ -25,8 +25,8 @@ Shared agent operating rules for [Bingboom/auto-manual](https://github.com/Bingb
 
 ## 3. GitHub Actions Headless PR Execution Overlay (`@gemini-cli`)
 
-This section defines execution constraints for a separately approved workflow.
-Adding this entrypoint does not install or enable `.github/workflows/gemini-pr-agent.yml`.
+This section defines execution constraints for [`.github/workflows/gemini-pr-agent.yml`](.github/workflows/gemini-pr-agent.yml)
+(executed on `Bingboom/auto-manual` only for `workflow_dispatch` and `@gemini-cli` comments/reviews from repository owners, members or collaborators).
 
 When invoked non-interactively to implement a task or submit a PR, read the
 current `AGENTS.md` §8 and apply these headless execution constraints:

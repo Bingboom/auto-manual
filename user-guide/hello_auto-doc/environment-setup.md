@@ -106,7 +106,8 @@ imports and multiple filenames; this setting enables the directory-local
 `/memory show` to inspect the loaded rules before editing.
 
 `.gemini/` and `gha-creds-*.json` are ignored by Git. Keep personal permissions,
-authentication material and session logs local. The entrypoint's GitHub Actions
-section is an execution overlay; it does not install an `@gemini-cli` bot or
-enable `.github/workflows/gemini-pr-agent.yml`. Adding that workflow requires
-the explicit operator confirmation defined in `AGENTS.md` §8.7.
+authentication material and session logs local. For repository-hosted runs,
+[`.github/workflows/gemini-pr-agent.yml`](../../.github/workflows/gemini-pr-agent.yml)
+invokes `google-github-actions/run-gemini-cli` on `Bingboom/auto-manual` using `GEMINI_API_KEY`
+(plus optional `GEMINI_APP_ID` / `GEMINI_APP_PRIVATE_KEY` for a dedicated GitHub App identity);
+further edits to `.github/workflows/**` require explicit operator confirmation under `AGENTS.md` §8.7.
