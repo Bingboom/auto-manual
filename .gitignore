@@ -22,6 +22,11 @@ docs/generated/
 # sync-hello-docs.yml carries this file into the mirror tree.
 /output/
 
+# Outputs of the review-branch-sync-check job (review-branch-sync-check.yml); never committed.
+/review_sync_json/
+/review_sync_out.txt
+/review_sync_issue_body.md
+
 # Hello-Docs commits only Web source/assets below docs/publish. These patterns
 # are a staging backstop; publish_branch_assembly.py also rejects them before push.
 /docs/publish/**/*.idml
