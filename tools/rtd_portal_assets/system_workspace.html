@@ -18,7 +18,7 @@
 {#- 系统建设 (2026-11 design): the 阶段门 stepper, then three tabs. 当前工作 holds 正在做 (the same list as
     知识库首页, from focus.doing) and the focus lanes;
     能力与架构 (step 9) the capability map as six equal cards, 生产链路 by group, 工作入口 (moved from 说明书工作台),
-    the architecture, 语言资产 beside 工程规模, then 技能与钩子 opening with its conclusions;
+    the architecture, 语言资产 (a pointer to the 语言 asset page since step 12) beside 工程规模, then 技能与钩子 opening with its conclusions;
     来源与演变 (step 9) the snapshots apart from the build-time reads, and the history as one row per stage.
     Details open in place (<details>). The old tab ids stay on their sections for links. -#}
 {%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
@@ -288,23 +288,9 @@
     {%- if corpus_enabled %}
     <div class="sw-subpanel" id="tab-corpus">
     <section class="sw-section sw-box" id="language-assets">
-      <h2>语言资产{% if corpus %}<small>快照 {{ corpus.exported_at|e }}{% if corpus.stale %} <span class="sw-stale" title="{{ corpus.stale|join('；')|e }}">待复核</span>{% endif %}</small>{% endif %}</h2>
-      {%- if corpus %}
-      {%- set tiles = {} %}{% for tile in corpus.tiles %}{% set _ = tiles.update({tile.key: tile}) %}{% endfor %}
-      <div class="sw-nums">
-        {%- for key in ('pairs', 'terms', 'approved') if key in tiles %}
-        <div><strong>{{ tiles[key].value|e }}</strong><span>{{ tiles[key].label|e }}{% if tiles[key].delta %} · <em class="sw-delta">{{ tiles[key].delta|e }}</em>{% endif %}</span></div>
-        {%- endfor %}
-      </div>
-      <ul class="sw-corpus-bars" aria-label="语料库句对覆盖：各语言有译文的句对数，及占记忆库全部句对的比例">
-        {%- for row in corpus.rows[:8] %}
-        <li title="{{ row.label|e }}：记忆库中 {{ row.count_text|e }} 条句对有该语言译文，占全部句对的 {{ row.percent }}%；不是说明书翻译完成率"><span class="sw-corpus-label">{{ row.label|e }}</span><span class="sw-corpus-track" aria-hidden="true"><span style="width:{{ row.percent }}%"></span></span><span class="sw-corpus-value">{{ row.count_text|e }}<em>{{ row.percent }}%</em></span></li>
-        {%- endfor %}
-      </ul>
-      <p class="sw-corpus-note">{% if corpus.rows|length > 8 %}另有 {% for row in corpus.rows[8:] %}{{ row.label|e }} {{ row.count_text|e }}{% if not loop.last %}、{% endif %}{% endfor %}。{% endif %}语料库句对覆盖：记忆库里有该语言译文的句对，不是说明书的翻译完成率；说明书各语言的上线情况看说明书工作台。快照超过 {{ corpus.stale_after_days }} 天显示待复核{% if corpus.previous %}，上期 {{ corpus.previous|e }}{% endif %}。</p>
-      {%- else %}
-      <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.corpus|e }}。</p></div>
-      {%- endif %}
+      <h2>语言资产<small>已移到资产页</small></h2>
+      <p class="sw-moved">句对、术语、语言覆盖和术语规则都在 <a href="{{ pathto('assets/language/index') }}">语言</a> 页（资产 4）{% if corpus %}，最近一次语料导出 {{ corpus.exported_at|e }}{% endif %}。</p>
+      <p><a class="sw-moved-link" href="{{ pathto('assets/language/index') }}">打开语言页 →</a></p>
     </section>
     </div>
     {%- endif %}

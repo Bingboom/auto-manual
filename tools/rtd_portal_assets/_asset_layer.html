@@ -1,0 +1,73 @@
+{#- 四类资产 (2026-11 design, step 12; REV-51): the shared anatomy of a layer page (tools/rtd/asset_layers.py).
+    Import with context: {% import '_asset_layer.html' as al with context %}.
+    The head names the layer's place in the priority order, its one line and the build date the page read its
+    figures on; it shows no maturity status (that will come from registered ledger rows). Six blocks follow, in
+    this order and with these ids: 规模 (#scale), 在哪里维护 (#maintained), 清单 (#inventory), 被谁使用 (#used-by),
+    来源与时间 (#sources) and 质量与缺口 (#gaps). A block with nothing real to show says 待统计 or 建设中, never a
+    made-up number. 产品信息 spreads its 清单 over three pages that share the head and a tab row (product_head). -#}
+{%- macro head(layer, crumb='') -%}
+<header class="al-head">
+  <div class="al-head-text">
+    <p class="al-eyebrow">资产 {{ layer.order }} · 共四类</p>
+    <h1>{{ layer.title|e }}</h1>
+    <p>{{ layer.lead|e }}</p>
+  </div>
+  <span class="al-pill" title="本页数字在构建时从仓库与已发布说明书读取；各快照的日期写在数字旁">构建 <time datetime="{{ layer.build_date|e }}">{{ layer.build_date|e }}</time></span>
+</header>
+{%- endmacro -%}
+{%- macro block(id, number, title, wide=false, tone='') -%}
+<section class="al-block{% if wide %} is-wide{% endif %}{% if tone %} is-{{ tone }}{% endif %}" id="{{ id }}" aria-labelledby="{{ id }}-title">
+  <h2 id="{{ id }}-title"><span class="al-n" aria-hidden="true">{{ number }}</span>{{ title }}</h2>
+  {{ caller() }}
+</section>
+{%- endmacro -%}
+{%- macro pending(label='待统计', why='') -%}<span class="al-pending">{{ label }}</span>{% if why %}<span class="al-why">{{ why }}</span>{% endif %}{%- endmacro -%}
+{#- A figure: the number (or 待统计 when it is None), its unit and label, and the date it was read on. -#}
+{%- macro figure(value, unit, label, date='') -%}
+<div class="al-fig">{% if value is none %}<strong class="is-pending">待统计</strong>{% else %}<strong>{{ value }}<small>{{ unit }}</small></strong>{% endif %}<span>{{ label }}</span>{% if date %}<em>{{ date }}</em>{% endif %}</div>
+{%- endmacro -%}
+{%- macro product_head(product, active) -%}
+{{ head(product) }}
+<div class="al-grid">
+  {%- call block('scale', 1, '规模') %}
+  <div class="al-figs">
+    {{ figure(product.products, '款', '产品（按商品简称）', ('发布清单 ' ~ product.built_on) if product.built_on else '') }}
+    {{ figure(product.models, '个', '型号', ('分类快照 ' ~ product.classified_on) if product.classified_on else '') }}
+    {{ figure(product.attributes, '项', '属性字典里的属性', '构建时读取') }}
+    {{ figure(product.topics, '个', '产品知识主题', '构建时读取') }}
+  </div>
+  <p class="al-note">市场：产品矩阵每个型号只读一本已发布的说明书；按型号 × 市场排列、读取其他市场的说明书 {{ pending('建设中') }}</p>
+  {%- endcall %}
+  {%- call block('maintained', 2, '在哪里维护') %}
+  <dl class="al-kv">
+    <dt>规格数值</dt><dd>各型号已发布网页说明书的规格表，照原文读取；改值要改说明书源。</dd>
+    <dt>类别与系列</dt><dd>飞书网页文档表的「产品类别」「产品系列」，刷新产品分类快照后生效。</dd>
+    <dt>属性定义</dt><dd>工程仓库 <code>tools/product_facts/attributes.json</code>。</dd>
+    <dt>产品信息矩阵</dt><dd>{{ pending('建设中', '飞书多维表，每个值带来源、核实状态和日期（REV-50）。') }}</dd>
+  </dl>
+  {%- endcall %}
+</div>
+<nav class="al-tabs" aria-label="产品信息">{% for page, label in product.tabs %}<a href="{{ pathto(page) }}"{% if page == active %} class="is-on" aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}<span class="al-tab-off" title="还没有数据：等产品信息矩阵（REV-50）接入后再开">待核实与冲突 · 建设中</span></nav>
+{%- endmacro -%}
+{%- macro product_foot(product) -%}
+<div class="al-grid">
+  {%- call block('used-by', 4, '被谁使用') %}
+  <p>今天：本站的产品矩阵和产品知识页。说明书和审核稿的参数来自规格书与源表，还没有从这一层读取。</p>
+  <p>按说明书计次：{{ pending() }}</p>
+  {%- endcall %}
+  {%- call block('sources', 5, '来源与时间') %}
+  <dl class="al-kv">
+    <dt>规格</dt><dd>已发布网页说明书的规格表{% if product.built_on %} · 发布清单 {{ product.built_on|e }}{% endif %}</dd>
+    <dt>分类</dt><dd>网页文档表快照{% if product.classified_on %} · {{ product.classified_on|e }}{% endif %}</dd>
+    <dt>每个值的来源、生效日期、核实</dt><dd>{{ pending('建设中') }}</dd>
+  </dl>
+  {%- endcall %}
+  {%- call block('gaps', 6, '质量与缺口', true, 'gap') %}
+  <ul class="al-gaps">
+    <li>没有一个值经过人工核实：数值照说明书原文读取。</li>
+    <li>没有生效日期和记录日期，也没有逐值的来源链接（建设中）。</li>
+    <li>每个型号只读一本说明书（英语优先），其他市场的说明书还没对比。</li>
+  </ul>
+  {%- endcall %}
+</div>
+{%- endmacro -%}

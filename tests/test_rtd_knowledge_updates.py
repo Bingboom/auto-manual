@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd import knowledge_updates as ku
-from tools.rtd import design_system, market_policy, product_learning, product_matrix, web_manual_value
+from tools.rtd import asset_layers, design_system, market_policy, product_learning, product_matrix, web_manual_value
 from tools.rtd.deliverables import DELIVERABLES_PAGE
 from tools.rtd.portal import ASSETS
 from tools.rtd.system_workspace import SYSTEM_PAGE
@@ -51,6 +51,8 @@ class LoadUpdatesTests(unittest.TestCase):
         self.assertEqual(ku.PAGES, {
             "share": None, "home": web_manual_value.HOME,
             "product-knowledge": product_learning.PAGE, "product-matrix": product_matrix.PAGE,
+            "product-attributes": asset_layers.ATTRIBUTES_PAGE,
+            **{f"asset-{layer['id']}": layer["page"] for layer in asset_layers.LAYERS[1:]},
             "market-policy": market_policy.PAGE, "deliverables": DELIVERABLES_PAGE, "system": SYSTEM_PAGE,
             "design-system": design_system.PAGE, "manual-search": "search", "manual-library": "index",
         })
@@ -138,9 +140,12 @@ class HomeTemplateTests(unittest.TestCase):
     def test_cards_follow_the_entries_and_carry_no_numbers(self):
         soup = self.render(matrix_entry=False, system_entry=False)
         groups = [(s.h3.text, [c.strong.text for c in s.select(".home-card")]) for s in soup.select(".home-group")]
-        self.assertEqual(groups, [("说明书", ["说明书资料库", "搜索说明书正文"]),
-                                  ("产品与市场", ["产品知识", "市场与政策"]),
-                                  ("说明书生产", ["说明书工作台", "设计规范"])])
+        self.assertEqual(groups, [("资产 · 按优先级", ["产品信息", "内容与表现", "视觉媒体", "语言"]),
+                                  ("说明书", ["说明书资料库", "搜索说明书正文"]),
+                                  ("生产与方向", ["说明书工作台"]),
+                                  ("参考", ["市场与政策", "设计规范"])])
+        # Without the matrix, 产品信息 opens on 产品知识.
+        self.assertEqual(soup.select_one("#products .home-card")["href"], "products/knowledge")
         self.assertFalse(re.search(r"\d", "".join(c.text for c in soup.select(".home-card"))))
         self.assertIsNone(soup.select_one("#shares"))
 

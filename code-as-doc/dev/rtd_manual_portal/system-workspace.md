@@ -37,8 +37,10 @@ Since the 2026-11 redesign the page has the 阶段门 stepper above three tabs.
   - 工作入口 (`manual_workbench.html`, moved from 说明书工作台): no node's panel
     is open until a node is chosen, and choosing it again closes it.
   - The system architecture (`#tab-architecture`), as a section titled 系统架构.
-  - 语言资产 (`#tab-corpus`: 句对, 术语, 句对已批准 and the eight largest languages)
-    beside 工程规模 (`#codebase`).
+  - 语言资产 (`#language-assets`, `#tab-corpus`) beside 工程规模 (`#codebase`): since
+    step 12 a pointer to the 语言 asset page, which now shows 句对, 术语, 句对已批准
+    and every language's pairs ([asset-layers.md](asset-layers.md)). The page still
+    reads the corpus snapshot for its sources, the focus metric and the 语言 page.
   - 技能与钩子 (`#tab-tooling`): first whether every skill is registered and every
     hook tested, then the skills by lane as names (descriptions on hover), the
     rest in one row, and the hook table folded.
@@ -203,7 +205,7 @@ manuals; the manuals-only public project leaves it out (see
 login required), but the operator can make it public at any time, and
 `noindex` is not access control. The contract and the page therefore hold only
 publishable facts. Gap narratives and resource needs belong to the Feishu
-internal page, not this file. The sidebar lists it under 说明书生产 only when
+internal page, not this file. The sidebar lists it under 生产与方向 only when
 the page was built.
 
 ### Current focus

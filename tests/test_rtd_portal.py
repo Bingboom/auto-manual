@@ -22,6 +22,9 @@ from tools.rtd.design_overview import semantic_style_count
 from tools.rtd.design_system_css import live_stylesheet_text
 from tools.utils.path_utils import repo_root
 
+# Top-level folders only the private (combined) role may build; a new internal folder is added here once.
+INTERNAL_FOLDERS = ("workspace", "products", "market", "assets", "ai-share")
+
 
 class RtdPortalTests(unittest.TestCase):
     def setUp(self):
@@ -105,6 +108,20 @@ class RtdPortalTests(unittest.TestCase):
             source.write_text(f'<img class="hb-inbox-art" src="{src}"/>')
             self.assertEqual(rtd_portal.product_image(source, self.root), "")
 
+    def assert_public_only(self, out: Path) -> None:
+        """A manuals-only build has no internal folder and no page links into one."""
+        for internal in INTERNAL_FOLDERS:
+            self.assertFalse((out / internal).exists(), internal)
+        site = "https://site.invalid/"
+        for page in out.rglob("*.html"):
+            relative = page.relative_to(out).as_posix()
+            soup = BeautifulSoup(page.read_text(encoding="utf-8", errors="ignore"), "html.parser")
+            for tag in soup.select("[href], [src]"):
+                url = urlsplit(urljoin(site + relative, tag.get("href") or tag.get("src")))
+                if url.netloc != "site.invalid":
+                    continue
+                self.assertNotIn(url.path.strip("/").split("/")[0], INTERNAL_FOLDERS, (relative, url.path))
+
     def test_manuals_role_builds_only_public_pages_with_project_canonical(self):
         root = self.assemble()
         assets = self.root / "portal-assets"
@@ -125,8 +142,7 @@ class RtdPortalTests(unittest.TestCase):
             cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=False, env=env,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        for internal in ("workspace", "products", "market", "ai-share"):
-            self.assertFalse((out / internal).exists(), internal)
+        self.assert_public_only(out)
         self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
         self.assertIn("说明书资料库", (out / "index.html").read_text())
         shells = [p.relative_to(out).as_posix() for p in out.rglob("*.html")
@@ -181,8 +197,7 @@ class RtdPortalTests(unittest.TestCase):
         result = build("unlisted")
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         out = self.root / "unlisted"
-        for internal in ("workspace", "products", "market", "ai-share"):
-            self.assertFalse((out / internal).exists(), internal)
+        self.assert_public_only(out)
         self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
         root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
         self.assertEqual([g.get_text() for g in root_page.select(".app-nav-group")], ["说明书"])
@@ -445,16 +460,33 @@ class RtdPortalTests(unittest.TestCase):
             return [group for group in groups if group != ("", [])]
 
         manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
-        knowledge = [("", ["首页"]), *manuals, ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
-                     ("说明书生产", ["说明书工作台", "系统建设", "设计规范"])]
-        pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html", "workspace/index.html",
-                 "workspace/system/index.html", "workspace/deliverables/index.html", "workspace/design/index.html")
+        knowledge = [("", ["首页"]), ("资产 · 按优先级", ["产品信息", "内容与表现", "视觉媒体", "语言"]), *manuals,
+                     ("生产与方向", ["说明书工作台", "系统建设"]), ("参考", ["市场与政策", "设计规范"])]
+        pages = ("products/knowledge.html", "products/matrix.html", "products/attributes.html", "market/policy.html",
+                 "assets/content/index.html", "assets/media/index.html", "assets/language/index.html",
+                 "workspace/index.html", "workspace/system/index.html", "workspace/deliverables/index.html",
+                 "workspace/design/index.html")
         # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
         self.assertFalse((out / "workspace" / "positioning").exists())
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
                          {"index.html": knowledge, "search.html": knowledge, **dict.fromkeys(pages, knowledge)})
         current = BeautifulSoup((out / "search.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([a.span.get_text() for a in current.select('a.app-nav-link[aria-current="page"]')], ["搜索说明书正文"])
+        # 产品信息 is current on its three tabs, each tab marks its own page, and the layer numbers follow the order.
+        for page in ("products/matrix.html", "products/attributes.html", "products/knowledge.html"):
+            soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual([a.span.get_text() for a in soup.select('a.app-nav-link[aria-current="page"]')], ["产品信息"])
+            self.assertEqual([a.get_text() for a in soup.select('.al-tabs a')], ["产品矩阵", "属性字典", "产品知识"])
+            current_tab = {"matrix": "产品矩阵", "attributes": "属性字典", "knowledge": "产品知识"}[page[9:-5]]
+            self.assertEqual(soup.select_one('.al-tabs a[aria-current="page"]').get_text(), current_tab)
+        self.assertEqual([a.em.get_text() for a in sidebars["index.html"].select("a.app-nav-link") if a.em],
+                         ["1", "2", "3", "4"])
+        # Every layer page has the six blocks, in order, and no maturity status.
+        for page in ("assets/content/index.html", "assets/media/index.html", "assets/language/index.html"):
+            soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual([b["id"] for b in soup.select("section.al-block")],
+                             ["scale", "maintained", "inventory", "used-by", "sources", "gaps"], page)
+            self.assertFalse(soup.select(".sw-badge, .home-status"), page)
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
         # 知识库首页's 去哪里 cards mirror the sidebar's groups after 首页, in its order (every page is built here).
@@ -492,6 +524,10 @@ class RtdPortalTests(unittest.TestCase):
             to_self = [link.get_text() for link in links
                        if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
+            if page in ("products/attributes.html", "products/knowledge.html"):
+                # 产品信息's other tabs: its entry opens on 产品矩阵 and stays current here.
+                self.assertEqual((to_self, current), ([], ["产品信息1"]), page)
+                continue
             self.assertEqual(len(to_self), 1, (page, to_self))
             self.assertEqual(current, to_self, page)
 
