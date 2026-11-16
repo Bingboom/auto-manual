@@ -98,7 +98,7 @@ python build.py check --config configs/config.us-en.yaml --model JE-1000F --regi
 | 查说明书资料库、知识库与说明书工作台页 | [RTD 门户指南](code-as-doc/dev/rtd_manual_portal.md) |
 | 复用样式和完整组件 | [样式与组件使用指南](code-as-doc/dev/style_component_usage_guide.md) |
 | 区分仓库、飞书 Base 和运行位置 | [双平面地图](user-guide/two_plane_map.md) |
-| 使用 AI Agent 协作开发 | [仓库操作规则](AGENTS.md) |
+| 使用 AI Agent 协作开发 | [仓库操作规则](AGENTS.md)；[Gemini CLI 配置](user-guide/hello_auto-doc/environment-setup.md#13-gemini-cli-project-context) |
 
 <!-- README maintenance: update only for project positioning, stable workflow,
 quickstart or top-level navigation changes. Feature details, target acceptance,

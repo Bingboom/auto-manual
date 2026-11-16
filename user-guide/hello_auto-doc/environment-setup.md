@@ -83,3 +83,31 @@ That folder must contain `gilroy-regular-3.otf`, `gilroy-bold-4.otf`, `Gilroy-Li
 If the env var is not set, or the folder is incomplete, the build keeps the normal shared fallback fonts and CI does not change.
 
 If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../../code-as-doc/build_doc_guide.md) as the authoritative reference.
+
+### 1.3 Gemini CLI Project Context
+
+The repository entrypoint is [`GEMINI.md`](../../GEMINI.md), which imports the
+shared [`AGENTS.md`](../../AGENTS.md). With Gemini CLI installed and authenticated,
+create a local `.gemini/settings.json` in the checkout where you run it:
+
+```json
+{
+  "context": {
+    "fileName": ["GEMINI.md", "AGENTS.md"]
+  }
+}
+```
+
+If that file already exists, merge only `context.fileName` and preserve the
+other settings. Each new checkout/worktree needs its own local settings. The
+[official context guide](https://geminicli.com/docs/cli/gemini-md/) documents
+imports and multiple filenames; this setting enables the directory-local
+`AGENTS.md` overlays. Restart Gemini in the repository root and use
+`/memory show` to inspect the loaded rules before editing.
+
+`.gemini/` and `gha-creds-*.json` are ignored by Git. Keep personal permissions,
+authentication material and session logs local. For repository-hosted runs,
+[`.github/workflows/gemini-pr-agent.yml`](../../.github/workflows/gemini-pr-agent.yml)
+invokes `google-github-actions/run-gemini-cli` on `Bingboom/auto-manual` using `GEMINI_API_KEY`
+(plus optional `GEMINI_APP_ID` / `GEMINI_APP_PRIVATE_KEY` for a dedicated GitHub App identity);
+further edits to `.github/workflows/**` require explicit operator confirmation under `AGENTS.md` §8.7.

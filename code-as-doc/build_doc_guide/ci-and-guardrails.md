@@ -3,6 +3,16 @@
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
+## Gemini CLI context
+
+[`GEMINI.md`](../../GEMINI.md) imports the shared agent rules and records the
+headless PR execution overlay used by [`../.github/workflows/gemini-pr-agent.yml`](../../.github/workflows/gemini-pr-agent.yml).
+Configure the ignored project-local context settings as described in the
+[environment setup guide](../../user-guide/hello_auto-doc/environment-setup.md#13-gemini-cli-project-context).
+The workflow runs only on `Bingboom/auto-manual` (never on mirrors) for `workflow_dispatch`
+or `@gemini-cli` comments/reviews by repository owners, members or collaborators;
+further workflow changes still require explicit confirmation under `AGENTS.md` §8.7.
+
 ## Engineering and mirror validation
 
 `Manual Validation` retains all 17 engineering jobs on `Bingboom/auto-manual`.
