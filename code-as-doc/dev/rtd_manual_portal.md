@@ -11,6 +11,7 @@ task needs and put new notes on the owning page; add a row here only for a new p
 | --- | --- |
 | [`manual-center.md`](rtd_manual_portal/manual-center.md) | you change the manual-center home page: region and language cards, catalog validation during a build, directory and keyword search, the product hub or accessory artwork |
 | [`system-workspace.md`](rtd_manual_portal/system-workspace.md) | you change the 系统建设 page: current focus, published version and refresh, language assets, tools and engineering scale, source registry, status rules, drift behaviour |
+| [`asset-layers.md`](rtd_manual_portal/asset-layers.md) | you change a 四类资产 page (产品信息 and its 属性字典 tab, 内容与表现, 视觉媒体, 语言), their shared six-block anatomy or the 资产 sidebar group |
 | [`knowledge-pages.md`](rtd_manual_portal/knowledge-pages.md) | you change the personal workspace entry, the public-manuals site role, or a knowledge-base page: deliverables, design system, system data, product knowledge, product matrix, market and policy |
 | [`web-manual-value.md`](rtd_manual_portal/web-manual-value.md) | you change 网页说明书的定位与价值: the band on the manual-center home (public and private copy) or its internal page, its copy file or the theme status tags |
 | [`web-progress.md`](rtd_manual_portal/web-progress.md) | you change 网页说明书进度 on the 交付物 tab: counts, timeline, per-market bars, the model × market matrix, or its Feishu snapshot and export |
