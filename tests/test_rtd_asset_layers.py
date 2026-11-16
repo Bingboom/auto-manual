@@ -241,3 +241,18 @@ class CuratedTests(unittest.TestCase):
             view = asset_pages.curated(ASSETS, Path(tmp), None, lambda *args: warnings.append(args[0] % args[1:]))
         self.assertEqual(view["chips"], dict.fromkeys(ald.LAYER_IDS))
         self.assertTrue(any("ledger" in warning for warning in warnings), warnings)
+
+
+class ProductValueTests(unittest.TestCase):
+    def test_the_operator_statement_leads_the_product_pages_only(self):
+        data = ald.load_layer_data(ASSETS)
+        value = data["product_value"]
+        self.assertEqual((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8").count(value), 1)
+        product = {**al.product_layer(None, {"total": 9}, topics=None, build_date="2026-11-16"), "value": value}
+        page = render("product_attributes.html", product=product, attributes=None)
+        self.assertEqual(page.select_one(".al-head-text > p:not(.al-eyebrow)").get_text(), value)
+        # The page still says that the project index and the dates are not there yet.
+        self.assertIn("建设中", page.select_one(".al-lead-note").get_text())
+        cards = al.home_cards(product, {**al.layer("content")}, {**al.layer("media")}, {**al.layer("language")},
+                              dict.fromkeys(ald.LAYER_IDS))
+        self.assertNotIn(value, json.dumps(cards, ensure_ascii=False))

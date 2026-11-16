@@ -109,7 +109,11 @@ layers that is not a figure:
 
 - **Wording, each kept once.** `umbrella` (产品技术内容资产) and `main_line` (新说明书在工作台写作；
   扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。). The operator adopted both on
-  2026-11-16; a later change is a one-line edit here.
+  2026-11-16; a later change is a one-line edit here. `product_value` is the operator's
+  own statement of the product matrix's value (2026-11-16), shown word for word as the
+  lead of the three 产品信息 pages and nowhere else, with a note that the project index
+  and the time dimension it names are not on the page yet. Its source is the dated
+  statement until positioning §4.1 carries it.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and
   the state maps to a portal status word (`CHIP_STATUS`: all done → 已验证, any done,

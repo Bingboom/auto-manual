@@ -47,8 +47,8 @@ def curated(assets: Path, root: Path, system: dict[str, Any] | None, warn) -> di
     except layer_data.LayerDataError as exc:
         warn("四类资产 data skipped: %s", exc)
         return {"chips": dict.fromkeys(layer_data.LAYER_IDS), "main_line": None, "capability_map": None,
-                "path": None}
-    return {"chips": chips, "capability_map": capability_map, "path": path,
+                "path": None, "product_value": ""}
+    return {"chips": chips, "capability_map": capability_map, "path": path, "product_value": data["product_value"],
             "main_line": {"text": data["main_line"], "umbrella": data["umbrella"], "source": path["link"]}}
 
 
@@ -63,7 +63,7 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
     extra = curated(assets, root, system, warn)
     chips = extra["chips"]
     product = {**layers.product_layer(matrix, attributes, topics=topics, build_date=build_date),
-               "chip": chips["product"]}
+               "chip": chips["product"], "value": extra["product_value"]}
     content = {**layers.content_view(root, build_date=build_date, web_languages=len(web)), "chip": chips["content"]}
     media = {**layers.media_view(root, srcdir, publications, build_date=build_date), "chip": chips["media"]}
     language = {**layers.language_view(system, publications, root=root, labels=labels, build_date=build_date),
