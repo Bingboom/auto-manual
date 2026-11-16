@@ -8,20 +8,33 @@ import unittest
 
 import yaml
 
+from tests.test_helpers import step_uses_action
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "sync-hello-docs.yml"
 SCRIPT_PATH = REPO_ROOT / "scripts" / "sync_mirror.sh"
 ALL_CONTENT = "docs/publish docs/knowledge docs/review-drafts"
-HELLO_DOCS_KEEP = (
-    "docs/publish docs/knowledge manual_sources reports "
-    "data/business configs/targets bitable_schema/business"
+HELLO_DOCS_KEEP = "docs/publish docs/knowledge"
+REVIEW_KEEP = "docs/review-drafts"
+HELLO_DOCS_OVERLAY = (
+    "manual_sources data/manual_sources reports configs/targets bitable_schema/business"
 )
-REVIEW_KEEP = "docs/review-drafts review_sync_json site/review-preview"
+
+
+def sync_environ(github_ref: str | None = None) -> dict:
+    """os.environ without CI's GITHUB_REF (refs/pull/... on pull requests), optionally set to one."""
+    env = {key: value for key, value in os.environ.items() if key != "GITHUB_REF"}
+    if github_ref is not None:
+        env["GITHUB_REF"] = github_ref
+    return env
 
 
 def sync_step(workflow: dict, job: str, name: str) -> dict:
-    return next(step for step in workflow["jobs"][job]["steps"] if step.get("name") == name)
+    step = next(step for step in workflow["jobs"][job]["steps"] if step.get("name") == name)
+    # Effective environment: workflow env, then job env, then step env.
+    merged = {**workflow.get("env", {}), **workflow["jobs"][job].get("env", {}), **step.get("env", {})}
+    return {**step, "env": merged}
 
 
 class SyncHelloDocsWorkflowTests(unittest.TestCase):
@@ -36,7 +49,7 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
         self.assertEqual(self.sync_step["env"]["MIRROR_KEEP_PATHS"], HELLO_DOCS_KEEP)
         self.assertIn('for content_path in ${keep_paths}', self.command)
         self.assertIn('${mirror_parent}:${content_path}', self.command)
-        self.assertIn('rm -rf --cached --quiet --ignore-unmatch -- "${content_path}"', self.command)
+        self.assertIn('rm -r -f --cached --quiet --ignore-unmatch -- ":(literal)${content_path}"', self.command)
         self.assertIn('${source_tree}:${content_path}', self.command)
         self.assertIn('--prefix="${content_path}/"', self.command)
         self.assertIn("combined_tree=", self.command)
@@ -44,10 +57,57 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
 
     def test_every_mirror_refuses_all_mirror_owned_content_in_the_source(self) -> None:
         # The public Hello-Docs mirror must also refuse review drafts, or a slip would publish them.
+        # One copy of the forbidden list, at workflow level; no job or step overrides it.
+        self.assertEqual(self.workflow["env"]["SOURCE_FORBIDDEN_PATHS"], ALL_CONTENT)
+        for name, job in self.workflow["jobs"].items():
+            self.assertNotIn("SOURCE_FORBIDDEN_PATHS", job.get("env", {}), name)
+            for step in job["steps"]:
+                self.assertNotIn("SOURCE_FORBIDDEN_PATHS", step.get("env", {}), (name, step.get("name")))
         for step in (self.sync_step, self.review_step):
             self.assertEqual(step["env"]["SOURCE_FORBIDDEN_PATHS"], ALL_CONTENT)
         self.assertEqual(self.review_step["env"]["MIRROR_KEEP_PATHS"], REVIEW_KEEP)
         self.assertEqual(self.review_step["run"], "bash source/scripts/sync_mirror.sh")
+
+    def test_keep_and_overlay_lists_relate_as_documented(self) -> None:
+        def overlaps(a: str, b: str) -> bool:
+            return a == b or a.startswith(b + "/") or b.startswith(a + "/")
+
+        self.assertEqual(self.sync_step["env"]["MIRROR_OVERLAY_PATHS"], HELLO_DOCS_OVERLAY)
+        # Hello-Docs-Review has no overlay: it does not read the frozen packages, so upstream
+        # deletions must keep reaching it.
+        self.assertNotIn("MIRROR_OVERLAY_PATHS", self.review_step["env"])
+        for step in (self.sync_step, self.review_step):
+            env = step["env"]
+            keep = env["MIRROR_KEEP_PATHS"].split()
+            overlay = env.get("MIRROR_OVERLAY_PATHS", "").split()
+            forbidden = env["SOURCE_FORBIDDEN_PATHS"].split()
+            # Every strict keep path is forbidden upstream, so none is "first write wins".
+            for path in keep:
+                self.assertIn(path, forbidden)
+            for path in overlay:
+                for other in keep + forbidden:
+                    self.assertFalse(overlaps(path, other), (path, other))
+            for path in keep + overlay + forbidden:
+                self.assertNotEqual(path, "review_sync_json")
+                self.assertFalse(overlaps(path, "site"), path)
+
+    def test_push_credentials_exist_only_on_main(self) -> None:
+        # Second guard, independent of MIRROR_DRY_RUN: off main the mirror token is used to read
+        # the mirror but is not persisted into mirror/.git/config, so `git push origin` has no
+        # credential. The sync step itself never receives a token.
+        guard = "${{ github.ref == 'refs/heads/main' }}"
+        for job_name in ("sync", "sync-review"):
+            checkouts = [step for step in self.workflow["jobs"][job_name]["steps"]
+                         if step_uses_action(step, "actions/checkout") and step["with"].get("path") == "mirror"]
+            self.assertEqual(len(checkouts), 1, job_name)
+            self.assertIn("secrets.", checkouts[0]["with"]["token"])
+            self.assertEqual(checkouts[0]["with"]["persist-credentials"], guard)
+            for ref, expected in (("refs/heads/main", True), ("refs/heads/docs/x", False)):
+                self.assertIs(self._evaluate(guard, ref=ref, event="workflow_dispatch", dry_run=False), expected)
+            sync = next(step for step in self.workflow["jobs"][job_name]["steps"]
+                        if step.get("run") == "bash source/scripts/sync_mirror.sh")
+            self.assertNotIn("secrets.", str(sync.get("env", {})))
+        self.assertIn('git -C mirror push origin "${mirror_commit}:${MIRROR_BRANCH}"', self.command)
 
     def test_pr_guardrail_refuses_the_same_paths_as_the_mirrors(self) -> None:
         # The guardrail fails the PR; the syncs only refuse after the merge.
@@ -58,6 +118,7 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
     def test_review_mirror_skips_without_its_token(self) -> None:
         job = self.workflow["jobs"]["sync-review"]
         self.assertEqual(job["env"]["MIRROR_REPOSITORY"], "Bingboom/Hello-Docs-Review")
+        self.assertIn("dry_run", self.workflow[True]["workflow_dispatch"]["inputs"])
         check = job["steps"][0]
         self.assertIn("secrets.REVIEW_DOCS_SYNC_TOKEN", check["env"]["REVIEW_DOCS_SYNC_TOKEN"])
         self.assertIn("::notice::", check["run"])
@@ -106,7 +167,7 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
             source = root / "source"
             git(mirror, "remote", "add", "origin", str(root / "remote.git"))
             git(mirror, "push", "origin", "main")
-            env = dict(os.environ, SOURCE_REPOSITORY="local/source",
+            env = dict(sync_environ(), SOURCE_REPOSITORY="local/source",
                        SOURCE_SHA=git(source, "rev-parse", "HEAD"),
                        SOURCE_RUN_URL="local-test", MIRROR_BRANCH="main",
                        MIRROR_KEEP_PATHS="docs/publish docs/knowledge",
@@ -139,80 +200,308 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
             self.assertIn("auto-manual must not own docs/knowledge", result.stdout)
             self.assertEqual(git(mirror, "rev-parse", "HEAD"), preserved_head)
 
-    def test_real_sync_resolves_transitional_overlap_and_preserves_after_source_deletion(self) -> None:
+    # ---- Dry-run gating (YAML only; no Actions run is possible in tests) -------------------
+
+    @staticmethod
+    def _evaluate(expression: str, *, ref: str, event: str, dry_run, env: dict | None = None,
+                  cancelled: bool = False):
+        """Evaluate the small subset of GitHub expression syntax this workflow uses."""
+        import re
+        body = expression.strip()
+        if body.startswith("${{"):
+            body = body[3:-2].strip()
+        names = {"github.ref": ref, "github.event_name": event, "github.repository": "Bingboom/auto-manual",
+                 "inputs.dry_run": dry_run}
+        for key, value in (env or {}).items():
+            names[f"env.{key}"] = value
+        body = re.sub(r"format\('([^']*)', ([\w.]+)\)",
+                      lambda m: repr(m.group(1).replace("{0}", str(names[m.group(2)]))), body)
+        body = body.replace("!cancelled()", repr(not cancelled))
+        for name in sorted(names, key=len, reverse=True):
+            body = body.replace(name, f"__n[{name!r}]")
+        body = body.replace("!=", " __NE__ ").replace("&&", " and ").replace("||", " or ")
+        body = body.replace("__NE__", "!=")
+        assert "!" not in body.replace("!=", ""), body
+        return eval(body, {"__builtins__": {}}, {"__n": names})  # noqa: S307 - fixed test input
+
+    def _gate(self, ref: str, event: str, dry_run):
+        workflow = self.workflow
+        dry = self._evaluate(workflow["env"]["MIRROR_DRY_RUN"], ref=ref, event=event, dry_run=dry_run)
+        group = self._evaluate(workflow["concurrency"]["group"], ref=ref, event=event, dry_run=dry_run)
+        jobs = {name: bool(self._evaluate(job["if"], ref=ref, event=event, dry_run=dry_run))
+                for name, job in workflow["jobs"].items()}
+        notice = sync_step(workflow, "sync", "Workspace mirror failure notice")
+        notice_runs = bool(self._evaluate(notice["if"], ref=ref, event=event, dry_run=dry_run,
+                                          env={"MIRROR_DRY_RUN": dry}))
+        return dry, group, jobs, notice_runs
+
+    def test_push_on_main_behaves_as_before(self) -> None:
+        self.assertEqual(self.workflow[True]["push"]["branches"], ["main"])
+        dry, group, jobs, notice = self._gate("refs/heads/main", "push", None)
+        self.assertEqual(dry, "0")
+        self.assertEqual(group, "sync-hello-docs-main")
+        self.assertEqual(jobs, {"sync": True, "sync-review": True})
+        self.assertTrue(notice)
+
+    def test_manual_run_on_main_pushes_only_without_the_dry_run_input(self) -> None:
+        self.assertEqual(self._gate("refs/heads/main", "workflow_dispatch", False)[0], "0")
+        dry, group, jobs, notice = self._gate("refs/heads/main", "workflow_dispatch", True)
+        self.assertEqual(dry, "1")
+        self.assertEqual(group, "sync-hello-docs-dry-run-refs/heads/main")
+        self.assertEqual(jobs, {"sync": True, "sync-review": True})
+        self.assertFalse(notice)
+
+    def test_manual_run_off_main_is_always_a_dry_run(self) -> None:
+        for dry_run in (False, True, None):
+            dry, group, jobs, notice = self._gate("refs/heads/docs/x", "workflow_dispatch", dry_run)
+            self.assertEqual(dry, "1", dry_run)
+            self.assertEqual(group, "sync-hello-docs-dry-run-refs/heads/docs/x")
+            self.assertEqual(jobs, {"sync": True, "sync-review": True})
+            self.assertFalse(notice)
+        # Pushes to other branches never trigger the workflow; if they did, the jobs would not run.
+        self.assertEqual(self._gate("refs/heads/docs/x", "push", None)[2], {"sync": False, "sync-review": False})
+
+    def test_every_side_effect_step_is_skipped_in_a_dry_run(self) -> None:
+        for job_name, job in self.workflow["jobs"].items():
+            for step in job["steps"]:
+                text = str(step.get("uses", "")) + str(step.get("run", "")) + str(step.get("with", ""))
+                if "github-script" in text or "gh " in text or "issues." in text:
+                    self.assertIn("env.MIRROR_DRY_RUN != '1'", step.get("if", ""), (job_name, step.get("name")))
+            sync_steps = [s for s in job["steps"] if s.get("run") == "bash source/scripts/sync_mirror.sh"]
+            self.assertEqual(len(sync_steps), 1, job_name)
+            self.assertNotIn("MIRROR_DRY_RUN", sync_steps[0].get("env", {}), "a step env must not override the gate")
+            self.assertNotIn("MIRROR_DRY_RUN", job.get("env", {}))
+
+    # ---- Overlay (transitional) and strict keep semantics -------------------------------
+
+    @staticmethod
+    def _git(where, *args):
+        return subprocess.run(["git", "-C", str(where), *args], check=True,
+                              capture_output=True, text=True).stdout.strip()
+
+    def _write(self, repo: Path, files: dict, message: str) -> None:
+        for path, content in files.items():
+            target = repo / path
+            if content is None:
+                self._git(repo, "rm", "-r", "-q", "--", path)
+                continue
+            if target.is_dir():
+                self._git(repo, "rm", "-r", "-q", "--", path)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(content, encoding="utf-8")
+            self._git(repo, "add", "--", path)
+        self._git(repo, "commit", "-q", "--allow-empty", "-m", message)
+
+    def _fixture(self, root: Path, source_files: dict, mirror_files: dict) -> None:
+        self._git(root, "init", "--bare", "-q", "-b", "main", "remote.git")
+        for name, files in (("source", source_files), ("mirror", mirror_files)):
+            self._git(root, "init", "-q", "-b", "main", name)
+            repo = root / name
+            self._git(repo, "config", "user.name", "Test")
+            self._git(repo, "config", "user.email", "test@example.invalid")
+            self._write(repo, {"engine.txt": f"{name}-v1", **files}, "Initial fixture")
+        self._git(root / "mirror", "remote", "add", "origin", str(root / "remote.git"))
+        self._git(root / "mirror", "push", "-q", "origin", "main")
+
+    def _sync(self, root: Path, **extra):
+        env = dict(sync_environ(), SOURCE_REPOSITORY="local/source",
+                   SOURCE_SHA=self._git(root / "source", "rev-parse", "HEAD"),
+                   SOURCE_RUN_URL="local-test", MIRROR_BRANCH="main",
+                   MIRROR_KEEP_PATHS="docs/publish", MIRROR_OVERLAY_PATHS="manual_sources reports",
+                   SOURCE_FORBIDDEN_PATHS=ALL_CONTENT)
+        env.update(extra)
+        return subprocess.run(["bash", str(SCRIPT_PATH)], cwd=root, env=env,
+                              capture_output=True, text=True, check=False)
+
+    def _remote(self, root: Path, path: str) -> str:
+        return self._git(root / "remote.git", "show", f"main:{path}")
+
+    def _remote_files(self, root: Path, prefix: str) -> set:
+        out = self._git(root / "remote.git", "-c", "core.quotePath=false", "ls-tree", "-r",
+                        "--name-only", "main", "--", prefix)
+        return set(out.splitlines())
+
+    def test_overlay_adds_updates_and_keeps_mirror_only_and_upstream_removed_files(self) -> None:
         with TemporaryDirectory() as directory:
             root = Path(directory)
+            shared = {"manual_sources/A/spec.json": "a1", "manual_sources/B/spec.json": "b1",
+                      "reports/r.txt": "r1"}
+            self._fixture(root, shared, {**shared, "manual_sources/M/only.json": "mirror-only",
+                                         "manual_sources/中文/说明.txt": "unicode mirror-only",
+                                         "docs/publish/p.txt": "published"})
+            result = self._sync(root)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self._remote(root, "engine.txt"), "source-v1")
+            self.assertEqual(self._remote(root, "manual_sources/M/only.json"), "mirror-only")  # (4)
+            self.assertEqual(self._remote(root, "manual_sources/中文/说明.txt"), "unicode mirror-only")
+            self.assertIn("overlay manual_sources: mirror_only_kept=2 source_updated=0", result.stdout)
+            self.assertIn("::notice::Overlay path manual_sources keeps 2 file(s) that exist only in the mirror",
+                          result.stdout)
+            self.assertNotIn("::notice::Overlay path reports", result.stdout)
 
-            def git(where, *args):
-                return subprocess.run(
-                    ["git", "-C", str(where), *args], check=True,
-                    capture_output=True, text=True,
-                ).stdout.strip()
+            self._write(root / "source", {"manual_sources/C/new.json": "c1",       # (1) new file
+                                          "manual_sources/A/spec.json": "a2",      # (2) edit
+                                          "manual_sources/B": None,               # (3) removal
+                                          "engine.txt": "source-v2"}, "Stage 2 step")
+            result = self._sync(root)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self._remote(root, "manual_sources/C/new.json"), "c1")
+            self.assertEqual(self._remote(root, "manual_sources/A/spec.json"), "a2")
+            self.assertEqual(self._remote(root, "manual_sources/B/spec.json"), "b1")
+            self.assertEqual(self._remote(root, "manual_sources/M/only.json"), "mirror-only")
+            self.assertEqual(self._remote(root, "docs/publish/p.txt"), "published")
+            self.assertIn("overlay manual_sources: mirror_only_kept=3 source_updated=1", result.stdout)
+            head = self._git(root / "remote.git", "rev-parse", "main")
+            result = self._sync(root)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("Mirror code already matches", result.stdout)
+            self.assertEqual(self._git(root / "remote.git", "rev-parse", "main"), head)
 
-            git(root, "init", "--bare", "remote.git")
-            for name in ("source", "mirror"):
-                git(root, "init", "-b", "main", name)
-                tree = root / name
-                git(tree, "config", "user.name", "Test")
-                git(tree, "config", "user.email", "test@example.invalid")
-                (tree / "engine.txt").write_text(f"{name}-v1")
-                pkg = tree / "manual_sources" / "DEMO-100" / "spec.json"
-                pkg.parent.mkdir(parents=True)
-                pkg.write_text("mirror-owned" if name == "mirror" else "stale-source")
-                git(tree, "add", ".")
-                git(tree, "commit", "-m", "Initial overlap fixture")
+    def test_overlay_path_absent_from_mirror_passes_through_then_is_kept(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, {"manual_sources/A/spec.json": "a1"}, {})
+            result = self._sync(root)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("overlay manual_sources: absent in mirror head", result.stdout)
+            self.assertEqual(self._remote(root, "manual_sources/A/spec.json"), "a1")
+            self._write(root / "source", {"manual_sources/A": None, "manual_sources/Z/z.json": "z"},
+                        "Remove A upstream")
+            result = self._sync(root)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self._remote_files(root, "manual_sources"),
+                             {"manual_sources/A/spec.json", "manual_sources/Z/z.json"})
 
-            mirror = root / "mirror"
-            source = root / "source"
-            git(mirror, "remote", "add", "origin", str(root / "remote.git"))
-            git(mirror, "push", "origin", "main")
+    def test_overlay_file_directory_conflicts_resolve_to_the_source(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(
+                root,
+                {"manual_sources/X": "source file", "manual_sources/Y/z.txt": "source dir",
+                 "reports": "source file at the overlay path"},
+                {"manual_sources/X/y.txt": "mirror dir", "manual_sources/Y": "mirror file",
+                 "reports/old.txt": "mirror dir at the overlay path"},
+            )
+            result = self._sync(root)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self._remote(root, "manual_sources/X"), "source file")
+            self.assertEqual(self._remote(root, "manual_sources/Y/z.txt"), "source dir")
+            self.assertEqual(self._remote(root, "reports"), "source file at the overlay path")
+            self.assertIn("overlay manual_sources: mirror_only_kept=0 source_updated=0 "
+                          "mirror_lost_to_source_conflict=2", result.stdout)
+            self.assertIn("overlay reports: mirror_only_kept=0 source_updated=0 "
+                          "mirror_lost_to_source_conflict=1", result.stdout)
 
-            def run_sync(**extra_env):
-                env = dict(
-                    os.environ,
-                    SOURCE_REPOSITORY="local/source",
-                    SOURCE_SHA=git(source, "rev-parse", "HEAD"),
-                    SOURCE_RUN_URL="local-test",
-                    MIRROR_BRANCH="main",
-                    MIRROR_KEEP_PATHS=HELLO_DOCS_KEEP,
-                    SOURCE_FORBIDDEN_PATHS=ALL_CONTENT,
-                    **extra_env,
-                )
-                return subprocess.run(
-                    ["bash", str(SCRIPT_PATH)],
-                    cwd=root, env=env, capture_output=True, text=True, check=False,
-                )
+    def test_overlay_keeps_a_mirror_only_file_at_the_overlay_path(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, {}, {"reports": "mirror-only file"})
+            result = self._sync(root)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self._remote(root, "reports"), "mirror-only file")
 
-            # Dry-run composes without mutating mirror HEAD or remote main.
-            before_head = git(mirror, "rev-parse", "HEAD")
-            dry = run_sync(MIRROR_DRY_RUN="1")
+    def test_strict_keep_path_still_wins_and_warns_when_the_source_differs(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root,
+                          {"keepme/a.txt": "source", "keepme/s.txt": "source only",
+                           "docs": "source file where docs/ belongs", "fresh/f.txt": "first write"},
+                          {"keepme/a.txt": "mirror", "keepme/m.txt": "mirror only",
+                           "docs/publish/p.txt": "published"})
+            result = self._sync(root, MIRROR_KEEP_PATHS="docs/publish keepme fresh")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self._remote_files(root, "keepme"), {"keepme/a.txt", "keepme/m.txt"})
+            self.assertEqual(self._remote(root, "keepme/a.txt"), "mirror")
+            self.assertEqual(self._remote(root, "docs/publish/p.txt"), "published")
+            self.assertIn("::warning::Keep path keepme still exists in local/source with different content",
+                          result.stdout)
+            self.assertIn("keep keepme: mirror_only_kept=1 source_dropped=2", result.stdout)
+            self.assertIn("::warning::Keep path fresh is not in the mirror yet", result.stdout)
+            self.assertEqual(self._remote(root, "fresh/f.txt"), "first write")
+
+    def test_keep_path_that_is_a_file_in_the_mirror_fails_clearly(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, {}, {"keepblob": "a file"})
+            before = self._git(root / "remote.git", "rev-parse", "main")
+            for dry in ("0", "1"):
+                result = self._sync(root, MIRROR_KEEP_PATHS="keepblob", MIRROR_DRY_RUN=dry)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn("::error::Keep path keepblob is a blob, not a directory", result.stdout)
+            self.assertEqual(self._git(root / "remote.git", "rev-parse", "main"), before)
+
+    def test_overlapping_rules_are_refused(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, {}, {})
+            for extra, message in (
+                ({"MIRROR_KEEP_PATHS": "manual_sources/A"}, "MIRROR_OVERLAY_PATHS entry manual_sources overlaps MIRROR_KEEP_PATHS entry manual_sources/A"),
+                ({"MIRROR_OVERLAY_PATHS": "docs"}, "MIRROR_OVERLAY_PATHS entry docs overlaps MIRROR_KEEP_PATHS entry docs/publish"),
+            ):
+                result = self._sync(root, **extra)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn(message, result.stdout)
+
+    def test_dry_run_reports_and_matches_the_following_real_sync(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, {"manual_sources/A/spec.json": "a2", "reports/new.txt": "n"},
+                          {"manual_sources/A/spec.json": "a1", "manual_sources/M/m.json": "m",
+                           "docs/publish/p.txt": "published"})
+            before = self._git(root / "remote.git", "rev-parse", "main")
+            dry = self._sync(root, MIRROR_DRY_RUN="1")
             self.assertEqual(dry.returncode, 0, dry.stdout + dry.stderr)
-            self.assertIn("DRY_RUN composed_tree=", dry.stdout)
-            self.assertEqual(git(mirror, "rev-parse", "HEAD"), before_head)
-            self.assertEqual(git(root / "remote.git", "rev-parse", "main"), before_head)
+            self.assertEqual(self._git(root / "remote.git", "rev-parse", "main"), before)
+            self.assertEqual(self._git(root / "mirror", "rev-parse", "HEAD"), before)
+            for text in ("DRY_RUN path summary:",
+                         "overlay manual_sources: mirror_only_kept=1 source_updated=1",
+                         "overlay reports: absent in mirror head",
+                         "keep docs/publish: mirror_only_kept=1 source_dropped=0",
+                         "DRY_RUN diff against mirror head",
+                         "M engine.txt (1 files)", "M manual_sources/A/ (1 files)",
+                         "A reports/new.txt (1 files)", "3 files changed"):
+                self.assertIn(text, dry.stdout)
+            composed = dry.stdout.split("DRY_RUN composed_tree=")[1].split()[0]
+            real = self._sync(root)
+            self.assertEqual(real.returncode, 0, real.stdout + real.stderr)
+            self.assertEqual(self._git(root / "remote.git", "rev-parse", "main^{tree}"), composed)
 
-            # Real sync with overlapping manual_sources keeps mirror's copy without bind error.
-            first = run_sync()
-            self.assertEqual(first.returncode, 0, first.stdout + first.stderr)
-            self.assertEqual(git(mirror, "show", "HEAD:engine.txt"), "source-v1")
-            self.assertEqual(
-                git(mirror, "show", "HEAD:manual_sources/DEMO-100/spec.json"),
-                "mirror-owned",
-            )
+    def test_only_main_may_push_when_github_ref_is_set(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, {"manual_sources/A/spec.json": "a1"}, {})
+            remote = root / "remote.git"
+            before = self._git(remote, "rev-parse", "main")
+            for ref in ("refs/heads/some-branch", "refs/pull/1/merge"):
+                result = self._sync(root, GITHUB_REF=ref)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn(f"::error::GITHUB_REF is {ref}; only refs/heads/main may push", result.stdout)
+                self.assertEqual(self._git(remote, "rev-parse", "main"), before)
+                self.assertEqual(self._git(root / "mirror", "rev-parse", "HEAD"), before)
+            dry = self._sync(root, GITHUB_REF="refs/heads/some-branch", MIRROR_DRY_RUN="1")
+            self.assertEqual(dry.returncode, 0, dry.stdout + dry.stderr)
+            self.assertEqual(self._git(remote, "rev-parse", "main"), before)
+            result = self._sync(root, GITHUB_REF="refs/heads/main")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self._remote(root, "manual_sources/A/spec.json"), "a1")
 
-            # Stage 2 simulation: deleting manual_sources in source keeps mirror's subtree intact.
-            git(source, "rm", "-r", "manual_sources")
-            (source / "engine.txt").write_text("source-v2")
-            git(source, "add", "engine.txt")
-            git(source, "commit", "-m", "Remove transitional manual_sources from source")
+    def test_local_runs_without_github_ref_push_as_before(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, {"manual_sources/A/spec.json": "a1"}, {})
+            self.assertNotIn("GITHUB_REF", sync_environ())
+            result = self._sync(root)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(self._remote(root, "manual_sources/A/spec.json"), "a1")
 
-            second = run_sync()
-            self.assertEqual(second.returncode, 0, second.stdout + second.stderr)
-            self.assertEqual(git(mirror, "show", "HEAD:engine.txt"), "source-v2")
-            self.assertEqual(
-                git(mirror, "show", "HEAD:manual_sources/DEMO-100/spec.json"),
-                "mirror-owned",
-            )
+    def test_dry_run_still_refuses_a_forbidden_source_path(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, {"docs/knowledge/x.txt": "leak"}, {})
+            result = self._sync(root, MIRROR_DRY_RUN="1")
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("auto-manual must not own docs/knowledge", result.stdout)
+            self.assertNotIn("DRY_RUN composed_tree=", result.stdout)
 
     def test_real_review_sync_keeps_drafts_and_refuses_drafts_in_the_source(self) -> None:
         with TemporaryDirectory() as directory:
@@ -240,7 +529,7 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
             mirror, source = root / "mirror", root / "source"
             git(mirror, "remote", "add", "origin", str(root / "remote.git"))
             git(mirror, "push", "origin", "main")
-            env = dict(os.environ, SOURCE_REPOSITORY="local/source",
+            env = dict(sync_environ(), SOURCE_REPOSITORY="local/source",
                        SOURCE_SHA=git(source, "rev-parse", "HEAD"), SOURCE_RUN_URL="local-test",
                        MIRROR_BRANCH="main", MIRROR_KEEP_PATHS="docs/review-drafts",
                        SOURCE_FORBIDDEN_PATHS=ALL_CONTENT)
@@ -310,7 +599,7 @@ cd "{other}" && git pull -q origin main \\
             receive = remote / "hooks" / "pre-receive"
             receive.write_text("#!/bin/sh\necho rejected by test >&2\nexit 1\n")
             receive.chmod(0o755)
-        env = dict(os.environ, SOURCE_REPOSITORY="local/source",
+        env = dict(sync_environ(), SOURCE_REPOSITORY="local/source",
                    SOURCE_SHA=git(source, "rev-parse", "HEAD"), SOURCE_RUN_URL="local-test",
                    MIRROR_BRANCH="main", MIRROR_KEEP_PATHS="docs/review-drafts",
                    SOURCE_FORBIDDEN_PATHS=ALL_CONTENT)
@@ -382,7 +671,7 @@ cd "{other}" && git pull -q origin main \\
             mirror, source = root / "mirror", root / "source"
             git(mirror, "remote", "add", "origin", str(root / "remote.git"))
             git(mirror, "push", "origin", "main")
-            env = dict(os.environ, SOURCE_REPOSITORY="local/source",
+            env = dict(sync_environ(), SOURCE_REPOSITORY="local/source",
                        SOURCE_SHA=git(source, "rev-parse", "HEAD"), SOURCE_RUN_URL="local-test",
                        MIRROR_BRANCH="main", MIRROR_KEEP_PATHS="docs/publish",
                        SOURCE_FORBIDDEN_PATHS=ALL_CONTENT)

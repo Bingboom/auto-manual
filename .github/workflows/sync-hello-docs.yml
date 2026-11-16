@@ -5,9 +5,15 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Compose both mirror trees and print the summary without pushing (always on off main)
+        type: boolean
+        default: false
 
 concurrency:
-  group: sync-hello-docs-main
+  # A dry run must never cancel a real sync of main; dry runs of different refs do not cancel each other.
+  group: ${{ (github.ref != 'refs/heads/main' || inputs.dry_run) && format('sync-hello-docs-dry-run-{0}', github.ref) || 'sync-hello-docs-main' }}
   cancel-in-progress: true
 
 permissions:
@@ -18,10 +24,13 @@ permissions:
 env:
   MIRROR_REPOSITORY: Bingboom/Hello-Docs
   MIRROR_BRANCH: main
+  SOURCE_FORBIDDEN_PATHS: docs/publish docs/knowledge docs/review-drafts
+  # Off main a run can never push, whatever the input says.
+  MIRROR_DRY_RUN: ${{ (github.ref != 'refs/heads/main' || inputs.dry_run) && '1' || '0' }}
 
 jobs:
   sync:
-    if: ${{ github.repository == 'Bingboom/auto-manual' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.repository == 'Bingboom/auto-manual' && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check mirror token
@@ -47,19 +56,24 @@ jobs:
           path: mirror
           token: ${{ secrets.HELLO_DOCS_SYNC_TOKEN }}
           fetch-depth: 0
+          # Off main the token only reads the mirror: it is not left in mirror/.git/config,
+          # so the sync script has no credential to push with.
+          persist-credentials: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Commit and push mirror update
         env:
           SOURCE_REPOSITORY: ${{ github.repository }}
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          MIRROR_KEEP_PATHS: docs/publish docs/knowledge manual_sources reports data/business configs/targets bitable_schema/business
-          SOURCE_FORBIDDEN_PATHS: docs/publish docs/knowledge docs/review-drafts
+          MIRROR_KEEP_PATHS: docs/publish docs/knowledge
+          # Transitional business paths: file-level union, source wins, upstream deletions stay
+          # downstream. Rules and per-path cut-over: user-guide/two_plane_map.md §2.2.
+          MIRROR_OVERLAY_PATHS: manual_sources data/manual_sources reports configs/targets bitable_schema/business
           MIRROR_README: mirrors/Hello-Docs/README.md
         run: bash source/scripts/sync_mirror.sh
 
       - name: Workspace mirror failure notice
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && env.MIRROR_DRY_RUN != '1' }}
         uses: actions/github-script@v7
         env:
           SYNC_STATUS: ${{ job.status }}
@@ -88,10 +102,10 @@ jobs:
             ].join('\n\n')});
 
   # Private review-draft mirror (Hello-Docs-Review → private Read the Docs project).
-  # It keeps review-owned paths (docs/review-drafts, review_sync_json, site/review-preview);
+  # It keeps docs/review-drafts and has no overlay paths, so upstream deletions reach it;
   # without its token the job reports a notice and skips, so Hello-Docs never depends on it.
   sync-review:
-    if: ${{ github.repository == 'Bingboom/auto-manual' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.repository == 'Bingboom/auto-manual' && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
     env:
       MIRROR_REPOSITORY: Bingboom/Hello-Docs-Review
@@ -124,6 +138,7 @@ jobs:
           path: mirror
           token: ${{ secrets.REVIEW_DOCS_SYNC_TOKEN }}
           fetch-depth: 0
+          persist-credentials: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Commit and push review mirror update
         if: ${{ steps.token.outputs.ready == 'true' }}
@@ -131,7 +146,6 @@ jobs:
           SOURCE_REPOSITORY: ${{ github.repository }}
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          MIRROR_KEEP_PATHS: docs/review-drafts review_sync_json site/review-preview
-          SOURCE_FORBIDDEN_PATHS: docs/publish docs/knowledge docs/review-drafts
+          MIRROR_KEEP_PATHS: docs/review-drafts
           MIRROR_README: mirrors/Hello-Docs-Review/README.md
         run: bash source/scripts/sync_mirror.sh
