@@ -6,7 +6,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.product_matrix_base import matrix
+from tools.product_matrix_base import matrix, projects
 from tools.product_matrix_base.extract import (
     compare, extract, inside_git_work_tree, load_dictionary, parse_value, quantities, spec_rows, table_rows,
 )
@@ -311,7 +311,7 @@ class RenameMapTest(unittest.TestCase):
         self.assertTrue({a["key"] for a in load_dictionary()} <= set(finals))
 
 
-PRODUCTS = [{"产品键": "JE-A/US", "型号": "JE-A", "市场": "US", "品牌": "自有"},
+PRODUCTS = [{"产品键": "JE-A/US", "型号": "JE-A", "市场": "US", "品牌": "自有", "项目号（仅飞书）": "P-FAKE-1"},
             {"产品键": "JE-B/JP", "型号": "JE-B", "市场": "JP", "品牌": "自有"}]
 ATTRIBUTES = [
     {"属性键": "capacity_wh", "中文名": "标称容量", "值类型": ["数值"], "规范单位": "Wh", "状态": ["启用"], "排序": 1},
@@ -320,7 +320,8 @@ ATTRIBUTES = [
     {"属性键": "model_number", "中文名": "型号", "值类型": ["文本"], "规范单位": "", "排序": 4},
     {"属性键": "unused_key", "中文名": "未用", "值类型": ["文本"], "规范单位": "", "排序": 5},
 ]
-SOURCES = [{"来源键": "web/a", "来源类型": ["网页说明书"]}, {"来源键": "spec/a", "来源类型": ["规格书"]}]
+SOURCES = [{"来源键": "web/a", "来源类型": ["网页说明书"], "页面或文件": "JE-A/US/en/md/manual_en.html"},
+           {"来源键": "spec/a", "来源类型": ["规格书"], "页面或文件": "sheet-a.pdf"}]
 
 
 def fact(product, key, **fields):
@@ -355,6 +356,15 @@ class MatrixBuildTest(unittest.TestCase):
         self.assertEqual(row["AC 输入"], "100-120 V~ 60 Hz, 15 A max.")  # printed text, not a bare voltage range
         self.assertEqual(row["放电温度范围"], "-10~45 °C")
         self.assertEqual((row["已核实数"], row["候选数"], row["组件事实数"]), (1, 3, 1))
+        self.assertEqual((row["项目号"], row["事实数"]), ("P-FAKE-1", 5))
+        self.assertEqual(row["来源"], "JE-A/US/en/md/manual_en.html; sheet-a.pdf")
+        self.assertNotIn("项目号", self.built["rows"]["JE-B/JP"])
+        self.assertFalse(self.built["launch"])  # no launch date anywhere: no column
+        names = [f["name"] for f in matrix.manifest_fields(self.built)]
+        self.assertEqual(names[:3], ["产品键", "项目号", "型号"])
+        self.assertNotIn("上市日期", names)
+        dated = matrix.build([dict(PRODUCTS[0], 上市日期="2026-03-01T00:00:00.000+08:00")], ATTRIBUTES, FACTS, SOURCES)
+        self.assertEqual(dated["rows"]["JE-A/US"]["上市日期"], "2026-03-01 00:00:00")
         self.assertEqual(self.built["components"], 1)
 
     def test_a_numeric_fact_without_a_number_stays_empty_and_is_listed(self):
@@ -404,7 +414,7 @@ class MatrixWriteTest(unittest.TestCase):
         changed = matrix.build(PRODUCTS, ATTRIBUTES, FACTS + [fact("JE-B/JP", "model_number", 文本值="JE-B")], SOURCES)
         update = matrix.plan(base, snapshot, changed)["update"]
         self.assertEqual([(u["key"], u["fields"]) for u in update],
-                         [("JE-B/JP", {"型号（说明书）": "JE-B", "候选数": 1})])
+                         [("JE-B/JP", {"型号（说明书）": "JE-B", "事实数": 2, "候选数": 1})])
 
     def test_wide_tables_are_read_fifty_fields_at_a_time(self):
         base = MatrixBase()
@@ -456,6 +466,29 @@ class PartialWriteTest(StagingTest):
         self.assertEqual(report["产品"]["read_back"], len(staged["产品"]))
         self.assertEqual((report["来源"]["sent"], report["来源"]["read_back"]), (0, 0))
         self.assertNotIn("事实", report)
+
+
+class ProjectsTest(unittest.TestCase):
+    def test_only_a_unique_project_fills_an_empty_field_and_codes_stay_out_of_the_summary(self):
+        base = MatrixBase()
+        base.schema["网页文档"] = [{"name": "型号", "type": "text"}, {"name": "项目号", "type": "text"}]
+        base.rows["网页文档"] = [{"型号": "JE-A", "项目号": "P-FAKE-1", "_id": "w1"},
+                                {"型号": "JE-A", "项目号": "P-FAKE-1", "_id": "w2"},
+                                {"型号": "JE-C", "项目号": "P-FAKE-2", "_id": "w3"},
+                                {"型号": "JE-C", "项目号": "P-FAKE-3", "_id": "w4"}]
+        base.rows["产品"] = [{"产品键": "JE-A/US", "型号": "JE-A", "_id": "r1"},
+                            {"产品键": "JE-B/JP", "型号": "JE-B", "_id": "r2"},
+                            {"产品键": "JE-C/EU", "型号": "JE-C", "_id": "r3"},
+                            {"产品键": "JE-D/EU", "型号": "JE-D", "项目号（仅飞书）": "P-HAND", "_id": "r4"}]
+        planned = projects.plan(base)
+        summary = projects.summary(planned)
+        self.assertEqual(summary, {"products": 4, "projects": 3, "filled": ["JE-D/EU"], "fill": ["JE-A/US"],
+                                   "ambiguous": ["JE-C/EU"], "unknown": ["JE-B/JP"]})
+        self.assertNotIn("P-FAKE", json.dumps(summary))
+        written = projects.write(base, planned, sleep=lambda _s: None)
+        self.assertEqual((written["sent"], written["matched"], written["problems"]), (1, 1, []))
+        self.assertEqual(base.rows["产品"][0]["项目号（仅飞书）"], "P-FAKE-1")
+        self.assertEqual(base.rows["产品"][3]["项目号（仅飞书）"], "P-HAND")
 
 
 if __name__ == "__main__":

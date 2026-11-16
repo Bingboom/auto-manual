@@ -20,13 +20,17 @@ from datetime import datetime, timezone
 from typing import Any
 
 from tools.product_matrix_base.stage import (
-    LoadError, PartialWrite, Runner, _check, _stamp, _text, fields, read_rows, same, table_ids,
+    LoadError, PartialWrite, Runner, _check, _instant, _stamp, _text, fields, read_rows, same, table_ids,
 )
 
 MATRIX = "矩阵"
 FIELD_LIMIT = 300  # Feishu Bitable: fields per table
 IDENTITY = ("产品键", "型号", "市场", "品牌", "商品简称", "产品类别", "产品系列", "容量档")
 COUNTS = ("已核实数", "候选数", "冲突数", "组件事实数", "空缺数值数")
+PROJECT = "项目号"  # the leading index; copied from 产品.项目号（仅飞书）, never read out of Feishu by any report
+PROJECT_SOURCE = "项目号（仅飞书）"
+LAUNCH = "上市日期"
+TRACE = ("来源", "事实数")  # the path back: the pages the row's values were read from, and how many facts it has
 STAMP = "生成时间"
 NUMERIC = {"数值", "整数"}
 NO_UNIT = {"", "count", "date", "currency", "当地货币"}
@@ -117,7 +121,7 @@ def _columns(attributes: list[dict[str, Any]], with_value: set[str]) -> list[dic
     """One column per enabled attribute that has a value, in the dictionary's order."""
     enabled = sorted((a for a in attributes if _text(a.get("状态")) in ("", "启用") and a["属性键"] in with_value),
                      key=lambda a: _number(a.get("排序")) or 0)
-    columns, taken = [], set(IDENTITY) | set(COUNTS) | {STAMP}
+    columns, taken = [], set(IDENTITY) | set(COUNTS) | set(TRACE) | {STAMP, PROJECT, LAUNCH}
     for attribute in enabled:
         name = column_name(attribute, taken)
         taken.add(name)
@@ -130,12 +134,19 @@ def _row(product: dict[str, Any], columns: list[dict[str, Any]], main: dict, com
          by_source: dict[str, dict[str, Any]], empty: list[dict[str, Any]]) -> dict[str, Any]:
     key = _text(product.get("产品键"))
     row: dict[str, Any] = {name: _text(product.get(name)) for name in IDENTITY}
+    row[PROJECT] = _text(product.get(PROJECT_SOURCE))
+    launch = _instant(product.get(LAUNCH))
+    row[LAUNCH] = _stamp(datetime.fromtimestamp(launch, timezone.utc)) if launch is not None else None
     counts: Counter[str] = Counter({"组件事实数": components[key]})
+    pages: set[str] = set()
+    facts_here = 0
     for column in columns:
         candidates = sorted(main.get((key, column["key"]), []), key=lambda f: _rank(f, by_source))
+        facts_here += len(candidates)
         if not candidates:
             continue
         best = candidates[0]
+        pages.add(_text(by_source.get(_text(best.get("来源键")), {}).get("页面或文件")))
         counts["冲突数"] += any(bool(f.get("冲突")) for f in candidates)
         value = _cell(best, column["type"] == "number", column["unit"])
         if value is None:
@@ -147,6 +158,7 @@ def _row(product: dict[str, Any], columns: list[dict[str, Any]], main: dict, com
         row[column["name"]] = value
         counts["已核实数" if _state(best) == "已核实" else "候选数"] += 1
     row.update({name: counts[name] for name in COUNTS})
+    row.update({"来源": "; ".join(sorted(p for p in pages if p)), "事实数": facts_here})
     return {k: v for k, v in row.items() if v not in (None, "")}
 
 
@@ -158,7 +170,7 @@ def build(products: list[dict[str, Any]], attributes: list[dict[str, Any]], fact
     columns = _columns(attributes, {key for _product, key in main})
     empty: list[dict[str, Any]] = []
     rows = {_text(p.get("产品键")): _row(p, columns, main, components, by_source, empty) for p in products}
-    return {"columns": columns, "rows": rows, "empty": empty,
+    return {"columns": columns, "rows": rows, "empty": empty, "launch": any(LAUNCH in r for r in rows.values()),
             "components": sum(1 for v in components.values() if v)}
 
 
@@ -169,11 +181,11 @@ def read_base(run: Runner) -> dict[str, Any]:
         raise LoadError(f"tables missing in the base: {missing}")
     return {
         "ids": ids,
-        "products": read_rows(run, ids["产品"], list(IDENTITY)),
+        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH]),
         "attributes": read_rows(run, ids["属性"], ["属性键", "中文名", "值类型", "规范单位", "状态", "排序"]),
         "facts": read_rows(run, ids["事实"], ["事实键", "产品键", "属性键", "数值", "文本值", "原单位", "条件",
                                              "核实状态", "来源键", "记录时间", "冲突", "原文"]),
-        "sources": read_rows(run, ids["来源"], ["来源键", "来源类型"]),
+        "sources": read_rows(run, ids["来源"], ["来源键", "来源类型", "页面或文件"]),
     }
 
 
@@ -276,8 +288,11 @@ def drop_unused(run: Runner, planned: dict[str, Any]) -> list[str]:
 
 def manifest_fields(built: dict[str, Any]) -> list[dict[str, str]]:
     """The 矩阵 table's fields as the schema manifest lists them."""
-    return [{"name": n, "type": "text"} for n in IDENTITY] + \
+    return [{"name": IDENTITY[0], "type": "text"}, {"name": PROJECT, "type": "text"}] + \
+        [{"name": n, "type": "text"} for n in IDENTITY[1:]] + \
+        ([{"name": LAUNCH, "type": "datetime"}] if built.get("launch") else []) + \
         [{"name": c["name"], "type": c["type"]} for c in built["columns"]] + \
+        [{"name": "来源", "type": "text"}, {"name": "事实数", "type": "number"}] + \
         [{"name": n, "type": "number"} for n in COUNTS] + [{"name": STAMP, "type": "datetime"}]
 
 

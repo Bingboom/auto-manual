@@ -162,7 +162,7 @@ def _matrix(args: argparse.Namespace) -> int:
             _update_manifest(args.manifest, matrix.manifest_fields(built))
         if args.report:
             _out(args.report).write_text(json.dumps({"columns": built["columns"], "empty": built["empty"],
-                                                     "plan": {k: v for k, v in planned.items() if k != "kinds"}},
+                                                     "plan": _plan_summary(planned)},
                                                     ensure_ascii=False, indent=1, default=str) + "\n",
                                          encoding="utf-8")
         if not (args.write and args.yes):
@@ -178,6 +178,44 @@ def _matrix(args: argparse.Namespace) -> int:
         if args.drop_unused:
             print(f"  删除空列 {len(matrix.drop_unused(run, planned))}")
         return 1 if written["missing"] or written["mismatched"] else 0
+    except LoadError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+
+
+def _plan_summary(planned: dict[str, Any]) -> dict[str, Any]:
+    """The matrix plan without row contents: rows carry the project index, which never leaves Feishu."""
+    return {"add": planned["add"], "clash": planned["clash"], "unused": planned["unused"],
+            "create": [row["产品键"] for row in planned["create"]],
+            "update": [{"key": u["key"], "fields": sorted(u["fields"])} for u in planned["update"]]}
+
+
+def _projects(args: argparse.Namespace) -> int:
+    from tools.product_matrix_base import projects
+
+    base = args.base_token or os.environ.get(BASE_ENV)
+    if not base:
+        print("ERROR   no base given")
+        return 2
+    if args.report:
+        _out(args.report)
+    run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli)
+    try:
+        planned = projects.plan(run)
+        print(f"项目号: 产品 {planned['products']} 个，已有 {len(planned['filled'])}，可唯一补齐 {len(planned['fill'])}，"
+              f"对到多个项目 {len(planned['ambiguous'])}，查不到 {len(planned['unknown'])}"
+              f"（涉及项目 {planned['projects']} 个；项目号本身不打印、不写报告）")
+        status = 0
+        if args.write and args.yes:
+            written = projects.write(run, planned)
+            print(f"  写入 {written['sent']}，读回一致 {written['matched']}，不一致或缺失 {len(written['problems'])}")
+            status = 1 if written["problems"] else 0
+        else:
+            print("dry run: nothing written")
+        if args.report:
+            args.report.write_text(json.dumps(projects.summary(planned), ensure_ascii=False, indent=1) + "\n",
+                                   encoding="utf-8")
+        return status
     except LoadError as exc:
         print(f"ERROR   {exc}")
         return 2
@@ -218,6 +256,15 @@ def main(argv: list[str] | None = None) -> int:
     st.add_argument("--write", action="store_true", help="create the absent rows (needs --yes)")
     st.add_argument("--yes", action="store_true", help="confirm the dry run was reviewed")
     st.set_defaults(func=_stage)
+    pj = sub.add_parser("projects", help="fill 产品.项目号（仅飞书） from the base's 网页文档 table (counts only)")
+    pj.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
+    pj.add_argument("--profile")
+    pj.add_argument("--identity", default="bot", choices=["bot", "user"])
+    pj.add_argument("--lark-cli", default="lark-cli")
+    pj.add_argument("--report", type=Path, help="产品键 lists by outcome (no project codes), outside any git work tree")
+    pj.add_argument("--write", action="store_true")
+    pj.add_argument("--yes", action="store_true")
+    pj.set_defaults(func=_projects)
     mx = sub.add_parser("matrix", help="generate the 矩阵 table from the facts in the base")
     mx.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
     mx.add_argument("--profile")
