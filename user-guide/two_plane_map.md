@@ -95,7 +95,7 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 
 | 通道 | 方向 | 机制 | 频率 |
 | --- | --- | --- | --- |
-| **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` 和 `docs/knowledge/**`；仓库首页 README 换成 auto-manual 的 [`mirrors/Hello-Docs/README.md`](../mirrors/Hello-Docs/README.md) | 每次合入 main 自动，秒级 |
+| **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` 和 `docs/knowledge/**`，迁移中的业务数据目录按 [§2.2](#22-镜像同步的保留路径与过渡路径) 叠加；仓库首页 README 换成 auto-manual 的 [`mirrors/Hello-Docs/README.md`](../mirrors/Hello-Docs/README.md) | 每次合入 main 自动，秒级 |
 | **代码（工作台）** | auto-manual/main → Hello-Docs-Review/main | 同一工作流的 `sync-review` 任务，保留该仓库的 `docs/review-drafts/**`，首页 README 换成 [`mirrors/Hello-Docs-Review/README.md`](../mirrors/Hello-Docs-Review/README.md)；未配置 `REVIEW_DOCS_SYNC_TOKEN` 时只提示、不影响 Hello-Docs 同步。详见 [审核稿私有站](../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md) | 每次合入 main 自动 |
 | **Web 发布快照** | Hello-Docs/main → Hello-Docs/publish → PR → Hello-Docs/main | `feishu-web-publish-queue.yml` 组装候选 `docs/publish/`、范围门禁后普通增量 push，并自动创建/更新只含该目录的 PR | 每次审核后的 Web Publish |
 | **表结构 + 引用数据** | 旧 base → 新 base | `python -m tools.bitable_schema promote`（只增不删、dry-run 默认）；每日 01:00 parity 哨兵盯滞后并开 `[schema-drift]` issue | 人工，有告警兜底 |
@@ -119,6 +119,16 @@ Hello-Docs `docs/knowledge/workspace-data` 同样属于业务内容：保存审�
 Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明书知识问题的台账（人工结论、修改与核验），经只含 `docs/knowledge/**` 的内容 PR 维护；契约、校验、核验、覆盖矩阵与权威源绑定命令在 auto-manual，见[知识治理方案](../code-as-doc/dev/machine_readable_knowledge_governance.md) §6。
 
 [Strategy](../code-as-doc/architecture/System%20Evolution%20Strategy.md) §4.6、§4.8 所说的内容身份、适用性与关系状态登记是计划目标状态，尚未建设；它放在哪个平面，在动工前随执行台账登记确定，届时更新本图。
+
+### 2.2 镜像同步的保留路径与过渡路径
+
+[`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 用 [`sync_mirror.sh`](../scripts/sync_mirror.sh) 合成镜像树，路径清单只在该工作流里维护：
+
+- **严格保留**（`MIRROR_KEEP_PATHS`）：镜像的子树整体胜出，auto-manual 侧被 `SOURCE_FORBIDDEN_PATHS` 拒收。Hello-Docs 是 `docs/publish`、`docs/knowledge`；Hello-Docs-Review 是 `docs/review-drafts`。
+- **过渡叠加**（`MIRROR_OVERLAY_PATHS`，只用于 Hello-Docs）：按文件取并集，源侧胜出。auto-manual 新增和修改的文件照常同步，上游删除不传到镜像，只在镜像里存在的文件保留。Hello-Docs-Review 不读冻结包，没有叠加路径，上游删除照常传过去。
+- 叠加的两个代价：上游删除或改名留下的旧文件会一直留在镜像，直到在镜像里删除；镜像里改了一个上游仍存在的文件，下次同步会被源侧覆盖，所以要等该文件或目录从上游删除后再在镜像里改。
+- 删除叠加路径下的一个子目录（如单个包）不需要其他操作。整条路径切换要在一个 auto-manual PR 内完成：先手动跑一次 `dry_run` 看摘要，再删除上游目录，把它从 `MIRROR_OVERLAY_PATHS` 移到 `MIRROR_KEEP_PATHS`，并加入 `SOURCE_FORBIDDEN_PATHS` 和 `tools/check_maintainability_guardrails.py` 的 `MIRROR_OWNED_PATHS`。
+- 手动运行可从任意分支发起；不在 `main` 上时一律只做 dry run，镜像检出也不保留推送凭据，脚本本身在 `GITHUB_REF` 不是 `refs/heads/main` 时也拒绝推送。
 
 ## 3. 谁在哪跑
 
