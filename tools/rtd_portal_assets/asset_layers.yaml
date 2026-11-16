@@ -14,7 +14,7 @@ main_line: 新说明书在工作台写作；扩大存量说明书的网页覆盖
 
 # The operator's own statement of the product matrix's value (2026-11-16), word for word; the source is that dated
 # statement until positioning §4.1 carries it (then cite §4.1). Shown as the lead of the 产品信息 pages only, never
-# paraphrased elsewhere. The pages show neither a project index nor dates yet, and keep saying so.
+# paraphrased elsewhere, with no caption under it; the 产品矩阵 page keeps its own 建设中 note on sources and dates.
 product_value: 以项目为索引、以产品属性为核心、以时间为维度，持续整合说明书中的产品技术信息，建立可查询、可比较、可追溯的产品信息矩阵。通过集中管理分散在历史文档中的产品信息，降低信息查找、重复整理与人员交接成本，为说明书开发、产品信息复用及后续跨业务分析提供可靠的数据基础。
 
 # Each layer's status chip comes only from its registered ledger rows (decision 1 of the step-12 brief): the rows'

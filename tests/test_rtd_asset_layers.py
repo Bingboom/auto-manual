@@ -251,8 +251,8 @@ class ProductValueTests(unittest.TestCase):
         product = {**al.product_layer(None, {"total": 9}, topics=None, build_date="2026-11-16"), "value": value}
         page = render("product_attributes.html", product=product, attributes=None)
         self.assertEqual(page.select_one(".al-head-text > p:not(.al-eyebrow)").get_text(), value)
-        # The page still says that the project index and the dates are not there yet.
-        self.assertIn("建设中", page.select_one(".al-lead-note").get_text())
+        # No caption under the statement (operator, 2026-11-16); the matrix page keeps its own 建设中 note.
+        self.assertIsNone(page.select_one(".al-lead-note"))
         cards = al.home_cards(product, {**al.layer("content")}, {**al.layer("media")}, {**al.layer("language")},
                               dict.fromkeys(ald.LAYER_IDS))
         self.assertNotIn(value, json.dumps(cards, ensure_ascii=False))

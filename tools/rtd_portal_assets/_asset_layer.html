@@ -12,7 +12,6 @@
     <p class="al-eyebrow">资产 {{ layer.order }} · 共四类</p>
     <h1>{{ layer.title|e }}</h1>
     <p>{{ (layer.value or layer.lead)|e }}</p>
-    {%- if layer.value %}<p class="al-lead-note">操作者 2026-11-16 的表述。项目索引和时间维度尚未上线：现在每个型号读一本已发布说明书的规格表，逐值的来源、核实和日期建设中。</p>{% endif %}
   </div>
   <span class="al-head-meta">
     {%- if layer.chip %}<span class="al-chip is-{{ layer.chip.status|e }}" title="据台账 {{ layer.chip.revs|join('、')|e }}：{{ layer.chip.tally|e }}">{{ layer.chip.status_label|e }}<small>据台账 {{ layer.chip.revs|join('、')|e }}</small></span>{% endif %}

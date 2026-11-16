@@ -22,7 +22,6 @@ body.al-root * {box-sizing:border-box}
 .al-chip.is-validated,.al-chip.is-available {color:var(--status-available);background:var(--status-available-bg)}
 .al-chip.is-in_progress {color:var(--status-in-progress);background:var(--status-in-progress-bg)}
 .al-chip.is-planned {color:var(--status-planned);background:var(--status-planned-bg)}
-.al-head-text > p.al-lead-note {margin:0;font-size:12.5px;line-height:19px;color:var(--app-faint)}
 .al-pill {display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;border-radius:var(--radius-full);
   background:var(--surface);border:1px solid var(--app-line);font-size:var(--text-xs);color:var(--app-muted);white-space:nowrap}
 
