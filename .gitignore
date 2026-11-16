@@ -99,3 +99,4 @@ docs/_review/*/*/*/renderers/
 
 # AI assistant local config (each operator owns their own permissions and profile)
 .claude/settings.local.json
+.claude/worktrees/
