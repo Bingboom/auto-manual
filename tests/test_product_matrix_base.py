@@ -336,7 +336,7 @@ FACTS = [
     fact("JE-A/US", "ac_input", 文本值="100~120", 原文="AC Input: 100-120 V~ 60 Hz, 15 A max."),
     fact("JE-A/US", "discharge_temp_range", 文本值="-10~45"),
     fact("JE-A/US", "model_number", 文本值="JE-A"),
-    fact("JE-A/US", "capacity_wh", 文本值="5040Wh", 条件="组件:Pack"),
+    fact("JE-A/US", "capacity_wh", 文本值="7777Wh", 条件="组件:Pack"),
     fact("JE-B/JP", "capacity_wh", 文本值="50/60", 原文="容量: 50/60"),
 ]
 
