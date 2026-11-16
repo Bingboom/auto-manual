@@ -10,7 +10,6 @@ The tool writes no verification state other than 候选 and leaves 当前值, �
 from __future__ import annotations
 
 import json
-import re
 import subprocess
 import time
 from collections.abc import Callable, Iterable
@@ -51,99 +50,6 @@ def fact_key(product: str, attribute: str, condition: str, source: str) -> str:
 
 def _stamp(moment: datetime) -> str:
     return moment.astimezone(CST).strftime("%Y-%m-%d %H:%M:%S")
-
-
-def _location(row: dict[str, Any] | None) -> str:
-    if not row:
-        return ""
-    where = f"{row['section']} · 表{row['table']} 行{row['row']}" if row["table"] else f"{row['section']} · 行{row['row']}"
-    return f"{where} · #{row['anchor']}" if row.get("anchor") else where
-
-
-def _name(title: str, model: str) -> str:
-    from tools.rtd.product_matrix import display_name
-
-    return display_name(title, model) if title else ""
-
-
-def _name_field(name: str) -> str:
-    """Which 名称 column a catalog name belongs in, by its script: kana is Japanese, other CJK Chinese."""
-    if re.search(r"[\u3040-\u30ff]", name):
-        return "名称_ja"
-    if re.search(r"[\u4e00-\u9fff]", name):
-        return "名称_zh"
-    return "名称_en" if name else ""
-
-
-def select_editions(extraction: dict[str, Any], models: Iterable[str] | None, markets: Iterable[str] | None
-                    ) -> list[dict[str, Any]]:
-    wanted_models = set(models or [])
-    wanted_markets = set(markets or [])
-    return [e for e in extraction["editions"]
-            if (not wanted_models or e["model"] in wanted_models) and (not wanted_markets or e["market"] in wanted_markets)]
-
-
-def _product_row(edition: dict[str, Any], entry: dict[str, Any], recorded: str) -> dict[str, Any]:
-    key = product_key(edition["model"], edition["market"])
-    return {"产品键": key, "型号": edition["model"], "市场": edition["market"], "品牌": BRAND,
-            "商品简称": entry.get("short"), "产品类别": entry.get("category"), "产品系列": entry.get("series"),
-            "容量档": entry.get("capacity"), "共用说明书于": entry.get("pages_of"), "最后更新": recorded}
-
-
-def _attribute_row(attribute: dict[str, Any]) -> dict[str, Any]:
-    return {"属性键": attribute["key"], "中文名": attribute["label"], "英文名": attribute.get("label_en"),
-            "分组": attribute["group"], "值类型": VALUE_TYPES[attribute["type"]], "规范单位": attribute.get("unit"),
-            "定义": attribute.get("definition"), "适用类别": list(attribute.get("applies_to") or []),
-            "说明书通常写": bool(attribute.get("manual_usual")), "标签别名": "\n".join(attribute.get("labels") or []),
-            "竞情字段名": attribute.get("competitor_field"), "状态": attribute.get("status") or "启用",
-            "排序": attribute["order"]}
-
-
-def _source_row(edition: dict[str, Any], recorded: str) -> dict[str, Any]:
-    built = str(edition.get("built_at") or "")[:10]
-    return {"来源键": edition["source_key"], "来源类型": SOURCE_TYPE, "型号": edition["model"],
-            "市场": edition["market"], "语言": edition["language"], "版本": edition.get("version"),
-            "版本日期依据": UNKNOWN_DATE_BASIS, "页面或文件": edition["page"], "文件哈希": edition.get("sha256"),
-            "读取时间": recorded, "备注": f"网页构建时间 {built}" if built else None}
-
-
-def _fact_row(edition: dict[str, Any], fact: dict[str, Any], recorded: str) -> dict[str, Any]:
-    product = product_key(edition["model"], edition["market"])
-    condition = fact.get("condition") or ""
-    return {"事实键": fact_key(product, fact["attribute"], condition, edition["source_key"]),
-            "产品键": product, "属性键": fact["attribute"], "来源键": edition["source_key"],
-            "原文": f"{fact['label']}: {fact['quote_text']}", "数值": fact.get("number"), "文本值": fact.get("text"),
-            "原单位": fact.get("original_unit"), "限定": fact.get("qualifier") or "无", "条件": condition,
-            "来源位置": _location(fact.get("row")), "记录时间": recorded, "核实状态": CANDIDATE}
-
-
-def _filled(row: dict[str, Any]) -> dict[str, Any]:
-    return {k: v for k, v in row.items() if v not in ("", None, [])}
-
-
-def stage_rows(extraction: dict[str, Any], catalog_models: dict[str, Any], *, models: Iterable[str] | None = None,
-               markets: Iterable[str] | None = None, attributes: Iterable[str] | None = None,
-               now: datetime | None = None) -> dict[str, list[dict[str, Any]]]:
-    """The rows each table would hold for the selected products, keyed by their primary field."""
-    recorded = _stamp(now or datetime.now(timezone.utc))
-    dictionary = extraction["attributes"]
-    keep = set(attributes or [a["key"] for a in dictionary])
-    editions = select_editions(extraction, models, markets)
-    products: dict[str, dict[str, Any]] = {}
-    for edition in editions:
-        row = products.setdefault(product_key(edition["model"], edition["market"]),
-                                  _product_row(edition, catalog_models.get(edition["model"]) or {}, recorded))
-        name = _name(edition.get("catalog_name") or "", edition["model"])
-        if name and not row.get(_name_field(name)):
-            row[_name_field(name)] = name
-    staged = {
-        "产品": list(products.values()),
-        "属性": [_attribute_row(a) for a in dictionary if a["key"] in keep],
-        "来源": [_source_row(edition, recorded) for edition in editions],
-        "事实": [_fact_row(edition, fact, recorded) for edition in editions for fact in edition["facts"]
-                 if fact["attribute"] in keep],
-    }
-    return {table: [_filled(row) for row in rows] for table, rows in staged.items()}
 
 
 # --- the live base ----------------------------------------------------------------------------------------------
@@ -337,11 +243,72 @@ def plan(run: Runner, staged: dict[str, list[dict[str, Any]]]) -> dict[str, Any]
         if table not in ids:
             continue
         primary = PRIMARY[table]
-        existing = {_text(r.get(primary)) for r in read_rows(run, ids[table], [primary])}
-        create = [row for row in rows if row[primary] not in existing]
+        compared = [name for name in COMPARED.get(table, ()) if name in result["schema"].get(table, {})]
+        extra = [n for n in ("核实状态", "备注") if table == "事实" and n in result["schema"].get(table, {})]
+        live = {_text(r.get(primary)): r for r in read_rows(run, ids[table], [primary, *compared, *extra])}
+        create = [row for row in rows if row[primary] not in live]
+        kinds = {name: (result["schema"][table].get(name) or {}).get("type", "text") for name in compared}
         result["tables"][table] = {"staged": len(rows), "existing": len(rows) - len(create),
-                                   "rows_before": len(existing), "create": create}
+                                   "rows_before": len(live), "create": create,
+                                   "differ": _differences(rows, live, primary, compared, kinds)}
     return result
+
+
+# Fields whose staged value is compared with the live row of the same key (time stamps, batch and notes are not).
+COMPARED = {"事实": ("原文", "数值", "文本值", "原单位", "限定", "条件", "来源位置"),
+            "来源": ("来源类型", "型号", "市场", "语言", "版本", "页面或文件", "文件哈希"),
+            "产品": ("型号", "市场", "品牌")}
+
+
+def _differences(rows: list[dict[str, Any]], live: dict[str, dict[str, Any]], primary: str, compared: list[str],
+                 kinds: dict[str, str]) -> list[dict[str, Any]]:
+    """Existing rows whose compared fields hold something other than what is staged now."""
+    found = []
+    for row in rows:
+        have = live.get(row[primary])
+        if have is None:
+            continue
+        changed = {name: {"live": have.get(name), "staged": row.get(name)} for name in compared
+                   if not _equal_cell(row.get(name), have.get(name), kinds[name])}
+        if changed:
+            found.append({"key": row[primary], "record_id": have["_record_id"], "fields": changed,
+                          "state": _text(have.get("核实状态")), "remark": _text(have.get("备注"))})
+    return found
+
+
+def _equal_cell(want: Any, have: Any, kind: str) -> bool:
+    if want in (None, "", []) or have in (None, "", []):
+        return want in (None, "", []) and have in (None, "", [])
+    return same(want, have, kind)
+
+
+def correct(run: Runner, planned: dict[str, Any], batch: str, *, settle: float = 3.0,
+            sleep: Callable[[float], None] = time.sleep) -> dict[str, Any]:
+    """Correct 事实 rows in place whose printed source is unchanged but whose reading changed.
+
+    Only rows still 候选 (nobody has verified them) are corrected; each gets the new values, the new batch label and
+    a note of the old values; 原文 and 核实状态 are left as they are. Other rows are reported, never touched.
+    """
+    info = planned["tables"].get("事实") or {"differ": []}
+    table_id = planned["ids"]["事实"]
+    corrected, skipped = [], []
+    for item in info["differ"]:
+        if item["state"] != CANDIDATE or "原文" in item["fields"]:
+            skipped.append(item["key"])
+            continue
+        note = "；".join(f"{name} 原为「{_text(v['live'])}」" for name, v in item["fields"].items())
+        patch = {name: v["staged"] if v["staged"] not in ("", []) else None for name, v in item["fields"].items()}
+        patch.update({"写入批次": batch, "备注": f"{item['remark']}；{batch} 修正：{note}".lstrip("；")})
+        _check(run(["+record-upsert", "--table-id", table_id, "--record-id", item["record_id"], "--json",
+                    json.dumps(patch, ensure_ascii=False)]), f"事实 correct {item['key']}")
+        corrected.append((item, patch))
+    sleep(settle)
+    names = sorted({"事实键", *(n for _item, patch in corrected for n in patch)})
+    back = {r["_record_id"]: r for r in read_rows(run, table_id, names)}
+    kinds = {name: (planned["schema"]["事实"].get(name) or {}).get("type", "text") for name in names}
+    mismatched = [f"{item['key']} · {name}" for item, patch in corrected for name, value in patch.items()
+                  if not _equal_cell(value, back.get(item["record_id"], {}).get(name), kinds.get(name, "text"))]
+    return {"corrected": len(corrected), "skipped": skipped, "mismatched": mismatched}
 
 
 def write(run: Runner, planned: dict[str, Any], *, use_records_shape: bool, settle: float = 3.0,
@@ -395,5 +362,5 @@ def _read_back(run: Runner, planned: dict[str, Any], report: dict[str, Any]) -> 
                       "rows_after": len(back), "record_ids": record_ids})
 
 
-__all__ = ["LoadError", "PartialWrite", "provenance", "PRIMARY", "TABLES", "fact_key", "lark_runner", "plan", "preflight", "product_key",
-           "read_rows", "records_shape", "same", "stage_rows", "write"]
+__all__ = ["LoadError", "PartialWrite", "PRIMARY", "TABLES", "correct", "fact_key", "lark_runner", "plan", "preflight",
+           "product_key", "provenance", "read_rows", "records_shape", "same", "write"]

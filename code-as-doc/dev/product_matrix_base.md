@@ -30,11 +30,13 @@ Status: active（建设中，REV-50，登记见 PR #1734）· Owner: 夏冰 · C
 | 事实 | 一个数值在一个来源里 | 事实键 `<产品键>\|<属性键>\|<条件键>\|<来源键>` | 原文、数值（规范单位）、文本值、原单位、限定、条件、来源位置、生效时间、记录时间、核实状态与核实人、当前值、冲突、裁定、取代者 |
 | 矩阵 | 一个产品键 | 产品键 | 生成、只读：项目号、身份列、上市日期（有值时）、每个有值的启用属性一列（最佳当前值；数值属性为数字列，单位在列名）、来源、事实数、已核实数、候选数、冲突数、组件事实数、空缺数值数、生成时间（§4.1） |
 
-- 属性键沿用自有产品事实导出的 9 个键（[`tools/product_facts/attributes.json`](../../tools/product_facts/attributes.json)），
-  不改名；新增属性在 [`tools/product_matrix_base/attributes.json`](../../tools/product_matrix_base/attributes.json) 定义，
-  其中标为 `export` 的项只引用导出的定义。
+- 属性字典共 140 项，首次装载的内容在 [`tools/product_matrix_base/dictionary.json`](../../tools/product_matrix_base/dictionary.json)；
+  装载后属性表在飞书里维护，工具只补不存在的属性。自有产品事实导出的 9 个键
+  （[`tools/product_facts/attributes.json`](../../tools/product_facts/attributes.json)）沿用不改名。
 - 条件键：同一来源对同一属性按条件（如太阳能板的 STC / BNPI 列）写多个值时区分它们；无条件时为 `-`。
 - 事实**不覆盖**：数值变了就是新来源（新版本）下的新一行；旧行由人标 已取代 并填 取代者。
+  唯一例外是工具自己读错的候选：来源和原文没变、只是读法改正了，且这一行仍是 候选（没人核实过），
+  才在原行上修正读出的字段，写入批次改为这次修正的标签，旧值记进备注；原文和核实状态不动（操作者 2026-11-16 确认）。
 - 矩阵只收自有产品，竞品数据目前不做（见定位 §4.2）；品牌字段保留，只有 `自有` 一个选项。
 - 来源和事实都有「写入批次」：一次性读取装入的行标明批次，正式抽取工具接手后可据此分辨和取代。
 - 属性键的改名对照（种子字典 v0 键 → 最终键，140 个，不含数值）在
@@ -97,21 +99,25 @@ Status: active（建设中，REV-50，登记见 PR #1734）· Owner: 夏冰 · C
 ## 5. 写入与读取路径
 
 ```bash
-# 1. 抽取：读发布清单列出的每个语言版本，输出到 git 工作树以外
-python -m tools.product_matrix_base extract --root <Hello-Docs 检出> --out <仓库外>/extraction.json
-# 2. 预演：各表待新建行数、已存在不动的行数、字段与选项预检
-python -m tools.product_matrix_base stage --extraction <...>/extraction.json --root <Hello-Docs 检出> \
-    [--models A,B] [--markets US,EU] [--attributes k1,k2] --profile <lark-cli profile> --report <仓库外>/plan.json
-# 3. 写入：预演结果经操作者在窗口确认后
-python -m tools.product_matrix_base stage ... --write --yes
+# 1. 读取：读发布清单列出的每个语言版本，输出到 git 工作树以外
+python -m tools.product_matrix_base read --root <Hello-Docs 检出> --out <仓库外>/reading.json
+# 2. 预演：各表待新建行数、已存在不动的行数、已存在但本次读法不同的行、字段与选项预检、出处检查
+python -m tools.product_matrix_base stage --reading <...>/reading.json --root <Hello-Docs 检出> \
+    [--models A,B] [--markets US,EU] [--batch <写入批次>] --profile <lark-cli profile> --report <仓库外>/plan.json
+# 3. 写入：预演结果经操作者在窗口确认后；--correct 同时原地修正读法不同的候选事实
+python -m tools.product_matrix_base stage ... --write --yes [--correct]
 ```
 
 - base 由 `--base-token` 或环境变量 `FEISHU_PUBLISHED_DOCS_BASE_TOKEN` 指定，身份默认 bot。
-- 抽取：规格表按类名（`spec-table`、`native-spec`）或多语言规格标题识别；每一行原样保留标签和文字、
-  解析出的数值与单位、章节路径、锚点、表号与行号。没有属性认领的行照样保留，列入 `unmapped`。
-  同一型号同一市场的各语言版本逐属性比较，写法不一的列入 `differences`。
-- 导出的 9 个键用自有产品事实导出的读表规则（`read_facts`）读，喂给它的是抽取器找到的全部行，
-  所以导出原读法漏掉的版式（如日文 td/td 表）也能读到；这套规则只认英、中、日标签。
+- 读取（[`tools/product_matrix_base/reader/`](../../tools/product_matrix_base/reader/)）：规格表按多语言规格标题与其
+  同级分组标题、规格类名（`spec-table`、`native-spec`）和 `spec-row` 列表识别；规格节以外的充电时间、保修、
+  装箱清单等规格类表也读。每一行原样保留标签、值、列名、章节路径与锚点；标签按各语言规则映射到属性，
+  没有端口方向的标签只在小标题写明输入或输出时才映射；没有规则认领的行照样保留，列入 `unmapped`。
+- 事实：每个型号 × 市场取一个主语言版本（英文，否则市场主语言，见 `reader/market_languages.json`，
+  否则行数最多的版本），同一属性的多行合成一个值；其他语言版本只做比对，结论写进备注，不合并。
+  日规「サイズ＆重量」一行同时读尺寸和重量。说明书里随附或另售组件的表（电池包、转换开关、太阳能板）
+  按「产品名称」行分块，主产品以外的块记为组件事实。派生数值（整机 AC 输出、峰值、口数、输入上限等）
+  只从印出的文字读，备注写明来自哪几行。功率类行没印瓦数时，文本值保留原文，不写成电压区间。
 - 出处检查：每条事实的来源键必须是暂存或 base 里的来源行，且该来源是 网页说明书、键与发布清单
   中的某个发布一一对应；否则整批拒写（`--staged` 也一样）。规格书、PLM 等新来源类型接入时各加自己的检查，
   不放宽这一条。
@@ -129,10 +135,9 @@ python -m tools.product_matrix_base stage ... --write --yes
 写后逐行读回无缺失、无不符，第二次预演无可新建行。
 
 
-- 重算：事实表的当前值、冲突两列，门户快照（第二个 PR）。
-- 正式抽取接入全量字典：140 个属性与 1,352 条标签映射、组件表拆分、日规尺寸与重量同行、端口方向按
-  小标题判断（第二个 PR）。验收：正式抽取对 base 的预演没有可新建行，或只有逐条说明的差异。
-- 已知：功率类行没写瓦数时，种子批次的文本值存的是电压区间（原单位 V），第二个 PR 改正。
+- 正式读取（`read`）已接替种子读取：对 2026-11-16 的发布逐字段复现种子批次的 2,499 条主事实和 136 条组件事实；
+  对 base 的预演四表都没有可新建行，唯一差异是功率类行的 224 条候选事实（文本值从电压区间改为原文）。
+- 重算：事实表的当前值、冲突两列，门户快照。
 - UPS 切换时间、App 连接、保修期在正文里，不在规格表：之后单独一轮。
 
 ## 7. 不进 git 的内容

@@ -1,12 +1,16 @@
-"""``python -m tools.product_matrix_base``: extract the published manuals' specification rows, stage and load them.
+"""``python -m tools.product_matrix_base``: read the published manuals, stage and load the matrix base.
 
-    extract  --root <Hello-Docs checkout> --out <file outside git>
-    stage    --extraction <file> | --staged <file> [--models A,B] [--markets US,EU] [--attributes k1,k2] [--report <file outside git>]
-             [--base-token ... --profile ...]   # with a base: compare with the live tables (dry run)
-             [--write --yes]                    # create the absent rows, then read every one back
+    read     --root <Hello-Docs checkout> --out <file outside git>
+    stage    --reading <file> | --staged <file> [--root <checkout>] [--models A,B] [--markets US,EU]
+             [--batch <label>] [--report <file outside git>] [--base-token ... --profile ...]
+             [--write --yes] [--correct]
+    projects [--write --yes]          # fill 产品.项目号（仅飞书） from 网页文档 (counts only)
+    matrix   [--write --yes] [--drop-unused] [--manifest <manifest>]
 
-Extraction output, staging plans and read-back reports are internal product data: every file this command writes
-must lie outside any git work tree. Without ``--write --yes`` nothing is written to the base. Contract:
+With a base, ``stage`` is a dry run that lists per table the rows to create, the rows already there, and the
+existing rows whose values the current reading prints differently. ``--write --yes`` creates the absent rows;
+``--correct`` (with ``--write --yes``) also corrects those differing 事实 rows in place, only while they are still
+候选. Every file this command writes must lie outside any git work tree. Contract:
 ``code-as-doc/dev/product_matrix_base.md``.
 """
 from __future__ import annotations
@@ -15,12 +19,14 @@ import argparse
 import json
 import os
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from tools.product_matrix_base.extract import DICTIONARY, ExtractionError, extract, inside_git_work_tree
+from tools.product_matrix_base.reader import ReadingError, inside_git_work_tree, read_publication
+from tools.product_matrix_base.rows import stage_rows
 from tools.product_matrix_base.stage import (
-    TABLES, LoadError, PartialWrite, lark_runner, plan, provenance, read_rows, records_shape, stage_rows, write,
+    TABLES, LoadError, PartialWrite, correct, lark_runner, plan, provenance, read_rows, records_shape, write,
 )
 from tools.rtd.production_evidence import read_publications
 from tools.utils.path_utils import Paths, PathSegments, docs_publish_of
@@ -47,17 +53,17 @@ def _catalog(root: Path | None) -> dict[str, Any]:
     return {}
 
 
-def _extract(args: argparse.Namespace) -> int:
+def _read(args: argparse.Namespace) -> int:
     out = _out(args.out)
     try:
-        document = extract(args.root, args.dictionary, _catalog(args.root))
-    except (ExtractionError, OSError, ValueError) as exc:
+        reading = read_publication(args.root)
+    except (ReadingError, OSError, ValueError) as exc:
         print(f"ERROR   {exc}")
         return 2
-    out.write_text(json.dumps(document, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    for problem in document["problems"]:
+    out.write_text(json.dumps(reading, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    for problem in reading["problems"]:
         print(f"PROBLEM {problem}")
-    print(f"wrote {out}: " + ", ".join(f"{k} {v}" for k, v in document["summary"].items()))
+    print(f"wrote {out}: " + ", ".join(f"{k} {v}" for k, v in reading["summary"].items()))
     return 0
 
 
@@ -91,15 +97,25 @@ def _live(args: argparse.Namespace, base: str, staged: dict[str, Any], report: d
             if info:
                 print(f"  {table}: 待新建 {len(info['create'])}，已存在不动 {info['existing']}"
                       f"（表内现有 {info['rows_before']} 行）")
+            if info and info["differ"]:
+                fields = sorted({name for item in info["differ"] for name in item["fields"]})
+                print(f"  {table}: 已存在但本次读取不同 {len(info['differ'])} 行（字段：{'、'.join(fields)}）")
         for problem in planned["problems"]:
             print(f"PROBLEM {problem}")
         report["plan"] = {t: {k: v for k, v in i.items() if k != "create"} for t, i in planned["tables"].items()}
         if not (args.write and args.yes):
-            if args.write:
-                print("--write ignored: add --yes once the dry run above has been confirmed")
+            if args.write or args.correct:
+                print("--write/--correct ignored: add --write --yes once the dry run above has been confirmed")
             print("dry run: nothing written")
             return 0
-        return 0 if _write(run, planned, args.lark_cli, report) else 1
+        written = _write(run, planned, args.lark_cli, report)
+        if args.correct:
+            fixed = correct(run, planned, args.batch)
+            report["corrected"] = fixed
+            print(f"  事实: 原地修正 {fixed['corrected']}，跳过（已有人核实或原文变了）{len(fixed['skipped'])}，"
+                  f"读回不符 {len(fixed['mismatched'])}")
+            written = written and not fixed["mismatched"]
+        return 0 if written else 1
     except LoadError as exc:
         print(f"ERROR   {exc}")
         return 2
@@ -121,9 +137,10 @@ def _stage(args: argparse.Namespace) -> int:
         staged = json.loads(args.staged.read_text(encoding="utf-8"))
         staged = {table: staged.get(table, []) for table in TABLES}
     else:
-        extraction = json.loads(args.extraction.read_text(encoding="utf-8"))
-        staged = stage_rows(extraction, _catalog(args.root), models=_split(args.models),
-                            markets=_split(args.markets), attributes=_split(args.attributes))
+        reading = json.loads(args.reading.read_text(encoding="utf-8"))
+        names = {(model, market): name for model, market, name in reading.get("names", [])}
+        staged = stage_rows(reading, _catalog(args.root), batch=args.batch, names=names,
+                            models=_split(args.models), markets=_split(args.markets))
     print("staged: " + ", ".join(f"{table} {len(staged[table])}" for table in TABLES))
     report: dict[str, Any] = {"staged": staged}
     base = args.base_token or os.environ.get(BASE_ENV)
@@ -231,23 +248,25 @@ def _update_manifest(path: Path, matrix_fields: list[dict[str, str]]) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Product information matrix: extract, stage and load.")
+    parser = argparse.ArgumentParser(description="Product information matrix: read, stage, load and generate.")
     sub = parser.add_subparsers(dest="command", required=True)
-    ex = sub.add_parser("extract", help="every specification-table row of every published Web manual")
-    ex.add_argument("--root", type=Path, required=True, help="checkout whose docs/publish holds the publication")
-    ex.add_argument("--dictionary", type=Path, default=DICTIONARY)
-    ex.add_argument("--out", type=Path, required=True, help="output file, outside any git work tree")
-    ex.set_defaults(func=_extract)
+    rd = sub.add_parser("read", help="every specification row of every published Web manual, and its facts")
+    rd.add_argument("--root", type=Path, required=True, help="checkout whose docs/publish holds the publication")
+    rd.add_argument("--out", type=Path, required=True, help="output file, outside any git work tree")
+    rd.set_defaults(func=_read)
     st = sub.add_parser("stage", help="stage 产品/属性/来源/事实 rows; with a base, plan or write them")
     given = st.add_mutually_exclusive_group(required=True)
-    given.add_argument("--extraction", type=Path, help="an extraction from the extract command")
+    given.add_argument("--reading", type=Path, help="a reading from the read command")
     given.add_argument("--staged", type=Path,
                        help="rows already staged per table ({\"产品\": [...], ...}), e.g. converted from another read")
     st.add_argument("--root", type=Path, help="checkout holding the publish manifest and the 产品分类 snapshot "
                                               "(default: this one); every 来源 must be one of its publications")
     st.add_argument("--models")
     st.add_argument("--markets")
-    st.add_argument("--attributes")
+    st.add_argument("--batch", default=f"extract-{datetime.now(timezone.utc):%Y%m%d}",
+                    help="写入批次 label for new and corrected rows (default: extract-<UTC date>)")
+    st.add_argument("--correct", action="store_true",
+                    help="with --write --yes: correct differing 事实 rows in place while they are still 候选")
     st.add_argument("--report", type=Path, help="plan / read-back report, outside any git work tree")
     st.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
     st.add_argument("--profile", help="lark-cli profile")
