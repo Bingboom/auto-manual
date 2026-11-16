@@ -1,6 +1,6 @@
 # 双平面地图：仓库、工作台、飞书 base、谁在哪跑
 
-Updated: 2026-10-23
+Updated: 2026-11-16
 
 这套系统有 **3 个 git 仓库 + 2 组飞书 base**：工程面 auto-manual、业务面 Hello-Docs、
 私有的资料开发工作台 Hello-Docs-Review（见 §1）。它们都常被叫"库"，
@@ -80,10 +80,25 @@ Updated: 2026-10-23
 **③ 发布文档管理（成品说明书目录，`product-manual-catalog` 技能读这里）** — base
 `WGVwb2HctauRi7sEiKqcIzTRn1c`，wiki 节点 `QKNGwHFwPiY7J7kZ0bzcximKnyb`：
 
-| 表名 | table_id |
+2026-11-16 用 bot 身份只读表结构，看到 8 张表：
+
+| 表名 | 说明 |
 | --- | --- |
-| 交付资料管理 | `tbldqnNBxFQsxpeN` |
-| 包材附件 | `tblmfCf3Pdk3YsdU` |
+| 说明书转网页 | 说明书与网页版的对应 |
+| 网页文档 | 已发布网页文档 |
+| 项目号 | — |
+| SKU（plm数据） | PLM 导出，带创建时间；产品信息矩阵的生效时间将从这里回填 |
+| 审核稿（工作台输出） | 工作台审核稿状态，由 `draft.json` 派生 |
+| 父-子物料映射 | — |
+| 说明书物料编码 | — |
+| 说明书附件（Ai源文件） | — |
+
+此前本节列出的「交付资料管理」「包材附件」两张表，这次读取没有看到。bot 账号可能看不到部分表，
+所以不能据此认定它们已删除；需要时用有权限的账号复核。
+
+建设中：产品信息矩阵的 5 张表（产品、属性、来源、事实、矩阵；确切表名以建表窗口的结果为准），
+定位见[Hello-Docs 定位](../code-as-doc/architecture/Hello_Docs_Positioning.md) §4.1，
+登记见[执行台账](../code-as-doc/dev/manual_revitalization_execution.md) REV-50。
 
 ## 2. 三条同步通道
 

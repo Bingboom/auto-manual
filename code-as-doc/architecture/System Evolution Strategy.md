@@ -1,6 +1,6 @@
 # System Evolution Strategy
 
-Updated: 2026-10-18
+Updated: 2026-11-16
 
 ## 1. Role
 
@@ -71,7 +71,7 @@ Applicability, provenance, approval and target-specific verification take
 precedence over similarity. Template guidance is a strategic direction, not a
 claim that automated applicability assessment has been delivered.
 
-The strategic priority is to govern approved originals and reusable assets, retain authoritative provenance and version applicability, and make selected knowledge useful to people and agents. Structured generation is an optional production route, not a prerequisite for admitting or publishing existing manuals. Selective extraction from approved editions serves concrete queries and maintenance decisions; extracted facts remain source-linked and unapproved as new authority until verified by an accountable role. Hypothetical cross-product bulk changes alone must not justify new schema, skeleton or assembly investment.
+The strategic priority is to govern approved originals and reusable assets, retain authoritative provenance and version applicability, and make selected knowledge useful to people and agents. Structured generation is an optional production route, not a prerequisite for admitting or publishing existing manuals. Selective extraction from approved editions serves concrete queries and maintenance decisions; extracted facts remain source-linked and unapproved as new authority until verified by an accountable role. Hypothetical cross-product bulk changes alone must not justify new schema, skeleton or assembly investment. The product information matrix decided on 2026-11-16 is such a concrete demand: a source-linked register of product facts, filled first from published Web manuals and then from historical specification sheets, with each value's source, applicability, effective and recorded time and verification state. It is not a content authority for any manual, not a second editable copy of manual content, and not a copy of enterprise master data; PLM records and approved manuals stay authoritative. Its scope and staging are in [Hello-Docs positioning](Hello_Docs_Positioning.md) §4.1–4.2.
 
 Writing is the main production route. In the private document workbench
 (Hello-Docs-Review), agents draft with the engineering infrastructure, governed
