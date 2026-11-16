@@ -7,7 +7,8 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 
 Since the 2026-11 redesign the page has the 阶段门 stepper above three tabs. Its headline
 (`hero.subtitle`) is, since 2026-11-16 (approved in step 12),
-「以网页说明书为入口，把产品信息、内容与表现、视觉媒体、语言管成有来源、可核实的资产；产品信息排第一。」
+「以网页说明书为入口，把产品信息、内容与表现、视觉媒体、语言管成有来源、可核实的资产。」
+(the operator removed the last clause 产品信息排第一 the same day; the layers keep their order)
 The page's wording for the data-and-template route is 退出 (operator, 2026-11-16), not
 逐步收缩; the operator's dated quote of 2026-11-06 stays as said in `focus.evidence`, with
 the positioning document cited beside it.

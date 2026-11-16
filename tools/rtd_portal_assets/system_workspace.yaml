@@ -48,8 +48,9 @@ vocabulary:
 hero:
   title: Hello Docs
   # The headline of step 12 of the 2026-11 redesign. The operator's 「都按建议」 of 2026-11-16 answered the step-12
-  # design decisions, this headline among them. Once the positioning document carries the sentence, cite it here.
-  subtitle: 以网页说明书为入口，把产品信息、内容与表现、视觉媒体、语言管成有来源、可核实的资产；产品信息排第一。
+  # design decisions, this headline among them. The same day, at the operator's request, its last clause
+  # (产品信息排第一) was removed; recorded in #1738. Once the positioning document carries the sentence, cite it here.
+  subtitle: 以网页说明书为入口，把产品信息、内容与表现、视觉媒体、语言管成有来源、可核实的资产。
   evidence:
     - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
     - "ack:操作者 2026-11-16「都按建议」"

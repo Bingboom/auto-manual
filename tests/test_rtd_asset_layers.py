@@ -256,3 +256,10 @@ class ProductValueTests(unittest.TestCase):
         cards = al.home_cards(product, {**al.layer("content")}, {**al.layer("media")}, {**al.layer("language")},
                               dict.fromkeys(ald.LAYER_IDS))
         self.assertNotIn(value, json.dumps(cards, ensure_ascii=False))
+
+
+class HeadlineTests(unittest.TestCase):
+    def test_system_headline_is_the_approved_sentence_without_its_removed_clause(self):
+        hero = sw.load_contract(ASSETS / sw.CONTRACT_NAME)["hero"]
+        self.assertEqual(hero["subtitle"], "以网页说明书为入口，把产品信息、内容与表现、视觉媒体、语言管成有来源、可核实的资产。")
+        self.assertIn("ack:操作者 2026-11-16「都按建议」", hero["evidence"])
