@@ -486,6 +486,10 @@
           "type": "text"
         },
         {
+          "name": "项目号",
+          "type": "text"
+        },
+        {
           "name": "型号",
           "type": "text"
         },
@@ -1016,6 +1020,14 @@
         {
           "name": "扩展电池接口",
           "type": "text"
+        },
+        {
+          "name": "来源",
+          "type": "text"
+        },
+        {
+          "name": "事实数",
+          "type": "number"
         },
         {
           "name": "已核实数",
