@@ -1,0 +1,1353 @@
+language,row_label,printed_variants,rows,manuals,models,table_kinds,attribute_key,mapping_note,naming_hint_from_row_key_mapping
+de,1 × AC-Eingang,1 × AC-Eingang,7,6,6,spec_section,ac_input,,ac_input
+de,1 × DC 12 V-Anschluss,1 × DC 12 V-Anschluss,5,5,5,spec_section,dc12_car_output,,
+de,1 × DC-Erweiterungsanschluss,1 × DC-Erweiterungsanschluss,6,3,3,spec_section,expansion_port_dc,,
+de,1 × USB-A,1 × USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+de,1 × USB-A 18W,1 × USB-A 18W,1,1,1,spec_section,usb_a_output,,usb_a
+de,1 × USB-A-Ausgang,1 × USB-A-Ausgang,2,2,2,spec_section,usb_a_output,,usb_a
+de,1 × USB-C-Ausgang 100 W,1 × USB-C-Ausgang 100 W,2,2,2,spec_section,usb_c_output,,usb_c
+de,1 × USB-C-Ausgang 140 W,1 × USB-C-Ausgang 140 W,1,1,1,spec_section,usb_c_output,,usb_c
+de,1 × USB-C-Ausgang 30 W,1 × USB-C-Ausgang 30 W,3,3,3,spec_section,usb_c_output,,usb_c
+de,2 | JAHRE | Standardgarantie,2 | JAHRE | Standardgarantie,1,1,1,spec_like_elsewhere,warranty_period,warranty table,
+de,2 × AC-Ausgänge,2 × AC-Ausgänge,1,1,1,spec_section,ac_output_port,,ac_output
+de,2 × DC8020-Anschlüsse,2 × DC8020-Anschlüsse,6,5,5,spec_section,dc8020_input,,
+de,2 × DC8020-Ports,2 × DC8020-Ports,1,1,1,spec_section,dc8020_input,,
+de,2 × USB-A 18W MAX,2 × USB-A 18W MAX,1,1,1,spec_section,usb_a_output,,usb_a
+de,2 × USB-A 18W-Ausgang,2 × USB-A 18W-Ausgang,1,1,1,spec_section,usb_a_output,,usb_a
+de,2 × USB-C 100W MAX,2 × USB-C 100W MAX,1,1,1,spec_section,usb_c_output,,usb_c
+de,2 × USB-C 100W-Ausgang,2 × USB-C 100W-Ausgang,1,1,1,spec_section,usb_c_output,,usb_c
+de,2 × USB-C-Ausgang,2 × USB-C-Ausgang,1,1,1,spec_section,usb_c_output,,usb_c
+de,3 × AC-Ausgang,3 × AC-Ausgang,3,3,3,spec_section,ac_output_port,,ac_output
+de,3 × AC-Ausgänge,3 × AC-Ausgänge,2,2,2,spec_section,ac_output_port,,ac_output
+de,AC-Ausgang im Bypass-Modus,AC-Ausgang im Bypass-Modus①,3,3,3,spec_section,ac_output_bypass,,ac_output
+de,AC-Ausgang im Bypassmodus,AC-Ausgang im Bypassmodus①,3,3,3,spec_section,ac_output_bypass,,ac_output
+de,AC-Gesamtleistung,AC-Gesamtleistung②,3,3,3,spec_section,ac_output_total,,ac_output
+de,Abmessungen,Abmessungen,10,10,10,"spec_section, spec_class_elsewhere",dimensions,,dimensions
+de,Abmessungen (aufgeklappt),Abmessungen (aufgeklappt),1,1,1,spec_section,dimensions_unfolded,,dimensions
+de,Abmessungen (zusammengeklappt),Abmessungen (zusammengeklappt),1,1,1,spec_section,dimensions_folded,,dimensions
+de,Ausgangsleistung,Ausgangsleistung,1,1,1,spec_section,output_power,,
+de,Ausgangsspannung,Ausgangsspannung,1,1,1,spec_section,output_voltage,,
+de,Ausgangsstrom,Ausgangsstrom,1,1,1,spec_section,output_current,,
+de,Betriebsfeuchtigkeit,Betriebsfeuchtigkeit,1,1,1,spec_section,operating_humidity,,
+de,Betriebshöhe,Betriebshöhe,1,1,1,spec_section,operating_altitude,,
+de,Betriebstemperatur,Betriebstemperatur,1,1,1,spec_section,operating_temperature,,
+de,Betriebstemperaturbereich,Betriebstemperaturbereich,1,1,1,spec_section,operating_temperature,,
+de,Bifazialitätskoeffizient (hinten/vorne),Bifazialitätskoeffizient (hinten/vorne),1,1,1,spec_section,pv_bifaciality,,
+de,Blinkend,Blinkend,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+de,DC-Eingang,DC-Eingang,1,1,1,spec_section,dc_input,,dc_input
+de,DC-Erweiterungsanschluss (Ausgang),DC-Erweiterungsanschluss (Ausgang),2,2,2,"spec_section, spec_class_elsewhere",expansion_port_dc,,
+de,DC-Erweiterungsanschluss (Eingang),DC-Erweiterungsanschluss (Eingang),2,2,2,"spec_section, spec_class_elsewhere",expansion_port_dc,,
+de,Dauerlicht,Dauerlicht,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+de,Entladetemperatur,Entladetemperatur,9,9,9,"spec_section, spec_class_elsewhere",discharge_temperature,,
+de,Gewicht,Gewicht,11,11,11,"spec_section, spec_class_elsewhere",weight,,weight
+de,HINWEISE,HINWEISE,1,1,1,spec_like_elsewhere,UNMAPPED,no rule,
+de,IEC code,IEC code,1,1,1,spec_section,iec_code,,
+de,IEC-Code,IEC-Code,1,1,1,spec_class_elsewhere,iec_code,,
+de,IP-Schutzart,IP-Schutzart,1,1,1,spec_section,ip_rating,,
+de,Kapazität,Kapazität,9,9,9,"spec_section, spec_class_elsewhere",capacity_wh,,capacity
+de,Kein Licht,Kein Licht,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+de,Kurzschlussstrom (Isc),Kurzschlussstrom (Isc),1,1,1,spec_section,pv_isc,,
+de,Ladetemperatur,Ladetemperatur,9,9,9,"spec_section, spec_class_elsewhere",charge_temperature,,
+de,Lagertemperatur,Lagertemperatur,1,1,1,spec_section,storage_temperature,,storage_temperature
+de,Leerlaufspannung (Voc),Leerlaufspannung (Voc),1,1,1,spec_section,pv_voc,,
+de,Leistungs-Temperaturkoeffizient,Leistungs-Temperaturkoeffizient,1,1,1,spec_section,pv_temp_coeff_pmax,,
+de,Maximale Leistung (Pmax),Maximale Leistung (Pmax),1,1,1,spec_section,pv_peak_power,,
+de,Maximale Systemspannung,Maximale Systemspannung,1,1,1,spec_section,pv_max_system_voltage,,
+de,Maximaler Rückstrom,Maximaler Rückstrom,1,1,1,spec_section,pv_max_reverse_current,,
+de,Modell,Modell,2,2,2,spec_section,model_number,,
+de,Modell-Nr.,Modell-Nr.,6,6,6,"spec_section, spec_class_elsewhere",model_number,,
+de,Modellnummer,Modellnummer,3,3,3,spec_section,model_number,,
+de,Nutzungsdauer,Nutzungsdauer,6,6,6,"spec_section, spec_class_elsewhere",cycle_life,,cycle_life
+de,Photovoltaik-Endverbraucherprodukte,Photovoltaik-Endverbraucherprodukte,1,1,1,spec_section,consumer_product_category,,
+de,Produktname,Produktname,11,11,11,"spec_section, spec_class_elsewhere",product_name,,product_name
+de,Schutzart,Schutzart,1,1,1,spec_section,ip_rating,,
+de,Schutzklasse gegen Stromschlag,Schutzklasse gegen Stromschlag,1,1,1,spec_section,shock_protection_class,,
+de,Spannung bei maximaler Leistung (Vmp),Spannung bei maximaler Leistung (Vmp),1,1,1,spec_section,pv_vmp,,
+de,Strom bei maximaler Leistung (Imp),Strom bei maximaler Leistung (Imp),1,1,1,spec_section,pv_imp,,
+de,Temperaturkoeffizient der Spannung,Temperaturkoeffizient der Spannung,1,1,1,spec_section,pv_temp_coeff_voc,,
+de,USB-A,USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+de,USB-A-Ausgang,USB-A-Ausgang,1,1,1,spec_section,usb_a_output,,usb_a
+de,USB-C-Ausgang,USB-C-Ausgang,1,1,1,spec_section,usb_c_output,,usb_c
+de,USB-C1,USB-C1,1,1,1,spec_section,usb_c_input,bare port label; section heading says input,usb_c
+de,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+de,USB-C1 + USB-C2,USB-C1 + USB-C2,1,1,1,spec_section,usb_combined_output,,usb_c
+de,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+de,USB-C1 / USB-C2,USB-C1 / USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+de,Zellchemie,Zellchemie,9,9,9,"spec_section, spec_class_elsewhere",cell_chemistry,,cell_chemistry
+de,Zykluslebensdauer,Zykluslebensdauer,3,3,3,spec_section,cycle_life,,cycle_life
+en,,,1,1,1,spec_like_elsewhere,UNMAPPED,empty label,
+en,1 x AC Expansion Port (Input),1 x AC Expansion Port (Input),4,2,2,spec_section,expansion_port_ac,,
+en,1 x AC Output,1 x AC Output,1,1,1,spec_section,ac_output_port,,ac_output
+en,1 x AC Output (NEMA TT-30R),1 x AC Output (NEMA TT-30R),1,1,1,spec_section,ac_output_port,,ac_output
+en,1 x DC Expansion Port (Input),1 x DC Expansion Port (Input),4,2,2,spec_section,expansion_port_dc,,
+en,1 × AC (NEMA 14-50R),1 × AC (NEMA 14-50R),2,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+en,1 × AC Expansion Port,1 × AC Expansion Port③ ‖ 1 × AC Expansion Port,4,3,3,spec_section,expansion_port_ac,,
+en,1 × AC Expansion Port (Output),1 × AC Expansion Port (Output),4,2,2,spec_section,expansion_port_ac,,
+en,1 × AC Input,1 × AC Input,24,18,16,spec_section,ac_input,,ac_input
+en,1 × AC Input / Bypass Mode,1 × AC Input / Bypass Mode①,1,1,1,spec_section,ac_input_bypass,,ac_input
+en,1 × AC Input / Charge Mode,1 × AC Input / Charge Mode,1,1,1,spec_section,ac_input,,ac_input
+en,1 × AC Output (NEMA TT-30),1 × AC Output (NEMA TT-30),2,2,2,spec_section,ac_output_port,,ac_output
+en,1 × DC 12 V Port,1 × DC 12 V Port,5,5,4,spec_section,dc12_car_output,,
+en,1 × DC 12V Port,1 × DC 12V Port,10,10,9,spec_section,dc12_car_output,,
+en,1 × DC Expansion Port,1 × DC Expansion Port,19,10,10,spec_section,expansion_port_dc,,
+en,1 × DC Expansion Port (Output),1 × DC Expansion Port (Output),4,2,2,spec_section,expansion_port_dc,,
+en,1 × DC8020 Input,1 × DC8020 Input,6,3,2,spec_section,dc8020_input,,
+en,1 × DC8020 Port,1 × DC8020 Port,8,5,3,spec_section,dc8020_input,,
+en,1 × USB-A,1 × USB-A,8,8,6,spec_section,usb_a_output,,usb_a
+en,1 × USB-A Output,1 × USB-A Output,10,9,9,spec_section,usb_a_output,,usb_a
+en,1 × USB-A Port,1 × USB-A Port,1,1,1,spec_section,usb_a_output,,usb_a
+en,1 × USB-A1 Output,1 × USB-A1 Output,2,2,1,spec_section,usb_a_output,,usb_a
+en,1 × USB-A2 Output,1 × USB-A2 Output,2,2,1,spec_section,usb_a_output,,usb_a
+en,1 × USB-C 100 W,1 × USB-C 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+en,1 × USB-C 140W Output,1 × USB-C 140W Output,3,3,3,spec_section,usb_c_output,,usb_c
+en,1 × USB-C 30 W,1 × USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+en,1 × USB-C 30W Output,1 × USB-C 30W Output,3,3,3,spec_section,usb_c_output,,usb_c
+en,1 × USB-C Input,1 × USB-C Input,4,4,2,spec_section,usb_c_input,,usb_c
+en,1 × USB-C Output,1 × USB-C Output,4,3,2,spec_section,usb_c_output,,usb_c
+en,1 × USB-C1 Input,1 × USB-C1 Input,2,2,2,spec_section,usb_c_input,,usb_c
+en,1 × USB-C1 Output,1 × USB-C1 Output,4,4,4,spec_section,usb_c_output,,usb_c
+en,1 × USB-C2 Output,1 × USB-C2 Output,4,4,4,spec_section,usb_c_output,,usb_c
+en,1 × USB-C3 Output,1 × USB-C3 Output,1,1,1,spec_section,usb_c_output,,usb_c
+en,1x AC Expansion Port,1x AC Expansion Port,1,1,1,spec_section,expansion_port_ac,,
+en,1x AC Output,1x AC Output,1,1,1,spec_section,ac_output_port,,ac_output
+en,1x Car Port,1x Car Port,1,1,1,spec_section,dc12_car_output,,
+en,1x DC Expansion Port,1x DC Expansion Port,1,1,1,spec_section,expansion_port_dc,,
+en,1× DC 12V Port,1× DC 12V Port,1,1,1,spec_section,dc12_car_output,,
+en,1× USB-A Port,1× USB-A Port,1,1,1,spec_section,usb_a_output,,usb_a
+en,1×DC8020 Port,1×DC8020 Port,2,1,1,spec_section,dc8020_input,,
+en,2 x DC Expansion Port,2 x DC Expansion Port,1,1,1,spec_section,expansion_port_dc,,
+en,2 x USB-A Output,2 x USB-A Output,2,2,2,spec_section,usb_a_output,,usb_a
+en,2 x USB-A output,2 x USB-A output:,1,1,1,spec_section,usb_a_output,,usb_a
+en,2 x USB-C Output,2 x USB-C Output ‖ 2 x USB-C Output:,3,3,3,spec_section,usb_c_output,,usb_c
+en,2 | YEARS | Standard Warranty,2 | YEARS | Standard Warranty,1,1,1,spec_like_elsewhere,warranty_period,warranty table,
+en,2 × AC,2 × AC,1,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+en,2 × AC (NEMA 5-20R),2 × AC (NEMA 5-20R),2,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+en,2 × AC Output,2 × AC Output,8,6,4,spec_section,ac_output_port,,ac_output
+en,2 × DC8020 Ports,2 × DC8020 Ports,21,18,16,spec_section,dc8020_input,,
+en,2 × DC8020 Ports / Car,2 × DC8020 Ports / Car,1,1,1,spec_section,dc8020_input,,
+en,2 × DC8020 Ports / PV,2 × DC8020 Ports / PV,1,1,1,spec_section,dc8020_input,,
+en,2 × USB-A,2 × USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+en,2 × USB-A 18 W max.,2 × USB-A 18 W max.,1,1,1,spec_section,usb_a_output,,usb_a
+en,2 × USB-A 18W Output,2 × USB-A 18W Output,1,1,1,spec_section,usb_a_output,,usb_a
+en,2 × USB-A Output,2 × USB-A Output,7,5,5,spec_section,usb_a_output,,usb_a
+en,2 × USB-C,2 × USB-C,9,6,6,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+en,2 × USB-C 100 W max.,2 × USB-C 100 W max.,1,1,1,spec_section,usb_c_output,,usb_c
+en,2 × USB-C 100W Output,2 × USB-C 100W Output,1,1,1,spec_section,usb_c_output,,usb_c
+en,2 × USB-C Output,2 × USB-C Output,9,6,6,spec_section,usb_c_output,,usb_c
+en,2x DC Expansion Port,2x DC Expansion Port,1,1,1,spec_section,expansion_port_dc,,
+en,2x USB-A Output,2x USB-A Output,1,1,1,spec_section,usb_a_output,,usb_a
+en,2x USB-C Output,2x USB-C Output,1,1,1,spec_section,usb_c_output,,usb_c
+en,3 x AC Output,3 x AC Output ‖ 3 x AC Output:,2,2,2,spec_section,ac_output_port,,ac_output
+en,3 × AC,3 × AC,6,6,5,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+en,3 × AC Output,3 × AC Output,7,7,7,spec_section,ac_output_port,,ac_output
+en,3 × USB-C Port,3 × USB-C Port,4,2,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+en,4 x AC Output,4 x AC Output,2,2,2,spec_section,ac_output_port,,ac_output
+en,4 × AC,4 × AC,2,2,2,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+en,4 × AC Output,4 × AC Output,7,5,5,spec_section,ac_output_port,,ac_output
+en,4 × AC Output (NEMA 5-20R),4 × AC Output (NEMA 5-20R),1,1,1,spec_section,ac_output_port,,ac_output
+en,4x AC Output,4x AC Output,1,1,1,spec_section,ac_output_port,,ac_output
+en,AC Input,AC Input,3,3,3,spec_section,ac_input,,ac_input
+en,AC Output,AC Output,2,2,2,spec_section,ac_output_port,,ac_output
+en,AC Output (NEMA L14-30R/14-50),AC Output (NEMA L14-30R/14-50),4,2,2,spec_section,ac_output_port,,ac_output
+en,AC Output in Bypass Mode,AC Output in Bypass Mode①,19,16,14,spec_section,ac_output_bypass,,ac_output
+en,AC Output in Bypass Mode (1),AC Output in Bypass Mode (1),1,1,1,spec_section,ac_output_bypass,,ac_output
+en,AC Output in Bypass Mode²,AC Output in Bypass Mode²,1,1,1,spec_section,ac_output_bypass,,ac_output
+en,AC Output in Bypass Mode¹,AC Output in Bypass Mode¹,4,4,4,spec_section,ac_output_bypass,,ac_output
+en,AC Total Output,AC Total Output② ‖ AC Total Output,20,17,15,spec_section,ac_output_total,,ac_output
+en,AC Total Output²,AC Total Output²,2,2,2,spec_section,ac_output_total,,ac_output
+en,AC Total Output¹,AC Total Output¹,1,1,1,spec_section,ac_output_total,,ac_output
+en,AC Voltage (Nominal),AC Voltage (Nominal),4,4,4,"spec_section, spec_class_elsewhere",ac_voltage_nominal,,
+en,All Technical Data at Standard,All Technical Data at Standard,2,2,2,spec_section,pv_test_condition,,
+en,Altitude,Altitude,2,1,1,spec_section,operating_altitude,,
+en,Application Class,Application Class,2,2,2,spec_section,pv_application_class,,
+en,Bifaciality Coefficient (back/front),Bifaciality Coefficient (back/front),8,7,6,spec_section,pv_bifaciality,,
+en,Blinking,Blinking,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+en,Branch Circuit,Branch Circuit,3,3,3,spec_section,branch_circuit,,
+en,Bypass Mode AC Input,Bypass Mode AC Input,9,3,3,spec_section,ac_input_bypass,,ac_input
+en,Bypass Mode AC Input/Output,Bypass Mode AC Input/Output,3,3,3,spec_section,ac_bypass_input_output,,
+en,Bypass Mode AC Output,Bypass Mode AC Output,7,5,5,spec_section,ac_output_bypass,,ac_output
+en,Bypass mode AC Output,Bypass mode AC Output:,1,1,1,spec_section,ac_output_bypass,,ac_output
+en,Bypass mode AC input/output,Bypass mode AC input/output,1,1,1,spec_section,ac_bypass_input_output,,
+en,Capacity,Capacity ‖ Capacity:,54,48,41,"spec_class_elsewhere, spec_section",capacity_wh | capacity_other,"capacity label but no Wh printed (volume or charge, e.g. cooler or power bank); maps differently by section heading (input/output) or table",capacity
+en,Car Port,Car Port ‖ Car Port:,6,6,6,spec_section,dc12_car_output,,
+en,Cell Chemistry,Cell Chemistry ‖ Cell Chemistry:,50,44,37,"spec_section, spec_class_elsewhere",cell_chemistry,,cell_chemistry
+en,Cell Technology,Cell Technology,2,2,2,spec_section,pv_cell_technology,,
+en,Charge Mode AC Input,Charge Mode AC Input,12,10,9,spec_section,ac_input,,ac_input
+en,Charge Temperature,Charge Temperature ‖ Charge Temperature:,38,36,31,"spec_section, spec_class_elsewhere",charge_temperature,,
+en,Charge mode AC Input,Charge mode AC Input:,1,1,1,spec_section,ac_input,,ac_input
+en,Charge mode AC input,Charge mode AC input,1,1,1,spec_section,ac_input,,ac_input
+en,Charging Temperature,Charging Temperature,16,12,10,spec_section,charge_temperature,,
+en,Cigarette Lighter Port,Cigarette Lighter Port,8,6,5,spec_section,dc12_car_output,,
+en,Communication,Communication,4,4,4,"spec_section, spec_class_elsewhere",communication,,
+en,Connector Manufacturer,Connector Manufacturer,2,2,2,spec_section,pv_connector_manufacturer,,
+en,Connector Type,Connector Type,2,2,2,spec_section,pv_connector_type,,
+en,Consumer Goods Category,Consumer Goods Category,1,1,1,spec_section,consumer_product_category,,
+en,Cycle Life,Cycle Life ‖ Cycle Life:,54,48,41,"spec_section, spec_class_elsewhere",cycle_life,,cycle_life
+en,DC 12V Port,DC 12V Port,5,5,5,spec_section,dc12_car_output,,
+en,DC Expansion Port,DC Expansion Port,1,1,1,spec_section,expansion_port_dc,,
+en,DC Expansion Port (Input),DC Expansion Port (Input),7,7,6,"spec_section, spec_class_elsewhere",expansion_port_dc,,
+en,DC Expansion Port (Output),DC Expansion Port (Output),7,7,6,"spec_section, spec_class_elsewhere",expansion_port_dc,,
+en,DC Input,DC Input ‖ DC Input:,15,10,10,spec_section,dc_input,,dc_input
+en,DC Output,DC Output,1,1,1,spec_section,dc_output,,
+en,DC input,DC input,1,1,1,spec_section,dc_input,,dc_input
+en,Dimension,Dimension,10,6,6,spec_section,dimensions,,dimensions
+en,Dimensions,Dimensions ‖ Dimensions:,56,52,46,"spec_section, spec_class_elsewhere",dimensions,,dimensions
+en,Dimensions (folded),Dimensions (folded),4,4,3,spec_section,dimensions_folded,,dimensions
+en,"Dimensions (folded, excluding junction box)","Dimensions (folded, excluding junction box)",1,1,1,spec_section,dimensions_folded,,dimensions
+en,Dimensions (unfolded),Dimensions (unfolded),4,4,3,spec_section,dimensions_unfolded,,dimensions
+en,"Dimensions (unfolded, excluding junction box)","Dimensions (unfolded, excluding junction box)",1,1,1,spec_section,dimensions_unfolded,,dimensions
+en,Discharge Temperature,Discharge Temperature ‖ Discharge Temperature:,39,36,31,"spec_section, spec_class_elsewhere",discharge_temperature,,
+en,Discharging Temperature,Discharging Temperature,20,12,10,spec_section,discharge_temperature,,
+en,Dual-port Output Mode,Dual-port Output Mode,6,1,1,spec_section,usb_combined_output,,usb_c
+en,Enclosure Type,Enclosure Type,1,1,1,spec_class_elsewhere,enclosure_type,,
+en,Enclosure Type (Distribution Panel),Enclosure Type (Distribution Panel),3,3,3,spec_section,enclosure_type,,
+en,Entire Unit,Entire Unit,6,3,3,spec_section,UNMAPPED,'Entire unit' row [value omitted]: the printed table does not say what is typed,
+en,[model list omitted],[model list omitted],1,1,1,spec_like_elsewhere,UNMAPPED,no rule,
+en,[model list omitted],[model list omitted],1,1,1,spec_like_elsewhere,UNMAPPED,no rule,
+en,[model list omitted],[model list omitted],1,1,1,spec_like_elsewhere,UNMAPPED,no rule,
+en,F0,F0,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,F1,F1,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,F2,F2,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,F6,F6,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,F7,F7,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,F8,F8,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,F9,F9,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,FA,FA,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,FC,FC,2,1,1,spec_like_elsewhere,UNMAPPED,error-code table,
+en,Fabric,Fabric,1,1,1,spec_section,fabric,,
+en,Feed-In Type,Feed-In Type,4,4,4,"spec_section, spec_class_elsewhere",feed_in_type,,
+en,Fire Rating,Fire Rating,2,2,2,spec_section,fire_rating,,
+en,Folded Dimensions,Folded Dimensions,1,1,1,spec_section,dimensions_folded,,dimensions
+en,Folded Size,Folded Size,2,2,2,spec_section,dimensions_folded,,dimensions
+en,Heating Module Input,Heating Module Input,1,1,1,spec_section,heating_module_input,,
+en,Heating Module Power,Heating Module Power,1,1,1,spec_section,heating_module_power,,
+en,High-PV,High-PV,4,2,2,spec_section,solar_input_high_voltage,,
+en,IEC Code,IEC Code,1,1,1,spec_section,iec_code,,
+en,IEC code,IEC code,1,1,1,spec_section,iec_code,,
+en,IP Rating,IP Rating,5,5,5,spec_section,ip_rating,,
+en,Impact Resistance Class,Impact Resistance Class,2,2,2,spec_section,impact_resistance_class,,
+en,Ingress Protection,Ingress Protection,4,4,4,spec_section,ip_rating,,
+en,Input,Input,1,1,1,spec_section,input_rating,,
+en,Internal Battery,Internal Battery :,1,1,1,spec_section,capacity_wh,,capacity
+en,Inverter Topology,Inverter Topology,6,3,3,spec_section,inverter_topology,,
+en,Load Circuit,Load Circuit,1,1,1,spec_class_elsewhere,load_circuit,,
+en,Low-PV,Low-PV,8,2,2,spec_section,solar_input_low_voltage,,
+en,Main Circuit,Main Circuit,4,4,4,"spec_section, spec_class_elsewhere",main_circuit,,
+en,Material,Material,2,2,2,"spec_class_elsewhere, spec_section",material,,
+en,Maximum Input Current,Maximum Input Current,4,4,4,"spec_section, spec_class_elsewhere",max_input_current,,
+en,Maximum Input Short-Circuit Current,Maximum Input Short-Circuit Current,4,4,4,"spec_section, spec_class_elsewhere",max_input_short_circuit_current,,
+en,Maximum Load,Maximum Load,1,1,1,spec_section,max_load,,
+en,Maximum Number of Parallel Connections,Maximum Number of Parallel Connections,1,1,1,spec_section,max_parallel_connections,,
+en,Maximum Number of Series Connections,Maximum Number of Series Connections,1,1,1,spec_section,max_series_connections,,
+en,Maximum Output Current,Maximum Output Current,4,4,4,"spec_section, spec_class_elsewhere",max_output_current,,
+en,Maximum Power (Pmax),Maximum Power (Pmax),3,2,2,spec_section,pv_peak_power,,
+en,Maximum Power (Pₘₐₓ),Maximum Power (Pₘₐₓ),3,3,3,spec_section,pv_peak_power,,
+en,Maximum Power Current (Imp),Maximum Power Current (Imp),2,1,1,spec_section,pv_imp,,
+en,Maximum Power Current (Iₘₚ),Maximum Power Current (Iₘₚ),3,3,3,spec_section,pv_imp,,
+en,Maximum Power Voltage (Vmp),Maximum Power Voltage (Vmp),2,1,1,spec_section,pv_vmp,,
+en,Maximum Power Voltage (Vₘₚ),Maximum Power Voltage (Vₘₚ),3,3,3,spec_section,pv_vmp,,
+en,Maximum Reverse Current,Maximum Reverse Current,9,8,7,spec_section,pv_max_reverse_current,,
+en,Maximum Series Fuse Rating,Maximum Series Fuse Rating,2,2,2,spec_section,pv_max_series_fuse,,
+en,Maximum Short Circuit Current and Duration,Maximum Short Circuit Current and Duration,9,7,7,"spec_section, spec_class_elsewhere",max_short_circuit_current_and_duration,,
+en,Maximum Short Circuit | Current and Duration,Maximum Short Circuit | Current and Duration,1,1,1,spec_section,max_short_circuit_current_and_duration,,
+en,Maximum System Voltage,Maximum System Voltage,11,10,9,spec_section,pv_max_system_voltage,,
+en,Min.Design Load,Min.Design Load,2,2,2,spec_section,pv_min_design_load,,
+en,Model,Model,8,8,8,spec_section,model_number,,
+en,Model No.,Model No. ‖ Model No.:,64,54,46,"spec_section, spec_class_elsewhere",model_number,,
+en,Model Number,Model Number,2,2,2,spec_section,model_number,,
+en,Module [T98]max,Module [T98]max,2,2,2,spec_section,pv_module_tmax,,
+en,No light,No light,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+en,Nominal Module Operating Temperature (Tnmot),Nominal Module Operating Temperature (Tnmot),2,2,2,spec_section,pv_nmot,,
+en,Number of Load Branches,Number of Load Branches,3,3,3,spec_section,number_of_load_branches,,
+en,Open Circuit Voltage (Voc),Open Circuit Voltage (Voc),8,4,4,spec_section,pv_voc,,
+en,Open circuit voltage (Voc),Open circuit voltage (Voc),1,1,1,spec_section,pv_voc,,
+en,Open-Circuit Voltage (Voc),Open-Circuit Voltage (Voc),2,1,1,spec_section,pv_voc,,
+en,Open-Circuit Voltage (Vₒ꜀),Open-Circuit Voltage (Vₒ꜀),4,4,4,spec_section,pv_voc,,
+en,Operating Temperature,Operating Temperature,4,4,4,"spec_section, spec_class_elsewhere",operating_temperature,,
+en,Operating Temperature Range,Operating Temperature Range,9,8,7,spec_section,operating_temperature,,
+en,Operating Temperature of Heating Module,Operating Temperature of Heating Module,1,1,1,spec_section,heating_module_operating_temperature,,
+en,Optimum Operating Current (Imp),Optimum Operating Current (Imp),1,1,1,spec_section,pv_imp,,
+en,Optimum Operating Voltage (Vmp),Optimum Operating Voltage (Vmp),1,1,1,spec_section,pv_vmp,,
+en,Output Current,Output Current,1,1,1,spec_section,output_current,,
+en,Output Power,Output Power,1,1,1,spec_section,output_power,,
+en,Output Voltage,Output Voltage,1,1,1,spec_section,output_voltage,,
+en,Overvoltage Category,Overvoltage Category,4,4,4,"spec_section, spec_class_elsewhere",overvoltage_category,,
+en,PPS,PPS:,1,1,1,spec_section,usb_pps,,
+en,Peak Power (Pmax),Peak Power (Pmax),6,2,2,spec_section,pv_peak_power,,
+en,Peak Power (Pₘₐₓ),Peak Power (Pₘₐₓ),1,1,1,spec_section,pv_peak_power,,
+en,Photovoltaic Consumer Products,Photovoltaic Consumer Products,5,5,4,spec_section,consumer_product_category,,
+en,Pollution Degree,Pollution Degree,1,1,1,spec_class_elsewhere,pollution_degree,,
+en,Power Consumption in Standby Mode,Power Consumption in Standby Mode,1,1,1,spec_class_elsewhere,standby_power,,
+en,Power Current (Imp),Power Current (Imp),6,2,2,spec_section,pv_imp,,
+en,Power Current (Iₘₚ),Power Current (Iₘₚ),1,1,1,spec_section,pv_imp,,
+en,Power Factor,Power Factor,6,3,3,spec_section,power_factor,,
+en,Power Temperature Coefficient,Power Temperature Coefficient,9,8,7,spec_section,pv_temp_coeff_pmax,,
+en,Power Voltage (Vmp),Power Voltage (Vmp),6,2,2,spec_section,pv_vmp,,
+en,Power Voltage (Vₘₚ),Power Voltage (Vₘₚ),1,1,1,spec_section,pv_vmp,,
+en,Product Model,Product Model,1,1,1,spec_section,model_number,,
+en,Product Name,Product Name ‖ Product Name:,75,65,57,"spec_section, spec_class_elsewhere",product_name,,product_name
+en,Protection Class Against Electric Shock,Protection Class Against Electric Shock,9,8,7,spec_section,shock_protection_class,,
+en,Protection Rating,Protection Rating,1,1,1,spec_section,ip_rating,,
+en,Quadruple-port Output Mode,Quadruple-port Output Mode,1,1,1,spec_section,usb_combined_output,,usb_c
+en,Rated Maximum Power (Pmax),Rated Maximum Power (Pmax),2,2,2,spec_section,pv_peak_power,,
+en,Rated Operating Current (Imp),Rated Operating Current (Imp),2,2,2,spec_section,pv_imp,,
+en,Rated Operating Voltage (Vmp),Rated Operating Voltage (Vmp),2,2,2,spec_section,pv_vmp,,
+en,Short Circuit Current (Isc),Short Circuit Current (Isc),8,4,4,spec_section,pv_isc,,
+en,Short circuit current (Isc),Short circuit current (Isc),1,1,1,spec_section,pv_isc,,
+en,Short-Circuit Current (Isc),Short-Circuit Current (Isc),2,1,1,spec_section,pv_isc,,
+en,Short-Circuit Current (Iₛ꜀),Short-Circuit Current (Iₛ꜀),4,4,4,spec_section,pv_isc,,
+en,Size,Size,1,1,1,spec_section,dimensions,,dimensions
+en,Size / Weight,Size / Weight,1,1,1,spec_section,dimensions_and_weight,,weight
+en,Solid,Solid,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+en,Special Feature,Special Feature,1,1,1,spec_class_elsewhere,special_feature,,
+en,Storage Temperature,Storage Temperature,1,1,1,spec_section,storage_temperature,,storage_temperature
+en,Storage Temperature of Heating Module,Storage Temperature of Heating Module,1,1,1,spec_section,heating_module_storage_temperature,,storage_temperature
+en,Total AC Output,Total AC Output② ‖ Total AC Output③,4,3,3,spec_section,ac_output_total,,ac_output
+en,Total Output,Total Output,1,1,1,spec_section,total_output,,total_output
+en,Triple-port Output Mode,Triple-port Output Mode,4,1,1,spec_section,usb_combined_output,,usb_c
+en,UPS,UPS,10,4,4,"spec_section, spec_class_elsewhere",ups,,
+en,USB Total Output,USB Total Output,1,1,1,spec_section,usb_output_total,,
+en,USB-A,USB-A,3,3,2,spec_section,usb_a_output,,usb_a
+en,USB-A + DC 12V Port,USB-A + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-A Output,USB-A Output ‖ USB-A Output:,12,12,11,spec_section,usb_a_output,,usb_a
+en,USB-A output,USB-A output,1,1,1,spec_section,usb_a_output,,usb_a
+en,USB-C (IN/OUT) Input,USB-C (IN/OUT) Input,1,1,1,spec_section,UNMAPPED,bare port label 'USB-C (IN/OUT) Input' without an input/output heading: could be usb_c_input or usb_c_output,
+en,USB-C (IN/OUT) Output,USB-C (IN/OUT) Output,1,1,1,spec_section,UNMAPPED,bare port label 'USB-C (IN/OUT) Output' without an input/output heading: could be usb_c_input or usb_c_output,
+en,USB-C (OUT),USB-C (OUT),1,1,1,spec_section,UNMAPPED,bare port label 'USB-C (OUT)' without an input/output heading: could be usb_c_input or usb_c_output,
+en,USB-C 100W,USB-C 100W,2,2,1,spec_section,usb_c_output,,usb_c
+en,USB-C 30W,USB-C 30W,2,2,1,spec_section,usb_c_output,,usb_c
+en,USB-C Output,USB-C Output,6,6,5,spec_section,usb_c_output,,usb_c
+en,USB-C1,USB-C1,5,3,2,spec_section,usb_c_input | usb_c_output,bare port label; section heading says input; bare port label; section heading says output; maps differently by section heading (input/output) or table,usb_c
+en,USB-C1 + DC 12V Port,USB-C1 + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-A,USB-C1 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-A + DC 12V Port,USB-C1 + USB-A + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,2,2,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C2,USB-C1 + USB-C2,3,3,2,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C2 + DC 12V Port,USB-C1 + USB-C2 + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,3,3,2,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C2 + USB-A + DC 12V Port,USB-C1 + USB-C2 + USB-A + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C2 + USB-C3,USB-C1 + USB-C2 + USB-C3,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C2 + USB-C3 + DC 12V Port,USB-C1 + USB-C2 + USB-C3 + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C2 + USB-C3 + USB-A,USB-C1 + USB-C2 + USB-C3 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C2 + USB-C3 + USB-A + DC 12V Port,USB-C1 + USB-C2 + USB-C3 + USB-A + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C3,USB-C1 + USB-C3,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C3 + DC 12V Port,USB-C1 + USB-C3 + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C3 + USB-A,USB-C1 + USB-C3 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 + USB-C3 + USB-A + DC 12V Port,USB-C1 + USB-C3 + USB-A + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1 / USB-C2,USB-C1 / USB-C2,2,2,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+en,USB-C1 Output,USB-C1 Output,4,4,4,spec_section,usb_c_output,,usb_c
+en,USB-C1 output,USB-C1 output,1,1,1,spec_section,usb_c_output,,usb_c
+en,USB-C1+(USB-C2+USB-A) output,USB-C1+(USB-C2+USB-A) output,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1+USB-A output,USB-C1+USB-A output,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1+USB-C2 Output,USB-C1+USB-C2 Output:,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1+USB-C2 output,USB-C1+USB-C2 output,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1+USB-C2+USB-A Output,USB-C1+USB-C2+USB-A Output:,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C1/C2 Input (Car Input),USB-C1/C2 Input (Car Input):,1,1,1,spec_section,car_input,,
+en,USB-C1/C2 Input (PD Input),USB-C1/C2 Input (PD Input):,1,1,1,spec_section,usb_c_input,,usb_c
+en,USB-C1/C2 Input (Solar Input),USB-C1/C2 Input (Solar Input):,1,1,1,spec_section,solar_input,,
+en,USB-C1/C2 Output,USB-C1/C2 Output:,1,1,1,spec_section,usb_c_output,,usb_c
+en,USB-C1/C2+USB-A Output,USB-C1/C2+USB-A Output:,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C2,USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+en,USB-C2 + DC 12V Port,USB-C2 + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C2 + USB-A,USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C2 + USB-A + DC 12V Port,USB-C2 + USB-A + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C2 + USB-C3,USB-C2 + USB-C3,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C2 + USB-C3 + DC 12V Port,USB-C2 + USB-C3 + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C2 + USB-C3 + USB-A,USB-C2 + USB-C3 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C2 + USB-C3 + USB-A + DC 12V Port,USB-C2 + USB-C3 + USB-A + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C2 Output,USB-C2 Output,4,4,4,spec_section,usb_c_output,,usb_c
+en,USB-C2 output,USB-C2 output,1,1,1,spec_section,usb_c_output,,usb_c
+en,USB-C2+USB-A output,USB-C2+USB-A output,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C3,USB-C3,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+en,USB-C3 + DC 12V Port,USB-C3 + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C3 + USB-A,USB-C3 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+en,USB-C3 + USB-A + DC 12V Port,USB-C3 + USB-A + DC 12V Port,1,1,1,spec_section,usb_combined_output,,usb_c
+en,Unfolded Dimensions,Unfolded Dimensions,1,1,1,spec_section,dimensions_unfolded,,dimensions
+en,Unfolded Size,Unfolded Size,2,2,2,spec_section,dimensions_unfolded,,dimensions
+en,Voltage Temperature Coefficient,Voltage Temperature Coefficient,9,8,7,spec_section,pv_temp_coeff_voc,,
+en,Waterproof Level,Waterproof Level,5,4,3,spec_section,ip_rating,,
+en,Weight,Weight ‖ Weight:,72,62,54,"spec_section, spec_class_elsewhere",weight,,weight
+en,Working Altitude,Working Altitude,1,1,1,spec_section,operating_altitude,,
+en,Working Humidity,Working Humidity,1,1,1,spec_section,operating_humidity,,
+en,Working Temperature,Working Temperature,1,1,1,spec_section,operating_temperature,,
+es,1 × Entrada CA,1 × Entrada CA,16,10,9,spec_section,ac_input,,ac_input
+es,1 × Puerto CC 12 V,1 × Puerto CC 12 V,2,2,2,spec_section,dc12_car_output,,
+es,1 × Puerto DC 12 V,1 × Puerto DC 12 V,1,1,1,spec_section,dc12_car_output,,
+es,1 × Puerto DC 12V,1 × Puerto DC 12V,3,3,3,spec_section,dc12_car_output,,
+es,1 × Puerto de Expansión de CA (Entrada),1 × Puerto de Expansión de CA (Entrada),2,1,1,spec_section,expansion_port_ac,,
+es,1 × Puerto de Expansión de CA (Salida),1 × Puerto de Expansión de CA (Salida),2,1,1,spec_section,expansion_port_ac,,
+es,1 × Puerto de Expansión de CC (Entrada),1 × Puerto de Expansión de CC (Entrada),2,1,1,spec_section,expansion_port_dc,,
+es,1 × Puerto de Expansión de CC (Salida),1 × Puerto de Expansión de CC (Salida),2,1,1,spec_section,expansion_port_dc,,
+es,1 × Puerto de expansión CA,1 × Puerto de expansión CA③ ‖ 1 × Puerto de expansión CA,3,2,2,spec_section,expansion_port_ac,,
+es,1 × Puerto de expansión CC,1 × Puerto de expansión CC,10,5,5,spec_section,expansion_port_dc,,
+es,1 × Salida USB-A,1 × Salida USB-A,7,6,5,spec_section,usb_a_output,,usb_a
+es,1 × Salida USB-C,1 × Salida USB-C,2,1,1,spec_section,usb_c_output,,usb_c
+es,1 × Salida USB-C 140 W,1 × Salida USB-C 140 W,1,1,1,spec_section,usb_c_output,,usb_c
+es,1 × Salida USB-C 30 W,1 × Salida USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+es,1 × Salida de CA (NEMA TT-30R),1 × Salida de CA (NEMA TT-30R),1,1,1,spec_section,ac_output_port,,ac_output
+es,1 × Salidas CA (NEMA 14-50R),1 × Salidas CA (NEMA 14-50R),2,1,1,spec_section,ac_output_port,,ac_output
+es,1 × Salidas CA (NEMA TT-30),1 × Salidas CA (NEMA TT-30),1,1,1,spec_section,ac_output_port,,ac_output
+es,1× Puerto DC 12V,1× Puerto DC 12V,1,1,1,spec_section,dc12_car_output,,
+es,2 | AÑOS | Garantía Estándar,2 | AÑOS | Garantía Estándar,1,1,1,spec_like_elsewhere,warranty_period,warranty table,
+es,2 × Puertos DC8020,2 × Puertos DC8020,13,10,9,spec_section,dc8020_input,,
+es,2 × Salida,2 × Salida,2,1,1,spec_section,output_rating,,
+es,2 × Salida USB-A,2 × Salida USB-A,3,2,2,spec_section,usb_a_output,,usb_a
+es,2 × Salida USB-A 18W,2 × Salida USB-A 18W,1,1,1,spec_section,usb_a_output,,usb_a
+es,2 × Salida USB-A 18W MAX,2 × Salida USB-A 18W MAX,1,1,1,spec_section,usb_a_output,,usb_a
+es,2 × Salida USB-C,2 × Salida USB-C,4,3,3,spec_section,usb_c_output,,usb_c
+es,2 × Salida USB-C 100W,2 × Salida USB-C 100W,1,1,1,spec_section,usb_c_output,,usb_c
+es,2 × Salida USB-C 100W MAX,2 × Salida USB-C 100W MAX,1,1,1,spec_section,usb_c_output,,usb_c
+es,2 × Salidas CA,2 × Salidas CA,1,1,1,spec_section,ac_output_port,,ac_output
+es,2 × Salidas CA (NEMA 5-20R),2 × Salidas CA (NEMA 5-20R),2,1,1,spec_section,ac_output_port,,ac_output
+es,2 × Salidas USB-C,2 × Salidas USB-C,1,1,1,spec_section,usb_c_output,,usb_c
+es,3 × Salidas CA,3 × Salidas CA,6,6,6,spec_section,ac_output_port,,ac_output
+es,4 × Salida de CA,4 × Salida de CA,3,2,2,spec_section,ac_output_port,,ac_output
+es,4 × Salidas CA (NEMA 5-20R),4 × Salidas CA (NEMA 5-20R),1,1,1,spec_section,ac_output_port,,ac_output
+es,Alta tensión FV,Alta tensión FV,2,1,1,spec_section,solar_input_high_voltage,,
+es,Altitud,Altitud,2,1,1,spec_section,operating_altitude,,
+es,Altitud de trabajo,Altitud de trabajo,1,1,1,spec_section,operating_altitude,,
+es,Baja tensión FV,Baja tensión FV,4,1,1,spec_section,solar_input_low_voltage,,
+es,CA Salida total,CA Salida total②,5,5,5,spec_section,ac_output_total,,ac_output
+es,CONSEJOS,CONSEJOS,1,1,1,spec_class_elsewhere,UNMAPPED,no rule,
+es,Capacidad,Capacidad,21,17,15,"spec_section, spec_class_elsewhere",capacity_wh,,capacity
+es,Categoría de Sobretensión,Categoría de Sobretensión,3,3,3,"spec_section, spec_class_elsewhere",overvoltage_category,,
+es,Ciclo de vida,Ciclo de vida,20,16,15,"spec_section, spec_class_elsewhere",cycle_life,,cycle_life
+es,Circuito Derivado,Circuito Derivado,2,2,2,spec_section,branch_circuit,,
+es,Circuito Principal,Circuito Principal,3,3,3,"spec_section, spec_class_elsewhere",main_circuit,,
+es,Circuito de carga,Circuito de carga,1,1,1,spec_class_elsewhere,load_circuit,,
+es,Clase de protección contra choque eléctrico,Clase de protección contra choque eléctrico,1,1,1,spec_section,shock_protection_class,,
+es,Clasificación IP,Clasificación IP,1,1,1,spec_section,ip_rating,,
+es,Coeficiente de bifacialidad (trasero/frente),Coeficiente de bifacialidad (trasero/frente),1,1,1,spec_section,pv_bifaciality,,
+es,Coeficiente de temperatura de potencia,Coeficiente de temperatura de potencia,1,1,1,spec_section,pv_temp_coeff_pmax,,
+es,Coeficiente de temperatura de voltaje,Coeficiente de temperatura de voltaje,1,1,1,spec_section,pv_temp_coeff_voc,,
+es,Comunicación,Comunicación,3,3,3,"spec_section, spec_class_elsewhere",communication,,
+es,Consumo en modo de espera,Consumo en modo de espera,1,1,1,spec_class_elsewhere,standby_power,,
+es,Corriente Máxima de Cortocircuito de Entrada,Corriente Máxima de Cortocircuito de Entrada,3,3,3,"spec_section, spec_class_elsewhere",max_input_short_circuit_current,,
+es,Corriente de Entrada Máxima,Corriente de Entrada Máxima,3,3,3,"spec_section, spec_class_elsewhere",max_input_current,,
+es,Corriente de Salida Máxima,Corriente de Salida Máxima,3,3,3,"spec_section, spec_class_elsewhere",max_output_current,,
+es,Corriente de cortocircuito (Isc),Corriente de cortocircuito (Isc),1,1,1,spec_section,pv_isc,,
+es,Corriente de salida,Corriente de salida,1,1,1,spec_section,output_current,,
+es,Corriente máxima de cortocircuito y duración,Corriente máxima de cortocircuito y duración,4,4,4,spec_section,max_short_circuit_current_and_duration,,
+es,Corriente máxima de | cortocircuito y duración,Corriente máxima de | cortocircuito y duración,1,1,1,spec_section,max_short_circuit_current_and_duration,,
+es,Corriente máxima inversa,Corriente máxima inversa,1,1,1,spec_section,pv_max_reverse_current,,
+es,Corriente para potencia máxima (Imp),Corriente para potencia máxima (Imp),1,1,1,spec_section,pv_peak_power,,
+es,Courant et durée maximum du court-circuit,Courant et durée maximum du court-circuit,2,1,1,spec_section,max_short_circuit_current_and_duration,,
+es,Código IEC,Código IEC,1,1,1,spec_section,iec_code,,
+es,Dimensiones,Dimensiones,26,20,18,"spec_section, spec_class_elsewhere",dimensions,,dimensions
+es,Dimensiones (desplegado),Dimensiones (desplegado),1,1,1,spec_section,dimensions_unfolded,,dimensions
+es,Dimensiones (plegado),Dimensiones (plegado),1,1,1,spec_section,dimensions_folded,,dimensions
+es,Entrada CA,Entrada CA,1,1,1,spec_section,ac_input,,ac_input
+es,Entrada CC,Entrada CC,1,1,1,spec_section,dc_input,,dc_input
+es,Entrada de CA en Modo de Carga,Entrada de CA en Modo de Carga,2,1,1,spec_section,ac_input,,ac_input
+es,Entrada de CA en Modo de Derivación,Entrada de CA en Modo de Derivación,4,1,1,spec_section,ac_input_bypass,,ac_input
+es,Entrada de CC,Entrada de CC,3,2,2,spec_section,dc_input,,dc_input
+es,Factor de potencia,Factor de potencia,4,2,2,spec_section,power_factor,,
+es,GND,GND,5,1,1,spec_like_elsewhere,UNMAPPED,wiring terminal table,
+es,Grado de contaminación,Grado de contaminación,1,1,1,spec_class_elsewhere,pollution_degree,,
+es,Grado de protección,Grado de protección,1,1,1,spec_section,ip_rating,,
+es,Humedad de trabajo,Humedad de trabajo,1,1,1,spec_section,operating_humidity,,
+es,IEC code,IEC code,1,1,1,spec_section,iec_code,,
+es,Intermitente,Intermitente,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+es,L1,L1,5,1,1,spec_like_elsewhere,UNMAPPED,wiring terminal table,
+es,L2,L2,5,1,1,spec_like_elsewhere,UNMAPPED,wiring terminal table,
+es,Maximum Short Circuit Current and Duration,Maximum Short Circuit Current and Duration,1,1,1,spec_class_elsewhere,max_short_circuit_current_and_duration,,
+es,Modelo,Modelo,2,2,2,spec_section,model_number,,
+es,N,N,5,1,1,spec_like_elsewhere,UNMAPPED,wiring terminal table,
+es,N de modelo,N de modelo,1,1,1,spec_section,model_number,,
+es,Nombre de producto,Nombre de producto,2,1,1,spec_section,product_name,,product_name
+es,Nombre del producto,Nombre del producto,25,21,19,"spec_section, spec_class_elsewhere",product_name,,product_name
+es,N° de modelo,N° de modelo,19,13,11,"spec_section, spec_class_elsewhere",model_number,,
+es,Nº de modelo,Nº de modelo,4,4,4,spec_section,model_number,,
+es,Número de Modelo,Número de Modelo,1,1,1,spec_section,model_number,,
+es,Número de Ramas de Carga,Número de Ramas de Carga,2,2,2,spec_section,number_of_load_branches,,
+es,Peso,Peso,27,21,19,"spec_section, spec_class_elsewhere",weight,,weight
+es,Potencia Máxima (Pmax),Potencia Máxima (Pmax),1,1,1,spec_section,pv_peak_power,,
+es,Potencia de salida,Potencia de salida,1,1,1,spec_section,output_power,,
+es,Productos de consumo fotovoltaicos,Productos de consumo fotovoltaicos,1,1,1,spec_section,consumer_product_category,,
+es,Protección contra la entrada de agua,Protección contra la entrada de agua,1,1,1,spec_section,ip_rating,,
+es,Puerto de Expansión de CC (Entrada),Puerto de Expansión de CC (Entrada),6,6,5,"spec_section, spec_class_elsewhere",expansion_port_dc,,
+es,Puerto de Expansión de CC (Salida),Puerto de Expansión de CC (Salida),6,6,5,"spec_section, spec_class_elsewhere",expansion_port_dc,,
+es,Puerto de expansión CC,Puerto de expansión CC,1,1,1,spec_section,expansion_port_dc,,
+es,Puerto para encendedor de cigarrillos,Puerto para encendedor de cigarrillos,2,1,1,spec_section,dc12_car_output,,
+es,Química Celular,Química Celular,17,15,14,"spec_section, spec_class_elsewhere",cell_chemistry,,cell_chemistry
+es,Química de celda,Química de celda,3,1,1,spec_section,cell_chemistry,,cell_chemistry
+es,Química de las celdas,Química de las celdas,1,1,1,spec_section,cell_chemistry,,cell_chemistry
+es,Rango de temperatura de funcionamiento,Rango de temperatura de funcionamiento,1,1,1,spec_section,operating_temperature,,
+es,SAI,SAI,2,1,1,spec_section,ups,,
+es,Salida USB-A,Salida USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+es,Salida USB-C,Salida USB-C,1,1,1,spec_section,usb_c_output,,usb_c
+es,Salida USB-C 100 W,Salida USB-C 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+es,Salida USB-C 100W,Salida USB-C 100W,1,1,1,spec_section,usb_c_output,,usb_c
+es,Salida USB-C 30 W,Salida USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+es,Salida USB-C 30W,Salida USB-C 30W,1,1,1,spec_section,usb_c_output,,usb_c
+es,Salida de CA (NEMA L14-30R/14-50),Salida de CA (NEMA L14-30R/14-50),2,1,1,spec_section,ac_output_port,,ac_output
+es,Salida de CA Totall,Salida de CA Totall,2,1,1,spec_section,ac_output_total,,ac_output
+es,Salida de CA del Modo de derivación,Salida de CA del Modo de derivación① ‖ Salida de CA del Modo de derivación,5,4,4,spec_section,ac_output_bypass,,ac_output
+es,Salida de CA en Modo de derivación,Salida de CA en Modo de derivación①,4,1,1,spec_section,ac_output_bypass,,ac_output
+es,Salida de CA en modo bypass,Salida de CA en modo bypass①,6,6,6,spec_section,ac_output_bypass,,ac_output
+es,Salida de CA en modo derivación,Salida de CA en modo derivación①,1,1,1,spec_section,ac_output_bypass,,ac_output
+es,Salida total de CA,Salida total de CA③,2,1,1,spec_section,ac_output_total,,ac_output
+es,Salidas CA,Salidas CA,1,1,1,spec_section,ac_output_port,,ac_output
+es,Salidas de CC,Salidas de CC,1,1,1,spec_section,dc_output,,
+es,Sin luz,Sin luz,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+es,Sólido,Sólido,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+es,Temperatura de Funcionamiento,Temperatura de Funcionamiento,3,3,3,"spec_section, spec_class_elsewhere",operating_temperature,,
+es,Temperatura de almacenamiento,Temperatura de almacenamiento,1,1,1,spec_section,storage_temperature,,storage_temperature
+es,Temperatura de carga,Temperatura de carga,20,16,14,"spec_section, spec_class_elsewhere",charge_temperature,,
+es,Temperatura de descarga,Temperatura de descarga,22,16,14,"spec_section, spec_class_elsewhere",discharge_temperature,,
+es,Temperatura de trabajo,Temperatura de trabajo,1,1,1,spec_section,operating_temperature,,
+es,Température de charge,Température de charge,1,1,1,spec_section,charge_temperature,,
+es,Température de décharge,Température de décharge,1,1,1,spec_section,discharge_temperature,,
+es,Tensión CA (Nominal),Tensión CA (Nominal),1,1,1,spec_class_elsewhere,ac_voltage_nominal,,
+es,Tensión máxima del sistema,Tensión máxima del sistema,1,1,1,spec_section,pv_max_system_voltage,,
+es,Tipo de Alimentación,Tipo de Alimentación,3,3,3,"spec_section, spec_class_elsewhere",feed_in_type,,
+es,Tipo de Caja (Panel de Distribución),Tipo de Caja (Panel de Distribución),2,2,2,spec_section,enclosure_type,,
+es,Topología de inversor,Topología de inversor,4,2,2,spec_section,inverter_topology,,
+es,UPS,UPS,4,3,3,spec_section,ups,,
+es,UPS (SAI),UPS (SAI),1,1,1,spec_class_elsewhere,ups,,
+es,USB-A,USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+es,USB-C1,USB-C1,1,1,1,spec_section,usb_c_input,bare port label; section heading says input,usb_c
+es,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+es,USB-C1 + USB-C2,USB-C1 + USB-C2,1,1,1,spec_section,usb_combined_output,,usb_c
+es,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+es,USB-C1 / USB-C2,USB-C1 / USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+es,Unidad entera,Unidad entera,4,2,2,spec_section,UNMAPPED,'Entire unit' row [value omitted]: the printed table does not say what is typed,
+es,Vida útil en ciclos,Vida útil en ciclos,1,1,1,spec_section,cycle_life,,cycle_life
+es,Voltaje CA (Nominal),Voltaje CA (Nominal),2,2,2,spec_section,ac_voltage_nominal,,
+es,Voltaje de circuito abierto (Voc),Voltaje de circuito abierto (Voc),1,1,1,spec_section,pv_voc,,
+es,Voltaje de salida,Voltaje de salida,1,1,1,spec_section,output_voltage,,
+es,Voltaje para potencia máxima (Vmp),Voltaje para potencia máxima (Vmp),1,1,1,spec_section,pv_peak_power,,
+fr,1 x Port d’extension CA (Entrée),1 x Port d’extension CA (Entrée),2,1,1,spec_section,expansion_port_ac,,
+fr,1 x Port d’extension CC (Entrée),1 x Port d’extension CC (Entrée),2,1,1,spec_section,expansion_port_dc,,
+fr,1 × Entrée CA,1 × Entrée CA,16,10,9,spec_section,ac_input,,ac_input
+fr,1 × Port CC 12 V,1 × Port CC 12 V,4,4,4,spec_section,dc12_car_output,,
+fr,1 × Port CC 12V,1 × Port CC 12V,3,3,3,spec_section,dc12_car_output,,
+fr,1 × Port d’extension CA,1 × Port d’extension CA③ ‖ 1 × Port d’extension CA,3,2,2,spec_section,expansion_port_ac,,
+fr,1 × Port d’extension CA (Sortie),1 × Port d’extension CA (Sortie),2,1,1,spec_section,expansion_port_ac,,
+fr,1 × Port d’extension CC,1 × Port d’extension CC,10,5,5,spec_section,expansion_port_dc,,
+fr,1 × Port d’extension CC (Sortie),1 × Port d’extension CC (Sortie),2,1,1,spec_section,expansion_port_dc,,
+fr,1 × Sortie CA (NEMA 14-50R),1 × Sortie CA (NEMA 14-50R),2,1,1,spec_section,ac_output_port,,ac_output
+fr,1 × Sortie CA (NEMA TT-30),1 × Sortie CA (NEMA TT-30),1,1,1,spec_section,ac_output_port,,ac_output
+fr,1 × Sortie CA (NEMA TT-30R),1 × Sortie CA (NEMA TT-30R),1,1,1,spec_section,ac_output_port,,ac_output
+fr,1 × Sortie USB-A,1 × Sortie USB-A,7,6,5,spec_section,usb_a_output,,usb_a
+fr,1 × Sortie USB-C,1 × Sortie USB-C,2,1,1,spec_section,usb_c_output,,usb_c
+fr,1 × Sortie USB-C 140 W,1 × Sortie USB-C 140 W,1,1,1,spec_section,usb_c_output,,usb_c
+fr,1 × Sortie USB-C 30 W,1 × Sortie USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+fr,2 | ANS | Garantie Standard,2 | ANS | Garantie Standard,1,1,1,spec_like_elsewhere,warranty_period,warranty table,
+fr,2 × Ports DC8020,2 × Ports DC8020,13,10,9,spec_section,dc8020_input,,
+fr,2 × Sortie,2 × Sortie,2,1,1,spec_section,output_rating,,
+fr,2 × Sortie USB-A,2 × Sortie USB-A,2,2,2,spec_section,usb_a_output,,usb_a
+fr,2 × Sortie USB-A 18W,2 × Sortie USB-A 18W,1,1,1,spec_section,usb_a_output,,usb_a
+fr,2 × Sortie USB-C,2 × Sortie USB-C,4,4,4,spec_section,usb_c_output,,usb_c
+fr,2 × Sortie USB-C 100W,2 × Sortie USB-C 100W,1,1,1,spec_section,usb_c_output,,usb_c
+fr,2 × Sorties CA,2 × Sorties CA,1,1,1,spec_section,ac_output_port,,ac_output
+fr,2 × Sorties CA (NEMA 5-20R),2 × Sorties CA (NEMA 5-20R),2,1,1,spec_section,ac_output_port,,ac_output
+fr,2 × Sorties USB-A,2 × Sorties USB-A,2,1,1,spec_section,usb_a_output,,usb_a
+fr,2 × Sorties USB-C,2 × Sorties USB-C,2,1,1,spec_section,usb_c_output,,usb_c
+fr,3 × Sortie CA,3 × Sortie CA,6,6,6,spec_section,ac_output_port,,ac_output
+fr,4 × Sortie CA,4 × Sortie CA,3,2,2,spec_section,ac_output_port,,ac_output
+fr,4 × Sortie CA (NEMA 5-20R),4 × Sortie CA (NEMA 5-20R),1,1,1,spec_section,ac_output_port,,ac_output
+fr,AC Output in Bypass Mode,AC Output in Bypass Mode①,4,1,1,spec_section,ac_output_bypass,,ac_output
+fr,Altitude,Altitude,2,1,1,spec_section,operating_altitude,,
+fr,Altitude de fonctionnement,Altitude de fonctionnement,1,1,1,spec_section,operating_altitude,,
+fr,Aucune lumière,Aucune lumière,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+fr,Capacité,Capacité,21,17,15,"spec_section, spec_class_elsewhere",capacity_wh,,capacity
+fr,Catégorie de surtension,Catégorie de surtension,3,3,3,"spec_section, spec_class_elsewhere",overvoltage_category,,
+fr,Cellule Chimique,Cellule Chimique,18,16,14,"spec_section, spec_class_elsewhere",cell_chemistry,,cell_chemistry
+fr,Chimie cellulaire,Chimie cellulaire,3,1,1,spec_section,cell_chemistry,,cell_chemistry
+fr,Circuit de branchement,Circuit de branchement,2,2,2,spec_section,branch_circuit,,
+fr,Circuit de charge,Circuit de charge,1,1,1,spec_class_elsewhere,load_circuit,,
+fr,Circuit principal,Circuit principal,3,3,3,"spec_section, spec_class_elsewhere",main_circuit,,
+fr,Classe de protection contre les chocs électriques,Classe de protection contre les chocs électriques,1,1,1,spec_section,shock_protection_class,,
+fr,Clignotant,Clignotant,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+fr,Code CEI,Code CEI,1,1,1,spec_section,iec_code,,
+fr,Coefficient de bifacialité (arrière/avant),Coefficient de bifacialité (arrière/avant),1,1,1,spec_section,pv_bifaciality,,
+fr,Coefficient de température de puissance,Coefficient de température de puissance,1,1,1,spec_section,pv_temp_coeff_pmax,,
+fr,Coefficient de température de tension,Coefficient de température de tension,1,1,1,spec_section,pv_temp_coeff_voc,,
+fr,Communication,Communication,3,3,3,"spec_section, spec_class_elsewhere",communication,,
+fr,Consommation électrique en mode veille,Consommation électrique en mode veille,1,1,1,spec_class_elsewhere,standby_power,,
+fr,Courant de court-circuit d'entrée maximal,Courant de court-circuit d'entrée maximal,2,2,2,spec_section,max_input_short_circuit_current,,
+fr,Courant de court-circuit d’entrée maximal,Courant de court-circuit d’entrée maximal,1,1,1,spec_class_elsewhere,max_input_short_circuit_current,,
+fr,Courant de sortie,Courant de sortie,1,1,1,spec_section,output_current,,
+fr,Courant de sortie maximal,Courant de sortie maximal,1,1,1,spec_class_elsewhere,max_output_current,,
+fr,Courant d’entrée maximal,Courant d’entrée maximal,1,1,1,spec_class_elsewhere,max_input_current,,
+fr,Courant et durée maximum du court-circuit,Courant et durée maximum du court-circuit,6,5,5,spec_section,max_short_circuit_current_and_duration,,
+fr,Courant et durée maximum | du court-circuit,Courant et durée maximum | du court-circuit,1,1,1,spec_section,max_short_circuit_current_and_duration,,
+fr,Courant maximal d'entrée,Courant maximal d'entrée,2,2,2,spec_section,max_input_current,,
+fr,Courant maximal de sortie,Courant maximal de sortie,2,2,2,spec_section,max_output_current,,
+fr,Courant maximal inverse,Courant maximal inverse,1,1,1,spec_section,pv_max_reverse_current,,
+fr,Courant à puissance maximale (Imp),Courant à puissance maximale (Imp),1,1,1,spec_section,pv_peak_power,,
+fr,Degré de pollution,Degré de pollution,1,1,1,spec_class_elsewhere,pollution_degree,,
+fr,Dimension,Dimension,3,1,1,spec_section,dimensions,,dimensions
+fr,Dimensions,Dimensions,23,20,18,"spec_section, spec_class_elsewhere",dimensions,,dimensions
+fr,Dimensions (déplié),Dimensions (déplié),1,1,1,spec_section,dimensions_unfolded,,dimensions
+fr,Dimensions (plié),Dimensions (plié),1,1,1,spec_section,dimensions_folded,,dimensions
+fr,Durée de vie,Durée de vie,20,16,15,"spec_section, spec_class_elsewhere",cycle_life,,cycle_life
+fr,Durée de vie en cycles,Durée de vie en cycles,1,1,1,spec_section,cycle_life,,cycle_life
+fr,Entrée CA,Entrée CA,1,1,1,spec_section,ac_input,,ac_input
+fr,Entrée CC,Entrée CC,3,2,2,spec_section,dc_input,,dc_input
+fr,Entrée DC,Entrée DC,1,1,1,spec_section,dc_input,,dc_input
+fr,Facteur de puissance,Facteur de puissance,4,2,2,spec_section,power_factor,,
+fr,Feed-In Type,Feed-In Type,2,2,2,spec_section,feed_in_type,,
+fr,Fixe,Fixe,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+fr,GND,GND,5,1,1,spec_like_elsewhere,UNMAPPED,wiring terminal table,
+fr,Humidité de fonctionnement,Humidité de fonctionnement,1,1,1,spec_section,operating_humidity,,
+fr,IEC code,IEC code,1,1,1,spec_section,iec_code,,
+fr,Indice de protection,Indice de protection,1,1,1,spec_section,ip_rating,,
+fr,Indice de protection IP,Indice de protection IP,1,1,1,spec_section,ip_rating,,
+fr,Intensité de court-circuit (Isc),Intensité de court-circuit (Isc),1,1,1,spec_section,pv_isc,,
+fr,L1,L1,5,1,1,spec_like_elsewhere,UNMAPPED,wiring terminal table,
+fr,L2,L2,5,1,1,spec_like_elsewhere,UNMAPPED,wiring terminal table,
+fr,Maximum Short Circuit Current and Duration,Maximum Short Circuit Current and Duration,1,1,1,spec_class_elsewhere,max_short_circuit_current_and_duration,,
+fr,Mode bypass Entrée CA,Mode bypass Entrée CA,4,1,1,spec_section,ac_input_bypass,,ac_input
+fr,Mode de charge Entrée CA,Mode de charge Entrée CA,2,1,1,spec_section,ac_input,,ac_input
+fr,Modèle,Modèle,2,2,2,spec_section,model_number,,
+fr,N,N,5,1,1,spec_like_elsewhere,UNMAPPED,wiring terminal table,
+fr,Nom du produit,Nom du produit,27,21,19,"spec_section, spec_class_elsewhere",product_name,,product_name
+fr,Nombre de branches de charge,Nombre de branches de charge,2,2,2,spec_section,number_of_load_branches,,
+fr,Numéro de modèle,Numéro de modèle,4,1,1,spec_section,model_number,,
+fr,N° modèle,N° modèle,21,18,16,"spec_section, spec_class_elsewhere",model_number,,
+fr,Onduleur,Onduleur,2,1,1,spec_section,UNMAPPED,'Onduleur' means inverter or UPS,
+fr,PV faible,PV faible,4,1,1,spec_section,solar_input_low_voltage,,
+fr,PV élevée,PV élevée,2,1,1,spec_section,solar_input_high_voltage,,
+fr,Plage de température de fonctionnement,Plage de température de fonctionnement,1,1,1,spec_section,operating_temperature,,
+fr,Poids,Poids,27,21,19,"spec_section, spec_class_elsewhere",weight,,weight
+fr,Port allume-cigare,Port allume-cigare,2,1,1,spec_section,dc12_car_output,,
+fr,Port d’extension CC,Port d’extension CC,1,1,1,spec_section,expansion_port_dc,,
+fr,Port d’extension CC (Entrée),Port d’extension CC (Entrée),6,6,5,"spec_section, spec_class_elsewhere",expansion_port_dc,,
+fr,Port d’extension CC (Sortie),Port d’extension CC (Sortie),6,6,5,"spec_section, spec_class_elsewhere",expansion_port_dc,,
+fr,Produits photovoltaïques grand public,Produits photovoltaïques grand public,1,1,1,spec_section,consumer_product_category,,
+fr,Protection contre les intrusions,Protection contre les intrusions,1,1,1,spec_section,ip_rating,,
+fr,Puissance de sortie,Puissance de sortie,1,1,1,spec_section,output_power,,
+fr,Puissance maximale (Pmax),Puissance maximale (Pmax),1,1,1,spec_section,pv_peak_power,,
+fr,Sortie CA,Sortie CA,1,1,1,spec_section,ac_output_port,,ac_output
+fr,Sortie CA (NEMA L14-30R/14-50),Sortie CA (NEMA L14-30R/14-50),2,1,1,spec_section,ac_output_port,,ac_output
+fr,Sortie CA en mode bypass,Sortie CA en mode bypass①,3,3,3,spec_section,ac_output_bypass,,ac_output
+fr,Sortie CA en mode dérivation,Sortie CA en mode dérivation①,7,7,7,spec_section,ac_output_bypass,,ac_output
+fr,Sortie CC,Sortie CC,1,1,1,spec_section,dc_output,,
+fr,Sortie Mode bypass CA,Sortie Mode bypass CA,2,1,1,spec_section,ac_output_bypass,,ac_output
+fr,Sortie USB-A,Sortie USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+fr,Sortie USB-C,Sortie USB-C,1,1,1,spec_section,usb_c_output,,usb_c
+fr,Sortie USB-C 100 W,Sortie USB-C 100 W,2,2,2,spec_section,usb_c_output,,usb_c
+fr,Sortie USB-C 30 W,Sortie USB-C 30 W,2,2,2,spec_section,usb_c_output,,usb_c
+fr,Sortie totale CA,Sortie totale CA② ‖ Sortie totale CA③,7,6,6,spec_section,ac_output_total,,ac_output
+fr,Température de charg,Température de charg,1,1,1,spec_section,charge_temperature,,
+fr,Température de charge,Température de charge,20,16,14,"spec_section, spec_class_elsewhere",charge_temperature,,
+fr,Température de décharge,Température de décharge,23,17,15,"spec_section, spec_class_elsewhere",discharge_temperature,,
+fr,Température de fonctionnement,Température de fonctionnement,2,2,2,"spec_section, spec_class_elsewhere",operating_temperature,,
+fr,Température de stockage,Température de stockage,1,1,1,spec_section,storage_temperature,,storage_temperature
+fr,Température opérationnelle,Température opérationnelle,2,2,2,spec_section,operating_temperature,,
+fr,Tension CA (nominale),Tension CA (nominale),1,1,1,spec_class_elsewhere,ac_voltage_nominal,,
+fr,Tension de sortie,Tension de sortie,1,1,1,spec_section,output_voltage,,
+fr,Tension en circuit ouvert (Voc),Tension en circuit ouvert (Voc),1,1,1,spec_section,pv_voc,,
+fr,Tension maximale du système,Tension maximale du système,1,1,1,spec_section,pv_max_system_voltage,,
+fr,Tension à puissance maximale (Vmp),Tension à puissance maximale (Vmp),1,1,1,spec_section,pv_peak_power,,
+fr,Topologie de l’onduleur,Topologie de l’onduleur,4,2,2,spec_section,inverter_topology,,
+fr,Total Sorties CA,Total Sorties CA,2,1,1,spec_section,ac_output_total,,ac_output
+fr,Type d'annexe (Panel de distribution),Type d'annexe (Panel de distribution),2,2,2,spec_section,enclosure_type,,
+fr,Type d’alimentation,Type d’alimentation,1,1,1,spec_class_elsewhere,feed_in_type,,
+fr,Type d’enveloppe,Type d’enveloppe,1,1,1,spec_class_elsewhere,enclosure_type,,
+fr,UPS,UPS,2,2,2,spec_section,ups,,
+fr,UPS (ASI),UPS (ASI),3,1,1,"spec_section, spec_class_elsewhere",ups,,
+fr,USB-A,USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+fr,USB-C1,USB-C1,1,1,1,spec_section,usb_c_input,bare port label; section heading says input,usb_c
+fr,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+fr,USB-C1 + USB-C2,USB-C1 + USB-C2,1,1,1,spec_section,usb_combined_output,,usb_c
+fr,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+fr,USB-C1 / USB-C2,USB-C1 / USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+fr,Unité complète,Unité complète,4,2,2,spec_section,UNMAPPED,'Entire unit' row [value omitted]: the printed table does not say what is typed,
+fr,Voltage AC (Nominal),Voltage AC (Nominal),2,2,2,spec_section,ac_voltage_nominal,,
+it,1 × Ingresso CA,1 × Ingresso CA,7,6,6,spec_section,ac_input,,ac_input
+it,1 × Porta CC 12 V,1 × Porta CC 12 V,3,3,3,spec_section,dc12_car_output,,
+it,1 × Porta di Espansione CC,1 × Porta di Espansione CC,6,3,3,spec_section,expansion_port_dc,,
+it,1 × Presa da 12 V CC,1 × Presa da 12 V CC,1,1,1,spec_section,dc12_car_output,,
+it,1 × Presa da 12V CC,1 × Presa da 12V CC,1,1,1,spec_section,dc12_car_output,,
+it,1 × USB-A,1 × USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+it,1 × USB-A 18W,1 × USB-A 18W,1,1,1,spec_section,usb_a_output,,usb_a
+it,1 × Uscita USB-A,1 × Uscita USB-A,2,2,2,spec_section,usb_a_output,,usb_a
+it,1 × Uscita USB-C 100 W,1 × Uscita USB-C 100 W,2,2,2,spec_section,usb_c_output,,usb_c
+it,1 × Uscita USB-C 140 W,1 × Uscita USB-C 140 W,1,1,1,spec_section,usb_c_output,,usb_c
+it,1 × Uscita USB-C 30 W,1 × Uscita USB-C 30 W,3,3,3,spec_section,usb_c_output,,usb_c
+it,2 porte DC8020,2 porte DC8020,3,3,3,spec_section,dc8020_input,,
+it,2 × Porte DC8020,2 × Porte DC8020,4,3,3,spec_section,dc8020_input,,
+it,2 × USB-A 18W MAX,2 × USB-A 18W MAX,1,1,1,spec_section,usb_a_output,,usb_a
+it,2 × USB-A da 18W,2 × USB-A da 18W,1,1,1,spec_section,usb_a_output,,usb_a
+it,2 × USB-C 100W MAX,2 × USB-C 100W MAX,1,1,1,spec_section,usb_c_output,,usb_c
+it,2 × USB-C da 100W,2 × USB-C da 100W,1,1,1,spec_section,usb_c_output,,usb_c
+it,2 × Uscita USB-C,2 × Uscita USB-C,1,1,1,spec_section,usb_c_output,,usb_c
+it,2 × uscite CA,2 × uscite CA,1,1,1,spec_section,ac_output_port,,ac_output
+it,3 × Uscita CA,3 × Uscita CA,4,4,4,spec_section,ac_output_port,,ac_output
+it,3 × uscite CA,3 × uscite CA,1,1,1,spec_section,ac_output_port,,ac_output
+it,Altitudine di funzionamento,Altitudine di funzionamento,1,1,1,spec_section,operating_altitude,,
+it,Capacità,Capacità,9,9,9,spec_section,capacity_wh,,capacity
+it,Chimica celle batteria,Chimica celle batteria,7,7,7,spec_section,cell_chemistry,,cell_chemistry
+it,Chimica delle celle,Chimica delle celle,2,2,2,spec_section,cell_chemistry,,cell_chemistry
+it,Classe di protezione contro le scosse elettriche,Classe di protezione contro le scosse elettriche,1,1,1,spec_section,shock_protection_class,,
+it,Codice IEC,Codice IEC,1,1,1,spec_section,iec_code,,
+it,Coefficiente di bifaccialità (posteriore/frontale),Coefficiente di bifaccialità (posteriore/frontale),1,1,1,spec_section,pv_bifaciality,,
+it,Coefficiente di temperatura della potenza,Coefficiente di temperatura della potenza,1,1,1,spec_section,pv_temp_coeff_pmax,,
+it,Coefficiente di temperatura della tensione,Coefficiente di temperatura della tensione,1,1,1,spec_section,pv_temp_coeff_voc,,
+it,Corrente di corto circuito (Isc),Corrente di corto circuito (Isc),1,1,1,spec_section,pv_isc,,
+it,Corrente di massima potenza (Imp),Corrente di massima potenza (Imp),1,1,1,spec_section,pv_imp,,
+it,Corrente di uscita,Corrente di uscita,1,1,1,spec_section,output_current,,
+it,Corrente massima di cortocircuito e durata,Corrente massima di cortocircuito e durata,1,1,1,spec_section,max_short_circuit_current_and_duration,,
+it,Dimensioni,Dimensioni,10,10,10,spec_section,dimensions,,dimensions
+it,Dimensioni (dispiegato),Dimensioni (dispiegato),1,1,1,spec_section,dimensions_unfolded,,dimensions
+it,Dimensioni (piegato),Dimensioni (piegato),1,1,1,spec_section,dimensions_folded,,dimensions
+it,Durata del ciclo,Durata del ciclo,8,8,8,spec_section,cycle_life,,cycle_life
+it,Fisso,Fisso,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+it,Gamma di Temperatura Operativa,Gamma di Temperatura Operativa,1,1,1,spec_section,operating_temperature,,
+it,Grado di protezione,Grado di protezione,1,1,1,spec_section,ip_rating,,
+it,Grado di protezione IP,Grado di protezione IP,1,1,1,spec_section,ip_rating,,
+it,IEC code,IEC code,1,1,1,spec_section,iec_code,,
+it,Ingresso CC,Ingresso CC,1,1,1,spec_section,dc_input,,dc_input
+it,Lampeggiante,Lampeggiante,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+it,Massima corrente inversa,Massima corrente inversa,1,1,1,spec_section,pv_max_reverse_current,,
+it,Modello,Modello,2,2,2,spec_section,model_number,,
+it,Modello n.,Modello n.,7,7,7,spec_section,model_number,,
+it,Nessuna luce,Nessuna luce,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+it,Nome del prodotto,Nome del prodotto,11,11,11,spec_section,product_name,,product_name
+it,Numero di modello,Numero di modello,2,2,2,spec_section,model_number,,
+it,Peso,Peso,11,11,11,spec_section,weight,,weight
+it,Porta di espansione CC (Ingresso),Porta di espansione CC (Ingresso),2,2,2,spec_section,expansion_port_dc,,
+it,Porta di espansione CC (Uscita),Porta di espansione CC (Uscita),2,2,2,spec_section,expansion_port_dc,,
+it,Potenza di uscita,Potenza di uscita,1,1,1,spec_section,output_power,,
+it,Potenza massima (Pmax),Potenza massima (Pmax),1,1,1,spec_section,pv_peak_power,,
+it,Prodotti fotovoltaici per uso domestico,Prodotti fotovoltaici per uso domestico,1,1,1,spec_section,consumer_product_category,,
+it,Temperatura di carica,Temperatura di carica,6,6,6,spec_section,charge_temperature,,
+it,Temperatura di caricatra,Temperatura di caricatra,1,1,1,spec_section,charge_temperature,,
+it,Temperatura di funzionamento,Temperatura di funzionamento,1,1,1,spec_section,operating_temperature,,
+it,Temperatura di ricarica,Temperatura di ricarica,2,2,2,spec_section,charge_temperature,,
+it,Temperatura di scarica,Temperatura di scarica,9,9,9,spec_section,discharge_temperature,,
+it,Temperatura di stoccaggio,Temperatura di stoccaggio,1,1,1,spec_section,storage_temperature,,storage_temperature
+it,Tensione a circuito aperto (Voc),Tensione a circuito aperto (Voc),1,1,1,spec_section,pv_voc,,
+it,Tensione di massima potenza (Vmp),Tensione di massima potenza (Vmp),1,1,1,spec_section,pv_vmp,,
+it,Tensione massima del sistema,Tensione massima del sistema,1,1,1,spec_section,pv_max_system_voltage,,
+it,Tensão de Saída,Tensão de Saída,1,1,1,spec_section,output_voltage,,
+it,USB-A,USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+it,USB-C1,USB-C1,1,1,1,spec_section,usb_c_input,bare port label; section heading says input,usb_c
+it,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+it,USB-C1 + USB-C2,USB-C1 + USB-C2,1,1,1,spec_section,usb_combined_output,,usb_c
+it,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+it,USB-C1 / USB-C2,USB-C1 / USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+it,Umidità di funzionamento,Umidità di funzionamento,1,1,1,spec_section,operating_humidity,,
+it,Uscita CA in modalità bypass,Uscita CA in modalità bypass①,6,6,6,spec_section,ac_output_bypass,,ac_output
+it,Uscita USB-A,Uscita USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+it,Uscita USB-C,Uscita USB-C,1,1,1,spec_section,usb_c_output,,usb_c
+it,Uscita totale CA,Uscita totale CA②,3,3,3,spec_section,ac_output_total,,ac_output
+it,Vita ciclica,Vita ciclica,1,1,1,spec_section,cycle_life,,cycle_life
+ja,1 x DC 拡張ポート（入力）,1 x DC 拡張ポート（入力）,1,1,1,spec_section,expansion_port_dc,,
+ja,1 × ACポート (NEMA L14-30R),1 × ACポート (NEMA L14-30R),1,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+ja,1 × DC 拡張ポート(出力),1 × DC 拡張ポート(出力),1,1,1,spec_section,expansion_port_dc,,
+ja,100Wのソーラーパネル（別売り）,100Wのソーラーパネル（別売り）,3,3,3,spec_like_elsewhere,solar_charge_time,charge-time table; panel size in label,
+ja,1×ACポート,1×ACポート,10,7,7,spec_section,ac_input,bare port label; section heading says input,ac_input
+ja,1×AC入力ポート,1×AC入力ポート,5,4,4,spec_section,ac_input,,ac_input
+ja,1×AC出力,1×AC出力 : ‖ 1×AC出力：,3,2,2,spec_section,ac_output_port,,ac_output
+ja,1×AC出力ポート (NEMA L5-30R),1×AC出力ポート (NEMA L5-30R),1,1,1,spec_section,ac_output_port,,ac_output
+ja,1×AC拡張ポ一卜（出力）,1×AC拡張ポ一卜（出力）,1,1,1,spec_section,expansion_port_ac,,
+ja,1×DC8020入力ポート,1×DC8020入力ポート,2,1,1,spec_section,dc8020_input,,
+ja,1×DC拡張ポ一卜,1×DC拡張ポ一卜,2,1,1,spec_section,expansion_port_dc,,
+ja,1×DC拡張ポ一卜（入力）,1×DC拡張ポ一卜（入力）,2,2,2,spec_section,expansion_port_dc,,
+ja,1×DC拡張ポ一卜（出力）,1×DC拡張ポ一卜（出力）,2,2,2,spec_section,expansion_port_dc,,
+ja,1×USB-Aポート,1×USB-Aポート,6,6,6,spec_section,usb_a_output,,usb_a
+ja,1×USB-A出力,1×USB-A出力,2,2,2,spec_section,usb_a_output,,usb_a
+ja,1×USB-A出力ポート,1×USB-A出力ポート,1,1,1,spec_section,usb_a_output,,usb_a
+ja,1×USB-C 140W出力ポート,1×USB-C 140W出力ポート,1,1,1,spec_section,usb_c_output,,usb_c
+ja,1×USB-C 30W出力ポート,1×USB-C 30W出力ポート,1,1,1,spec_section,usb_c_output,,usb_c
+ja,1×USB-C入力ポート,1×USB-C入力ポート,1,1,1,spec_section,usb_c_input,,usb_c
+ja,2 x USB-A出力,2 x USB-A出力 :,2,2,2,spec_section,usb_a_output,,usb_a
+ja,2 x USB-C出力,2 x USB-C出力 :,2,2,2,spec_section,usb_c_output,,usb_c
+ja,2 × USB-A 出力,2 × USB-A 出力,1,1,1,spec_section,usb_a_output,,usb_a
+ja,2 × USB-C 出力,2 × USB-C 出力,1,1,1,spec_section,usb_c_output,,usb_c
+ja,2×AC出力,2×AC出力 ‖ 2×AC出力 :,4,4,4,spec_section,ac_output_port,,ac_output
+ja,2×DC8020ポート,2×DC8020ポート,10,7,7,spec_section,dc8020_input,,
+ja,2×DC8020入力ポート,2×DC8020入力ポート,5,3,3,spec_section,dc8020_input,,
+ja,2×USB-A 18Wポート,2×USB-A 18Wポート,1,1,1,spec_section,usb_a_output,,usb_a
+ja,2×USB-A出力,2×USB-A出力 : ‖ 2×USB-A出力：,4,4,4,spec_section,usb_a_output,,usb_a
+ja,2×USB-A出力ポート,2×USB-A出力ポート,1,1,1,spec_section,usb_a_output,,usb_a
+ja,2×USB-C 100Wポート,2×USB-C 100Wポート,1,1,1,spec_section,usb_c_output,,usb_c
+ja,2×USB-Cポート,2×USB-Cポート,3,2,2,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+ja,2×USB-C出力,2×USB-C出力 : ‖ 2×USB-C出力 ‖ 2×USB-C出力: ‖ 2×USB-C出力：,8,6,6,spec_section,usb_c_output,,usb_c
+ja,2×USB-C出力ポート,2×USB-C出力ポート,1,1,1,spec_section,usb_c_output,,usb_c
+ja,3 x AC出力,3 x AC出力 :,2,2,2,spec_section,ac_output_port,,ac_output
+ja,32インチ液晶テレビ（60W）,32インチ液晶テレビ（60W）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,3×ACポート,3×ACポート,5,5,5,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+ja,3×AC出力,3×AC出力 : ‖ 3×AC出力 ‖ 3×AC出力：,5,5,5,spec_section,ac_output_port,,ac_output
+ja,3×USB-C出力,3×USB-C出力,3,1,1,spec_section,usb_c_output,,usb_c
+ja,4 × AC 出力,4 × AC 出力,1,1,1,spec_section,ac_output_port,,ac_output
+ja,4×ACポート,4×ACポート,2,2,2,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+ja,4×AC出力,4×AC出力 : ‖ 4×AC出力：,2,2,2,spec_section,ac_output_port,,ac_output
+ja,4×AC出力 : | 1×AC出力,4×AC出力 : | 1×AC出力 :,1,1,1,spec_section,ac_output_port,,ac_output
+ja,4×AC出力ポート,4×AC出力ポート,1,1,1,spec_section,ac_output_port,,ac_output
+ja,4×AC出力ポート（NEMA 5-20R）,4×AC出力ポート（NEMA 5-20R）,1,1,1,spec_section,ac_output_port,,ac_output
+ja,60Wのソーラーパネル（別売り）,60Wのソーラーパネル（別売り）,2,2,2,spec_like_elsewhere,solar_charge_time,charge-time table; panel size in label,
+ja,AC Total 出力,AC Total 出力,1,1,1,spec_section,ac_output_total,,ac_output
+ja,AC 出力(NEMA 6-20),AC 出力(NEMA 6-20),1,1,1,spec_section,ac_output_port,,ac_output
+ja,AC 出力(NEMA L14-30R),AC 出力(NEMA L14-30R),1,1,1,spec_section,ac_output_port,,ac_output
+ja,ACライト（5W）,ACライト（5W）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,AC入力,AC入力 : ‖ AC入力： ‖ AC入力,17,17,17,spec_section,ac_input,,ac_input
+ja,AC入力ポート,AC入力ポート,1,1,1,spec_section,ac_input,,ac_input
+ja,AC出力,AC出力 ‖ AC出力 :,6,6,6,spec_section,ac_output_port,,ac_output
+ja,AC出力 (パススルー),AC出力 (パススルー)①,1,1,1,spec_section,ac_output_bypass,,ac_output
+ja,AC出力(パススルー),AC出力(パススルー)②,1,1,1,spec_section,ac_output_bypass,,ac_output
+ja,AC出力合計,AC出力合計,4,4,4,spec_section,ac_output_total,,ac_output
+ja,AC出力（パススルー),AC出力（パススルー)②,1,1,1,spec_section,ac_output_bypass,,ac_output
+ja,AC出力（パススルー）,AC出力（パススルー）① ‖ AC出力（パススルー）②,9,9,9,spec_section,ac_output_bypass,,ac_output
+ja,AC拡張ポート,AC拡張ポート :,1,1,1,spec_section,expansion_port_ac,,
+ja,DC 入力,DC 入力,2,1,1,spec_section,dc_input,,dc_input
+ja,DC 出カ,DC 出カ,1,1,1,spec_section,dc_output,,
+ja,DC 拡張ポート (入力),DC 拡張ポート (入力),2,2,2,spec_section,expansion_port_dc,,
+ja,DC 拡張ポート (出力),DC 拡張ポート (出力),2,2,2,spec_section,expansion_port_dc,,
+ja,DC8020入力ポート,DC8020入力ポート,2,1,1,spec_section,dc8020_input,,
+ja,DC入力ポート,DC入力ポート: ‖ DC入力ポート ‖ DC入力ポート：,12,12,12,spec_section,dc_input,,dc_input
+ja,DC入力ポート(USB-C),DC入力ポート(USB-C):,2,2,2,spec_section,usb_c_input,,usb_c
+ja,DC入力（2×8020ポート）,DC入力（2×8020ポート）,1,1,1,spec_section,dc8020_input,,
+ja,DC出力,DC出力,1,1,1,spec_section,dc_output,,
+ja,DC拡張ポート,DC拡張ポート :,2,2,2,spec_section,expansion_port_dc,,
+ja,DC拡張ポート端子,DC拡張ポート端子,1,1,1,spec_section,expansion_port_dc,,
+ja,DC拡張ポート（入力）,DC拡張ポート（入力）,1,1,1,spec_section,expansion_port_dc,,
+ja,DC拡張ポート（出力）,DC拡張ポート（出力）,1,1,1,spec_section,expansion_port_dc,,
+ja,IEC Code,IEC Code,1,1,1,spec_section,iec_code,,
+ja,[model list omitted],[model list omitted],1,1,1,spec_like_elsewhere,UNMAPPED,no rule,
+ja,[model list omitted],[model list omitted],1,1,1,spec_like_elsewhere,UNMAPPED,no rule,
+ja,[model list omitted],[model list omitted],1,1,1,spec_like_elsewhere,UNMAPPED,no rule,
+ja,LEDライト（9W）,LEDライト（9W）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,PPS,PPS：,1,1,1,spec_section,usb_pps,,
+ja,UPS,UPS,1,1,1,spec_section,ups,,
+ja,USB-A,USB-A,2,2,2,spec_section,usb_a_output,,usb_a
+ja,USB-A + シガーソケット出力ポート,USB-A + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-A 出力,USB-A 出力 : ‖ USB-A 出力,2,2,2,spec_section,usb_a_output,,usb_a
+ja,USB-A出力,USB-A出力 : ‖ USB-A出力： ‖ USB-A出力 ‖ USB-A出力:,12,12,12,spec_section,usb_a_output,,usb_a
+ja,USB-C 100Wポート,USB-C 100Wポート,4,4,4,spec_section,usb_c_output,,usb_c
+ja,USB-C 30Wポート,USB-C 30Wポート,4,4,4,spec_section,usb_c_output,,usb_c
+ja,USB-C 出力,USB-C 出力,1,1,1,spec_section,usb_c_output,,usb_c
+ja,USB-C(IN/OUT) 入力,USB-C(IN/OUT) 入力 :,2,2,2,spec_section,UNMAPPED,bare port label 'USB-C(IN/OUT) 入力' without an input/output heading: could be usb_c_input or usb_c_output,
+ja,USB-C(IN/OUT) 出力,USB-C(IN/OUT) 出力 :,2,2,2,spec_section,UNMAPPED,bare port label 'USB-C(IN/OUT) 出力' without an input/output heading: could be usb_c_input or usb_c_output,
+ja,USB-C(IN/OUT)出力,USB-C(IN/OUT)出力 :,2,2,2,spec_section,UNMAPPED,bare port label 'USB-C(IN/OUT)出力' without an input/output heading: could be usb_c_input or usb_c_output,
+ja,USB-C(OUT) 出力,USB-C(OUT) 出力 :,2,2,2,spec_section,UNMAPPED,bare port label 'USB-C(OUT) 出力' without an input/output heading: could be usb_c_input or usb_c_output,
+ja,USB-C(OUT)出力,USB-C(OUT)出力 :,2,2,2,spec_section,UNMAPPED,bare port label 'USB-C(OUT)出力' without an input/output heading: could be usb_c_input or usb_c_output,
+ja,USB-C1,USB-C1,4,2,2,spec_section,usb_c_input | usb_c_output,bare port label; section heading says input; bare port label; section heading says output; maps differently by section heading (input/output) or table,usb_c
+ja,USB-C1 + USB-A,USB-C1 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-A + シガーソケット出力ポート,USB-C1 + USB-A + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C2,USB-C1 + USB-C2,2,2,2,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,2,2,2,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C2 + USB-A + シガーソケット出力ポート,USB-C1 + USB-C2 + USB-A + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C2 + USB-C3,USB-C1 + USB-C2 + USB-C3,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C2 + USB-C3 + USB-A,USB-C1 + USB-C2 + USB-C3 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C2 + USB-C3 + USB-A + シガーソケット出力ポート,USB-C1 + USB-C2 + USB-C3 + USB-A + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C2 + USB-C3 + シガーソケット出力ポート,USB-C1 + USB-C2 + USB-C3 + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C2 + シガーソケット出力ポート,USB-C1 + USB-C2 + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C3,USB-C1 + USB-C3,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C3 + USB-A,USB-C1 + USB-C3 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C3 + USB-A + シガーソケット出力ポート,USB-C1 + USB-C3 + USB-A + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + USB-C3 + シガーソケット出力ポート,USB-C1 + USB-C3 + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 + シガーソケット出力ポート,USB-C1 + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1 入力,USB-C1 入力 :,1,1,1,spec_section,usb_c_input,,usb_c
+ja,USB-C1 出力,USB-C1 出力 :,1,1,1,spec_section,usb_c_output,,usb_c
+ja,USB-C1+USB-A 出力,USB-C1+USB-A 出力 :,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1+USB-C2 出力,USB-C1+USB-C2 出力： ‖ USB-C1+USB-C2 出力 :,2,2,2,spec_section,usb_combined_output,,usb_c
+ja,USB-C1+USB-C2+USB-A 出力,USB-C1+USB-C2+USB-A 出力： ‖ USB-C1+USB-C2+USB-A 出力 :,2,2,2,spec_section,usb_combined_output,,usb_c
+ja,USB-C1/C2 入力 (PD 入力),USB-C1/C2 入力 (PD 入力)：,1,1,1,spec_section,usb_c_input,,usb_c
+ja,USB-C1/C2 入力 (ソーラー入力),USB-C1/C2 入力 (ソーラー入力)：,1,1,1,spec_section,solar_input,,
+ja,USB-C1/C2 入力 (車載入力),USB-C1/C2 入力 (車載入力)：,1,1,1,spec_section,car_input,,
+ja,USB-C1/C2 出力,USB-C1/C2 出力：,1,1,1,spec_section,usb_c_output,,usb_c
+ja,USB-C1/C2+USB-A 出力,USB-C1/C2+USB-A 出力：,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C1/USB-C2,USB-C1/USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+ja,USB-C1出力,USB-C1出力 : ‖ USB-C1出力： ‖ USB-C1出力,6,6,6,spec_section,usb_c_output,,usb_c
+ja,USB-C2,USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+ja,USB-C2 + USB-A,USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C2 + USB-A + シガーソケット出力ポート,USB-C2 + USB-A + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C2 + USB-C3,USB-C2 + USB-C3,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C2 + USB-C3 + USB-A,USB-C2 + USB-C3 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C2 + USB-C3 + USB-A + シガーソケット出力ポート,USB-C2 + USB-C3 + USB-A + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C2 + USB-C3 + シガーソケット出力ポート,USB-C2 + USB-C3 + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C2 + シガーソケット出力ポート,USB-C2 + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C2 出力,USB-C2 出力 :,1,1,1,spec_section,usb_c_output,,usb_c
+ja,USB-C2+USB-A 出力,USB-C2+USB-A 出力 :,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C2出力,USB-C2出力 : ‖ USB-C2出力： ‖ USB-C2出力,6,6,6,spec_section,usb_c_output,,usb_c
+ja,USB-C3,USB-C3,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+ja,USB-C3 + USB-A,USB-C3 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C3 + USB-A + シガーソケット出力ポート,USB-C3 + USB-A + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C3 + シガーソケット出力ポート,USB-C3 + シガーソケット出力ポート,1,1,1,spec_section,usb_combined_output,,usb_c
+ja,USB-C入力ポート,USB-C入力ポート,1,1,1,spec_section,usb_c_input,,usb_c
+ja,USB-C出力,USB-C出力:,1,1,1,spec_section,usb_c_output,,usb_c
+ja,USB出力,USB出力,1,1,1,spec_section,UNMAPPED,generic 'USB output': per-port or total not stated,
+ja,USB総出力,USB総出力 :,4,4,4,spec_section,usb_output_total,,
+ja,USB－A 出力,USB－A 出力：,1,1,1,spec_section,usb_a_output,,usb_a
+ja,[img:Li-ion 20],[img:Li-ion 20],3,3,3,spec_section,recycling_mark,,
+ja,[img:Li-ion 32],[img:Li-ion 32],10,10,10,"spec_section, spec_like_elsewhere",recycling_mark | in_box_contents,in-box table: label and value are both items; maps differently by section heading (input/output) or table,
+ja,[img:Li-ion 32] | Li-ion 32,[img:Li-ion 32] | Li-ion 32,1,1,1,spec_section,recycling_mark,,
+ja,[img:Li-ion],[img:Li-ion],1,1,1,spec_like_elsewhere,in_box_contents,in-box table: label and value are both items,
+ja,お買い上げ年月日,お買い上げ年月日,1,1,1,spec_like_elsewhere,UNMAPPED,"warranty card field, not a product attribute",
+ja,お買い上げ店,お買い上げ店,1,1,1,spec_like_elsewhere,UNMAPPED,"warranty card field, not a product attribute",
+ja,コンセント,コンセント,3,3,3,spec_like_elsewhere,ac_charge_time,charge-time table,
+ja,コンセント＋PD60W（入力）,コンセント＋PD60W（入力）,1,1,1,spec_like_elsewhere,UNMAPPED,combined charging sources in one row,
+ja,サイクル寿命,サイクル寿命 ‖ サイクル寿命：,17,17,17,spec_section,cycle_life,,cycle_life
+ja,サイクル数,サイクル数 :,1,1,1,spec_section,cycle_life,,cycle_life
+ja,サイズ & 重量,サイズ & 重量,4,4,4,spec_section,dimensions_and_weight,,weight
+ja,サイズ&重量,サイズ&重量,2,2,2,spec_section,dimensions_and_weight,,weight
+ja,サイズ＆重量,サイズ＆重量 ‖ サイズ＆重量 : ‖ サイズ＆重量：,33,33,33,spec_section,dimensions_and_weight,,weight
+ja,シガーアダプター,シガーアダプター,3,3,3,spec_like_elsewhere,car_charge_time,charge-time table,
+ja,シガーソケット出力,シガーソケット出力 : ‖ シガーソケット出力 ‖ シガーソケット出力：,28,28,28,spec_section,dc12_car_output,,
+ja,シガーソケット出力ポート,シガーソケット出力ポート,1,1,1,spec_section,dc12_car_output,,
+ja,スマートフォン（15W）（充電回数）,スマートフォン（15W）（充電回数）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,スマートフォン（18W Max）,スマートフォン（18W Max）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,タブレット（12W Max）,タブレット（12W Max）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,"ドライヤー（1,300W）","ドライヤー（1,300W）",1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,ドローン（60W）,ドローン（60W）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,ノートパソコン（30W）,ノートパソコン（30W）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,ノートパソコン（50W）,ノートパソコン（50W）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,バッテリータイプ,バッテリータイプ ‖ バッテリータイプ : ‖ バッテリータイプ： ‖ バッテリータイプ ：,33,33,33,spec_section,cell_chemistry,,cell_chemistry
+ja,パススルー充電 AC入力/出力,パススルー充電 AC入力/出力： ‖ パススルー充電 AC入力/出力,5,4,4,spec_section,ac_bypass_input_output,,
+ja,パススルー充電AC出力,パススルー充電AC出力,2,2,2,spec_section,ac_output_bypass,,ac_output
+ja,プロジェクター（100W）,プロジェクター（100W）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,"ホットプレート、卓上IH調理器（1,300W）","ホットプレート、卓上IH調理器（1,300W）",1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,両面係数(背面/前面),両面係数(背面/前面),1,1,1,spec_section,pv_bifaciality,,
+ja,付属品,付属品,3,3,3,spec_section,in_box_contents,,
+ja,低電圧入力,低電圧入力,2,1,1,spec_section,solar_input_low_voltage,,
+ja,作動温度,作動温度 :,1,1,1,spec_section,operating_temperature,,
+ja,使用高度,使用高度,1,1,1,spec_section,operating_altitude,,
+ja,保存温度,保存温度 ‖ 保存温度 : ‖ 保存温度：,43,33,33,spec_section,storage_temperature,,storage_temperature
+ja,保証期間,保証期間,4,4,4,"spec_like_elsewhere, spec_section",warranty_period,warranty table,
+ja,充電時間,充電時間,1,1,1,spec_section,UNMAPPED,charge time without the charging source,
+ja,充電池タイプ,充電池タイプ,1,1,1,spec_section,cell_chemistry,,cell_chemistry
+ja,充電池容量,充電池容量,1,1,1,spec_section,capacity_wh,,capacity
+ja,充電温度,充電温度 ‖ 充電温度 : ‖ 充電温度： ‖ 充電温度:,37,37,37,spec_section,charge_temperature,,
+ja,入力,入力 ‖ 入力 :,2,2,2,spec_section,input_rating,,
+ja,入力ポート,入力ポート,3,3,3,spec_section,input_rating,,
+ja,冷蔵庫（197W）,冷蔵庫（197W）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,出力ポート,出力ポート,3,3,3,spec_section,output_rating,,
+ja,出力温度係数,出力温度係数 ‖ 出力温度係数:,3,3,3,spec_section,pv_temp_coeff_pmax,,
+ja,動作温度,動作温度 ‖ 動作温度 : ‖ 動作温度： ‖ 動作温度:,38,36,36,spec_section,operating_temperature,,
+ja,動作温度範囲,動作温度範囲 ‖ 動作温度範囲:,3,3,3,spec_section,operating_temperature,,
+ja,動作電圧 (Vmp),動作電圧 (Vmp) ‖ 動作電圧 (Vmp):,4,3,3,spec_section,pv_vmp,,
+ja,動作電流 (Imp),動作電流 (Imp) ‖ 動作電流 (Imp) : ‖ 動作電流 (Imp):,4,3,3,spec_section,pv_imp,,
+ja,収納サイズ,収納サイズ:,3,3,3,spec_section,dimensions_folded,,dimensions
+ja,品名,品名,1,1,1,spec_like_elsewhere,UNMAPPED,"warranty card field, not a product attribute",
+ja,型名,型名,1,1,1,spec_like_elsewhere,UNMAPPED,"warranty card field, not a product attribute",
+ja,型番,型番 ‖ 型番 : ‖ 型番： ‖ 型番:,44,42,42,spec_section,model_number,,
+ja,外形寸法,外形寸法：,1,1,1,spec_section,dimensions,,dimensions
+ja,定格容量,定格容量 ‖ 定格容量 : ‖ 定格容量：,38,38,38,spec_section,capacity_wh,,capacity
+ja,定格電圧,定格電圧:,1,1,1,spec_section,ac_voltage_nominal,,
+ja,定格電流,定格電流:,1,1,1,spec_section,rated_current,,
+ja,容量,容量：,1,1,1,spec_section,capacity_wh,,capacity
+ja,寸法（展開）,寸法（展開）,1,1,1,spec_section,dimensions_unfolded,,dimensions
+ja,寸法（折りたたみ）,寸法（折りたたみ）,1,1,1,spec_section,dimensions_folded,,dimensions
+ja,展開サイズ,展開サイズ:,3,3,3,spec_section,dimensions_unfolded,,dimensions
+ja,感電保護クラス,感電保護クラス ‖ 感電保護クラス:,3,3,3,spec_section,shock_protection_class,,
+ja,扇風機、サーキュレーター（35W）,扇風機、サーキュレーター（35W）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,最大システム電圧,最大システム電圧 ‖ 最大システム電圧:,3,3,3,spec_section,pv_max_system_voltage,,
+ja,最大並列接続数,最大並列接続数:,2,2,2,spec_section,max_parallel_connections,,
+ja,最大出力,最大出力:,1,1,1,spec_section,output_power,,
+ja,最大出力 (Pmax),最大出力 (Pmax) ‖ 最大出力 (Pmax):,4,3,3,spec_section,pv_peak_power,,
+ja,最大外形寸法（ハンドル収納時）,最大外形寸法（ハンドル収納時）,1,1,1,spec_section,dimensions,,dimensions
+ja,最大直列接続数,最大直列接続数:,2,2,2,spec_section,max_series_connections,,
+ja,最大逆電流,最大逆電流 ‖ 最大逆電流:,3,3,3,spec_section,pv_max_reverse_current,,
+ja,材質,材質 :,1,1,1,spec_section,material,,
+ja,正味重量,正味重量 ‖ 正味重量:,3,3,3,spec_section,net_weight,,weight
+ja,消費財カテゴリー,消費財カテゴリー ‖ 消費財カテゴリー:,3,3,3,spec_section,consumer_product_category,,
+ja,炊飯器（430W）（使用回数）,炊飯器（430W）（使用回数）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,短絡電流,短絡電流:,1,1,1,spec_section,pv_isc,,
+ja,短絡電流 (Isc),短絡電流 (Isc) ‖ 短絡電流 (Isc):,4,3,3,spec_section,pv_isc,,
+ja,総出力,総出力 :,2,2,2,spec_section,total_output,,total_output
+ja,色,色：,1,1,1,spec_section,color,,
+ja,色/型番,色/型番 :,1,1,1,spec_section,UNMAPPED,two attributes in one label (colour and model number),
+ja,製品の名称,製品の名称 ‖ 製品の名称 : ‖ 製品の名称：,39,39,39,spec_section,product_name,,product_name
+ja,製品名,製品名： ‖ 製品名 :,2,2,2,spec_section,product_name,,product_name
+ja,製品名称,製品名称 ‖ 製品名称:,4,4,4,spec_section,product_name,,product_name
+ja,認証,認証 ‖ 認証： ‖ 認証 :,19,19,19,spec_section,certifications,,
+ja,質量,質量,1,1,1,spec_section,weight,,weight
+ja,車載冷蔵庫（60W）,車載冷蔵庫（60W）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,重量,重量： ‖ 重量:,2,2,2,spec_section,weight,,weight
+ja,開放電圧,開放電圧:,1,1,1,spec_section,pv_voc,,
+ja,開放電圧 (Voc),開放電圧 (Voc) ‖ 開放電圧 (Voc):,4,3,3,spec_section,pv_voc,,
+ja,防塵防水レベル,防塵防水レベル,1,1,1,spec_section,ip_rating,,
+ja,防水規格,防水規格:,2,2,2,spec_section,ip_rating,,
+ja,電動工具（400W）,電動工具（400W）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,電圧,電圧,1,1,1,spec_section,rated_voltage,,
+ja,電圧温度係数,電圧温度係数 ‖ 電圧温度係数:,3,3,3,spec_section,pv_temp_coeff_voc,,
+ja,"電子レンジ（1,400W）（使用回数）","電子レンジ（1,400W）（使用回数）",1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,電気ポット（910W）（使用回数）,電気ポット（910W）（使用回数）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,電気毛布（55W）,電気毛布（55W）,3,3,3,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,電気毛布（60W）,電気毛布（60W）,1,1,1,spec_like_elsewhere,runtime_estimate,usage estimate per appliance; label names the appliance,
+ja,電流,電流,1,1,1,spec_section,rated_current,,
+ja,電話,電話,1,1,1,spec_like_elsewhere,UNMAPPED,"warranty card field, not a product attribute",
+ja,高電圧入力,高電圧入力,1,1,1,spec_section,solar_input_high_voltage,,
+ja,ｼｶﾞｰｿｹｯﾄ,ｼｶﾞｰｿｹｯﾄ,2,2,2,spec_section,car_input,12V/car label under an input heading,
+ko,1 × AC 입력,1 × AC 입력,1,1,1,spec_section,ac_input,,ac_input
+ko,1 × DC 12V 포트,1 × DC 12V 포트,1,1,1,spec_section,dc12_car_output,,
+ko,2 × DC8020 입력,2 × DC8020 입력,2,1,1,spec_section,dc8020_input,,
+ko,2 × USB-A,2 × USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+ko,2 × USB-C,2 × USB-C,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+ko,3 × AC 출력,3 × AC 출력,1,1,1,spec_section,ac_output_port,,ac_output
+ko,AC 총 출력,AC 총 출력②,1,1,1,spec_section,ac_output_total,,ac_output
+ko,모델명,모델명,1,1,1,spec_section,model_number,,
+ko,무게,무게,1,1,1,spec_section,weight,,weight
+ko,바이패스 모드에서의 AC 출력,바이패스 모드에서의 AC 출력①,1,1,1,spec_section,ac_output_bypass,,ac_output
+ko,방전 온도,방전 온도,1,1,1,spec_section,discharge_temperature,,
+ko,용량,용량,1,1,1,spec_section,capacity_wh,,capacity
+ko,전지 화학,전지 화학,1,1,1,spec_section,cell_chemistry,,cell_chemistry
+ko,제품명,제품명,1,1,1,spec_section,product_name,,product_name
+ko,충전 온도,충전 온도,1,1,1,spec_section,charge_temperature,,
+ko,"충전, 방전 주기","충전, 방전 주기",1,1,1,spec_section,cycle_life,,cycle_life
+ko,크기,크기,1,1,1,spec_section,dimensions,,dimensions
+nl,1 x USB-C 100 W,1 x USB-C 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+nl,1 x USB-C 30 W,1 x USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+nl,1 × AC-ingang,1 × AC-ingang,7,6,6,spec_section,ac_input,,ac_input
+nl,1 × DC 12 V-poort,1 × DC 12 V-poort,5,5,5,spec_section,dc12_car_output,,
+nl,1 × DC-uitbreidingspoort,1 × DC-uitbreidingspoort,6,3,3,spec_section,expansion_port_dc,,
+nl,1 × USB-A,1 × USB-A,3,3,3,spec_section,usb_a_output,,usb_a
+nl,1 × USB-A-uitgang,1 × USB-A-uitgang,1,1,1,spec_section,usb_a_output,,usb_a
+nl,1 × USB-C-uitgang (140W),1 × USB-C-uitgang (140W),1,1,1,spec_section,usb_c_output,,usb_c
+nl,1 × USB-C-uitgang (30W),1 × USB-C-uitgang (30W),1,1,1,spec_section,usb_c_output,,usb_c
+nl,2 | JAAR | Standaardgarantie,2 | JAAR | Standaardgarantie,1,1,1,spec_like_elsewhere,warranty_period,warranty table,
+nl,2 × AC,2 × AC,1,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+nl,2 × DC8020-poorten,2 × DC8020-poorten,7,6,6,spec_section,dc8020_input,,
+nl,2 × USB-A 18 W max.,2 × USB-A 18 W max.,1,1,1,spec_section,usb_a_output,,usb_a
+nl,2 × USB-A-uitgang (18 W),2 × USB-A-uitgang (18 W),1,1,1,spec_section,usb_a_output,,usb_a
+nl,2 × USB-C 100 W max.,2 × USB-C 100 W max.,1,1,1,spec_section,usb_c_output,,usb_c
+nl,2 × USB-C-uitgang (100 W),2 × USB-C-uitgang (100 W),1,1,1,spec_section,usb_c_output,,usb_c
+nl,3 × AC,3 × AC,3,3,3,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+nl,3 × AC-uitgang,3 × AC-uitgang,2,2,2,spec_section,ac_output_port,,ac_output
+nl,AC-totaalvermogen,AC-totaalvermogen②,2,2,2,spec_section,ac_output_total,,ac_output
+nl,AC-uitgang in Bypassmodus,AC-uitgang in Bypassmodus ① ‖ AC-uitgang in Bypassmodus①,5,5,5,spec_section,ac_output_bypass,,ac_output
+nl,AC-uitgang in Bypassmodus 2 × USB-C,AC-uitgang in Bypassmodus① 2 × USB-C,1,1,1,spec_section,ac_output_bypass,,ac_output
+nl,AC-uitgang in Bypassmodus➀,AC-uitgang in Bypassmodus➀,1,1,1,spec_section,ac_output_bypass,,ac_output
+nl,Afmetingen,Afmetingen,10,10,10,spec_section,dimensions,,dimensions
+nl,Afmetingen (opgevouwen),Afmetingen (opgevouwen),1,1,1,spec_section,dimensions_folded,,dimensions
+nl,Afmetingen (uitgevouwen),Afmetingen (uitgevouwen),1,1,1,spec_section,dimensions_unfolded,,dimensions
+nl,Bedrijfstemperatuur,Bedrijfstemperatuur,1,1,1,spec_section,operating_temperature,,
+nl,Bedrijfstemperatuurbereik,Bedrijfstemperatuurbereik,1,1,1,spec_section,operating_temperature,,
+nl,Bedrijfsvochtigheid,Bedrijfsvochtigheid,1,1,1,spec_section,operating_humidity,,
+nl,Beschermingsgraad,Beschermingsgraad,1,1,1,spec_section,ip_rating,,
+nl,Beschermingsklasse tegen elektrische schokken,Beschermingsklasse tegen elektrische schokken,1,1,1,spec_section,shock_protection_class,,
+nl,Bifaciale coëfficiënt (achterzijde/voorzijde),Bifaciale coëfficiënt (achterzijde/voorzijde),1,1,1,spec_section,pv_bifaciality,,
+nl,Capaciteit,Capaciteit,9,9,9,spec_section,capacity_wh,,capacity
+nl,Celchemie,Celchemie,9,9,9,spec_section,cell_chemistry,,cell_chemistry
+nl,Continu,Continu,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+nl,DC-ingang,DC-ingang,1,1,1,spec_section,dc_input,,dc_input
+nl,DC-uitbreidingspoort (Uitgang),DC-uitbreidingspoort (Uitgang),2,2,2,spec_section,expansion_port_dc,,
+nl,DC-uitbreidingspoort (ingang),DC-uitbreidingspoort (ingang),2,2,2,spec_section,expansion_port_dc,,
+nl,Fotovoltaïsche consumentenproducten,Fotovoltaïsche consumentenproducten,1,1,1,spec_section,consumer_product_category,,
+nl,Geen licht,Geen licht,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+nl,Gewicht,Gewicht,11,11,11,spec_section,weight,,weight
+nl,IEC-code,IEC-code,2,2,2,spec_section,iec_code,,
+nl,IP-classificatie,IP-classificatie,1,1,1,spec_section,ip_rating,,
+nl,Knipperend,Knipperend,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+nl,Kortsluitstroom (Isc),Kortsluitstroom (Isc),1,1,1,spec_section,pv_isc,,
+nl,Levenscyclus,Levenscyclus,8,8,8,spec_section,cycle_life,,cycle_life
+nl,Levensduur,Levensduur,1,1,1,spec_section,cycle_life,,cycle_life
+nl,Maximaal vermogen (Pmax),Maximaal vermogen (Pmax),1,1,1,spec_section,pv_peak_power,,
+nl,Maximale systeemspanning,Maximale systeemspanning,1,1,1,spec_section,pv_max_system_voltage,,
+nl,Maximale terugstroom,Maximale terugstroom,1,1,1,spec_section,pv_max_reverse_current,,
+nl,Maximale vermogensspanning – Vmp,Maximale vermogensspanning – Vmp,1,1,1,spec_section,pv_vmp,,
+nl,Maximale vermogensstroom (Imp),Maximale vermogensstroom (Imp),1,1,1,spec_section,pv_imp,,
+nl,Model,Model,2,2,2,spec_section,model_number,,
+nl,Modelnummer,Modelnummer,9,9,9,spec_section,model_number,,
+nl,Ontlaadtemperatuur,Ontlaadtemperatuur,9,9,9,spec_section,discharge_temperature,,
+nl,Openklemspanning (Voc),Openklemspanning (Voc),1,1,1,spec_section,pv_voc,,
+nl,Oplaadtemperatuur,Oplaadtemperatuur,9,9,9,spec_section,charge_temperature,,
+nl,Opslagtemperatuur,Opslagtemperatuur,1,1,1,spec_section,storage_temperature,,storage_temperature
+nl,Productnaam,Productnaam,11,11,11,spec_section,product_name,,product_name
+nl,Temperatuurcoëfficiënt van het vermogen,Temperatuurcoëfficiënt van het vermogen,1,1,1,spec_section,pv_temp_coeff_pmax,,
+nl,Temperatuurcoëfficiënt van spanning,Temperatuurcoëfficiënt van spanning,1,1,1,spec_section,pv_temp_coeff_voc,,
+nl,Totale AC-uitgang,Totale AC-uitgang②,1,1,1,spec_section,ac_output_total,,ac_output
+nl,USB-A,USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+nl,USB-A-uitgang,USB-A-uitgang,1,1,1,spec_section,usb_a_output,,usb_a
+nl,USB-C 100W,USB-C 100W,1,1,1,spec_section,usb_c_output,,usb_c
+nl,USB-C 30 W,USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+nl,USB-C-uitgang,USB-C-uitgang,1,1,1,spec_section,usb_c_output,,usb_c
+nl,USB-C1,USB-C1,1,1,1,spec_section,usb_c_input,bare port label; section heading says input,usb_c
+nl,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+nl,USB-C1 + USB-C2,USB-C1 + USB-C2,1,1,1,spec_section,usb_combined_output,,usb_c
+nl,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+nl,USB-C1 / USB-C2,USB-C1 / USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+nl,Uitgangsspanning,Uitgangsspanning,1,1,1,spec_section,output_voltage,,
+nl,Uitgangsstroom,Uitgangsstroom,1,1,1,spec_section,output_current,,
+nl,Uitgangsvermogen,Uitgangsvermogen,1,1,1,spec_section,output_power,,
+nl,Werkhoogte,Werkhoogte,1,1,1,spec_section,operating_altitude,,
+pl,1 port DC 12V,1 port DC 12V,5,5,5,spec_section,dc12_car_output,,
+pl,1 port rozszerzeń DC,1 port rozszerzeń DC,6,3,3,spec_section,expansion_port_dc,,
+pl,1 wyjścia USB-C 140W,1 wyjścia USB-C 140W,1,1,1,spec_section,usb_c_output,,usb_c
+pl,1 wyjścia USB-C 30W,1 wyjścia USB-C 30W,1,1,1,spec_section,usb_c_output,,usb_c
+pl,1 wyjście USB-A,1 wyjście USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+pl,1 x USB-C 100 W,1 x USB-C 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+pl,1 x USB-C 30 W,1 x USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+pl,1 × USB-A,1 × USB-A,3,3,3,spec_section,usb_a_output,,usb_a
+pl,1 × wejście AC,1 × wejście AC,7,6,6,spec_section,ac_input,,ac_input
+pl,2 porty DC8020,2 porty DC8020,7,6,6,spec_section,dc8020_input,,
+pl,2 wyjścia USB-A 18 W,2 wyjścia USB-A 18 W,1,1,1,spec_section,usb_a_output,,usb_a
+pl,2 wyjścia USB-C 100 W,2 wyjścia USB-C 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+pl,2 | LATA | Gwarancja standardowa,2 | LATA | Gwarancja standardowa,1,1,1,spec_like_elsewhere,warranty_period,warranty table,
+pl,2 × AC,2 × AC,1,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+pl,2 × USB-A maks. 18 W,2 × USB-A maks. 18 W,1,1,1,spec_section,usb_a_output,,usb_a
+pl,2 × USB-C,2 × USB-C,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+pl,2 × USB-C maks. 100 W,2 × USB-C maks. 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+pl,3 wyjścia AC,3 wyjścia AC,2,2,2,spec_section,ac_output_port,,ac_output
+pl,3 × AC,3 × AC,3,3,3,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+pl,Całkowita moc wyjściowa AC,Całkowita moc wyjściowa AC②,2,2,2,spec_section,ac_output_total,,ac_output
+pl,Całkowita moc wyjściowa AC 2,Całkowita moc wyjściowa AC 2,1,1,1,spec_section,ac_output_total,,ac_output
+pl,Fotowoltaiczne produkty konsumenckie,Fotowoltaiczne produkty konsumenckie,1,1,1,spec_section,consumer_product_category,,
+pl,Klasa ochrony przed porażeniem elektrycznym,Klasa ochrony przed porażeniem elektrycznym,1,1,1,spec_section,shock_protection_class,,
+pl,Kod IEC,Kod IEC,2,2,2,spec_section,iec_code,,
+pl,Maksymalna moc (Pmax),Maksymalna moc (Pmax),1,1,1,spec_section,pv_peak_power,,
+pl,Maksymalne napięcie w układzie,Maksymalne napięcie w układzie,1,1,1,spec_section,pv_max_system_voltage,,
+pl,Maksymalny prąd wsteczny,Maksymalny prąd wsteczny,1,1,1,spec_section,pv_max_reverse_current,,
+pl,Miga,Miga,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+pl,Moc wyjściowa,Moc wyjściowa,1,1,1,spec_section,output_power,,
+pl,Model,Model,2,2,2,spec_section,model_number,,
+pl,Napięcie obwodu otwartego (Voc),Napięcie obwodu otwartego (Voc),1,1,1,spec_section,pv_voc,,
+pl,Napięcie przy mocy maksymalnej (Vmp),Napięcie przy mocy maksymalnej (Vmp),1,1,1,spec_section,pv_vmp,,
+pl,Napięcie wyjściowe,Napięcie wyjściowe,1,1,1,spec_section,output_voltage,,
+pl,Nazwa produktu,Nazwa produktu,11,11,11,spec_section,product_name,,product_name
+pl,Numer modelu,Numer modelu,9,9,9,spec_section,model_number,,
+pl,Pojemność,Pojemność,9,9,9,spec_section,capacity_wh,,capacity
+pl,Port rozszerzeń DC (wejściowy),Port rozszerzeń DC (wejściowy),2,2,2,spec_section,expansion_port_dc,,
+pl,Port rozszerzeń DC (wyjście),Port rozszerzeń DC (wyjście),2,2,2,spec_section,expansion_port_dc,,
+pl,Prąd przy mocy maksymalnej (Imp),Prąd przy mocy maksymalnej (Imp),1,1,1,spec_section,pv_imp,,
+pl,Prąd wyjściowy,Prąd wyjściowy,1,1,1,spec_section,output_current,,
+pl,Prąd zwarciowy (Isc),Prąd zwarciowy (Isc),1,1,1,spec_section,pv_isc,,
+pl,Stopień ochrony,Stopień ochrony,1,1,1,spec_section,ip_rating,,
+pl,Stopień ochrony IP,Stopień ochrony IP,1,1,1,spec_section,ip_rating,,
+pl,Temperatura przechowywania,Temperatura przechowywania,1,1,1,spec_section,storage_temperature,,storage_temperature
+pl,Temperatura robocza,Temperatura robocza,1,1,1,spec_section,operating_temperature,,
+pl,Temperatura rozładowania,Temperatura rozładowania,3,3,3,spec_section,discharge_temperature,,
+pl,Temperatura zasilania urządzeń odbiorczych,Temperatura zasilania urządzeń odbiorczych,6,6,6,spec_section,discharge_temperature,,
+pl,Temperatura ładowania,Temperatura ładowania,9,9,9,spec_section,charge_temperature,,
+pl,Temperaturowy współczynnik mocy,Temperaturowy współczynnik mocy,1,1,1,spec_section,pv_temp_coeff_pmax,,
+pl,Temperaturowy współczynnik napięcia,Temperaturowy współczynnik napięcia,1,1,1,spec_section,pv_temp_coeff_voc,,
+pl,Typ ogniw,Typ ogniw,9,9,9,spec_section,cell_chemistry,,cell_chemistry
+pl,USB-A,USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+pl,USB-C 100W,USB-C 100W,1,1,1,spec_section,usb_c_output,,usb_c
+pl,USB-C 30 W,USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+pl,USB-C1,USB-C1,1,1,1,spec_section,usb_c_input,bare port label; section heading says input,usb_c
+pl,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+pl,USB-C1 + USB-C2,USB-C1 + USB-C2,1,1,1,spec_section,usb_combined_output,,usb_c
+pl,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+pl,USB-C1 / USB-C2,USB-C1 / USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+pl,Waga,Waga,11,11,11,spec_section,weight,,weight
+pl,Wejście DC,Wejście DC,1,1,1,spec_section,dc_input,,dc_input
+pl,Wilgotność robocza,Wilgotność robocza,1,1,1,spec_section,operating_humidity,,
+pl,Współczynnik bifacjalności (tył/przód),Współczynnik bifacjalności (tył/przód),1,1,1,spec_section,pv_bifaciality,,
+pl,Wyjście AC w trybie obejściowym,Wyjście AC w trybie obejściowym ①,4,4,4,spec_section,ac_output_bypass,,ac_output
+pl,Wyjście AC w trybie obejściowym 1,Wyjście AC w trybie obejściowym 1,1,1,1,spec_section,ac_output_bypass,,ac_output
+pl,Wyjście AC w trybie obejściowym ➀,Wyjście AC w trybie obejściowym ➀,1,1,1,spec_section,ac_output_bypass,,ac_output
+pl,Wyjście USB-A,Wyjście USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+pl,Wyjście USB-C,Wyjście USB-C,1,1,1,spec_section,usb_c_output,,usb_c
+pl,Wymiary,Wymiary,10,10,10,spec_section,dimensions,,dimensions
+pl,Wymiary (po rozłożeniu),Wymiary (po rozłożeniu),1,1,1,spec_section,dimensions_unfolded,,dimensions
+pl,Wymiary (po złożeniu),Wymiary (po złożeniu),1,1,1,spec_section,dimensions_folded,,dimensions
+pl,Wysokość robocza,Wysokość robocza,1,1,1,spec_section,operating_altitude,,
+pl,Zakres temperatury pracy,Zakres temperatury pracy,1,1,1,spec_section,operating_temperature,,
+pl,Zaświecony,Zaświecony,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+pl,Zgaszony,Zgaszony,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+pl,Żywotność,Żywotność,8,8,8,spec_section,cycle_life,,cycle_life
+pl,Żywotność cykliczna,Żywotność cykliczna,1,1,1,spec_section,cycle_life,,cycle_life
+pt,1 x USB-C 100 W,1 x USB-C 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+pt,1 x USB-C 30 W,1 x USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+pt,1 × Entrada CA,1 × Entrada CA,7,6,6,spec_section,ac_input,,ac_input
+pt,1 × Porta CC 12 V,1 × Porta CC 12 V,5,5,5,spec_section,dc12_car_output,,
+pt,1 × Porta de expansão CC,1 × Porta de expansão CC,6,3,3,spec_section,expansion_port_dc,,
+pt,1 × Saída USB-A,1 × Saída USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+pt,1 × Saída USB-C 140 W,1 × Saída USB-C 140 W,1,1,1,spec_section,usb_c_output,,usb_c
+pt,1 × Saída USB-C 30 W,1 × Saída USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+pt,1 × USB-A,1 × USB-A,3,3,3,spec_section,usb_a_output,,usb_a
+pt,2 | ANOS | Garantia Padrão,2 | ANOS | Garantia Padrão,1,1,1,spec_like_elsewhere,warranty_period,warranty table,
+pt,2 × CA,2 × CA,1,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+pt,2 × Portas DC8020,2 × Portas DC8020,7,6,6,spec_section,dc8020_input,,
+pt,2 × Saída USB-A 18 W,2 × Saída USB-A 18 W,1,1,1,spec_section,usb_a_output,,usb_a
+pt,2 × Saída USB-C 100 W,2 × Saída USB-C 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+pt,2 × USB-A 18 W máx.,2 × USB-A 18 W máx.,1,1,1,spec_section,usb_a_output,,usb_a
+pt,2 × USB-C,2 × USB-C,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+pt,2 × USB-C 100 W máx.,2 × USB-C 100 W máx.,1,1,1,spec_section,usb_c_output,,usb_c
+pt,3 × CA,3 × CA,3,3,3,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+pt,3 × saídas CA,3 × saídas CA,2,2,2,spec_section,ac_output_port,,ac_output
+pt,Altitude de Operação,Altitude de Operação,1,1,1,spec_section,operating_altitude,,
+pt,Capacidade,Capacidade,9,9,9,spec_section,capacity_wh,,capacity
+pt,Classe de proteção contra choque elétrico,Classe de proteção contra choque elétrico,1,1,1,spec_section,shock_protection_class,,
+pt,Coeficiente de bifacialidade (traseira/frente),Coeficiente de bifacialidade (traseira/frente),1,1,1,spec_section,pv_bifaciality,,
+pt,Coeficiente de temperatura de potência,Coeficiente de temperatura de potência,1,1,1,spec_section,pv_temp_coeff_pmax,,
+pt,Coeficiente de temperatura de tensão,Coeficiente de temperatura de tensão,1,1,1,spec_section,pv_temp_coeff_voc,,
+pt,Corrente de Saída,Corrente de Saída,1,1,1,spec_section,output_current,,
+pt,Corrente de curto-circuito (Isc),Corrente de curto-circuito (Isc),1,1,1,spec_section,pv_isc,,
+pt,Corrente de máxima potência (Imp),Corrente de máxima potência (Imp),1,1,1,spec_section,pv_imp,,
+pt,Corrente reversa máxima,Corrente reversa máxima,1,1,1,spec_section,pv_max_reverse_current,,
+pt,Código IEC,Código IEC,2,2,2,spec_section,iec_code,,
+pt,Dimensões,Dimensões,10,10,10,spec_section,dimensions,,dimensions
+pt,Dimensões (desdobradas),Dimensões (desdobradas),1,1,1,spec_section,dimensions_unfolded,,dimensions
+pt,Dimensões (dobradas),Dimensões (dobradas),1,1,1,spec_section,dimensions_folded,,dimensions
+pt,Entrada CC,Entrada CC,1,1,1,spec_section,dc_input,,dc_input
+pt,Faixa de temperatura de operação,Faixa de temperatura de operação,1,1,1,spec_section,operating_temperature,,
+pt,Grau de Proteção,Grau de Proteção,1,1,1,spec_section,ip_rating,,
+pt,Modelo,Modelo,2,2,2,spec_section,model_number,,
+pt,Nome do Produto,Nome do Produto,1,1,1,spec_section,product_name,,product_name
+pt,Nome do produto,Nome do produto,10,10,10,spec_section,product_name,,product_name
+pt,Nº do modelo,Nº do modelo,9,9,9,spec_section,model_number,,
+pt,Peso,Peso,11,11,11,spec_section,weight,,weight
+pt,Piscando,Piscando,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+pt,Porta de expansão CC (Saída),Porta de expansão CC (Saída),2,2,2,spec_section,expansion_port_dc,,
+pt,Porta de expansão CC (entrada),Porta de expansão CC (entrada),2,2,2,spec_section,expansion_port_dc,,
+pt,Potência Máxima (Pmax),Potência Máxima (Pmax),1,1,1,spec_section,pv_peak_power,,
+pt,Potência de saída,Potência de saída,1,1,1,spec_section,output_power,,
+pt,Produtos fotovoltaicos de consumo,Produtos fotovoltaicos de consumo,1,1,1,spec_section,consumer_product_category,,
+pt,Química da célula,Química da célula,9,9,9,spec_section,cell_chemistry,,cell_chemistry
+pt,Saída CA em Modo de bypass,Saída CA em Modo de bypass,1,1,1,spec_section,ac_output_bypass,,ac_output
+pt,Saída CA no modo de bypass,Saída CA no modo de bypass①,4,4,4,spec_section,ac_output_bypass,,ac_output
+pt,Saída CA no modo de bypass➀,Saída CA no modo de bypass➀,1,1,1,spec_section,ac_output_bypass,,ac_output
+pt,Saída USB-A,Saída USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+pt,Saída USB-C,Saída USB-C,1,1,1,spec_section,usb_c_output,,usb_c
+pt,Saída total CA,Saída total CA②,2,2,2,spec_section,ac_output_total,,ac_output
+pt,Saída total em CA,Saída total em CA②,1,1,1,spec_section,ac_output_total,,ac_output
+pt,Sem luz,Sem luz,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+pt,Sólido,Sólido,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+pt,Temperatura de Armazenamento,Temperatura de Armazenamento,1,1,1,spec_section,storage_temperature,,storage_temperature
+pt,Temperatura de Operação,Temperatura de Operação,1,1,1,spec_section,operating_temperature,,
+pt,Temperatura de carregamento,Temperatura de carregamento,9,9,9,spec_section,charge_temperature,,
+pt,Temperatura de descarga,Temperatura de descarga,9,9,9,spec_section,discharge_temperature,,
+pt,Tensão de Saída,Tensão de Saída,1,1,1,spec_section,output_voltage,,
+pt,Tensão de circuito aberto (Voc),Tensão de circuito aberto (Voc),1,1,1,spec_section,pv_voc,,
+pt,Tensão de máxima potência (Vmp),Tensão de máxima potência (Vmp),1,1,1,spec_section,pv_vmp,,
+pt,Tensão máxima do sistema,Tensão máxima do sistema,1,1,1,spec_section,pv_max_system_voltage,,
+pt,USB-A,USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+pt,USB-C 100 W,USB-C 100 W,1,1,1,spec_section,usb_c_output,,usb_c
+pt,USB-C 30 W,USB-C 30 W,1,1,1,spec_section,usb_c_output,,usb_c
+pt,USB-C1,USB-C1,1,1,1,spec_section,usb_c_input,bare port label; section heading says input,usb_c
+pt,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+pt,USB-C1 + USB-C2,USB-C1 + USB-C2,1,1,1,spec_section,usb_combined_output,,usb_c
+pt,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+pt,USB-C1 / USB-C2,USB-C1 / USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+pt,Umidade de Operação,Umidade de Operação,1,1,1,spec_section,operating_humidity,,
+pt,Vida útil de ciclos,Vida útil de ciclos,8,8,8,spec_section,cycle_life,,cycle_life
+pt,Vida útil em ciclos,Vida útil em ciclos,1,1,1,spec_section,cycle_life,,cycle_life
+pt,Índice de proteção (IP),Índice de proteção (IP),1,1,1,spec_section,ip_rating,,
+uk,1 × USB-C 100 Вт,1 × USB-C 100 Вт,1,1,1,spec_section,usb_c_output,,usb_c
+uk,1 × USB-C 30 Вт,1 × USB-C 30 Вт,1,1,1,spec_section,usb_c_output,,usb_c
+uk,1 × Порт розширення DC,1 × Порт розширення DC,2,1,1,spec_section,expansion_port_dc,,
+uk,1 × порт DC 12 В,1 × порт DC 12 В,1,1,1,spec_section,dc12_car_output,,
+uk,1 вихід USB-A,1 вихід USB-A,2,2,2,spec_section,usb_a_output,,usb_a
+uk,1 вихід USB-A 18 Вт,1 вихід USB-A 18 Вт,1,1,1,spec_section,usb_a_output,,usb_a
+uk,1 вихід USB-A 18W,1 вихід USB-A 18W,1,1,1,spec_section,usb_a_output,,usb_a
+uk,1 вхід змінного струму,1 вхід змінного струму,7,6,6,spec_section,ac_input,,ac_input
+uk,1 порт DC 12 В,1 порт DC 12 В,1,1,1,spec_section,dc12_car_output,,
+uk,1 порт розширення постійного струму,1 порт розширення постійного струму,4,2,2,spec_section,expansion_port_dc,,
+uk,2 | РОКИ | Стандартна гарантія,2 | РОКИ | Стандартна гарантія,1,1,1,spec_like_elsewhere,warranty_period,warranty table,
+uk,2 × AC,2 × AC,1,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+uk,"2 × USB-A, вихід 18 Вт","2 × USB-A, вихід 18 Вт",1,1,1,spec_section,usb_a_output,,usb_a
+uk,"2 × USB-C, вихід 100 Вт","2 × USB-C, вихід 100 Вт",1,1,1,spec_section,usb_c_output,,usb_c
+uk,2 виходи USB-A 18W MAX,2 виходи USB-A 18W MAX,1,1,1,spec_section,usb_a_output,,usb_a
+uk,2 виходи USB-C 100W MAX,2 виходи USB-C 100W MAX,1,1,1,spec_section,usb_c_output,,usb_c
+uk,2 порти DC8020,2 порти DC8020,7,6,6,spec_section,dc8020_input,,
+uk,3 виходи AC,3 виходи AC,1,1,1,spec_section,ac_output_port,,ac_output
+uk,3 виходи змінного струму,3 виходи змінного струму,3,3,3,spec_section,ac_output_port,,ac_output
+uk,USB-A,USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+uk,USB-C1,USB-C1,1,1,1,spec_section,usb_c_input,bare port label; section heading says input,usb_c
+uk,USB-C1 + USB-A / USB-C2 + USB-A,USB-C1 + USB-A / USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+uk,USB-C1 + USB-C2,USB-C1 + USB-C2,1,1,1,spec_section,usb_combined_output,,usb_c
+uk,USB-C1 + USB-C2 + USB-A,USB-C1 + USB-C2 + USB-A,1,1,1,spec_section,usb_combined_output,,usb_c
+uk,USB-C1 / USB-C2,USB-C1 / USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+uk,Ємність,Ємність,9,9,9,spec_section,capacity_other,"capacity label but no Wh printed (volume or charge, e.g. cooler or power bank)",capacity
+uk,Блимання,Блимання,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+uk,Вага,Вага,11,11,11,spec_section,weight,,weight
+uk,Вихід AC у режимі байпасу,Вихід AC у режимі байпасу①,1,1,1,spec_section,ac_output_bypass,,ac_output
+uk,Вихід USB-A,Вихід USB-A,1,1,1,spec_section,usb_a_output,,usb_a
+uk,Вихід USB-C,Вихід USB-C,1,1,1,spec_section,usb_c_output,,usb_c
+uk,Вихід USB-C 100 Вт,Вихід USB-C 100 Вт,1,1,1,spec_section,usb_c_output,,usb_c
+uk,Вихід USB-C 140 Вт,Вихід USB-C 140 Вт,1,1,1,spec_section,usb_c_output,,usb_c
+uk,Вихід USB-C 30 Вт,Вихід USB-C 30 Вт,2,2,2,spec_section,usb_c_output,,usb_c
+uk,Вихід змінного струму × 3,Вихід змінного струму × 3,1,1,1,spec_section,ac_output_port,,ac_output
+uk,Вихід змінного струму у байпасному режимі,Вихід змінного струму у байпасному режимі①,5,5,5,spec_section,ac_output_bypass,,ac_output
+uk,Вихідна напруга,Вихідна напруга,1,1,1,spec_section,output_voltage,,
+uk,Вихідна потужність,Вихідна потужність,1,1,1,spec_section,output_power,,
+uk,Вихідний струм,Вихідний струм,1,1,1,spec_section,output_current,,
+uk,Вхід постійного струму,Вхід постійного струму,1,1,1,spec_section,dc_input,,dc_input
+uk,Діапазон робочих температур,Діапазон робочих температур,1,1,1,spec_section,operating_temperature,,
+uk,Загальний вихід змінного струму,Загальний вихід змінного струму②,3,3,3,spec_section,ac_output_total,,ac_output
+uk,Клас захисту від ураження електричним струмом,Клас захисту від ураження електричним струмом,1,1,1,spec_section,shock_protection_class,,
+uk,Код IEC,Код IEC,2,2,2,spec_section,iec_code,,
+uk,Коефіцієнт біфаціальності (тильна/лицьова),Коефіцієнт біфаціальності (тильна/лицьова),1,1,1,spec_section,pv_bifaciality,,
+uk,Максимальна напруга системи,Максимальна напруга системи,1,1,1,spec_section,pv_max_system_voltage,,
+uk,Максимальна потужність (Pmax),Максимальна потужність (Pmax),1,1,1,spec_section,pv_peak_power,,
+uk,Максимальний зворотний струм,Максимальний зворотний струм,1,1,1,spec_section,pv_max_reverse_current,,
+uk,Модель,Модель,2,2,2,spec_section,model_number,,
+uk,Назва продукту,Назва продукту,11,11,11,spec_section,product_name,,product_name
+uk,Напруга при максимальній потужності (Vmp),Напруга при максимальній потужності (Vmp),1,1,1,spec_section,pv_vmp,,
+uk,Напруга розімкнутого кола (Voc),Напруга розімкнутого кола (Voc),1,1,1,spec_section,pv_voc,,
+uk,Номер моделі,Номер моделі,8,8,8,spec_section,model_number,,
+uk,Порт постійного струму 12 В,Порт постійного струму 12 В,3,3,3,spec_section,dc12_car_output,,
+uk,Порт розширення DC (вихід),Порт розширення DC (вихід),1,1,1,spec_section,expansion_port_dc,,
+uk,Порт розширення DC (вхід),Порт розширення DC (вхід),2,2,2,spec_section,expansion_port_dc,,
+uk,Порт розширення постійного струму (вихід),Порт розширення постійного струму (вихід),1,1,1,spec_section,expansion_port_dc,,
+uk,Постійне світіння,Постійне світіння,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+uk,Ресурс циклів,Ресурс циклів,9,9,9,spec_section,cycle_life,,cycle_life
+uk,Робоча висота,Робоча висота,1,1,1,spec_section,operating_altitude,,
+uk,Робоча вологість,Робоча вологість,1,1,1,spec_section,operating_humidity,,
+uk,Робоча температура,Робоча температура,1,1,1,spec_section,operating_temperature,,
+uk,Розміри,Розміри,10,10,10,spec_section,dimensions,,dimensions
+uk,Розміри (у розкладеному стані),Розміри (у розкладеному стані),1,1,1,spec_section,dimensions_unfolded,,dimensions
+uk,Розміри (у складеному стані),Розміри (у складеному стані),1,1,1,spec_section,dimensions_folded,,dimensions
+uk,Світіння відсутнє,Світіння відсутнє,3,1,1,spec_like_elsewhere,UNMAPPED,compatibility / status table,
+uk,Струм короткого замикання (Isc),Струм короткого замикання (Isc),1,1,1,spec_section,pv_isc,,
+uk,Струм при максимальній потужності (Imp),Струм при максимальній потужності (Imp),1,1,1,spec_section,pv_imp,,
+uk,Ступінь захисту,Ступінь захисту,1,1,1,spec_section,ip_rating,,
+uk,Ступінь захисту IP,Ступінь захисту IP,1,1,1,spec_section,ip_rating,,
+uk,Температура заряджання,Температура заряджання,9,9,9,spec_section,charge_temperature,,
+uk,Температура зберігання,Температура зберігання,1,1,1,spec_section,storage_temperature,,storage_temperature
+uk,Температура розряджання,Температура розряджання,4,4,4,spec_section,discharge_temperature,,
+uk,Температура розряду,Температура розряду,5,5,5,spec_section,discharge_temperature,,
+uk,Температурний коефіцієнт напруги,Температурний коефіцієнт напруги,1,1,1,spec_section,pv_temp_coeff_voc,,
+uk,Температурний коефіцієнт потужності,Температурний коефіцієнт потужності,1,1,1,spec_section,pv_temp_coeff_pmax,,
+uk,Фотоелектричні споживчі продукти,Фотоелектричні споживчі продукти,1,1,1,spec_section,consumer_product_category,,
+uk,Хімічний склад елемента,Хімічний склад елемента,1,1,1,spec_section,cell_chemistry,,cell_chemistry
+uk,Хімічний склад елементів,Хімічний склад елементів,8,8,8,spec_section,cell_chemistry,,cell_chemistry
+uk,виходи USB-C 140W,виходи USB-C 140W,1,1,1,spec_section,usb_c_output,,usb_c
+uk,виходи USB-C 30W,виходи USB-C 30W,1,1,1,spec_section,usb_c_output,,usb_c
+uk,№ моделі,№ моделі,1,1,1,spec_section,model_number,,
+zh,1 × AC,1 × AC,1,1,1,spec_section,ac_input,bare port label; section heading says input,ac_input
+zh,2 × DC输入(8020端口),2 × DC输入(8020端口),1,1,1,spec_section,dc8020_input,,
+zh,2 × USB-A 18W,2 × USB-A 18W,1,1,1,spec_section,usb_a_output,,usb_a
+zh,2 × USB-C 100W,2 × USB-C 100W,1,1,1,spec_section,usb_c_output,,usb_c
+zh,4 × AC输出,4 × AC输出,1,1,1,spec_section,ac_output_port,,ac_output
+zh,AC 额定输出能量,AC 额定输出能量,1,1,1,spec_section,ac_output_energy,,ac_output
+zh,AC并机输出,AC并机输出②,1,1,1,spec_section,ac_parallel_output,,ac_parallel_output
+zh,AC总输出,AC总输出,1,1,1,spec_section,ac_output_total,,ac_output
+zh,AC旁路输出,AC旁路输出①,2,2,2,spec_section,ac_output_bypass,,ac_output
+zh,IN1 (AC输入),IN1 (AC输入),1,1,1,spec_section,ac_input,,ac_input
+zh,IN2/IN3 (DC8020输入),IN2/IN3 (DC8020输入),1,1,1,spec_section,dc8020_input,,
+zh,OUT1 (车充输出端口),OUT1 (车充输出端口),1,1,1,spec_section,dc12_car_output,,
+zh,OUT2 (USB-C1输出端口),OUT2 (USB-C1输出端口),1,1,1,spec_section,usb_c_output,,usb_c
+zh,OUT3 (USB-C2输出端口),OUT3 (USB-C2输出端口),1,1,1,spec_section,usb_c_output,,usb_c
+zh,OUT4 (USB-A输出端口),OUT4 (USB-A输出端口),1,1,1,spec_section,usb_a_output,,usb_a
+zh,OUT5/OUT6/OUT7 (AC输出端口),OUT5/OUT6/OUT7 (AC输出端口),1,1,1,spec_section,ac_output_port,,ac_output
+zh,产品名称,产品名称,1,1,1,spec_section,product_name,,product_name
+zh,充电温度,充电温度,2,2,2,spec_section,charge_temperature,,
+zh,加电包连接端口,加电包连接端口,2,1,1,spec_section,expansion_port_dc,,
+zh,名称,名称,1,1,1,spec_section,product_name,,product_name
+zh,型号,型号,2,2,2,spec_section,model_number,,
+zh,尺寸,尺寸,2,2,2,spec_section,dimensions,,dimensions
+zh,并机端口,并机端口,1,1,1,spec_section,parallel_port,,parallel_port
+zh,循环寿命,循环寿命,2,2,2,spec_section,cycle_life,,cycle_life
+zh,放电温度,放电温度,2,2,2,spec_section,discharge_temperature,,
+zh,电池组电压/容量,电池组电压/容量,1,1,1,spec_section,battery_voltage_and_ah,,
+zh,电池组能量,电池组能量,1,1,1,spec_section,capacity_wh,,capacity
+zh,电池能量,电池能量,1,1,1,spec_section,capacity_wh,,capacity
+zh,电芯类型,电芯类型,2,2,2,spec_section,cell_chemistry,,cell_chemistry
+zh,重量,重量,2,2,2,spec_section,weight,,weight
+zh-TW,1 × AC 連接埠,1 × AC 連接埠,1,1,1,spec_section,ac_input,bare port label; section heading says input,ac_input
+zh-TW,1 × USB-A 連接埠,1 × USB-A 連接埠,1,1,1,spec_section,usb_a_output,bare port label; section heading says output,usb_a
+zh-TW,1 × USB-C1,1 × USB-C1,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+zh-TW,1 × USB-C2,1 × USB-C2,1,1,1,spec_section,usb_c_output,bare port label; section heading says output,usb_c
+zh-TW,1× DC 12V 連接埠,1× DC 12V 連接埠,1,1,1,spec_section,dc12_car_output,,
+zh-TW,2 × DC8020 連接埠,2 × DC8020 連接埠,1,1,1,spec_section,dc8020_input,bare port label; section heading says input,
+zh-TW,3 × AC 連接埠,3 × AC 連接埠,1,1,1,spec_section,ac_output_port,bare port label; section heading says output,ac_output
+zh-TW,充電溫度,充電溫度,1,1,1,spec_section,charge_temperature,,
+zh-TW,名稱,名稱,1,1,1,spec_section,product_name,,product_name
+zh-TW,型號,型號,1,1,1,spec_section,model_number,,
+zh-TW,容量,容量,1,1,1,spec_section,capacity_wh,,capacity
+zh-TW,尺寸,尺寸,1,1,1,spec_section,dimensions,,dimensions
+zh-TW,循環壽命,循環壽命,1,1,1,spec_section,cycle_life,,cycle_life
+zh-TW,放電溫度,放電溫度,1,1,1,spec_section,discharge_temperature,,
+zh-TW,旁路模式下的 AC 輸出,旁路模式下的 AC 輸出①,1,1,1,spec_section,ac_output_bypass,,ac_output
+zh-TW,重量,重量,1,1,1,spec_section,weight,,weight
+zh-TW,防水防塵等級,防水防塵等級,1,1,1,spec_section,ip_rating,,
+zh-TW,電芯類型,電芯類型,1,1,1,spec_section,cell_chemistry,,cell_chemistry

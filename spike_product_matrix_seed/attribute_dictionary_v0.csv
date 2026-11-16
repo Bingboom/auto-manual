@@ -1,0 +1,141 @@
+key,name_zh,name_en,group,canonical_unit,definition,origin,applies_to_categories_observed,models_with_value,model_region_pairs_with_value,distinct_labels_mapped,comparison_attribute
+product_name,产品名称,Product name,other,,Marketing product name as printed in the spec table.,bottom-up,便携储能; 加电包; 太阳能板; 家庭备电; 未分类; 配件,76,112,18,no
+model_number,型号,Model number,other,,Model number printed in the spec table.,bottom-up,便携储能; 加电包; 太阳能板; 家庭备电; 未分类; 配件,75,111,31,no
+color,颜色,Colour,other,,"Colour of the edition, as printed.",bottom-up,便携储能,1,1,1,no
+consumer_product_category,消费品类别,Consumer product category,warranty and compliance,,Consumer/PV product category per standard (e.g. IEC TS 63163 category).,bottom-up,太阳能板; 未分类,5,8,11,no
+iec_code,IEC 代码,IEC code,warranty and compliance,,IEC code printed for the product.,bottom-up,便携储能; 加电包,3,3,15,no
+recycling_mark,回收标识,Battery recycling mark,warranty and compliance,,Japanese battery recycling mark printed as an image in the spec table.,bottom-up,便携储能,9,9,3,no
+capacity_wh,额定容量,Rated capacity,battery,Wh,Rated battery energy in Wh (Ah/V printed alongside kept in detail); not usable AC energy.,bottom-up,便携储能; 加电包; 家庭备电; 未分类,60,92,16,yes
+capacity_other,容量（非 Wh）,Capacity (not in Wh),other,,"Capacity row that prints no Wh (cooler volume, mAh).",bottom-up,未分类,1,1,2,no
+battery_voltage_and_ah,电池组电压/容量,Battery pack voltage / Ah,battery,V; Ah,Nominal pack voltage and ampere-hours as printed.,bottom-up,便携储能,1,1,1,no
+ac_output_energy,AC 额定输出能量,Rated AC output energy,battery,Wh,"Usable energy delivered at the AC outlets, as printed.",bottom-up,便携储能,1,1,1,yes
+cell_chemistry,电芯化学体系,Cell chemistry,battery,,"Battery cell chemistry (LiFePO4, NCM …).",bottom-up,便携储能; 加电包; 家庭备电; 未分类,52,82,19,yes
+cycle_life,循环寿命,Cycle life,battery,cycles,Number of full cycles to the printed end-of-life capacity (end condition kept in 'condition').,bottom-up,便携储能; 加电包; 家庭备电; 未分类,46,70,21,yes
+ac_output_port,AC 输出口,AC output port(s),AC output,W,"Rating of an AC outlet group (voltage, frequency, current, W); label carries outlet count and plug type.",bottom-up,便携储能; 家庭备电; 未分类,45,70,77,no
+ac_output_total,AC 总输出,AC total output,AC output,W,Whole-unit continuous AC output; surge/peak kept separately.,bottom-up,便携储能; 家庭备电,22,30,22,yes
+ac_output_bypass,旁路 AC 输出,AC output in bypass mode,AC output,W,AC power passed through from the grid while charging.,bottom-up,便携储能; 家庭备电,29,46,36,no
+ac_bypass_input_output,旁路 AC 输入/输出,Bypass-mode AC input/output,AC output,W,Single row covering bypass input and output.,bottom-up,便携储能; 家庭备电,6,8,3,no
+ac_parallel_output,AC 并机输出,AC output in parallel,AC output,W,AC output when two units are paralleled.,bottom-up,便携储能,1,1,1,no
+ac_voltage_nominal,AC 额定电压,AC voltage (nominal),AC output,V,Nominal AC voltage.,bottom-up,配件,1,1,6,no
+usb_c_output,USB-C 输出,USB-C output,DC/USB output,W,Per-port USB-C output rating (W max).,bottom-up,便携储能; 太阳能板; 家庭备电; 未分类; 配件,49,81,137,no
+usb_a_output,USB-A 输出,USB-A output,DC/USB output,W,Per-port USB-A output rating.,bottom-up,便携储能; 太阳能板; 家庭备电; 未分类; 配件,53,86,83,no
+usb_output_total,USB 总输出,USB total output,DC/USB output,W,Combined USB output.,bottom-up,便携储能; 未分类,4,5,2,no
+usb_combined_output,多口同时输出,Multi-port combined output,DC/USB output,W,Output when several ports are used together (load-sharing table rows).,bottom-up,便携储能; 配件,6,10,93,no
+dc12_car_output,车充/DC12V 输出,Car / DC 12V output,DC/USB output,W,12 V car-socket or DC 12 V port output.,bottom-up,便携储能; 家庭备电; 未分类,39,64,30,yes
+dc_output,DC 输出,DC output,DC/USB output,W,Generic DC output row.,bottom-up,未分类; 配件,2,3,5,no
+total_output,总输出,Total output,DC/USB output,W,'Total output' row (whole unit; for small units this is the AC total).,bottom-up,便携储能; 未分类,3,3,2,no
+output_power,输出功率,Output power,DC/USB output,W,Output power of an accessory or charger.,bottom-up,配件,1,1,10,no
+output_voltage,输出电压,Output voltage,DC/USB output,V,Output voltage of an accessory.,bottom-up,配件,1,1,9,no
+output_current,输出电流,Output current,DC/USB output,A,Output current of an accessory.,bottom-up,配件,1,1,9,no
+output_rating,输出参数,Output,DC/USB output,,Generic 'Output' row of an accessory.,bottom-up,未分类,3,3,3,no
+usb_pps,PPS 档位,USB PPS range,DC/USB output,V/A,USB PD PPS range of a charger.,bottom-up,便携储能,1,2,2,no
+rated_voltage,电压,Voltage,other,V,Rated voltage of a cable/accessory.,bottom-up,配件,1,1,1,no
+rated_current,电流,Current,other,A,Rated current of a cable/accessory.,bottom-up,配件,1,1,2,no
+ac_input,AC 输入,AC input (charging),input and charging,W,AC charging input rating (charge mode).,bottom-up,便携储能; 家庭备电; 未分类,43,67,26,yes
+ac_input_bypass,旁路 AC 输入,AC input in bypass mode,input and charging,W,AC input limit in bypass mode.,bottom-up,便携储能; 家庭备电,4,4,4,no
+dc_input,DC 输入,DC input,input and charging,W,Generic DC input (solar/car) rating.,bottom-up,便携储能; 未分类; 配件,18,24,14,no
+dc8020_input,DC8020 输入,DC8020 input,input and charging,W,"DC8020 input port(s), shared by solar and car charging.",bottom-up,便携储能; 家庭备电,27,45,25,no
+car_input,车充输入,Car charging input,input and charging,W,Car (12/24 V) charging input.,bottom-up,便携储能,3,4,3,yes
+usb_c_input,USB-C 输入,USB-C input,input and charging,W,USB-C charging input.,bottom-up,便携储能; 未分类,9,16,18,no
+input_rating,输入参数,Input,input and charging,,Generic 'Input' row of an accessory.,bottom-up,便携储能; 未分类; 配件,6,6,3,no
+ac_charge_time,AC 充电时间,AC charge time,input and charging,h,Time to full charge from AC as printed (condition kept).,bottom-up,未分类,3,3,1,yes
+car_charge_time,车充充电时间,Car charge time,input and charging,h,Time to full charge from a car socket.,bottom-up,未分类,3,3,1,no
+solar_charge_time,太阳能充电时间,Solar charge time,input and charging,h,Time to full charge from the stated panel.,bottom-up,未分类,3,3,2,no
+heating_module_input,加热模块输入,Heating module input,other,W,Input of a battery heating module.,bottom-up,配件,1,1,1,no
+heating_module_power,加热模块功率,Heating module power,other,W,Power of a battery heating module.,bottom-up,配件,1,1,1,no
+heating_module_operating_temperature,加热模块工作温度,Heating module operating temperature,environment,°C,,bottom-up,配件,1,1,1,no
+heating_module_storage_temperature,加热模块存储温度,Heating module storage temperature,environment,°C,,bottom-up,配件,1,1,1,no
+solar_input,太阳能输入,Solar input,solar,W,Input explicitly labelled solar.,bottom-up,便携储能,1,2,2,yes
+solar_input_high_voltage,高压光伏输入,High-voltage PV input,solar,W,High-voltage PV input.,bottom-up,家庭备电,2,3,4,yes
+solar_input_low_voltage,低压光伏输入,Low-voltage PV input,solar,W,Low-voltage PV input.,bottom-up,家庭备电,2,3,4,yes
+expansion_port_dc,DC 扩展口,DC expansion port,expansion,W,Battery-pack expansion port (DC).,bottom-up,便携储能; 加电包; 家庭备电; 未分类,23,31,53,yes
+expansion_port_ac,AC 扩展口,AC expansion port,expansion,W,AC expansion/parallel port.,bottom-up,便携储能; 家庭备电,7,8,12,no
+parallel_port,并机端口,Parallel port,expansion,,Port for paralleling two units.,bottom-up,便携储能,1,1,1,no
+max_parallel_connections,最大并联数,Max parallel connections,expansion,,Maximum number of units/panels in parallel.,bottom-up,未分类,1,2,2,no
+max_series_connections,最大串联数,Max series connections,expansion,,Maximum number of units/panels in series.,bottom-up,未分类,1,2,2,no
+weight,重量,Weight,physical,kg,Weight as printed (kg and lb split).,bottom-up,便携储能; 加电包; 太阳能板; 家庭备电; 未分类; 配件,55,68,14,yes
+net_weight,净重,Net weight,physical,kg,Net weight as printed.,bottom-up,太阳能板; 未分类,2,2,1,yes
+dimensions,尺寸,Dimensions,physical,mm,L×W×H as printed (metric/imperial split).,bottom-up,便携储能; 加电包; 家庭备电; 未分类; 配件,50,62,17,yes
+dimensions_and_weight,尺寸与重量,Size & weight,physical,mm; kg,One JP row printing size and weight together.,bottom-up,便携储能; 加电包; 家庭备电; 未分类; 配件,40,40,4,yes
+dimensions_folded,折叠尺寸,Folded dimensions,physical,mm,Solar panel folded size.,bottom-up,太阳能板; 未分类; 配件,7,10,14,yes
+dimensions_unfolded,展开尺寸,Unfolded dimensions,physical,mm,Solar panel unfolded size.,bottom-up,太阳能板; 未分类; 配件,7,10,14,yes
+material,材质,Material,physical,,,bottom-up,便携储能; 未分类; 配件,3,3,2,no
+fabric,面料,Fabric,physical,,,bottom-up,配件,1,1,1,no
+charge_temperature,充电温度,Charging temperature,environment,°C,Ambient range allowed while charging.,bottom-up,便携储能; 加电包; 家庭备电; 未分类,57,89,18,yes
+discharge_temperature,放电温度,Discharging temperature,environment,°C,Ambient range allowed while discharging.,bottom-up,便携储能; 加电包; 家庭备电; 未分类,41,52,16,yes
+operating_temperature,工作温度,Operating temperature,environment,°C,Operating range (not split into charge/discharge).,bottom-up,便携储能; 加电包; 太阳能板; 家庭备电; 未分类; 配件,46,49,24,yes
+storage_temperature,存储温度,Storage temperature,environment,°C,Storage range (may be per storage duration).,bottom-up,便携储能; 加电包; 家庭备电; 未分类; 配件,34,34,10,yes
+operating_altitude,工作海拔,Operating altitude,environment,m,,bottom-up,便携储能; 家庭备电; 配件,3,3,13,yes
+operating_humidity,工作湿度,Operating humidity,environment,%,,bottom-up,配件,1,1,9,no
+pv_nmot,组件额定工作温度,Nominal module operating temperature,solar,°C,,bottom-up,未分类,2,2,1,no
+pv_module_tmax,组件最高温度,Module Tmax,solar,°C,,bottom-up,未分类,2,2,1,no
+ip_rating,防护等级,IP rating,protection and safety,,Ingress protection code.,bottom-up,便携储能; 太阳能板; 未分类; 配件,11,15,25,yes
+shock_protection_class,防触电等级,Protection class against electric shock,protection and safety,,,bottom-up,太阳能板; 未分类,7,10,10,no
+overvoltage_category,过电压类别,Overvoltage category,protection and safety,,,bottom-up,配件,1,1,3,no
+pollution_degree,污染等级,Pollution degree,protection and safety,,,bottom-up,,0,0,3,no
+fire_rating,防火等级,Fire rating,protection and safety,,,bottom-up,未分类,2,2,1,no
+impact_resistance_class,抗冲击等级,Impact resistance class,protection and safety,,,bottom-up,未分类,2,2,1,no
+enclosure_type,外壳类型,Enclosure type,protection and safety,,,bottom-up,配件,1,1,5,no
+max_short_circuit_current_and_duration,最大短路电流与持续时间,Max short-circuit current and duration,protection and safety,A; ms,,bottom-up,便携储能; 加电包; 家庭备电,6,6,10,no
+max_input_short_circuit_current,最大输入短路电流,Max input short-circuit current,protection and safety,A,,bottom-up,配件,1,1,4,no
+max_input_current,最大输入电流,Max input current,input and charging,A,,bottom-up,配件,1,1,4,no
+max_output_current,最大输出电流,Max output current,AC output,A,,bottom-up,配件,1,1,4,no
+inverter_topology,逆变器拓扑,Inverter topology,AC output,,,bottom-up,家庭备电,3,3,3,no
+power_factor,功率因数,Power factor,AC output,,,bottom-up,家庭备电,3,3,3,no
+feed_in_type,馈电类型,Feed-in type,AC output,,,bottom-up,配件,1,1,4,no
+standby_power,待机功耗,Standby power consumption,other,W,,bottom-up,,0,0,3,no
+number_of_load_branches,负载支路数,Number of load branches,other,,,bottom-up,配件,1,1,3,no
+main_circuit,主回路,Main circuit,other,,,bottom-up,配件,1,1,3,no
+branch_circuit,分支回路,Branch circuit,other,,,bottom-up,配件,1,1,3,no
+load_circuit,负载回路,Load circuit,other,,,bottom-up,,0,0,3,no
+max_load,最大负载,Maximum load,other,,,bottom-up,配件,1,1,1,no
+communication,通信方式,Communication (Wi-Fi/Bluetooth),connectivity,,Wireless/app connectivity as printed.,bottom-up,配件,1,1,3,yes
+ups,UPS/EPS,UPS / EPS,protection and safety,ms,UPS mode and switch-over time as printed.,bottom-up,家庭备电; 配件,4,5,7,yes
+pv_peak_power,峰值功率 Pmax,Peak power (Pmax),solar,W,Panel peak power at STC (other test conditions in their own column header).,bottom-up,太阳能板; 未分类,9,12,18,yes
+pv_vmp,最大功率点电压 Vmp,Voltage at Pmax (Vmp),solar,V,,bottom-up,太阳能板; 未分类,9,12,13,yes
+pv_imp,最大功率点电流 Imp,Current at Pmax (Imp),solar,A,,bottom-up,太阳能板; 未分类,9,12,13,no
+pv_voc,开路电压 Voc,Open-circuit voltage (Voc),solar,V,,bottom-up,太阳能板; 未分类,9,12,14,yes
+pv_isc,短路电流 Isc,Short-circuit current (Isc),solar,A,,bottom-up,太阳能板; 未分类,9,12,14,yes
+pv_max_system_voltage,最大系统电压,Max system voltage,solar,V,,bottom-up,太阳能板; 未分类,9,12,10,no
+pv_max_reverse_current,最大反向电流,Max reverse current,solar,A,,bottom-up,太阳能板; 未分类,7,10,10,no
+pv_max_series_fuse,最大串联保险丝额定值,Max series fuse rating,solar,A,,bottom-up,未分类,2,2,1,no
+pv_temp_coeff_pmax,功率温度系数,Power temperature coefficient,solar,%/°C,,bottom-up,太阳能板; 未分类,7,10,10,no
+pv_temp_coeff_voc,电压温度系数,Voltage temperature coefficient,solar,%/°C,,bottom-up,太阳能板; 未分类,7,10,10,no
+pv_bifaciality,双面系数,Bifaciality coefficient,solar,%,,bottom-up,太阳能板; 未分类,6,8,10,yes
+pv_cell_technology,电池片技术,PV cell technology,solar,,,bottom-up,未分类,2,2,1,yes
+pv_connector_type,连接器类型,Connector type,solar,,,bottom-up,未分类,2,2,1,no
+pv_connector_manufacturer,连接器厂商,Connector manufacturer,solar,,,bottom-up,未分类,2,2,1,no
+pv_min_design_load,最小设计载荷,Min. design load,solar,Pa,,bottom-up,未分类,2,2,1,no
+pv_application_class,应用等级,Application class,solar,,,bottom-up,未分类,2,2,1,no
+pv_test_condition,测试条件,Test condition,solar,,,bottom-up,未分类,2,2,1,no
+warranty_period,保修期,Warranty period,warranty and compliance,year,Standard warranty period as printed.,bottom-up,未分类; 配件,5,5,9,yes
+certifications,认证,Certifications,warranty and compliance,,Certification marks/list in the spec table.,bottom-up,便携储能; 加电包; 家庭备电; 未分类,19,19,1,yes
+in_box_contents,包装清单,In-box contents,other,,Items in the box.,bottom-up,便携储能; 未分类,8,8,3,yes
+special_feature,特殊功能,Special feature,other,,,bottom-up,未分类,1,1,1,no
+runtime_estimate,续航参考,Usage-time estimate,other,h / times,Estimated hours or uses per appliance (spec-like table).,bottom-up,,0,0,21,no
+ac_continuous_w,AC 持续输出功率,AC continuous output,AC output,W,Whole-unit continuous AC W: AC-total row; else a 'Total output' row that states surge; else the only AC-output row.,derived,便携储能; 家庭备电; 未分类,45,69,0,yes
+ac_surge_w,AC 峰值/浪涌功率,AC surge / peak,AC output,W,Largest W figure marked surge/peak in AC output rows.,derived,便携储能; 家庭备电; 未分类,45,67,0,yes
+ac_outlet_count,AC 插座数量,AC outlet count,AC output,count,Sum of the 'N ×' counts printed on AC-output rows (blank when any row lacks a count).,derived,便携储能; 家庭备电,36,58,0,yes
+ac_outlet_type,AC 插座类型,AC outlet type,AC output,,Plug standard printed in AC-output labels (NEMA …).,derived,便携储能; 家庭备电,8,9,0,yes
+ac_output_voltage_v,AC 输出电压,AC output voltage,AC output,V,Voltage(s) printed in AC-output rows.,derived,便携储能; 家庭备电; 未分类,45,70,0,yes
+ac_output_frequency_hz,AC 输出频率,AC output frequency,AC output,Hz,Frequency printed in AC-output rows.,derived,便携储能; 家庭备电; 未分类,45,70,0,yes
+usb_c_port_count,USB-C 口数量,USB-C port count,DC/USB output,count,"Sum of 'N ×' counts on USB-C output rows, or the number of distinct USB-Cn rows.",derived,便携储能; 家庭备电; 配件,39,60,0,yes
+usb_c_max_w,USB-C 单口最大功率,USB-C max power,DC/USB output,W,Largest W printed on a USB-C output row.,derived,便携储能; 家庭备电; 配件,44,73,0,yes
+usb_a_port_count,USB-A 口数量,USB-A port count,DC/USB output,count,Sum of 'N ×' counts on USB-A rows.,derived,便携储能; 家庭备电,35,52,0,yes
+ac_input_max_w,AC 输入最大功率,AC charging power,input and charging,W,Largest W printed on AC-input (charge mode) rows.,derived,便携储能; 家庭备电,10,10,0,yes
+dc_input_max_w,DC/光伏输入最大功率,DC (solar/car) input max,solar,W,Largest W printed on DC/DC8020/solar input rows (these ports are shared by solar and car).,derived,便携储能; 家庭备电; 未分类; 配件,45,73,0,yes
+solar_input_max_w,太阳能输入最大功率,Solar input max power,solar,W,Largest W on rows explicitly labelled solar/PV (label or value).,derived,便携储能; 家庭备电,27,38,0,yes
+solar_input_voltage_range,太阳能输入电压范围,Solar input voltage range,solar,V,Min–max V printed on DC/solar input rows.,derived,便携储能; 家庭备电,24,30,0,yes
+car_input_max_w,车充输入最大功率,Car charging power,input and charging,W,Largest W on car-input rows.,derived,便携储能,1,2,0,yes
+ups_switch_ms,UPS 切换时间,UPS switch time,protection and safety,ms,Switch-over time(s) printed in the UPS row.,derived,家庭备电; 配件,4,5,0,yes
+expandable,支持扩展电池,Battery expansion port present,expansion,,yes when an expansion-port row is printed.,derived,便携储能; 加电包; 家庭备电; 未分类,23,31,0,yes
+ac_charge_time_full,AC 充满时间,AC charge time to 100%,input and charging,h,Hours from empty to full on AC (fast/normal mode stated).,top-down,,0,0,0,yes
+ac_charge_time_80,AC 充至 80% 时间,AC charge time to 80%,input and charging,h,Hours from empty to 80% on AC.,top-down,,0,0,0,yes
+max_expandable_capacity_wh,最大扩展容量,Max expandable capacity,expansion,Wh,Capacity with the maximum number of battery packs.,top-down,便携储能; 家庭备电,0,0,0,yes
+max_expansion_packs,最大扩展包数量,Max number of battery packs,expansion,count,,top-down,便携储能; 家庭备电,0,0,0,yes
+noise_db,噪音,Noise level,environment,dB,Fan noise under stated load.,top-down,,0,0,0,yes
+display,显示屏,Display,connectivity,,Display type/size.,top-down,,0,0,0,yes
+app_connectivity,App 连接,App connectivity,connectivity,,App support via Wi-Fi/Bluetooth (spec row 'Communication' or prose).,top-down,,0,0,0,yes
+launch_date,上市时间,Launch date,warranty and compliance,date,Market launch date (not in manuals).,top-down,,0,0,0,yes
+list_price,各市场标价,List price by market,other,currency,MSRP per market (not in manuals).,top-down,,0,0,0,yes
+pv_efficiency,光电转换效率,Solar cell efficiency,solar,%,Panel/cell conversion efficiency.,top-down,太阳能板; 便携储能 (input),0,0,0,yes
