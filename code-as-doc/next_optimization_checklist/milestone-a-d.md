@@ -13,11 +13,11 @@ Milestone note: completed the first quality-gate hardening wave across preview t
 - [x] PR 1: Remove import-time config loading from review-preview target resolution
   - Status: `done`
   - Target files:
-    - [`../tools/process_docs/build_review_preview_targets.py`](../../tools/process_docs/build_review_preview_targets.py)
-    - [`../tools/process_docs/build_review_preview.py`](../../tools/process_docs/build_review_preview.py)
+    - `tools/process_docs/build_review_preview_targets.py`
+    - `tools/process_docs/build_review_preview.py`
   - Guard tests:
-    - [`../tests/test_build_review_preview.py`](../../tests/test_build_review_preview.py)
-    - [`../tests/test_vercel_build_review_preview.py`](../../tests/test_vercel_build_review_preview.py)
+    - `tests/test_build_review_preview.py`
+    - `tests/test_vercel_build_review_preview.py`
   - Done when:
     - importing review-preview modules no longer reads config files immediately
     - target template loading happens lazily or through an explicit factory/cache
@@ -114,7 +114,7 @@ Milestone note: closed the second stability wave by fixing diff-report regressio
   - Status: `done`
   - Target files:
     - [`.github/workflows/manual-validation.yml`](../../.github/workflows/manual-validation.yml)
-    - [`.github/workflows/review-preview.yml`](../../.github/workflows/review-preview.yml)
+    - `.github/workflows/review-preview.yml`
   - Guard tests:
     - CI workflow runs
   - Done when:

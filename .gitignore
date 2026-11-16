@@ -79,9 +79,6 @@ TOOLS.md
 /SOUL.md
 /USER.md
 
-# Review preview packaging
-site/review-preview/dist/
-
 # Staged renderer assets under a review derivative. `build.py check` copies
 # binaries into <target>/renderers/latex/assets/ while resolving the bundle;
 # nothing there has ever been tracked, for any target. Authored review content

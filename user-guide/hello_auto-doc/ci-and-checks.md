@@ -30,8 +30,6 @@ GitHub note:
 - JE-1000F US en/fr/es is the document-output exception: its three `manual_us-single-*.yaml` manifests intentionally keep the trilingual preface for IDML/Word/PDF. Their configs use `build.web_language_block_pages` instead, so only the Web en/fr/es routes remove the two foreign `IMPORTANT` blocks.
 - A committed `docs/_review` derivative is per `(model, region)` and shared by a region's merged and single-language configs, so it holds the merged book's languages. The trim runs again on the overlaid bundle copy — `docs/_review` itself is never rewritten, and the merged build is unaffected because all its languages are in scope.
 - New `check` codes: `LANG_SCOPE_UNSHIPPED_LANGUAGE` (a scope row disjoint from the family the config declares — today `configs/config.eu-uk.yaml` with its inherited JE-1000F/EU default target, which ships no Ukrainian) and `LANG_SCOPE_FOREIGN_SCRIPT` (a bundle page carrying a dropped language's script, which catches leakage that has neither a `_<lang>` filename suffix nor a language tag). The per-language contract / generated-page / identity / parity collectors all see the narrowed set, so a model shipping five of six family languages no longer fails on the sixth's missing source data.
-- `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
-- that workflow now runs a lighter smoke packaging pass with `--skip-word` and verifies the packaged preview files before upload
 
 Git branch hygiene note:
 
@@ -64,9 +62,7 @@ their `docs/_review/**` editing surface. Code or workflow changes still need an
 auto-manual PR. A missing/malformed data file or publish inventory hash mismatch
 fails the content check; fix the candidate instead of disabling the check.
 
-The fixture Review Preview workflow runs only in auto-manual. The private Review
-RTD site continues its existing Git-based build; it does not use that fixture
-preview. Queue dispatch, Workspace refresh, Phase2/TM-B backups, Web Publish and
+The private Review RTD site continues its existing Git-based build. Queue dispatch, Workspace refresh, Phase2/TM-B backups, Web Publish and
 RTD receipts retain their existing execution paths. A green content check is
 not a deployment receipt or visual acceptance. No repository visibility change
 or executor migration is included. Audit and rollback details are in the

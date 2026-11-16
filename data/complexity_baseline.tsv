@@ -159,8 +159,6 @@ tools/page_plan/model.py	PagePlan.physical_pages	21
 tools/page_plan/model.py	validate_page_plan	25
 tools/plain_markdown_site.py	render_markdown_site	33
 tools/plain_markdown_site.py	upgrade_spec_tables	47
-tools/process_docs/build_review_preview_postprocess.py	assert_preview_output_contract	43
-tools/process_docs/build_review_preview_workspace.py	build_workspace_documents	27
 tools/build_queue/process_review_start_queue_runtime.py	process_review_start_queue	23
 tools/publication_withdrawal.py	change_publication_state	31
 tools/publication_withdrawal.py	publication_actions	25

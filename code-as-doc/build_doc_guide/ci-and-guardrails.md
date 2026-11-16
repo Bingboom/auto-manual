@@ -8,7 +8,7 @@ Add new notes for this topic here, not to the hub.
 `Manual Validation` retains all 17 engineering jobs on `Bingboom/auto-manual`.
 On Hello-Docs and Hello-Docs-Review, only `secret-scan` and `business-content`
 allocate runners; the 16 engineering jobs are skipped by repository guards.
-Nightly Render, fixture Review Preview and Manifest Regenerate Diff also run
+Nightly Render and Manifest Regenerate Diff also run
 only in auto-manual. Trigger definitions stay unchanged; skipped run records
 can remain visible without allocating those job runners.
 
@@ -66,8 +66,6 @@ GitHub validation note:
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub
-- `Review Preview Package` is a separate artifact workflow for design sharing and does not gate merge
-- `Review Preview Package` now runs a smoke packaging pass with `--skip-word` and verifies the expected packaged preview files before artifact upload
 
 Git branch safety note:
 

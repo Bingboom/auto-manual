@@ -17,7 +17,7 @@ small enough to read whole. When behavior changes, update the owning topic page
 | [`commands.md`](build_doc_guide/commands.md) | you need what a `build.py` action or flag does, typical command lines, or the diff report |
 | [`config-and-manifests.md`](build_doc_guide/config-and-manifests.md) | you pick or change a config family, page manifest or skeleton, the mirror sync setup, or a phase2 snapshot rule |
 | [`windows-flow.md`](build_doc_guide/windows-flow.md) | you run validate → runtime draft → review → refresh → build from review on Windows/PowerShell |
-| [`review-preview-and-release.md`](build_doc_guide/review-preview-and-release.md) | you package a review preview for design, publish a final Word release, or need the output directory layout |
+| [`release-and-output-layout.md`](build_doc_guide/release-and-output-layout.md) | you publish a final Word release or need the output directory layout |
 | [`data-sync-and-intake.md`](build_doc_guide/data-sync-and-intake.md) | you work on `sync-data`, source-table bindings, `spec-master-rebuild`, source intake, or translation-memory lookups |
 | [`backport.md`](build_doc_guide/backport.md) | you back-port reviewer edits from a Feishu cloud doc with `python -m tools.backport.cloud_doc` |
 | [`assets.md`](build_doc_guide/assets.md) | you work on the image-asset registry, `asset-check`, `asset-intake`, reviewed promotion or `asset:` references |

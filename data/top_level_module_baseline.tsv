@@ -219,10 +219,7 @@ bootstrap	tools/pdf_annotate.py
 bootstrap	tools/plain_markdown_site.py
 bootstrap	tools/printed_url_inventory.py
 bootstrap	tools/process_docs/build_publish_latest_site.py
-bootstrap	tools/process_docs/build_review_preview.py
-bootstrap	tools/process_docs/package_vercel_static_output.py
 bootstrap	tools/process_docs/vercel_build_publish_latest.py
-bootstrap	tools/process_docs/vercel_build_review_preview.py
 bootstrap	tools/publish_branch_assembly.py
 bootstrap	tools/readthedocs_source.py
 bootstrap	tools/reference_layout_rebind.py

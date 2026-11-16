@@ -27,7 +27,7 @@ python build.py all
 Config scope rule:
 
 - [`configs/config.us.yaml`](../../configs/config.us.yaml): shared EN / US template-family config
-- [`configs/config.us-en.yaml`](../../configs/config.us-en.yaml): canonical US English single-language review / CI / explicit review-preview landing target
+- [`configs/config.us-en.yaml`](../../configs/config.us-en.yaml): canonical US English single-language review / CI target
 - [`configs/config.ja.yaml`](../../configs/config.ja.yaml): shared JP template-family config
 - [`configs/config.zh.yaml`](../../configs/config.zh.yaml): shared CN zh template-family config using [`docs/manifests/manual_zh.yaml`](../../docs/manifests/manual_zh.yaml)
 - [`configs/config.kr.yaml`](../../configs/config.kr.yaml): shared KR ko template-family config for `JE-1000F_KR` and `JE-2000E_KR`, using [`docs/manifests/manual_kr.yaml`](../../docs/manifests/manual_kr.yaml)
@@ -71,13 +71,6 @@ Source mode meaning:
 - `runtime`: ignore `_review` and build from template/data
 - `review`: require `_review` and build from it
 
-PR preview note:
-
-- when a PR changes `docs/_review/<model>/<region>/`, GitHub review-preview derives that exact target from the diff and uses the same target-aware config matching as Start Review/Draft/Publish; for example, `JBP-2000B / US` uses `configs/config.bp-us.yaml`, while ordinary US host targets keep the MAIN config
-- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the preview tool still selects the config-derived CN runtime target automatically, while packaging every existing review model
-- `python -m tools.process_docs.build_review_preview` can omit `--config` when `--model` and `--region` identify a declared target; it can omit all three in CI-style runs and infer the target from the changed review bundle or existing review tree. Keep `--config configs/config.us-en.yaml` when you explicitly want the US English single-language target
-- the Vercel review-preview fallback derives those family configs and its first fallback target by scanning `configs/config*.yaml`; it is used only when `PREVIEW_MODEL` / `PREVIEW_REGION` and the review tree do not provide a target
-
 `publish` behavior:
 
 - requires explicit `--model` and `--region`
@@ -113,7 +106,6 @@ PR preview note:
   - cover pages generated from title/product identity
 - generated cover pages still feed PDF/LaTeX output, but HTML now opens directly on the first manual content section instead of a blank cover-style landing screen
 - manual HTML preview also suppresses most default Furo sidebar / TOC chrome, stays in a continuous reading flow instead of browser-side fake pagination, regenerates a lightweight left outline from the manual headings, and renders generic headings, copy width, figure presentation, ordinary table spacing, and the multilingual preface notice in a restrained neutral manual-reader style while keeping dedicated component layouts such as `SPECIFICATIONS`, so the result feels like a manual reader instead of a documentation site
-- review-preview workspace manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout
 
 Shared-source propagation audit (read-only):
 

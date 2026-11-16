@@ -219,8 +219,3 @@ python build.py all --config configs/config.zh.yaml --model JE-2000E --region CN
 ```
 
 `check` now also catches stale foreign model names and contract-required spec keys, required page-value selectors, and assets.
-
-PR review-preview note:
-
-- when a PR changes `docs/_review/<model>/<region>/`, the review-preview workflow derives that exact target from the diff and uses the same target-aware language/config matching as the queue. A target-specific declaration wins before the shared regional fallback, so `JBP-2000B / US` resolves to `configs/config.bp-us.yaml` while ordinary US host targets keep the MAIN config.
-- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the preview tool still switches the default landing target to the config-derived CN runtime target; the packaged workspace continues to include every existing review model

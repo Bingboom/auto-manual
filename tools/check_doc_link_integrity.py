@@ -44,7 +44,6 @@ SKIP_REPO_RELATIVE_PREFIXES = (
     "docs/_build/",
     "docs/_review/",
     "docs/generated/",
-    "site/review-preview/dist/",
     "site/publish-latest/dist/",
     "reports/releases/",
     "../auto-manual-parity/",
