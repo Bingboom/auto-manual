@@ -51,12 +51,7 @@ $requiredEnvNames = @(
     "FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
     "FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID",
     "AUTO_MANUAL_ARTIFACT_SINK_PROVIDER",
-    "AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER",
-    "DINGTALK_DOCS_TARGET_NODE_URL",
-    "DINGTALK_DOCS_A_TOKEN",
-    "DINGTALK_DOCS_XSRF_TOKEN",
-    "DINGTALK_DOCS_COOKIE",
-    "DINGTALK_DOCS_BX_V"
+    "AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER"
 )
 foreach ($envName in $requiredEnvNames) {
     if (-not (Get-Item -Path ("Env:" + $envName) -ErrorAction SilentlyContinue)) {

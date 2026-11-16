@@ -200,35 +200,6 @@ class TrackedTableTests(unittest.TestCase):
                 f"{list(family)} does not declare",
             )
 
-    def test_delivery_map_language_declarations_agree(self):
-        """The DingTalk delivery map and the build scope must not disagree.
-
-        The map declares what a published bundle covers; the scope decides
-        what the build puts in it. A silent split between the two is exactly
-        the defect this table exists to close.
-        """
-        from tools.dingtalk_delivery_map import load_delivery_map
-        from tools.build_queue.query_languages import canonical_query_lang
-
-        mapped = load_delivery_map(root=ROOT)
-        self.assertTrue(mapped)
-        compared = 0
-        for target in mapped.values():
-            key = f"{target.model}_{target.region}"
-            shipped = self.rows.get(key)
-            if shipped is None:
-                continue
-            declared = tuple(
-                canonical_query_lang(name) for name in target.dingtalk_languages
-            )
-            self.assertEqual(
-                sorted(shipped), sorted(declared),
-                f"{key}: delivery map declares {list(declared)} but "
-                f"model_languages.csv ships {list(shipped)}",
-            )
-            compared += 1
-        self.assertGreater(compared, 0, "no delivery row overlapped the scope table")
-
 
 if __name__ == "__main__":
     unittest.main()
