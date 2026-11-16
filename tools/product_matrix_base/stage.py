@@ -26,6 +26,7 @@ NO_CONDITION = "-"
 CST = timezone(timedelta(hours=8))
 SOURCE_TYPE = "网页说明书"
 UNKNOWN_DATE_BASIS = "未知"
+VALUE_TYPES = {"number": "数值", "integer": "整数", "boolean": "布尔", "text": "文本", "range": "范围"}
 
 
 class LoadError(RuntimeError):
@@ -74,65 +75,67 @@ def select_editions(extraction: dict[str, Any], models: Iterable[str] | None, ma
             if (not wanted_models or e["model"] in wanted_models) and (not wanted_markets or e["market"] in wanted_markets)]
 
 
+def _product_row(edition: dict[str, Any], entry: dict[str, Any], recorded: str) -> dict[str, Any]:
+    key = product_key(edition["model"], edition["market"])
+    return {"产品键": key, "型号": edition["model"], "市场": edition["market"], "品牌": BRAND,
+            "商品简称": entry.get("short"), "产品类别": entry.get("category"), "产品系列": entry.get("series"),
+            "容量档": entry.get("capacity"), "共用说明书于": entry.get("pages_of"), "最后更新": recorded}
+
+
+def _attribute_row(attribute: dict[str, Any]) -> dict[str, Any]:
+    return {"属性键": attribute["key"], "中文名": attribute["label"], "英文名": attribute.get("label_en"),
+            "分组": attribute["group"], "值类型": VALUE_TYPES[attribute["type"]], "规范单位": attribute.get("unit"),
+            "定义": attribute.get("definition"), "适用类别": list(attribute.get("applies_to") or []),
+            "说明书通常写": bool(attribute.get("manual_usual")), "标签别名": "\n".join(attribute.get("labels") or []),
+            "竞情字段名": attribute.get("competitor_field"), "状态": attribute.get("status") or "启用",
+            "排序": attribute["order"]}
+
+
+def _source_row(edition: dict[str, Any], recorded: str) -> dict[str, Any]:
+    built = str(edition.get("built_at") or "")[:10]
+    return {"来源键": edition["source_key"], "来源类型": SOURCE_TYPE, "型号": edition["model"],
+            "市场": edition["market"], "语言": edition["language"], "版本": edition.get("version"),
+            "版本日期依据": UNKNOWN_DATE_BASIS, "页面或文件": edition["page"], "文件哈希": edition.get("sha256"),
+            "读取时间": recorded, "备注": f"网页构建时间 {built}" if built else None}
+
+
+def _fact_row(edition: dict[str, Any], fact: dict[str, Any], recorded: str) -> dict[str, Any]:
+    product = product_key(edition["model"], edition["market"])
+    condition = fact.get("condition") or ""
+    return {"事实键": fact_key(product, fact["attribute"], condition, edition["source_key"]),
+            "产品键": product, "属性键": fact["attribute"], "来源键": edition["source_key"],
+            "原文": f"{fact['label']}: {fact['quote_text']}", "数值": fact.get("number"), "文本值": fact.get("text"),
+            "原单位": fact.get("original_unit"), "限定": fact.get("qualifier") or "无", "条件": condition,
+            "来源位置": _location(fact.get("row")), "记录时间": recorded, "核实状态": CANDIDATE}
+
+
+def _filled(row: dict[str, Any]) -> dict[str, Any]:
+    return {k: v for k, v in row.items() if v not in ("", None, [])}
+
+
 def stage_rows(extraction: dict[str, Any], catalog_models: dict[str, Any], *, models: Iterable[str] | None = None,
                markets: Iterable[str] | None = None, attributes: Iterable[str] | None = None,
                now: datetime | None = None) -> dict[str, list[dict[str, Any]]]:
     """The rows each table would hold for the selected products, keyed by their primary field."""
-    moment = now or datetime.now(timezone.utc)
-    recorded = _stamp(moment)
+    recorded = _stamp(now or datetime.now(timezone.utc))
     dictionary = extraction["attributes"]
     keep = set(attributes or [a["key"] for a in dictionary])
     editions = select_editions(extraction, models, markets)
-
     products: dict[str, dict[str, Any]] = {}
     for edition in editions:
-        key = product_key(edition["model"], edition["market"])
-        entry = catalog_models.get(edition["model"]) or {}
-        row = products.setdefault(key, {
-            "产品键": key, "型号": edition["model"], "市场": edition["market"], "品牌": BRAND,
-            "商品简称": entry.get("short") or "", "产品类别": entry.get("category") or "",
-            "产品系列": entry.get("series") or "", "容量档": entry.get("capacity") or "",
-            "共用说明书于": entry.get("pages_of") or "", "最后更新": recorded})
+        row = products.setdefault(product_key(edition["model"], edition["market"]),
+                                  _product_row(edition, catalog_models.get(edition["model"]) or {}, recorded))
         name = _name(edition.get("catalog_name") or "", edition["model"])
-        name_field = _name_field(name)
-        if name and name_field and not row.get(name_field):
-            row[name_field] = name
-
-    attribute_rows = [{
-        "属性键": a["key"], "中文名": a["label"], "英文名": a.get("label_en") or "", "分组": a["group"],
-        "值类型": {"number": "数值", "integer": "整数", "boolean": "布尔", "text": "文本", "range": "范围"}[a["type"]],
-        "规范单位": a.get("unit") or "", "定义": a.get("definition") or "",
-        "适用类别": list(a.get("applies_to") or []), "说明书通常写": bool(a.get("manual_usual")),
-        "标签别名": "\n".join(a.get("labels") or []), "竞情字段名": a.get("competitor_field") or "",
-        "状态": a.get("status") or "启用", "排序": a["order"]} for a in dictionary if a["key"] in keep]
-
-    sources = []
-    facts = []
-    for edition in editions:
-        built = (edition.get("built_at") or "")[:10]
-        sources.append({
-            "来源键": edition["source_key"], "来源类型": SOURCE_TYPE, "型号": edition["model"],
-            "市场": edition["market"], "语言": edition["language"], "版本": edition.get("version") or "",
-            "版本日期依据": UNKNOWN_DATE_BASIS, "页面或文件": edition["page"], "文件哈希": edition.get("sha256") or "",
-            "读取时间": recorded, "备注": f"网页构建时间 {built}" if built else ""})
-        product = product_key(edition["model"], edition["market"])
-        for fact in edition["facts"]:
-            if fact["attribute"] not in keep:
-                continue
-            row = {
-                "事实键": fact_key(product, fact["attribute"], fact.get("condition") or "", edition["source_key"]),
-                "产品键": product, "属性键": fact["attribute"], "来源键": edition["source_key"],
-                "原文": f"{fact['label']}: {fact['quote_text']}", "原单位": fact.get("original_unit") or "",
-                "限定": fact.get("qualifier") or "无", "条件": fact.get("condition") or "",
-                "来源位置": _location(fact.get("row")), "记录时间": recorded, "核实状态": CANDIDATE}
-            if fact.get("number") is not None:
-                row["数值"] = fact["number"]
-            if fact.get("text"):
-                row["文本值"] = fact["text"]
-            facts.append(row)
-    staged = {"产品": list(products.values()), "属性": attribute_rows, "来源": sources, "事实": facts}
-    return {table: [{k: v for k, v in row.items() if v not in ("", None, [])} for row in rows]
-            for table, rows in staged.items()}
+        if name and not row.get(_name_field(name)):
+            row[_name_field(name)] = name
+    staged = {
+        "产品": list(products.values()),
+        "属性": [_attribute_row(a) for a in dictionary if a["key"] in keep],
+        "来源": [_source_row(edition, recorded) for edition in editions],
+        "事实": [_fact_row(edition, fact, recorded) for edition in editions for fact in edition["facts"]
+                 if fact["attribute"] in keep],
+    }
+    return {table: [_filled(row) for row in rows] for table, rows in staged.items()}
 
 
 # --- the live base ----------------------------------------------------------------------------------------------
@@ -177,6 +180,7 @@ def fields(run: Runner, table_id: str) -> dict[str, dict[str, Any]]:
 def read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, Any]]:
     """Every row of a table (paged, 200 at a time), as {"_record_id", field: value} for the named fields."""
     rows: list[dict[str, Any]] = []
+    seen: set[str] = set()
     offset = 0
     while True:
         args = ["+record-list", "--table-id", table_id, "--limit", "200", "--offset", str(offset)]
@@ -186,9 +190,12 @@ def read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, An
         columns = data.get("fields") or []
         values = data.get("data") or []
         ids = data.get("record_id_list") or []
+        if ids and ids[0] in seen:  # a CLI that ignores the offset would page forever
+            raise LoadError("record list repeated a page; the offset is not honoured")
+        seen.update(ids)
         for record_id, cells in zip(ids, values, strict=False):
             rows.append({"_record_id": record_id, **dict(zip(columns, cells, strict=False))})
-        if len(values) < 200 or not data.get("has_more", True):
+        if len(values) < 200:
             break
         offset += 200
     return rows

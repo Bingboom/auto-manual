@@ -59,49 +59,55 @@ def _extract(args: argparse.Namespace) -> int:
     return 0
 
 
+def _write(run: Any, planned: dict[str, Any], lark_cli: str, report: dict[str, Any]) -> bool:
+    """Write the planned rows and print the read-back; True when every row came back as written."""
+    written = write(run, planned, use_records_shape=records_shape(lark_cli))
+    for table, entry in written.items():
+        print(f"  {table}: 发送 {entry['sent']}，读回 {entry['read_back']}，缺失 {len(entry['missing'])}，"
+              f"字段不符 {len(entry['mismatched'])}，表内现有 {entry['rows_after']} 行")
+    report["written"] = written
+    return not any(e["missing"] or e["mismatched"] for e in written.values())
+
+
+def _live(args: argparse.Namespace, base: str, staged: dict[str, Any], report: dict[str, Any]) -> int:
+    run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli)
+    try:
+        planned = plan(run, staged)
+        for table in TABLES:
+            info = planned["tables"].get(table)
+            if info:
+                print(f"  {table}: 待新建 {len(info['create'])}，已存在不动 {info['existing']}"
+                      f"（表内现有 {info['rows_before']} 行）")
+        for problem in planned["problems"]:
+            print(f"PROBLEM {problem}")
+        report["plan"] = {t: {k: v for k, v in i.items() if k != "create"} for t, i in planned["tables"].items()}
+        if not (args.write and args.yes):
+            if args.write:
+                print("--write ignored: add --yes once the dry run above has been confirmed")
+            print("dry run: nothing written")
+            return 0
+        return 0 if _write(run, planned, args.lark_cli, report) else 1
+    except LoadError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+
+
 def _stage(args: argparse.Namespace) -> int:
     extraction = json.loads(args.extraction.read_text(encoding="utf-8"))
     staged = stage_rows(extraction, _catalog(args.root), models=_split(args.models), markets=_split(args.markets),
                         attributes=_split(args.attributes))
     print("staged: " + ", ".join(f"{table} {len(staged[table])}" for table in TABLES))
-    base = args.base_token or os.environ.get(BASE_ENV)
     report: dict[str, Any] = {"staged": staged}
-    if not base:
-        print("no base given: offline staging only, nothing compared or written")
+    base = args.base_token or os.environ.get(BASE_ENV)
+    if base:
+        status = _live(args, base, staged, report)
     else:
-        run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli)
-        try:
-            planned = plan(run, staged)
-        except LoadError as exc:
-            print(f"ERROR   {exc}")
-            return 2
-        for table in TABLES:
-            info = planned["tables"].get(table)
-            if info:
-                print(f"  {table}: 待新建 {len(info['create'])}，已存在不动 {info['existing']}（表内现有 {info['rows_before']} 行）")
-        for problem in planned["problems"]:
-            print(f"PROBLEM {problem}")
-        report["plan"] = {t: {k: v for k, v in i.items() if k != "create"} for t, i in planned["tables"].items()}
-        if args.write and args.yes:
-            try:
-                written = write(run, planned, use_records_shape=records_shape(args.lark_cli))
-            except LoadError as exc:
-                print(f"ERROR   {exc}")
-                return 2
-            for table, entry in written.items():
-                print(f"  {table}: 发送 {entry['sent']}，读回 {entry['read_back']}，缺失 {len(entry['missing'])}，"
-                      f"字段不符 {len(entry['mismatched'])}，表内现有 {entry['rows_after']} 行")
-            report["written"] = written
-            failed = any(e["missing"] or e["mismatched"] for e in written.values())
-        else:
-            if args.write:
-                print("--write ignored: add --yes once the dry run above has been confirmed")
-            print("dry run: nothing written")
-            failed = False
+        print("no base given: offline staging only, nothing compared or written")
+        status = 0
     if args.report:
         _out(args.report).write_text(json.dumps(report, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         print(f"report: {args.report}")
-    return 1 if base and args.write and args.yes and failed else 0
+    return status
 
 
 def main(argv: list[str] | None = None) -> int:

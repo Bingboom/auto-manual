@@ -387,42 +387,54 @@ def _fact(attribute: dict[str, Any], row: dict[str, Any] | None, label: str, tex
             "condition": row["column"] if row else "", "label": label, "quote_text": text, "row": row}
 
 
-def edition_facts(rows: list[dict[str, Any]], attributes: list[dict[str, Any]],
-                  category: str | None) -> list[dict[str, Any]]:
-    """The values one edition states: export attributes by the export's rules, the rest by the dictionary's."""
+def _export_facts(rows: list[dict[str, Any]], attributes: list[dict[str, Any]], category: str | None
+                  ) -> list[dict[str, Any]]:
+    """The export attributes, read by the export's own rules from every row the extractor found."""
+    by_key = {a["key"]: a for a in attributes if a["parse"] == "export"}
+    exported, _unknown = read_facts(_row_markup(rows), [a for a in load_export_attributes() if a["key"] in by_key],
+                                    category)
     facts = []
-    export_keys = {x["key"] for x in attributes if x["parse"] == "export"}
-    exported, _unknown = read_facts(_row_markup(rows), [a for a in load_export_attributes()
-                                                        if a["key"] in export_keys], category)
-    by_key = {a["key"]: a for a in attributes}
     for key, fact in exported.items():
         label, _sep, text = fact["quote"].partition(": ")
         row = next((r for r in rows if r["label"] == label and _row_text(r) == text), None)
         value = fact["value"]
         is_number = isinstance(value, (int, float)) and not isinstance(value, bool)
-        units = [q["unit"] for q in (row["quantities"] if row else [])]
-        original = by_key[key].get("unit") or ""
-        if key == "weight_kg" and "kg" not in units and units:
-            original = next((u for u in units if u in ("g", "lbs")), original)
-        facts.append(_fact(by_key[key], row, label, row["text"] if row else text,
-                           value if is_number else None,
-                           "" if is_number else ("是" if value is True else str(value)), original))
+        facts.append(_fact(by_key[key], row, label, row["text"] if row else text, value if is_number else None,
+                           "" if is_number else ("是" if value is True else str(value)),
+                           _export_unit(by_key[key], row)))
+    return facts
+
+
+def _export_unit(attribute: dict[str, Any], row: dict[str, Any] | None) -> str:
+    """The unit the row prints the export value in: the canonical one unless a weight is printed only in g or lbs."""
+    units = [q["unit"] for q in (row["quantities"] if row else [])]
+    if attribute["key"] == "weight_kg" and units and "kg" not in units:
+        return next((u for u in units if u in ("g", "lbs")), attribute.get("unit") or "")
+    return attribute.get("unit") or ""
+
+
+def _dictionary_fact(attribute: dict[str, Any], rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """A dictionary attribute's value in one edition: the largest number, else the first row that states it."""
+    best = None
+    for row in rows:
+        value = parse_value(attribute, row["text"]) if attribute["key"] in row["attributes"] else None
+        if value is not None and (best is None or (value["number"] or 0) > (best[0]["number"] or 0)):
+            best = (value, row)
+    if best is None:
+        return None
+    value, row = best
+    return _fact(attribute, row, row["label"], row["text"], value["number"], value["text"], value["unit"])
+
+
+def edition_facts(rows: list[dict[str, Any]], attributes: list[dict[str, Any]],
+                  category: str | None) -> list[dict[str, Any]]:
+    """The values one edition states: export attributes by the export's rules, the rest by the dictionary's."""
+    facts = _export_facts(rows, attributes, category)
     for attribute in attributes:
-        if attribute["parse"] in ("export", "manual"):
-            continue
-        best = None
-        for row in rows:
-            if attribute["key"] not in row["attributes"]:
-                continue
-            value = parse_value(attribute, row["text"])
-            if value is None:
-                continue
-            if best is None or (value["number"] is not None and value["number"] > (best[0]["number"] or 0)):
-                best = (value, row)
-        if best:
-            value, row = best
-            facts.append(_fact(attribute, row, row["label"], row["text"], value["number"], value["text"],
-                               value["unit"]))
+        if attribute["parse"] not in ("export", "manual"):
+            fact = _dictionary_fact(attribute, rows)
+            if fact:
+                facts.append(fact)
     order = {a["key"]: a["order"] for a in attributes}
     return sorted(facts, key=lambda fact: order[fact["attribute"]])
 
