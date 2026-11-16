@@ -12,7 +12,7 @@
 /* Head: title and lead, then the counts, the classification date and the sibling page. */
 .mx-head {display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
 .mx-head-text {display:flex;flex-direction:column;gap:8px;max-width:700px}
-.mx-head h1 {margin:0;font-size:30px;line-height:38px;font-weight:700}
+.mx-head .mx-title {margin:0;font-size:22px;line-height:30px;font-weight:700}
 .mx-head p {margin:0;font-size:15px;line-height:24px;color:var(--app-text2)}
 .mx-head-meta {display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .mx-pill {display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:#fff;
@@ -141,6 +141,6 @@ html:not(.mx-js) .mx-detail:target,.mx-detail.is-open {display:flex}
 }
 @media (max-width:660px) {
   .matrix {padding:25px 18px 48px}
-  .mx-head h1 {font-size:26px;line-height:34px}
+  .mx-head .mx-title {font-size:20px;line-height:28px}
   .mx-tabs {align-self:stretch}
 }

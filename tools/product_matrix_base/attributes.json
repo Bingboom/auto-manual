@@ -1,0 +1,63 @@
+{
+  "schema": "hello-docs-matrix-attributes/v1",
+  "note": "The 属性 dictionary of the product information matrix base (code-as-doc/dev/product_matrix_base.md). An entry with `export: true` reuses the product-facts export key unchanged; its names, unit, type, applies_to and definition come from tools/product_facts/attributes.json and its value is read by the export's rules. Other entries are read here: `labels` are the printed specification-table labels (regular expressions, case-insensitive) a row must match, `exclude` the labels it must not match, and `parse` how its value is read. `parse: manual` means manuals do not carry it and people enter it.",
+  "attributes": [
+    {"key": "capacity_wh", "export": true, "group": "电池", "competitor_field": "capacity_wh"},
+    {"key": "ac_rated_w", "export": true, "group": "输出", "competitor_field": "rated_w"},
+    {"key": "ac_surge_w", "export": true, "group": "输出", "competitor_field": ""},
+    {"key": "weight_kg", "export": true, "group": "物理", "competitor_field": "weight_kg"},
+    {"key": "cycle_life", "export": true, "group": "电池", "competitor_field": ""},
+    {"key": "panel_power_w", "export": true, "group": "输出", "competitor_field": "panel_power_w"},
+    {"key": "ip_rating", "export": true, "group": "认证", "competitor_field": ""},
+    {"key": "output_w", "export": true, "group": "输出", "competitor_field": ""},
+    {"key": "expansion_port", "export": true, "group": "接口", "competitor_field": ""},
+    {
+      "key": "ac_input_max_w", "label": "AC 输入上限", "label_en": "AC input (max)", "group": "输入",
+      "type": "number", "unit": "W", "parse": "max_w", "applies_to": ["便携储能", "家庭备电"],
+      "labels": ["AC Input", "AC ?入力", "交流输入", "AC ?输入", "AC ?輸入", "AC Charging Input", "Entrada (?:CA|AC)", "Entrée CA", "AC-Eingang", "Ingresso (?:CA|AC)", "AC-ingang", "Wejście AC", "Вхід AC"],
+      "exclude": ["Output", "出力", "输出", "Bypass", "旁路"],
+      "definition": "规格表 AC 输入行写的最大输入功率（W）。只写电压、电流而没写功率时不读数，原行保留在抽取报告里。"
+    },
+    {
+      "key": "solar_input_max_w", "label": "太阳能输入上限", "label_en": "Solar input (max)", "group": "输入",
+      "type": "number", "unit": "W", "parse": "max_w", "applies_to": ["便携储能", "家庭备电"],
+      "labels": ["Solar Input", "Car ?/ ?Solar", "Solar ?/ ?Car", "^DC Input", "PV Input", "DC ?8020", "DC ?入力", "ソーラー入力", "ソーラー", "太阳能输入", "太陽能輸入", "光伏输入"],
+      "exclude": ["Output", "出力", "输出", "Peak Power", "Maximum Power"],
+      "definition": "储能电源规格表太阳能（含车充/DC 共用口）输入行写的最大输入功率（W）；多行取最大。不是太阳能板自己的 STC 功率（panel_power_w）。"
+    },
+    {
+      "key": "usb_c_max_w", "label": "USB-C 单口上限", "label_en": "USB-C (max per port)", "group": "输出",
+      "type": "number", "unit": "W", "parse": "max_w", "applies_to": ["便携储能", "家庭备电"],
+      "labels": ["USB-?C", "Type-?C"],
+      "exclude": [],
+      "definition": "规格表 USB-C 行写的单口最大功率（W）；多行取最大。多口合计不算。"
+    },
+    {
+      "key": "dimensions_mm", "label": "尺寸", "label_en": "Dimensions", "group": "物理",
+      "type": "text", "unit": "mm", "parse": "dimensions",
+      "labels": ["Dimensions?", "^Size", "サイズ", "尺寸", "外形寸法", "Dimensiones", "Abmessungen", "Dimensioni", "Afmetingen", "Wymiary", "Dimensões", "Розміри"],
+      "exclude": [],
+      "definition": "规格表写的外形尺寸，按长 × 宽 × 高写成 mm；只写英寸或厘米时换算，原单位记在原单位字段。"
+    },
+    {
+      "key": "battery_chemistry", "label": "电芯类型", "label_en": "Battery chemistry", "group": "电池",
+      "type": "text", "unit": null, "parse": "chemistry", "applies_to": ["便携储能", "家庭备电", "加电包"],
+      "labels": ["Chemistry", "Cell Type", "Battery Type", "バッテリータイプ", "電池(?:の)?(?:種類|タイプ)", "电池类型", "电芯", "電芯", "Química", "Chimique", "Zellchemie", "Chimica", "Celchemie", "Chemia"],
+      "exclude": [],
+      "definition": "规格表写的电芯化学体系，规范写法 LiFePO4 / NMC / Li-ion；读不出规范写法时保留原文。"
+    },
+    {
+      "key": "discharge_temp_range", "label": "放电温度范围", "label_en": "Discharge temperature", "group": "环境",
+      "type": "range", "unit": "°C", "parse": "temp_range",
+      "labels": ["Discharg\\w* Temp", "Operating Temp", "Usage Temp", "Working Temp", "放電温度", "放电温度", "使用温度", "動作温度", "工作温度", "Temperatura de descarga", "Température de décharge", "Entladetemperatur", "Temperatura di scarica", "Ontlaadtemperatuur", "Temperatura rozładowania"],
+      "exclude": ["^Charg", "充電温度", "充电温度", "Storage", "保存", "存储", "儲存"],
+      "definition": "规格表写的放电（工作）温度范围，写成 下限~上限 °C。充电温度、存储温度不算。"
+    },
+    {
+      "key": "msrp", "label": "建议零售价", "label_en": "MSRP", "group": "商业",
+      "type": "number", "unit": "当地货币", "parse": "manual", "manual_usual": false,
+      "labels": [], "exclude": [],
+      "definition": "该市场的建议零售价，按市场分别记，原单位写币种。说明书不写，由人录入。"
+    }
+  ]
+}

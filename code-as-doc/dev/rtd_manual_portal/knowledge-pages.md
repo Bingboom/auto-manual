@@ -17,14 +17,15 @@ what has built up and can be reused, what is being done now, and where to go:
   now. Every figure is read from the source that owns it; an unreadable source
   shows its card as 无数据 and never fails the build.
   - 翻译语料: the translation-memory snapshot as 系统建设 shows it (句对, 术语,
-    languages, approved share); links to the 语言资产 tab.
+    languages, approved share); links to the 语言 asset page (since step 12; it
+    linked 系统建设「语言资产」 before).
   - 图片素材: `data/asset_registry.csv`: finished assets, the share without
     language-specific text (语言维度 中立) and those every model uses (适用机型
-    ALL); links to the workbench 数据统计 (`#statistics`, in its 交付物 tab), where the
-    registry is listed.
+    ALL); links to the 视觉媒体 asset page, which lists the registry.
   - 通用章节: the shared chapter templates under `docs/templates/page_shared`,
     counted per page and language, with the warranty, troubleshooting, charging
-    and storage chapters named.
+    and storage chapters named; links to 内容与表现 (the 产品知识 card links 产品知识, a
+    tab of 产品信息). See [asset-layers.md](asset-layers.md).
   - 产品知识: the topics in Hello-Docs `docs/knowledge/product-knowledge/topics.json`, with a growth line drawn
     from each topic's `added` date; the line is left out while any topic lacks
     one.
@@ -35,9 +36,10 @@ what has built up and can be reused, what is being done now, and where to go:
   page neither shows. `tools/rtd_portal_assets/workspace_home.yaml` (schema v2)
   holds only the note beside the cards and refuses a `doing` list of its own. A
   malformed `workspace_home.yaml` fails the build.
-- **去哪里** (`#doors`) has one card per sidebar group after 首页: 说明书
-  (说明书资料库, 搜索说明书正文), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
-  说明书生产 (说明书工作台, 系统建设, 设计规范). Each entry carries its sidebar
+- **去哪里** (`#doors`) has one card per sidebar group after 首页 (step 12): 资产 ·
+  按优先级 (`#products`: 产品信息, 内容与表现, 视觉媒体, 语言), 说明书 (`#manuals`:
+  说明书资料库, 搜索说明书正文), 生产与方向 (`#production`: 说明书工作台, 系统建设) and
+  参考 (`#reference`: 市场与政策, 设计规范). Each entry carries its sidebar
   icon and one line on what is there. A link shows only when its sidebar entry
   does, so it never points to a page this build skipped, and the cards carry no
   counts. The sidebar test in `tests/test_rtd_portal.py` pins the cards to the
@@ -153,7 +155,8 @@ snapshot, dated). Then the **常用入口** strip: the structured production dat
 (产品与规格, 文案与变量, 翻译与术语, 插图资产) and the Git-native manual sources
 (冻结发布源, 评审稿, 来源声明), from `_work_links.html`. Three tabs follow: **进度**
 (网页说明书进度, open by default), **交付物** (the coverage matrix and
-[数据统计](#数据统计)) and **资产与证据** (the asset cards, the evidence table and
+[数据统计](#数据统计)) and **生产证据** (named 资产与证据 until step 12: a pointer row to
+the four asset pages, which took over the asset cards, then the evidence table and
 快照与校验, see [生产与复用证据](../workspace_production_evidence.md)); see
 [Page layout](manual-center.md#page-layout).
 
@@ -173,12 +176,12 @@ new page with an old stylesheet (2026-10-23, the 审核中 table showed unstyled
 Each fact has one page. This page owns what is published or in production
 now, so the 网页说明书 key metric carries the books per region (欧规 n · 美规 n,
 largest first, labelled by the system contract's `focus.regions`); 系统建设
-shows no publication count and links here. 系统建设 owns the corpus and
-skeleton totals: the 语料库 and 模板与骨架 cards keep their maintenance links and
-adoption status and point to 系统建设「语言资产」
-(`#tab-corpus`) and 「骨架扩展」 (`#lane-skeletons`). The snapshot chips keep the
+shows no publication count and links here. The asset inventories belong to the
+four asset pages ([asset-layers.md](asset-layers.md)); the pointer row in
+生产证据 keeps the old card ids (`#reuse`, `#library-corpus`, `#library-styles`,
+`#library-templates`). The snapshot chips keep the
 `data-workspace-source` freshness marks that Workspace Data Verify reads;
-资产与证据「快照与校验」 (`#snapshots`) lists each snapshot's date, state, hash and
+生产证据「快照与校验」 (`#snapshots`) lists each snapshot's date, state, hash and
 update run and links the registry's rules (系统建设「数据来源」, `#sources`). The
 pointers show only when the system page is built.
 
@@ -248,8 +251,8 @@ fails the export instead of silently dropping a format.
   发布清单里还没有网页说明书.
 - The Feishu snapshot is not read for the page, so an unsound or old one
   changes nothing there; `check` still reports it.
-- The page always renders. Every knowledge page lists it first under 说明书生产,
-  and the 知识库首页 links to it from its 说明书生产 group too.
+- The page always renders. Every knowledge page lists it first under 生产与方向,
+  and the 知识库首页 links to it from its 生产与方向 group too.
 
 ### 数据统计
 
@@ -279,8 +282,8 @@ the tab has no region or model filter.
   model stays, and an unpublished model drops out. The 产品矩阵 page shows a
   model's switches in its product's detail; the coverage card links there.
 - **Asset counts are registry entries.** 素材登记 counts the rows of
-  `data/asset_registry.csv`, not deduplicated artwork; the 资产与证据 tab's
-  Artwork Assets stays Not tracked yet.
+  `data/asset_registry.csv`, not deduplicated artwork; the 视觉媒体 page lists
+  them with their scope and hash (see [asset-layers.md](asset-layers.md)).
 - **Without JavaScript** every card and the full table (newest first) still render;
   only the search box stays hidden.
 - **Failure:** without a readable publish manifest the publication cards and the
@@ -297,7 +300,7 @@ the tab has no region or model filter.
 
 `/workspace/design/index.html` (设计规范; URL, template and module keep the
 design-system name) shows the manual's visual rules in six tabs: 概览, 颜色, 字体,
-组件, 图标与素材 and 印刷规格. It is listed under 说明书生产; the public manual
+组件, 图标与素材 and 印刷规格. It is listed under 参考 (说明书生产 until step 12); the public manual
 library does not link to it.
 
 - **Pictures first (the 2026-11 layout).** A cover in the manual's own warm
@@ -432,7 +435,8 @@ entries now link directly to the workbench statistics tab; the retired
 
 `/products/matrix.html` (产品矩阵) lays out the products the published Web
 manuals describe, grouped the way the 网页文档 table groups them (2026-11
-redesign). It is listed under 产品与市场, after 产品知识; the public manual
+redesign). Since step 12 it is the first tab of 产品信息 (资产 1; see
+[asset-layers.md](asset-layers.md)), with 属性字典 and 产品知识; the public manual
 library does not link to it.
 
 - **Products and their classes.** One product is one 商品简称 of the

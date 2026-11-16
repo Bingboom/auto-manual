@@ -32,7 +32,7 @@ import os
 import re
 import subprocess
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Sequence
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -428,6 +428,7 @@ def progress_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, Any]
         "snapshot_date": exported,
         "stale": stale,
         "kpis": _kpis(targets or [], snapshot, len(online), len(editions), market_rows, reviews),
+        "coverage": coverage(rows) if snapshot is not None else None,
         "markets": [{"code": m, "label": labels.get(m, m), "expected": len(expected.get(m, ()))} for m in markets],
         "market_rows": market_rows,
         "rows": rows,
@@ -487,6 +488,21 @@ def _kpis(targets: list[dict[str, Any]], snapshot: dict[str, Any] | None, models
             "reviews": len(reviews) if snapshot and "reviews" in snapshot else None,
             "open": sum(r["open"] for r in reviews),
             "latest": max((r["date"] for r in reviews if r["date"]), default="")}
+
+
+def coverage(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """说明书工作台「进度」's lead figure: online editions against every edition the models with a Web manual need.
+
+    Only models that already have a Web manual count (drafts-only models are left out): their market cells that
+    are online, in review or 待转 form the denominator. A model without any Web manual is not listed, so the share
+    can fall when a new model gets its first manual.
+    """
+    states = Counter(cell["state"] for row in rows if row["category"] != REVIEW_CATEGORY for cell in row["cells"])
+    online = states["full"] + states["partial"]
+    total = online + states["review"] + states["gap"]
+    return {"online": online, "review": states["review"], "gap": states["gap"], "total": total,
+            "models": sum(row["category"] != REVIEW_CATEGORY for row in rows),
+            "percent": round(100 * online / total) if total else None}
 
 
 def regroup(progress: dict[str, Any], groups: list[tuple[str, set[str]]], other: str) -> None:

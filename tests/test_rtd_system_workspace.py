@@ -843,13 +843,17 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertNotIn("代表手册 · Explorer 1000", page)
             self.assertNotIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("Jackery", page)
+            # 语言资产 moved to the 语言 asset page (step 12); the old anchors stay on a pointer to it.
             self.assertIn("语言资产", page)
-            self.assertIn('class="sw-corpus-bars"', page)
+            self.assertIn('href="../../assets/language/index.html"', page.split('id="language-assets"', 1)[1])
+            self.assertNotIn('class="al-bars"', page)
+            language = (base / "good" / "assets" / "language" / "index.html").read_text(encoding="utf-8")
+            self.assertIn('class="al-bars"', language)
             # Corpus coverage must not read as manual localization completion.
-            self.assertIn("语料库句对覆盖", page)
-            self.assertIn("不是说明书的翻译完成率", page)
+            self.assertIn("句对覆盖", language)
+            self.assertIn("不是说明书的翻译完成率", language)
             # Snapshot freshness wording comes from the registry, not a fixed cadence.
-            self.assertIn(f"超过 {shipped_registry['corpus']['stale_after_days']} 天显示待复核", page)
+            self.assertIn(f"超过 {shipped_registry['corpus']['stale_after_days']} 天显示待复核", language)
             self.assertNotIn("按月快照", page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")

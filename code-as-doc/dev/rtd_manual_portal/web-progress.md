@@ -21,6 +21,20 @@ it, and `_static/web-progress.js` draws the timeline and filters the matrix.
 
 ## What the section shows
 
+### Coverage
+
+Since step 12 (operator decision 3, 2026-11-16) 进度 opens with **覆盖 · 当前主线**
+(`#web-progress-coverage`, `web_progress.coverage`): online editions (model ×
+market) against every edition the models with a Web manual need, as a bar with
+已上线, 审核中 and 待转, and a column 分母怎么算. The denominator is, for each model
+that already has a Web manual, its market cells that are online, in review or 待转
+(a market with active SKUs). Models without any Web manual are not counted and not
+listed: the snapshot keeps their candidate list off this public repository (see
+[Sources](#sources)). A new model's first manual adds its markets, so the share
+can fall. Without the snapshot there is no denominator and the block says 待统计,
+never a share of the online ones. The four counts below it (审核中, 待转, 语言未齐,
+内容已核对) are unchanged.
+
 - **Counts.** 审核中 (drafts in the 审核稿 table, with the open 待研发确认 questions
   and the last update), 待转, 语言未齐 and 内容已核对 (checked / language versions).
   已上线型号 and its categories sit under 上线进度.

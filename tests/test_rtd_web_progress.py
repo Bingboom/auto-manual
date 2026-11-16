@@ -225,6 +225,16 @@ class ViewTests(unittest.TestCase):
                         records={"JE-A/EU/en": "recW1", "JS-B/EU/en": "recW2"},
                         feishu={"web": f"{BASE_URL}?table=web", "reviews": f"{BASE_URL}?table=rev"})
 
+    def test_coverage_counts_only_models_with_a_web_manual(self):
+        # Online JE-A EU and JP and JS-B EU; JE-A's US and KR SKUs still wait: 3 of 5.
+        self.assertEqual(self.view()["coverage"], {"online": 3, "review": 0, "gap": 2, "total": 5, "models": 2,
+                                                   "percent": 60})
+        # A draft in review is not online yet; a drafts-only model (FG-2) is not in the denominator.
+        self.assertEqual(self.view(self.with_reviews())["coverage"],
+                         {"online": 3, "review": 1, "gap": 1, "total": 5, "models": 2, "percent": 60})
+        # Without the snapshot the denominator is unknown: no figure at all, never a share of the online ones.
+        self.assertIsNone(self.view(None)["coverage"])
+
     def test_cells_count_languages_against_their_market(self):
         view = self.view()
         self.assertEqual([m["code"] for m in view["markets"]], ["EU", "US", "JP", "KR"])

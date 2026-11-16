@@ -13,7 +13,8 @@
 {#- 知识库首页 (2026-11 design). 现在 opens with the reusable assets every manual adds to (tools/rtd/workspace_home.py
     reads each figure from the source that owns it), then 当前主线 (系统建设's focus) and 正在做 (workspace_home.yaml).
     Then 去哪里, 定位与价值 (web_manual_value.yaml) and 最近更新. -#}
-{#- One 去哪里 card per sidebar group (ids manuals, products, production stay stable for links): the sidebar's icon
+{#- One 去哪里 card per sidebar group (ids products — now 资产 —, manuals, production stay stable for links; 参考 is
+    reference): the sidebar's icon
     and label for each page, with one line on what is there. -#}
 {%- macro door(group, links, anchor) -%}
 <section class="home-group" id="{{ anchor }}">
@@ -93,11 +94,13 @@
     <section id="doors" aria-labelledby="doors-title">
       <div class="home-head"><h2 id="doors-title">去哪里</h2></div>
       <div class="home-doors">
+        {%- set assets = [('products/matrix' if matrix_entry else 'products/knowledge', 'product', '产品信息', '产品矩阵、属性字典与产品知识'), ('assets/content/index', 'chapters', '内容与表现', '骨架、通用章节、组件与版式'), ('assets/media/index', 'image', '视觉媒体', '素材库与共用符号'), ('assets/language/index', 'languages', '语言', '句对、术语与术语规则')] %}
+        {{ door('资产 · 按优先级', assets, 'products') }}
         {{ door('说明书', [('index', 'book', '说明书资料库', '按型号、市场和语言查找'), ('search', 'search', '搜索说明书正文', '按关键词检索说明书正文')], 'manuals') }}
-        {%- set learn = [('products/knowledge', 'product', '产品知识', '参数、电池、逆变、充电与备电')] + ([('products/matrix', 'matrix', '产品矩阵', '产品线、容量与发布市场')] if matrix_entry else []) + [('market/policy', 'globe', '市场与政策', '各地区的市场与政策')] %}
-        {{ door('产品与市场', learn, 'products') }}
-        {%- set make = ([('workspace/deliverables/index', 'workbench', '说明书工作台', '网页说明书进度、交付物与生产证据')] if deliverables_entry else []) + ([('workspace/system/index', 'system', '系统建设', '阶段门、当前主线与能力架构')] if system_entry else []) + ([('workspace/design/index', 'design', '设计规范', '颜色、字体、组件与图标')] if design_entry else []) %}
-        {{ door('说明书生产', make, 'production') }}
+        {%- set make = ([('workspace/deliverables/index', 'workbench', '说明书工作台', '网页说明书覆盖、交付物与生产证据')] if deliverables_entry else []) + ([('workspace/system/index', 'system', '系统建设', '阶段门、当前主线与能力架构')] if system_entry else []) %}
+        {{ door('生产与方向', make, 'production') }}
+        {%- set refs = [('market/policy', 'globe', '市场与政策', '各地区的市场与政策')] + ([('workspace/design/index', 'design', '设计规范', '颜色、字体、组件与图标')] if design_entry else []) %}
+        {{ door('参考', refs, 'reference') }}
       </div>
       {% if share_entry %}<p id="shares" class="home-share-row"><a class="share-card" href="{{ share_entry|e }}"><span class="home-tile">{{ icon('share', 18) }}</span><small>分享资料</small><strong>AI 使用知识分享</strong>{{ icon('chevron', 16) }}</a></p>{% endif %}
     </section>

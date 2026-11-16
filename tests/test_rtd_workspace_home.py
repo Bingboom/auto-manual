@@ -143,7 +143,9 @@ class ReusableAssetTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             cards = reusable_assets(None, Path(tmp), Path(tmp))
         self.assertEqual([card["stock"] for card in cards], [[], [], [], []])
-        self.assertIsNone(cards[0]["docname"])  # no 系统建设 page to link to
+        # Each card still opens its asset page, which says 无数据 itself.
+        self.assertEqual([card["docname"] for card in cards],
+                         ["assets/language/index", "assets/media/index", "assets/content/index", "products/knowledge"])
 
 
 class HomeRenderTests(unittest.TestCase):
@@ -157,10 +159,11 @@ class HomeRenderTests(unittest.TestCase):
         self.assertEqual(now.select_one(".home-assets-head span").get_text(), COPY["assets_note"])
         cards = now.select(".home-asset")
         self.assertEqual([card.strong.get_text() for card in cards], ["翻译语料", "图片素材", "通用章节", "产品知识"])
-        self.assertEqual(cards[0]["href"], "workspace/system/index#language-assets")
+        # Each card opens its asset page (step 12).
+        self.assertEqual(cards[0]["href"], "assets/language/index")
         self.assertEqual(cards[0].select_one(".home-asset-track i")["style"], "width:71%")
-        self.assertEqual(cards[1]["href"], "workspace/deliverables/index#statistics")
-        self.assertEqual(cards[2].name, "div")  # 通用章节 has no page of its own
+        self.assertEqual(cards[1]["href"], "assets/media/index")
+        self.assertEqual(cards[2]["href"], "assets/content/index")
         self.assertEqual([chip.get_text() for chip in cards[2].select(".home-asset-chips span")], ["保修", "故障排除"])
         self.assertIsNotNone(cards[3].select_one("svg.home-asset-spark polyline"))
         self.assertEqual([li.get_text() for li in now.select(".home-lanes li")], ["资料开发工作台", "网页发布与维护闭环"])

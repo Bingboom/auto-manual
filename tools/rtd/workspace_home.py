@@ -8,6 +8,8 @@ never fails the build:
 - 图片素材: ``data/asset_registry.csv``: finished assets (状态 成品), the share without language-specific text
   (语言维度 中立) and those every model uses (适用机型 ALL).
 - 通用章节: the shared chapter templates under ``docs/templates/page_shared``, counted per language.
+Each card opens its asset page (翻译语料 语言, 图片素材 视觉媒体, 通用章节 内容与表现, 产品知识 产品信息's tab).
+
 - 产品知识: the topics in Hello-Docs ``docs/knowledge/product-knowledge/topics.json``, with a growth line from each
   topic's ``added`` date.
 
@@ -81,7 +83,7 @@ def _card(card_id: str, title: str, icon: str, docname: str | None = None, ancho
 
 def _corpus_card(system: dict[str, Any] | None) -> dict[str, Any]:
     corpus = (system or {}).get("corpus") or {}
-    card = _card("corpus", "翻译语料", "languages", "workspace/system/index" if system else None, "language-assets")
+    card = _card("corpus", "翻译语料", "languages", "assets/language/index")
     tiles = {tile.get("key"): str(tile.get("value") or "") for tile in corpus.get("tiles") or []}
     if not tiles.get("pairs"):
         return card
@@ -109,8 +111,8 @@ def read_image_assets(registry: Path) -> dict[str, int] | None:
 
 
 def _image_card(counts: dict[str, int] | None) -> dict[str, Any]:
-    # The workbench 数据统计 tab lists the registry (素材登记).
-    card = _card("images", "图片素材", "image", "workspace/deliverables/index", "statistics")
+    # 视觉媒体 lists the registry (素材登记).
+    card = _card("images", "图片素材", "image", "assets/media/index")
     if counts:
         card["stock"] = [{"value": f"{counts['finished']:,}", "unit": "张"}]
         card["bar"] = {"percent": round(100 * counts["neutral"] / counts["finished"]), "label": "不分语言，各语言版通用"}
@@ -134,7 +136,7 @@ def read_shared_chapters(templates: Path) -> dict[str, Any] | None:
 
 
 def _chapter_card(chapters: dict[str, Any] | None) -> dict[str, Any]:
-    card = _card("chapters", "通用章节", "chapters")
+    card = _card("chapters", "通用章节", "chapters", "assets/content/index")
     if chapters:
         card["stock"] = [{"value": f"{chapters['pages']:,}", "unit": "篇"},
                          {"value": str(chapters["languages"]), "unit": "种语言"}]

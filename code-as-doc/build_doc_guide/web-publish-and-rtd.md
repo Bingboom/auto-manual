@@ -162,7 +162,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 “最近更新”（`#updates`）读取 `tools/rtd_portal_assets/knowledge_updates.yaml`，从新到旧列出最多 5 条已生成页面的改动，
 日期为合入当天，缺日期的条目显示“日期未记录”并排在最后，有问题的条目不显示，均在构建时告警。新增或明显改动知识库页面的 PR 在该文件加一条带日期和 `pr:` 证据的记录，
 见[知识库首页](../dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry)。分享包是可选的：缺失时 `/workspace/` 与系统建设页照常生成，只隐藏分享入口。
-知识库各页侧栏在“说明书”组后分“知识库”（首页）、“产品与市场”（产品知识、产品矩阵、市场与政策）和“说明书生产”（说明书工作台、系统建设、设计规范）三组，顶部切换为“知识库 / 说明书资料库”；“工作资料”只作站点名，说明书资料库根页不变。
+知识库各页侧栏先是“首页”，再分“资产 · 按优先级”（产品信息、内容与表现、视觉媒体、语言，按序编号；2026-11-16 起，见[四类资产](../dev/rtd_manual_portal/asset-layers.md)）、“说明书”、“生产与方向”（说明书工作台、系统建设）和“参考”（市场与政策、设计规范）四组，顶部切换为“知识库 / 说明书资料库”；“工作资料”只作站点名，说明书资料库根页不变。
 说明书资料库首页在目录之后放「网页说明书的定位与价值」板块，首屏仍是搜索：公开站只放面向读者的精简版，私有站放各主题和状态标签并链接到知识库首页的「定位与价值」；文案与状态维护见[网页说明书的定位与价值](../dev/rtd_manual_portal/web-manual-value.md)。
 系统建设页首是阶段门进度条（G1–G3，当前门高亮，下方一行写“接下来”和其他阶段门），其下三个标签：
 「当前工作」（保留 `#tab-progress` 链接）先列“正在做”（与知识库首页同一份，每项写明所属主线），再按主线 / 同期支撑 / 后置列各线的状态、目标、数字和台账进度；阶段门下方的“接下来”只数当前门剩余的台账项（如“完成 G1 最后一项”）；
@@ -188,10 +188,10 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 
 修改状态配置后运行 `python -m tools.rtd.system_workspace check`（加 `--online` 可再核对 PR 与链接）。
 构建同时生成页面版本回执 `_static/system-workspace-revision.json`。页首的“页面版本”下方一行显示版本检查的结果（第 9 步前折叠在「数据来源」里）。main 经镜像同步、RTD 成功构建后，已打开页面会检测已发布版本并提供刷新入口；提交版本属于 RTD 构建仓库，不能把镜像成功当作线上更新成功。详见 [Published version and refresh](../dev/rtd_manual_portal/system-workspace.md#published-version-and-refresh)。
-页内“语言资产”块优先读取 Hello-Docs `docs/knowledge/workspace-data` 汇总快照，工程快照作为迁移基线。
+语料数字（2026-11-16 起在“语言”资产页显示，系统建设的“语言资产”块只留去向提示）优先读取 Hello-Docs `docs/knowledge/workspace-data` 汇总快照，工程快照作为迁移基线。
 资产批次完成后复用 `python -m tools.rtd.system_workspace corpus-export` 的读取逻辑，通过 Workspace Data Refresh 导出并提交内容 PR；
 导出会把往月汇总数带进快照的 `history`，页面据此显示与上期的对比。
-柱状图是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率，页面在图下写明。
+语言页的柱状图是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率，页面在图下写明。
 「能力与架构」里的“技能与钩子”块：构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
 先写是否全部登记、全部有测试，再按重点线列出技能名称（说明悬停可见），钩子表默认收起；`check` 对这些缺口给出警告。
 与“语言资产”并排的“工程规模”块在构建时用 `git ls-files` 按顶层目录和文件类型统计代码与文档行数（行数最多的 10 个目录），拿不到 git 文件清单时显示无数据；详见 [Engineering scale](../dev/rtd_manual_portal/system-workspace.md#engineering-scale)。
@@ -200,7 +200,7 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](../dev/rtd_manual_portal/system-workspace.md#system-workspace-page)。
 
-同一构建还生成 `/workspace/deliverables/` 说明书工作台：页首规模卡与常用入口下分“进度”“交付物”“资产与证据”三个标签，默认打开“进度”。“Content Authority → Source Binding → Assembly / IR → Human + Machine Surface”工作地图（工作入口）在系统建设「能力与架构」，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html` 与共用的 `_work_links.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。“进度”与“交付物”自 2026-10-19 起只看网页说明书（网页链接在构建时从发布清单生成），自 2026-11-09 起整个工作台只统计网页说明书。飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`（Word 云文档、印刷交付包链接）不再上任何页面，正式交付写回并读回成功后仍每批自动刷新一次、候选数据仍通过 Hello-Docs 内容 PR 审核，是否停用由操作者决定；手动補做统一使用 Workspace Data Refresh。快照里的飞书链接需要登录才能打开；站点当前私有（Read the Docs for Business，2026-10-13 起），操作者可随时改为公开，所以按已公开处理。详见 [Deliverables page](../dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)。
+同一构建还生成 `/workspace/deliverables/` 说明书工作台：页首规模卡与常用入口下分“进度”“交付物”“生产证据”（原“资产与证据”，可复用资产移到四个资产页）三个标签，默认打开“进度”，先给覆盖（分母只含已有网页说明书的型号，见 [Coverage](../dev/rtd_manual_portal/web-progress.md#coverage)）。“Content Authority → Source Binding → Assembly / IR → Human + Machine Surface”工作地图（工作入口）在系统建设「能力与架构」，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html` 与共用的 `_work_links.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。“进度”与“交付物”自 2026-10-19 起只看网页说明书（网页链接在构建时从发布清单生成），自 2026-11-09 起整个工作台只统计网页说明书。飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`（Word 云文档、印刷交付包链接）不再上任何页面，正式交付写回并读回成功后仍每批自动刷新一次、候选数据仍通过 Hello-Docs 内容 PR 审核，是否停用由操作者决定；手动補做统一使用 Workspace Data Refresh。快照里的飞书链接需要登录才能打开；站点当前私有（Read the Docs for Business，2026-10-13 起），操作者可随时改为公开，所以按已公开处理。详见 [Deliverables page](../dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)。
 
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见

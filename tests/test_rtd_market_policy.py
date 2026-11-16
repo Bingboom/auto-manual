@@ -91,7 +91,7 @@ class MarketPolicyTests(unittest.TestCase):
                                      {"id": "retired-topic", "title": "Renamed"}])
             # Seed the per-build caches so only the knowledge pages read their inputs.
             app = SimpleNamespace(
-                config=SimpleNamespace(rtd_site_role="combined", rtd_knowledge_dir=folder),
+                config=SimpleNamespace(rtd_site_role="combined", rtd_knowledge_dir=folder), srcdir=folder,
                 _rtd_portal_data=(settings, []), _rtd_system_context=None, _rtd_design_context=None,
                 _rtd_data_context=None, _rtd_matrix_context=None,
             )
@@ -110,7 +110,7 @@ class MarketPolicyTests(unittest.TestCase):
             shutil.copytree(KNOWLEDGE / "product-knowledge", Path(folder) / "product-knowledge")
             self.snapshot(folder, sources=[{"kind": "official", "url": "https://example.org/policy"}])
             app = SimpleNamespace(
-                config=SimpleNamespace(rtd_site_role="combined", rtd_knowledge_dir=folder),
+                config=SimpleNamespace(rtd_site_role="combined", rtd_knowledge_dir=folder), srcdir=folder,
                 _rtd_portal_data=(settings, []), _rtd_system_context=None, _rtd_design_context=None,
                 _rtd_data_context=None, _rtd_matrix_context=None,
             )

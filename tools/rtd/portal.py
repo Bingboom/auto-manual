@@ -1,6 +1,7 @@
 """Root-only Sphinx portal over frozen publications; no live data or writes."""
 from __future__ import annotations
 
+import datetime as dt
 import json
 import os
 import re
@@ -418,7 +419,14 @@ def collect_workspace_pages(app):
     if not learning["content_missing"] and learning["uncovered_models"]:
         sphinx_logging.getLogger(__name__).warning(
             "Product knowledge has no topic for these placed models: %s", ", ".join(learning["uncovered_models"]))
-    yield PAGE, {**learning, "site_nav": site_nav(app)}, TEMPLATE
+    layers = asset_layer_pages(app, settings, products, system=system, matrix=matrix,
+                               topics=None if learning["content_missing"] else len(learning["topics"]),
+                               build_date=deliverables.get("build_date") or (system or {}).get("build_date")
+                               or dt.datetime.now(dt.timezone.utc).date().isoformat())
+    product = layers.pop("product")
+    yield PAGE, {**learning, "site_nav": site_nav(app), "product": product}, TEMPLATE
+    for page, context, template in layers["pages"]:
+        yield page, {**context, "site_nav": site_nav(app)}, template
     from tools.rtd.market_policy import (
         PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context, missing_knowledge_anchors,
     )
@@ -468,7 +476,30 @@ def collect_workspace_pages(app):
         "moved_title": "说明书工作台「数据统计」",
     }, "moved_page.html"
     if matrix is not None:
-        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app)}, MATRIX_TEMPLATE
+        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app), "product": product}, MATRIX_TEMPLATE
+
+
+def asset_layer_pages(app, settings: dict, products: list[dict], *, system, matrix, topics: int | None,
+                      build_date: str) -> dict:
+    """四类资产 (tools/rtd/asset_layers.py): the 产品信息 head its three tabs share, and the other pages to write."""
+    from tools.rtd import asset_layers as layers
+
+    root = repo_root()
+    publications = [item for product in products for item in product["publications"]]
+    labels = dict(settings.get("language_labels") or {})
+    web = layers.web_languages(publications, labels)
+    attributes = layers.attributes_view()
+    product = layers.product_layer(matrix, attributes, topics=topics, build_date=build_date)
+    pages = [
+        (layers.ATTRIBUTES_PAGE, {"product": product, "attributes": attributes}, layers.ATTRIBUTES_TEMPLATE),
+        ("assets/content/index", {"layer": layers.content_view(root, build_date=build_date,
+                                                               web_languages=len(web))}, "asset_content.html"),
+        ("assets/media/index", {"layer": layers.media_view(root, Path(app.srcdir), publications,
+                                                           build_date=build_date)}, "asset_media.html"),
+        ("assets/language/index", {"layer": layers.language_view(system, publications, root=root, labels=labels,
+                                                                 build_date=build_date)}, "asset_language.html"),
+    ]
+    return {"product": product, "pages": pages}
 
 
 def write_design_pages(app, exception) -> None:
