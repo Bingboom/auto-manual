@@ -230,3 +230,14 @@ def yaml_value(key: str) -> str:
     import yaml
 
     return yaml.safe_load((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8"))["path"][key]
+
+
+class CuratedTests(unittest.TestCase):
+    def test_an_unreadable_ledger_warns_and_shows_no_chip(self):
+        from tools.rtd import asset_pages
+
+        warnings = []
+        with tempfile.TemporaryDirectory() as tmp:  # a repository root without the ledger file
+            view = asset_pages.curated(ASSETS, Path(tmp), None, lambda *args: warnings.append(args[0] % args[1:]))
+        self.assertEqual(view["chips"], dict.fromkeys(ald.LAYER_IDS))
+        self.assertTrue(any("ledger" in warning for warning in warnings), warnings)

@@ -32,8 +32,13 @@ def _source_url(data: dict[str, Any], repositories: dict[str, str]) -> str:
 
 
 def curated(assets: Path, root: Path, system: dict[str, Any] | None, warn) -> dict[str, Any]:
-    """Chips, main line, the regrouped capability map and the path; empty parts when the data file is unusable."""
+    """Chips, main line, the regrouped capability map and the path; empty parts when the data file is unusable.
+
+    Without a readable contract or ledger no chip can be derived: every layer shows none, with a warning.
+    """
     ledger, repositories = _ledger(assets, root)
+    if ledger is None:
+        warn("四类资产 chips skipped: the execution ledger (system_workspace.yaml now_next.source) is unreadable")
     try:
         data = layer_data.load_layer_data(assets)
         chips = layer_data.layer_chips(data, ledger)
