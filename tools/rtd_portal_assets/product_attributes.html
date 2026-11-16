@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>属性字典 · 产品信息</title><meta name="description" content="资产 1 · 产品信息 · 属性字典：产品事实导出读取的每个属性，它的单位、适用品类和定义。">
+<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/asset-layers.css', 1) }}">
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{% import '_asset_layer.html' as al with context %}
+{#- 产品信息 › 属性字典. Context: tools/rtd/asset_layers.py attributes_view over tools/product_facts/attributes.json,
+    the attributes the product-facts export already defines; nothing here is a value of a product. -#}
+<body class="app kb al-root">
+{{ site_sidebar('product-attributes', site_nav) }}
+<div class="app-content">
+{{ site_topbar('知识库', '属性字典') }}
+<main class="al-page">
+{{ al.product_head(product, 'products/attributes') }}
+{%- call al.block('inventory', 3, '清单 · 属性字典', true) %}
+{%- if attributes %}
+<p class="al-note">{{ attributes.total }} 个属性，产品事实导出按这些定义从说明书规格表读数。「适用品类」决定哪类产品缺这个值时算缺口；没写的对所有品类都算。这里只有定义，没有任何产品的值。</p>
+<div class="al-table-wrap" role="region" aria-label="属性字典，可横向滚动" tabindex="0">
+<table class="al-table">
+  <thead><tr><th scope="col">属性</th><th scope="col">键</th><th scope="col">单位</th><th scope="col">类型</th><th scope="col">适用品类</th><th scope="col">定义</th></tr></thead>
+  <tbody>{% for item in attributes['items'] %}<tr id="attr-{{ item.key|e }}"><th scope="row">{{ item.label|e }}{% if item.label_en %}<small>{{ item.label_en|e }}</small>{% endif %}</th><td><code>{{ item.key|e }}</code></td><td>{{ item.unit|e or '—' }}</td><td>{{ item.type|e }}</td><td>{{ item.applies_to|join('、')|e or '全部' }}</td><td>{{ item.definition|e }}</td></tr>{% endfor %}</tbody>
+</table>
+</div>
+<p class="al-note">要加属性：在 <code>tools/product_facts/attributes.json</code> 里加一条并写定义，走代码评审。补缺来源（规格书等）{{ al.pending('建设中') }}</p>
+{%- else %}<p>{{ al.pending('无数据', '属性定义文件不可读。') }}</p>{% endif %}
+{%- endcall %}
+{{ al.product_foot(product) }}
+</main>
+</div>{{ site_script() }}</body></html>

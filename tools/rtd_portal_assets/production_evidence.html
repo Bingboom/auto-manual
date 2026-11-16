@@ -1,8 +1,10 @@
-{#- 说明书工作台「资产与证据」 (2026-11 design, step 8): 交付关注 only when there are alerts, the three asset cards
-    (asset_libraries.html), then 生产证据: one row per question the records should answer, each with its state and one
-    line on what answers it or what record is missing; a row opens its sources, inputs and metric lists. States follow
-    the statistics contract (code-as-doc/dev/workspace_production_evidence.md): no record is Not tracked yet, never 0.
-    The workbench counts Web manuals only (2026-11-09). Context: `production` from tools/rtd/production_evidence.py. -#}
+{#- 说明书工作台「生产证据」 (2026-11 design, step 8; renamed from 资产与证据 in step 12): 交付关注 only when there are
+    alerts, a pointer to the asset pages (the former 可复用资产 cards moved to 内容与表现, 视觉媒体 and 语言; its old ids
+    stay on the pointer's links), then 生产证据: one row per question the records should answer, each with its state
+    and one line on what answers it or what record is missing; a row opens its sources, inputs and metric lists. States
+    follow the statistics contract (code-as-doc/dev/workspace_production_evidence.md): no record is Not tracked yet,
+    never 0. The workbench counts Web manuals only (2026-11-09). Context: `production` from
+    tools/rtd/production_evidence.py. -#}
 {% from 'production_metric_macros.html' import metric_details with context %}
 {%- set overview = {} -%}{% for item in production.overview %}{% set _ = overview.update({item.id: item}) %}{% endfor %}
 {%- set refs = production.reference_metric -%}
@@ -17,9 +19,11 @@
   <span class="pe-links"><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">构建与发布运行 ↗</a><a href="https://xcn57j1urbe6.feishu.cn/wiki/BLYEwfMMFiS7wsk9MuvcOvdVnje?table=tblbnRHjpJeCVTtj" target="_blank" rel="noopener">待处理任务 ↗</a>{% if system_entry %}<a href="{{ pathto('workspace/system/index') }}#now-next">阶段验收 →</a>{% endif %}</span></aside>
 {%- endif %}
 
-<section class="sw-section pe-section" id="reuse" aria-labelledby="pe-assets-title">
-  <div class="pe-head"><div class="dl-section-title"><h2 id="pe-assets-title">可复用资产</h2><p>三类资产各自的规模、维护入口和使用情况。页面只导航，不修改资产；语料在飞书维护，样式、模板与骨架在工程仓库维护。</p></div></div>
-  {% include 'asset_libraries.html' %}
+<section class="pe-moved" id="reuse" aria-label="可复用资产已移到资产页">
+  <b>可复用资产已移到资产页：</b>
+  <a id="library-styles" href="{{ pathto('assets/content/index') }}"><span id="library-templates"></span>通用章节、组件、骨架与配方 → 内容与表现</a>
+  <a href="{{ pathto('assets/media/index') }}">素材、符号 → 视觉媒体</a>
+  <a id="library-corpus" href="{{ pathto('assets/language/index') }}">句对、术语 → 语言</a>
 </section>
 
 <section class="sw-section pe-section" id="production-evidence-table" aria-labelledby="pe-evidence-title">

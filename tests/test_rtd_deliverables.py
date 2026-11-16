@@ -297,15 +297,20 @@ class RealSphinxTests(unittest.TestCase):
                              ['产品与规格', '文案与变量', '翻译与术语', '插图资产', '冻结发布源', '评审稿', '来源声明'])
             self.assertTrue(soup.select('.wb-entries a[href="../system/index.html#work-map"]'))
             self.assertFalse(soup.select('[data-workbench-node]'))
-            # 资产与证据: the asset cards, then one row per question; a row opens its sources and lists.
+            # 生产证据 (资产与证据 until step 12): a pointer to the asset pages, which keeps the old card ids, then one
+            # row per question; a row opens its sources and lists.
             evidence = soup.select_one('#production-evidence.tab-panel')
+            self.assertEqual(soup.select_one('.page-tabs [data-tab="production-evidence"]').text, '生产证据')
             self.assertEqual([section.get('id') for section in evidence.select(':scope > section')],
                              ['reuse', 'production-evidence-table'])
+            self.assertEqual([a['href'] for a in evidence.select('#reuse a')],
+                             ['../../assets/content/index.html', '../../assets/media/index.html',
+                              '../../assets/language/index.html'])
             self.assertEqual([row['id'] for row in evidence.select('details.pe-row')],
                              ['production-overview', 'component-usage', 'production-effort', 'backflow', 'activity',
                               'agent-results'])
-            self.assertEqual([card['id'] for card in evidence.select('.pe-lib')],
-                             ['library-corpus', 'library-styles', 'library-templates'])
+            for old_id in ('library-corpus', 'library-styles', 'library-templates'):
+                self.assertIsNotNone(evidence.select_one(f'#reuse #{old_id}'), old_id)
             self.assertIn('已确认配置引用', page)
             self.assertIn('2026-09-18 至 2026-09-25 UTC', page)
             self.assertEqual(evidence.select_one('#production-overview .pe-state').text, '已记录')
@@ -401,10 +406,8 @@ class RealSphinxTests(unittest.TestCase):
                 self.assertIsNotNone(soup.select_one(f'[data-workspace-source="{kind}"]'), kind)
             self.assertIsNone(soup.select_one('[data-workspace-source="deliverables"]'))
             self.assertTrue(soup.select('.page-meta a[href="../system/index.html#sources"]'))
-            # Corpus and skeleton totals belong to 系统建设: the asset cards and the ledger point there.
-            for anchor in ('#tab-corpus', '#lane-skeletons'):
-                self.assertTrue(soup.select(f'.pe-lib a[href="../system/index.html{anchor}"]'), anchor)
-            self.assertIn('Not tracked yet', soup.select_one('#asset-growth').text)
+            # The asset inventories live on the four asset pages now, not here.
+            self.assertFalse(soup.select('.pe-lib, #asset-growth'))
 
             # The page no longer reads the Feishu delivery snapshot: an unsound one changes nothing here.
             (assets / SNAPSHOT_NAME).write_text("{not json", encoding="utf-8")

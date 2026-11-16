@@ -5,9 +5,11 @@
 <title>产品知识</title><meta name="description" content="围绕已发布产品，学习参数、电池管理、逆变、充电、扩容和备电的最少必要知识。">
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/product-knowledge.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/asset-layers.css', 1) }}">
 <script defer src="{{ pathto('_static/product-knowledge.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{% import '_asset_layer.html' as al with context %}
 {#- The 2026-11 layout: an energy-flow map and a theme map first (both set the theme filter), then one card per
     topic with its figure beside the text, then the HomePower case. Context: tools/rtd/product_learning.py. -#}
 {%- macro icon(name) -%}
@@ -37,8 +39,9 @@
 <div class="app-content">
 {{ site_topbar('知识库', '产品知识') }}
 <main class="learning">
+{%- if product %}{{ al.product_head(product, 'products/knowledge') }}{% endif %}
 <header class="pk-head">
-<div><h1>产品知识</h1><p>从已发布的产品理解原理：先看 AC 输出能不能接、能不能启动、能不能同时用，再看续航、补能、扩容与备电。每一条都能打开对应型号的说明书核对。</p></div>
+<div><h2 class="pk-title">产品知识</h2><p>从已发布的产品理解原理：先看 AC 输出能不能接、能不能启动、能不能同时用，再看续航、补能、扩容与备电。每一条都能打开对应型号的说明书核对。</p></div>
 <div class="pk-head-meta"><span class="pk-pill">{{ topics|length }} 个知识点 · {{ tags|length }} 个主题</span>{% if latest_added %}<span class="pk-pill"><i aria-hidden="true"></i>最近新增 {{ latest_added[5:]|e }}</span>{% endif %}<a class="sibling-page" href="{{ pathto('market/policy') }}">市场与政策 →</a></div>
 </header>
 
@@ -110,6 +113,7 @@
 {% endif %}<div class="pk-lesson-text">{% for text in lesson.paragraphs %}<p>{{ text|e }}</p>{% if not loop.last %}
 {% endif %}{% endfor %}</div></li>
 {% endfor %}</ol></section>{% endfor %}
+{%- if product %}{{ al.product_foot(product) }}{% endif %}
 <footer class="learning-footer"><p>本页解释通用功能原理，不推定各型号的芯片、内部电路或未确认的兼容关系。操作、技术值和适用条件，以对应地区的已发布说明书为准。</p><noscript><p>未启用 JavaScript：全部知识条目和各区域说明书链接仍可直接阅读。</p></noscript><a href="{{ pathto('index') }}">返回说明书资料库，查找完整说明书 →</a></footer>
 </main>
 </div>{{ site_script() }}</body></html>

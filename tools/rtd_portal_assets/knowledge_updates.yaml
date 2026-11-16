@@ -13,7 +13,8 @@
 #   title     the row's bold line
 #   note      one line: what changed
 #   page      where the row links: share | home | product-knowledge |
-#             product-matrix | market-policy | deliverables | system | design-system |
+#             product-matrix | product-attributes | asset-content | asset-media |
+#             asset-language | market-policy | deliverables | system | design-system |
 #             manual-search | manual-library
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
@@ -24,6 +25,11 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-11-16
+    title: 四类资产 · 侧栏新增「资产」组
+    note: 侧栏按优先级列出产品信息、内容与表现、视觉媒体、语言四个资产页，每页按规模、在哪里维护、清单、被谁使用、来源与时间、质量与缺口六块排；产品信息含产品矩阵、新的属性字典和产品知识；工作台的可复用资产移到资产页，标签改名生产证据，进度先给覆盖；系统建设的语言资产移到语言页；市场与政策和设计规范归入「参考」组
+    page: asset-content
+    evidence: pr:auto-manual#1735
   - date: 2026-11-10
     title: 说明书阅读页 · 章节目录和新顶栏
     note: 已验证的单语网页说明书加了章节目录（左栏随阅读位置高亮当前章节，窄屏点顶栏的目录按钮打开）和顶栏（产品名、型号、区域、语言、版本、搜索、语言下拉框）；这些文字跟随说明书语言（日文页“目次”、英文页“Contents”）；反馈改成正文下方的一张卡；去掉查看源文件、深浅色切换和主题页脚

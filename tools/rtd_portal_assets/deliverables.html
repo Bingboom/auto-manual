@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="说明书工作台：网页说明书进度，按目标查找交付物与数据统计，资产与生产证据。">
+  <meta name="description" content="说明书工作台：网页说明书覆盖与进度，按目标查找交付物与数据统计，生产证据。">
   <title>说明书工作台</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}?v={{ asset_v.get('workspace.css', '')|e }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}?v={{ asset_v.get('site-shell.css', '')|e }}">
@@ -20,8 +20,9 @@
 {% import '_work_links.html' as links %}
 <body class="app kb system-workspace deliverables">
 {#- 说明书工作台 (2026-11 design): snapshot chips beside the title, four Web-manual totals, the 常用入口 strip, then
-    three tabs. 进度 is 网页说明书进度; 交付物 the coverage matrix (a row opens its language versions) and the five
-    statistics cards (#statistics); 资产与证据 the asset cards, the evidence table and the snapshot hashes. The page
+    three tabs. 进度 is 网页说明书进度, led by coverage (step 12); 交付物 the coverage matrix (a row opens its language
+    versions) and the five statistics cards (#statistics); 生产证据 (资产与证据 until step 12, whose asset cards moved
+    to the four asset pages) the evidence table and the snapshot hashes. The page
     counts Web manuals only (2026-11-09): no Feishu cloud-document deliveries, no 交付链接 snapshot. -#}
 {%- set chip_names = {'corpus': '语料', 'web_progress': '网页进度'} -%}
 {{ site_sidebar('deliverables', {'system': system_entry, 'deliverables': True, 'design': design_entry, 'matrix': matrix_entry}) }}
@@ -32,7 +33,7 @@
     <section class="wb-hero page-head">
       <div>
         <h1>说明书工作台</h1>
-        <p>看交付成果、用共享资产、跟进生产与修订。</p>
+        <p>网页说明书的生产：做到哪了、交了什么、凭什么算交付。资产清单在四个资产页。</p>
       </div>
       <div class="wb-fresh" aria-label="数据快照">
         {%- for item in freshness %}
@@ -56,7 +57,7 @@
     <nav class="page-tabs" role="tablist" aria-label="工作台分类">
       <a role="tab" href="#progress" data-tab="progress" aria-selected="true">进度</a>
       <a role="tab" href="#deliverables" data-tab="deliverables">交付物</a>
-      <a role="tab" href="#production-evidence" data-tab="production-evidence">资产与证据</a>
+      <a role="tab" href="#production-evidence" data-tab="production-evidence">生产证据</a>
     </nav>
 
     <div class="tab-panel" id="progress" role="tabpanel" aria-label="进度">
@@ -74,7 +75,7 @@
     </section>
     </div>
 
-    <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="资产与证据">
+    <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="生产证据">
       {% include 'production_evidence.html' %}
       {#- Each snapshot's date, state, hash and update run; the summary line names them. -#}
       <details class="page-meta wb-snapshots" id="snapshots"><summary><b>快照与校验</b><span>{% for item in freshness %}{{ chip_names.get(item.kind, item.label)|e }} {{ item.date[5:] if item.hash else item.date }} · {{ item.state|e }}{% if not loop.last %}　{% endif %}{% endfor %}　页面构建 {{ build_date[5:]|e }}</span></summary>
