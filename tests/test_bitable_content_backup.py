@@ -64,15 +64,16 @@ def _fake_lark_factory(state: dict):
             return {"data": {
                 "fields": ["参数名", "数值", "启用", "更新时刻", "汇总"],
                 "field_id_list": ["g1", "g2", "g3", "g4", "g5"],
-                "data": [[r[0], r[1], r[2], r[3], None] for r in created],
+                "data": [[r.get("参数名"), r.get("数值"), r.get("启用"), r.get("更新时刻"), None] for r in created],
                 "record_id_list": [f"new{i}" for i in range(len(created))],
                 "has_more": False,
             }}
         if sub == "+record-batch-create":
             payload = json.loads(args[args.index("--json") + 1])
             state.setdefault("batches", []).append(payload)
-            state.setdefault("created_rows", []).extend(payload["rows"])
-            return {"code": 0, "data": {"records": [{} for _ in payload["rows"]]}}
+            records = payload.get("create_records", [])
+            state.setdefault("created_rows", []).extend(records)
+            return {"code": 0, "data": {"records": [{} for _ in records]}}
         raise AssertionError(f"unexpected lark call: {args[:3]}")
 
     return fake
@@ -157,12 +158,13 @@ class RestoreTests(unittest.TestCase):
             self.assertEqual(plan["created_rows"], 2)
             self.assertEqual(plan["readback_rows"], 2)
             (batch,) = state["batches"]
-            self.assertEqual(batch["fields"], ["参数名", "数值", "启用", "更新时刻"])
-            self.assertEqual(batch["rows"][0][0], "额定功率")
-            self.assertEqual(batch["rows"][0][1], 1000)          # number, not "1000"
-            self.assertIs(batch["rows"][0][2], True)             # checkbox bool
-            self.assertEqual(batch["rows"][0][3], 1752710400000)  # datetime ms int, not digit-string
-            self.assertEqual(batch["rows"][1][1], 1002.5)
+            records = batch["create_records"]
+            self.assertEqual(len(records), 2)
+            self.assertEqual(records[0]["参数名"], "额定功率")
+            self.assertEqual(records[0]["数值"], 1000)          # number, not "1000"
+            self.assertIs(records[0]["启用"], True)             # checkbox bool
+            self.assertEqual(records[0]["更新时刻"], 1752710400000)  # datetime ms int, not digit-string
+            self.assertEqual(records[1]["数值"], 1002.5)
 
     def test_batch_chunking_respects_200_limit(self):
         state: dict = {}
@@ -180,7 +182,7 @@ class RestoreTests(unittest.TestCase):
             }, ensure_ascii=False), encoding="utf-8")
             bcb.restore_content(dest, "basSCRATCH", None, write=True,
                                 allow_nonempty=False, lark_cli="lark-cli")
-            self.assertEqual([len(b["rows"]) for b in state["batches"]], [200, 5])
+            self.assertEqual([len(b["create_records"]) for b in state["batches"]], [200, 5])
 
 
 class SelectOptionSyncTests(unittest.TestCase):
