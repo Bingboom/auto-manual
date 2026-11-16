@@ -408,7 +408,7 @@ class MatrixWriteTest(unittest.TestCase):
         self.assertIn("capacity_wh", planned["unused"])  # the manifest's key-named placeholder columns
         report = matrix.write(base, planned, sleep=lambda _s: None)
         self.assertEqual((report["created"], report["missing"], report["mismatched"]), (2, [], []))
-        self.assertEqual(matrix.drop_unused(base, planned), planned["unused"])
+        self.assertEqual(matrix.drop_columns(base, planned, planned["unused"]), planned["unused"])
         again = matrix.plan(base, snapshot, built)
         self.assertEqual((again["add"], again["create"], again["update"], again["unused"]), ([], [], [], []))
         changed = matrix.build(PRODUCTS, ATTRIBUTES, FACTS + [fact("JE-B/JP", "model_number", 文本值="JE-B")], SOURCES)
@@ -429,7 +429,10 @@ class MatrixWriteTest(unittest.TestCase):
         planned = matrix.plan(base, {"ids": {name: name for name in base.schema}},
                               matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
         with self.assertRaises(LoadError):
-            matrix.drop_unused(base, planned)
+            matrix.drop_columns(base, planned, ["capacity_wh"])
+        with self.assertRaises(LoadError):  # a column the generator produces is never dropped
+            matrix.drop_columns(base, planned, ["产品键"])
+        self.assertEqual(matrix.drop_columns(base, planned, []), [])  # nothing is dropped by sweep
 
 
 class ProvenanceTest(unittest.TestCase):
@@ -482,13 +485,58 @@ class ProjectsTest(unittest.TestCase):
                             {"产品键": "JE-D/EU", "型号": "JE-D", "项目号（仅飞书）": "P-HAND", "_id": "r4"}]
         planned = projects.plan(base)
         summary = projects.summary(planned)
-        self.assertEqual(summary, {"products": 4, "projects": 3, "filled": ["JE-D/EU"], "fill": ["JE-A/US"],
+        self.assertEqual(summary, {"products": 4, "projects": 3, "filled": ["JE-D/EU"], "differs": [], "fill": ["JE-A/US"],
                                    "ambiguous": ["JE-C/EU"], "unknown": ["JE-B/JP"]})
         self.assertNotIn("P-FAKE", json.dumps(summary))
         written = projects.write(base, planned, sleep=lambda _s: None)
         self.assertEqual((written["sent"], written["matched"], written["problems"]), (1, 1, []))
         self.assertEqual(base.rows["产品"][0]["项目号（仅飞书）"], "P-FAKE-1")
         self.assertEqual(base.rows["产品"][3]["项目号（仅飞书）"], "P-HAND")
+
+
+class ProjectSafetyTest(unittest.TestCase):
+    def base(self) -> MatrixBase:
+        base = MatrixBase()
+        base.schema["网页文档"] = [{"name": "型号", "type": "text"}, {"name": "项目号", "type": "text"}]
+        base.rows["网页文档"] = [{"型号": "JE-A", "项目号": "P-FAKE-1", "_id": "w1"},
+                                {"型号": "JE-B", "项目号": "P-FAKE-2", "_id": "w2"},
+                                {"型号": "JE-D", "项目号": "P-FAKE-4", "_id": "w3"}]
+        base.rows["产品"] = [{"产品键": "JE-A/US", "型号": "JE-A", "_id": "r1"},
+                            {"产品键": "JE-B/JP", "型号": "JE-B", "_id": "r2"},
+                            {"产品键": "JE-D/EU", "型号": "JE-D", "项目号（仅飞书）": "P-HAND", "_id": "r3"}]
+        return base
+
+    def test_a_failed_write_never_shows_the_project_number_and_reads_back_what_it_wrote(self):
+        base = self.base()
+        planned = projects.plan(base)
+        self.assertEqual(projects.summary(planned)["differs"], ["JE-D/EU"])  # kept, reported by product key only
+
+        def failing(args):
+            if args[0] == "+record-upsert" and "r2" in args:
+                return {"ok": False, "error": {"code": 1254000, "message": "bad value P-FAKE-2 in payload"}}
+            return base(args)
+
+        with self.assertRaises(PartialWrite) as caught:
+            projects.write(failing, planned, sleep=lambda _s: None)
+        self.assertNotIn("P-FAKE", str(caught.exception))
+        self.assertIn("1254000", str(caught.exception))
+        self.assertEqual((caught.exception.report["written"], caught.exception.report["not_written"],
+                          caught.exception.report["matched"]), (["JE-A/US"], ["JE-B/JP"], 1))
+        self.assertNotIn("P-FAKE", json.dumps(caught.exception.report))
+
+    def test_matrix_write_errors_withhold_the_cli_text(self):
+        base = MatrixBase()
+        built = matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES)
+        planned = matrix.plan(base, {"ids": {name: name for name in base.schema}}, built)
+
+        def failing(args):
+            if args[0] == "+record-batch-create":
+                return {"ok": False, "error": {"type": "api_error", "message": "rejected row P-FAKE-1"}}
+            return base(args)
+
+        with self.assertRaises(PartialWrite) as caught:
+            matrix.write(failing, planned, sleep=lambda _s: None)
+        self.assertNotIn("P-FAKE", str(caught.exception))
 
 
 if __name__ == "__main__":

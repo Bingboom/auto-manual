@@ -245,11 +245,12 @@ def write(run: Runner, planned: dict[str, Any], *, now: datetime | None = None, 
         for start in range(0, len(created), 100):
             chunk = created[start:start + 100]
             _check(run(["+record-batch-create", "--table-id", table_id, "--json",
-                        json.dumps({"create_records": chunk}, ensure_ascii=False)]), f"{MATRIX} batch create")
+                        json.dumps({"create_records": chunk}, ensure_ascii=False)]), f"{MATRIX} batch create",
+                   sensitive=True)
         for change in planned["update"]:
             _check(run(["+record-upsert", "--table-id", table_id, "--record-id", change["record_id"], "--json",
                         json.dumps(dict(change["fields"], **{STAMP: stamp}), ensure_ascii=False)]),
-                   f"{MATRIX} update {change['key']}")
+                   f"{MATRIX} update {change['key']}", sensitive=True)
     except LoadError as exc:
         failure = exc
     (sleep or __import__("time").sleep)(settle)
@@ -272,18 +273,25 @@ def _read_back(run: Runner, planned: dict[str, Any], created: list[dict[str, Any
             "missing": missing, "mismatched": mismatched, "rows_after": len(back)}
 
 
-def drop_unused(run: Runner, planned: dict[str, Any]) -> list[str]:
-    """Delete the matrix columns no attribute fills any more, only when every row leaves them empty."""
-    if not planned["unused"]:
+def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list[str]:
+    """Delete the named matrix columns, only when the generator no longer produces them and every row is empty.
+
+    Columns are dropped only by name, never by sweep: a column a person added in Feishu, or one the read cannot
+    project, is not the generator's to remove.
+    """
+    if not names:
         return []
-    rows = read_rows(run, planned["table_id"], planned["unused"])
-    filled = sorted({name for row in rows for name in planned["unused"] if row.get(name) not in (None, "", [])})
+    produced = sorted(set(names) - set(planned["unused"]))
+    if produced:
+        raise LoadError(f"{MATRIX} columns still produced or absent, not dropped: {produced}")
+    rows = read_rows(run, planned["table_id"], names)
+    filled = sorted({name for row in rows for name in names if row.get(name) not in (None, "", [])})
     if filled:
         raise LoadError(f"{MATRIX} columns to drop still hold values: {filled}")
-    for name in planned["unused"]:
+    for name in names:
         _check(run(["+field-delete", "--table-id", planned["table_id"], "--field-id", name, "--yes"]),
                f"{MATRIX} drop {name}")
-    return list(planned["unused"])
+    return list(names)
 
 
 def manifest_fields(built: dict[str, Any]) -> list[dict[str, str]]:
@@ -321,4 +329,4 @@ def defect_rows(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [f for f in facts if bare_range(f) and not _text(f.get("条件")).startswith(COMPONENT)]
 
 
-__all__ = ["skip_reason", "bare_range", "build", "column_name", "defect_rows", "drop_unused", "filled_cells", "manifest_fields", "plan", "read_base", "write"]
+__all__ = ["skip_reason", "bare_range", "build", "column_name", "defect_rows", "drop_columns", "filled_cells", "manifest_fields", "plan", "read_base", "write"]
