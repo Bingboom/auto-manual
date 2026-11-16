@@ -33,21 +33,24 @@ from tools.translation_memory import (  # noqa: E402
 # active.
 ARCHIVE_WIKI_TOKEN = "X3O8wCpXPifqGKkP2sYccyxznQb"
 DEFAULT_PAGE_SIZE = 200
-DEFAULT_MAX_RECORDS = 2000
+DEFAULT_MAX_RECORDS = 0
 DEFAULT_CACHE_TTL_SECONDS = 900
-CACHE_SCHEMA_VERSION = 2
+CACHE_SCHEMA_VERSION = 3
 LIVE_TM_LANGUAGE_FIELDS = {
-    "en",
-    "fr",
-    "es",
     "de",
+    "en",
+    "es",
+    "fr",
     "it",
-    "uk",
-    "jp",
     "ja",
+    "jp",
     "ko",
     "kr",
+    "nl",
+    "pl",
+    "pt",
     "pt-br",
+    "uk",
     "zh",
     "zh-tw",
 }
@@ -91,7 +94,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help=f"Base token override; skips wiki node resolution. Defaults to ${ENV_BASE_TOKEN_VAR} when set.",
     )
-    parser.add_argument("--max-records", type=int, default=DEFAULT_MAX_RECORDS, help="Safety cap while paginating record-list")
+    parser.add_argument(
+        "--max-records",
+        type=int,
+        default=DEFAULT_MAX_RECORDS,
+        help="Safety cap while paginating record-list (0 or negative = unlimited; positive = stop after reaching max-records)",
+    )
+    parser.add_argument(
+        "--include-draft",
+        action="store_true",
+        default=False,
+        help="Include Draft TM/Term rows in addition to Approved rows; Deprecated rows are always excluded",
+    )
     parser.add_argument(
         "--cache-ttl-seconds",
         type=int,
@@ -164,7 +178,11 @@ def main(argv: list[str] | None = None) -> int:
     else:
         language_fields, rows = cached_snapshot
     entries = build_sentence_pair_entries(
-        rows, language_fields=language_fields, entry_type=entry_type, table_label=table_label
+        rows,
+        language_fields=language_fields,
+        entry_type=entry_type,
+        table_label=table_label,
+        include_draft=args.include_draft,
     )
     query_units = split_translation_units(args.query_text) if args.split_units else [" ".join(args.query_text.split())]
     unit_matches = []
@@ -370,10 +388,45 @@ def get_table_language_fields(*, cli: str, base_token: str, table_id: str) -> li
     ]
 
 
+def _extract_status_name(val: object) -> str:
+    if val is None:
+        return ""
+    if isinstance(val, str):
+        return val.strip().lower()
+    if isinstance(val, dict):
+        name = val.get("name") or val.get("text") or ""
+        return str(name).strip().lower()
+    if isinstance(val, (list, tuple)):
+        for item in val:
+            text = _extract_status_name(item)
+            if text:
+                return text
+        return ""
+    return str(val).strip().lower()
+
+
+def is_usable_tm_row(row: dict[str, object], *, include_draft: bool = False) -> bool:
+    status_val = row.get("Status")
+    if status_val is None and "status" in row:
+        status_val = row.get("status")
+    status_name = _extract_status_name(status_val)
+    if not status_name:
+        return True
+    if status_name == "deprecated":
+        return False
+    if status_name == "approved":
+        return True
+    if status_name == "draft":
+        return bool(include_draft)
+    return False
+
+
 def list_records(*, cli: str, base_token: str, table_id: str, view_id: str, max_records: int) -> list[dict[str, object]]:
     offset = 0
     rows: list[dict[str, object]] = []
-    while offset < max_records:
+    unlimited = max_records <= 0
+    while unlimited or offset < max_records:
+        page_limit = DEFAULT_PAGE_SIZE if unlimited else min(DEFAULT_PAGE_SIZE, max_records - offset)
         payload = run_lark_json(
             [
                 cli,
@@ -388,7 +441,7 @@ def list_records(*, cli: str, base_token: str, table_id: str, view_id: str, max_
                 "--offset",
                 str(offset),
                 "--limit",
-                str(min(DEFAULT_PAGE_SIZE, max_records - offset)),
+                str(page_limit),
                 "--format",
                 "json",
             ]
@@ -397,14 +450,17 @@ def list_records(*, cli: str, base_token: str, table_id: str, view_id: str, max_
         field_names = [str(name) for name in data.get("fields", [])]
         record_ids = [str(item) for item in data.get("record_id_list", [])]
         row_values = data.get("data", [])
-        for record_id, values in zip(record_ids, row_values):
+        for record_id, values in zip(record_ids, row_values, strict=False):
             row = {"record_id": record_id}
-            for field_name, value in zip(field_names, values):
+            for field_name, value in zip(field_names, values, strict=False):
                 row[field_name] = value
             rows.append(row)
-        if not data.get("has_more"):
+        if not data.get("has_more") or not record_ids:
             break
         offset += len(record_ids)
+        if not unlimited and len(rows) >= max_records:
+            rows = rows[:max_records]
+            break
     return rows
 
 
@@ -414,9 +470,12 @@ def build_sentence_pair_entries(
     language_fields: list[str],
     entry_type: str = "sentence-pair",
     table_label: str = "translation-memory-bitable",
+    include_draft: bool = False,
 ) -> list[TranslationMemoryEntry]:
     entries: list[TranslationMemoryEntry] = []
     for row in rows:
+        if not is_usable_tm_row(row, include_draft=include_draft):
+            continue
         translations = {}
         for field_name in language_fields:
             value = str(row.get(field_name) or "").strip()
@@ -439,7 +498,7 @@ def build_sentence_pair_entries(
 
 
 def run_lark_json(cmd: list[str]) -> dict[str, object]:
-    completed = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
+    completed = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", check=False)
     if completed.returncode != 0:
         raise RuntimeError(completed.stderr.strip() or completed.stdout.strip() or f"lark-cli failed: {' '.join(cmd)}")
     payload = json.loads(completed.stdout)

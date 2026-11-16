@@ -33,6 +33,7 @@ LANGUAGE_ALIASES = {
     "cn": "zh",
     "de": "de",
     "deutsch": "de",
+    "dutch": "nl",
     "english": "en",
     "en": "en",
     "es": "es",
@@ -50,8 +51,12 @@ LANGUAGE_ALIASES = {
     "ko": "ko",
     "korean": "ko",
     "kr": "ko",
-    "portuguese": "pt-br",
-    "pt": "pt-br",
+    "nl": "nl",
+    "pl": "pl",
+    "polish": "pl",
+    "portuguese": "pt",
+    "pt": "pt",
+    "pt-pt": "pt",
     "pt-br": "pt-br",
     "ptbr": "pt-br",
     "spanish": "es",
@@ -72,6 +77,9 @@ LANGUAGE_LABELS = {
     "it": "Italiano",
     "ja": "日本語",
     "ko": "한국어",
+    "nl": "Nederlands",
+    "pl": "Polski",
+    "pt": "Português",
     "pt-br": "Português (Brasil)",
     "uk": "Українська",
     "zh": "中文",
@@ -86,6 +94,9 @@ IMPORTANT_LABELS = {
     "it": "IMPORTANTE",
     "ja": "重要",
     "ko": "중요",
+    "nl": "BELANGRIJK",
+    "pl": "WAŻNE",
+    "pt": "IMPORTANTE",
     "pt-br": "IMPORTANTE",
     "uk": "ВАЖЛИВО",
     "zh": "重要",
@@ -249,11 +260,46 @@ def load_live_tm_rows(args: argparse.Namespace) -> tuple[list[str], list[dict[st
     return language_fields, rows
 
 
+def _extract_status_name(val: object) -> str:
+    if val is None:
+        return ""
+    if isinstance(val, str):
+        return val.strip().lower()
+    if isinstance(val, dict):
+        name = val.get("name") or val.get("text") or ""
+        return str(name).strip().lower()
+    if isinstance(val, (list, tuple)):
+        for item in val:
+            text = _extract_status_name(item)
+            if text:
+                return text
+        return ""
+    return str(val).strip().lower()
+
+
+def is_usable_tm_row(row: dict[str, object], *, include_draft: bool = False) -> bool:
+    status_val = row.get("Status")
+    if status_val is None and "status" in row:
+        status_val = row.get("status")
+    status_name = _extract_status_name(status_val)
+    if not status_name:
+        return True
+    if status_name == "deprecated":
+        return False
+    if status_name == "approved":
+        return True
+    if status_name == "draft":
+        return bool(include_draft)
+    return False
+
+
 def build_pairs(
     rows: list[dict[str, object]],
     language_fields: list[str],
     source_lang: str,
     target_lang: str,
+    *,
+    include_draft: bool = False,
 ) -> tuple[list[Pair], list[str]]:
     field_by_lang = {normalize_language(field): field for field in language_fields}
     source_field = field_by_lang.get(source_lang)
@@ -269,6 +315,8 @@ def build_pairs(
     for row in rows:
         if not isinstance(row, dict):
             continue
+        if not is_usable_tm_row(row, include_draft=include_draft):
+            continue
         source = value_text(row.get(source_field))
         target = value_text(row.get(target_field))
         if not source or not target:
@@ -279,7 +327,7 @@ def build_pairs(
         source_parts = [part.strip() for part in re.split(r"\s*/\s*/\s*", source) if part.strip()]
         target_parts = [part.strip() for part in re.split(r"\s*/\s*/\s*", target) if part.strip()]
         if len(source_parts) == len(target_parts) and len(source_parts) > 1:
-            for index, (source_part, target_part) in enumerate(zip(source_parts, target_parts), start=1):
+            for index, (source_part, target_part) in enumerate(zip(source_parts, target_parts, strict=False), start=1):
                 pairs.append(
                     Pair(
                         source=source_part,
@@ -350,14 +398,14 @@ def adapt_target(target: str, source: str, query: str) -> str:
         r"[\w.-]+@[\w.-]+",
     ]
     for pattern in phrase_patterns:
-        for source_item, query_item in zip(find_phrases(pattern, source), find_phrases(pattern, query)):
+        for source_item, query_item in zip(find_phrases(pattern, source), find_phrases(pattern, query), strict=False):
             result = re.sub(re.escape(source_item), query_item, result, flags=re.I)
 
     number_pattern = (
         r"\b\d+(?:[.,]\d+)?(?:\s*[x×-]\s*\d+(?:[.,]\d+)?)*"
         r"(?:\s*(?:V|W|Wh|Ah|A|Hz|ms|s|hours?|months?|years?|kg|cm|mm|%|°C|DC|AC|SOC))?\b"
     )
-    for source_item, query_item in zip(find_phrases(number_pattern, source), find_phrases(number_pattern, query)):
+    for source_item, query_item in zip(find_phrases(number_pattern, source), find_phrases(number_pattern, query), strict=False):
         if source_item != query_item:
             result = re.sub(re.escape(source_item), query_item, result, count=1)
     return result
@@ -543,8 +591,8 @@ def looks_like_language_heading(text: str) -> bool:
     normalized = base_norm(text)
     return bool(
         re.match(
-            r"^(fr|es|de|it|uk|ja|jp|ko|kr|pt|pt-br|zh|zh-cn|zh-tw|zh-hant|cn)\s+"
-            r"(important|importante|wichtig|важливо|重要|중요)",
+            r"^(fr|es|de|it|uk|ja|jp|ko|kr|nl|pl|pt|pt-br|zh|zh-cn|zh-tw|zh-hant|cn)\s+"
+            r"(important|importante|wichtig|важливо|重要|중요|belangrijk|wazne|ważne)",
             normalized,
         )
     )
@@ -693,7 +741,7 @@ def preprocess_docx(
 
 
 def run_json(cmd: list[str], *, cwd: Path | None = None) -> dict[str, object]:
-    completed = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, encoding="utf-8")
+    completed = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, encoding="utf-8", check=False)
     if completed.returncode != 0:
         raise RuntimeError(completed.stderr.strip() or completed.stdout.strip() or f"Command failed: {' '.join(cmd)}")
     output = completed.stdout.strip()
@@ -992,7 +1040,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--tm-table-name", default="Translation_Memory")
     parser.add_argument("--tm-view-id", default="veweqW2fQv")
     parser.add_argument("--tm-base-token", default=None)
-    parser.add_argument("--max-records", type=int, default=2000)
+    parser.add_argument(
+        "--max-records",
+        type=int,
+        default=0,
+        help="Max TM records to fetch (0 or negative = unlimited)",
+    )
+    parser.add_argument(
+        "--include-draft",
+        action="store_true",
+        default=False,
+        help="Include Draft TM rows in addition to Approved rows; Deprecated rows are always excluded",
+    )
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON only")
     return parser.parse_args(argv)
 
@@ -1013,7 +1072,13 @@ def main(argv: list[str] | None = None) -> int:
 
     input_docx, inspect_payload, source_node = download_or_export_source(args, work_dir)
     language_fields, rows = load_live_tm_rows(args)
-    pairs, available_langs = build_pairs(rows, language_fields, source_lang, target_lang)
+    pairs, available_langs = build_pairs(
+        rows,
+        language_fields,
+        source_lang,
+        target_lang,
+        include_draft=args.include_draft,
+    )
     matcher = Matcher(pairs, min_fuzzy_score=args.min_fuzzy_score)
 
     output_name = args.output_name or default_output_name(input_docx.name, source_lang, target_lang)

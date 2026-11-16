@@ -164,10 +164,22 @@ def _numeric_sort_token(value: str) -> tuple[int, float | str]:
         return (1, raw.casefold())
 
 
+def _is_approved_or_legacy_tm_row(row: dict[str, str]) -> bool:
+    raw_status = row.get("Status") if "Status" in row else row.get("status")
+    if isinstance(raw_status, dict):
+        raw_status = raw_status.get("name") or raw_status.get("text") or ""
+    elif isinstance(raw_status, (list, tuple)):
+        raw_status = raw_status[0] if raw_status else ""
+        if isinstance(raw_status, dict):
+            raw_status = raw_status.get("name") or raw_status.get("text") or ""
+    status = str(raw_status or "").strip().casefold()
+    return not status or status == "approved"
+
+
 def _build_manual_copy_tm_index(tm_rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
     index: dict[tuple[str, str], dict[str, str]] = {}
     for row in tm_rows:
-        if not _is_manual_copy_tm_row(row):
+        if not _is_manual_copy_tm_row(row) or not _is_approved_or_legacy_tm_row(row):
             continue
         for source_lang in dict.fromkeys(TM_LANGUAGE_FIELDS.values()):
             source_text = (row.get(source_lang) or "").strip()
