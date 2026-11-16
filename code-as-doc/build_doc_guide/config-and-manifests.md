@@ -18,7 +18,7 @@ Do not create one config file per model.
 Current shared config families:
 
 - [`configs/config.us.yaml`](../../configs/config.us.yaml): shared EN / US template family
-- [`configs/config.us-en.yaml`](../../configs/config.us-en.yaml): canonical US English single-language review / CI / explicit review-preview landing target
+- [`configs/config.us-en.yaml`](../../configs/config.us-en.yaml): canonical US English single-language review / CI target
 - [`configs/config.ja.yaml`](../../configs/config.ja.yaml): shared JP template family
 - [`configs/config.zh.yaml`](../../configs/config.zh.yaml): shared CN zh template family backed by [`docs/manifests/manual_zh.yaml`](../../docs/manifests/manual_zh.yaml)
 - [`configs/config.eu.yaml`](../../configs/config.eu.yaml): shared EU merged family backed by [`docs/manifests/manual_eu.yaml`](../../docs/manifests/manual_eu.yaml)

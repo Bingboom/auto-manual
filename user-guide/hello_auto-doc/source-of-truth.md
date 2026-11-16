@@ -52,17 +52,7 @@ Rules:
 - Edit CSV when product parameters change.
 - Treat [`docs/_build/...`](../../docs/_build/) as generated runtime output.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
-- When design needs to review layout or page effect, share a review handoff workspace built from `_review`, not the raw `.rst`.
-- when that workspace is packaged for review sharing, let GitHub Actions build the package first and keep it as an artifact
-- Read the Docs renders the frozen Web Publish catalog from `Hello-Docs/main:docs/publish/web/` after the generated publish PR is merged; it does not replace review-preview packaging or formal print release outputs
-- designers should start from the workspace root, then pick a family, model, and language before opening the rendered manual or family diff page
-- the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
-- the packaged preview now also includes model-scoped `downloads/<family>/<model>/<lang>/review-manual.docx`, `downloads/<family>/<model>/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
-- families without `_review` content are hidden, so the preview only shows available families
-- the packaged `changes/index.html` now opens a family hub first, and each family hub fans out to model-specific change pages
-- if the target branch already has an open pull request, each new push to that PR branch will rerun `Review Preview Package` automatically when the changed files match the workflow paths
-- after that workflow finishes, download the uploaded artifact when you need the packaged review workspace; it is no longer pushed to Vercel automatically
-- if there is no open pull request yet, trigger `Review Preview Package` manually from the `Actions` tab
+- Read the Docs renders the frozen Web Publish catalog from `Hello-Docs/main:docs/publish/web/` after the generated publish PR is merged; it does not replace formal print release outputs
 
 ## 4. Materialized Bundle Layout
 

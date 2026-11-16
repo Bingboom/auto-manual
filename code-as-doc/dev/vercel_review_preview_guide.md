@@ -2,10 +2,9 @@
 
 Status: active
 
-Updated: 2026-04-04
+Updated: 2026-11-16
 
 This guide defines the current Vercel publishing flow.
-Vercel no longer hosts the PR review-preview workspace.
 It now hosts the latest queue-driven Publish HTML only.
 
 ## 1. Goal
@@ -22,7 +21,6 @@ This keeps the responsibilities separate:
 - Feishu / wiki: Publish handoff ZIP distribution and `idml_file` writeback
 - `reports/releases/`: staged release artifacts and latest publish HTML snapshot
 - Vercel: static hosting for the newest publish HTML
-- `Review Preview Package`: design-sharing artifact only
 
 ## 2. Source Layout
 
@@ -82,30 +80,13 @@ That builder:
 - copies that HTML tree into `site/publish-latest/dist`
 - copies `publish_meta.json` into `site/publish-latest/dist/generated/`
 
-## 5. Review Preview Role
-
-Current review-sharing worker:
-
-- [`.github/workflows/review-preview.yml`](../../.github/workflows/review-preview.yml)
-
-It still packages:
-
-- review HTML
-- review Word
-- diff-report HTML / CSV / XLSX
-
-But it now uploads that package as a GitHub artifact only.
-It no longer deploys review-preview content to Vercel.
-
-## 6. Maintainer Rule
+## 5. Maintainer Rule
 
 When you reason about hosted output, keep this split:
 
 - Draft: working output under `docs/_build/` by default, or under `<staging-root>/docs/_build/` during isolated local verification
-- Review preview: artifact under `site/review-preview/dist/`
 - Publish DOCX: staged under `reports/releases/.../versions/.../`
 - Latest publish HTML: staged under `reports/releases/.../latest/html/` and hosted by Vercel
 
-Do not point Vercel back at `site/review-preview/dist`.
 Do not treat Vercel as the source of truth for packaging.
 Let GitHub Actions prepare the static publish site first, then let Vercel host it.

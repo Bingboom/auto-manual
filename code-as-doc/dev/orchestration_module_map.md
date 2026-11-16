@@ -29,7 +29,7 @@ only for a new page.
 | --- | --- | --- |
 | §2 | [`build-entrypoint.md`](orchestration_module_map/build-entrypoint.md) | you add or move logic behind a `build.py` action: command dispatch, build orchestration, runtime adapters |
 | §3 | [`bundle-and-export.md`](orchestration_module_map/bundle-and-export.md) | you change bundle materialization or the Word, IDML, LaTeX or Web export modules |
-| §4 | [`quality-and-release.md`](orchestration_module_map/quality-and-release.md) | you change quality gates, maintainability guardrails, diff/release reporting or review-preview packaging |
+| §4 | [`quality-and-release.md`](orchestration_module_map/quality-and-release.md) | you change quality gates, maintainability guardrails, or diff/release reporting |
 | §5 | [`build-queue.md`](orchestration_module_map/build-queue.md) | you change the Feishu build or review queue modules: routing, execution, writeback, adapters |
 | §6, §7 | [`backport-and-intake.md`](orchestration_module_map/backport-and-intake.md) | you change the cloud-doc backport or source intake modules |
 | §9 | [`decomposition-candidates.md`](orchestration_module_map/decomposition-candidates.md) | you look for the next decomposition candidate, or need the whole-document Web boundary or RTD product-knowledge module notes |

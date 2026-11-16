@@ -1,47 +1,7 @@
-# Build guide: review preview, release outputs and output layout
+# Build guide: release outputs and output layout
 
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
-
-### 3.6 Package a Review Preview for Design
-
-Use this when design needs the rendered review HTML plus the current family-level diff package:
-
-```powershell
-python -m tools.process_docs.build_review_preview --config configs/config.us-en.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --all-review-models
-```
-
-Config note:
-
-- omit `--config` to resolve the config from the explicit `--model` / `--region` target declaration; omitting `--model` and `--region` as well derives the default target from the changed review bundle, then from the existing review tree
-- keep `--config configs/config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
-- the Vercel review-preview fallback scans the registered `configs/config*.yaml` files for those family defaults and uses the first registered target only when neither environment variables nor a review-tree target is available
-
-Default packaged output:
-
-- [`../site/review-preview/dist/`](../../site/review-preview/dist)
-
-This package contains:
-
-- `index.html`: the workspace root for family/model/language navigation
-- `manual/`: review-based HTML, grouped by family, model, and language
-- `changes/`: family hubs plus model-level diff pages at `changes/<family>/<model>/`
-- `downloads/`: model-scoped `review-manual.docx`, `change-report.xlsx`, and copied diff-report CSV files
-- `generated/meta.json`: branch / commit metadata
-- `generated/changes.json`: grouped changed files, review pages, and download metadata
-- `generated/workspace.json`: the workspace data contract used by the root page
-- `manual/index.html`: compatibility redirect to the default manual
-- `changes/index.html`: family selector that links the packaged `US / JP` diff pages instead of dropping reviewers into one default family report
-
-Packaging rule:
-
-- the review preview output contract is `index.html`, `manual/`, `changes/`, `downloads/`, and `generated/`
-- CI treats `index.html`, `manual/`, `changes/`, and `generated/` as the required smoke-packaging surface
-- `--skip-word` is now used by the CI smoke workflow so review-preview packaging can stay stable without requiring the heavier Word path on every run
-- the workspace hides families with no `_review` content, so the packaged site only shows available families
-- with `--all-review-models`, the packaged site includes every existing review model and keeps the requested target as the default landing entry
-- diff, workbook, and CSV outputs stay shared inside one `family + model` package, not per-language artifacts
-- the default change entry in the packaged workspace now opens the selected model diff page, while `changes/index.html` and `changes/<family>/index.html` stay available as hubs
 
 ### 3.7 Publish a Final Word Release
 
@@ -73,15 +33,10 @@ Runtime outputs:
 
 HTML output starts at the first manual content section. Generated cover pages are preserved for PDF/LaTeX output, not rendered as a standalone HTML home screen.
 In manual preview mode, the HTML view also suppresses most Furo navigation chrome, stays in a continuous reading flow instead of browser-side fake pagination, regenerates a lightweight left outline from manual headings, and applies a restrained neutral manual-reader treatment to generic headings, copy width, figures, ordinary docutils tables, and the multilingual preface notice while preserving dedicated component layouts such as `SPECIFICATIONS`.
-For review-preview workspace packaging, the manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout.
 
 Review working bundle:
 
 - [`docs/_review/<model>/<region>/`](../../docs/_review)
-
-Review handoff workspace:
-
-- [`../site/review-preview/dist/`](../../site/review-preview/dist)
 
 Latest publish HTML site:
 

@@ -31,11 +31,10 @@ Current flow:
     - sensitive App/QR candidates remain quarantined after extraction; a registry row may declare `source=reviewed-promotion:<promotion_id>` only when its JSON contract under `data/asset_promotions/` still matches the reviewer decision, exact target scope, source AI/reference PDF/recipe/evidence identities, all candidate/output bytes, and deterministic composition by full SHA-256. During the carrier migration, the Python compatibility shadow is read in parallel and exact parity plus the whole-contract SHA-256 are required; any drift fails closed without a legacy-image fallback. Contracts are per target: `je1000f-us-app-ui-v1` covers JE-1000F/US en/fr/es and `je1000f-eu-app-ui-v1` covers JE-1000F/EU en/fr/es/de/it/uk with the EU print's own App screens; pages must reference `asset:app/add_device` / `asset:app/connect_result` (review pages with raw `common_assets/app/*.png` paths keep the shared JP-market images)
 16. `python build.py asset-intake --asset-source-key <key> --asset-source-file <master.ai> --asset-recipe <recipe.json> --asset-output-root <new-dir>` freezes and verifies a PDF-compatible Illustrator source, then writes cleaned page archives/previews, recipe exports, `manifest.json`, `artifacts.csv`, and a deterministic ZIP into a new isolated directory
     - this action is package-only: it does not edit the source/worktree/registry/Base, and it fails closed on source/runtime/hash/path/private-marker drift; upload and promotion remain explicit reviewed steps in the three new `04_资产*` tables
-17. `python -m tools.process_docs.build_review_preview` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
-18. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
-19. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target; add `--version <version>` to freeze and bind the exact phase2 input under that release version
-20. `python build.py preview` materializes one exact page selector under a preview-only output root
-21. `python build.py fast` materializes a runtime-only draft without export
+17. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
+18. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target; add `--version <version>` to freeze and bind the exact phase2 input under that release version
+19. `python build.py preview` materializes one exact page selector under a preview-only output root
+20. `python build.py fast` materializes a runtime-only draft without export
 
 Important:
 
