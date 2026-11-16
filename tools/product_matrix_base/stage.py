@@ -33,6 +33,14 @@ class LoadError(RuntimeError):
     """The live base cannot take the staged rows as they are."""
 
 
+class PartialWrite(LoadError):
+    """A write stopped partway; ``report`` holds the read-back of what reached the base."""
+
+    def __init__(self, message: str, report: dict[str, Any]):
+        super().__init__(message)
+        self.report = report
+
+
 def product_key(model: str, market: str) -> str:
     return f"{model}/{market}"
 
@@ -225,10 +233,24 @@ def _text(value: Any) -> str:
     return str(value)
 
 
+def _instant(value: Any) -> int | None:
+    """A datetime cell as whole seconds since the epoch: written as Beijing-time text, read back as ISO text or ms."""
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return int(value // 1000)
+    text = _text(value).strip()
+    if not text:
+        return None
+    try:
+        moment = datetime.fromisoformat(text.replace(" ", "T", 1) if "T" not in text else text)
+    except ValueError:
+        return None
+    return int((moment if moment.tzinfo else moment.replace(tzinfo=CST)).timestamp())
+
+
 def same(want: Any, have: Any, kind: str) -> bool:
-    """Whether a read-back cell holds the written value (datetime: present; select: same option names)."""
+    """Whether a read-back cell holds the written value (datetime to the second; select: same option names)."""
     if kind == "datetime":
-        return have not in (None, "", [])
+        return _instant(want) is not None and _instant(want) == _instant(have)
     if kind == "checkbox":
         return bool(want) == bool(have)
     if kind == "number":
@@ -262,6 +284,34 @@ def preflight(staged: dict[str, list[dict[str, Any]]], schema: dict[str, dict[st
                         if item not in options:
                             problems.append(f"{table}.{name}: no option {item!r}")
     return sorted(set(problems))
+
+
+WEB_SOURCE = "web"
+
+
+def provenance(staged: dict[str, list[dict[str, Any]]], live_sources: Iterable[dict[str, Any]],
+               targets: Iterable[dict[str, Any]]) -> list[str]:
+    """Refusals for staged rows whose values do not trace to a published Web manual.
+
+    Every 事实 must name a 来源键 present in the staged or live 来源 rows; every such 来源 row must be a 网页说明书
+    whose key is ``web/<型号>/<市场>/<语言>/<版本>`` of a publication in the publish manifest. Other kinds of source
+    (specification sheets, PLM) need a check of their own before they may be loaded.
+    """
+    published = {f"{WEB_SOURCE}/{t['model']}/{t['region']}/{t['lang']}/{t.get('version') or 'unversioned'}"
+                 for t in targets}
+    sources = {_text(r.get("来源键")): r for r in live_sources}
+    sources.update({row["来源键"]: row for row in staged.get("来源", [])})
+    cited = {f.get("来源键") for f in staged.get("事实", [])}
+    problems = []
+    for key in sorted(({r["来源键"] for r in staged.get("来源", [])} | cited) & set(sources)):
+        kind = _text(sources[key].get("来源类型"))
+        if kind != SOURCE_TYPE:
+            problems.append(f"来源 {key}: kind {kind!r} has no provenance check")
+        elif key not in published:
+            problems.append(f"来源 {key}: not a publication in the publish manifest")
+    unknown = sorted(str(key) for key in cited if key not in sources)
+    problems += [f"事实 cites 来源 {key}, which is neither staged nor in the base" for key in unknown]
+    return problems
 
 
 def _payload(rows: list[dict[str, Any]], records_shape: bool) -> dict[str, Any]:
@@ -300,20 +350,31 @@ def write(run: Runner, planned: dict[str, Any], *, use_records_shape: bool, sett
     if planned["problems"]:
         raise LoadError("preflight problems; nothing written: " + "; ".join(planned["problems"][:10]))
     report: dict[str, Any] = {}
+    failure = None
     for table in TABLES:
         info = planned["tables"].get(table)
-        if not info or not info["create"]:
+        if not info or not info["create"] or failure:
             continue
-        table_id = planned["ids"][table]
-        created = 0
+        report[table] = {"requested": len(info["create"]), "sent": 0}
         for start in range(0, len(info["create"]), BATCH):
             chunk = info["create"][start:start + BATCH]
             payload = json.dumps(_payload(chunk, use_records_shape), ensure_ascii=False)
-            _check(run(["+record-batch-create", "--table-id", table_id, "--json", payload]),
-                   f"{table} batch create")
-            created += len(chunk)
-        report[table] = {"requested": len(info["create"]), "sent": created}
+            try:
+                _check(run(["+record-batch-create", "--table-id", planned["ids"][table], "--json", payload]),
+                       f"{table} batch create")
+            except LoadError as exc:
+                failure = exc
+                break
+            report[table]["sent"] += len(chunk)
     sleep(settle)
+    _read_back(run, planned, report)
+    if failure:
+        raise PartialWrite(f"{failure}; what reached the base was read back", report)
+    return report
+
+
+def _read_back(run: Runner, planned: dict[str, Any], report: dict[str, Any]) -> None:
+    """Read every planned row of each table written to back by its key and compare each written field."""
     for table, entry in report.items():
         info = planned["tables"][table]
         primary = PRIMARY[table]
@@ -332,8 +393,7 @@ def write(run: Runner, planned: dict[str, Any], *, use_records_shape: bool, sett
                     mismatched.append(f"{row[primary]} · {name}")
         entry.update({"read_back": len(record_ids), "missing": missing, "mismatched": mismatched,
                       "rows_after": len(back), "record_ids": record_ids})
-    return report
 
 
-__all__ = ["LoadError", "PRIMARY", "TABLES", "fact_key", "lark_runner", "plan", "preflight", "product_key",
+__all__ = ["LoadError", "PartialWrite", "provenance", "PRIMARY", "TABLES", "fact_key", "lark_runner", "plan", "preflight", "product_key",
            "read_rows", "records_shape", "same", "stage_rows", "write"]

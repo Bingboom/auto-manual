@@ -20,8 +20,10 @@ from typing import Any
 
 from tools.product_matrix_base.extract import DICTIONARY, ExtractionError, extract, inside_git_work_tree
 from tools.product_matrix_base.stage import (
-    TABLES, LoadError, lark_runner, plan, records_shape, stage_rows, write,
+    TABLES, LoadError, PartialWrite, lark_runner, plan, provenance, read_rows, records_shape, stage_rows, write,
 )
+from tools.rtd.production_evidence import read_publications
+from tools.utils.path_utils import Paths, PathSegments, docs_publish_of
 
 CATALOG = Path("tools") / "rtd_portal_assets" / "product_catalog.json"
 BASE_ENV = "FEISHU_PUBLISHED_DOCS_BASE_TOKEN"
@@ -61,18 +63,29 @@ def _extract(args: argparse.Namespace) -> int:
 
 def _write(run: Any, planned: dict[str, Any], lark_cli: str, report: dict[str, Any]) -> bool:
     """Write the planned rows and print the read-back; True when every row came back as written."""
-    written = write(run, planned, use_records_shape=records_shape(lark_cli))
+    try:
+        written = write(run, planned, use_records_shape=records_shape(lark_cli))
+    except PartialWrite as exc:
+        report["written"] = exc.report
+        _print_written(exc.report)
+        raise
+    _print_written(written)
+    report["written"] = written
+    return not any(e["missing"] or e["mismatched"] for e in written.values())
+
+
+def _print_written(written: dict[str, Any]) -> None:
     for table, entry in written.items():
         print(f"  {table}: 发送 {entry['sent']}，读回 {entry['read_back']}，缺失 {len(entry['missing'])}，"
               f"字段不符 {len(entry['mismatched'])}，表内现有 {entry['rows_after']} 行")
-    report["written"] = written
-    return not any(e["missing"] or e["mismatched"] for e in written.values())
 
 
 def _live(args: argparse.Namespace, base: str, staged: dict[str, Any], report: dict[str, Any]) -> int:
     run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli)
     try:
         planned = plan(run, staged)
+        planned["problems"] += provenance(staged, read_rows(run, planned["ids"]["来源"], ["来源键", "来源类型"]),
+                                          _publications(args.root))
         for table in TABLES:
             info = planned["tables"].get(table)
             if info:
@@ -92,7 +105,18 @@ def _live(args: argparse.Namespace, base: str, staged: dict[str, Any], report: d
         return 2
 
 
+def _publications(root: Path | None) -> list[dict[str, Any]]:
+    """The publish manifest's targets, the only publications a 网页说明书 source may name."""
+    manifest = docs_publish_of(Paths(root or Path.cwd()).docs_dir) / PathSegments.PUBLISH_MANIFEST_JSON
+    targets, _built = read_publications(manifest)
+    if targets is None:
+        raise LoadError(f"{manifest} is missing or malformed: provenance cannot be checked")
+    return targets
+
+
 def _stage(args: argparse.Namespace) -> int:
+    if args.report:
+        _out(args.report)  # refuse a bad output path before anything is written
     if args.staged:
         staged = json.loads(args.staged.read_text(encoding="utf-8"))
         staged = {table: staged.get(table, []) for table in TABLES}
@@ -109,7 +133,7 @@ def _stage(args: argparse.Namespace) -> int:
         print("no base given: offline staging only, nothing compared or written")
         status = 0
     if args.report:
-        _out(args.report).write_text(json.dumps(report, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        args.report.write_text(json.dumps(report, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         print(f"report: {args.report}")
     return status
 
@@ -121,6 +145,8 @@ def _matrix(args: argparse.Namespace) -> int:
     if not base:
         print("ERROR   no base given")
         return 2
+    if args.report:
+        _out(args.report)  # refuse a bad output path before anything is written
     run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli)
     try:
         snapshot = matrix.read_base(run)
@@ -142,7 +168,11 @@ def _matrix(args: argparse.Namespace) -> int:
         if not (args.write and args.yes):
             print("dry run: nothing written")
             return 0
-        written = matrix.write(run, planned)
+        try:
+            written = matrix.write(run, planned)
+        except PartialWrite as exc:
+            print(f"  中途失败，已读回：{json.dumps(exc.report, ensure_ascii=False)}")
+            raise
         print(f"  加列 {written['columns_added']}，新建 {written['created']}，更新 {written['updated']}，"
               f"缺失 {len(written['missing'])}，字段不符 {len(written['mismatched'])}，表内现有 {written['rows_after']} 行")
         if args.drop_unused:
@@ -175,7 +205,8 @@ def main(argv: list[str] | None = None) -> int:
     given.add_argument("--extraction", type=Path, help="an extraction from the extract command")
     given.add_argument("--staged", type=Path,
                        help="rows already staged per table ({\"产品\": [...], ...}), e.g. converted from another read")
-    st.add_argument("--root", type=Path, help="checkout holding the 产品分类 snapshot (default: this one)")
+    st.add_argument("--root", type=Path, help="checkout holding the publish manifest and the 产品分类 snapshot "
+                                              "(default: this one); every 来源 must be one of its publications")
     st.add_argument("--models")
     st.add_argument("--markets")
     st.add_argument("--attributes")

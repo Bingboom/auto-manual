@@ -11,7 +11,7 @@ from tools.product_matrix_base.extract import (
     compare, extract, inside_git_work_tree, load_dictionary, parse_value, quantities, spec_rows, table_rows,
 )
 from tools.product_matrix_base.stage import (
-    BATCH, LoadError, fact_key, plan, preflight, read_rows, same, stage_rows, write,
+    BATCH, LoadError, PartialWrite, fact_key, plan, preflight, provenance, read_rows, same, stage_rows, write,
 )
 
 MANIFEST = Path(__file__).resolve().parents[1] / "bitable_schema" / "product_matrix_base_manifest.json"
@@ -24,7 +24,7 @@ EN = """# SAFETY
 ## GENERAL INFO
 
 <figure><table class="hb-spec-table"><tbody>
-<tr><th scope="row">Capacity</th><td>512 Wh (20 Ah / 25.6 V DC)</td></tr>
+<tr><th scope="row">Capacity</th><td>321 Wh (12.5 Ah / 25.7 V DC)</td></tr>
 <tr><th scope="row">Cell Chemistry</th><td>LiFePO<sub>4</sub></td></tr>
 <tr><th scope="row">Weight</th><td>About 7.1 kg</td></tr>
 <tr><th scope="row">Dimensions</th><td>30 x 20 x 20 cm</td></tr>
@@ -51,7 +51,7 @@ FR = """# SPÉCIFICATIONS
 ## INFORMATIONS GÉNÉRALES
 
 <table class="hb-spec-table"><tbody>
-<tr><th>Capacité</th><td>512 Wh</td></tr>
+<tr><th>Capacité</th><td>321 Wh</td></tr>
 <tr><th>Poids</th><td>Environ 7,1 kg</td></tr>
 <tr><th>Dimensions</th><td>30 x 20 x 21 cm</td></tr>
 </tbody></table>
@@ -59,7 +59,7 @@ FR = """# SPÉCIFICATIONS
 JA = """## 主な仕様
 
 <div><table class="manual-table native-spec"><tbody>
-<tr><td class="native-key">定格容量</td><td>512Wh</td></tr>
+<tr><td class="native-key">定格容量</td><td>321Wh</td></tr>
 <tr><td class="native-key">動作温度</td><td>-10°C~45°C</td></tr>
 </tbody></table></div>
 """
@@ -67,8 +67,8 @@ PANEL = """# TECHNICAL PARAMETERS
 
 <table class="manual-table"><tbody>
 <tr><th>Electrical Data</th><th>STC*</th><th>BNPI*</th></tr>
-<tr><td>Maximum Power (Pmax)</td><td>100W±5%</td><td>110W±5%</td></tr>
-<tr><td>IP Rating</td><td colspan="2">IP68</td></tr>
+<tr><td>Maximum Power (Pmax)</td><td>123W±4%</td><td>134W±4%</td></tr>
+<tr><td>IP Rating</td><td colspan="2">IP65</td></tr>
 </tbody></table>
 """
 MANUALS = {("JE-A", "US", "en"): EN, ("JE-A", "US", "fr"): FR, ("JE-B", "JP", "ja"): JA,
@@ -91,15 +91,15 @@ class TableParsingTest(unittest.TestCase):
         self.assertNotIn("Period", [r["label"] for r in rows])
         first = rows[0]
         self.assertEqual((first["text"], first["section"], first["anchor"], first["table"], first["row"]),
-                         ("512 Wh (20 Ah / 25.6 V DC)", "SPECIFICATIONS > GENERAL INFO", "general-info", 1, 1))
+                         ("321 Wh (12.5 Ah / 25.7 V DC)", "SPECIFICATIONS > GENERAL INFO", "general-info", 1, 1))
         self.assertEqual(rows[1]["text"], "LiFePO4")
         self.assertEqual(spec_rows(FR)[0]["anchor"], "spec-general")
 
     def test_column_headers_name_each_value_of_a_multi_column_row(self):
         rows = table_rows(PANEL.split("<table class=\"manual-table\">")[1].split("</table>")[0])
         self.assertEqual([(r["label"], r["column"], r["text"]) for r in rows],
-                         [("Maximum Power (Pmax)", "STC*", "100W±5%"), ("Maximum Power (Pmax)", "BNPI*", "110W±5%"),
-                          ("IP Rating", "", "IP68")])
+                         [("Maximum Power (Pmax)", "STC*", "123W±4%"), ("Maximum Power (Pmax)", "BNPI*", "134W±4%"),
+                          ("IP Rating", "", "IP65")])
 
     def test_quantities_read_thousands_and_decimal_commas(self):
         self.assertEqual([(q["value"], q["unit"]) for q in quantities("3,000 cycles, Environ 7,1 kg, 1.5 kW")],
@@ -167,7 +167,7 @@ class ExtractionTest(unittest.TestCase):
     def test_values_by_export_rules_and_by_dictionary(self):
         facts = {f["attribute"]: f for f in self.edition("JE-A", "US", "en")["facts"]}
         self.assertEqual((facts["capacity_wh"]["number"], facts["ac_rated_w"]["number"],
-                          facts["ac_surge_w"]["number"]), (512, 800, 1600))
+                          facts["ac_surge_w"]["number"]), (321, 800, 1600))
         self.assertEqual((facts["ac_surge_w"]["qualifier"], facts["weight_kg"]["qualifier"]), ("峰值", "约"))
         self.assertEqual(facts["usb_c_max_w"]["number"], 100)
         self.assertEqual(facts["usb_c_max_w"]["label"], "1 × USB-C 100 W")
@@ -176,9 +176,9 @@ class ExtractionTest(unittest.TestCase):
         self.assertEqual(facts["battery_chemistry"]["text"], "LiFePO4")
         self.assertEqual(facts["discharge_temp_range"]["text"], "-10~45")
         panel = {f["attribute"]: f for f in self.edition("JS-S", "US", "en")["facts"]}
-        self.assertEqual((panel["panel_power_w"]["number"], panel["panel_power_w"]["condition"]), (100, "STC*"))
+        self.assertEqual((panel["panel_power_w"]["number"], panel["panel_power_w"]["condition"]), (123, "STC*"))
         japanese = {f["attribute"]: f for f in self.edition("JE-B", "JP", "ja")["facts"]}
-        self.assertEqual(japanese["capacity_wh"]["number"], 512)  # a td/td table the export's own reader misses
+        self.assertEqual(japanese["capacity_wh"]["number"], 321)  # a td/td table the export's own reader misses
 
     def test_language_editions_are_compared(self):
         found = {d["attribute"]: d for d in compare(self.document["editions"])}
@@ -209,7 +209,7 @@ class StagingTest(unittest.TestCase):
         self.assertTrue(all("生效起" not in f and "当前值" not in f for f in staged["事实"]))
         capacity = next(f for f in staged["事实"] if f["事实键"].startswith("JE-A/US|capacity_wh|-|web/JE-A/US/en"))
         self.assertEqual((capacity["原文"], capacity["数值"], capacity["记录时间"]),
-                         ("Capacity: 512 Wh (20 Ah / 25.6 V DC)", 512, "2026-11-16 09:02:03"))
+                         ("Capacity: 321 Wh (12.5 Ah / 25.7 V DC)", 321, "2026-11-16 09:02:03"))
         self.assertIn("SPECIFICATIONS > GENERAL INFO · 表1 行1 · #general-info", capacity["来源位置"])
         self.assertEqual(fact_key("P/US", "k", "", "s"), "P/US|k|-|s")
 
@@ -286,7 +286,11 @@ class LoadTest(StagingTest):
 
     def test_read_back_comparison(self):
         self.assertTrue(same(["便携储能"], [{"name": "便携储能"}], "select"))
-        self.assertTrue(same(512, "512", "number"))
+        self.assertTrue(same(321, "321", "number"))
+        self.assertTrue(same("2026-11-16 23:57:44", "2026-11-16T23:57:44.000+08:00", "datetime"))
+        self.assertTrue(same("2026-11-16 23:57:44", 1794844664000, "datetime"))
+        self.assertFalse(same("2026-11-16 23:57:44", "2026-11-16T23:57:45.000+08:00", "datetime"))
+        self.assertFalse(same("2026-11-16 23:57:44", "", "datetime"))
         self.assertTrue(same("a", [{"text": "a"}], "text"))
         self.assertFalse(same("a", "b", "text"))
 
@@ -416,6 +420,42 @@ class MatrixWriteTest(unittest.TestCase):
                               matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
         with self.assertRaises(LoadError):
             matrix.drop_unused(base, planned)
+
+
+class ProvenanceTest(unittest.TestCase):
+    TARGETS = [{"model": "JE-A", "region": "US", "lang": "en", "version": "v-en"}]
+
+    def test_facts_must_trace_to_a_published_web_manual(self):
+        good = {"来源": [{"来源键": "web/JE-A/US/en/v-en", "来源类型": "网页说明书"}],
+                "事实": [{"事实键": "k", "来源键": "web/JE-A/US/en/v-en"}]}
+        self.assertEqual(provenance(good, [], self.TARGETS), [])
+        bad = {"来源": [{"来源键": "web/JE-A/US/en/v-old", "来源类型": "网页说明书"},
+                       {"来源键": "sheet/JE-A/1", "来源类型": "规格书"}],
+               "事实": [{"事实键": "k", "来源键": "nowhere"}, {"事实键": "j", "来源键": "live/x"}]}
+        self.assertEqual(provenance(bad, [{"来源键": "live/x", "来源类型": ["网页说明书"]}], self.TARGETS), [
+            "来源 live/x: not a publication in the publish manifest",
+            "来源 sheet/JE-A/1: kind '规格书' has no provenance check",
+            "来源 web/JE-A/US/en/v-old: not a publication in the publish manifest",
+            "事实 cites 来源 nowhere, which is neither staged nor in the base"])
+
+
+class PartialWriteTest(StagingTest):
+    def test_a_failed_batch_still_reads_back_what_was_created(self):
+        staged = stage_rows(self.document, CATALOG, now=self.moment)
+        base = FakeBase()
+        original = base.__call__
+
+        def failing(args):
+            if args[0] == "+record-batch-create" and args[args.index("--table-id") + 1] == "来源":
+                return {"ok": False, "error": {"message": "boom"}}
+            return original(args)
+
+        with self.assertRaises(PartialWrite) as caught:
+            write(failing, plan(base, staged), use_records_shape=True, sleep=lambda _s: None)
+        report = caught.exception.report
+        self.assertEqual(report["产品"]["read_back"], len(staged["产品"]))
+        self.assertEqual((report["来源"]["sent"], report["来源"]["read_back"]), (0, 0))
+        self.assertNotIn("事实", report)
 
 
 if __name__ == "__main__":

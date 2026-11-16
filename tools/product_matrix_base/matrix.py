@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 from tools.product_matrix_base.stage import (
-    LoadError, Runner, _check, _stamp, _text, fields, read_rows, same, table_ids,
+    LoadError, PartialWrite, Runner, _check, _stamp, _text, fields, read_rows, same, table_ids,
 )
 
 MATRIX = "矩阵"
@@ -228,22 +228,34 @@ def write(run: Runner, planned: dict[str, Any], *, now: datetime | None = None, 
                f"{MATRIX} field {field['name']}")
     stamp = _stamp(now or datetime.now(timezone.utc))
     created = [dict(row, **{STAMP: stamp}) for row in planned["create"]]
-    for start in range(0, len(created), 100):
-        chunk = created[start:start + 100]
-        _check(run(["+record-batch-create", "--table-id", table_id, "--json",
-                    json.dumps({"create_records": chunk}, ensure_ascii=False)]), f"{MATRIX} batch create")
-    for change in planned["update"]:
-        _check(run(["+record-upsert", "--table-id", table_id, "--record-id", change["record_id"], "--json",
-                    json.dumps(dict(change["fields"], **{STAMP: stamp}), ensure_ascii=False)]),
-               f"{MATRIX} update {change['key']}")
+    failure = None
+    try:
+        for start in range(0, len(created), 100):
+            chunk = created[start:start + 100]
+            _check(run(["+record-batch-create", "--table-id", table_id, "--json",
+                        json.dumps({"create_records": chunk}, ensure_ascii=False)]), f"{MATRIX} batch create")
+        for change in planned["update"]:
+            _check(run(["+record-upsert", "--table-id", table_id, "--record-id", change["record_id"], "--json",
+                        json.dumps(dict(change["fields"], **{STAMP: stamp}), ensure_ascii=False)]),
+                   f"{MATRIX} update {change['key']}")
+    except LoadError as exc:
+        failure = exc
     (sleep or __import__("time").sleep)(settle)
+    report = _read_back(run, planned, created)
+    if failure:
+        raise PartialWrite(f"{failure}; what reached the base was read back", report)
+    return report
+
+
+def _read_back(run: Runner, planned: dict[str, Any], created: list[dict[str, Any]]) -> dict[str, Any]:
+    table_id = planned["table_id"]
     expected = {row["产品键"]: row for row in created}
     expected.update({c["key"]: c["fields"] for c in planned["update"]})
     names = sorted({n for row in expected.values() for n in row} | {"产品键"})
     back = {_text(r.get("产品键")): r for r in read_rows(run, table_id, names)}
     missing = [key for key in expected if key not in back]
     mismatched = [f"{key} · {name}" for key, row in expected.items() if key in back for name, value in row.items()
-                  if name != STAMP and not _equal(value, back[key].get(name), planned["kinds"].get(name, "text"))]
+                  if not _equal(value, back[key].get(name), planned["kinds"].get(name, "text"))]
     return {"columns_added": len(planned["add"]), "created": len(created), "updated": len(planned["update"]),
             "missing": missing, "mismatched": mismatched, "rows_after": len(back)}
 
