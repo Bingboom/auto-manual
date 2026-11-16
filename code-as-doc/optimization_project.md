@@ -523,6 +523,39 @@ Scope:
 Exit criteria: the per-item acceptance lines in the plan are all met and each
 completed CQ item has a record in [`code_optimization_log.md`](code_optimization_log.md).
 
+### Workstream Z: Engine And Business Data Decoupling
+
+Status: active — Stage 1 (sync overlay paths) is in review as PR #1727 (which replaces #1724); operator decisions recorded 2026-11-16
+
+Plan document and authoritative item list:
+[`dev/engine_business_decoupling_checklist.md`](dev/engine_business_decoupling_checklist.md)
+(`S1-1` … `S4-4`; decisions in its §7).
+
+Why now: one-way mirror sync overwrites everything outside its keep paths, so
+model business data (frozen packages, registries, target configs, reports) sits in
+this public engineering repo — about 71% of the tracked files that the operator's
+checklist named, plus about 20% more it missed.
+
+Stages:
+
+- Stage 1 — sync boundary (`S1-1` … `S1-4`). Exit: dry runs before and after merge
+  show no downstream deletion, upstream additions in overlay paths reach the
+  mirror, and the Web publish flow is unchanged.
+- Stage 2 — split mixed directories and move business data (`S2-1` … `S2-5`).
+  Exit: preparation PRs keep every ratchet and doc check green; each removed path
+  exists in the business repo with its CI green, and manual-validation here stays
+  green.
+- Stage 3 — config layering and workspace root (`S3-1` … `S3-4`). Exit: builds with
+  `--workspace-root` pointing outside the repo match in-repo builds, and no config
+  here defaults to a real model.
+- Stage 4 — anti-backflow guardrails and release contract (`S4-1` … `S4-4`). Exit:
+  the literal guardrail has no unbaselined hits, manual-validation is green with
+  zero business data, and a forbidden path fails the PR.
+
+No removal starts before the prerequisites in the plan's Stage 2 land. Each
+completed stage gets a record at the top of
+[`code_optimization_log.md`](code_optimization_log.md); PRs cite the item IDs.
+
 ## 7. Deferred Work
 
 Deferred workstreams stay in §6 with status `deferred` and, where recorded, their
@@ -573,6 +606,7 @@ structuralization or online-first expansion by default**.
 6. Let Workstream U items fire on their tier rules: K8 (transport) when its sync-pain trigger fires; K9/K10/K12 only with dedicated capacity or a protected window — not as filler.
 7. Re-launch long-form prose assembly (Workstream N) only after the design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) is approved and the Feishu source model is stable.
 8. Scale online-first to more models (Workstream O) and consolidate the control plane (Workstream P) as those dependencies clear — but approve the Workstream V design doc before any many-target scale-out, because O multiplies exactly the review-branch propagation cost V removes.
+9. Decouple engine and business data (Workstream Z) in plan order: non-destructive items first; no upstream removal before its business-repo copy, CI and routing change exist.
 
 
 ## 9. Success Criteria
