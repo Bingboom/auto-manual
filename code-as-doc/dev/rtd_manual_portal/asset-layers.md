@@ -108,8 +108,8 @@ assembled with the layer views by `tools/rtd/asset_pages.py`, holds everything a
 layers that is not a figure:
 
 - **Wording, each kept once.** `umbrella` (产品技术内容资产) and `main_line` (新说明书在工作台写作；
-  扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。). Both are still waiting for the
-  operator (positioning §1.2): a decision is a one-line edit here.
+  扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。). The operator adopted both on
+  2026-11-16; a later change is a one-line edit here.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and
   the state maps to a portal status word (`CHIP_STATUS`: all done → 已验证, any done,

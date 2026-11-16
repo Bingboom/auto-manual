@@ -7,7 +7,8 @@ schema: hello-docs-asset-layers/v1
 # Where the wording comes from: the positioning document, §1.2 (four layers) and §4.2 (staged path).
 source: "file:auto-manual:code-as-doc/architecture/Hello_Docs_Positioning.md"
 
-# Waiting for the operator (positioning §1.2, 2026-11-16). Each wording is kept here once, so a change is one line.
+# Decided by the operator on 2026-11-16 (「都按建议」): the umbrella term and the main line. Each wording is kept
+# here once, so a change is one line; pages may say 资产 for short.
 umbrella: 产品技术内容资产
 main_line: 新说明书在工作台写作；扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。
 
