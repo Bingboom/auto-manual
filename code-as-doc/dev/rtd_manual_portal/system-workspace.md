@@ -5,7 +5,12 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 
 ## System workspace page
 
-Since the 2026-11 redesign the page has the 阶段门 stepper above three tabs.
+Since the 2026-11 redesign the page has the 阶段门 stepper above three tabs. Its headline
+(`hero.subtitle`) is, since 2026-11-16 (approved in step 12),
+「以网页说明书为入口，把产品信息、内容与表现、视觉媒体、语言管成有来源、可核实的资产；产品信息排第一。」
+The page's wording for the data-and-template route is 退出 (operator, 2026-11-16), not
+逐步收缩; the operator's dated quote of 2026-11-06 stays as said in `focus.evidence`, with
+the positioning document cited beside it.
 
 - **阶段门** (`#gates`, `stepper_view`): the unfolded gates G1–G3 in order, each with
   its count, bar and ledger tally. The first gate not yet done is 当前 and filled
@@ -31,7 +36,14 @@ Since the 2026-11 redesign the page has the 阶段门 stepper above three tabs.
     tag, a bar of its items counted by status (`status_counts`), and one line per
     item (its `short` label). Each item's note, status, 待复核 mark and evidence open
     under 各项说明与依据. The header counts all items by status; past-review items
-    are one notice (待复核 N 项), not a mark on every line.
+    are one notice (待复核 N 项), not a mark on every line. Since step 12 slice 2 the
+    map is four layer cards (产品信息, 内容与表现, 视觉媒体, 语言: the items
+    `asset_layers.yaml` regroups, each with its own status and evidence; the layer's
+    chip only from its ledger rows) above the 生产 row of the cards kept whole; see
+    [asset-layers.md](asset-layers.md#curated-data-asset_layersyaml-slice-2). Without
+    a usable `asset_layers.yaml` the six cards show as before.
+  - 长期方向 (`#path`, slice 2): positioning §4.2 as steps; a step with ledger rows
+    carries their chip, one without shows only the quoted direction and a link.
   - 生产链路: the flow links by `vocabulary.flow_group` (生产, 翻译与评审, 运行与追溯),
     each a row with its path, status and 自动/人工; its note and evidence open in place.
   - 工作入口 (`manual_workbench.html`, moved from 说明书工作台): no node's panel

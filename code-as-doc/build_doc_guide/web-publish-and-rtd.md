@@ -157,7 +157,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 
 同一个构建还会生成知识库首页 `/workspace/`，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到
-`/ai-share/`。首页先看积累、再看去哪里：“现在”（`#now`）先放「已积累的可复用资产」四张卡（翻译语料、图片素材、通用章节、产品知识，数字各从所属来源读取，读不到显示无数据），再放系统建设页的当前主线和“正在做”（与系统建设页同一份，写在 `tools/rtd_portal_assets/system_workspace.yaml` 的 `focus.doing`）；
+`/ai-share/`。首页先看积累、再看去哪里：“现在”（`#now`）先放四类资产卡（产品信息、内容与表现、视觉媒体、语言，数字取自各资产页同一套视图，读不到显示待统计；状态只来自执行台账登记行），再放主线（`tools/rtd_portal_assets/asset_layers.yaml` 的 `main_line`）和“正在做”（与系统建设页同一份，写在 `tools/rtd_portal_assets/system_workspace.yaml` 的 `focus.doing`）；
 “去哪里”（`#doors`）按侧栏分组列入口，只显示本次构建生成的页面，入口不放数字，下面一行“分享资料”（`#shares`）链接分享包；“定位与价值”（`#value`）放四个主题卡片；
 “最近更新”（`#updates`）读取 `tools/rtd_portal_assets/knowledge_updates.yaml`，从新到旧列出最多 5 条已生成页面的改动，
 日期为合入当天，缺日期的条目显示“日期未记录”并排在最后，有问题的条目不显示，均在构建时告警。新增或明显改动知识库页面的 PR 在该文件加一条带日期和 `pr:` 证据的记录，

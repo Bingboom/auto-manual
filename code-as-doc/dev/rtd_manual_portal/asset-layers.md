@@ -1,7 +1,7 @@
 # 四类资产 (asset-layer pages)
 
-Status: active (slice 1 of the four-layer portal work, 2026-11-16; registered as REV-51 in
-pull request #1734)
+Status: active (slices 1 and 2 of the four-layer portal work, 2026-11-16; REV-51, registered
+in pull request #1734)
 
 The operator maintains four layers of assets. Since step 12 of the 2026-11 redesign
 (operator-approved 2026-11-16) the private portal has one page per layer, in this
@@ -52,8 +52,8 @@ line and the build date), then six blocks with fixed ids, in this order:
 
 Rules:
 
-- No maturity status on the page. A layer's status will come from registered
-  ledger rows (REV-51); a hand-set chip is not allowed.
+- No hand-set maturity status. Since slice 2 a layer's chip comes only from its
+  registered ledger rows (see below).
 - A figure that cannot be computed shows 待统计; a part that does not exist yet
   shows 建设中; an unreadable source shows 无数据. None of them is ever a 0 or
   an example number.
@@ -101,7 +101,60 @@ single-language Web manuals (from the catalog); `data/terminology_rules.csv`.
 Pair-by-pair browsing is 建设中: the snapshot stores totals only. The block moved
 here from 系统建设 › 能力与架构 › 语言资产, which keeps a pointer.
 
-## Workbench and 系统建设 changes in the same slice
+## Curated data: `asset_layers.yaml` (slice 2)
+
+`tools/rtd_portal_assets/asset_layers.yaml`, read by `tools/rtd/asset_layer_data.py` and
+assembled with the layer views by `tools/rtd/asset_pages.py`, holds everything about the
+layers that is not a figure:
+
+- **Wording, each kept once.** `umbrella` (产品技术内容资产) and `main_line` (新说明书在工作台写作；
+  扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。). Both are still waiting for the
+  operator (positioning §1.2): a decision is a one-line edit here.
+- **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
+  The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and
+  the state maps to a portal status word (`CHIP_STATUS`: all done → 已验证, any done,
+  active or verifying → 建设中, all planned → 已规划). A layer with no row, or whose
+  rows are all deferred, shows no chip; a REV id the ledger lacks is an authoring error
+  (a build warning, and the pages fall back to no chips, no main line and the old
+  capability cards). The chip shows on the layer page head, the home card and the
+  系统建设 layer card, always with the rows it comes from.
+
+  | Layer | Rows | Chip (2026-11-16) |
+  | --- | --- | --- |
+  | 产品信息 | REV-50, REV-52 | 已规划 |
+  | 内容与表现 | REV-15, REV-41–43 | 建设中 |
+  | 视觉媒体 | — | none |
+  | 语言 | REV-11, REV-18, REV-35–38 | 建设中 |
+
+  REV-51 (these pages) belongs to no single layer and is not mapped.
+- **Capability regrouping.** `items` place 系统建设's capability items (`card.item`) under
+  the layers; `production` keeps the other cards whole. Every item of a regrouped card
+  is placed exactly once; an item keeps its own status and evidence. The old card ids
+  (`#cap-language`, `#cap-content_foundation`) stay as anchors on the layer card that
+  holds most of their items.
+- **Staged path** (positioning §4.2): each stage quotes the positioning document; a
+  stage with ledger rows carries their chip, a stage without one shows the quote only.
+  `tests/test_rtd_asset_layers.py` checks the quotes word for word once §4.2 is on the
+  branch.
+
+## 知识库首页 and 系统建设 (slice 2)
+
+- **知识库首页 「现在」** shows the four layer cards in priority order (frame B): number,
+  title, chip, one line, two figures with the date they were read, where it is
+  maintained and its weakest point. The figures are the layer views'
+  (`asset_layers.home_cards`), never read a second way; a missing one says 待统计.
+  Below, **主线** prints `main_line` with two facts: 网页覆盖 (the workbench's
+  coverage, `web_progress.coverage`) and 产品信息矩阵 (the path's matrix stage chip).
+  正在做 is unchanged. The former 当前主线 lane list and the four
+  「已积累的可复用资产」 cards (translation corpus, images, chapters, knowledge growth) are
+  gone; their readers were removed from `workspace_home.py`.
+- **系统建设** opens with the approved headline (`hero.subtitle` in
+  `system_workspace.yaml`). 能力与架构's capability map shows four layer cards, then
+  the 生产 row (网页发布, 多格式生产, 评审回写, Agent 执行), then **长期方向**
+  (`#path`). The page's wording 逐步收缩 is 退出 (operator, 2026-11-16); the dated
+  2026-11-06 quote stays as said, with the positioning document cited beside it.
+
+## Workbench and 系统建设 changes in slice 1
 
 - 说明书工作台: the tab 资产与证据 is 生产证据 (its id stays `production-evidence`);
   the asset cards (`asset_libraries.html`, removed) became the pointer row;
@@ -114,10 +167,8 @@ here from 系统建设 › 能力与架构 › 语言资产, which keeps a point
 
 ## Later slices
 
-知识库首页 cards and wording; 系统建设's headline, capability map and staged path;
 产品矩阵 rows as model × market from the product-information base snapshot with
-sources, verification and dates (REV-50); time backfill (REV-52); the layer status
-chips from registered ledger rows.
+sources, verification and dates (REV-50); time backfill (REV-52).
 
 ## Tests
 

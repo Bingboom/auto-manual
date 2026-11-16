@@ -12,30 +12,15 @@ what has built up and can be reused, what is being done now, and where to go:
 
 - The page header gives the web manuals' positioning in one line (the `tagline`
   of `web_manual_value.yaml`).
-- **现在** (`#now`, `tools/rtd/workspace_home.py`) opens with 「已积累的可复用资产」:
-  four cards, each the amount built up so far and how much of it can be reused
-  now. Every figure is read from the source that owns it; an unreadable source
-  shows its card as 无数据 and never fails the build.
-  - 翻译语料: the translation-memory snapshot as 系统建设 shows it (句对, 术语,
-    languages, approved share); links to the 语言 asset page (since step 12; it
-    linked 系统建设「语言资产」 before).
-  - 图片素材: `data/asset_registry.csv`: finished assets, the share without
-    language-specific text (语言维度 中立) and those every model uses (适用机型
-    ALL); links to the 视觉媒体 asset page, which lists the registry.
-  - 通用章节: the shared chapter templates under `docs/templates/page_shared`,
-    counted per page and language, with the warranty, troubleshooting, charging
-    and storage chapters named; links to 内容与表现 (the 产品知识 card links 产品知识, a
-    tab of 产品信息). See [asset-layers.md](asset-layers.md).
-  - 产品知识: the topics in Hello-Docs `docs/knowledge/product-knowledge/topics.json`, with a growth line drawn
-    from each topic's `added` date; the line is left out while any topic lacks
-    one.
-
-  Below the cards, 当前主线 lists the 系统建设 focus lanes marked `now` (titles
-  only) and 正在做 shows 系统建设's own list (`focus.doing` in
-  `system_workspace.yaml`), so the two pages always agree; without the 系统建设
-  page neither shows. `tools/rtd_portal_assets/workspace_home.yaml` (schema v2)
-  holds only the note beside the cards and refuses a `doing` list of its own. A
-  malformed `workspace_home.yaml` fails the build.
+- **现在** (`#now`) opens, since step 12 slice 2, with the four asset layers in priority
+  order and the main line; see [asset-layers.md](asset-layers.md#知识库首页-and-系统建设-slice-2).
+  Each card's figures come from the layer views the layer pages render (no figure is
+  read a second way), its chip only from ledger rows. Below the cards, 主线 prints the
+  main-line statement of `asset_layers.yaml` with 网页覆盖 and the 产品信息矩阵 stage, and
+  正在做 shows 系统建设's own list (`focus.doing` in `system_workspace.yaml`), so the two
+  pages always agree; without the 系统建设 page 正在做 does not show.
+  `tools/rtd_portal_assets/workspace_home.yaml` (schema v2) holds only the note beside
+  the cards and refuses a `doing` list of its own; a malformed one fails the build.
 - **去哪里** (`#doors`) has one card per sidebar group after 首页 (step 12): 资产 ·
   按优先级 (`#products`: 产品信息, 内容与表现, 视觉媒体, 语言), 说明书 (`#manuals`:
   说明书资料库, 搜索说明书正文), 生产与方向 (`#production`: 说明书工作台, 系统建设) and
