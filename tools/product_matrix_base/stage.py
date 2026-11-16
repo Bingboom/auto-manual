@@ -177,7 +177,21 @@ def fields(run: Runner, table_id: str) -> dict[str, dict[str, Any]]:
     return {f["name"]: f for f in data.get("fields") or data.get("items") or []}
 
 
+FIELDS_PER_READ = 50  # the CLI projects at most 50 fields per record list
+
+
 def read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, Any]]:
+    """Every row of a table with the named fields, read 50 fields at a time and merged by record id."""
+    if len(names) <= FIELDS_PER_READ:
+        return _read_rows(run, table_id, names)
+    merged: dict[str, dict[str, Any]] = {}
+    for start in range(0, len(names), FIELDS_PER_READ):
+        for row in _read_rows(run, table_id, names[start:start + FIELDS_PER_READ]):
+            merged.setdefault(row["_record_id"], {}).update(row)
+    return list(merged.values())
+
+
+def _read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, Any]]:
     """Every row of a table (paged, 200 at a time), as {"_record_id", field: value} for the named fields."""
     rows: list[dict[str, Any]] = []
     seen: set[str] = set()

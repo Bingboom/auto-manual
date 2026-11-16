@@ -11,7 +11,7 @@ from tools.product_matrix_base.extract import (
     compare, extract, inside_git_work_tree, load_dictionary, parse_value, quantities, spec_rows, table_rows,
 )
 from tools.product_matrix_base.stage import (
-    BATCH, LoadError, fact_key, plan, preflight, same, stage_rows, write,
+    BATCH, LoadError, fact_key, plan, preflight, read_rows, same, stage_rows, write,
 )
 
 MANIFEST = Path(__file__).resolve().parents[1] / "bitable_schema" / "product_matrix_base_manifest.json"
@@ -234,6 +234,8 @@ class FakeBase:
             return {"ok": True, "data": {"fields": fields}}
         if command == "+record-list":
             names = [args[i + 1] for i, a in enumerate(args) if a == "--field-id"]
+            if len(names) > 50:  # the CLI's projection limit
+                return {"ok": False, "error": {"message": "Array must contain at most 50 element(s)."}}
             offset = int(args[args.index("--offset") + 1])
             page = self.rows[table][offset:offset + 200]
             return {"ok": True, "data": {"fields": names, "data": [[r.get(n) for n in names] for r in page],
@@ -353,7 +355,10 @@ class MatrixBuildTest(unittest.TestCase):
 
     def test_a_numeric_fact_without_a_number_stays_empty_and_is_listed(self):
         self.assertNotIn("标称容量（Wh）", self.built["rows"]["JE-B/JP"])
-        self.assertEqual(self.built["empty"], [{"产品键": "JE-B/JP", "属性键": "capacity_wh", "原文": "容量: 50/60"}])
+        self.assertEqual(self.built["empty"], [{"产品键": "JE-B/JP", "属性键": "capacity_wh", "事实键": "",
+                                                "原因": "无数值", "原文": "容量: 50/60"}])
+        self.assertEqual(matrix.skip_reason({"数值": 12, "原单位": "V"}, "W"), "单位与列不符")
+        self.assertEqual(matrix.skip_reason({"数值": 7.1, "原单位": "lbs"}, "kg"), "")
         self.assertEqual(matrix.filled_cells(self.built), (4, 8))
 
 
@@ -396,6 +401,13 @@ class MatrixWriteTest(unittest.TestCase):
         update = matrix.plan(base, snapshot, changed)["update"]
         self.assertEqual([(u["key"], u["fields"]) for u in update],
                          [("JE-B/JP", {"型号（说明书）": "JE-B", "候选数": 1})])
+
+    def test_wide_tables_are_read_fifty_fields_at_a_time(self):
+        base = MatrixBase()
+        base.schema["矩阵"] += [{"name": f"c{i}", "type": "text"} for i in range(80)]
+        base.rows["矩阵"].append({"产品键": "X", "c79": "v", "_id": "rec0"})
+        rows = read_rows(base, "矩阵", ["产品键"] + [f"c{i}" for i in range(80)])
+        self.assertEqual((len(rows), rows[0]["产品键"], rows[0]["c79"]), (1, "X", "v"))
 
     def test_columns_holding_values_are_never_dropped(self):
         base = MatrixBase()

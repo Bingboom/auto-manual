@@ -32,6 +32,9 @@ NUMERIC = {"数值", "整数"}
 NO_UNIT = {"", "count", "date", "currency", "当地货币"}
 EXCLUDED_STATES = {"已驳回", "已取代"}
 COMPONENT = "组件:"
+# Printed units a canonical unit's number may come from (the loader already converted the number).
+CONVERTS = {("kg", "g"), ("kg", "lbs"), ("kg", "lb"), ("mm", "cm"), ("mm", "in"), ("mm", "m"), ("Wh", "kWh"),
+            ("W", "kW"), ("次", "cycles"), ("cycles", "次"), ("h", "min"), ("year", "month")}
 SOURCE_RANK = {"网页说明书": 0, "印刷说明书": 1, "规格书": 2, "官网": 3, "其他": 4}
 
 
@@ -73,9 +76,19 @@ def _number(value: Any) -> float | int | None:
     return int(number) if number.is_integer() else number
 
 
+def skip_reason(fact: dict[str, Any], unit: str) -> str:
+    """Why a number column cannot take this fact ('' when it can)."""
+    if _number(fact.get("数值")) is None:
+        return "无数值"
+    printed = _text(fact.get("原单位"))
+    if printed and unit not in NO_UNIT and printed != unit and (unit, printed) not in CONVERTS:
+        return "单位与列不符"
+    return ""
+
+
 def _cell(fact: dict[str, Any], numeric: bool, unit: str) -> Any:
     if numeric:
-        return _number(fact.get("数值"))
+        return None if skip_reason(fact, unit) else _number(fact.get("数值"))
     text = _text(fact.get("文本值"))
     if text and bare_range(fact):
         return printed(fact) or None  # a power row that prints no watts: show what it prints, not a voltage range
@@ -127,7 +140,9 @@ def _row(product: dict[str, Any], columns: list[dict[str, Any]], main: dict, com
         value = _cell(best, column["type"] == "number", column["unit"])
         if value is None:
             counts["空缺数值数"] += 1
-            empty.append({"产品键": key, "属性键": column["key"], "原文": _text(best.get("原文"))[:120]})
+            empty.append({"产品键": key, "属性键": column["key"], "事实键": _text(best.get("事实键")),
+                          "原因": skip_reason(best, column["unit"]) if column["type"] == "number" else "无值",
+                          "原文": _text(best.get("原文"))[:120]})
             continue
         row[column["name"]] = value
         counts["已核实数" if _state(best) == "已核实" else "候选数"] += 1
@@ -156,8 +171,8 @@ def read_base(run: Runner) -> dict[str, Any]:
         "ids": ids,
         "products": read_rows(run, ids["产品"], list(IDENTITY)),
         "attributes": read_rows(run, ids["属性"], ["属性键", "中文名", "值类型", "规范单位", "状态", "排序"]),
-        "facts": read_rows(run, ids["事实"], ["产品键", "属性键", "数值", "文本值", "条件", "核实状态", "来源键",
-                                             "记录时间", "冲突", "原文"]),
+        "facts": read_rows(run, ids["事实"], ["事实键", "产品键", "属性键", "数值", "文本值", "原单位", "条件",
+                                             "核实状态", "来源键", "记录时间", "冲突", "原文"]),
         "sources": read_rows(run, ids["来源"], ["来源键", "来源类型"]),
     }
 
@@ -279,4 +294,4 @@ def defect_rows(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [f for f in facts if bare_range(f) and not _text(f.get("条件")).startswith(COMPONENT)]
 
 
-__all__ = ["bare_range", "build", "column_name", "defect_rows", "drop_unused", "filled_cells", "manifest_fields", "plan", "read_base", "write"]
+__all__ = ["skip_reason", "bare_range", "build", "column_name", "defect_rows", "drop_unused", "filled_cells", "manifest_fields", "plan", "read_base", "write"]
