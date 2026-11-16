@@ -96,8 +96,11 @@ Updated: 2026-11-16
 此前本节列出的「交付资料管理」「包材附件」两张表，这次读取没有看到。bot 账号可能看不到部分表，
 所以不能据此认定它们已删除；需要时用有权限的账号复核。
 
-建设中：产品信息矩阵的 5 张表（产品、属性、来源、事实、矩阵；确切表名以建表窗口的结果为准），
-定位见[Hello-Docs 定位](../code-as-doc/architecture/Hello_Docs_Positioning.md) §4.1，
+产品信息矩阵（建设中）在同一 base 里另有 5 张表，表名就是 `产品`、`属性`、`来源`、`事实`、`矩阵`
+（2026-11-16 建成；原有的 8 张表未改动）。结构清单是 `bitable_schema/product_matrix_base_manifest.json`，
+各表的含义、谁写哪个字段、写入与读回路径见[产品信息矩阵 base](../code-as-doc/dev/product_matrix_base.md)；
+其中的数值在 `事实` 表里核实之前都只是候选。定位见
+[Hello-Docs 定位](../code-as-doc/architecture/Hello_Docs_Positioning.md) §4.1，
 登记见[执行台账](../code-as-doc/dev/manual_revitalization_execution.md) REV-50。
 
 ## 2. 三条同步通道
