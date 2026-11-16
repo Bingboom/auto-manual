@@ -31,7 +31,7 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertEqual(jobs['business-content']['if'],
                          "${{ github.repository == 'Bingboom/Hello-Docs' || github.repository == 'Bingboom/Hello-Docs-Review' }}")
         self.assertEqual(set(workflow[True]), {'push', 'pull_request'})
-        for name in ['nightly-render', 'review-preview', 'manifest-regenerate-diff']:
+        for name in ['nightly-render', 'manifest-regenerate-diff']:
             other = yaml.safe_load((ROOT / f'.github/workflows/{name}.yml').read_text())
             self.assertEqual(len(other['jobs']), 1)
             self.assertEqual(next(iter(other['jobs'].values()))['if'], ENGINEERING)

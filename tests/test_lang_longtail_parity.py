@@ -9,7 +9,6 @@ from tools.check.docs import _pick_spec_value
 from tools.idml import loaders
 from tools.idml.page_toc import _LANG_HEADERS
 from tools.manual_copy_source import TM_LANGUAGE_FIELDS
-from tools.process_docs import build_review_preview_render
 from tools.utils import variable_resolver
 
 
@@ -146,7 +145,6 @@ class LanguageLongTailParityTest(unittest.TestCase):
         maps = (
             build_docs.LANGUAGE_LABELS,
             build_docs_shared.LANGUAGE_LABELS,
-            build_review_preview_render.LANGUAGE_LABELS,
         )
         expected_labels = lang_registry.language_display_labels()
         for language_map in maps:

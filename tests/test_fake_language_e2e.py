@@ -67,7 +67,6 @@ signal_words = reload(import_module("tools.signal_words"))
 content_lint_languages = reload(import_module("tools.content_lint_languages"))
 queue_query_languages = reload(import_module("tools.build_queue.query_languages"))
 sync_data_models = reload(import_module("tools.data.sync_data_models"))
-preview_render = reload(import_module("tools.process_docs.build_review_preview_render"))
 
 assert lang_registry.canonical_language("xx") == "xx"
 assert lang_registry.language_alias_candidates("xx") == ("xx",)
@@ -90,7 +89,6 @@ assert "xx" in content_lint_languages.SUPPORTED_LANGS
 assert content_lint_languages._TEXT["xx"] == "xx"
 assert queue_query_languages.canonical_query_lang("xx") == "xx"
 assert "xx" in queue_query_languages.SUPPORTED_LANGS
-assert preview_render.preview_language_label("xx") == "Fake Language"
 
 resolver = localized_copy.LocalizedCopyResolver(
     [{"copy_key": "fake.key", "text_xx": "Fake copy"}]

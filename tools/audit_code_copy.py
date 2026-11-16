@@ -605,7 +605,6 @@ def classify_string(
     if _in_path(
         rel_path,
         "diff_report_render.py",
-        "build_review_preview_pages.py",
         "build/docs_index.py",
     ):
         if _looks_like_markup_or_code(text):

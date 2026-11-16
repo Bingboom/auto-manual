@@ -47,7 +47,6 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # action / scope / prefix / task-id helpers; the growth is their signatures.
     "tools/build_queue/query.py": 1240,
     "tools/spec_master_rebuild.py": 1150,
-    "tools/process_docs/build_review_preview_targets.py": 430,
     "tools/build_queue/lark_ops.py": 360,
     # Backport / data-sync surface — previously ungoverned and grew unchecked
     # (cloud_doc_backport.py reached 4183 lines outside any threshold). Now capped.
