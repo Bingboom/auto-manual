@@ -1,0 +1,587 @@
+{
+  "schema_version": "bitable-schema/v1",
+  "note": "产品信息矩阵（发布文档管理 base）的五张表。名称为键，不含 id 和数据；每张表第一个字段是主字段。link 类型字段由人工在飞书界面建立（apply 只列出不创建）。契约见 code-as-doc/dev/product_matrix_base.md。",
+  "tables": [
+    {
+      "name": "产品",
+      "fields": [
+        {
+          "name": "产品键",
+          "type": "text"
+        },
+        {
+          "name": "型号",
+          "type": "text"
+        },
+        {
+          "name": "市场",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "US",
+            "EU",
+            "UK",
+            "JP",
+            "CN",
+            "TW",
+            "KR",
+            "AU",
+            "PH",
+            "BR"
+          ]
+        },
+        {
+          "name": "代际",
+          "type": "text"
+        },
+        {
+          "name": "品牌",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "自有"
+          ]
+        },
+        {
+          "name": "商品简称",
+          "type": "text"
+        },
+        {
+          "name": "产品类别",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "便携储能",
+            "家庭备电",
+            "加电包",
+            "太阳能板",
+            "配件"
+          ]
+        },
+        {
+          "name": "产品系列",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "标准",
+            "Plus",
+            "PlusV2",
+            "Pro",
+            "ProMax",
+            "Ultra",
+            "卫士",
+            "充电宝",
+            "SolarSaga",
+            "SolarSaga Air",
+            "充电与输入",
+            "连接与配电",
+            "保护与搬运"
+          ]
+        },
+        {
+          "name": "容量档",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "1度以下",
+            "1度电",
+            "1.2度电",
+            "1.5度电",
+            "1.8度电",
+            "2度电",
+            "3度电",
+            "3.6度电",
+            "5度电"
+          ]
+        },
+        {
+          "name": "名称_en",
+          "type": "text"
+        },
+        {
+          "name": "名称_ja",
+          "type": "text"
+        },
+        {
+          "name": "名称_zh",
+          "type": "text"
+        },
+        {
+          "name": "共用说明书于",
+          "type": "text"
+        },
+        {
+          "name": "上市日期",
+          "type": "datetime"
+        },
+        {
+          "name": "上市日期依据",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "官方公告",
+            "首份说明书",
+            "规格书",
+            "PLM SKU 创建时间",
+            "估计"
+          ]
+        },
+        {
+          "name": "停售日期",
+          "type": "datetime"
+        },
+        {
+          "name": "产品阶段",
+          "type": "text"
+        },
+        {
+          "name": "项目号（仅飞书）",
+          "type": "text"
+        },
+        {
+          "name": "关联 SKU",
+          "type": "link",
+          "detail": {
+            "target_table": "SKU（plm数据）",
+            "note": "预留，由操作者手工建立并填写"
+          }
+        },
+        {
+          "name": "SKU 最早创建时间",
+          "type": "datetime"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "最后更新",
+          "type": "datetime"
+        }
+      ]
+    },
+    {
+      "name": "属性",
+      "fields": [
+        {
+          "name": "属性键",
+          "type": "text"
+        },
+        {
+          "name": "中文名",
+          "type": "text"
+        },
+        {
+          "name": "英文名",
+          "type": "text"
+        },
+        {
+          "name": "分组",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "电池",
+            "输出",
+            "输入",
+            "物理",
+            "环境",
+            "认证",
+            "接口",
+            "商业",
+            "其他"
+          ]
+        },
+        {
+          "name": "值类型",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "数值",
+            "整数",
+            "布尔",
+            "文本",
+            "范围"
+          ]
+        },
+        {
+          "name": "规范单位",
+          "type": "text"
+        },
+        {
+          "name": "定义",
+          "type": "text"
+        },
+        {
+          "name": "适用类别",
+          "type": "select",
+          "multiple": true,
+          "options": [
+            "便携储能",
+            "家庭备电",
+            "加电包",
+            "太阳能板",
+            "配件"
+          ]
+        },
+        {
+          "name": "说明书通常写",
+          "type": "checkbox"
+        },
+        {
+          "name": "标签别名",
+          "type": "text"
+        },
+        {
+          "name": "竞情字段名",
+          "type": "text"
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "启用",
+            "停用"
+          ]
+        },
+        {
+          "name": "排序",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "来源",
+      "fields": [
+        {
+          "name": "来源键",
+          "type": "text"
+        },
+        {
+          "name": "来源类型",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "网页说明书",
+            "印刷说明书",
+            "规格书",
+            "官网",
+            "其他"
+          ]
+        },
+        {
+          "name": "型号",
+          "type": "text"
+        },
+        {
+          "name": "市场",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "US",
+            "EU",
+            "UK",
+            "JP",
+            "CN",
+            "TW",
+            "KR",
+            "AU",
+            "PH",
+            "BR"
+          ]
+        },
+        {
+          "name": "语言",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "en",
+            "zh",
+            "zh-TW",
+            "ja",
+            "ko",
+            "fr",
+            "de",
+            "es",
+            "it",
+            "pt-BR"
+          ]
+        },
+        {
+          "name": "版本",
+          "type": "text"
+        },
+        {
+          "name": "版本日期",
+          "type": "datetime"
+        },
+        {
+          "name": "版本日期依据",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "审批日期",
+            "归档日期",
+            "规格书版本日期",
+            "首次网页发布",
+            "未知"
+          ]
+        },
+        {
+          "name": "页面或文件",
+          "type": "text"
+        },
+        {
+          "name": "文件哈希",
+          "type": "text"
+        },
+        {
+          "name": "读取时间",
+          "type": "datetime"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "事实",
+      "fields": [
+        {
+          "name": "事实键",
+          "type": "text"
+        },
+        {
+          "name": "产品键",
+          "type": "text"
+        },
+        {
+          "name": "属性键",
+          "type": "text"
+        },
+        {
+          "name": "来源键",
+          "type": "text"
+        },
+        {
+          "name": "原文",
+          "type": "text"
+        },
+        {
+          "name": "数值",
+          "type": "number"
+        },
+        {
+          "name": "文本值",
+          "type": "text"
+        },
+        {
+          "name": "原单位",
+          "type": "text"
+        },
+        {
+          "name": "限定",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "无",
+            "约",
+            "最大",
+            "最小",
+            "典型",
+            "额定",
+            "峰值",
+            "≥",
+            "≤"
+          ]
+        },
+        {
+          "name": "条件",
+          "type": "text"
+        },
+        {
+          "name": "来源位置",
+          "type": "text"
+        },
+        {
+          "name": "生效起",
+          "type": "datetime"
+        },
+        {
+          "name": "生效依据",
+          "type": "text"
+        },
+        {
+          "name": "生效止",
+          "type": "datetime"
+        },
+        {
+          "name": "记录时间",
+          "type": "datetime"
+        },
+        {
+          "name": "核实状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "候选",
+            "已核实",
+            "有疑问",
+            "已驳回",
+            "已取代"
+          ]
+        },
+        {
+          "name": "核实人",
+          "type": "text"
+        },
+        {
+          "name": "核实时间",
+          "type": "datetime"
+        },
+        {
+          "name": "当前值",
+          "type": "checkbox"
+        },
+        {
+          "name": "冲突",
+          "type": "checkbox"
+        },
+        {
+          "name": "冲突说明",
+          "type": "text"
+        },
+        {
+          "name": "裁定说明",
+          "type": "text"
+        },
+        {
+          "name": "取代者",
+          "type": "text"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "矩阵",
+      "fields": [
+        {
+          "name": "产品键",
+          "type": "text"
+        },
+        {
+          "name": "型号",
+          "type": "text"
+        },
+        {
+          "name": "市场",
+          "type": "text"
+        },
+        {
+          "name": "品牌",
+          "type": "text"
+        },
+        {
+          "name": "商品简称",
+          "type": "text"
+        },
+        {
+          "name": "产品类别",
+          "type": "text"
+        },
+        {
+          "name": "产品系列",
+          "type": "text"
+        },
+        {
+          "name": "容量档",
+          "type": "text"
+        },
+        {
+          "name": "capacity_wh",
+          "type": "text"
+        },
+        {
+          "name": "ac_rated_w",
+          "type": "text"
+        },
+        {
+          "name": "ac_surge_w",
+          "type": "text"
+        },
+        {
+          "name": "weight_kg",
+          "type": "text"
+        },
+        {
+          "name": "cycle_life",
+          "type": "text"
+        },
+        {
+          "name": "panel_power_w",
+          "type": "text"
+        },
+        {
+          "name": "ip_rating",
+          "type": "text"
+        },
+        {
+          "name": "output_w",
+          "type": "text"
+        },
+        {
+          "name": "expansion_port",
+          "type": "text"
+        },
+        {
+          "name": "ac_input_max_w",
+          "type": "text"
+        },
+        {
+          "name": "solar_input_max_w",
+          "type": "text"
+        },
+        {
+          "name": "usb_c_max_w",
+          "type": "text"
+        },
+        {
+          "name": "dimensions_mm",
+          "type": "text"
+        },
+        {
+          "name": "battery_chemistry",
+          "type": "text"
+        },
+        {
+          "name": "discharge_temp_range",
+          "type": "text"
+        },
+        {
+          "name": "msrp",
+          "type": "text"
+        },
+        {
+          "name": "当前值数",
+          "type": "number"
+        },
+        {
+          "name": "候选数",
+          "type": "number"
+        },
+        {
+          "name": "冲突数",
+          "type": "number"
+        },
+        {
+          "name": "生成时间",
+          "type": "datetime"
+        }
+      ]
+    }
+  ]
+}
