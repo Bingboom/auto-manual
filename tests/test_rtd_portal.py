@@ -22,6 +22,9 @@ from tools.rtd.design_overview import semantic_style_count
 from tools.rtd.design_system_css import live_stylesheet_text
 from tools.utils.path_utils import repo_root
 
+# Top-level folders only the private (combined) role may build; a new internal folder is added here once.
+INTERNAL_FOLDERS = ("workspace", "products", "market", "assets", "ai-share")
+
 
 class RtdPortalTests(unittest.TestCase):
     def setUp(self):
@@ -105,6 +108,20 @@ class RtdPortalTests(unittest.TestCase):
             source.write_text(f'<img class="hb-inbox-art" src="{src}"/>')
             self.assertEqual(rtd_portal.product_image(source, self.root), "")
 
+    def assert_public_only(self, out: Path) -> None:
+        """A manuals-only build has no internal folder and no page links into one."""
+        for internal in INTERNAL_FOLDERS:
+            self.assertFalse((out / internal).exists(), internal)
+        site = "https://site.invalid/"
+        for page in out.rglob("*.html"):
+            relative = page.relative_to(out).as_posix()
+            soup = BeautifulSoup(page.read_text(encoding="utf-8", errors="ignore"), "html.parser")
+            for tag in soup.select("[href], [src]"):
+                url = urlsplit(urljoin(site + relative, tag.get("href") or tag.get("src")))
+                if url.netloc != "site.invalid":
+                    continue
+                self.assertNotIn(url.path.strip("/").split("/")[0], INTERNAL_FOLDERS, (relative, url.path))
+
     def test_manuals_role_builds_only_public_pages_with_project_canonical(self):
         root = self.assemble()
         assets = self.root / "portal-assets"
@@ -125,8 +142,7 @@ class RtdPortalTests(unittest.TestCase):
             cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=False, env=env,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        for internal in ("workspace", "products", "market", "ai-share"):
-            self.assertFalse((out / internal).exists(), internal)
+        self.assert_public_only(out)
         self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
         self.assertIn("说明书资料库", (out / "index.html").read_text())
         shells = [p.relative_to(out).as_posix() for p in out.rglob("*.html")
@@ -181,8 +197,7 @@ class RtdPortalTests(unittest.TestCase):
         result = build("unlisted")
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         out = self.root / "unlisted"
-        for internal in ("workspace", "products", "market", "ai-share"):
-            self.assertFalse((out / internal).exists(), internal)
+        self.assert_public_only(out)
         self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
         root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
         self.assertEqual([g.get_text() for g in root_page.select(".app-nav-group")], ["说明书"])
