@@ -330,7 +330,7 @@ def fact(product, key, **fields):
 
 
 FACTS = [
-    fact("JE-A/US", "capacity_wh", 数值=512, 原文="Capacity: 512 Wh"),
+    fact("JE-A/US", "capacity_wh", 数值=333, 原文="Capacity: 333 Wh"),
     fact("JE-A/US", "capacity_wh", 数值=500, 来源键="spec/a", 核实状态=["已核实"]),
     fact("JE-A/US", "capacity_wh", 数值=999, 核实状态=["已驳回"]),
     fact("JE-A/US", "ac_input", 文本值="100~120", 原文="AC Input: 100-120 V~ 60 Hz, 15 A max."),
@@ -425,7 +425,7 @@ class MatrixWriteTest(unittest.TestCase):
 
     def test_columns_holding_values_are_never_dropped(self):
         base = MatrixBase()
-        base.rows["矩阵"].append({"产品键": "X", "capacity_wh": "512", "_id": "rec0"})
+        base.rows["矩阵"].append({"产品键": "X", "capacity_wh": "333", "_id": "rec0"})
         planned = matrix.plan(base, {"ids": {name: name for name in base.schema}},
                               matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
         with self.assertRaises(LoadError):
