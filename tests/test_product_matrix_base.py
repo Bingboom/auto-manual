@@ -295,5 +295,14 @@ class OutputGuardTest(unittest.TestCase):
             self.assertFalse(inside_git_work_tree(Path(tmp)))
 
 
+class RenameMapTest(unittest.TestCase):
+    def test_renames_are_one_to_one_and_reach_every_production_key(self):
+        path = Path(__file__).resolve().parents[1] / "tools" / "product_matrix_base" / "attribute_key_renames.json"
+        renames = json.loads(path.read_text(encoding="utf-8"))["renames"]
+        finals = list(renames.values())
+        self.assertEqual(len(finals), len(set(finals)))
+        self.assertTrue({a["key"] for a in load_dictionary()} <= set(finals))
+
+
 if __name__ == "__main__":
     unittest.main()

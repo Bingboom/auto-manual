@@ -1,7 +1,7 @@
 """``python -m tools.product_matrix_base``: extract the published manuals' specification rows, stage and load them.
 
     extract  --root <Hello-Docs checkout> --out <file outside git>
-    stage    --extraction <file> [--models A,B] [--markets US,EU] [--attributes k1,k2] [--report <file outside git>]
+    stage    --extraction <file> | --staged <file> [--models A,B] [--markets US,EU] [--attributes k1,k2] [--report <file outside git>]
              [--base-token ... --profile ...]   # with a base: compare with the live tables (dry run)
              [--write --yes]                    # create the absent rows, then read every one back
 
@@ -93,9 +93,13 @@ def _live(args: argparse.Namespace, base: str, staged: dict[str, Any], report: d
 
 
 def _stage(args: argparse.Namespace) -> int:
-    extraction = json.loads(args.extraction.read_text(encoding="utf-8"))
-    staged = stage_rows(extraction, _catalog(args.root), models=_split(args.models), markets=_split(args.markets),
-                        attributes=_split(args.attributes))
+    if args.staged:
+        staged = json.loads(args.staged.read_text(encoding="utf-8"))
+        staged = {table: staged.get(table, []) for table in TABLES}
+    else:
+        extraction = json.loads(args.extraction.read_text(encoding="utf-8"))
+        staged = stage_rows(extraction, _catalog(args.root), models=_split(args.models),
+                            markets=_split(args.markets), attributes=_split(args.attributes))
     print("staged: " + ", ".join(f"{table} {len(staged[table])}" for table in TABLES))
     report: dict[str, Any] = {"staged": staged}
     base = args.base_token or os.environ.get(BASE_ENV)
@@ -119,7 +123,10 @@ def main(argv: list[str] | None = None) -> int:
     ex.add_argument("--out", type=Path, required=True, help="output file, outside any git work tree")
     ex.set_defaults(func=_extract)
     st = sub.add_parser("stage", help="stage 产品/属性/来源/事实 rows; with a base, plan or write them")
-    st.add_argument("--extraction", type=Path, required=True)
+    given = st.add_mutually_exclusive_group(required=True)
+    given.add_argument("--extraction", type=Path, help="an extraction from the extract command")
+    given.add_argument("--staged", type=Path,
+                       help="rows already staged per table ({\"产品\": [...], ...}), e.g. converted from another read")
     st.add_argument("--root", type=Path, help="checkout holding the 产品分类 snapshot (default: this one)")
     st.add_argument("--models")
     st.add_argument("--markets")
