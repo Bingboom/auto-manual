@@ -10,8 +10,11 @@
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/design-system.css', 1) }}">
   <script defer src="{{ pathto('_static/design-system.js', 1) }}"></script>
+  <link rel="stylesheet" href="{{ pathto('_static/asset-layers.css', 1) }}">
+  <script defer src="{{ pathto('_static/asset-layers.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{% import "_media_inventory.html" as inventory with context %}
 {#- 概览 and the cover, the 2026-11 design: pictures first (foundation cards, live component previews, the icon
     wall), the written rules after. Context: `overview` from tools/rtd/design_overview.py; every colour is the
     live stylesheet's (--m-* on <main>), the type is its font stack. -#}
@@ -394,6 +397,12 @@
           {%- endfor %}{% endfor %}
         </aside>
       </div>
+      {%- if media_inventory %}
+      <details class="ds-inventory" id="assets-inventory">
+        <summary><b>素材登记与共用符号明细</b><span>登记数量、内容哈希、使用情况与缺口</span></summary>
+        {{ inventory.media_inventory(media_inventory) }}
+      </details>
+      {%- endif %}
     </div>
 
     <div class="tab-panel ds-tab" id="print" role="tabpanel" aria-label="印刷规格">
