@@ -134,4 +134,33 @@ def symbols_view(root: Path, srcdir: Path, publications: list[dict[str, Any]]) -
     }
 
 
-__all__ = ["ASSET_REGISTRY_CSV", "published_pages", "registry_view", "symbol_usage", "symbols_view"]
+def _label(note: str | None) -> str:
+    """A tile's caption from its 用途 note: the plain text up to the first colon, without the closing 。."""
+    text = re.sub(r"<[^>]+>", "", note or "").strip()
+    return re.split(r"[：:]", text, maxsplit=1)[0].strip().rstrip("。").strip()
+
+
+def front_view(library: dict[str, Any] | None, grounds: dict[str, str], symbols: dict[str, Any] | None,
+               *, build_date: str) -> dict[str, Any] | None:
+    """视觉媒体's front: the shared icons and illustrations by type, for colleagues to browse.
+
+    It reads the 图标与素材 gallery the design page publishes (``design_assets.asset_gallery``), so a tile's image is
+    that page's published copy. A caption is the meaning from the gallery notes; how many manuals show a symbol comes
+    from ``symbols_view``. No keys, hashes, paths or statuses; None without the gallery.
+    """
+    if not library or not library.get("groups"):
+        return None
+    editions = {row["key"]: row["editions"] for row in (symbols or {}).get("rows") or [] if row.get("editions")}
+    types, items = [], []
+    for group in library["groups"]:
+        types.append({"id": group["id"], "title": group["title"], "count": len(group["items"])})
+        for item in group["items"]:
+            label = _label(item.get("note"))
+            items.append({"group": group["id"], "type": group["title"], "src": item["ref"], "label": label,
+                          "background": grounds.get(item["ground"], "#ffffff"),
+                          "editions": editions.get(item.get("key") or ""),
+                          "search": f"{label} {group['title']}".lower()})
+    return {"count": len(items), "types": types, "items": items, "updated": build_date}
+
+
+__all__ = ["ASSET_REGISTRY_CSV", "front_view", "published_pages", "registry_view", "symbol_usage", "symbols_view"]

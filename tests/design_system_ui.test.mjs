@@ -159,7 +159,11 @@ function designPage({hash = ''} = {}) {
   const ids = id => [...root.walk()].find((node) => node.id === id) || null;
   const replaced = [];
   const copied = [];
-  const window = {listeners: {}, addEventListener(name, callback) { this.listeners[name] = callback; }};
+  // Several scripts may listen for one event: keep them all, in order.
+  const window = {listeners: {}, addEventListener(name, callback) {
+    const before = this.listeners[name];
+    this.listeners[name] = before ? () => { before(); callback(); } : callback;
+  }};
   const location = {hash};
   vm.runInNewContext(script, {
     window, location, setTimeout: () => {},
@@ -259,3 +263,20 @@ test('显示全部 unfolds its host and folds it again', () => {
   view.showAll.fire('click');
   assert.ok(view.symbolBox.classList.contains('is-all'));
 });
+
+test('an address naming a folded block opens it, and only a folded block', () => {
+  const inventory = {tagName: 'DETAILS', open: false};
+  const heading = {tagName: 'H2', open: undefined};
+  const listeners = {};
+  const run = hash => vm.runInNewContext(script, {
+    window: {addEventListener: (name, callback) => { listeners[name] = callback; }},
+    location: {hash},
+    document: {querySelectorAll: () => [], getElementById: id => ({'assets-inventory': inventory, title: heading})[id] || null},
+  });
+  run('#assets-inventory');
+  assert.equal(inventory.open, true);
+  run('#title');
+  assert.equal(heading.open, undefined);
+  assert.equal(typeof listeners.hashchange, 'function');
+});
+

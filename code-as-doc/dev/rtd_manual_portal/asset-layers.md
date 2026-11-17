@@ -13,8 +13,9 @@ not for maintainers) split them into front pages and maintenance pages:
 | 产品信息 | `/products/matrix.html` | `product_matrix.html` | 资产 (front) |
 | 产品知识 | `/products/knowledge.html` | `product_knowledge.html` | 资产 (front) |
 | 语料库 (was 语言) | `/assets/language/` | `asset_language.html` | 资产 (front) |
-| 内容与表现 | `/assets/content/` | `asset_content.html` | 维护 |
-| 视觉媒体 | `/assets/media/` | `asset_media.html` | 维护 |
+| 视觉媒体 | `/assets/media/` | `asset_media.html` | 知识资产 (front) |
+| 内容与表现 | `/assets/content/` forwards to 设计规范 | — (not shown; operator: 「这个 不用放出来呀」) | — |
+| 视觉媒体's inventory | `/workspace/design/#assets-inventory` | `_media_inventory.html` (folded at the foot of 设计规范 › 图标与素材) | 设计规范 (maintenance) |
 
 `tools/rtd/asset_layers.py` builds the views (layer order, content, media,
 language), `tools/rtd/asset_media.py` reads the media inventories, and
@@ -25,11 +26,32 @@ is unchanged).
 
 ## Navigation
 
-The private sidebar (`_site_shell.html`) is: 首页; 资产 (产品信息, 产品知识, 语料库;
-no numbers); 说明书 (说明书资料库, 搜索说明书正文); 参考 (市场与政策); 维护 (说明书工作台,
-内容与表现, 视觉媒体, 系统建设, 设计规范), one bottom group collapsed by default
-(`details.app-nav-more`) and open on its own pages. The pages under 维护 keep
-their content. 产品信息 links 产品知识 when the matrix is not built.
+The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四大导航 + 左侧上下文目录 +
+中间内容区) has four main sections in the top bar, and the left list holds the current section's pages only:
+
+| Top bar | Left list | First page |
+| --- | --- | --- |
+| 知识资产 | 产品信息, 产品知识, 说明书资料库, 语料库, 视觉媒体, 市场与政策 | 知识资产 (`workspace/index.html`) |
+| 工作台 | 说明书工作台 | 说明书工作台 |
+| Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
+| 设计规范 | 设计规范 | 设计规范 |
+
+The layout image shows the 知识资产 list only. The lists of 工作台, Agent 能力 and 设计规范 were proposed as
+defaults and confirmed by the operator on 2026-11-17 (「都按建议」, in the orchestrating session: 工作台 =
+说明书工作台, Agent 能力 = 系统建设, 设计规范 = 设计规范 + 内容与表现, and 内容与表现 was then taken off the site; 视觉媒体's inventory folded into 设计规范 ›
+图标与素材 when 视觉媒体 became a page for colleagues — operator: 「按这个改」, so no page duplicates another), and the shell as built (「先这样吧」); the canvas's colours are not used, the
+site keeps its own palette. A page's section is declared once, in the `site_sections` table of
+`_site_shell.html`: a `list` entry is a left entry, an `also` entry belongs to the section without one, and
+`under` names the left entry it sits beneath. A key in no section selects no section and gets
+`app-nav-unassigned`, which the tests reject.
+
+The top bar also carries the brand, a search icon (搜索说明书正文, current on the search page) and an Agent icon
+(系统建设). 知识资产's first page and the search page are reached from the top bar, not the left list; the search
+page sits under 说明书资料库, which it highlights. The breadcrumb reads 工作资料 / section / page (工作资料 /
+知识资产 / 说明书资料库 / 搜索说明书正文 for the search page). 产品信息's tab pages (产品库, 产品档案, 产品对比, 参数表) are `also`
+entries `under` 产品信息, so their crumb reads 工作资料 / 知识资产 / 产品信息 / <tab>. An address naming a folded block
+(`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (brand and tools, then the
+sections) and the left list opens from the menu button. The pages keep their content. 产品信息 links 产品知识 when the matrix is not built.
 
 Old addresses keep working:
 
@@ -76,10 +98,22 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
   `<n> 条资料 · 更新于 <date>`. 产品知识's line reads `<n> 个知识点 · 更新于 <date>`, and its
   page-foot disclaimer is gone.
 
-## The shared anatomy (维护 pages)
+## 视觉媒体 (front)
 
-内容与表现 and 视觉媒体 use `_asset_layer.html`: a head (the title, one
-line and the build date), then six blocks with fixed ids, in this order:
+`asset_media.html` (`asset_media.front_view`) is for colleagues: the title, one line (说明书里共用的图标和插图 ·
+更新于 <build date>), a count per type, then the shared icons and illustrations as tiles, filtered by type and
+searched by meaning (`_static/media-front.js`, `tests/media_front_ui.test.mjs`). A tile opens a larger view with
+its type and, for a symbol the published manuals show, 用于 <n> 本说明书. The tiles are the 图标与素材 gallery of
+the 设计规范 page (`design_assets.asset_gallery`) and its published copies under `workspace/design/assets/`;
+a caption is the gallery note up to its first colon. No keys, hashes, paths, statuses or numbered blocks. Without
+the design page the page says 暂时没有可显示的素材. The page's former section anchors (`#scale` … `#gaps`,
+`#registry`, `#symbols`) forward to `workspace/design/index.html#assets-inventory`.
+
+## The shared anatomy (maintenance pages)
+
+视觉媒体's inventory (`_media_inventory.html`, the former 视觉媒体 page's body, using `_asset_layer.html`'s blocks) is
+folded as 素材登记与共用符号明细 (`#assets-inventory`) at the foot of 设计规范 › 图标与素材, beside the gallery and
+rules it counts. It holds six blocks with fixed ids, in this order:
 
 | Block | id | Answers |
 | --- | --- | --- |
@@ -102,7 +136,8 @@ Rules:
 
 ## What each page reads
 
-**内容与表现.** Shared chapters under `docs/templates/page_shared` as a chapter ×
+**内容与表现** (no longer built; `asset_layers.content_view` is kept for its tests until the operator confirms
+its removal). Shared chapters under `docs/templates/page_shared` as a chapter ×
 language table; the skeletons (`skeletons_of`), the recipe files and sets under
 `docs/templates/recipes`, the page-template folders; the components in
 `component_registry.yaml` with the only use the site computes, the 产品总览
@@ -110,7 +145,7 @@ instances bound to models (`production_evidence.component_references`); links
 to the six 设计规范 tabs for styles, which are kept only there. Use per chapter or
 component is 待统计.
 
-**视觉媒体.** `data/asset_registry.csv`: registered, finished, language-neutral and
+**视觉媒体's inventory.** `data/asset_registry.csv`: registered, finished, language-neutral and
 every-model counts; a table of every row (key, type, models, regions, language,
 status, the first 12 hex digits of the content hash, version) with filters for
 type, model, region and language and 只看未完成 (`_static/asset-layers.js`; an
@@ -171,8 +206,9 @@ layers that is not a figure:
 
 ## 知识库首页 and 系统建设
 
-- **知识库首页** (front cleanup, 2026-11-17): the title and the value file's tagline,
-  then three asset cards (`#now`; 产品信息, 产品知识, 语料库; `asset_pages.front_cards`),
+- **知识库首页** (front cleanup, 2026-11-17; the 知识资产 page since the layout of the same day): the title
+  知识资产 and the line 「让产品信息和生产资料持续积累、关联和复用。」, then three asset cards (`#now`; 产品信息矩阵
+  「项目 · 属性 · 时间」, 产品知识「功能 · 限制 · 关系」, 语料库「句对 · 术语 · 复用」; `asset_pages.front_cards`),
   each with its name, one line and one figure with its date (待统计 when unreadable),
   then the entrances to 说明书资料库 and 市场与政策 (`#doors`) and, with a share
   package, 分享资料 (`#shares`). No status chips or ledger references. The slice-2
@@ -204,8 +240,10 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 ## Tests
 
 `tests/test_rtd_asset_layers.py` (views and templates without data),
-`tests/asset_layers_ui.test.mjs` (the filters), and the real-Sphinx sidebar test
-in `tests/test_rtd_portal.py` (the groups, 维护 collapsed except on its pages, the
-moved 属性字典 address, the front pages without chips or small print, the six blocks
-on the 维护 pages, and that the public build links no internal page);
-`tests/test_rtd_workspace_home.py` (the home cards).
+`tests/asset_layers_ui.test.mjs` and `tests/media_front_ui.test.mjs` (the filters), and the real-Sphinx sidebar test
+in `tests/test_rtd_portal.py` (each page's section, left list and breadcrumb, an
+unplaced page selecting no section, the moved 属性字典 address, the front pages without chips or small print, the six blocks
+in 设计规范's #assets-inventory, the 内容与表现 address forwarding to 设计规范, 视觉媒体 absent from the public build, and that the public build links no internal page);
+`tests/test_rtd_site_shell.py` (placement of every page key, crumbs, optional sections, the public shell);
+`tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
+top bar).
