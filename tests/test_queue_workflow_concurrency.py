@@ -70,5 +70,33 @@ class QueueWorkflowConcurrencyTests(unittest.TestCase):
         self.assertIn("github.run_id", group)
 
 
+    def test_retired_legacy_workflows_have_no_schedule_and_require_opt_in_gate(self) -> None:
+        retired = (
+            "feishu-start-review.yml",
+            "feishu-draft-build-queue.yml",
+            "feishu-build-queue.yml",
+            "feishu-web-publish-queue.yml",
+            "backport-reminder.yml",
+            "review-branch-sync-check.yml",
+            "nightly-render.yml",
+            "feishu-schema-parity.yml",
+        )
+        for filename in retired:
+            with self.subTest(workflow=filename):
+                workflow = _workflow(filename)
+                triggers = workflow.get(True) or workflow.get("on") or {}
+                assert isinstance(triggers, dict)
+                self.assertNotIn("schedule", triggers)
+                jobs = workflow.get("jobs")
+                assert isinstance(jobs, dict) and jobs
+                for job_id, job in jobs.items():
+                    assert isinstance(job, dict)
+                    self.assertIn(
+                        "vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true'",
+                        str(job.get("if", "")),
+                        f"{filename}:{job_id} missing legacy opt-in gate",
+                    )
+
+
 if __name__ == "__main__":
     unittest.main()

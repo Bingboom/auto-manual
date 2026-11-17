@@ -7,8 +7,7 @@ name: Feishu Schema Parity
 # a prod build. Read-only: it never writes either tenant.
 
 on:
-  schedule:
-    - cron: "0 1 * * *" # daily 01:00 UTC (~09:00 CST)
+  # Retired with the legacy dev/prod phase2 Bitable route; cron disabled.
   workflow_dispatch:
 
 concurrency:
@@ -24,7 +23,7 @@ jobs:
     # Only the dev source repo runs this: its bot reads BOTH tenants (dev natively +
     # prod via the cross-tenant read share). The Hello-Docs mirror copies this file
     # but must not run the job.
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    if: ${{ github.repository == 'Bingboom/auto-manual' && vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
