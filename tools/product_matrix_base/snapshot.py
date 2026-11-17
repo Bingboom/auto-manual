@@ -20,7 +20,8 @@ from pathlib import Path
 from typing import Any
 
 from tools.product_matrix_base.stage import (
-    CST, PLM_LOADED_UNTIL, SKU_TIME_FIELD, LoadError, Runner, _instant, _text, earliest, read_rows, table_ids,
+    CST, PLM_LOADED_UNTIL, SKU_TIME_FIELD, LoadError, Runner, _instant, _text, earliest, read_rows,
+    require_exclude_field, table_ids,
 )
 
 SCHEMA = "hello-docs-product-matrix-snapshot/v1"
@@ -143,8 +144,6 @@ def _mark_disagreement(values: list[dict[str, Any]]) -> None:
 
 def _kept(run: Runner, ids: dict[str, str]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     """Products not marked 不收录, their facts, and the sources they own or cite (a deleted product leaves none)."""
-    from tools.product_matrix_base.matrix import require_exclude_field
-
     require_exclude_field(run, ids["产品"])  # without it every excluded product would reach the private site
     rows = read_rows(run, ids["产品"], list(PRODUCT_FIELDS), sensitive=True)
     products = [_product(r) for r in rows if not r.get("不收录")]
