@@ -1063,10 +1063,7 @@ def _gate_views(contract: dict[str, Any], ledger: Ledger | None, lanes: list[dic
 
 
 def doing_view(focus: dict[str, Any]) -> list[dict[str, str]]:
-    """正在做: ``focus.doing`` in order, each item with its lane's id and name (the title before 「 · 」).
-
-    知识库首页 shows the same list (``workspace_home.now_view`` reads it from this page's view).
-    """
+    """正在做: ``focus.doing`` in order, each item with its lane's id and name (the title before 「 · 」)."""
     names = {str(lane["id"]): str(lane["title"]).partition(" · ")[0] for lane in focus.get("lanes") or []}
     return [{"lead": str(item["lead"]).strip(), "text": str(item["text"]).strip(), "lane": str(item["lane"]),
              "lane_name": names.get(str(item["lane"]), "")} for item in focus.get("doing") or []]

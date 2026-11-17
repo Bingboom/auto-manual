@@ -1,21 +1,14 @@
 """知识库首页 (front cleanup, 2026-11-17): three asset cards and the two entrances, with no management text."""
 from __future__ import annotations
 
-import tempfile
 import unittest
-from pathlib import Path
 
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd.asset_pages import front_cards
 from tools.rtd.portal import ASSETS
-from tools.rtd.workspace_home import load_home_copy, now_view
 
-SYSTEM = {
-    "focus": {"doing": [{"lead": "网页化", "text": "印刷版说明书持续转成网页版", "lane": "web"}]},
-}
-COPY = {"assets_note": "每写一本都在积累，下一本直接复用"}
 CORPUS = {"exported_at": "2026-09-24", "stale": ["语料快照已超过 7 天"], "rows": [], "tiles": [
     {"key": "pairs", "label": "句对", "value": "1,372"}, {"key": "approved", "label": "句对已批准", "value": "71%"}]}
 
@@ -25,33 +18,6 @@ def render(**context) -> BeautifulSoup:
             "matrix_entry": True, "updates": []}
     template = Environment(loader=FileSystemLoader(ASSETS)).get_template("workspace_portal.html")
     return BeautifulSoup(template.render(**{**base, **context}, pathto=lambda name, *args: name), "html.parser")
-
-
-class HomeCopyTests(unittest.TestCase):
-    def test_shipped_copy_has_only_the_note(self):
-        self.assertEqual(list(load_home_copy(ASSETS)), ["assets_note"])
-        self.assertTrue(load_home_copy(ASSETS)["assets_note"])
-
-    def test_malformed_copy_fails_and_a_second_doing_list_is_refused(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            assets = Path(tmp)
-            for text in ("schema: other\n", "schema: hello-docs-workspace-home/v2\n",
-                         "schema: hello-docs-workspace-home/v1\nassets_note: n\n",
-                         "schema: hello-docs-workspace-home/v2\nassets_note: n\ndoing:\n  - {lead: x, text: y}\n"):
-                (assets / "workspace_home.yaml").write_text(text, encoding="utf-8")
-                with self.assertRaises(ValueError):
-                    load_home_copy(assets)
-
-
-class NowViewTests(unittest.TestCase):
-    def test_main_lines_and_doing_come_from_the_system_page(self):
-        view = now_view(SYSTEM, COPY)
-        self.assertNotIn("lanes", view)  # the main line replaced the lane list (step 12)
-        self.assertEqual(view["doing"], [{"lead": "网页化", "text": "印刷版说明书持续转成网页版"}])
-        self.assertEqual(view["assets_note"], COPY["assets_note"])
-        self.assertTrue(view["system"])
-        alone = now_view(None, COPY)
-        self.assertEqual((alone["doing"], alone["system"]), ([], False))
 
 
 class HomeRenderTests(unittest.TestCase):
