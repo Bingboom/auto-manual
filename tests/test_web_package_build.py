@@ -292,7 +292,33 @@ class InventoryTests(unittest.TestCase):
         self.assertIsInstance(report["dual_root_collisions"], list)
 
 
+def _fake_pandoc_for_test(cmd: list[str], **_kwargs: object) -> object:
+    from bs4 import BeautifulSoup
+    from types import SimpleNamespace
+
+    source_html = Path(cmd[1]).read_text(encoding="utf-8")
+    soup = BeautifulSoup(source_html, "html.parser")
+    lines = [el.get_text(" ", strip=True) for el in soup.find_all(["h1", "h2", "h3", "p", "li"])]
+    target = Path(cmd[cmd.index("-o") + 1])
+    target.write_text("\n\n".join(line for line in lines if line) + "\n", encoding="utf-8")
+    return SimpleNamespace(stdout="")
+
+
 class DeclarativeBuildTests(unittest.TestCase):
+    def setUp(self) -> None:
+        super().setUp()
+        import shutil
+        from unittest import mock
+        from tools import markdown_bundle
+
+        if shutil.which("pandoc") is None:
+            for patcher in (
+                mock.patch.object(markdown_bundle, "resolve_pandoc_binary", return_value="pandoc"),
+                mock.patch.object(markdown_bundle, "resolve_markdown_writer", return_value="myst"),
+                mock.patch.object(markdown_bundle.subprocess, "run", side_effect=_fake_pandoc_for_test),
+            ):
+                patcher.start()
+                self.addCleanup(patcher.stop)
     def _create_declarative_package(self, pkg: Path) -> None:
         source_en = pkg / "source" / "en"
         source_en.mkdir(parents=True)
