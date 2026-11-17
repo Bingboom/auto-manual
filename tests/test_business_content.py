@@ -19,7 +19,7 @@ REVIEW = "Bingboom/Hello-Docs-Review"
 
 
 class WorkflowRoutingTests(unittest.TestCase):
-    def test_engineering_lanes_keep_their_triggers_but_never_allocate_mirror_runners(self):
+    def test_active_and_retired_engineering_lanes_never_allocate_mirror_runners(self):
         workflow = yaml.safe_load((ROOT / '.github/workflows/manual-validation.yml').read_text())
         jobs = workflow['jobs']
         engineering = set(jobs) - {'secret-scan', 'business-content'}
@@ -31,10 +31,14 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertEqual(jobs['business-content']['if'],
                          "${{ github.repository == 'Bingboom/Hello-Docs' || github.repository == 'Bingboom/Hello-Docs-Review' }}")
         self.assertEqual(set(workflow[True]), {'push', 'pull_request'})
-        for name in ['nightly-render', 'manifest-regenerate-diff']:
+        expected_guards = {
+            'nightly-render': "${{ github.repository == 'Bingboom/auto-manual' && vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true' }}",
+            'manifest-regenerate-diff': ENGINEERING,
+        }
+        for name, expected_guard in expected_guards.items():
             other = yaml.safe_load((ROOT / f'.github/workflows/{name}.yml').read_text())
             self.assertEqual(len(other['jobs']), 1)
-            self.assertEqual(next(iter(other['jobs'].values()))['if'], ENGINEERING)
+            self.assertEqual(next(iter(other['jobs'].values()))['if'], expected_guard, name)
 
     def test_content_gate_uses_trusted_base_for_prs_and_needs_no_secrets_or_packages(self):
         workflow = yaml.safe_load((ROOT / '.github/workflows/manual-validation.yml').read_text())
