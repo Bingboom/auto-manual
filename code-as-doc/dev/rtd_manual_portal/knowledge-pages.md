@@ -483,8 +483,9 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   one (never 未知), the manual's section, the printed sentence and `打开说明书 →`
   (the manual; a jump to the exact line waits for anchors in the snapshot). The page
   renders each list, escaped, in a hidden block; the script copies those nodes into
-  the card (a sheet at the bottom on phones). Language names come in Chinese from the
-  corpus languages of `system_workspace.yaml`, else the settings' own labels.
+  the card (a sheet at the bottom on phones). Language names are the manual library's
+  own (`settings.json` `language_labels`: English, 日本語, …), so the site writes a
+  language one way everywhere.
   各说明书写法不一致 marks a cell whose values disagree (`sources_disagree`); no other
   verification mark is shown (operator, 2026-11-17), and `conflict` has no page form yet.
 - **各市场差异:** only the rows whose values differ between the model's markets,
