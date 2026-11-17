@@ -180,11 +180,18 @@ def build(products: list[dict[str, Any]], attributes: list[dict[str, Any]], fact
             "components": sum(1 for v in components.values() if v)}
 
 
+def require_exclude_field(run: Runner, products_table: str) -> None:
+    """Stop unless 产品 has the 不收录 field: without it every excluded product would silently come back."""
+    if EXCLUDE not in fields(run, products_table, sensitive=True):
+        raise LoadError(f"产品 has no {EXCLUDE} field (renamed or deleted?); excluded products would return")
+
+
 def read_base(run: Runner) -> dict[str, Any]:
     ids = table_ids(run)
     missing = [name for name in ("产品", "属性", "来源", "事实", MATRIX) if name not in ids]
     if missing:
         raise LoadError(f"tables missing in the base: {missing}")
+    require_exclude_field(run, ids["产品"])
     return {
         "ids": ids,
         "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH, SKU_TIME_FIELD, EXCLUDE], sensitive=True),
@@ -220,11 +227,13 @@ def plan(run: Runner, base: dict[str, Any], built: dict[str, Any]) -> dict[str, 
         raise LoadError(f"{MATRIX} would hold {len(have) + len(add)} fields, over the limit of {FIELD_LIMIT}")
     names = [f["name"] for f in wanted if f["name"] != STAMP]
     kinds = {f["name"]: f["type"] for f in wanted}
-    current = {_text(r.get("产品键")): r for r in read_rows(run, table_id, [n for n in names if n in have], sensitive=True)}
+    rows = read_rows(run, table_id, [n for n in names if n in have], sensitive=True)
+    current = {_text(r.get("产品键")): r for r in rows}
     create, update = _changes(built, current, names, have, kinds)
-    remove = [{"key": key, "record_id": row["_record_id"]} for key, row in sorted(current.items())
-              if key not in built["rows"]]  # the product left 产品 or is marked 不收录
-    return {"table_id": table_id, "add": add, "create": create, "update": update, "remove": remove, "kinds": kinds,
+    removable = [{"key": key, "record_id": row["_record_id"]} for key, row in sorted(current.items())
+                 if key not in built["rows"]]  # the product left 产品 or is marked 不收录; deleted only when named
+    return {"table_id": table_id, "add": add, "create": create, "update": update, "removable": removable,
+            "remove": [], "rows_before": len(rows), "kinds": kinds,
             "clash": [f["name"] for f in wanted if f["name"] in have and have[f["name"]].get("type") != f["type"]],
             "unused": sorted(set(have) - {f["name"] for f in wanted})}
 
@@ -239,11 +248,11 @@ def _equal(want: Any, have: Any, kind: str) -> bool:
 
 def select_removal(planned: dict[str, Any], keys: list[str]) -> list[dict[str, Any]]:
     """The removable rows a person named by product key; naming any other row is a LoadError (nothing is swept)."""
-    removable = {item["key"] for item in planned["remove"]}
+    removable = {item["key"] for item in planned["removable"]}
     unknown = sorted(set(keys) - removable)
     if unknown:
         raise LoadError(f"--remove-row names rows that are not removable (still in 产品 and not 不收录): {unknown}")
-    return [item for item in planned["remove"] if item["key"] in set(keys)]
+    return [item for item in planned["removable"] if item["key"] in set(keys)]
 
 
 def write(run: Runner, planned: dict[str, Any], *, now: datetime | None = None, settle: float = 3.0,
@@ -286,14 +295,19 @@ def _read_back(run: Runner, planned: dict[str, Any], created: list[dict[str, Any
     expected = {row["产品键"]: row for row in created}
     expected.update({c["key"]: c["fields"] for c in planned["update"]})
     names = sorted({n for row in expected.values() for n in row} | {"产品键"})
-    back = {_text(r.get("产品键")): r for r in read_rows(run, table_id, names, sensitive=True)}
+    rows = read_rows(run, table_id, names, sensitive=True)
+    back = {_text(r.get("产品键")): r for r in rows}
     missing = [key for key in expected if key not in back]
     lingering = [item["key"] for item in planned.get("remove", []) if item["key"] in back]
     mismatched = [f"{key} · {name}" for key, row in expected.items() if key in back for name, value in row.items()
                   if not _equal(value, back[key].get(name), planned["kinds"].get(name, "text"))]
+    removed = [item["key"] for item in planned.get("remove", []) if item["key"] not in back]
+    arrived = sum(1 for row in created if row["产品键"] in back)
+    expected_rows = planned.get("rows_before", len(rows)) - len(removed) + arrived
     return {"columns_added": len(planned["add"]), "created": len(created), "updated": len(planned["update"]),
-            "removed": len(planned.get("remove", [])) - len(lingering), "lingering": lingering,
-            "missing": missing, "mismatched": mismatched, "rows_after": len(back)}
+            "removed": len(removed), "removed_keys": removed, "lingering": lingering,
+            "missing": missing, "mismatched": mismatched, "rows_after": len(rows),
+            "rows_expected": expected_rows, "row_count_ok": len(rows) == expected_rows}
 
 
 def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list[str]:

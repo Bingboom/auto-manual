@@ -387,8 +387,17 @@ class EarliestTest(unittest.TestCase):
         self.assertEqual(earliest("2024-01-01 08:00"), 1704067200)  # no offset: Beijing time
         self.assertEqual(earliest("45292.3333333333"), 1704067200)  # a formula's day serial, Beijing time
         self.assertEqual(earliest(45292.5), 1704067200 + 4 * 3600)
+        self.assertIsNone(earliest("2024"))  # a bare year is not a day serial of 1905
+        self.assertIsNone(earliest("2014/12/31 23:00"))  # before any product of ours
+        self.assertIsNone(earliest(4102444800000))  # 2100: in the future
+        self.assertEqual(earliest(["2024", "2024-01-01 08:00"]), 1704067200)  # the implausible one is skipped
         self.assertIsNone(earliest(""))
         self.assertIsNone(earliest("no date here"))
+
+    def test_the_upper_bound_ends_with_2023(self):
+        self.assertTrue(snapshot._first_sku("2023-12-31 23:00")["first_sku_created_upper_bound"])
+        self.assertFalse(snapshot._first_sku("2024-01-01 00:00")["first_sku_created_upper_bound"])
+        self.assertEqual(snapshot._first_sku("2024")["first_sku_created"], None)
 
     def test_matrix_and_snapshot_carry_it_apart_from_the_launch_date(self):
         product = dict(PRODUCTS[0], **{"SKU 最早创建时间（本市场）": "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"})
@@ -404,7 +413,7 @@ class EarliestTest(unittest.TestCase):
         self.assertEqual((first["first_sku_created"], first["launch_date"]), ("2024-07-30", "2026-03-01"))
         self.assertIn("不是上市日期", first["first_sku_created_basis"])
         self.assertFalse(first["first_sku_created_upper_bound"])
-        loaded = document["products"][1]  # within PLM's late-2023 data load: only an upper bound
+        loaded = document["products"][1]  # within PLM's late-2023 data load (to 2023-12-31): only an upper bound
         self.assertEqual((loaded["first_sku_created"], loaded["first_sku_created_upper_bound"]), ("2023-10-16", True))
         bare = snapshot.build_snapshot(SnapshotTest().base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))
         self.assertEqual({(p["first_sku_created"], p["first_sku_created_basis"]) for p in bare["products"]},
@@ -462,16 +471,46 @@ class MatrixWriteTest(unittest.TestCase):
                      sleep=lambda _s: None)
         kept = [dict(PRODUCTS[0], 不收录=True)] + PRODUCTS[1:]
         planned = matrix.plan(base, snapshot, matrix.build(kept, ATTRIBUTES, FACTS, SOURCES))
-        self.assertEqual([item["key"] for item in planned["remove"]], [PRODUCTS[0]["产品键"]])
+        self.assertEqual(([item["key"] for item in planned["removable"]], planned["remove"]),
+                         ([PRODUCTS[0]["产品键"]], []))  # a candidate, never deleted by default
         with self.assertRaises(LoadError):  # a kept product's row can never be named for removal
             matrix.select_removal(planned, [PRODUCTS[1]["产品键"]])
-        self.assertEqual(matrix.write(base, dict(planned, remove=matrix.select_removal(planned, [])),
-                                      sleep=lambda _s: None)["removed"], 0)  # a refresh deletes nothing by itself
+        untouched = matrix.write(base, planned, sleep=lambda _s: None)  # a caller writing a plan deletes nothing
+        self.assertEqual((untouched["removed"], untouched["rows_after"], untouched["row_count_ok"]), (0, 2, True))
         planned["remove"] = matrix.select_removal(planned, [PRODUCTS[0]["产品键"]])
         report = matrix.write(base, planned, sleep=lambda _s: None)
-        self.assertEqual((report["removed"], report["lingering"]), (1, []))
+        self.assertEqual((report["removed"], report["removed_keys"], report["lingering"]),
+                         (1, [PRODUCTS[0]["产品键"]], []))
+        self.assertEqual((report["rows_after"], report["rows_expected"], report["row_count_ok"]), (1, 1, True))
         again = matrix.plan(base, snapshot, matrix.build(PRODUCTS[1:], ATTRIBUTES, FACTS, SOURCES))
-        self.assertEqual((again["create"], again["update"], again["remove"]), ([], [], []))
+        self.assertEqual((again["create"], again["update"], again["removable"]), ([], [], []))
+
+    def test_without_the_exclude_field_nothing_runs(self):
+        base = MatrixBase()
+        base.schema["产品"] = [f for f in base.schema["产品"] if f["name"] != "不收录"]
+        with self.assertRaises(LoadError) as caught:
+            matrix.read_base(base)
+        self.assertIn("不收录", str(caught.exception))
+        snap = SnapshotTest().base()
+        snap.schema["产品"] = [f for f in snap.schema["产品"] if f["name"] != "不收录"]
+        with self.assertRaises(LoadError):
+            snapshot.build_snapshot(snap)
+
+    def test_a_row_count_that_does_not_add_up_fails_the_read_back(self):
+        base = MatrixBase()
+        snapshot = {"ids": {name: name for name in base.schema}}
+        planned = matrix.plan(base, snapshot, matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        planned["rows_before"] = 5  # as if rows vanished between the plan and the read-back
+        self.assertFalse(matrix.write(base, planned, sleep=lambda _s: None)["row_count_ok"])
+
+    def test_two_rows_with_one_key_leave_one_behind_without_deleting_more(self):
+        base = MatrixBase()
+        base.rows["矩阵"] += [{"产品键": "GONE/US", "_id": "d1"}, {"产品键": "GONE/US", "_id": "d2"}]
+        snapshot = {"ids": {name: name for name in base.schema}}
+        planned = matrix.plan(base, snapshot, matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        planned["remove"] = matrix.select_removal(planned, ["GONE/US"])
+        report = matrix.write(base, planned, sleep=lambda _s: None)
+        self.assertEqual((report["lingering"], len(base.rows["矩阵"])), (["GONE/US"], 3))  # 2 created + 1 left
 
     def test_wide_tables_are_read_fifty_fields_at_a_time(self):
         base = MatrixBase()

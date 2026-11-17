@@ -187,8 +187,8 @@ def table_ids(run: Runner) -> dict[str, str]:
     return {t["name"]: t.get("id") or t.get("table_id") for t in data.get("tables") or data.get("items") or []}
 
 
-def fields(run: Runner, table_id: str) -> dict[str, dict[str, Any]]:
-    data = _check(run(["+field-list", "--table-id", table_id, "--limit", "200"]), "field list")
+def fields(run: Runner, table_id: str, *, sensitive: bool = False) -> dict[str, dict[str, Any]]:
+    data = _check(run(["+field-list", "--table-id", table_id, "--limit", "200"]), "field list", sensitive=sensitive)
     return {f["name"]: f for f in data.get("fields") or data.get("items") or []}
 
 
@@ -270,6 +270,17 @@ _SERIAL = re.compile(r"\d{4,6}(?:\.\d+)?")
 _SERIAL_EPOCH = datetime(1899, 12, 30, tzinfo=CST)
 
 
+EARLIEST_PLAUSIBLE = datetime(2015, 1, 1, tzinfo=CST)
+
+
+def _plausible(seconds: int | None) -> int | None:
+    """A product time only between 2015 and tomorrow; anything else (text "2024" read as a 1905 serial, a mistyped
+    year) is treated as no value rather than shown."""
+    if seconds is None or seconds < EARLIEST_PLAUSIBLE.timestamp() or seconds > time.time() + 86400:
+        return None
+    return seconds
+
+
 def _serial(days: float) -> int:
     """A formula's date as a spreadsheet day serial (days since 1899-12-30, Beijing time) to epoch seconds."""
     return round((_SERIAL_EPOCH + timedelta(days=days)).timestamp())
@@ -297,16 +308,16 @@ def earliest(value: Any) -> int | None:
     Beijing time. A formula field that yields a date comes back as a day serial such as ``45893.4375``.
     """
     if isinstance(value, (int, float)) and not isinstance(value, bool):
-        return _serial(value) if value < SERIAL_LIMIT else int(value // 1000)
+        return _plausible(_serial(value) if value < SERIAL_LIMIT else int(value // 1000))
     if isinstance(value, str) and _SERIAL.fullmatch(value.strip()):
-        return _serial(float(value))
+        return _plausible(_serial(float(value)))
     if isinstance(value, list):
         found = [m for m in (earliest(v) for v in value) if m is not None]
         return min(found) if found else None
     text = value.get("value") if isinstance(value, dict) and "value" in value else _text(value)
     if not isinstance(text, str):
         return earliest(text)
-    moments = [m for m in (_moment(match) for match in _MOMENT.finditer(text)) if m is not None]
+    moments = [m for m in (_plausible(_moment(match)) for match in _MOMENT.finditer(text)) if m is not None]
     return min(moments) if moments else None
 
 
