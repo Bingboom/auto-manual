@@ -70,10 +70,13 @@ authorization numbers, hashes, snapshot names, 建设中 / 已规划 chips, tabs
 unbuilt parts, or provenance and refresh small print. A figure keeps one date
 (截至 …). `front.css` holds their shared head, figure row and bar list.
 
-- **产品信息** (`product_matrix.html`): the title, then the matrix (category tabs, product rows, manual links). The
+- **产品信息** opens on **产品库** (`product_matrix.html`, step 13, REV-53): the
+  title, `<n> 个产品 · 更新于 <date>`, then the matrix read from the product-information
+  snapshot; see [knowledge-pages.md](knowledge-pages.md#product-matrix-page). The
   former 规模, 在哪里维护, 被谁使用, 来源与时间 and 质量与缺口 blocks, the kicker, the
   chips, the sub-labels and the page-foot provenance are gone, and so are the
-  属性字典 tab and page and the 待核实与冲突 placeholder.
+  属性字典 tab and page and the 待核实与冲突 placeholder. The operator's value statement
+  is shown on no page (2026-11-17).
 - **产品知识** (`product_knowledge.html`): the title, one line, then the topics and
   cases. See [knowledge-pages.md](knowledge-pages.md).
 - **语料库** (`asset_language.html`, `language_view`): the title, one line, the
@@ -156,7 +159,9 @@ layers that is not a figure:
   2026-11-16 (positioning §1.2); a later change is a one-line edit here. `product_value` is the operator's
   own statement of the product matrix's value (2026-11-16; positioning §4.1). It is shown
   on no page (operator, 2026-11-17: 「我写的那段价值定位不用显示在页面上」); the data file
-  keeps it and nothing reads it any more. Since the front cleanup `main_line` is
+  keeps it. `asset_layer_data` still loads it and `asset_pages` still passes it to the
+  产品信息 context as `product.value`, which no template renders; removing that pass
+  waits for the operator (AGENTS §8.7). Since the front cleanup `main_line` is
   no longer shown on 知识库首页; 系统建设 keeps its own 当前主线.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and

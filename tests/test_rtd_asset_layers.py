@@ -290,9 +290,9 @@ class ProductValueTests(unittest.TestCase):
         cards = json.dumps(ap.front_cards({"facts": {"products": 3}, "built_on": "2026-11-17"}, None, None),
                            ensure_ascii=False)
         self.assertNotIn(value, cards)
-        page = render("product_matrix.html", product={"value": value}, categories=[], markets={})
+        page = render("product_matrix.html", product={"value": value}, built=False, problem="还没有产品数据。")
         self.assertNotIn(value[:12], page.get_text())
-        self.assertEqual(page.select_one(".fr-head").get_text(), "产品信息")
+        self.assertEqual(page.select_one(".fr-head").get_text(), "产品库")
 
 
 class HeadlineTests(unittest.TestCase):

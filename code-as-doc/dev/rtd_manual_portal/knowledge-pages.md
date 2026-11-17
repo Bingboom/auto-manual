@@ -394,80 +394,59 @@ entries now link directly to the workbench statistics tab; the retired
 
 ## Product matrix page
 
-`/products/matrix.html` (产品矩阵) lays out the products the published Web
-manuals describe, grouped the way the 网页文档 table groups them (2026-11
-redesign). It is the 产品信息 page (资产; see [asset-layers.md](asset-layers.md#front-pages)):
-since the front cleanup (2026-11-17) the title, then the matrix, with no tabs, chips, provenance labels or page foot. The
-former 属性字典 address forwards here. The public manual library does not link to it.
+`/products/matrix.html` is **产品库** (step 13 of the 2026-11 redesign, REV-53; the
+operator approved the design on 2026-11-17). It is the 产品信息 entry of the private
+sidebar (see [asset-layers.md](asset-layers.md#front-pages)); the former 属性字典
+address forwards here, and the public manual library never links to it.
 
-- **Products and their classes.** One product is one 商品简称 of the
-  [产品分类 snapshot](#产品分类-snapshot). A model whose 商品简称 ends in a
-  `variant_marks` word of `product_matrix.json` (沙金色, 云上白, 红十字) is that
-  product's colour edition (`E1000V2沙金色` joins `E1000V2`, and the card shows
-  「+沙金色」); a model the snapshot records as sharing another model's pages
-  (`pages_of`: JE-1000F-SG on the JE-1000F US pages) joins as a row that links
-  those pages. The product's name, capacity and tier come from its lead model
-  (own pages first, then the most markets). A 通用指南 of the snapshot is no
-  product and has no card (see Detail). A published model the snapshot does
-  not list goes under a 其他 tab with a Sphinx warning.
-- **Read at build time.** `tools/rtd/product_matrix.py` reads the publish
-  manifest (each model's markets, languages and routes), then one published
-  manual per model: English first, then `language_order` and `region_order`.
-  From the specification table after its SPECIFICATIONS / 仕様 / 规格 / 規格
-  heading (a `<th>`/`<td>` table, or the source-layout `spec-row` lists; a label's
-  trailing colon is dropped) it takes capacity (also `Internal Battery`), AC
-  rated and surge output (a Total row wins over the largest single port; a
-  `Total Output` row counts only when it states a surge figure), cycle life,
-  weight, solar STC power, IP rating, output power and an expansion port, as the
-  manual prints them. Names come from the manual-center catalog without the
-  model code or the manual-type suffix (`names` overrides). Capability switches
-  come from `data/model_capabilities.csv`. Nothing else is snapshotted.
-- **Layout.** A tab per 产品类别 in the snapshot's order (counts of products),
-  each a grid of 产品系列 rows × the 容量档 its products use (the snapshot's
-  `capacity_tiers` order: 1度以下 … 5度电, the 项目号 table's values, since
-  2026-11-09); a category where no product has a 容量档 (太阳能板, 配件) has one
-  产品 column whose cards sit side by side in a grid (`is-flat`), and a tiered category gets a 容量未注明 column only when a product
-  lacks one. A 容量档 the manual's stated capacity does not fit (「X度电」 more than a
-  quarter off X kWh, or 「X度以下」 at X kWh or more) is a Sphinx warning, so a
-  wrong table value shows in the build. A card shows
-  the name, the 商品简称 (GTM reads products by it) with the capacity, a letter
-  per market (`markets`: 美 欧 日 中 台 韩) and any colour edition.
-- **Detail.** Clicking a card opens its product's detail directly under its
-  series row: the 商品简称, category · series · model count, then a row per model
-  with its 型号, 简称, the figures some model states (容量, AC 额定 / 峰值,
-  太阳能功率, 输出, 防护, 重量, 扩展口, 说明; a column every model lacks is left
-  out) and a link per market (`美规 ↗`, the English page first; the tooltip lists
-  the languages). A shared-pages row reads 「与 JE-1000F 共用美规说明书」.
-  Below: 功能 from the first model in the capability table (switches on in every
-  region, 部分市场 with the regions in the tooltip, then 不支持), and 搭配: what
-  the product's manuals name, and the other products whose manuals name it
-  (「DC-DC Charger 的说明书写到「Explorer 1000 v2」」), and 相关指南: each 通用指南
-  whose 适用产品 lists one of the product's models, with a link per market the
-  guide is published in (「太阳能连接指南 日规」). Under 600px of container
-  width each model stacks as a labelled list.
-- **Curated config.** `product_matrix.json` holds what neither the manuals nor
-  the snapshot state: `markets`, `variant_marks`, `names`, `notes`
-  (accessory one-liners, the 说明 column), `capability_labels` and `pairings`
-  (partners a manual names). A pairing item shows only while the manual's text
-  still contains its `match` text (or its label); it links to a product only
-  through its `product` key (that product's 商品简称), never by its label alone,
-  since 「Explorer 1000 Plus」 may mean either generation. `lines`,
-  `accessories` and `assign` stay for 产品知识 (`positioning_groups`); an
-  `evidence` assignment whose quote has left its manual still warns here.
-- **JavaScript** (`_static/product-matrix.js`) turns the tab links into a
-  switch, opens and closes a detail under its row (a second click on the card
-  closes it), and keeps the open product or category in the URL hash, so
-  `#p-E1000V2` or `#cat-accessory` links open them. Without it every category
-  shows stacked and a card's link opens its detail through `:target`. Node tests:
-  `tests/product_matrix_ui.test.mjs`.
-- **Failure:** without a readable publish manifest or a usable 产品分类 snapshot
-  the page and its links are skipped (the portal already warned about the
-  snapshot). A config with an unknown group, an open tier shape, markets without a
-  letter or label, or empty variant marks, or a malformed capability CSV, skips
-  the page with a Sphinx warning. An unlisted model, an unreadable manual or a
-  pairing the manual no longer names is a Sphinx warning while the page still
-  renders. `tests/test_rtd_product_matrix.py` covers the parsing, grouping,
-  details and the rendered page.
+- **Source.** `tools/rtd/product_library.py` reads the product-information
+  snapshot, `product-matrix/snapshot.json` under the knowledge directory
+  (`rtd_knowledge_dir`, by default Hello-Docs `docs/knowledge/`; schema
+  `hello-docs-product-matrix-snapshot/v1`). The matrix window exports it read-only from the
+  产品信息矩阵 base ([product_matrix_base.md](../product_matrix_base.md)). A product row
+  there is one model in one market, with its 产品类别, 产品系列, 容量档 and project.
+  Every count and date on the page comes from that file; nothing is hard-coded.
+- **Private data.** Project numbers and product values may appear on the private site
+  and in the private repository only. The file is read only in the combined role,
+  from the knowledge directory, which the public role never reads or copies; the
+  public-role build in `tests/test_rtd_portal.py` fails if any file or text of
+  `knowledge/product-matrix` reaches its output. Tests use invented products and
+  projects (`P-FAKE-*`).
+- **Layout.** The title 产品库 and one line, `<n> 个产品 · 更新于 <date>` (models, and
+  the snapshot's read date). A tab per category, in the 产品分类 snapshot's order
+  (others after it, then 其他 for products without a category). Each tab is a table:
+  rows are 系列 (a 未分类 row for products without one), columns the 容量档 present (a
+  容量未注明 column when a product lacks one), or a single 产品 column for a category
+  without tiers.
+- **Chips.** Each cell holds the model codes as chips. Models of one project in one
+  cell are one chip, `A(B)`: the first written outside the brackets, the others
+  inside (`A(B、C)` with more), each code its own link, in code order: the operator's
+  examples put the JE model outside and the JHP model inside (`JE-2000E(JHP-2000A)`).
+  The SKU 创建时间 does not order chips. A model without a project is a chip of its own.
+  Models of one project in different cells are not merged across cells, since a cell's
+  place is its series and tier; the 项目 filter highlights all of them. Until
+  the product pages (产品档案) exist, a code links to the manual library filtered to
+  that model (`index.html?q=<model>`); its tooltip lists its markets.
+- **Filters** (`_static/product-library.js`): 项目 (including 未归入项目 when a model
+  has none) and 市场 (美规, 欧规, 日规, 国内, …). They match per model × market row (a
+  chip carries its `project|market` pairs): a chip with a row that satisfies every set
+  filter is highlighted and the rest are dimmed, never hidden; a pill names the active filters
+  with 清除. The tabs switch categories and keep the open one in the hash
+  (`#cat-c1`). Without JavaScript every category shows stacked and the filters stay
+  hidden. Node tests: `tests/product_library_ui.test.mjs`.
+- **Failure.** Without the snapshot, or with no product in it, the page says
+  还没有产品数据。; with an unreadable or wrong-schema one it says
+  产品数据暂时读不到，请稍后再看。 with a Sphinx warning. A warning never fails the
+  build (the RTD build runs without `-W` or `fail_on_warning`), so a bad snapshot cannot
+  hold back the manuals. Neither state shows a count, date or chip, and the build never
+  falls back to other figures. `tests/test_rtd_product_library.py` covers reading, grouping, merging and
+  the rendered page.
+- **Former matrix.** The 2026-11 matrix read specifications from each published
+  manual (`tools/rtd/product_matrix.py`, configured by `product_matrix.json`). Its
+  per-product detail rows left with the page; 产品档案 takes that role. The module
+  stays for 产品知识 (`positioning_groups`), the product-facts export and the base
+  extractor; its page-only context code awaits the operator's confirmation before
+  removal.
 
 ### 产品分类 snapshot
 

@@ -3,89 +3,58 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="产品矩阵：已发布网页说明书的产品，按网页文档表的产品类别、产品系列和容量排列；点一款产品看它各市场的型号、规格和说明书。">
-<title>产品信息</title>
+<meta name="description" content="产品库：按类别、系列和容量查找产品，同一项目的型号合在一起。">
+<title>产品库</title>
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/product-matrix.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
-<script defer src="{{ pathto('_static/product-matrix.js', 1) }}"></script>
+<link rel="stylesheet" href="{{ pathto('_static/product-library.css', 1) }}">
+<script defer src="{{ pathto('_static/product-library.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{#- 产品矩阵 (2026-11 layout): a tab per 产品类别, each a grid of 产品系列 rows × capacity tiers, and per product a
-    detail that opens under its row (型号 · 商品简称 · figures · a link per market, then 功能 and 搭配). Without
-    JavaScript every category shows and a card's link opens its detail through :target. -#}
-{%- macro marks(regions) -%}<span class="mx-mks">{% for region in regions %}{% set market = markets.get(region, {}) %}<i title="{{ region|e }}">{{ market.get('letter', region)|e }}</i>{% endfor %}</span>{%- endmacro -%}
-{%- macro card(product) -%}
-<a class="mx-prod" href="#{{ product.key|e }}" data-product="{{ product.key|e }}" aria-controls="{{ product.key|e }}" aria-expanded="false"><b>{{ product.name|e }}</b><span class="mx-sub"><span class="mx-code">{{ product.short|e }}</span>{% if product.wh_text %}<span>{{ product.wh_text|e }}</span>{% endif %}</span><span class="mx-mks-row">{{ marks(product.regions) }}{% if product.editions %}<em>+{{ product.editions|join('、')|e }}</em>{% endif %}</span></a>
+{#- 产品库 (step 13 of the 2026-11 redesign; REV-53; tools/rtd/product_library.py). A front page: the title, one
+    line, then the matrix. A tab per category; rows are 系列, columns 容量档 (one 产品 column without tiers); a chip
+    per model, the models of one project merged as A(B). 项目 and 市场 highlight matching chips and dim the rest.
+    Without JavaScript every category shows and the filters stay hidden. -#}
+{%- macro chip(item) -%}
+<span class="pl-chip" data-rows="{{ item.rows|e }}">
+  {%- for member in item.models -%}
+  <span class="pl-code">{% if loop.index == 2 %}<span class="pl-paren">(</span>{% elif not loop.first %}<span class="pl-sep">、</span>{% endif -%}
+  <a href="{{ pathto('index') }}?q={{ member.model|urlencode }}" title="{{ member.label|e }}">{{ member.model|e }}</a>
+  {%- if loop.last and not loop.first %}<span class="pl-paren">)</span>{% endif %}</span>
+  {%- endfor -%}
+</span>
 {%- endmacro -%}
-{%- macro detail(product, category) -%}
-{%- set info = product.detail -%}
-<div class="mx-detail" id="{{ product.key|e }}" role="region" aria-labelledby="{{ product.key|e }}-title" tabindex="-1">
-  <div class="mx-dhead">
-    <div class="mx-dtitle"><span class="mx-seltag">已选</span><strong id="{{ product.key|e }}-title">{{ product.name|e }}</strong><span class="mx-short">{{ product.short|e }}</span><span>{{ product.category|e }} · {{ product.series|e }} · {{ product.rows|length }} 个型号</span></div>
-    <a class="mx-close" href="#cat-{{ category.id|e }}" data-close>收起<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
-  </div>
-  <div class="mx-mwrap"><table class="mx-mtable">
-    <thead><tr><th scope="col">型号</th><th scope="col">简称</th>{% for label in info.columns %}<th scope="col">{{ label|e }}</th>{% endfor %}<th scope="col">说明书</th></tr></thead>
+<body class="app kb">
+<a class="skip" href="#matrix">跳到产品库</a>
+{{ site_sidebar('product-matrix', site_nav) }}
+<div class="app-content">
+{{ site_topbar('知识库', '产品库') }}
+<main class="fr-page pl-page">
+<header class="fr-head"><h1>产品库</h1>{% if built %}<p>{{ count }} 个产品 · 更新于 {{ updated|e }}</p>{% endif %}</header>
+{%- if not built %}
+<p class="fr-empty" id="matrix">{{ problem|e }}</p>
+{%- else %}
+<nav class="pl-tabs" aria-label="产品类别" hidden>{% for category in categories %}<a class="pl-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }}</a>{% endfor %}</nav>
+<form class="pl-filters" data-pl-filters hidden onsubmit="return false">
+  <label>项目<select data-pl-filter="project"><option value="">全部项目</option>{% for project in projects %}<option value="{{ project|e }}">{{ project|e }}</option>{% endfor %}{% if unassigned %}<option value="-">未归入项目</option>{% endif %}</select></label>
+  <label>市场<select data-pl-filter="market"><option value="">全部市场</option>{% for market in markets %}<option value="{{ market.code|e }}">{{ market.label|e }}</option>{% endfor %}</select></label>
+  <span class="pl-active" data-pl-active hidden><span data-pl-active-text></span><button type="button" data-pl-clear>清除</button></span>
+</form>
+<div id="matrix" class="pl-panels">
+{%- for category in categories %}
+<section class="pl-panel" id="cat-{{ category.id|e }}" data-panel="{{ category.id|e }}" aria-labelledby="cat-{{ category.id|e }}-title">
+  <h2 class="pl-panel-title" id="cat-{{ category.id|e }}-title">{{ category.title|e }}</h2>
+  <div class="pl-scroll"><table class="pl-grid">
+    <thead><tr><th scope="col" class="pl-series">系列</th>{% for column in category.columns %}<th scope="col">{{ column|e }}</th>{% endfor %}</tr></thead>
     <tbody>
-    {%- for row in info.rows %}
-      <tr><th scope="row">{{ row.model|e }}</th><td class="is-short">{{ row.short|e }}</td>
-        {%- if row.note %}<td class="is-note"{% if info.columns %} colspan="{{ info.columns|length }}"{% endif %}>{{ row.note|e }}</td>{% else %}{% for value in row.figures %}<td data-label="{{ info.columns[loop.index0]|e }}">{{ value|e }}</td>{% endfor %}{% endif -%}
-        <td data-label="说明书"><div class="mx-docs">{% for doc in row.docs %}<a class="mx-doc" href="{{ pathto(doc.doc) }}" title="{{ doc.title|e }}">{{ doc.label|e }} ↗</a>{% endfor %}</div></td></tr>
+    {%- for row in category.rows %}
+      <tr><th scope="row" class="pl-series">{{ row.title|e }}</th>{% for cell in row.cells %}<td>{% for item in cell %}{{ chip(item) }}{% endfor %}</td>{% endfor %}</tr>
     {%- endfor %}
     </tbody>
   </table></div>
-  {%- if info.features or info.pairing or info.guides %}
-  <div class="mx-dmore">
-    {%- if info.features %}
-    <section class="mx-dbox"><h3>功能</h3>
-      <div class="mx-fchips">{% for name in info.features.all %}<span class="mx-f">{{ name|e }}</span>{% endfor %}{% for item in info.features.some %}<span class="mx-f is-some" title="{{ item.tip|e }}">{{ item.name|e }}<em>部分市场</em></span>{% endfor %}</div>
-      {%- if info.features.none %}<p>不支持：{{ info.features.none|join('、')|e }}</p>{% endif %}
-    </section>
-    {%- endif %}
-    {%- if info.pairing %}
-    <section class="mx-dbox"><h3>搭配<small>说明书里写到的</small></h3>
-      {%- if info.pairing.named %}<div class="mx-fchips">{% for item in info.pairing.named %}{% if item.key %}<a class="mx-pair" href="#{{ item.key|e }}" data-product="{{ item.key|e }}">{{ item.label|e }}</a>{% else %}<span class="mx-pair">{{ item.label|e }}</span>{% endif %}{% endfor %}</div>{% endif %}
-      {%- if info.pairing.named_by %}<div class="mx-fchips">{% for item in info.pairing.named_by %}<a class="mx-pair" href="#{{ item.key|e }}" data-product="{{ item.key|e }}">{{ item.name|e }}<b>{{ item.model|e }}</b></a>{% endfor %}</div>
-      {%- for item in info.pairing.named_by %}<p>{{ item.name|e }} 的说明书写到「{{ item.label|e }}」。</p>{% endfor %}{% endif %}
-    </section>
-    {%- endif %}
-    {%- if info.guides %}
-    <section class="mx-dbox"><h3>相关指南<small>快速指南与写到它的通用指南</small></h3>
-      <div class="mx-fchips">{% for guide in info.guides %}{% for doc in guide.docs %}<a class="mx-pair" href="{{ pathto(doc.doc) }}" title="{{ doc.title|e }}">{{ guide.label|e }}<b>{{ doc.label|e }}</b></a>{% endfor %}{% endfor %}</div>
-    </section>
-    {%- endif %}
-  </div>
-  {%- endif %}
-</div>
-{%- endmacro -%}
-<body class="app kb">
-<a class="skip" href="#matrix">跳到产品矩阵</a>
-{{ site_sidebar('product-matrix', site_nav) }}
-<div class="app-content">
-{{ site_topbar('知识库', '产品信息') }}
-<main class="matrix">
-<header class="fr-head"><h1>产品信息</h1></header>
-<nav class="mx-tabs" aria-label="产品类别">{% for category in categories %}<a class="mx-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }}<span>{{ category.count }}</span></a>{% endfor %}</nav>
-<div id="matrix" class="mx-panels">
-{%- for category in categories %}
-<section class="mx-panel" id="cat-{{ category.id|e }}" data-panel="{{ category.id|e }}" aria-labelledby="cat-{{ category.id|e }}-title">
-  <header class="mx-panel-head">
-    <div><h2 id="cat-{{ category.id|e }}-title">{{ category.title|e }}</h2><span>{{ category.count }} 款 · {{ category.rows|length }} 个系列{% if category.tiered %} · 系列 × 容量{% endif %}</span></div>
-    <p class="mx-legend">{% for region in category.markets %}{% set market = markets.get(region, {}) %}<span><i>{{ market.get('letter', region)|e }}</i>{{ region|e }}</span>{% endfor %}</p>
-  </header>
-  <div class="mx-grid{% if not category.tiered %} is-flat{% endif %}" style="--mx-cols: {{ category.columns|length }}">
-    <div class="mx-row is-head" aria-hidden="true"><div class="mx-series">{{ '系列 \\ 容量' if category.tiered else '系列' }}</div>{% for label in category.columns %}<div class="mx-col">{{ label|e }}</div>{% endfor %}</div>
-    {%- for row in category.rows %}
-    <div class="mx-row"><div class="mx-series"><b>{{ row.title|e }}</b><span>{{ row.products|length }} 款</span></div>
-      {%- for cell in row.cells %}<div class="mx-cell"{% if category.tiered %} data-tier="{{ category.columns[loop.index0]|e }}"{% endif %}>{% for product in cell %}{{ card(product) }}{% endfor %}</div>{% endfor -%}
-    </div>
-    {%- for product in row.products %}{{ detail(product, category) }}{% endfor %}
-    {%- endfor %}
-  </div>
 </section>
 {%- endfor %}
 </div>
-
+{%- endif %}
 </main>
 </div>{{ site_script() }}</body></html>

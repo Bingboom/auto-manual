@@ -1,0 +1,76 @@
+'use strict';
+// 产品库 (step 13; tools/rtd_portal_assets/product_matrix.html). Without JavaScript every category shows stacked and
+// the filters stay hidden. With it, the tabs show one category at a time (the hash names it, so links keep working),
+// and 项目 / 市场 highlight the chips that match and dim the rest; nothing is hidden. The pure parts are on
+// globalThis.ProductLibrary for tests/product_library_ui.test.mjs.
+(() => {
+  // A chip's state under a filter: '' when no filter is set, else 'on' when one of its model × market rows
+  // ("project|market", space-separated in data-rows) satisfies every set filter, else 'off'.
+  const chipState = (chip, filter) => {
+    if (!filter.project && !filter.market) return '';
+    const rows = (chip.rows || '').split(' ').filter(Boolean).map(pair => pair.split('|'));
+    const hit = rows.some(([project, market]) => {
+      const projectOk = !filter.project || (filter.project === '-' ? project === '' : project === filter.project);
+      const marketOk = !filter.market || market === filter.market;
+      return projectOk && marketOk;
+    });
+    return hit ? 'on' : 'off';
+  };
+  // The text of the active-filter pill: the chosen options' labels, joined.
+  const activeText = labels => labels.filter(Boolean).join(' · ');
+  globalThis.ProductLibrary = {chipState, activeText};
+
+  if (typeof document === 'undefined') return;
+  const panels = [...document.querySelectorAll('[data-panel]')];
+  if (!panels.length) return;
+  const tabs = [...document.querySelectorAll('[data-tab]')];
+  const form = document.querySelector('[data-pl-filters]');
+  const selects = [...document.querySelectorAll('[data-pl-filter]')];
+  const active = document.querySelector('[data-pl-active]');
+  const activeLabel = document.querySelector('[data-pl-active-text]');
+  const chips = [...document.querySelectorAll('.pl-chip')];
+  document.documentElement.classList.add('pl-js');
+  tabs.forEach(tab => { tab.closest('nav').hidden = false; });
+  if (form) form.hidden = false;
+
+  const show = id => {
+    panels.forEach(panel => { panel.hidden = panel.dataset.panel !== id; });
+    tabs.forEach(tab => {
+      const on = tab.dataset.tab === id;
+      tab.classList.toggle('is-on', on);
+      tab.setAttribute('aria-current', on ? 'true' : 'false');
+    });
+  };
+  const setHash = hash => {
+    try { history.replaceState(null, '', hash); } catch (error) { /* a file:// preview may refuse; the page still works */ }
+  };
+  const apply = () => {
+    const filter = Object.fromEntries(selects.map(select => [select.dataset.plFilter, select.value]));
+    chips.forEach(chip => {
+      const state = chipState(chip.dataset, filter);
+      chip.classList.toggle('is-on', state === 'on');
+      chip.classList.toggle('is-off', state === 'off');
+    });
+    const labels = selects.filter(select => select.value).map(select => select.options[select.selectedIndex].text);
+    if (active) active.hidden = !labels.length;
+    if (activeLabel) activeLabel.textContent = activeText(labels);
+  };
+
+  tabs.forEach(tab => tab.addEventListener('click', event => {
+    event.preventDefault();
+    show(tab.dataset.tab);
+    setHash(`#cat-${tab.dataset.tab}`);
+  }));
+  selects.forEach(select => select.addEventListener('change', apply));
+  const clear = document.querySelector('[data-pl-clear]');
+  if (clear) clear.addEventListener('click', () => { selects.forEach(select => { select.value = ''; }); apply(); });
+
+  const fromHash = () => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const panel = panels.find(item => item.id === id);
+    show((panel || panels[0]).dataset.panel);
+  };
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+  apply();
+})();

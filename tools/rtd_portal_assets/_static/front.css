@@ -1,5 +1,5 @@
 /* The front pages product colleagues read (front cleanup, 2026-11-17): a title, at most one short line, then the
-   content. Used by 产品信息 (with product-matrix.css) and 语料库. Tokens: site-shell.css. */
+   content. Used by 产品库 (with product-library.css) and 语料库. Tokens: site-shell.css. */
 .fr-page {max-width:1120px;margin:0 auto;padding:40px 48px 80px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px}
 .fr-head {display:flex;flex-direction:column;gap:8px;max-width:820px;margin-bottom:8px}
 .fr-head h1 {margin:0;font-size:var(--text-3xl);line-height:38px;font-weight:700}
