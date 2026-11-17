@@ -12,7 +12,7 @@ from tools.product_matrix_base.reader.labels import UNMAPPED, map_label
 from tools.product_matrix_base.reader.values import parse_value
 from tools.product_matrix_base.rows import load_dictionary, stage_rows
 from tools.product_matrix_base.stage import (
-    BATCH, LoadError, PartialWrite, correct, correction_plan, fact_key, plan, preflight, provenance, read_rows, same, write,
+    BATCH, LoadError, PartialWrite, correct, correction_plan, fact_key, plan, preflight, without_excluded, provenance, read_rows, same, write,
 )
 
 MANIFEST = Path(__file__).resolve().parents[1] / "bitable_schema" / "product_matrix_base_manifest.json"
@@ -449,6 +449,19 @@ class MatrixWriteTest(unittest.TestCase):
         with self.assertRaises(LoadError):  # a column the generator produces is never dropped
             matrix.drop_columns(base, planned, ["产品键"])
         self.assertEqual(matrix.drop_columns(base, planned, []), [])  # nothing is dropped by sweep
+
+
+class ExcludedProductTest(unittest.TestCase):
+    def test_products_marked_not_included_are_never_staged_again(self):
+        staged = {"产品": [{"产品键": "JE-A/US"}, {"产品键": "JE-B/JP"}],
+                  "来源": [{"来源键": "web/JE-A/US/en/v", "型号": "JE-A", "市场": "US"},
+                          {"来源键": "web/JE-B/JP/ja/v", "型号": "JE-B", "市场": "JP"}],
+                  "事实": [{"事实键": "a", "产品键": "JE-A/US"}, {"事实键": "b", "产品键": "JE-B/JP"}]}
+        kept, skipped = without_excluded(staged, {"JE-A/US"})
+        self.assertEqual({t: [r.get("产品键") or r["来源键"] for r in rows] for t, rows in kept.items()},
+                         {"产品": ["JE-B/JP"], "来源": ["web/JE-B/JP/ja/v"], "事实": ["JE-B/JP"]})
+        self.assertEqual(skipped, {"产品": 1, "来源": 1, "事实": 1})
+        self.assertEqual(without_excluded(staged, set()), (staged, {}))
 
 
 class ProvenanceTest(unittest.TestCase):

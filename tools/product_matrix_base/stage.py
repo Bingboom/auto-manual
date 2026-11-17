@@ -240,11 +240,37 @@ def records_shape(lark_cli: str = "lark-cli") -> bool:
     return "create_records" in done.stdout
 
 
+EXCLUDE = "不收录"  # a product a person keeps out: its row stays in 产品 so the loader never adds it back
+
+
+def excluded_products(run: Runner, ids: dict[str, str]) -> set[str]:
+    """Product keys marked 不收录 in 产品 (none while the field does not exist)."""
+    if "产品" not in ids or EXCLUDE not in fields(run, ids["产品"]):
+        return set()
+    return {_text(r.get("产品键")) for r in read_rows(run, ids["产品"], ["产品键", EXCLUDE]) if r.get(EXCLUDE)}
+
+
+def _owner(table: str, row: dict[str, Any]) -> str:
+    if table == "来源":
+        return f"{_text(row.get('型号'))}/{_text(row.get('市场'))}"
+    return _text(row.get("产品键"))
+
+
+def without_excluded(staged: dict[str, list[dict[str, Any]]],
+                     excluded: set[str]) -> tuple[dict[str, list[dict[str, Any]]], dict[str, int]]:
+    """The staged rows minus every 产品, 来源 and 事实 row of an excluded product, and how many were left out."""
+    kept = {table: [row for row in rows if _owner(table, row) not in excluded] for table, rows in staged.items()}
+    return kept, {table: len(staged[table]) - len(kept[table]) for table in staged if len(staged[table]) != len(kept[table])}
+
+
 def plan(run: Runner, staged: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
     """Per table: rows staged, keys already in the base (left untouched), rows to create; plus preflight problems."""
     ids = table_ids(run)
+    excluded = excluded_products(run, ids)
+    staged, skipped = without_excluded(staged, excluded)
     schema = {table: fields(run, ids[table]) for table in staged if table in ids}
-    result: dict[str, Any] = {"tables": {}, "problems": preflight(staged, schema), "ids": ids, "schema": schema}
+    result: dict[str, Any] = {"tables": {}, "problems": preflight(staged, schema), "ids": ids, "schema": schema,
+                              "excluded": sorted(excluded), "skipped": skipped}
     for table, rows in staged.items():
         if table not in ids:
             continue

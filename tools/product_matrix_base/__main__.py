@@ -93,6 +93,9 @@ def _live(args: argparse.Namespace, base: str, staged: dict[str, Any], report: d
         planned = plan(run, staged)
         planned["problems"] += provenance(staged, read_rows(run, planned["ids"]["来源"], ["来源键", "来源类型"]),
                                           _publications(args.root))
+        if planned["skipped"]:
+            print(f"  不收录产品 {len(planned['excluded'])} 个，跳过其行："
+                  + "，".join(f"{t} {n}" for t, n in planned["skipped"].items()))
         for table in TABLES:
             info = planned["tables"].get(table)
             if info:

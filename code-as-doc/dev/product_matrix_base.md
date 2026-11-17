@@ -114,6 +114,8 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
 ```
 
 - base 由 `--base-token` 或环境变量 `FEISHU_PUBLISHED_DOCS_BASE_TOKEN` 指定，身份默认 bot。
+- 产品表勾了「不收录」的产品，装载时它的产品、来源、事实行一律跳过，不再新建也不比对；预演列出跳过的行数
+  （操作者 2026-11-17：产品行保留以免被加回来，已有的事实和来源留着不用）。
 - 读取（[`tools/product_matrix_base/reader/`](../../tools/product_matrix_base/reader/)）：规格表按多语言规格标题与其
   同级分组标题、规格类名（`spec-table`、`native-spec`）和 `spec-row` 列表识别；规格节以外的充电时间、保修、
   装箱清单等规格类表也读。每一行原样保留标签、值、列名、章节路径与锚点；标签按各语言规则映射到属性，
