@@ -870,12 +870,12 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('href="../../assets/language/index.html"', page.split('id="language-assets"', 1)[1])
             self.assertNotIn('class="al-bars"', page)
             language = (base / "good" / "assets" / "language" / "index.html").read_text(encoding="utf-8")
-            self.assertIn('class="fr-bars"', language)
+            self.assertIn('class="fr-langs"', language)
             # 语料库 is a front page (2026-11-17): counts of pairs per language, dated once, never a percentage that
             # could read as manual localization completion, and no refresh small print.
-            self.assertIn("各语言已有的句对", language)
-            bars = language.split('class="fr-bars"', 1)[1].split("</ul>", 1)[0]
-            self.assertNotIn("%</span>", bars)
+            self.assertIn("组句子，其中", language)
+            table = language.split('class="fr-langs"', 1)[1].split("</table>", 1)[0]
+            self.assertNotIn("%</td>", table)
             self.assertNotIn("完成率", language)
             self.assertNotIn("待复核", language)
             self.assertNotIn("按月快照", page)

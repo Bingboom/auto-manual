@@ -477,7 +477,45 @@ def collect_workspace_pages(app):
     }, "moved_page.html"
     if matrix is not None:
         yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app), "product": product}, MATRIX_TEMPLATE
+    yield from product_profile_pages(app, settings, products)
 
+
+def product_profile_pages(app, settings: dict, products: list[dict]):
+    """产品档案: one page per model of the product-information snapshot (private role only).
+
+    None is built without a usable snapshot or without its decided cells (schema v1.1); 产品库 then says so or links
+    each code to the manual library instead, so no link points to a missing page. 功能, 搭配 and the guides come
+    from the former matrix context (manifest, capability table, pairings), computed only here now; without a
+    publish manifest those sections are simply absent.
+    """
+    from sphinx.util import logging as sphinx_logging
+    from tools.rtd.product_library import SnapshotError, has_cells, load_snapshot
+    from tools.rtd.product_matrix import product_matrix_page_context
+    from tools.rtd.product_profile import TEMPLATE, matrix_extras, profile_pages
+
+    from tools.rtd import product_tables
+
+    try:
+        snapshot = load_snapshot(workspace_content(app))
+    except SnapshotError:
+        return  # 产品库 already warned and says so on its page, without the 产品对比 / 参数表 tabs
+    if snapshot is None:
+        return
+    nav = site_nav(app)
+    catalog = getattr(app, "_rtd_product_catalog", None)
+    # 产品库 shows the 产品对比 / 参数表 tabs whenever it has products, so both pages exist then; without cells they
+    # say 产品数据暂时读不到 and show no figures.
+    yield product_tables.TABLE_PAGE, {**product_tables.table_view(snapshot, catalog), "site_nav": nav}, \
+        product_tables.TABLE_TEMPLATE
+    yield product_tables.COMPARE_PAGE, {**product_tables.compare_view(snapshot), "site_nav": nav}, \
+        product_tables.COMPARE_TEMPLATE
+    if not has_cells(snapshot):
+        return
+    legacy = product_matrix_page_context(app, ASSETS, settings, products, catalog)
+    pages = profile_pages(snapshot, labels=dict(settings.get("language_labels") or {}), extras=matrix_extras(legacy),
+                          warn=sphinx_logging.getLogger(__name__).warning)
+    for page, context in pages:
+        yield page, {**context, "site_nav": nav}, TEMPLATE
 
 
 def _build_date(deliverables: dict, system: dict | None) -> str:

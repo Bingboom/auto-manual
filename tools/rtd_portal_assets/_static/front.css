@@ -27,3 +27,21 @@
   .fr-date {margin-left:0;width:100%}
   .fr-bars li {grid-template-columns:76px minmax(0,1fr) 60px;gap:8px}
 }
+.fr-langs {width:100%;border-collapse:collapse;font-size:14px}
+.fr-langs th, .fr-langs td {padding:8px 10px;border-top:1px solid #eef1f5;text-align:left}
+.fr-langs thead th {border-top:0;font-size:12.5px;font-weight:600;color:var(--app-muted)}
+.fr-langs tbody th {font-weight:500}
+.fr-langs .is-num {text-align:right;font-variant-numeric:tabular-nums;width:80px}
+.fr-langs .fr-track {display:block}
+.sr-only {position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:820px) {.fr-langs td:nth-child(3), .fr-langs th:nth-child(3) {display:none}}
+/* 语料库: the languages beside how agents use the corpus; stacked on a phone. */
+.fr-split {display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:16px;align-items:start}
+.fr-uses ol {margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:use}
+.fr-uses li {counter-increment:use;position:relative;padding:12px 14px 12px 44px;border-radius:var(--radius-md);background:var(--app-tile,var(--app-bg))}
+.fr-uses li::before {content:counter(use);position:absolute;left:14px;top:12px;width:20px;height:20px;border-radius:50%;
+  background:var(--brand-soft);color:var(--brand);font-size:12px;font-weight:700;line-height:20px;text-align:center}
+.fr-uses li b {font-size:14px;font-weight:600}
+.fr-uses li p {margin:4px 0 0;font-size:13px;line-height:20px;color:var(--app-text2,var(--app-muted))}
+.fr-uses-ask {margin:0;padding:10px 14px;border:1px dashed var(--app-line);border-radius:var(--radius-md);font-size:13px;color:var(--app-muted)}
+@media (max-width:980px) {.fr-split {grid-template-columns:1fr}}

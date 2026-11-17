@@ -133,10 +133,21 @@ class RtdPortalTests(unittest.TestCase):
         # The product-information snapshot holds private project numbers and values: the public role never reads it.
         matrix = self.root / "knowledge" / "product-matrix"
         matrix.mkdir(parents=True)
+        # v1.1 with decided cells, so the 产品档案 / 参数表 / 产品对比 path would run if the role let it.
         (matrix / "snapshot.json").write_text(json.dumps({
-            "schema": "hello-docs-product-matrix-snapshot/v1", "read_at": "2026-01-02T00:00:00Z",
-            "products": [{"model": "FAKE-SECRET-MODEL", "market": "US", "project": "P-FAKE-SECRET",
-                          "category": "便携储能", "series": "标准", "capacity_tier": "1度电"}]}))
+            "schema": "hello-docs-product-matrix-snapshot/v1.1", "read_at": "2026-01-02T00:00:00Z",
+            "products": [{"key": "FAKE-SECRET-MODEL/US", "model": "FAKE-SECRET-MODEL", "market": "US",
+                          "project": "P-FAKE-SECRET", "category": "便携储能", "series": "标准", "capacity_tier": "1度电",
+                          "first_sku_created": "2021-03-01"}],
+            "parameters": [{"key": "capacity_wh", "name_zh": "标称容量", "group": "电池", "order": 1, "unit": "Wh"}],
+            "sources": [{"id": "s1", "model": "FAKE-SECRET-MODEL", "market": "US", "language": "en",
+                         "page": "FAKE-SECRET-MODEL/US/en/md/manual.html"}],
+            "values": [{"id": "v1", "product": "FAKE-SECRET-MODEL/US", "parameter": "capacity_wh",
+                        "printed": "FAKE-SECRET-PRINTED", "source": "s1", "position": "FAKE-SECRET-POSITION"}],
+            "cells": [{"product": "FAKE-SECRET-MODEL/US", "parameter": "capacity_wh", "condition": None,
+                       "display": "FAKE-SECRET-VALUE 9 Wh", "number": 9, "text": None, "unit": "Wh",
+                       "printed": "FAKE-SECRET-PRINTED", "source": "s1", "value": "v1", "verified": False,
+                       "sources_disagree": False, "conflict": False, "candidates": ["v1"], "empty_reason": None}]}))
         (matrix / "README.md").write_text("P-FAKE-SECRET-README")
         with (root / "conf.py").open("a") as conf:
             conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
@@ -461,7 +472,8 @@ class RtdPortalTests(unittest.TestCase):
         # 产品库 reads the product-information snapshot from the knowledge directory (invented products only).
         (self.root / "knowledge" / "product-matrix").mkdir(parents=True)
         (self.root / "knowledge" / "product-matrix" / "snapshot.json").write_text(json.dumps({
-            "schema": "hello-docs-product-matrix-snapshot/v1", "read_at": "2026-01-02T00:00:00Z", "products": [
+            "schema": "hello-docs-product-matrix-snapshot/v1.1", "read_at": "2026-01-02T00:00:00Z", "cells": [],
+            "products": [
                 {"model": model, "market": "US", "project": "P-FAKE-1", "category": "便携储能", "series": "标准",
                  "capacity_tier": "1度电"} for model in ("FAKE-B", "FAKE-A")]}))
         target = {"model": "JE-1000F", "region": "US", "lang": "en", "route": "JE-1000F/US/en/md",
@@ -497,7 +509,9 @@ class RtdPortalTests(unittest.TestCase):
         design = [("设计规范", ["设计规范"])]
         sections = {"index.html": knowledge, "search.html": knowledge, "workspace/index.html": knowledge,
                     **dict.fromkeys(("products/knowledge.html", "products/matrix.html", "market/policy.html",
-                                     "assets/media/index.html", "assets/language/index.html"), knowledge),
+                                     "assets/media/index.html", "assets/language/index.html",
+                                     "products/item/FAKE-A.html", "products/item/FAKE-B.html",
+                                     "products/table.html", "products/compare.html"), knowledge),
                     "workspace/deliverables/index.html": workbench,
                     "workspace/system/index.html": [("Agent 能力", ["系统建设"])],
                     "workspace/design/index.html": design}
@@ -517,13 +531,25 @@ class RtdPortalTests(unittest.TestCase):
                   "workspace/system/index.html": "工作资料 / Agent 能力 / 系统建设",
                   "workspace/design/index.html": "工作资料 / 设计规范",
                   "workspace/index.html": "工作资料 / 知识资产",
-                  "products/knowledge.html": "工作资料 / 知识资产 / 产品知识"}
+                  "products/knowledge.html": "工作资料 / 知识资产 / 产品知识",
+                  "products/item/FAKE-A.html": "工作资料 / 知识资产 / 产品信息 / 产品档案",
+                  "products/compare.html": "工作资料 / 知识资产 / 产品信息 / 产品对比",
+                  "products/table.html": "工作资料 / 知识资产 / 产品信息 / 参数表"}
         for page, crumb in crumbs.items():
             soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
             self.assertEqual(" ".join(soup.select_one(".app-crumb").get_text().split()), crumb, page)
 
         library = BeautifulSoup((out / "products/matrix.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([chip.get_text() for chip in library.select(".pl-chip")], ["FAKE-A(FAKE-B)"])
+        # Each code opens its 产品档案, which leads back to 产品库 and to the project there.
+        self.assertEqual([a["href"] for a in library.select(".pl-chip a")],
+                         ["item/FAKE-A.html", "item/FAKE-B.html"])
+        self.assertEqual([(a.get_text(), a["href"]) for a in library.select(".pt-tabs a")],
+                         [("产品库", "#"), ("产品对比", "compare.html"), ("参数表", "table.html")])
+        profile = BeautifulSoup((out / "products/item/FAKE-A.html").read_text(encoding="utf-8"), "html.parser")
+        self.assertEqual(profile.select_one(".pf-compare")["href"], "../compare.html?p=FAKE-A")
+        self.assertEqual(profile.select_one(".pf-back")["href"], "../matrix.html")
+        self.assertEqual(profile.select_one(".fr-head p a")["href"], "../matrix.html?project=P-FAKE-1")
         self.assertEqual(library.select_one(".fr-head p").get_text(), "2 个产品 · 更新于 2026-01-02")
         # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
         from tools.rtd.asset_layer_data import load_layer_data
@@ -572,9 +598,14 @@ class RtdPortalTests(unittest.TestCase):
             to_self = [link.get_text() for link in links
                        if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
-            # 知识资产's first page and the search page are reached from the top bar, not the left list.
-            self.assertEqual(len(to_self), 0 if page in ("workspace/index.html", "search.html") else 1, (page, to_self))
+            # 知识资产's first page, the search page and product subpages are reached without their own left row.
+            under_product = page.startswith("products/item/") or page in ("products/table.html", "products/compare.html")
+            also = page in ("workspace/index.html", "search.html") or under_product
+            self.assertEqual(len(to_self), 0 if also else 1, (page, to_self))
             self.assertEqual(current, to_self, page)
+            if under_product:
+                self.assertEqual([(a.span.get_text(), a["aria-current"]) for a in sidebar.select("a.active")],
+                                 [("产品信息", "true")], page)
 
 
 if __name__ == "__main__":

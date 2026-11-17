@@ -46,3 +46,12 @@ test('the active pill joins the chosen labels', () => {
   assert.equal(activeText(['P-FAKE-1', '日规']), 'P-FAKE-1 · 日规');
   assert.equal(activeText(['', '欧规']), '欧规');
 });
+
+test('the search matches codes, names and projects, and narrows the other filters', () => {
+  const chip = {rows: 'P-FAKE-1|US', search: 'fake station one fake-1 p-fake-1'};
+  assert.equal(chipState(chip, {project: '', market: '', q: 'Station'}), 'on');
+  assert.equal(chipState(chip, {project: '', market: '', q: 'p-fake-1'}), 'on');
+  assert.equal(chipState(chip, {project: '', market: '', q: 'other'}), 'off');
+  assert.equal(chipState(chip, {project: '', market: 'JP', q: 'fake'}), 'off');
+  assert.equal(chipState(chip, {project: '', market: '', q: '  '}), '');
+});

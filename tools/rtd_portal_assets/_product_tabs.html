@@ -1,0 +1,9 @@
+{#- The 产品信息 sub-tabs (step 13): 产品库 · 产品对比 · 参数表, on each of those pages and on 产品档案 (which counts as
+    产品库). Plain links: each tab is its own page. -#}
+{%- macro product_tabs(active) -%}
+<nav class="pt-tabs" aria-label="产品信息">
+  {%- for page, label in (('products/matrix', '产品库'), ('products/compare', '产品对比'), ('products/table', '参数表')) %}
+  <a href="{{ pathto(page) }}"{% if page == active %} class="is-on" aria-current="page"{% endif %}>{{ label }}</a>
+  {%- endfor %}
+</nav>
+{%- endmacro -%}

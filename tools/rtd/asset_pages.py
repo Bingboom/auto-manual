@@ -82,10 +82,11 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
     """
     root = repo_root()
     publications = [item for product in products for item in product["publications"]]
+    labels = dict(settings.get("language_labels") or {})
     extra = curated(assets, root, system, warn)
     chips = extra["chips"]
     media = {**layers.media_view(root, srcdir, publications, build_date=build_date), "chip": chips["media"]}
-    language = layers.language_view(system)
+    language = layers.language_view(system, labels)
     moved = "products/matrix#matrix" if matrix else "products/knowledge#knowledge-list"
     pages = [
         ("products/attributes", {"moved_target": moved, "moved_title": "产品信息" if matrix else "产品知识"},

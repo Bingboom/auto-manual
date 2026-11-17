@@ -696,17 +696,27 @@ def load_corpus(contract: dict[str, Any], assets: Path, name: str) -> tuple[dict
     return (None if problems else data), problems
 
 
+def _corpus_rows(languages: list[dict[str, Any]], pairs: dict[str, Any], terms: dict[str, Any]) -> list[dict[str, Any]]:
+    """One row per contract language, most pairs first; ``manual`` is the manual library's code for it."""
+    total = pairs["total"]
+    rows = [{"code": lang["code"], "label": lang["label"], "manual": lang.get("manual") or lang["code"],
+             "count": pairs["by_language"][lang["code"]],
+             "terms": (terms.get("by_language") or {}).get(lang["code"], 0)}
+            for lang in languages]
+    rows.sort(key=lambda row: -row["count"])  # stable: ties keep the contract order
+    for row in rows:
+        row["percent"] = round(100 * row["count"] / total) if total else 0
+        row["count_text"] = f"{row['count']:,}"
+        row["terms_text"] = f"{row['terms']:,}"
+    return rows
+
+
 def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.date,
                 stale_days: int) -> dict[str, Any]:
     config = contract["corpus"]
     pairs, terms = snapshot["sentence_pairs"], snapshot["terms"]
     total = pairs["total"]
-    rows = [{"code": lang["code"], "label": lang["label"], "count": pairs["by_language"][lang["code"]]}
-            for lang in config["languages"]]
-    rows.sort(key=lambda row: -row["count"])  # stable: ties keep the contract order
-    for row in rows:
-        row["percent"] = round(100 * row["count"] / total) if total else 0
-        row["count_text"] = f"{row['count']:,}"
+    rows = _corpus_rows(config["languages"], pairs, terms)
     approved = pairs["by_status"].get(CORPUS_APPROVED, 0)
     share = round(100 * approved / total) if total else None
     exported = dt.date.fromisoformat(snapshot["exported_at"])
@@ -736,6 +746,10 @@ def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.da
              "delta": change(share, before_share, " 个百分点")},
         ],
         "rows": rows,
+        # 语料库 (step 13, 方案甲): plain counts, approved pairs and terms, and the languages with any pair.
+        "counts": {"pairs": total, "pairs_approved": approved, "terms": terms["total"],
+                   "terms_approved": (terms.get("by_status") or {}).get(CORPUS_APPROVED, 0),
+                   "languages": sum(1 for row in rows if row["count"])},
         "exported_at": exported.isoformat(),
         "stale_after_days": limit,
         "previous": last["exported_at"] if last else "",

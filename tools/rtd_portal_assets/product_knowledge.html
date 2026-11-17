@@ -38,7 +38,7 @@
 {{ site_topbar('知识库', '产品知识') }}
 <main class="learning">
 <header class="pk-head">
-<div><h1 class="pk-title">产品知识</h1><p>从已发布的产品理解原理，每一条都能打开对应型号的说明书核对。</p></div>
+<div><h1 class="pk-title">产品知识</h1><p>{{ topics|length }} 个知识点{% if latest_added %} · 更新于 {{ latest_added|e }}{% endif %}</p></div>
 </header>
 
 <section class="pk-panel pk-energy" aria-labelledby="energy-title">
@@ -109,6 +109,6 @@
 {% endif %}<div class="pk-lesson-text">{% for text in lesson.paragraphs %}<p>{{ text|e }}</p>{% if not loop.last %}
 {% endif %}{% endfor %}</div></li>
 {% endfor %}</ol></section>{% endfor %}
-<footer class="learning-footer"><p>本页解释通用功能原理，不推定各型号的芯片、内部电路或未确认的兼容关系。操作、技术值和适用条件，以对应地区的已发布说明书为准。</p><noscript><p>未启用 JavaScript：全部知识条目和各区域说明书链接仍可直接阅读。</p></noscript><a href="{{ pathto('index') }}">返回说明书资料库，查找完整说明书 →</a></footer>
+<footer class="learning-footer"><noscript><p>未启用 JavaScript：全部知识条目和各区域说明书链接仍可直接阅读。</p></noscript><a href="{{ pathto('index') }}">返回说明书资料库，查找完整说明书 →</a></footer>
 </main>
 </div>{{ site_script() }}</body></html>

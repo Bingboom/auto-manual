@@ -79,13 +79,24 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
   is shown on no page (2026-11-17).
 - **产品知识** (`product_knowledge.html`): the title, one line, then the topics and
   cases. See [knowledge-pages.md](knowledge-pages.md).
-- **语料库** (`asset_language.html`, `language_view`): the title, one line, the
-  translation memory's totals (句对, 术语, 已批准) dated by the export, and each
-  language's pair count where it has pairs. The counts are pairs, never a
+- **语料库** (`asset_language.html`, `language_view`): the title, one line
+  (已批准的术语和标准句，多语言对照 · 更新于 <date>), three figures (句对, 术语, 语言) and a
+  table per language (语言, 句子 with a bar, 术语). Languages are named as the manual
+  library names them (`settings.json` `language_labels`); a corpus language whose
+  translation-memory code differs carries the library's code as `manual` in
+  `system_workspace.yaml` (`corpus_view` `counts`, `terms`).
+  Beside the table (below it on a phone), **Agent 怎样用这份语料库** (`#agent-uses`; operator,
+  2026-11-17: 「这种可以用」) lists the three uses the operator works with today: agents edit Feishu cloud docs and
+  Illustrator (`.ai`) files from the corpus, calling the repository's code themselves, with one example ask. The
+  first draft followed the skill files (Word pre-translation, Markdown rewrite, write-back); the operator said those
+  are no longer how the work is done, so the skills need refreshing ([REV-54](../manual_revitalization_execution.md#rev-54)).
+  Change this wording with the operator, not from the skill files. The counts are pairs, never a
   percentage that could read as manual localization completion. Without a
   readable snapshot the page says 暂时没有可显示的语料数字. The terminology rules, the
   Web-manual language list and the staleness note left the page.
-- **市场与政策** lost its count and review-date pills in the head.
+- **市场与政策** lost its count and review-date pills in the head; its line reads
+  `<n> 条资料 · 更新于 <date>`. 产品知识's line reads `<n> 个知识点 · 更新于 <date>`, and its
+  page-foot disclaimer is gone.
 
 ## 视觉媒体 (front)
 

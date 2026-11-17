@@ -15,6 +15,7 @@ and the page shows no figures.
 from __future__ import annotations
 
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable
@@ -30,6 +31,19 @@ FLAT_COLUMN = "产品"
 # Market codes as colleagues say them; a code not listed shows as itself.
 MARKET_LABELS = {"US": "美规", "EU": "欧规", "JP": "日规", "CN": "国内", "KR": "韩规", "TW": "台规"}
 MARKET_ORDER = ("US", "EU", "JP", "CN", "KR", "TW")
+
+
+# A model code becomes a 产品档案 page path: letters, digits, dot, dash and underscore only, never "..".
+_MODEL = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$")
+
+
+def safe_model(model: str) -> bool:
+    return bool(_MODEL.match(model)) and ".." not in model
+
+
+def has_cells(snapshot: dict[str, Any] | None) -> bool:
+    """产品档案 and the tables need the decided cells (schema v1.1); without them those pages are not built."""
+    return isinstance((snapshot or {}).get("cells"), list)
 
 
 class SnapshotError(ValueError):
@@ -74,7 +88,11 @@ def _models(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     for row in rows:
         model = str(row["model"]).strip()
         entry = models.setdefault(model, {"model": model, "markets": set(), "project": None, "category": None,
-                                          "series": None, "tier": None, "rows": set()})
+                                          "series": None, "tier": None, "rows": set(), "names": set()})
+        # What the home search matches: the printed names and the short name (the code and project come from rows).
+        entry["names"].update(str(name).strip() for name in (row.get("names") or {}).values() if str(name or "").strip())
+        if row.get("short_name"):
+            entry["names"].add(str(row["short_name"]).strip())
         if row.get("market"):
             entry["markets"].add(str(row["market"]))
         # The filters match per model × market row: a project chosen together with a market needs both on one row.
@@ -106,8 +124,11 @@ def _chips(models: list[dict[str, Any]]) -> list[dict[str, Any]]:
                           key=lambda group: _chip_order(group[0])):
         markets = set().union(*(member["markets"] for member in members))
         rows = sorted({pair for member in members for pair in member["rows"]})
+        terms = {member["model"] for member in members} | {name for member in members for name in member["names"]}
+        terms |= {project for project, _ in rows if project}
         chips.append({"project": members[0]["project"] or "", "markets": _ordered(markets, MARKET_ORDER),
                       "rows": " ".join(f"{project}|{market}" for project, market in rows),
+                      "search": " ".join(sorted(terms)).lower(),
                       "models": [{"model": member["model"], "markets": _ordered(member["markets"], MARKET_ORDER),
                                   "label": "、".join(map(market_label, _ordered(member["markets"], MARKET_ORDER)))}
                                  for member in members]})
@@ -163,8 +184,15 @@ def library_view(snapshot: dict[str, Any], product_catalog: dict[str, Any] | Non
     models = list(_models(rows).values())
     markets = _ordered({market for model in models for market in model["markets"]}, MARKET_ORDER)
     updated = str(snapshot.get("read_at") or "")[:10]
+    categories = _categories(models, product_catalog)
+    # A code links to its 产品档案 only when that page is built (the snapshot has cells and the code is a safe page
+    # name); otherwise to the manual library filtered to it, so no link points to a missing page.
+    profiles = has_cells(snapshot)
+    for chip in (chip for category in categories for row in category["rows"] for cell in row["cells"] for chip in cell):
+        for member in chip["models"]:
+            member["page"] = profiles and safe_model(member["model"])
     return {"built": True, "problem": "", "count": len(models), "updated": updated,
-            "categories": _categories(models, product_catalog),
+            "categories": categories,
             "projects": sorted({model["project"] for model in models if model["project"]}),
             "unassigned": any(not model["project"] for model in models),
             "markets": [{"code": code, "label": market_label(code)} for code in markets],
@@ -194,6 +222,6 @@ def empty_context(problem: str) -> dict[str, Any]:
             "unassigned": False, "markets": [], "facts": {}, "built_on": ""}
 
 
-__all__ = ["FLAT_COLUMN", "MARKET_LABELS", "OTHER_CATEGORY", "SCHEMA", "SCHEMAS", "SNAPSHOT", "SnapshotError",
+__all__ = ["FLAT_COLUMN", "has_cells", "safe_model", "MARKET_LABELS", "OTHER_CATEGORY", "SCHEMA", "SCHEMAS", "SNAPSHOT", "SnapshotError",
            "UNSORTED_SERIES", "UNSTATED_TIER", "empty_context", "library_context", "library_view", "load_snapshot",
            "market_label", "snapshot_path"]

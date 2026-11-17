@@ -8,18 +8,20 @@
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/product-library.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/product-tables.css', 1) }}">
 <script defer src="{{ pathto('_static/product-library.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{% from "_product_tabs.html" import product_tabs with context %}
 {#- 产品库 (step 13 of the 2026-11 redesign; REV-53; tools/rtd/product_library.py). A front page: the title, one
     line, then the matrix. A tab per category; rows are 系列, columns 容量档 (one 产品 column without tiers); a chip
     per model, the models of one project merged as A(B). 项目 and 市场 highlight matching chips and dim the rest.
     Without JavaScript every category shows and the filters stay hidden. -#}
 {%- macro chip(item) -%}
-<span class="pl-chip" data-rows="{{ item.rows|e }}">
+<span class="pl-chip" data-rows="{{ item.rows|e }}" data-search="{{ item.search|e }}">
   {%- for member in item.models -%}
   <span class="pl-code">{% if loop.index == 2 %}<span class="pl-paren">(</span>{% elif not loop.first %}<span class="pl-sep">、</span>{% endif -%}
-  <a href="{{ pathto('index') }}?q={{ member.model|urlencode }}" title="{{ member.label|e }}">{{ member.model|e }}</a>
+  <a href="{% if member.page %}{{ pathto('products/item/' ~ member.model)|e }}{% else %}{{ pathto('index')|e }}?q={{ member.model|urlencode }}{% endif %}" title="{{ member.label|e }}">{{ member.model|e }}</a>
   {%- if loop.last and not loop.first %}<span class="pl-paren">)</span>{% endif %}</span>
   {%- endfor -%}
 </span>
@@ -30,12 +32,14 @@
 <div class="app-content">
 {{ site_topbar('知识库', '产品库') }}
 <main class="fr-page pl-page">
+{%- if built %}{{ product_tabs('products/matrix') }}{% endif %}
 <header class="fr-head"><h1>产品库</h1>{% if built %}<p>{{ count }} 个产品 · 更新于 {{ updated|e }}</p>{% endif %}</header>
 {%- if not built %}
 <p class="fr-empty" id="matrix">{{ problem|e }}</p>
 {%- else %}
 <nav class="pl-tabs" aria-label="产品类别" hidden>{% for category in categories %}<a class="pl-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }}</a>{% endfor %}</nav>
 <form class="pl-filters" data-pl-filters hidden onsubmit="return false">
+  <label class="pl-search"><span class="sr-only">搜索产品</span><input type="search" data-pl-q placeholder="型号、产品名或项目号" autocomplete="off"></label>
   <label>项目<select data-pl-filter="project"><option value="">全部项目</option>{% for project in projects %}<option value="{{ project|e }}">{{ project|e }}</option>{% endfor %}{% if unassigned %}<option value="-">未归入项目</option>{% endif %}</select></label>
   <label>市场<select data-pl-filter="market"><option value="">全部市场</option>{% for market in markets %}<option value="{{ market.code|e }}">{{ market.label|e }}</option>{% endfor %}</select></label>
   <span class="pl-active" data-pl-active hidden><span data-pl-active-text></span><button type="button" data-pl-clear>清除</button></span>
