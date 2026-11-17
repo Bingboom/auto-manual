@@ -32,7 +32,9 @@ permissions:
 
 jobs:
   process-draft-queue:
-    if: ${{ github.repository != 'Bingboom/Hello-Docs' || vars.FEISHU_BUILD_QUEUE_PAUSED != 'true' }}
+    # Retired with the legacy sync-data + RST template queue route; keep workflow
+    # file for historical portal references and allow explicit opt-in emergency runs only.
+    if: ${{ vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true' && (github.repository != 'Bingboom/Hello-Docs' || vars.FEISHU_BUILD_QUEUE_PAUSED != 'true') }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}

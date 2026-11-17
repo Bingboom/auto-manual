@@ -56,13 +56,14 @@ def _plain(number: Any) -> str:
 
 def display_text(value: Any, numeric: bool, unit: str) -> str | None:
     """What a page shows: the matrix cell, with the parameter's unit after a number (the matrix keeps the unit in its
-    column name); integers without ".0"."""
+    column name); integers without ".0". Text never carries the loader's 「派生:」 marker: a derived power row that
+    prints no watts reaches here as its 原文, marker included."""
     if value is None:
         return None
     if numeric:
         number = _plain(_number(value))
         return f"{number} {unit}" if unit not in NO_UNIT else number
-    return str(value)
+    return split_derived(str(value))[0]
 
 
 def _same_value(fact: dict[str, Any]) -> tuple[Any, str]:
@@ -125,7 +126,7 @@ def _takes_part(fact: dict[str, Any]) -> bool:
 
 
 def reference_rows(facts: list[dict[str, Any]], sources: list[dict[str, Any]],
-                   chosen: set[str] | None = None) -> list[tuple[str, str, str]]:
+                   chosen: set[str]) -> list[tuple[str, str, str]]:
     """The base rows behind a failed check: facts sharing a key, and cell-chosen facts whose source row is gone.
 
     Only rows that cause the failure: every fact for duplicate ids (component values carry ids too), and for missing
@@ -138,7 +139,7 @@ def reference_rows(facts: list[dict[str, Any]], sources: list[dict[str, Any]],
     rows = [("同键事实", key, "") for key, count in sorted(seen.items()) if count > 1]
     rows += sorted(("来源行缺失", _text(f.get("事实键")), _text(f.get("来源键"))) for f in facts
                    if _takes_part(f) and _text(f.get("来源键")) not in known
-                   and (chosen is None or value_id(_text(f.get("事实键"))) in chosen))
+                   and value_id(_text(f.get("事实键"))) in chosen)
     return rows
 
 

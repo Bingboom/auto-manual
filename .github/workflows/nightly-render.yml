@@ -1,8 +1,7 @@
 name: Nightly Render
 
 on:
-  schedule:
-    - cron: "45 8 * * *"
+  # Retired with the legacy RST/XeLaTeX/IDML template route; cron disabled.
   workflow_dispatch: {}
 
 permissions:
@@ -14,7 +13,7 @@ concurrency:
 
 jobs:
   render-smoke:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    if: ${{ github.repository == 'Bingboom/auto-manual' && vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
