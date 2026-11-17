@@ -1,0 +1,66 @@
+/* 产品信息 sub-tabs, 参数表 and 产品对比 (step 13). Tokens: site-shell.css; head: front.css. */
+.pt-tabs {display:flex;gap:4px 22px;border-bottom:1px solid var(--app-line);margin-bottom:-8px}
+.pt-tabs a {padding:10px 2px;margin-bottom:-1px;border-bottom:2px solid transparent;font-size:14px;color:var(--app-muted);
+  text-decoration:none}
+.pt-tabs a:hover {color:var(--app-ink)}
+.pt-tabs a.is-on {color:var(--brand);font-weight:600;border-bottom-color:var(--brand)}
+.pt-page, .pc-page {max-width:1320px}
+.pt-head {flex-direction:row;align-items:center;justify-content:space-between;max-width:none}
+.pt-download {min-height:38px;padding:0 16px;border:0;border-radius:10px;background:var(--brand);color:#fff;font:inherit;
+  font-size:14px;font-weight:600;cursor:pointer}
+.pt-download:hover {background:#7e3313}
+.pt-download[hidden] {display:none}
+.pt-cats {display:flex;flex-wrap:wrap;gap:8px}
+.pt-cats[hidden] {display:none}
+.pt-cats button {min-height:34px;padding:0 14px;border:1px solid var(--app-line);border-radius:999px;background:var(--surface);
+  font:inherit;font-size:14px;color:var(--app-ink);cursor:pointer}
+.pt-cats button[aria-pressed="true"] {background:var(--app-ink);border-color:var(--app-ink);color:#fff}
+.pt-panel {display:flex;flex-direction:column;gap:12px}
+.pt-panel-title {margin:0;font-size:var(--text-lg)}
+.pt-js .pt-panel-title {position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.pt-filters, .pc-options, .pc-add {display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.pt-filters[hidden] {display:none}
+.pt-filters label, .pc-options label, .pc-add label {display:flex;align-items:center;gap:8px;font-size:14px;color:var(--app-muted)}
+.pt-filters select, .pc-options select, .pc-add input {min-height:36px;padding:0 10px;border:1px solid #c9d2dd;border-radius:9px;
+  background:var(--surface);font:inherit;font-size:14px;color:var(--app-ink)}
+.pc-add input {min-width:240px}
+.pc-add button {min-height:36px;padding:0 14px;border:1px dashed #a9b3bf;border-radius:9px;background:transparent;font:inherit;
+  font-size:14px;cursor:pointer}
+.pt-check {gap:6px !important;color:var(--app-ink) !important}
+.pt-check input {accent-color:var(--brand)}
+.pt-scroll {overflow-x:auto;background:var(--surface);border:1px solid var(--app-line);border-radius:14px}
+.pt-table {width:100%;border-collapse:collapse;font-size:13px}
+.pt-table th, .pt-table td {padding:8px 10px;border-top:1px solid #eef1f5;text-align:left;vertical-align:top;white-space:nowrap}
+.pt-table td {white-space:normal;min-width:72px}
+.pt-table td:not(.is-num) {min-width:150px;max-width:300px}
+.pt-text {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}
+.pt-table thead th {position:sticky;top:0;border-top:0;background:#f8fafc;color:var(--app-muted);font-weight:600;z-index:1}
+.pt-table .is-num {text-align:right;font-variant-numeric:tabular-nums}
+.pt-table tbody th a {color:var(--app-ink);font-weight:600;text-decoration:none}
+.pt-table tbody th a:hover {color:var(--brand)}
+.pt-sort {padding:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer;text-align:inherit}
+.pt-sort small {display:block;font-weight:400;font-size:11px}
+th[aria-sort] .pt-sort {color:var(--brand)}
+th[aria-sort="ascending"] .pt-sort::after {content:" ↑"}
+th[aria-sort="descending"] .pt-sort::after {content:" ↓"}
+.pt-group th {background:#f3f6fa;color:var(--app-ink);font-weight:600;text-align:left}
+.pt-none {color:var(--app-faint)}
+.pt-badge {display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;border:1px solid #f0d9a8;background:#fbf0da;
+  color:#5c3a00;font-size:11px;font-weight:600;white-space:nowrap}
+.pc-app {display:flex;flex-direction:column;gap:14px}
+.pc-app[hidden] {display:none}
+.pc-picked {display:flex;flex-wrap:wrap;gap:8px}
+.pc-chip {display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 6px 0 14px;border:1px solid var(--app-line);
+  border-radius:10px;background:var(--surface);font-size:14px}
+.pc-chip button {width:30px;height:30px;border:0;border-radius:8px;background:transparent;font-size:16px;color:var(--app-muted);
+  cursor:pointer}
+.pc-table thead th small {display:block;font-weight:400;font-size:12px}
+.pc-table thead th a {color:var(--app-ink);font-size:15px;text-decoration:none}
+.pc-table tbody th {width:170px;color:var(--app-muted);font-weight:400}
+.pc-table thead th .pc-absent {color:#8a3b16}
+.pc-table tr.is-diff {background:#faf0dc}
+.pc-table tr.is-diff th {color:#5c3a00;font-weight:600}
+@media (max-width:820px) {
+  .pt-head {flex-wrap:wrap}
+  .pc-add input {min-width:0;flex:1}
+}

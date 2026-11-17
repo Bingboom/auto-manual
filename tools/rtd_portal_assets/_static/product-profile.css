@@ -70,3 +70,6 @@
     box-shadow:0 -8px 30px #20262f2e}
 }
 .pf-card p a {color:var(--brand)}
+.pf-compare {align-self:flex-start;margin-top:4px;padding:6px 14px;border:1px solid var(--app-line);border-radius:10px;background:var(--surface);
+  color:var(--app-ink);font-size:14px;text-decoration:none}
+.pf-compare:hover {border-color:var(--brand);color:var(--brand)}

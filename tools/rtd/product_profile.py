@@ -78,7 +78,7 @@ def compare_key(value: dict[str, Any]) -> str:
     return re.sub(r"\s+", "", str(value.get("text") or value.get("printed") or "")).lower()
 
 
-def _name(rows: list[dict[str, Any]]) -> str:
+def product_name(rows: list[dict[str, Any]]) -> str:
     """The name printed in the product's first market (in the usual market order), else its short name or model."""
     def rank(row: dict[str, Any]) -> int:
         market = str(row.get("market") or "")
@@ -101,7 +101,7 @@ def _source(value: dict[str, Any], sources: dict[str, dict[str, Any]], labels: d
             "doc": page[:-5] if page.endswith(".html") else ""}
 
 
-def _groups(parameters: dict[str, dict[str, Any]], keys: set[str]) -> list[dict[str, Any]]:
+def parameter_groups(parameters: dict[str, dict[str, Any]], keys: set[str]) -> list[dict[str, Any]]:
     """The groups holding at least one of ``keys``, each with its parameters in the base's order."""
     by_group: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for key in keys:
@@ -170,7 +170,7 @@ def _cells(rows: list[dict[str, Any]], snapshot: dict[str, Any], parameters: dic
 
 def _head(model: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
     first = rows[0]
-    return {"model": model, "name": _name(rows),
+    return {"model": model, "name": product_name(rows),
             "project": next((str(row["project"]) for row in rows if row.get("project")), ""),
             "sku_date": sku_date(rows),
             "classes": [str(part) for part in (first.get("category"), first.get("series"), first.get("capacity_tier"))
@@ -199,7 +199,7 @@ def profile_view(model: str, rows: list[dict[str, Any]], snapshot: dict[str, Any
     sources = {str(s.get("id")): s for s in snapshot.get("sources") or [] if isinstance(s, dict)}
     markets = _markets(rows)
     cells = _cells(rows, snapshot, parameters, sources, labels)
-    groups = _groups(parameters, {key for _, key in cells})
+    groups = parameter_groups(parameters, {key for _, key in cells})
     ordered = [parameter for group in groups for parameter in group["parameters"]]
     return {
         **_head(model, rows),
@@ -254,5 +254,5 @@ def _linkable(extra: dict[str, Any] | None, models: set[str]) -> dict[str, Any] 
     return {**extra, "pairing": {"named": named, "named_by": named_by}}
 
 
-__all__ = ["CONFLICT", "GROUPS", "PAGE_PREFIX", "SKU_DATE", "SKU_DATE_UPPER_BOUND", "TEMPLATE", "display", "matrix_extras",
-           "page_name", "profile_pages", "profile_view", "sku_date"]
+__all__ = ["CONFLICT", "GROUPS", "PAGE_PREFIX", "SKU_DATE", "SKU_DATE_UPPER_BOUND", "TEMPLATE", "compare_key", "display",
+           "matrix_extras", "page_name", "parameter_groups", "product_name", "profile_pages", "profile_view", "sku_date"]

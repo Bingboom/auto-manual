@@ -501,6 +501,13 @@ def product_profile_pages(app, settings: dict, products: list[dict]):
     nav = site_nav(app)
     for page, context in profile_pages(snapshot, labels=labels, extras=extras):
         yield page, {**context, "site_nav": nav}, TEMPLATE
+    from tools.rtd import product_tables
+
+    catalog = getattr(app, "_rtd_product_catalog", None)
+    yield product_tables.TABLE_PAGE, {**product_tables.table_view(snapshot, catalog), "site_nav": nav}, \
+        product_tables.TABLE_TEMPLATE
+    yield product_tables.COMPARE_PAGE, {**product_tables.compare_view(snapshot), "site_nav": nav}, \
+        product_tables.COMPARE_TEMPLATE
 
 
 

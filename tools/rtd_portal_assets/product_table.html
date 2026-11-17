@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="参数表：每个类别一张表，型号和市场一行，可排序、筛选和下载。">
+<title>参数表</title>
+<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/product-tables.css', 1) }}">
+<script defer src="{{ pathto('_static/product-table.js', 1) }}"></script>
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{% from "_product_tabs.html" import product_tabs with context %}
+{#- 参数表 (step 13; REV-53; tools/rtd/product_tables.py table_view). A front page: the title, then a table per
+    category. Rows are model × market; columns are the parameters that category's products state. Sorting,
+    filters, 按项目分组 and 下载表格 need the script; without it every table shows in full. -#}
+<body class="app kb">
+{{ site_sidebar('product-matrix', site_nav) }}
+<div class="app-content">
+{{ site_topbar('知识库', '参数表') }}
+<main class="fr-page pt-page">
+{{ product_tabs('products/table') }}
+<header class="fr-head pt-head"><h1>参数表</h1><button type="button" class="pt-download" data-pt-download hidden>下载表格</button></header>
+{%- if not built %}
+<p class="fr-empty">还没有产品数据。</p>
+{%- else %}
+<nav class="pt-cats" aria-label="产品类别" data-pt-cats hidden>{% for category in categories %}<button type="button" data-pt-cat="{{ category.id|e }}">{{ category.title|e }}</button>{% endfor %}</nav>
+{%- for category in categories %}
+<section class="pt-panel" data-pt-panel="{{ category.id|e }}" aria-labelledby="{{ category.id|e }}-title">
+  <h2 class="pt-panel-title" id="{{ category.id|e }}-title">{{ category.title|e }}</h2>
+  <form class="pt-filters" data-pt-filters hidden onsubmit="return false">
+    <label>项目<select data-pt-filter="project"><option value="">全部</option>{% for project in category.projects %}<option value="{{ project|e }}">{{ project|e }}</option>{% endfor %}{% if category.unassigned %}<option value="-">未归入项目</option>{% endif %}</select></label>
+    <label>市场<select data-pt-filter="market"><option value="">全部</option>{% for market in category.markets %}<option value="{{ market.code|e }}">{{ market.label|e }}</option>{% endfor %}</select></label>
+    <label>系列<select data-pt-filter="series"><option value="">全部</option>{% for series in category.series %}<option value="{{ series|e }}">{{ series|e }}</option>{% endfor %}</select></label>
+    <label class="pt-check"><input type="checkbox" data-pt-group checked>按项目分组</label>
+  </form>
+  <div class="pt-scroll"><table class="pt-table" data-pt-table data-pt-name="{{ category.title|e }}">
+    <thead><tr>
+      <th scope="col" data-pt-col="text">产品</th><th scope="col" data-pt-col="text">型号</th><th scope="col" data-pt-col="text">市场</th><th scope="col" data-pt-col="text">项目</th>
+      <th scope="col" data-pt-col="text"><button type="button" class="pt-sort" data-pt-sort>SKU 创建时间</button></th>
+      {%- for column in category.columns %}<th scope="col" data-pt-col="{{ 'number' if column.numeric else 'text' }}" data-pt-head="{{ column.name|e }}{% if column.unit and column.numeric %} ({{ column.unit|e }}){% endif %}"{% if column.numeric %} class="is-num"{% endif %}><button type="button" class="pt-sort" data-pt-sort>{{ column.name|e }}{% if column.unit and column.numeric %}<small>{{ column.unit|e }}</small>{% endif %}</button></th>{% endfor %}
+    </tr></thead>
+    <tbody>
+    {%- for row in category.rows %}
+      <tr data-project="{{ row.project|e }}" data-market="{{ row.market|e }}" data-series="{{ row.series|e }}">
+        <th scope="row"><a href="{{ pathto(row.page)|e }}">{{ row.name|e }}</a></th><td>{{ row.model|e }}</td><td>{{ row.market_label|e }}</td><td>{{ row.project|e if row.project else '未归入' }}</td>
+        <td data-sort="{{ row.sku_date|replace('不晚于 ', '')|e }}">{% if row.sku_date %}{{ row.sku_date|e }}{% else %}<span class="pt-none">暂无</span>{% endif %}</td>
+        {%- for cell in row.cells %}<td{% if category.columns[loop.index0].numeric %} class="is-num"{% endif %} data-sort="{{ cell.sort|e }}">{% if cell.text %}<span class="pt-text" title="{{ cell.text|e }}">{{ cell.text|e }}</span>{% if cell.conflict %}<span class="pt-badge">各说明书写法不一致</span>{% endif %}{% else %}<span class="pt-none">暂无</span>{% endif %}</td>{% endfor %}
+      </tr>
+    {%- endfor %}
+    </tbody>
+  </table></div>
+</section>
+{%- endfor %}
+{%- endif %}
+</main>
+</div>{{ site_script() }}</body></html>
