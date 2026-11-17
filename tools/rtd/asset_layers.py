@@ -25,7 +25,7 @@ LAYERS = (
     {"id": "product", "order": 1, "title": "产品信息", "icon": "product", "page": "products/matrix",
      "lead": "参数、功能、规格、使用限制、适用型号和地区差异。"},
     {"id": "content", "order": 2, "title": "内容与表现", "icon": "chapters", "page": "assets/content/index",
-     "template": "asset_content.html", "lead": "说明书的骨架、通用章节、内容组件和版式样式。写一次，各型号、各语言复用。"},
+     "lead": "说明书的骨架、通用章节、内容组件和版式样式。写一次，各型号、各语言复用。"},
     {"id": "media", "order": 3, "title": "视觉媒体", "icon": "image", "page": "assets/media/index",
      "template": "asset_media.html", "lead": "产品图、接口图、步骤插图、图标和共用符号。每项写明适用的型号、市场和语言，以及出处。"},
     {"id": "language", "order": 4, "title": "语料库", "icon": "languages", "page": "assets/language/index",
@@ -148,13 +148,14 @@ def language_view(system: dict[str, Any] | None, labels: dict[str, str] | None =
 
     Each language is named as the manual library names it (``language_labels``: English, 日本語); a code the library
     does not list keeps the snapshot's label; a row's ``manual`` code (``system_workspace.yaml``) maps
-    the translation memory's code to the library's.
+    the translation memory's code to the library's. ``listed`` holds the languages the page lists (those with
+    pairs or terms), so the page's language figure is the number of rows it shows.
     """
     corpus = (system or {}).get("corpus")
-    if corpus and labels:
+    if corpus:
         rows = [{**row, "label": labels.get(str(row.get("manual") or row.get("code")), row["label"])}
-                for row in corpus.get("rows") or []]
-        corpus = {**corpus, "rows": rows}
+                for row in corpus.get("rows") or []] if labels else list(corpus.get("rows") or [])
+        corpus = {**corpus, "rows": rows, "listed": [row for row in rows if row.get("count") or row.get("terms")]}
     tiles = {tile["key"]: tile for tile in (corpus or {}).get("tiles") or []}
     return {**layer("language"), "corpus": corpus, "tiles": tiles}
 

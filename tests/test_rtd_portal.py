@@ -550,7 +550,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual(profile.select_one(".pf-compare")["href"], "../compare.html?p=FAKE-A")
         self.assertEqual(profile.select_one(".pf-back")["href"], "../matrix.html")
         self.assertEqual(profile.select_one(".fr-head p a")["href"], "../matrix.html?project=P-FAKE-1")
-        self.assertEqual(library.select_one(".fr-head p").get_text(), "2 个产品 · 更新于 2026-01-02")
+        self.assertEqual(library.select_one(".fr-head p").get_text(), "2 款产品 · 更新于 2026-01-02")
         # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
         from tools.rtd.asset_layer_data import load_layer_data
         statement = load_layer_data(rtd_portal.ASSETS)["product_value"][:12]

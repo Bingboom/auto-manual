@@ -142,6 +142,19 @@ class LayerViewTests(unittest.TestCase):
         self.assertIn("「按语料库把这篇飞书云文档改成韩语」", uses.get_text())
         self.assertNotIn("Markdown", uses.get_text())
 
+    def test_the_language_figure_is_the_number_of_languages_listed(self):
+        # The export counts languages with pairs; the table also lists a language that has only terms. The figure
+        # follows the table, whatever the export's own count says.
+        row = {"count_text": "", "percent": 0, "terms_text": ""}
+        corpus = {"exported_at": "2026-11-01",
+                  "counts": {"pairs": 5, "pairs_approved": 5, "terms": 4, "terms_approved": 4, "languages": 1},
+                  "rows": [{**row, "label": "English", "count": 5, "terms": 3}, {**row, "label": "Deutsch", "count": 0, "terms": 1},
+                           {**row, "label": "Français", "count": 0, "terms": 0}]}
+        page = render("asset_language.html", layer=al.language_view({"corpus": corpus}))
+        rows = page.select(".fr-langs tbody tr")
+        self.assertEqual([r.th.get_text() for r in rows], ["English", "Deutsch"])
+        self.assertEqual(page.select(".fr-figs div")[2].get_text(" "), f"{len(rows)} 种语言")
+
     def test_corpus_languages_are_named_as_the_manual_library_names_them(self):
         corpus = {"rows": [{"code": "en", "label": "英语"}, {"code": "jp", "manual": "ja", "label": "日语"},
                            {"code": "xx", "label": "未列语言"}]}

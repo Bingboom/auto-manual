@@ -133,7 +133,7 @@ class ViewTests(unittest.TestCase):
         chips = [chip for r in portable["rows"] for cell in r["cells"] for chip in cell]
         self.assertEqual([[m["model"] for m in chip["models"]] for chip in chips], [["FAKE-1"], ["FAKE-2"], ["FAKE-3"]])
         self.assertEqual({chip["project"] for chip in chips}, {"P-FAKE-1"})
-        self.assertTrue(all(chip["rows"] == "P-FAKE-1|US" for chip in chips))
+        self.assertTrue(all(chip["rows"] == [["P-FAKE-1", "US"]] for chip in chips))
 
     def test_three_members_read_a_b_c_d_in_code_order(self):
         view = pl.library_view(snapshot(row("FAKE-D"), row("FAKE-B"), row("FAKE-A"), row("FAKE-C")), CATALOG)
@@ -141,10 +141,17 @@ class ViewTests(unittest.TestCase):
         self.assertEqual([m["model"] for m in chip["models"]], ["FAKE-A", "FAKE-B", "FAKE-C", "FAKE-D"])
         self.assertEqual(render(view).select_one(".pl-chip").get_text(), "FAKE-A(FAKE-B、FAKE-C、FAKE-D)")
 
+    def test_rows_reach_the_page_as_json_so_any_project_text_stays_whole(self):
+        odd = 'P FAKE|1 "x" <y>'
+        page = render(pl.library_view(snapshot(row("FAKE-1", project=odd), row("FAKE-1", "JP", project=None)), CATALOG))
+        chip = page.select_one(".pl-chip")
+        self.assertEqual(json.loads(chip["data-rows"]), [["", "JP"], [odd, "US"]])
+        self.assertNotIn("<y>", str(chip).split(">", 1)[0])
+
     def test_a_repeated_row_counts_once(self):
         view = pl.library_view(snapshot(row("FAKE-1"), row("FAKE-1"), row("FAKE-1", "JP")), CATALOG)
         chip = view["categories"][0]["rows"][0]["cells"][0][0]
-        self.assertEqual((view["count"], chip["markets"], chip["rows"]), (1, ["US", "JP"], "P-FAKE-1|JP P-FAKE-1|US"))
+        self.assertEqual((view["count"], chip["markets"], chip["rows"]), (1, ["US", "JP"], [["P-FAKE-1", "JP"], ["P-FAKE-1", "US"]]))
 
     def test_an_empty_product_list_reads_like_a_missing_file(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -155,7 +162,7 @@ class ViewTests(unittest.TestCase):
         self.assertEqual((context["built"], context["problem"]), (False, "还没有产品数据。"))
         page = render(context)
         self.assertIsNone(page.select_one(".fr-head p"))
-        self.assertNotIn("0 个产品", page.get_text())
+        self.assertNotIn("0 款产品", page.get_text())
 
 
 class TemplateTests(unittest.TestCase):
@@ -176,7 +183,7 @@ class TemplateTests(unittest.TestCase):
                                CATALOG)
         page = render(view)
         self.assertEqual(page.select_one(".fr-head h1").get_text(), "产品库")
-        self.assertEqual(page.select_one(".fr-head p").get_text(), "3 个产品 · 更新于 2026-01-02")
+        self.assertEqual(page.select_one(".fr-head p").get_text(), "3 款产品 · 更新于 2026-01-02")
         chips = page.select(".pl-chip")
         self.assertEqual([chip.get_text() for chip in chips], ["FAKE-100A(FAKE-200B)", "FAKE-300A"])
         # Without the decided cells no 产品档案 is built: codes open the manual library filtered to them.
@@ -184,8 +191,8 @@ class TemplateTests(unittest.TestCase):
         with_cells = render(pl.library_view({**snapshot(row("FAKE-200B"), row("FAKE-1/x")), "cells": []}, CATALOG))
         self.assertEqual([a["href"] for a in with_cells.select(".pl-chip a")],
                          ["index?q=FAKE-1/x", "products/item/FAKE-200B"])
-        self.assertEqual(chips[0]["data-rows"], "P-FAKE-1|EU P-FAKE-1|US")
-        self.assertEqual(chips[1]["data-rows"], "|US")
+        self.assertEqual(json.loads(chips[0]["data-rows"]), [["P-FAKE-1", "EU"], ["P-FAKE-1", "US"]])
+        self.assertEqual(json.loads(chips[1]["data-rows"]), [["", "US"]])
         self.assertEqual([o.get_text() for o in page.select('[data-pl-filter="project"] option')],
                          ["全部项目", "P-FAKE-1", "未归入项目"])
         self.assertEqual([o["value"] for o in page.select('[data-pl-filter="market"] option')], ["", "US", "EU"])

@@ -105,7 +105,7 @@ def _models(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
 
 
 def _chip_order(model: dict[str, Any]) -> str:
-    # By model code: the operator's examples put JE outside the brackets and JHP inside (JE-2000E(JHP-2000A)).
+    # By model code: the alphabetically first code goes outside the brackets (FAKE-A(FAKE-B)).
     return model["model"]
 
 
@@ -127,7 +127,8 @@ def _chips(models: list[dict[str, Any]]) -> list[dict[str, Any]]:
         terms = {member["model"] for member in members} | {name for member in members for name in member["names"]}
         terms |= {project for project, _ in rows if project}
         chips.append({"project": members[0]["project"] or "", "markets": _ordered(markets, MARKET_ORDER),
-                      "rows": " ".join(f"{project}|{market}" for project, market in rows),
+                      # [[project, market], …]: the page writes it as JSON, so no project text can split a row.
+                      "rows": [[project, market] for project, market in rows],
                       "search": " ".join(sorted(terms)).lower(),
                       "models": [{"model": member["model"], "markets": _ordered(member["markets"], MARKET_ORDER),
                                   "label": "、".join(map(market_label, _ordered(member["markets"], MARKET_ORDER)))}

@@ -55,7 +55,7 @@ def curated(assets: Path, root: Path, system: dict[str, Any] | None, warn) -> di
 
 def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
                 corpus: dict[str, Any] | None) -> list[dict[str, Any]]:
-    """知识库首页's three asset cards: name, one line, one figure with its date (None reads 待统计)."""
+    """知识库首页's three asset cards: name, one line, one figure with its date (None reads 暂无)."""
     facts = (matrix or {}).get("facts") or {}
     tiles = {tile["key"]: tile for tile in (corpus or {}).get("tiles") or []}
     topics = None if learning is None or learning.get("content_missing") else len(learning.get("topics") or [])
@@ -76,7 +76,8 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
                       learning: dict[str, Any] | None, build_date: str, warn, design=None) -> dict:
     """The layer pages' contexts, 知识库首页's cards and the 系统建设 part.
 
-    Since the front cleanup (2026-11-17) 产品信息 carries only the operator's value statement as its lead; 内容与表现
+    Since the front cleanup (2026-11-17) 产品信息 (产品库) has no lead: the operator's value statement is still passed
+    along as ``product`` but no template shows it; 内容与表现
     is not shown (its address forwards to 设计规范); 视觉媒体 is a page for colleagues; 语言 is the 语料库 page; the
     former 属性字典 address forwards to 产品信息.
     """

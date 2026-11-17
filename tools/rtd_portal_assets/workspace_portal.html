@@ -13,12 +13,12 @@
 {#- 知识资产 (the 知识库首页; layout of 2026-11-17: the first page of the 知识资产 section): for product colleagues. The title and one line, the three asset cards
     (产品信息, 产品知识, 语料库; tools/rtd/asset_pages.py front_cards), then the entrances to 说明书资料库 and 市场与政策.
     Management text (主线, 正在做, 定位与价值 statuses, 最近更新) is not on this page; 系统建设 keeps the main line. -#}
-{#- An asset card: name, one line, one figure with its date (待统计 when the figure cannot be read). -#}
+{#- An asset card: name, one line, one figure with its date (暂无 when the figure cannot be read). -#}
 {%- macro asset_card(card) -%}
 <a class="home-asset home-front-card" id="asset-{{ card.id|e }}" href="{{ pathto(card.page) }}">
   <span class="home-asset-head"><span class="home-asset-icon">{{ icon(card.icon, 16) }}</span><strong>{{ card.title|e }}</strong></span>
   <span class="home-front-line">{{ card.line|e }}</span>
-  <span class="home-front-fig">{% if card.value is none %}<b class="is-pending">待统计</b>{% else %}<b>{{ card.value|e }}</b><small>{{ card.unit|e }}</small>{% endif %}{% if card.date %}<time datetime="{{ card.date|e }}">截至 {{ card.date|e }}</time>{% endif %}</span>
+  <span class="home-front-fig">{% if card.value is none %}<b class="is-pending">暂无</b>{% else %}<b>{{ card.value|e }}</b><small>{{ card.unit|e }}</small>{% endif %}{% if card.date %}<time datetime="{{ card.date|e }}">截至 {{ card.date|e }}</time>{% endif %}</span>
 </a>
 {%- endmacro -%}
 <body class="app kb">
