@@ -25,11 +25,20 @@ is unchanged).
 
 ## Navigation
 
-The private sidebar (`_site_shell.html`) is: 首页; 资产 (产品信息, 产品知识, 语料库;
-no numbers); 说明书 (说明书资料库, 搜索说明书正文); 参考 (市场与政策); 维护 (说明书工作台,
-内容与表现, 视觉媒体, 系统建设, 设计规范), one bottom group collapsed by default
-(`details.app-nav-more`) and open on its own pages. The pages under 维护 keep
-their content. 产品信息 links 产品知识 when the matrix is not built.
+The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四大导航 + 左侧上下文目录 +
+中间内容区) has four main sections in the top bar, and the left list holds the current section's pages only:
+
+| Top bar | Left list | First page |
+| --- | --- | --- |
+| 知识资产 | 产品信息, 产品知识, 说明书资料库, 语料库, 视觉媒体, 市场与政策 | 知识资产 (`workspace/index.html`) |
+| 工作台 | 说明书工作台, 内容与表现 | 说明书工作台 |
+| Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
+| 设计规范 | 设计规范 | 设计规范 |
+
+The top bar also carries the brand, a search icon (搜索说明书正文, current on the search page) and an Agent icon
+(系统建设). 知识资产's first page and the search page are reached from the top bar, not the left list. The
+breadcrumb reads 工作资料 / section / page. On a phone the top bar takes two rows (brand and tools, then the
+sections) and the left list opens from the menu button. The pages keep their content. 产品信息 links 产品知识 when the matrix is not built.
 
 Old addresses keep working:
 
@@ -155,8 +164,9 @@ layers that is not a figure:
 
 ## 知识库首页 and 系统建设
 
-- **知识库首页** (front cleanup, 2026-11-17): the title and the value file's tagline,
-  then three asset cards (`#now`; 产品信息, 产品知识, 语料库; `asset_pages.front_cards`),
+- **知识库首页** (front cleanup, 2026-11-17; the 知识资产 page since the layout of the same day): the title
+  知识资产 and the line 「让产品信息和生产资料持续积累、关联和复用。」, then three asset cards (`#now`; 产品信息矩阵
+  「项目 · 属性 · 时间」, 产品知识「功能 · 限制 · 关系」, 语料库「句对 · 术语 · 复用」; `asset_pages.front_cards`),
   each with its name, one line and one figure with its date (待统计 when unreadable),
   then the entrances to 说明书资料库 and 市场与政策 (`#doors`) and, with a share
   package, 分享资料 (`#shares`). No status chips or ledger references. The slice-2

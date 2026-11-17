@@ -360,8 +360,9 @@ class RealSphinxTests(unittest.TestCase):
             self.assertTrue((base / "good" / "_static" / "deliverables.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             home = BeautifulSoup(workspace, "html.parser")
-            # The 知识库首页 links the page from its sidebar's 维护 group only (front cleanup, 2026-11-17).
-            self.assertEqual(len(home.select('#app-sidebar .app-nav-more a[href="deliverables/index.html"]')), 1)
+            # The 知识资产 page reaches it through the 工作台 main section only (layout of 2026-11-17).
+            self.assertEqual(len(home.select('.app-tabs a[href="deliverables/index.html"]')), 1)
+            self.assertEqual(len(home.select('#app-sidebar a[href="deliverables/index.html"]')), 0)
             self.assertEqual(len(home.select('#home a[href="deliverables/index.html"]')), 0)
             system = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="../deliverables/index.html"', system)
@@ -395,7 +396,7 @@ class RealSphinxTests(unittest.TestCase):
             self.assertEqual(surface['data-surface-receipt'], '../../manual-deployment.json')
             self.assertTrue(surface.select_one('[data-surface-stats]').has_attr('hidden'))
             self.assertIn('machine_surface_manifest.json', surface.select_one('[data-surface-note]').text)
-            self.assertIn('说明书工作台', workspace)
+            self.assertIn('>工作台</a>', workspace)  # the 工作台 main section (layout of 2026-11-17)
             self.assertIn('说明书工作台', system)
             # This page owns the publication counts: its 网页说明书 KPI carries the books per region.
             kpis = {kpi.span.text: kpi for kpi in soup.select('.wb-kpis a.wb-kpi')}

@@ -151,10 +151,10 @@ class RtdPortalTests(unittest.TestCase):
         root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
         search_page = BeautifulSoup((out / "search.html").read_text(), "html.parser")
         for page in (root_page, search_page):
-            # The public shell: the 说明书 group only, no internal links and no 知识库 switch.
+            # The public shell: the 说明书 group only, no internal links and no main sections.
             self.assertEqual([g.get_text() for g in page.select(".app-nav-group")], ["说明书"])
             self.assertEqual([a.span.get_text() for a in page.select("a.app-nav-link")], ["说明书资料库", "搜索说明书正文"])
-            self.assertIsNone(page.select_one(".app-switch"))
+            self.assertIsNone(page.select_one(".app-tabs, .app-switch"))
         # The public band carries only the reader-facing copy: no internal wording, statuses or links.
         band = root_page.select_one("section.value")
         self.assertEqual(band.h2.get_text(), "网页说明书的定位与价值")
@@ -285,9 +285,9 @@ class RtdPortalTests(unittest.TestCase):
             self.assertIn(f'href="{internal_path}"', page)
         self.assertNotIn('href="ai-share/', page)
         self.assertNotIn("先学最少必要的产品知识", page)
-        switch = BeautifulSoup(page, "html.parser").select_one(".app-switch")
-        self.assertEqual([(a.get_text(), a.get("class")) for a in switch.select("a")],
-                         [("知识库", None), ("说明书资料库", ["selected"])])
+        tabs = BeautifulSoup(page, "html.parser").select(".app-tabs a")
+        self.assertEqual([(a.get_text(), a.get("class")) for a in tabs],
+                         [("知识资产", ["selected"]), ("工作台", None), ("Agent 能力", None), ("设计规范", None)])
         self.assertIn('JE-TEST/JP/md/manual_JP.html', page)
         self.assertTrue((self.root / "after" / "_static" / "portal.css").is_file())
         self.assertNotIn("LOCAL DESIGN PREVIEW", page)
@@ -298,14 +298,14 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('id="now"', workspace)
         self.assertIn('id="shares"', workspace)
         self.assertNotIn('id="updates"', workspace)  # 最近更新 left the home page (front cleanup, 2026-11-17)
-        self.assertIn("知识库", workspace)
+        self.assertIn("知识资产", workspace)
         self.assertNotIn("我的知识库", workspace)
         self.assertIn("分享资料", workspace)
         self.assertIn('href="../products/knowledge.html"', workspace)
         self.assertIn('href="../market/policy.html"', workspace)
-        self.assertIn(">知识库</a>", workspace)
-        self.assertIn(">说明书资料库</a>", workspace)
-        self.assertEqual(workspace.count("工作资料"), 1)  # the brand only
+        self.assertIn(">知识资产</a>", workspace)
+        self.assertIn("<span>说明书资料库</span></a>", workspace)
+        self.assertEqual(workspace.count("工作资料"), 2)  # the brand and the crumb's root, nothing else
         self.assertNotIn("内部版", workspace)
         self.assertNotIn("对外版", workspace)
         self.assertNotIn("Jackery", workspace)
@@ -395,7 +395,7 @@ class RtdPortalTests(unittest.TestCase):
         # This frozen catalog has no JHP-3600C/US manual, so the HomePower case is left out.
         self.assertNotIn('class="backup-example', knowledge_page)
         self.assertIn("<title>产品知识</title>", knowledge_page)
-        self.assertIn("知识库 <span>/</span> <b>产品知识</b>", knowledge_page)
+        self.assertIn("工作资料 <span>/</span> 知识资产 <span>/</span> <b>产品知识</b>", knowledge_page)
         self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
         self.assertIn('href="../index.html"', workspace)
         self.assertTrue(
@@ -412,7 +412,7 @@ class RtdPortalTests(unittest.TestCase):
         search_page = (self.root / "after" / "search.html").read_text()
         search = BeautifulSoup(search_page, "html.parser")
         self.assertEqual(search.title.text, "搜索说明书正文 · 说明书资料库")
-        self.assertEqual(search.select_one('.app-nav-link[aria-current="page"]').text.strip(), "搜索说明书正文")
+        self.assertEqual(search.select_one('[aria-current="page"]')["aria-label"], "搜索说明书正文")  # the top-bar tool
         self.assertIsNotNone(search.select_one('#ms-query[name="q"][type="search"]'))
         self.assertIsNotNone(search.select_one("#search-results"))
         self.assertEqual([s["src"] for s in search.select("script[src]")][:2],
@@ -452,7 +452,7 @@ class RtdPortalTests(unittest.TestCase):
             if sidebar:
                 sidebars[path.relative_to(out).as_posix()] = sidebar
         def outline(sidebar):
-            groups = [("", [])]  # 首页 opens the internal sidebar without a group label
+            groups = [("", [])]
             for node in sidebar.select(".app-nav-group, a.app-nav-link"):
                 if "app-nav-group" in node["class"]:
                     groups.append((node.get_text(), []))
@@ -460,31 +460,31 @@ class RtdPortalTests(unittest.TestCase):
                     groups[-1][1].append(node.span.get_text())
             return [group for group in groups if group != ("", [])]
 
-        manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
-        knowledge = [("", ["首页"]), ("资产", ["产品信息", "产品知识", "语料库"]), *manuals,
-                     ("参考", ["市场与政策"]),
-                     ("维护", ["说明书工作台", "内容与表现", "视觉媒体", "系统建设", "设计规范"])]
-        pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html",
-                 "assets/content/index.html", "assets/media/index.html", "assets/language/index.html",
-                 "workspace/index.html", "workspace/system/index.html", "workspace/deliverables/index.html",
-                 "workspace/design/index.html")
+        # Layout of 2026-11-17: four main sections in the top bar; the left list holds the current section only.
+        knowledge = [("知识资产", ["产品信息", "产品知识", "说明书资料库", "语料库", "视觉媒体", "市场与政策"])]
+        workbench = [("工作台", ["说明书工作台", "内容与表现"])]
+        sections = {"index.html": knowledge, "search.html": knowledge, "workspace/index.html": knowledge,
+                    **dict.fromkeys(("products/knowledge.html", "products/matrix.html", "market/policy.html",
+                                     "assets/media/index.html", "assets/language/index.html"), knowledge),
+                    "workspace/deliverables/index.html": workbench, "assets/content/index.html": workbench,
+                    "workspace/system/index.html": [("Agent 能力", ["系统建设"])],
+                    "workspace/design/index.html": [("设计规范", ["设计规范"])]}
         # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
         self.assertFalse((out / "workspace" / "positioning").exists())
-        self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
-                         {"index.html": knowledge, "search.html": knowledge, **dict.fromkeys(pages, knowledge)})
-        current = BeautifulSoup((out / "search.html").read_text(encoding="utf-8"), "html.parser")
-        self.assertEqual([a.span.get_text() for a in current.select('a.app-nav-link[aria-current="page"]')], ["搜索说明书正文"])
+        self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()}, sections)
+        for page, expected in sections.items():
+            soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
+            tabs = soup.select(".app-tabs a")
+            self.assertEqual([a.get_text() for a in tabs], ["知识资产", "工作台", "Agent 能力", "设计规范"], page)
+            self.assertEqual([a.get_text() for a in tabs if "selected" in (a.get("class") or [])], [expected[0][0]], page)
+            self.assertIsNone(soup.select_one(".app-switch, details.app-nav-more"), page)
+            self.assertTrue(soup.select_one('.app-header-tools a[aria-label="搜索说明书正文"]'), page)
+
         # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
         from tools.rtd.asset_layer_data import load_layer_data
         statement = load_layer_data(rtd_portal.ASSETS)["product_value"][:12]
         for path in out.rglob("*.html"):
             self.assertNotIn(statement, path.read_text(encoding="utf-8", errors="ignore"), path.relative_to(out))
-        # 维护 is one collapsed group, open only on its own pages.
-        for page in sidebars:
-            more = sidebars[page].select_one("details.app-nav-more")
-            maintained = page.startswith(("assets/content", "assets/media", "workspace/system", "workspace/deliverables",
-                                          "workspace/design"))
-            self.assertEqual(more.has_attr("open"), maintained, page)
         # The former 属性字典 address forwards to 产品信息 and keeps no sidebar of its own.
         moved = BeautifulSoup((out / "products/attributes.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual(moved.select_one("#moved-target")["href"], "matrix.html#matrix")
@@ -507,7 +507,7 @@ class RtdPortalTests(unittest.TestCase):
             self.assertFalse(soup.select(".sw-badge, .home-status"), page)
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
-        self.assertEqual([c.strong.text for c in home.select("#now .home-front-card")], ["产品信息", "产品知识", "语料库"])
+        self.assertEqual([c.strong.text for c in home.select("#now .home-front-card")], ["产品信息矩阵", "产品知识", "语料库"])
         self.assertEqual([c.strong.text for c in home.select("#doors .home-card")],
                          ["说明书资料库", "市场与政策", "AI 使用知识分享"])
         # The private library's band reads like the public one: no statuses, no links into the home page.
@@ -524,7 +524,8 @@ class RtdPortalTests(unittest.TestCase):
             to_self = [link.get_text() for link in links
                        if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
-            self.assertEqual(len(to_self), 1, (page, to_self))
+            # 知识资产's first page and the search page are reached from the top bar, not the left list.
+            self.assertEqual(len(to_self), 0 if page in ("workspace/index.html", "search.html") else 1, (page, to_self))
             self.assertEqual(current, to_self, page)
 
 

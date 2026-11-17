@@ -30,7 +30,7 @@ by the build; they stay until the operator confirms their removal.
 The shared shell (`_site_shell.html`) draws one line icon set (24 grid, 1.75
 stroke, round caps, `currentColor`); pages import its `icon()` macro, and a path
 marked `ic-accent` is the one detail a page may tint (the home's entry cards
-do). 首页 opens the internal sidebar without a group label. Knowledge pages set
+do). The internal left list lists the current main section only (asset-layers.md#navigation). Knowledge pages set
 `body.app.kb`, which re-tints the shell tokens and the `workspace.css` page
 tokens to the 2026-11 palette: a cool ground (`#f3f6fa`), white cards and a
 terracotta accent (`#a64e24`). The 说明书资料库 pages keep the brand orange. The

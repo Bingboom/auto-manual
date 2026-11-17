@@ -58,15 +58,15 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
     facts = (matrix or {}).get("facts") or {}
     tiles = {tile["key"]: tile for tile in (corpus or {}).get("tiles") or []}
     topics = None if learning is None or learning.get("content_missing") else len(learning.get("topics") or [])
-    cards = [{"id": "product", "title": "产品信息", "icon": "product", "page": "products/matrix",
-              "line": "已发布网页说明书的产品，按类别和系列排列", "value": facts.get("products"), "unit": "款产品",
+    cards = [{"id": "product", "title": "产品信息矩阵", "icon": "product", "page": "products/matrix",
+              "line": "项目 · 属性 · 时间", "value": facts.get("products"), "unit": "款产品",
               "date": (matrix or {}).get("built_on") or ""}] if matrix else []
     return cards + [
         {"id": "knowledge", "title": "产品知识", "icon": "chapters", "page": "products/knowledge",
-         "line": "从已发布的产品理解原理", "value": topics, "unit": "个知识点",
+         "line": "功能 · 限制 · 关系", "value": topics, "unit": "个知识点",
          "date": (learning or {}).get("latest_added") or ""},
         {"id": "corpus", "title": "语料库", "icon": "languages", "page": "assets/language/index",
-         "line": "已批准的句对和术语可以直接复用", "value": (tiles.get("pairs") or {}).get("value"), "unit": "句对",
+         "line": "句对 · 术语 · 复用", "value": (tiles.get("pairs") or {}).get("value"), "unit": "句对",
          "date": (corpus or {}).get("exported_at") or ""},
     ]
 
