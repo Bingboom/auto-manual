@@ -23,9 +23,10 @@ also builds `/workspace/` (知识资产, the first page of the 知识资产 sect
 The former 主线, 正在做, 去哪里 groups, 定位与价值 theme cards and 最近更新 list left
 the page. 正在做 and 当前主线 stay on 系统建设; 工作台, Agent 能力 and 设计规范 are reached
 from the top bar ([navigation](asset-layers.md#navigation)).
-`tools/rtd/workspace_home.py`, `workspace_home.yaml`,
-`tools/rtd/knowledge_updates.py` and `knowledge_updates.yaml` are no longer read
-by the build; they stay until the operator confirms their removal.
+The modules that fed them, `tools/rtd/workspace_home.py` (with `workspace_home.yaml`)
+and `tools/rtd/knowledge_updates.py`, were removed on 2026-11-17.
+`knowledge_updates.yaml` stays as the dated record `source_registry.yaml` names; no
+code reads it.
 
 The shared shell (`_site_shell.html`) draws one line icon set (24 grid, 1.75
 stroke, round caps, `currentColor`); pages import its `icon()` macro, and a path

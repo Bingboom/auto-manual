@@ -14,10 +14,10 @@ The positioning of web manuals, in the operator's words, shows on two surfaces:
 Since the front cleanup (operator review 2026-11-17: the front is for product colleagues, not for
 maintainers) both RTD roles show the reader-facing band: title, one sentence and three reader points
 (便捷阅读, 版本清楚, 持续更新), with no links, status tags, internal names, governance or AI wording.
-`tools/rtd/portal.py` passes `band_context(..., internal=False)` in both roles. The 定位与价值 section of
+`tools/rtd/portal.py` calls `band_context`, which returns only that public view, in both roles. The 定位与价值 section of
 知识库首页 (`#value`; 2026-11-04 to 2026-11-05 a page of its own, then a home section) and the private band's
-theme links to it are gone; the internal themes stay in the YAML, and `band_context(..., internal=True)`
-still renders them, though no page uses it now (a follow-up decides whether to remove it).
+theme links to it are gone; the internal themes stay in the YAML, and the internal band branch of `band_context` was
+removed on 2026-11-17.
 
 The `manuals`-role build in `tests/test_rtd_portal.py` checks the band and the absence of internal words and
 of the knowledge base; the combined build checks that its band carries no link or status.
