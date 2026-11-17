@@ -11,7 +11,7 @@
   font:inherit;font-size:14px;color:var(--app-ink)}
 .pl-filters select:focus-visible {outline:2px solid var(--brand);outline-offset:1px}
 .pl-active {display:inline-flex;align-items:center;gap:8px;padding:4px 6px 4px 12px;border-radius:999px;
-  background:var(--brand-soft, var(--brand-soft));color:#8a3b16;font-size:13px;font-weight:600}
+  background:var(--brand-soft);color:#8a3b16;font-size:13px;font-weight:600}
 .pl-active[hidden] {display:none}
 .pl-active button {min-height:28px;padding:0 10px;border:0;border-radius:999px;background:#fff;color:#8a3b16;font:inherit;
   font-size:12px;cursor:pointer}

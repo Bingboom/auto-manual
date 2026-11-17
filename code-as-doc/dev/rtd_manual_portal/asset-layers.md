@@ -71,7 +71,7 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
 (截至 …). `front.css` holds their shared head, figure row and bar list.
 
 - **产品信息** opens on **产品库** (`product_matrix.html`, step 13, REV-53): the
-  title, `<n> 个产品 · 更新于 <date>`, then the matrix read from the product-information
+  title, `<n> 款产品 · 更新于 <date>`, then the matrix read from the product-information
   snapshot; see [knowledge-pages.md](knowledge-pages.md#product-matrix-page). The
   former 规模, 在哪里维护, 被谁使用, 来源与时间 and 质量与缺口 blocks, the kicker, the
   chips, the sub-labels and the page-foot provenance are gone, and so are the
@@ -81,7 +81,8 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
   cases. See [knowledge-pages.md](knowledge-pages.md).
 - **语料库** (`asset_language.html`, `language_view`): the title, one line
   (已批准的术语和标准句，多语言对照 · 更新于 <date>), three figures (句对, 术语, 语言) and a
-  table per language (语言, 句子 with a bar, 术语). Languages are named as the manual
+  table per language (语言, 句子 with a bar, 术语). The table lists the languages with pairs or terms, and the
+  语言 figure is the number of rows it lists. Languages are named as the manual
   library names them (`settings.json` `language_labels`); a corpus language whose
   translation-memory code differs carries the library's code as `manual` in
   `system_workspace.yaml` (`corpus_view` `counts`, `terms`).
@@ -209,7 +210,7 @@ layers that is not a figure:
 - **知识库首页** (front cleanup, 2026-11-17; the 知识资产 page since the layout of the same day): the title
   知识资产 and the line 「让产品信息和生产资料持续积累、关联和复用。」, then three asset cards (`#now`; 产品信息矩阵
   「项目 · 属性 · 时间」, 产品知识「功能 · 限制 · 关系」, 语料库「句对 · 术语 · 复用」; `asset_pages.front_cards`),
-  each with its name, one line and one figure with its date (待统计 when unreadable),
+  each with its name, one line and one figure with its date (暂无 when unreadable, for instance without a readable product snapshot),
   then the entrances to 说明书资料库 and 市场与政策 (`#doors`) and, with a share
   package, 分享资料 (`#shares`). No status chips or ledger references. The slice-2
   主线, 正在做, 定位与价值 statuses and 最近更新 left the page; 正在做 and 当前主线 stay on
