@@ -14,10 +14,11 @@ class TestNightlyRenderWorkflow(unittest.TestCase):
     def test_workflow_is_scheduled_dispatchable_and_runs_driver(self) -> None:
         workflow = yaml.safe_load(WORKFLOW_PATH.read_text(encoding="utf-8"))
         triggers = workflow[True]
-        self.assertIn("schedule", triggers)
+        self.assertNotIn("schedule", triggers)
         self.assertIn("workflow_dispatch", triggers)
 
         job = workflow["jobs"]["render-smoke"]
+        self.assertIn("LEGACY_TEMPLATE_QUEUE_ENABLED == 'true'", str(job.get("if", "")))
         steps = job["steps"]
         rendered = "\n".join(str(step) for step in steps)
         self.assertIn("tools.nightly_render", rendered)

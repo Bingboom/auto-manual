@@ -21,25 +21,12 @@ class ReviewBranchSyncWorkflowTests(unittest.TestCase):
         self.steps_by_name = {step["name"]: step for step in self.steps if step.get("name")}
         self.commands = "\n".join(str(step.get("run", "")) for step in self.steps)
 
-    def test_schedule_and_manual_dispatch_are_present(self) -> None:
-        self.assertIn('cron: "30 2 * * *"', self.workflow_text)
+    def test_retired_schedule_is_removed_and_manual_dispatch_is_gated(self) -> None:
+        triggers = self.workflow[True] or {}
+        self.assertNotIn("schedule", triggers)
         self.assertIn("workflow_dispatch:", self.workflow_text)
+        self.assertIn("LEGACY_TEMPLATE_QUEUE_ENABLED == 'true'", str(self.job.get("if", "")))
         self.assertEqual({"contents": "read", "issues": "write"}, self.workflow["permissions"])
-
-    def test_cron_does_not_collide_with_other_nightly_workflows(self) -> None:
-        # PyYAML parses the `on:` key as the boolean True.
-        own_cron = self.workflow[True]["schedule"][0]["cron"]
-        for path in sorted((REPO_ROOT / ".github" / "workflows").glob("*.yml")):
-            if path == WORKFLOW_PATH:
-                continue
-            triggers = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get(True) or {}
-            schedule = triggers.get("schedule") if isinstance(triggers, dict) else None
-            for entry in schedule or []:
-                self.assertNotEqual(
-                    own_cron,
-                    entry.get("cron"),
-                    f"cron {own_cron} collides with {path.name}",
-                )
 
     def test_fetch_and_strict_sync_command_are_wired(self) -> None:
         self.assertIn("git fetch --prune --no-tags origin", self.commands)

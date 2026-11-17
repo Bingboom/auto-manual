@@ -3,6 +3,8 @@
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
+> **2026-11 Legacy Route Retirement**: The `sync-data + RST template` Feishu queue and review-branch workflows (`feishu-start-review.yml`, `feishu-draft-build-queue.yml`, `feishu-build-queue.yml`, `feishu-web-publish-queue.yml`, `backport-reminder.yml`, `review-branch-sync-check.yml`, `nightly-render.yml`, `feishu-schema-parity.yml`) are disabled on both `auto-manual` and `Hello-Docs`, have no `schedule:` triggers, and require `vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true'` for emergency replay only. Active production authoring follows the Web `manual_sources` + `ComponentSpec` + `TM-B` mainline.
+
 - `sync-review`: refresh review files affected by CSV data changes
 - `tools/check_review_branch_sync.py --base <ref> --remote origin --json`: emit
   the read-only shared-source propagation ledger. It resolves targets from each

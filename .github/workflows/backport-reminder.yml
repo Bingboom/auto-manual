@@ -9,8 +9,7 @@ name: Backport Reminder
 # the baseline. Read-only: it never writes Feishu, the repo, or the branches.
 
 on:
-  schedule:
-    - cron: "0 2 * * *" # daily 02:00 UTC (~10:00 CST), offset from schema-parity
+  # Retired with the legacy phase2 / review-branch route; cron disabled.
   workflow_dispatch:
 
 concurrency:
@@ -28,6 +27,7 @@ jobs:
     # so it runs in BOTH repos, each against its own bound base: auto-manual
     # (engineering plane, legacy base) and the Hello-Docs mirror (business plane,
     # its own secrets). An unconfigured repo degrades to a no-op summary.
+    if: ${{ vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
