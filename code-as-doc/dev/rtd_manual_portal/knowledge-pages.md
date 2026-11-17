@@ -6,24 +6,24 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 ## Personal workspace entry
 
 The manual library root (说明书资料库) remains independent. The portal extension
-also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page. Since the
-front cleanup (operator review 2026-11-17: the front is for product colleagues, not
-for maintainers) it is minimal:
+also builds `/workspace/` (知识资产, the first page of the 知识资产 section; formerly
+知识库首页). It is for product colleagues, not for maintainers (operator review
+2026-11-17), and minimal:
 
-- The page header gives the web manuals' positioning in one line (the `tagline`
-  of `web_manual_value.yaml`).
-- **资产** (`#now`): three cards, 产品信息, 产品知识 and 语料库, each with its name, one
-  line and one figure with its date (`tools/rtd/asset_pages.py` `front_cards`;
-  待统计 when the figure cannot be read). 产品信息 shows only when the matrix is
+- The title 知识资产 and one line (让产品信息和生产资料持续积累、关联和复用。).
+- **资产** (`#now`): three cards, 产品信息矩阵, 产品知识 and 语料库, each with its name, a
+  line of keywords and one figure with its date (`tools/rtd/asset_pages.py` `front_cards`;
+  待统计 when the figure cannot be read). 产品信息矩阵 shows only when the matrix is
   built. No status chips or ledger references; see
   [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
 - **入口** (`#doors`): 说明书资料库 and 市场与政策, then, with the bundled
-  beginner-facing AI sharing package, **分享资料** (`#shares`, a link to
+  beginner-facing AI sharing package, AI 使用知识分享 (a link to
   `/ai-share/00_打开分享.html`).
 
 The former 主线, 正在做, 去哪里 groups, 定位与价值 theme cards and 最近更新 list left
-the page. 正在做 and 当前主线 stay on 系统建设; the 维护 pages are reached from the
-sidebar. `tools/rtd/workspace_home.py`, `workspace_home.yaml`,
+the page. 正在做 and 当前主线 stay on 系统建设; 工作台, Agent 能力 and 设计规范 are reached
+from the top bar ([navigation](asset-layers.md#navigation)).
+`tools/rtd/workspace_home.py`, `workspace_home.yaml`,
 `tools/rtd/knowledge_updates.py` and `knowledge_updates.yaml` are no longer read
 by the build; they stay until the operator confirms their removal.
 
@@ -54,10 +54,10 @@ The workspace exists in every combined portal build; knowledge pages link back
 to the manual center. In the combined role the manual-center homepage links into
 the workspace only through the shared shell; in the
 public role it links nowhere internal. The system page lives inside it. The sharing package is an
-optional entry. Without `ai-share/00_打开分享.html`, the 知识库首页
-(`workspace/index.html`) hides its 分享资料 link (`#shares`). Nothing else changes.
-分享资料 is a link on the 知识库首页, not a sidebar entry: the sidebar lists pages
-only, so each entry is marked current on its own page.
+optional entry. Without `ai-share/00_打开分享.html`, the 知识资产 page
+(`workspace/index.html`) hides its AI 使用知识分享 link (`#shares`). Nothing else changes.
+AI 使用知识分享 is a link on the 知识资产 page, not a left-list entry: the left list holds
+pages only, so each entry is marked current on its own page.
 
 Rollback: revert the portal extension's RTD activation and rebuild. Frozen
 content, QR aliases and nested manual URLs are unchanged.
@@ -212,8 +212,8 @@ fails the export instead of silently dropping a format.
   发布清单里还没有网页说明书.
 - The Feishu snapshot is not read for the page, so an unsound or old one
   changes nothing there; `check` still reports it.
-- The page always renders. Every knowledge page lists it first under 维护,
-  the sidebar group collapsed by default; the 知识库首页 does not link it.
+- The page always renders. It is the 工作台 section's page, opened from the top
+  bar; the 知识资产 page does not link it.
 
 ### 数据统计
 

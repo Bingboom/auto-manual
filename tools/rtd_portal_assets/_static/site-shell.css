@@ -133,6 +133,11 @@ a.kpi:hover {border-color:#d3d6db;box-shadow:0 6px 18px #1d1f2312}
   .app-menu-open .app-scrim {display:block;position:fixed;inset:var(--app-topbar) 0 0 0;z-index:35;background:#0005}
   .app-topbar {padding:12px 16px 0}
 }
+@media (max-width:420px) {
+  /* The four sections stay on one row down to 320px wide, none cut off. */
+  .app-tabs {gap:0;justify-content:space-between}
+  .app-tabs a {padding:7px 8px;font-size:14px}
+}
 @media (max-width:560px) {
   .kpi-row {grid-template-columns:1fr 1fr}
   .kpi > strong {font-size:22px}

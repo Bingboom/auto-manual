@@ -33,13 +33,14 @@
 {%- elif name == 'arrow' -%}<path d="M5 12h14M13.5 6.5L19 12l-5.5 5.5"/>
 {%- endif -%}</svg>
 {%- endmacro -%}
-{%- macro nav_link(href, glyph, label, is_active, count='') -%}
-<a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="page"{% endif %}>{{ icon(glyph) }}<span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
+{%- macro nav_link(href, glyph, label, is_active, count='', current='page') -%}
+<a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="{{ current }}"{% endif %}>{{ icon(glyph) }}<span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
 {%- endmacro -%}
 {#- Page -> main section, defined once (layout of 2026-11-17). Every page that draws the shell passes its key to
     site_sidebar; its crumb passes the same page's label. `list` pages make the left list, in this order; `also` pages
     belong to the section without a left entry (they are reached from the top bar). `needs` names the `nav` flag a
-    page requires. A key that is in no section gets no selected section and the marker class app-nav-unassigned, which
+    page requires; `under` names the left entry an `also` page sits beneath (highlighted, and between the section
+    and the page in the crumb). A key that is in no section gets no selected section and the marker class app-nav-unassigned, which
     the portal tests reject: a new page must be placed here, it never falls into 知识资产 by default. The first
     section's home is 知识资产's own page; another section opens on its first available list page. -#}
 {%- set site_sections = [
@@ -50,7 +51,8 @@
             {'key': 'asset-language', 'label': '语料库', 'icon': 'languages', 'page': 'assets/language/index'},
             {'key': 'asset-media', 'label': '视觉媒体', 'icon': 'image', 'page': 'assets/media/index'},
             {'key': 'market-policy', 'label': '市场与政策', 'icon': 'globe', 'page': 'market/policy'}],
-   'also': [{'key': 'overview', 'label': '首页'}, {'key': 'search', 'label': '搜索说明书正文'}]},
+   'also': [{'key': 'overview', 'label': '首页'},
+            {'key': 'search', 'label': '搜索说明书正文', 'under': 'manuals'}]},
   {'id': 'workbench', 'label': '工作台',
    'list': [{'key': 'deliverables', 'label': '说明书工作台', 'icon': 'workbench', 'page': 'workspace/deliverables/index', 'needs': 'deliverables'}]},
   {'id': 'agent', 'label': 'Agent 能力',
@@ -61,9 +63,11 @@
 ] -%}
 {%- macro _available(item, nav) -%}{{ 'yes' if not item.needs or nav[item.needs] else '' }}{%- endmacro -%}
 {%- macro site_sidebar(active, nav, internal=true) -%}
-{%- set found = namespace(section=none) -%}
+{%- set found = namespace(section=none, entry=active) -%}
 {%- for section in site_sections -%}
-  {%- for item in section.list + section.get('also', []) if item.key == active -%}{%- set found.section = section -%}{%- endfor -%}
+  {%- for item in section.list + section.get('also', []) if item.key == active -%}
+    {%- set found.section = section -%}{%- if item.under %}{% set found.entry = item.under %}{% endif -%}
+  {%- endfor -%}
 {%- endfor -%}
 <header class="app-header">
   <button class="app-menu" type="button" aria-label="展开目录" aria-controls="app-sidebar" aria-expanded="false">{{ icon('menu', 20) }}</button>
@@ -91,7 +95,7 @@
     {{ nav_link(pathto('search'), 'search', '搜索说明书正文', active == 'search') }}
     {% elif found.section %}
     <div class="app-nav-group">{{ found.section.label }}</div>
-    {% for item in found.section.list if _available(item, nav) %}{{ nav_link(pathto(item.page), item.icon, item.label, active == item.key) }}
+    {% for item in found.section.list if _available(item, nav) %}{{ nav_link(pathto(item.page), item.icon, item.label, found.entry == item.key, current='page' if active == item.key else 'true') }}
     {% endfor %}
     {% endif %}
   </nav>
@@ -101,12 +105,15 @@
 {%- macro site_topbar(section, crumb, internal=true) -%}
 {#- The crumb names the main section of the page whose label is `crumb` (the same table as the sidebar); `section`
     is kept for its callers. -#}
-{%- set found = namespace(label=none) -%}
+{%- set found = namespace(label=none, parent=none) -%}
 {%- for main in site_sections -%}
-  {%- for item in main.list + main.get('also', []) if item.label == crumb -%}{%- set found.label = main.label -%}{%- endfor -%}
+  {%- for item in main.list + main.get('also', []) if item.label == crumb -%}
+    {%- set found.label = main.label -%}
+    {%- for entry in main.list if item.under and entry.key == item.under %}{% set found.parent = entry.label %}{% endfor -%}
+  {%- endfor -%}
 {%- endfor -%}
 <div class="app-topbar">
-  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('首页', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> <b>{{ crumb }}</b>{% endif %}</div>
+  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('首页', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> {% if found.parent %}{{ found.parent }} <span>/</span> {% endif %}<b>{{ crumb }}</b>{% endif %}</div>
   <div class="app-topbar-right">{{ caller() if caller else '' }}</div>
 </div>
 {%- endmacro -%}

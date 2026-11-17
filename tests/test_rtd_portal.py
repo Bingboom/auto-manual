@@ -413,6 +413,11 @@ class RtdPortalTests(unittest.TestCase):
         search = BeautifulSoup(search_page, "html.parser")
         self.assertEqual(search.title.text, "搜索说明书正文 · 说明书资料库")
         self.assertEqual(search.select_one('[aria-current="page"]')["aria-label"], "搜索说明书正文")  # the top-bar tool
+        # It sits beneath 说明书资料库: that entry is highlighted (not the current page) and names the crumb's middle step.
+        self.assertEqual([(a.span.get_text(), a["aria-current"]) for a in search.select("#app-sidebar a.active")],
+                         [("说明书资料库", "true")])
+        self.assertEqual(" ".join(search.select_one(".app-crumb").get_text().split()),
+                         "工作资料 / 知识资产 / 说明书资料库 / 搜索说明书正文")
         self.assertIsNotNone(search.select_one('#ms-query[name="q"][type="search"]'))
         self.assertIsNotNone(search.select_one("#search-results"))
         self.assertEqual([s["src"] for s in search.select("script[src]")][:2],
@@ -423,6 +428,22 @@ class RtdPortalTests(unittest.TestCase):
         for asset in ("manual-search.css", "manual-search.js", "portal-search-index.js"):
             self.assertTrue((self.root / "after" / "_static" / asset).is_file())
         self.assertNotIn("ms-config", (self.root / "before" / "search.html").read_text())
+
+    def test_a_page_missing_from_the_section_table_selects_no_section(self):
+        from jinja2 import Environment, FileSystemLoader
+        env = Environment(loader=FileSystemLoader(rtd_portal.ASSETS))
+        shell = env.from_string('{% from "_site_shell.html" import site_sidebar, site_topbar with context %}'
+                                "{{ site_sidebar(key, nav) }}{{ site_topbar('知识库', crumb) }}")
+        nav = dict.fromkeys(("system", "deliverables", "design", "matrix"), True)
+        page = BeautifulSoup(shell.render(pathto=lambda name, *args: name, key="new-page", nav=nav, crumb="新页面"),
+                             "html.parser")
+        self.assertIn("app-nav-unassigned", page.select_one("#app-sidebar")["class"])
+        self.assertEqual(page.select(".app-tabs a.selected, #app-sidebar a"), [])
+        self.assertEqual(" ".join(page.select_one(".app-crumb").get_text().split()), "工作资料 / 新页面")
+        known = BeautifulSoup(shell.render(pathto=lambda name, *args: name, key="system", nav=nav, crumb="系统建设"),
+                              "html.parser")
+        self.assertNotIn("app-nav-unassigned", known.select_one("#app-sidebar")["class"])
+        self.assertEqual([a.get_text() for a in known.select(".app-tabs a.selected")], ["Agent 能力"])
 
     def test_real_sphinx_sidebar_links_only_pages_and_marks_the_current_one(self):
         root = self.assemble()
@@ -480,6 +501,17 @@ class RtdPortalTests(unittest.TestCase):
             self.assertEqual([a.get_text() for a in tabs if "selected" in (a.get("class") or [])], [expected[0][0]], page)
             self.assertIsNone(soup.select_one(".app-switch, details.app-nav-more"), page)
             self.assertTrue(soup.select_one('.app-header-tools a[aria-label="搜索说明书正文"]'), page)
+            self.assertNotIn("app-nav-unassigned", soup.select_one("#app-sidebar")["class"], page)
+        # The crumb names the page's section, then the page (a section's own first page shows the section alone).
+        crumbs = {"workspace/deliverables/index.html": "工作资料 / 工作台 / 说明书工作台",
+                  "workspace/system/index.html": "工作资料 / Agent 能力 / 系统建设",
+                  "workspace/design/index.html": "工作资料 / 设计规范",
+                  "assets/content/index.html": "工作资料 / 设计规范 / 内容与表现",
+                  "workspace/index.html": "工作资料 / 知识资产",
+                  "products/knowledge.html": "工作资料 / 知识资产 / 产品知识"}
+        for page, crumb in crumbs.items():
+            soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual(" ".join(soup.select_one(".app-crumb").get_text().split()), crumb, page)
 
         # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
         from tools.rtd.asset_layer_data import load_layer_data
