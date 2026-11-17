@@ -12,8 +12,8 @@ source: "file:auto-manual:code-as-doc/architecture/Hello_Docs_Positioning.md"
 umbrella: 产品技术内容资产
 main_line: 新说明书在工作台写作，是主线；扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。
 
-# The operator's own statement of the product matrix's value (2026-11-16; positioning §4.1), word for word. Shown
-# as the lead of the 产品信息 page only, with no caption, and never paraphrased elsewhere.
+# The operator's own statement of the product matrix's value (2026-11-16; positioning §4.1), word for word. Shown on
+# no page (operator, 2026-11-17); kept here with the positioning document, never paraphrased elsewhere.
 product_value: 以项目为索引、以产品属性为核心、以时间为维度，持续整合说明书中的产品技术信息，建立可查询、可比较、可追溯的产品信息矩阵。通过集中管理分散在历史文档中的产品信息，降低信息查找、重复整理与人员交接成本，为说明书开发、产品信息复用及后续跨业务分析提供可靠的数据基础。
 
 # Each layer's status chip comes only from its registered ledger rows (decision 1 of the step-12 brief): the rows'

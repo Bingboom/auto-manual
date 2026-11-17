@@ -499,6 +499,11 @@ class RtdPortalTests(unittest.TestCase):
         library = BeautifulSoup((out / "products/matrix.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([chip.get_text() for chip in library.select(".pl-chip")], ["FAKE-A(FAKE-B)"])
         self.assertEqual(library.select_one(".fr-head p").get_text(), "2 个产品 · 更新于 2026-01-02")
+        # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
+        from tools.rtd.asset_layer_data import load_layer_data
+        statement = load_layer_data(rtd_portal.ASSETS)["product_value"][:12]
+        for path in out.rglob("*.html"):
+            self.assertNotIn(statement, path.read_text(encoding="utf-8", errors="ignore"), path.relative_to(out))
         # 维护 is one collapsed group, open only on its own pages.
         for page in sidebars:
             more = sidebars[page].select_one("details.app-nav-more")

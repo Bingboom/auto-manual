@@ -53,8 +53,8 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
   snapshot; see [knowledge-pages.md](knowledge-pages.md#product-matrix-page). The
   former 规模, 在哪里维护, 被谁使用, 来源与时间 and 质量与缺口 blocks, the kicker, the
   chips, the sub-labels and the page-foot provenance are gone, and so are the
-  属性字典 tab and page and the 待核实与冲突 placeholder. The approved 产品库 design
-  carries no value statement, so `product_value` is no longer shown.
+  属性字典 tab and page and the 待核实与冲突 placeholder. The operator's value statement
+  is shown on no page (2026-11-17).
 - **产品知识** (`product_knowledge.html`): the title, one line, then the topics and
   cases. See [knowledge-pages.md](knowledge-pages.md).
 - **语料库** (`asset_language.html`, `language_view`): the title, one line, the
@@ -122,9 +122,9 @@ layers that is not a figure:
 - **Wording, each kept once.** `umbrella` (产品技术内容资产) and `main_line` (新说明书在工作台写作，是主线；
   扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。). The operator adopted both on
   2026-11-16 (positioning §1.2); a later change is a one-line edit here. `product_value` is the operator's
-  own statement of the product matrix's value (2026-11-16), shown word for word as the
-  lead of the 产品信息 page and nowhere else, with no caption under it (operator,
-  2026-11-16). Its source is positioning §4.1. Since the front cleanup `main_line` is
+  own statement of the product matrix's value (2026-11-16; positioning §4.1). It is shown
+  on no page (operator, 2026-11-17: 「我写的那段价值定位不用显示在页面上」); the data file
+  keeps it and nothing reads it any more. Since the front cleanup `main_line` is
   no longer shown on 知识库首页; 系统建设 keeps its own 当前主线.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and
