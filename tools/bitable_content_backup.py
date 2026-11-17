@@ -38,8 +38,20 @@ from pathlib import Path
 
 try:
     from tools import bitable_schema as bs
+    from tools.bitable_backup.sidecars import (
+        TableExportData,
+        apply_attachment_verification,
+        load_attachment_expectations,
+        write_backup_sidecars,
+    )
 except ImportError:  # pragma: no cover - direct execution fallback
     import bitable_schema as bs  # type: ignore[no-redef]
+    from bitable_backup.sidecars import (  # type: ignore[no-redef]
+        TableExportData,
+        apply_attachment_verification,
+        load_attachment_expectations,
+        write_backup_sidecars,
+    )
 
 BACKUP_MANIFEST = "backup_manifest.json"
 BATCH_CREATE_LIMIT = 200  # lark-cli record-batch-create hard cap per call
@@ -60,6 +72,7 @@ def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, l
     report: dict = {"label": label, "generated_at": _utc_now(),
                     "schema_version": manifest.get("schema_version"),
                     "tables": [], "missing_tables": []}
+    exported_tables: list[TableExportData] = []
     for entry in manifest.get("tables", []):
         name = entry["name"]
         tid = bs._resolve_table_id(base_token, name, lark_cli)
@@ -75,11 +88,13 @@ def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, l
             w.writerow(["_record_id", *cols])
             for row, rid in zip(rows, rids, strict=True):
                 w.writerow([rid, *[bs._serialize_cell(row.get(c), ftypes[c]) for c in cols]])
+        exported_tables.append(TableExportData(table_name=name, table_id=tid, ftypes=ftypes, rows=rows, rids=rids))
         report["tables"].append({
             "name": name, "table_id": tid, "csv": path.name, "rows": len(rows),
             "columns": cols, "field_types": ftypes,
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         })
+    write_backup_sidecars(dest, label, report["generated_at"], exported_tables, report)
     (dest / BACKUP_MANIFEST).write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return report
@@ -204,17 +219,20 @@ def restore_content(backup_dir: Path, base_token: str, tables: list[str] | None,
 
 def verify_content(backup_dir: Path, base_token: str, tables: list[str] | None, lark_cli: str) -> dict:
     backup = _load_backup(backup_dir)
+    att_manifest = load_attachment_expectations(backup_dir)
     report: dict = {"backup_generated_at": backup.get("generated_at"), "tables": [], "in_sync": True}
     for entry in backup["tables"]:
         if tables is not None and entry["name"] not in tables:
             continue
         tid = bs._resolve_table_id(base_token, entry["name"], lark_cli)
         live = None
+        live_rows: list[dict] = []
         if tid:
             live_rows, _ = bs._read_records(base_token, tid, lark_cli)
             live = len(live_rows)
         row = {"name": entry["name"], "backup_rows": entry["rows"], "live_rows": live,
                "match": live == entry["rows"]}
+        apply_attachment_verification(row, att_manifest, entry["name"], entry.get("field_types") or {}, live_rows)
         report["tables"].append(row)
         report["in_sync"] = report["in_sync"] and row["match"]
     return report
