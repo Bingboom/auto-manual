@@ -169,7 +169,7 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
 
 - 命令：`python -m tools.product_matrix_base snapshot [--out <Hello-Docs 检出>/docs/knowledge/product-matrix] [--write]`。
   只读 base；默认只打印计数，加 `--write` 才写出 `snapshot.json`（不叫 `product_matrix.json`，以免和门户的同名配置文件混淆）。
-- 内容（`hello-docs-product-matrix-snapshot/v1`，每个列表按键排序，两次快照可直接 diff）：
+- 内容（`hello-docs-product-matrix-snapshot/v1.1`，v1 之上只增加 `values[].id` 与 `cells`；每个列表按键排序，两次快照可直接 diff）：
   - `products`：产品键、型号、市场、品牌、商品简称与各语言名称、类别、系列、容量档、项目号、上市日期等；
   - `parameters`：属性键（只作关联用）、中英文名、分组、值类型、规范单位、定义、适用类别、排序；
   - `sources`：不透明的来源 id（来源键的哈希）、来源类型、型号、市场、语言、版本日期、页面路径（链到已发布说明书）；
@@ -178,6 +178,30 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
     单位：`number` 和 `text` 是规范化后的值，单位一律是该参数的规范单位（`parameters[].unit`）；`printed` 与
     `printed_unit` 是说明书原样印的文字及其单位（例如原文写 cm，规范化后的尺寸文本是 mm）。页面显示值时读
     `number`/`text` 配 `parameters[].unit`，`printed`/`printed_unit` 只用于「说明书原文」的对照；
+  - `cells`（v1.1 起）：矩阵选定的那一格，每个产品 × 启用的参数一条（STC、NOCT、BNPI 这类测试条件各占一格，
+    循环次数等其他条件并入主格），页面只负责显示，不自己挑值。取值与矩阵相同（[`cells.py`](../../tools/product_matrix_base/cells.py)
+    复用 `matrix._rank` / `_cell`）：已驳回、已取代不参与；先已核实，再按来源类型，再取记录时间最新。每格给出
+    `display`（与矩阵那一格相同）、`number`（规范单位下的数值，供排序）、`text`、`unit`、选中那条的 `printed` /
+    `printed_unit` / `source` / `value`、`verified`、`sources_disagree`、`conflict`、参与的全部 `candidates`（按取值顺序，
+    第一个即选中），数字格没有可用数值时 `display` 为空并给 `empty_reason`。纯范围文本的功率行显示原文。
+    组件事实不进 cells；一个参与值都没有的格子不生成。`values` 与 `component_values` 每条带不透明 `id`
+    （事实键的哈希），cells 用它引用。
+    - `display` 是页面可直接显示的完整文字：与矩阵那一格相同，只是数字后面多带参数单位（矩阵把单位放在列名里），
+      整数不带「.0」，单位为空时不加；文本照矩阵；纯范围文本的功率行（文字参数）显示原文；空格为 null 并带 `empty_reason`。
+    - 派生值（装载时由同一说明书的几行合成，原文带「派生:」标记）：`values` 与 `cells` 的 `printed`（以及 `values` 的 `position`）去掉这个标记，
+      另给布尔 `derived`；页面不显示「派生」字样，需要时在来源说明里交代。多维表里的原文不改。
+    - 两个 `sources_disagree` 含义不同：`values[]` 上的按（产品、参数）跨所有条件算；`cells[]` 上的只看这一格参与的值，
+      数值按数字比较（100 与 100.0 相同）。页面用 cells 上的。
+    - 与矩阵的一处差别：矩阵按（产品、参数）只取一格；快照给 STC、NOCT、BNPI 各开一格（条件名前后不是字母即可，
+      如「STC条件」）。某参数的事实如果全带测试条件，矩阵显示其中排第一的，快照没有主格（`condition` 为 null 的格），
+      只有条件格；页面要按条件格显示。
+    - 写快照前校验引用：`values` / `component_values` 的 id 在文件内唯一，cells 的 `value`、`candidates`、`source`
+      全部能解析，`candidates` 无重复；不满足就停止，只报数量。多维表里删了仍被事实引用的来源行、或出现同键事实时，
+      在本地加 `--explain-references` 重跑预演，列出问题行的事实键和来源键（同键事实 / 来源行缺失），按它们在多维表里修正；
+      只列导致失败的行（同键事实全列；来源行缺失只列格子选中的事实）。这些键不含项目号，但含说明书版本标签和人工填写的
+      条件文字，所以只在本地终端显示，不写进文件、报告、PR 或 CI 日志。数字的 `display` 用普通小数写法，不用科学计数法。
+      条件名不区分大小写（「stc」也开 STC 格）。
+    - 先后顺序：门户读取器接受 v1.1（并继续接受 v1）之前，不把 v1.1 的快照写进 Hello-Docs，否则产品页读不到数据；
   - `component_values`：组件的值，单列，不并入主产品；
   - 勾了「不收录」或已从产品表删除的产品不进快照，它们的值不进 `values` / `component_values`；
     `sources` 不含这些产品的来源（被收录产品的来源即使暂无值也保留）；
