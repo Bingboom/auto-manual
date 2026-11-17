@@ -1,6 +1,6 @@
-# 知识库首页「最近更新」(#updates): one entry per knowledge-page change a reader
-# should notice, newest first. tools/rtd/knowledge_updates.py reads this file;
-# the page shows the newest 5 entries whose page this build made.
+# The former 知识库首页「最近更新」 list: one entry per knowledge-page change a
+# reader should notice, newest first. No page shows it since 2026-11-17 and no
+# build code reads it; it stays as the dated record source_registry.yaml names.
 #
 # No build-time source carries per-page change dates (the data dates measure
 # freshness, which 说明书工作台 and 系统建设 already show), so the list is

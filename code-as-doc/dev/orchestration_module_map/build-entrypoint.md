@@ -35,14 +35,6 @@ the business-owned policy snapshot; the portal renders its list and copies sourc
 images. Neither module calls Feishu or runs publication. See
 [knowledge and policy pages](../rtd_manual_portal.md#产品知识本地预览).
 
-[`tools/rtd/knowledge_updates.py`](../../../tools/rtd/knowledge_updates.py) reads the
-curated `knowledge_updates.yaml` (no longer shown on 知识库首页 since 2026-11-17; the build does not
-call it), drops
-unusable entries with a reason and orders the rows whose page the build made;
-`rtd_portal` tells it which pages exist and logs the reasons as warnings. It
-reads no git history and no page data. See
-[knowledge home](../rtd_manual_portal/knowledge-pages.md#personal-workspace-entry).
-
 [`tools/manual_knowledge/`](../../../tools/manual_knowledge/) owns the rendered EU
 manual reading model: semantic HTML/table extraction and the bounded JSON export.
 `rtd_portal` runs its writer after HTML and before the deployment receipt.

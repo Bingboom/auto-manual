@@ -1,8 +1,9 @@
 """四类资产's curated data (``asset_layers.yaml``): wording, ledger-derived status chips, the regrouped capability
 map and the staged path.
 
-- **Wording.** ``umbrella`` (the umbrella term), ``main_line`` (the main-line statement) and ``product_value`` (the
-  operator's statement of the product matrix's value, the 产品信息 lead) are each kept once, so a change is one line.
+- **Wording.** ``umbrella`` (the umbrella term) and ``main_line`` (the main-line statement) are each kept once, so a
+  change is one line. The file also keeps ``product_value``, the operator's statement of the product matrix's value;
+  no code reads it and no page shows it.
 - **Status chips.** A layer's chip is never hand-set: its ``revs`` are execution-ledger rows, read the way 系统建设
   reads them (``system_workspace.ledger_progress``), and the rows' state maps to one portal status word
   (``CHIP_STATUS``). A layer without rows, or whose rows are all deferred, gets no chip. A REV id the ledger lacks
@@ -61,7 +62,6 @@ def load_layer_data(assets: Path) -> dict[str, Any]:
         if not stage.get("title") or not stage.get("quote"):
             raise LayerDataError(f"{DATA_NAME}: path stage {stage.get('id')} needs a title and a quote")
     return {"umbrella": _text(data, "umbrella"), "main_line": _text(data, "main_line"),
-            "product_value": _text(data, "product_value"),
             "source": _text(data, "source"), "revs": revs,
             "items": {layer: list(layers[layer].get("items") or []) for layer in LAYER_IDS},
             "production": list(data.get("production") or []),

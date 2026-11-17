@@ -48,8 +48,8 @@ def curated(assets: Path, root: Path, system: dict[str, Any] | None, warn) -> di
     except layer_data.LayerDataError as exc:
         warn("四类资产 data skipped: %s", exc)
         return {"chips": dict.fromkeys(layer_data.LAYER_IDS), "main_line": None, "capability_map": None,
-                "path": None, "product_value": ""}
-    return {"chips": chips, "capability_map": capability_map, "path": path, "product_value": data["product_value"],
+                "path": None}
+    return {"chips": chips, "capability_map": capability_map, "path": path,
             "main_line": {"text": data["main_line"], "umbrella": data["umbrella"], "source": path["link"]}}
 
 
@@ -76,9 +76,8 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
                       learning: dict[str, Any] | None, build_date: str, warn, design=None) -> dict:
     """The layer pages' contexts, 知识库首页's cards and the 系统建设 part.
 
-    Since the front cleanup (2026-11-17) 产品信息 (产品库) has no lead: the operator's value statement is still passed
-    along as ``product`` but no template shows it; 内容与表现
-    is not shown (its address forwards to 设计规范); 视觉媒体 is a page for colleagues; 语言 is the 语料库 page; the
+    Since the front cleanup (2026-11-17) 产品信息 (产品库) has no lead; 内容与表现 is not shown (its address
+    forwards to 设计规范); 视觉媒体 is a page for colleagues; 语言 is the 语料库 page; the
     former 属性字典 address forwards to 产品信息.
     """
     root = repo_root()
@@ -101,7 +100,7 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
                                                     media["symbols"], build_date=build_date)}, "asset_media.html"),
         ("assets/language/index", {"layer": language}, "asset_language.html"),
     ]
-    return {"product": {"value": extra["product_value"]}, "pages": pages, "media_inventory": media,
+    return {"pages": pages, "media_inventory": media,
             "cards": front_cards(matrix, learning, language["corpus"]),
             "system": {"asset_map": extra["capability_map"], "asset_path": extra["path"],
                        "asset_layers": layers.layer_entries(matrix is not None), "asset_chips": chips}}

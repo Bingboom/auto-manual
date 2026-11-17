@@ -552,8 +552,11 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual(profile.select_one(".fr-head p a")["href"], "../matrix.html?project=P-FAKE-1")
         self.assertEqual(library.select_one(".fr-head p").get_text(), "2 款产品 · 更新于 2026-01-02")
         # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
-        from tools.rtd.asset_layer_data import load_layer_data
-        statement = load_layer_data(rtd_portal.ASSETS)["product_value"][:12]
+        import yaml
+        from tools.rtd.asset_layer_data import DATA_NAME
+        data = yaml.safe_load((rtd_portal.ASSETS / DATA_NAME).read_text(encoding="utf-8"))
+        statement = data["product_value"].strip()[:12]
+        self.assertTrue(statement)
         for path in out.rglob("*.html"):
             self.assertNotIn(statement, path.read_text(encoding="utf-8", errors="ignore"), path.relative_to(out))
         # The former 属性字典 address forwards to 产品信息 and keeps no sidebar of its own.

@@ -298,7 +298,7 @@ def page_context(app, pagename, templatename, context, doctree):
     context["site_nav"] = site_nav(app)
     context["internal_shell"] = not manuals_only(app)
     # Since the front cleanup (2026-11-17) both roles show the reader-facing band: no statuses, no links into 维护.
-    context["value"] = band_context(load_value(ASSETS), internal=False)
+    context["value"] = band_context(load_value(ASSETS))
     context["analytics_beacon"] = beacon_markup(beacon_token)
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
     context["product_voc"] = voc_markup
@@ -430,8 +430,7 @@ def collect_workspace_pages(app):
         srcdir=Path(app.srcdir), assets=ASSETS, settings=settings, products=products, system=system, matrix=matrix,
         learning=learning, build_date=_build_date(deliverables, system),
         warn=sphinx_logging.getLogger(__name__).warning, design=design)
-    product = layers.pop("product")
-    yield PAGE, {**learning, "site_nav": site_nav(app), "product": product}, TEMPLATE
+    yield PAGE, {**learning, "site_nav": site_nav(app)}, TEMPLATE
     for page, context, template in layers["pages"]:
         yield page, {**context, "site_nav": site_nav(app)}, template
     from tools.rtd.market_policy import (
@@ -476,7 +475,7 @@ def collect_workspace_pages(app):
         "moved_title": "说明书工作台「数据统计」",
     }, "moved_page.html"
     if matrix is not None:
-        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app), "product": product}, MATRIX_TEMPLATE
+        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app)}, MATRIX_TEMPLATE
     yield from product_profile_pages(app, settings, products)
 
 

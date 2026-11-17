@@ -137,14 +137,9 @@ Rules:
 
 ## What each page reads
 
-**内容与表现** (no longer built; `asset_layers.content_view` is kept for its tests until the operator confirms
-its removal). Shared chapters under `docs/templates/page_shared` as a chapter ×
-language table; the skeletons (`skeletons_of`), the recipe files and sets under
-`docs/templates/recipes`, the page-template folders; the components in
-`component_registry.yaml` with the only use the site computes, the 产品总览
-instances bound to models (`production_evidence.component_references`); links
-to the six 设计规范 tabs for styles, which are kept only there. Use per chapter or
-component is 待统计.
+**内容与表现** is no longer built: its address forwards to 设计规范, and its view
+(`asset_layers.content_view`, with the chapter and component readers only it used)
+was removed on 2026-11-17.
 
 **视觉媒体's inventory.** `data/asset_registry.csv`: registered, finished, language-neutral and
 every-model counts; a table of every row (key, type, models, regions, language,
@@ -171,9 +166,8 @@ layers that is not a figure:
   2026-11-16 (positioning §1.2); a later change is a one-line edit here. `product_value` is the operator's
   own statement of the product matrix's value (2026-11-16; positioning §4.1). It is shown
   on no page (operator, 2026-11-17: 「我写的那段价值定位不用显示在页面上」); the data file
-  keeps it. `asset_layer_data` still loads it and `asset_pages` still passes it to the
-  产品信息 context as `product.value`, which no template renders; removing that pass
-  waits for the operator (AGENTS §8.7). Since the front cleanup `main_line` is
+  keeps it, but no code loads it. `tests/test_rtd_asset_layers.py` and the full build in
+  `tests/test_rtd_portal.py` read it from the file and check that no page shows it. Since the front cleanup `main_line` is
   no longer shown on 知识库首页; 系统建设 keeps its own 当前主线.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and
@@ -214,8 +208,9 @@ layers that is not a figure:
   then the entrances to 说明书资料库 and 市场与政策 (`#doors`) and, with a share
   package, 分享资料 (`#shares`). No status chips or ledger references. The slice-2
   主线, 正在做, 定位与价值 statuses and 最近更新 left the page; 正在做 and 当前主线 stay on
-  系统建设. `workspace_home.py` and `knowledge_updates.py` are no longer read by the
-  build (their removal waits for the operator).
+  系统建设. The modules that fed them (`workspace_home.py`, `knowledge_updates.py`) and
+  `workspace_home.yaml` were removed on 2026-11-17; `knowledge_updates.yaml` stays as the dated record
+  `source_registry.yaml` names, read by no code.
 - **系统建设** opens with the approved headline (`hero.subtitle` in
   `system_workspace.yaml`). 能力与架构's capability map shows four layer cards, then
   the 生产 row (网页发布, 多格式生产, 评审回写, Agent 执行), then **长期方向**

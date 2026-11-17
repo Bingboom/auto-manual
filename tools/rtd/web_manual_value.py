@@ -2,11 +2,11 @@
 
 ``tools/rtd_portal_assets/web_manual_value.yaml`` (schema
 ``hello-docs-web-manual-value/v1``) holds the copy for two audiences. The
-public manuals project gets only :func:`band_context`'s public view, so the
-internal copy never reaches public HTML. The private site gets the internal
-band and the 定位与价值 section of 知识库首页 (:data:`HOME`): one card per theme
-with its summary and its facets folded away. Each theme's tag is derived from
-its facets' statuses, which use the 系统建设 page's vocabulary. A malformed file
+manual-library home band of both site roles gets only :func:`band_context`'s
+public view, so the internal copy never reaches public HTML. The internal copy
+feeds only 知识库首页 (:data:`HOME`) through :func:`page_context`. Each theme's
+tag is derived from its facets' statuses, which use the 系统建设 page's
+vocabulary. A malformed file
 fails the build, like the other engineering-owned portal assets.
 """
 from __future__ import annotations
@@ -124,17 +124,9 @@ def load_value(assets: Path) -> dict[str, Any]:
             "internal": _internal(data.get("internal"))}
 
 
-def band_context(value: dict[str, Any], *, internal: bool) -> dict[str, Any]:
-    """The home band for one site role. The public role gets only the public copy and no page link."""
-    if not internal:
-        return {"internal": False, "title": value["title"], **value["public"]}
-    band = value["internal"]
-    return {"internal": True, "title": value["title"], "page": HOME, "eyebrow": band["eyebrow"],
-            "heading": band["heading"], "subtitle": band["subtitle"],
-            "themes": [{"id": theme["id"], "theme": theme["theme"], "status": theme["status"],
-                        "status_label": theme["status_label"],
-                        "keywords": [facet["label"] for facet in theme["facets"]]}
-                       for theme in band["themes"]]}
+def band_context(value: dict[str, Any]) -> dict[str, Any]:
+    """The manual-library home band: the public copy only, with no page link (both site roles show it)."""
+    return {"internal": False, "title": value["title"], **value["public"]}
 
 
 def page_context(value: dict[str, Any]) -> dict[str, Any]:
