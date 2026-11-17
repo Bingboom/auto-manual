@@ -1,8 +1,7 @@
 name: Review Branch Sync Check
 
 on:
-  schedule:
-    - cron: "30 2 * * *" # daily 02:30 UTC (offset from backport-reminder at 02:00)
+  # Retired with the legacy review/* RST template route; cron disabled.
   workflow_dispatch:
 
 concurrency:
@@ -15,7 +14,7 @@ permissions:
 
 jobs:
   review-sync:
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    if: ${{ github.repository == 'Bingboom/auto-manual' && vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
