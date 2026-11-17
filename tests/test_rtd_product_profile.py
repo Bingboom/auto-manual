@@ -191,7 +191,7 @@ class TemplateTests(unittest.TestCase):
         derived = {**SNAPSHOT, "values": [{**VALUES[0], "printed": "3 × AC", "derived": True}, *VALUES[1:]]}
         page = render(pages(derived)["products/item/FAKE-1"])
         card = page.find(id=page.select_one('[data-market-panel="US"] .pf-val')["data-sources"]).select(".pf-src")
-        self.assertEqual(card[0].p.get_text(), "由《Fake Station 1 说明书》的多处内容整理· 美规 · English")
+        self.assertEqual(card[0].p.get_text(), "由《Fake Station 1 说明书》的多处内容整理 · 美规 · English")
         self.assertIsNone(card[0].blockquote)
         self.assertEqual(card[1].blockquote.get_text(), "Capacity: 1002Wh")  # an older value without the field
         self.assertNotIn("派生", page.get_text())
