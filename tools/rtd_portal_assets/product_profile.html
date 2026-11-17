@@ -21,7 +21,7 @@
 <div class="pf-src-list" id="{{ id|e }}" hidden>
   {%- for item in cell.sources %}
   <div class="pf-src">
-    <p>{% if item.derived %}由{{ item.manual|e }}的多处内容整理{% else %}来自{{ item.manual|e }}{% endif %}{% if item.market %}· {{ item.market|e }}{% endif %}{% if item.language %} · {{ item.language|e }}{% endif %}</p>
+    <p>{% if item.derived %}由{{ item.manual|e }}的多处内容整理 {% else %}来自{{ item.manual|e }}{% endif %}{% if item.market %}· {{ item.market|e }}{% endif %}{% if item.language %} · {{ item.language|e }}{% endif %}</p>
     {%- if item.date or item.position %}<p>{% if item.date %}版本日期 {{ item.date|e }}{% if item.position %} · {% endif %}{% endif %}{{ item.position|e }}</p>{% endif %}
     {%- if item.printed and not item.derived %}<blockquote>{{ item.printed|e }}</blockquote>{% endif %}
     {%- if item.doc %}<a href="{{ pathto(item.doc)|e }}">打开说明书 →</a>{% endif %}
