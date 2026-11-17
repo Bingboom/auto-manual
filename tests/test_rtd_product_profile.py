@@ -59,10 +59,10 @@ def cell(product, parameter, display, *, number=None, text=None, condition=None,
 
 
 CELLS = [
-    cell("FAKE-1/US", "capacity_wh", "1,000 Wh", number=1000, candidates=["v01", "v02"], disagree=True),
-    cell("FAKE-1/JP", "capacity_wh", "1,000 Wh", number=1000.0, value="v03", source="s-jp"),
-    cell("FAKE-1/US", "cycle_life", "4,000 次", number=4000, value="missing-id"),
-    cell("FAKE-1/JP", "cycle_life", "6,000 次", number=6000, value="v03"),
+    cell("FAKE-1/US", "capacity_wh", "1000 Wh", number=1000, candidates=["v01", "v02"], disagree=True),
+    cell("FAKE-1/JP", "capacity_wh", "1000 Wh", number=1000.0, value="v03", source="s-jp"),
+    cell("FAKE-1/US", "cycle_life", "4000 次", number=4000, value="missing-id"),
+    cell("FAKE-1/JP", "cycle_life", "6000 次", number=6000, value="v03"),
     cell("FAKE-1/US", "pv_power", "100 W", number=100, condition="STC"),
     cell("FAKE-1/US", "pv_power", "75 W", number=75, condition="NOCT"),
     cell("FAKE-1/US", "ac_input", "100V~ 60Hz", text="100V~ 60Hz"),
@@ -110,7 +110,8 @@ class ProfileTests(unittest.TestCase):
         one = built["products/item/FAKE-1"]
         self.assertEqual((one["name"], one["project"], one["classes"]), ("Fake Station 1", "P-FAKE-1", ["便携储能", "标准", "1度电"]))
         # SKU 创建时间 is each market's own; the JP row has none.
-        self.assertEqual(one["sku_dates"], [{"code": "US", "text": "2021-03"}, {"code": "JP", "text": ""}])
+        self.assertEqual(one["sku_dates"], [{"code": "US", "label": "美规", "text": "2021-03"},
+                                            {"code": "JP", "label": "日规", "text": ""}])
         self.assertEqual([m["label"] for m in one["markets"]], ["美规", "日规"])
         two = built["products/item/FAKE-2"]
         self.assertEqual((two["name"], two["project"], two["classes"], two["groups"]), ("FAKE-2", "", [], []))
@@ -135,13 +136,14 @@ class ProfileTests(unittest.TestCase):
         self.assertTrue(one["cells"]["US|capacity_wh|"]["conflict"])
         # A chosen value missing from values still shows the cell's own printed text and source.
         fallback = one["cells"]["US|cycle_life|"]["sources"]
-        self.assertEqual((len(fallback), fallback[0]["printed"], fallback[0]["market"]), (1, "printed 4,000 次", "美规"))
+        self.assertEqual((len(fallback), fallback[0]["printed"], fallback[0]["market"]), (1, "printed 4000 次", "美规"))
 
     def test_differences_compare_rounded_numbers_and_mark_only_figures(self):
         one = pages()["products/item/FAKE-1"]
         rows = {row["label"]: row["cells"] for row in one["differences"]}
         self.assertNotIn("标称容量", rows)  # 1000 and 1000.0 agree
-        self.assertEqual(rows["循环寿命"], [{"text": "4,000 次", "odd": True}, {"text": "6,000 次", "odd": True}])
+        # Two markets: the row being listed already says they differ, so neither figure is marked.
+        self.assertEqual(rows["循环寿命"], [{"text": "4000 次", "odd": False}, {"text": "6000 次", "odd": False}])
         self.assertEqual([c["odd"] for c in rows["AC 输入"]], [False, False])  # texts are listed, never marked
         self.assertEqual(pp.compare_key({"number": 1}), pp.compare_key({"number": 1.0000000001}))
 
@@ -167,26 +169,33 @@ class TemplateTests(unittest.TestCase):
         self.assertEqual(page.select_one(".fr-head h1").get_text(), "Fake Station 1")
         lines = page.select(".fr-head p")
         self.assertEqual(len(lines), 1)
-        visible = "".join(t for t in lines[0].find_all(string=True) if not t.find_parent(attrs={"hidden": True}))
-        self.assertEqual(visible, "FAKE-1 · 便携储能 · 标准 · 1度电 · P-FAKE-1 · SKU 创建时间 2021-03")
-        # The JP date (暂无) waits, hidden, for the market switch.
-        self.assertEqual([(d["data-market-date"], d.get_text(), d.has_attr("hidden")) for d in lines[0].select("[data-market-date]")],
-                         [("US", "2021-03", False), ("JP", "暂无", True)])
+        # Without JavaScript every market panel shows, so the head lists every market's date with its market; the
+        # script hides the labels and the other markets' dates (tests/product_profile_ui.test.mjs).
+        self.assertEqual(lines[0].get_text(), "FAKE-1 · 便携储能 · 标准 · 1度电 · P-FAKE-1 · SKU 创建时间 美规 2021-03；日规 暂无")
+        self.assertEqual([(d["data-market-date"], d.has_attr("hidden")) for d in lines[0].select("[data-market-date]")],
+                         [("US", False), ("JP", False)])
+        for label in lines[0].select("[data-market-date-label]"):
+            label.decompose()
+        after_script = [d.get_text() for d in lines[0].select("[data-market-date]")]
+        self.assertEqual(after_script, ["2021-03", "暂无"])
+        # 产品档案 sits below the 产品库 tab: that tab is current, but not as this page.
+        self.assertEqual([(a.get_text(), a.get("aria-current")) for a in page.select(".pt-tabs a")],
+                         [("产品库", "true"), ("产品对比", None), ("参数表", None)])
         self.assertNotIn("上市时间", page.get_text())
         us = page.select_one('[data-market-panel="US"]')
         button = us.select_one(".pf-val")
-        self.assertEqual((button.get_text(), button["data-label"]), ("1,000 Wh", "标称容量"))
+        self.assertEqual((button.get_text(), button["data-label"]), ("1000 Wh", "标称容量"))
         sources = page.find(id=button["data-sources"])
         self.assertTrue(sources.has_attr("hidden"))
         self.assertEqual([p.get_text() for p in sources.select(".pf-src")[0].select("p")],
-                         ["来自《Fake Station 1 说明书》· 美规 · English", "SPECIFICATIONS > GENERAL"])
+                         ["来自《Fake Station 1 说明书》 · 美规 · English", "SPECIFICATIONS > GENERAL"])
         self.assertEqual(sources.select(".pf-src")[1].select("p")[1].get_text(), "版本日期 2026-01-02 · SPECIFICATIONS")
         self.assertEqual(sources.select_one("a")["href"], "FAKE-1/US/en/md/manual_us")
         weight = [div for div in us.select(".pf-group dl > div") if div.dt.get_text() == "重量"][0]
         self.assertEqual(weight.dd.get_text(), "暂无")
         self.assertEqual([b.get_text() for b in page.select(".pf-badge")], ["各说明书写法不一致"])
         self.assertTrue(page.select_one("[data-pf-source]").has_attr("hidden"))
-        self.assertEqual(len(page.select("#differences td.is-odd")), 2)
+        self.assertEqual(len(page.select("#differences td.is-odd")), 0)  # two markets: nothing marked
         text = page.select_one("main").get_text(" ")
         for word in ("snapshot", ".json", "capacity_wh", "未核实", "候选", "REV-", "无数值", "单位与列不符", "未知"):
             self.assertNotIn(word, text)
@@ -206,7 +215,7 @@ class TemplateTests(unittest.TestCase):
         products = [{**PRODUCTS[0], "first_sku_created": "2021-03-14"},
                     {**PRODUCTS[1], "first_sku_created": "2020-11-02", "first_sku_created_upper_bound": True}, PRODUCTS[2]]
         one = pages({**SNAPSHOT, "products": products})["products/item/FAKE-1"]
-        self.assertEqual(one["sku_dates"], [{"code": "US", "text": "2021-03"}, {"code": "JP", "text": "不晚于 2020-11"}])
+        self.assertEqual([d["text"] for d in one["sku_dates"]], ["2021-03", "不晚于 2020-11"])
 
     def test_an_anchor_leaves_the_position_and_joins_the_manual_link(self):
         anchored = {**SNAPSHOT, "values": [{**VALUES[0], "position": "SPECIFICATIONS > GENERAL #native-specifications"},
@@ -244,6 +253,33 @@ class TemplateTests(unittest.TestCase):
         page = render(pages()["products/item/FAKE-2"])
         self.assertIsNone(page.select_one("[data-pf-switch], #differences, #features, #pairing"))
         self.assertEqual(page.select_one(".fr-empty").get_text(), "暂无参数。")
+        self.assertIsNone(page.select_one("[data-market-date-label]"))  # one market: no label to show
+        self.assertTrue(page.select_one(".fr-head p").get_text().endswith("SKU 创建时间 暂无"))
+
+
+class PositionTests(unittest.TestCase):
+    def test_an_anchor_starts_with_a_letter_and_may_stand_alone(self):
+        cases = {
+            "SPECIFICATIONS > GENERAL #native-specifications": ("SPECIFICATIONS > GENERAL", "native-specifications"),
+            "#native-specifications": ("", "native-specifications"),
+            "Table #2": ("Table #2", ""),
+            "#2": ("#2", ""),
+            "仕様 #仕様": ("仕様 #仕様", ""),
+            "Section#inline": ("Section#inline", ""),
+        }
+        for position, (text, anchor) in cases.items():
+            with self.subTest(position=position):
+                self.assertEqual(pp._position(position), {"position": text, "anchor": anchor})
+
+
+class DifferenceTests(unittest.TestCase):
+    def test_with_three_markets_the_figure_unlike_the_others_is_marked(self):
+        three = [*PRODUCTS[:2], {**PRODUCTS[0], "key": "FAKE-1/EU", "market": "EU", "names": {}}]
+        cells = [cell("FAKE-1/US", "cycle_life", "4000 次", number=4000), cell("FAKE-1/JP", "cycle_life", "4000 次", number=4000),
+                 cell("FAKE-1/EU", "cycle_life", "6000 次", number=6000)]
+        one = pages({**SNAPSHOT, "products": three, "cells": cells})["products/item/FAKE-1"]
+        line = {m["code"]: c for m, c in zip(one["markets"], one["differences"][0]["cells"], strict=True)}
+        self.assertEqual({code: c["odd"] for code, c in line.items()}, {"US": False, "JP": False, "EU": True})
 
 
 if __name__ == "__main__":

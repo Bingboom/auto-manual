@@ -23,7 +23,7 @@
 <section class="fr-figs" aria-label="语料库规模">
   <div><strong>{{ '{:,}'.format(n.pairs) }}</strong><span>组句子，其中 {{ '{:,}'.format(n.pairs_approved) }} 组已批准</span></div>
   <div><strong>{{ '{:,}'.format(n.terms) }}</strong><span>个术语，其中 {{ '{:,}'.format(n.terms_approved) }} 个已批准</span></div>
-  <div><strong>{{ n.languages }}</strong><span>种语言</span></div>
+  <div><strong>{{ corpus.listed|length }}</strong><span>种语言</span></div>
 </section>
 <div class="fr-split">
 <section class="fr-section" aria-labelledby="langs-title">
@@ -31,7 +31,7 @@
   <table class="fr-langs">
     <thead><tr><th scope="col">语言</th><th scope="col" class="is-num">句子</th><th scope="col"><span class="sr-only">句子数量对比</span></th><th scope="col" class="is-num">术语</th></tr></thead>
     <tbody>
-    {%- for row in corpus.rows if row.count or row.terms %}
+    {%- for row in corpus.listed %}
       <tr><th scope="row">{{ row.label|e }}</th><td class="is-num">{{ row.count_text|e }}</td><td><span class="fr-track" aria-hidden="true"><i style="width:{{ row.percent }}%"></i></span></td><td class="is-num">{{ row.terms_text|e }}</td></tr>
     {%- endfor %}
     </tbody>

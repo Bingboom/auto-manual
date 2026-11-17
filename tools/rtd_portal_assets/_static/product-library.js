@@ -4,16 +4,25 @@
 // and 项目 / 市场 highlight the chips that match and dim the rest; nothing is hidden. The pure parts are on
 // globalThis.ProductLibrary for tests/product_library_ui.test.mjs.
 (() => {
+  // A chip's model × market rows: data-rows holds them as a JSON array of [project, market] pairs, so a project
+  // with a space or a "|" still reads as one value. Anything unreadable counts as no rows.
+  const chipRows = text => {
+    try {
+      const rows = JSON.parse(text || '[]');
+      return Array.isArray(rows) ? rows.filter(pair => Array.isArray(pair) && pair.length === 2).map(pair => pair.map(String)) : [];
+    } catch (error) {
+      return [];
+    }
+  };
   // A chip's state under a filter: '' when no filter is set, else 'on' when one of its model × market rows
-  // ("project|market", space-separated in data-rows) satisfies every set filter, else 'off'.
+  // satisfies every set filter, else 'off'.
   const chipState = (chip, filter) => {
     const query = (filter.q || '').trim().toLowerCase();
     if (!filter.project && !filter.market && !query) return '';
     // The search matches a chip's model codes, product names and project (data-search, lower case).
     if (query && !(chip.search || '').includes(query)) return 'off';
     if (!filter.project && !filter.market) return 'on';
-    const rows = (chip.rows || '').split(' ').filter(Boolean).map(pair => pair.split('|'));
-    const hit = rows.some(([project, market]) => {
+    const hit = chipRows(chip.rows).some(([project, market]) => {
       const projectOk = !filter.project || (filter.project === '-' ? project === '' : project === filter.project);
       const marketOk = !filter.market || market === filter.market;
       return projectOk && marketOk;
@@ -22,7 +31,7 @@
   };
   // The text of the active-filter pill: the chosen options' labels, joined.
   const activeText = labels => labels.filter(Boolean).join(' · ');
-  globalThis.ProductLibrary = {chipState, activeText};
+  globalThis.ProductLibrary = {chipState, chipRows, activeText};
 
   if (typeof document === 'undefined') return;
   const panels = [...document.querySelectorAll('[data-panel]')];
@@ -90,7 +99,8 @@
   };
   window.addEventListener('hashchange', fromHash);
   fromHash();
-  // A product page links its project here as ?project=…, the home search sends ?q=…: preselect them.
+  // A product page links its project here as ?project=…; a link carrying ?q=… fills the search (no page sends one
+  // yet). Preselect them.
   const params = new URLSearchParams(window.location.search);
   const wanted = params.get('project');
   const projectSelect = selects.find(select => select.dataset.plFilter === 'project');

@@ -6,7 +6,8 @@
 // globalThis.ProductProfile for tests/product_profile_ui.test.mjs.
 (() => {
   const sourceTitle = label => `${label || '数值'} · 出处`;
-  // The head's SKU 创建时间 is the chosen market's own: show that market's date, hide the others.
+  // The head's SKU 创建时间 is the chosen market's own: show that market's date, hide the others. Without JavaScript
+  // the head lists every market's date with its market; the labels go once the switch runs.
   const showDates = (dates, code) => dates.forEach(date => { date.hidden = date.dataset.marketDate !== code; });
   globalThis.ProductProfile = {sourceTitle, showDates};
 
@@ -33,6 +34,7 @@
   };
   if (tabs.length) {
     tabs[0].closest('[data-pf-switch]').hidden = false;
+    document.querySelectorAll('[data-market-date-label]').forEach(label => { label.hidden = true; });
     tabs.forEach(tab => tab.addEventListener('click', () => showMarket(tab.dataset.marketTab)));
     showMarket(tabs[0].dataset.marketTab);
   }

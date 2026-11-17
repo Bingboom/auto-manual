@@ -73,12 +73,15 @@ class HomeRenderTests(unittest.TestCase):
             self.assertNotIn(word, text)
         self.assertEqual([a.strong.get_text() for a in home.select("#doors .home-card")], ["说明书资料库", "市场与政策"])
 
-    def test_cards_without_a_source_say_pending_never_zero(self):
+    def test_cards_without_a_source_say_none_yet_never_zero(self):
         cards = front_cards(None, None, None)
         self.assertEqual([card["id"] for card in cards], ["knowledge", "corpus"])  # no matrix, no 产品信息 card
         home = render(cards=cards, system_entry=False)
-        self.assertEqual({b.get_text() for b in home.select(".home-front-fig b")}, {"待统计"})
+        self.assertEqual({b.get_text() for b in home.select(".home-front-fig b")}, {"暂无"})
         self.assertIsNone(home.select_one(".home-front-fig time"))
+        # 产品库 always builds; without a readable snapshot its context has no product count: the card reads 暂无.
+        unread = render(cards=front_cards({"facts": {}, "built_on": ""}, None, None), system_entry=False)
+        self.assertEqual(unread.select_one("#asset-product .home-front-fig b").get_text(), "暂无")
 
     def test_entry_cards_carry_line_icons_not_glyphs(self):
         home = render()

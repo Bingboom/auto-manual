@@ -121,9 +121,10 @@ def parameter_rows(parameters: dict[str, dict[str, Any]], keys: set[tuple[str, s
             for index, group in enumerate(order, 1)]
 
 
-# A value's position may end in the published page's anchor (" #native-specifications"): colleagues see the
-# section only, and 打开说明书 jumps to the anchor.
-_ANCHOR = re.compile(r"\s+#([A-Za-z0-9_-]+)$")
+# A value's position may end in the published page's anchor (" #native-specifications"), or be only the anchor
+# ("#native-specifications"): colleagues see the section only, and 打开说明书 jumps to the anchor. An anchor id starts
+# with an ASCII letter, so "Table #2" or a non-ASCII "#…" stays text.
+_ANCHOR = re.compile(r"(?:^|\s+)#([A-Za-z][A-Za-z0-9_-]*)$")
 
 
 def _position(position: str) -> dict[str, str]:
@@ -178,7 +179,8 @@ def _cells(rows: list[dict[str, Any]], snapshot: dict[str, Any], name: str, labe
 
 def _differences(markets: list[str], groups: list[dict[str, Any]],
                  cells: dict[tuple[str, str, str | None], dict[str, Any]]) -> list[dict[str, Any]]:
-    """Rows whose values differ between markets; a figure unlike every other market's is marked."""
+    """Rows whose values differ between markets. With three or more markets holding a value, a figure unlike every
+    other market's is marked; with two, neither is (the row being listed already says they differ)."""
     found = []
     for row in (row for group in groups for row in group["rows"]):
         present = {}
@@ -190,13 +192,13 @@ def _differences(markets: list[str], groups: list[dict[str, Any]],
         if len(present) < 2 or len(set(keys.values())) < 2:
             continue
         # Only figures are marked: texts in different languages always differ in wording, not necessarily in fact.
-        numeric = all(key.startswith("#") for key in keys.values())
+        marked = len(present) > 2 and all(key.startswith("#") for key in keys.values())
         line = []
         for market in markets:
             cell = present.get(market)
             others = [key for other, key in keys.items() if other != market]
             line.append({"text": cell["text"] if cell else "",
-                         "odd": numeric and bool(cell) and all(key != keys[market] for key in others)})
+                         "odd": marked and bool(cell) and all(key != keys[market] for key in others)})
         found.append({"label": row["label"], "cells": line})
     return found
 
@@ -220,7 +222,8 @@ def _head(model: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
     first = rows[0]
     # SKU 创建时间 is per market (契约 §3/§4.1, 「SKU 最早创建时间（本市场）」): the head shows the market the switch
     # has chosen, and a market without one reads 暂无. The page never picks one market's date for the model.
-    dates = [{"code": code, "text": sku_date([row for row in rows if str(row.get("market") or "") == code])}
+    dates = [{"code": code, "label": market_label(code),
+              "text": sku_date([row for row in rows if str(row.get("market") or "") == code])}
              for code in markets_of(rows)]
     return {"model": model, "name": product_name(rows),
             "project": next((str(row["project"]) for row in rows if row.get("project")), ""),

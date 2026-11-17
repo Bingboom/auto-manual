@@ -2,7 +2,7 @@
 // 参数表 (step 13; tools/rtd_portal_assets/product_table.html). Without JavaScript every category's table shows in
 // full. With it: one category at a time, 项目 / 市场 / 系列 filters, 按项目分组, sorting by a column (numbers as
 // numbers, empty cells last) and 下载表格 (the visible rows of the open table as CSV with a BOM, so spreadsheet
-// programs read the Chinese text). The pure parts are on globalThis.ProductTable for tests/product_table_ui.test.mjs.
+// programs read the Chinese text). The pure parts are on globalThis.ProductTable for tests/product_tables_ui.test.mjs.
 (() => {
   const rowMatches = (row, filter) =>
     (!filter.project || (filter.project === '-' ? row.project === '' : row.project === filter.project))
@@ -22,10 +22,20 @@
     const order = ca === 0 ? Number(a) - Number(b) : String(a).localeCompare(String(b), 'zh-CN');
     return direction === 'descending' ? -order : order;
   };
-  // CSV cells that a spreadsheet would read as a formula (=, +, -, @, tab, CR first) get a leading apostrophe,
-  // so Excel and WPS show them as text and run nothing; a plain number, negative included, stays a number.
+  // CSV cells that a spreadsheet could read as a formula get a leading apostrophe, so Excel and WPS show them as
+  // text and run nothing; a plain number, negative included, stays a number. A cell is defused when it begins with
+  // =, @, a tab or a CR; or when it begins with + or - (and is no plain number) and the sign is not followed by a
+  // digit, or it holds any of | ! = @ ( ) &, or an operator followed by a letter or $ (a cell reference such as
+  // "-1+A1"), or it is nothing but digits, + - * / ^ %, dots, commas and spaces ("-10-40" would be computed).
+  // Plain text such as "-10–40 °C" or "+5 °C", which cannot be a formula, is written as it is.
   const PLAIN_NUMBER = /^[+-]?(\d+(\.\d*)?|\.\d+)$/;
-  const defuse = text => (/^[=+\-@\t\r]/.test(text) && !PLAIN_NUMBER.test(text) ? `'${text}` : text);
+  const needsApostrophe = text => {
+    if (/^[=@\t\r]/.test(text)) return true;
+    if (!/^[+-]/.test(text) || PLAIN_NUMBER.test(text)) return false;
+    return !/^[+-]\d/.test(text) || /[|!=@()&]/.test(text) || /[+\-*/^]\s*[A-Za-z$]/.test(text)
+      || /^[\d+\-*/^%., ]*$/.test(text);
+  };
+  const defuse = text => (needsApostrophe(text) ? `'${text}` : text);
   const csvCell = raw => {
     const text = defuse(String(raw));
     return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;

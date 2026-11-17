@@ -5,7 +5,7 @@
 .pf-head p b {color:var(--app-ink)}
 .pf-head a {color:var(--brand)}
 .pf-head .pf-date {font-size:13px}
-.pf-switch {display:inline-flex;align-self:flex-start;gap:2px;padding:3px;border-radius:10px;background:#e5eaf0}
+.pf-switch {display:inline-flex;align-self:flex-start;gap:2px;padding:3px;border-radius:10px;background:var(--app-track)}
 .pf-switch[hidden] {display:none}
 .pf-switch button {min-height:36px;padding:0 16px;border:0;border-radius:8px;background:transparent;font:inherit;
   font-size:14px;color:var(--app-muted);cursor:pointer}
@@ -27,7 +27,7 @@
 .pf-val {padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:default}
 .pf-js .pf-val {cursor:pointer;text-decoration:underline dashed #a9b3bf;text-underline-offset:4px}
 .pf-js .pf-val:hover, .pf-val[aria-expanded="true"] {text-decoration-color:var(--brand)}
-.pf-val[aria-expanded="true"] {background:#f8e6dc;border-radius:4px}
+.pf-val[aria-expanded="true"] {background:var(--brand-soft);border-radius:4px}
 .pf-none {color:var(--app-faint)}
 .pf-badge {display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;border:1px solid #f0d9a8;
   background:#fbf0da;color:#5c3a00;font-size:11.5px;font-weight:600;vertical-align:1px}
@@ -37,7 +37,7 @@
 .pf-source h2 {margin:0;font-size:13px;font-weight:600;color:var(--app-muted)}
 .pf-source-value {margin:6px 0;font-size:20px;font-weight:700}
 .pf-source p {margin:0 0 6px;font-size:13px;color:var(--app-muted)}
-.pf-source blockquote {margin:8px 0;padding:10px 12px;border-radius:8px;background:#f3f6fa;font-size:13px;
+.pf-source blockquote {margin:8px 0;padding:10px 12px;border-radius:8px;background:var(--app-bg);font-size:13px;
   overflow-wrap:anywhere}
 .pf-source a {font-size:13px;color:var(--brand)}
 .pf-source-close {position:absolute;top:8px;right:8px;width:32px;height:32px;border:0;border-radius:8px;
@@ -45,8 +45,8 @@
 .pf-manual {display:grid;grid-template-columns:minmax(44px,max-content) minmax(0,1fr);gap:8px;padding:6px 0;font-size:13px}
 .pf-manual span {display:flex;flex-wrap:wrap;gap:6px}
 .pf-manual a, .pf-chips a, .pf-chips span {display:inline-flex;align-items:center;gap:4px;padding:2px 8px;
-  border-radius:999px;background:#edf1f6;color:var(--app-ink);text-decoration:none;font-size:12.5px}
-.pf-manual a:hover, .pf-chips a:hover {background:#f8e6dc;color:#7a2f0e}
+  border-radius:999px;background:var(--app-tile);color:var(--app-ink);text-decoration:none;font-size:12.5px}
+.pf-manual a:hover, .pf-chips a:hover {background:var(--brand-soft);color:#7a2f0e}
 .pf-chips {display:flex;flex-wrap:wrap;gap:6px;margin:0}
 .pf-chips em {font-style:normal;font-size:11px;color:var(--app-muted)}
 .pf-card p {font-size:13.5px}

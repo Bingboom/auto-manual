@@ -43,7 +43,7 @@
 th[aria-sort] .pt-sort {color:var(--brand)}
 th[aria-sort="ascending"] .pt-sort::after {content:" ↑"}
 th[aria-sort="descending"] .pt-sort::after {content:" ↓"}
-.pt-group th {background:#f3f6fa;color:var(--app-ink);font-weight:600;text-align:left}
+.pt-group th {background:var(--app-bg);color:var(--app-ink);font-weight:600;text-align:left}
 .pt-none {color:var(--app-faint)}
 .pt-badge {display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;border:1px solid #f0d9a8;background:#fbf0da;
   color:#5c3a00;font-size:11px;font-weight:600;white-space:nowrap}
@@ -54,7 +54,7 @@ th[aria-sort="descending"] .pt-sort::after {content:" ↓"}
   border-radius:10px;background:var(--surface);font-size:14px}
 .pc-chip button {width:30px;height:30px;border:0;border-radius:8px;background:transparent;font-size:16px;color:var(--app-muted);
   cursor:pointer}
-.pc-table thead th small {display:block;font-weight:400;font-size:12px}
+.pc-table thead th .pc-model, .pc-table thead th .pc-absent {display:block;font-weight:400}
 .pc-table thead th a {color:var(--app-ink);font-size:15px;text-decoration:none}
 .pc-table tbody th {width:170px;color:var(--app-muted);font-weight:400}
 .pc-table thead th .pc-absent {color:#8a3b16}

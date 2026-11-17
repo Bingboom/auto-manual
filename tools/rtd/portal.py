@@ -401,8 +401,8 @@ def collect_workspace_pages(app):
     The deliverables page always renders
     (a missing input shows as 无数据); the system page drops out on an authoring
     error. The AI sharing package is an optional entry, so moving or withdrawing
-    it hides only its own links. The product-matrix page likewise drops out,
-    with its links, when its inputs are unreadable. The former data URL always
+    it hides only its own links. The product-matrix page (产品库) always builds:
+    without a usable snapshot it says so and shows no figures. The former data URL always
     forwards to the workbench statistics tab, even when its inputs are unreadable.
     """
     if manuals_only(app):

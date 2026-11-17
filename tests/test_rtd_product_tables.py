@@ -11,10 +11,10 @@ from tools.rtd import product_tables as pt
 from tools.rtd.portal import ASSETS
 
 PARAMETERS = [
-    {"key": "capacity_wh", "name_zh": "标称容量", "group": "电池", "order": 1, "unit": "Wh"},
-    {"key": "cell", "name_zh": "电芯类型", "group": "电池", "order": 2, "unit": None},
-    {"key": "pv_power", "name_zh": "额定功率", "group": "输出", "order": 1, "unit": "W"},
-    {"key": "product_name", "name_zh": "产品名称", "group": "其他", "order": 1, "unit": None},
+    {"key": "capacity_wh", "name_zh": "标称容量", "group": "电池", "order": 1, "unit": "Wh", "value_type": "数值"},
+    {"key": "cell", "name_zh": "电芯类型", "group": "电池", "order": 2, "unit": None, "value_type": "文本"},
+    {"key": "pv_power", "name_zh": "额定功率", "group": "输出", "order": 1, "unit": "W", "value_type": "整数"},
+    {"key": "product_name", "name_zh": "产品名称", "group": "其他", "order": 1, "unit": None, "value_type": "文本"},
 ]
 
 
@@ -36,8 +36,8 @@ SNAPSHOT = {
     "products": [product("FAKE-B", "US", first_sku_created="2021-05-01"), product("FAKE-B", "JP"),
                  product("FAKE-A", "US", project=None, series="Plus"),
                  product("FAKE-P", "US", project="P-FAKE-2", category="太阳能板", series="Solar")],
-    "cells": [cell("FAKE-B/US", "capacity_wh", "1,000 Wh", number=1000),
-              cell("FAKE-B/JP", "capacity_wh", "1,000 Wh", number=1000.0),
+    "cells": [cell("FAKE-B/US", "capacity_wh", "1000 Wh", number=1000),
+              cell("FAKE-B/JP", "capacity_wh", "1000 Wh", number=1000.0),
               cell("FAKE-B/US", "cell", "LFP", disagree=True), cell("FAKE-A/US", "capacity_wh", "500 Wh", number=500),
               cell("FAKE-P/US", "pv_power", "100 W", number=100, condition="STC"),
               cell("FAKE-P/US", "pv_power", "75 W", number=75, condition="NOCT"),
@@ -104,12 +104,28 @@ class TableTests(unittest.TestCase):
 
     def test_plain_numbers_and_a_number_cell_without_a_number(self):
         self.assertEqual([pt.plain_number(n) for n in (333, 333.0, 2.5, 0.25)], ["333", "333", "2.5", "0.25"])
+        # Plain decimals at any magnitude, never scientific notation, never a trailing .0.
+        self.assertEqual([pt.plain_number(n) for n in (1e-05, 1e+16, 100.0, 0.5)],
+                         ["0.00001", "10000000000000000", "100", "0.5"])
+        self.assertEqual(pt.plain_number(-2.5e-07), "-0.00000025")
         # A number column's cell whose number is missing (a range printed as text) shows the display text in full.
-        snapshot = {**SNAPSHOT, "cells": [cell("FAKE-B/US", "capacity_wh", "1,000 Wh", number=1000),
+        snapshot = {**SNAPSHOT, "cells": [cell("FAKE-B/US", "capacity_wh", "1000 Wh", number=1000),
                                           cell("FAKE-A/US", "capacity_wh", "500–600 Wh")]}
         rows = pt.table_view(snapshot, CATALOG)["categories"][-1]["rows"]
         self.assertEqual({r["model"]: r["cells"][0]["text"] for r in rows if r["market"] == "US"},
                          {"FAKE-B": "1000", "FAKE-A": "500–600 Wh"})
+
+    def test_a_column_is_numeric_by_its_value_type_not_by_its_cells(self):
+        # 范围 and 文本 are text columns even when a cell carries a number; 数值 and 整数 are numbers even when no
+        # cell does (product_matrix_base.md §4.1).
+        parameters = [{**PARAMETERS[0], "value_type": "范围"}, {**PARAMETERS[1], "value_type": "数值"}, *PARAMETERS[2:]]
+        snapshot = {**SNAPSHOT, "parameters": parameters,
+                    "cells": [cell("FAKE-B/US", "capacity_wh", "1000 Wh", number=1000), cell("FAKE-B/US", "cell", "LFP")]}
+        portable = pt.table_view(snapshot, CATALOG)["categories"][-1]
+        self.assertEqual([(c["name"], c["numeric"]) for c in portable["columns"]], [("标称容量", False), ("电芯类型", True)])
+        self.assertEqual([c["text"] for c in portable["rows"][0]["cells"]], ["1000 Wh", "LFP"])
+        untyped = {**snapshot, "parameters": [{k: v for k, v in p.items() if k != "value_type"} for p in parameters]}
+        self.assertEqual([c["numeric"] for c in pt.table_view(untyped, CATALOG)["categories"][-1]["columns"]], [False, False])
 
     def test_no_products_or_no_cells_say_so(self):
         empty = pt.table_view({**SNAPSHOT, "products": []}, CATALOG)
@@ -127,7 +143,8 @@ class CompareTests(unittest.TestCase):
         products = {p["model"]: p for p in view["data"]["products"]}
         self.assertEqual(sorted(products), ["FAKE-A", "FAKE-B", "FAKE-P"])
         self.assertEqual(products["FAKE-B"]["markets"], ["US", "JP"])
-        self.assertEqual(products["FAKE-B"]["values"]["US"]["capacity_wh|"], ["1,000 Wh", "#1000", False])
+        self.assertEqual(products["FAKE-B"]["values"]["US"]["capacity_wh|"], ["1000 Wh", "#1000", False])
+        self.assertNotIn("project", products["FAKE-B"])  # the comparison never shows a project
         self.assertEqual(products["FAKE-B"]["values"]["JP"]["capacity_wh|"][1], "#1000")  # 1000.0 compares equal
         self.assertEqual(products["FAKE-B"]["values"]["US"]["cell|"][2], True)
         self.assertNotIn("product_name|", products["FAKE-B"]["values"]["US"])

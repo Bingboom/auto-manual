@@ -13,7 +13,7 @@ also builds `/workspace/` (知识资产, the first page of the 知识资产 sect
 - The title 知识资产 and one line (让产品信息和生产资料持续积累、关联和复用。).
 - **资产** (`#now`): three cards, 产品信息矩阵, 产品知识 and 语料库, each with its name, a
   line of keywords and one figure with its date (`tools/rtd/asset_pages.py` `front_cards`;
-  待统计 when the figure cannot be read). 产品信息矩阵 shows only when the matrix is
+  暂无 when the figure cannot be read). 产品信息矩阵 shows only when the matrix is
   built. No status chips or ledger references; see
   [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
 - **入口** (`#doors`): 说明书资料库 and 市场与政策, then, with the bundled
@@ -412,7 +412,7 @@ address forwards here, and the public manual library never links to it.
   public-role build in `tests/test_rtd_portal.py` fails if any file or text of
   `knowledge/product-matrix` reaches its output. Tests use invented products and
   projects (`P-FAKE-*`).
-- **Layout.** The title 产品库 and one line, `<n> 个产品 · 更新于 <date>` (models, and
+- **Layout.** The title 产品库 and one line, `<n> 款产品 · 更新于 <date>` (models, and
   the snapshot's read date). A tab per category, in the 产品分类 snapshot's order
   (others after it, then 其他 for products without a category). Each tab is a table:
   rows are 系列 (a 未分类 row for products without one), columns the 容量档 present (a
@@ -420,8 +420,8 @@ address forwards here, and the public manual library never links to it.
   without tiers.
 - **Chips.** Each cell holds the model codes as chips. Models of one project in one
   cell are one chip, `A(B)`: the first written outside the brackets, the others
-  inside (`A(B、C)` with more), each code its own link, in code order: the operator's
-  examples put the JE model outside and the JHP model inside (`JE-2000E(JHP-2000A)`).
+  inside (`A(B、C)` with more), each code its own link, in code order: the
+  alphabetically first code goes outside (`FAKE-A(FAKE-B)`).
   The SKU 创建时间 does not order chips. A model without a project is a chip of its own.
   Models of one project in different cells are not merged across cells, since a cell's
   place is its series and tier; the 项目 filter highlights all of them. Each
@@ -430,10 +430,11 @@ address forwards here, and the public manual library never links to it.
   filter and opens the tab holding the first matching chip.
 - **Search.** A search box matches model codes, product names, short names and projects
   (each chip's `data-search`); `matrix.html?q=<text>` fills it and opens the tab holding
-  the first match. Where the entry to it sits waits for the new site shell.
+  the first match. No page links it with `?q=` yet; the site shell's own search box is a separate entry.
 - **Filters** (`_static/product-library.js`): 项目 (including 未归入项目 when a model
   has none) and 市场 (美规, 欧规, 日规, 国内, …). They match per model × market row (a
-  chip carries its `project|market` pairs): a chip with a row that satisfies every set
+  chip's `data-rows` holds its `[project, market]` pairs as a JSON array, so a project
+  containing a space or `|` stays one value): a chip with a row that satisfies every set
   filter is highlighted and the rest are dimmed, never hidden; a pill names the active filters
   with 清除. The tabs switch categories and keep the open one in the hash
   (`#cat-c1`). Without JavaScript every category shows stacked and the filters stay
@@ -474,8 +475,13 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   month (`first_sku_created`), `不晚于 <年-月>` when the snapshot marks it an upper bound
   (`first_sku_created_upper_bound`), or `暂无`. The date is per market (契约 §3/§4.1, SKU
   最早创建时间（本市场）): the head shows the market the switch has chosen and follows the
-  switch; the page never picks one market's date for the model. It is the earliest SKU
-  creation time from PLM, not a launch date, so 上市时间 is never shown.
+  switch; the page never picks one market's date for the model. Without JavaScript every
+  market panel shows in turn, so the head lists every market's date with its market
+  (`SKU 创建时间 美规 <年-月>；日规 暂无`); the script reduces it to the chosen market's
+  date without a label, so with JavaScript it reads as before. It is the earliest SKU
+  creation time from PLM, not a launch date, so 上市时间 is never shown. The project is
+  the first one found across the model's markets; in the snapshot of 2026-11-17 no model
+  has different projects in different markets, so it does not follow the switch.
 - **Market switch:** one market at a time (美规, 欧规, 日规, 国内, …). Without
   JavaScript every market shows in turn.
 - **Parameters** in plain groups with Chinese names (`GROUPS`: 电池, 输出, 充电与输入,
@@ -484,12 +490,14 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   model and launch-date parameters are not repeated.
 - **Sources on click** (`_static/product-profile.js`): a value is a button. Clicking
   it shows `<参数> · 出处`, the value, and every value that took part, the chosen one
-  first: `来自《<产品名> 说明书》· 美规 · 英语`, the edition date only when the snapshot has
+  first: `来自《<产品名> 说明书》 · 美规 · 英语`, the edition date only when the snapshot has
   one (never 未知), the manual's section, the printed sentence and `打开说明书 →`. A
-  position's trailing page anchor (` #native-specifications`) is not shown; it is added to
-  `打开说明书 →`, which then jumps to that section. A value marked `derived` (put together
+  position's trailing page anchor (` #native-specifications`, or a position that is only
+  `#native-specifications`) is not shown; it is added to `打开说明书 →`, which then jumps
+  to that section. An anchor id starts with an ASCII letter, so `Table #2` or a non-ASCII
+  `#…` stays text. A value marked `derived` (put together
   from several lines of one manual) is not quoted: its card reads
-  `由《<产品名> 说明书》的多处内容整理` with the market and language; a snapshot without the
+  `由《<产品名> 说明书》的多处内容整理 · 美规 · 英语`, the same separators as the quoted line; a snapshot without the
   field reads as not derived. A parameter without a Chinese name is left out with a
   build warning, never shown by its key. The page
   renders each list, escaped, in a hidden block; the script copies those nodes into
@@ -499,9 +507,10 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   各说明书写法不一致 marks a cell whose values disagree (`sources_disagree`); no other
   verification mark is shown (operator, 2026-11-17), and `conflict` has no page form yet.
 - **各市场差异:** only the rows whose values differ between the model's markets,
-  numbers compared rounded (1 and 1.0 agree). A figure unlike every other market's is
-  marked; texts are listed but not marked, since manuals in different languages always
-  differ in wording.
+  numbers compared rounded (1 and 1.0 agree). With three or more markets holding a
+  value, a figure unlike every other market's is marked; with two, neither is (the row
+  being listed already says they differ). Texts are listed but not marked, since manuals
+  in different languages always differ in wording.
 - **说明书:** per market, the model's Web manuals by language (the snapshot's
   sources), then its 快速指南 and the 通用指南 that list it.
 - **功能 and 搭配** (carried over from the former matrix page, 2026-11-17, so nothing a
@@ -522,23 +531,32 @@ compares by its `number` (else its text), and a test condition is its own column
 a missing page; a snapshot without cells makes both say 产品数据暂时读不到，请稍后再看。 with no
 figures, and one without products 还没有产品数据。. The
 product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 (`_product_tabs.html`; a
-产品档案 counts as 产品库).
+产品档案 counts as 产品库, whose tab it marks `aria-current="true"` rather than `"page"`,
+since the page sits below that tab).
 
 - **参数表** (`/products/table.html`, `product_table.html`, `_static/product-table.js`;
   the operator's 产品矩阵 frame, named 参数表 so it is not confused with 产品库): one table
   per category, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
   市场, 项目 (未归入 when none), SKU 创建时间 (each row's own market; 暂无 when that market has
   none), then the (parameter, condition) columns that
-  category's products state, in page order. A figure column's head names its unit and its cells
-  show the bare number (the cell's `number`, no trailing .0), so the downloaded CSV holds plain numbers; a cell
-  without a number shows its `display` in full. 产品档案 and 产品对比 show `display` as it is. With JavaScript:
+  category's products state, in page order. A column is a figure column when its
+  parameter's value type is 数值 or 整数 (`parameters[].value_type`,
+  [contract §4.1](../product_matrix_base.md#41-矩阵表的生成)); every other type is a text
+  column showing `display`. A figure column's head names its unit and its cells show the
+  bare number (the cell's `number` as a plain decimal at any magnitude, never `1e-05`, no
+  trailing .0), so the downloaded CSV holds plain numbers; a cell without a number shows
+  its `display` in full. 产品档案 and 产品对比 show `display` as it is. With JavaScript:
   category pills, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
   project last), sorting by any column (in a number column: numbers, then cells holding
   only text, then 暂无, in either direction) and 下载表格: the visible rows of the open
   table as `参数表-<类别>.csv`, UTF-8 with a BOM so spreadsheet programs read the Chinese
-  text. A cell that a spreadsheet would read as a formula (starting with `=`, `+`, `-`,
-  `@`, a tab or CR) gets a leading apostrophe, so Excel and WPS show it as text and run
-  nothing; a plain number, negative included, stays a number. The product column stays
+  text. A cell that a spreadsheet could read as a formula gets a leading apostrophe, so
+  Excel and WPS show it as text and run nothing: one starting with `=`, `@`, a tab or CR;
+  or one starting with `+` or `-` (and not a plain number) when the sign is not followed
+  by a digit, or it holds any of `| ! = @ ( ) &` or an operator followed by a letter or
+  `$` (a cell reference), or it is only digits, `+ - * / ^ %`, dots, commas and spaces
+  (`-10-40` would be computed). Plain text after a sign, such as `-10–40 °C` or
+  `+5 °C`, is written as it is; a plain number, negative included, stays a number. The product column stays
   fixed while the table scrolls sideways. Long texts show four lines with the whole text as a
   tooltip; the CSV keeps the whole text. Without JavaScript every table shows in full.
 - **产品对比** (`/products/compare.html`, `product_compare.html`,
@@ -547,8 +565,10 @@ product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 (`_produ
   market and can keep only 只看不同的参数. The choice stays in the URL
   (`?p=A,B&market=US`), so a comparison can be shared. As on 产品档案, a row differs only
   when at least two products sold in that market state a value and those values
-  differ; a missing value shows 暂无 and takes no part; a product not sold there says
-  无<市场>版本. Only allow-listed model codes reach the page, so each product link has its
+  differ; a missing value shows 暂无 and takes no part. A product's column head is its
+  name (a link to its 产品档案) and, on a second line in the table's text size, its model
+  code; no project and no small print. A product not sold in the market says
+  无<市场>版本 on a line of its own. Only allow-listed model codes reach the page, so each product link has its
   page. After a
   product is added or removed the market moves to one every picked product is sold in,
   when there is one. The page carries every product's values as one JSON block

@@ -3,7 +3,7 @@
 // JSON block (#pc-data), lets the visitor pick two to four products and a market, and draws the comparison: a group
 // row per parameter group, a row per parameter, rows that differ highlighted, 只看不同的参数 keeping only those. The
 // choice is kept in the URL (?p=A,B&market=US). Everything is written with textContent. The pure parts are on
-// globalThis.ProductCompare for tests/product_compare_ui.test.mjs.
+// globalThis.ProductCompare for tests/product_tables_ui.test.mjs.
 (() => {
   const LIMIT = 4;
   const parseState = (search, data) => {
@@ -63,7 +63,11 @@
   // The 产品档案 path segment of a model: page names are the model code itself (letters, digits, ".", "-", "_"
   // only), which encodeURIComponent leaves unchanged, so both always agree.
   const itemPath = model => encodeURIComponent(model);
-  globalThis.ProductCompare = {LIMIT, parseState, stateQuery, resolvePick, comparison, sharedMarket, itemPath};
+  // A product column's head: the product's name, then its model code on a line of its own, then, when it is not sold
+  // in the chosen market, a line saying so. No project and no small print.
+  const columnHead = (product, sold, marketLabel) =>
+    ({name: product.name, model: product.model, absent: sold ? '' : `无${marketLabel}版本`});
+  globalThis.ProductCompare = {LIMIT, parseState, stateQuery, resolvePick, comparison, sharedMarket, itemPath, columnHead};
 
   if (typeof document === 'undefined') return;
   const app = document.querySelector('[data-pc]');
@@ -122,10 +126,11 @@
     view.products.forEach((product, index) => {
       const th = el('th');
       th.scope = 'col';
-      const link = el('a', product.name);
+      const lines = columnHead(product, view.sold[index], data.labels[state.market] || state.market);
+      const link = el('a', lines.name);
       link.href = itemHref(product.model);
-      th.append(link, el('small', [product.model, product.project].filter(Boolean).join(' · ')));
-      if (!view.sold[index]) th.append(el('small', `无${data.labels[state.market] || state.market}版本`, 'pc-absent'));
+      th.append(link, el('span', lines.model, 'pc-model'));
+      if (lines.absent) th.append(el('span', lines.absent, 'pc-absent'));
       top.append(th);
     });
     head.append(top);
