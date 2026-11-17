@@ -489,7 +489,7 @@ class RtdPortalTests(unittest.TestCase):
         pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html",
                  "assets/content/index.html", "assets/media/index.html", "assets/language/index.html",
                  "workspace/index.html", "workspace/system/index.html", "workspace/deliverables/index.html",
-                 "workspace/design/index.html")
+                 "workspace/design/index.html", "products/item/FAKE-A.html", "products/item/FAKE-B.html")
         # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
         self.assertFalse((out / "workspace" / "positioning").exists())
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
@@ -498,6 +498,12 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual([a.span.get_text() for a in current.select('a.app-nav-link[aria-current="page"]')], ["搜索说明书正文"])
         library = BeautifulSoup((out / "products/matrix.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([chip.get_text() for chip in library.select(".pl-chip")], ["FAKE-A(FAKE-B)"])
+        # Each code opens its 产品档案, which leads back to 产品库 and to the project there.
+        self.assertEqual([a["href"] for a in library.select(".pl-chip a")],
+                         ["item/FAKE-A.html", "item/FAKE-B.html"])
+        profile = BeautifulSoup((out / "products/item/FAKE-A.html").read_text(encoding="utf-8"), "html.parser")
+        self.assertEqual(profile.select_one(".pf-back")["href"], "../matrix.html")
+        self.assertEqual(profile.select_one(".fr-head p a")["href"], "../matrix.html?project=P-FAKE-1")
         self.assertEqual(library.select_one(".fr-head p").get_text(), "2 个产品 · 更新于 2026-01-02")
         # 维护 is one collapsed group, open only on its own pages.
         for page in sidebars:
@@ -544,6 +550,10 @@ class RtdPortalTests(unittest.TestCase):
             to_self = [link.get_text() for link in links
                        if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
+            if page.startswith("products/item/"):
+                # A product page sits under 产品信息, whose entry opens 产品库.
+                self.assertEqual((to_self, current), ([], ["产品信息"]), page)
+                continue
             self.assertEqual(len(to_self), 1, (page, to_self))
             self.assertEqual(current, to_self, page)
 

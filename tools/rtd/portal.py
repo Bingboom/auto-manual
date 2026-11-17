@@ -476,6 +476,31 @@ def collect_workspace_pages(app):
     }, "moved_page.html"
     if matrix is not None:
         yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app), "product": product}, MATRIX_TEMPLATE
+    yield from product_profile_pages(app, settings, products)
+
+
+def product_profile_pages(app, settings: dict, products: list[dict]):
+    """产品档案: one page per model of the product-information snapshot (private role; none without a snapshot).
+
+    功能, 搭配 and the guides come from the former matrix context (manifest, capability table, pairings), which
+    is computed only here now; without a publish manifest those sections are simply absent.
+    """
+    from tools.rtd.product_library import SnapshotError, load_snapshot
+    from tools.rtd.product_matrix import product_matrix_page_context
+    from tools.rtd.product_profile import TEMPLATE, matrix_extras, profile_pages
+
+    try:
+        snapshot = load_snapshot(workspace_content(app))
+    except SnapshotError:
+        return  # 产品库 already warned and says so on its page
+    if snapshot is None:
+        return
+    legacy = product_matrix_page_context(app, ASSETS, settings, products, getattr(app, "_rtd_product_catalog", None))
+    extras = matrix_extras(legacy)
+    labels = dict(settings.get("language_labels") or {})
+    nav = site_nav(app)
+    for page, context in profile_pages(snapshot, labels=labels, extras=extras):
+        yield page, {**context, "site_nav": nav}, TEMPLATE
 
 
 

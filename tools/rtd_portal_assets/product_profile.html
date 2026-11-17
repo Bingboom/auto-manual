@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="{{ model|e }}：各市场的参数、市场差异和说明书。">
+<title>{{ name|e }} · {{ model|e }}</title>
+<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/product-profile.css', 1) }}">
+<script defer src="{{ pathto('_static/product-profile.js', 1) }}"></script>
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{#- 产品档案 (step 13; REV-53; tools/rtd/product_profile.py). A front page: the product's name and one line, then
+    its parameters one market at a time. A value's source shows only when it is clicked. Without JavaScript every
+    market shows in turn and the values are plain text. -#}
+{%- macro value(cell) -%}
+{%- if cell -%}
+<button type="button" class="pf-val" aria-expanded="false" data-market="{{ cell.source.market|e }}" data-language="{{ cell.source.language|e }}" data-date="{{ cell.source.date|e }}" data-position="{{ cell.source.position|e }}" data-printed="{{ cell.source.printed|e }}"{% if cell.source.doc %} data-doc="{{ pathto(cell.source.doc) }}"{% endif %}>{{ cell.text|e }}</button>
+{%- if cell.conflict %}<span class="pf-badge" title="各说明书写法不一致">各说明书写法不一致</span>{% endif -%}
+{%- else -%}<span class="pf-none">暂无</span>{%- endif -%}
+{%- endmacro -%}
+<body class="app kb">
+{{ site_sidebar('product-matrix', site_nav) }}
+<div class="app-content">
+{{ site_topbar('知识库', '产品档案') }}
+<main class="fr-page pf-page">
+<a class="pf-back" href="{{ pathto('products/matrix') }}">‹ 产品库</a>
+<header class="fr-head pf-head">
+  <h1>{{ name|e }}</h1>
+  <p><b>{{ model|e }}</b>{% for part in classes %} · {{ part|e }}{% endfor %}{% if project %} · <a href="{{ pathto('products/matrix') }}?project={{ project|urlencode }}">{{ project|e }}</a>{% endif %}</p>
+  <p class="pf-date">SKU 创建时间：{{ sku_date|e if sku_date else '暂无' }}</p>
+</header>
+{%- if markets|length > 1 %}
+<div class="pf-switch" role="tablist" aria-label="市场" data-pf-switch hidden>{% for market in markets %}<button type="button" role="tab" data-market-tab="{{ market.code|e }}" aria-selected="{{ 'true' if loop.first else 'false' }}">{{ market.label|e }}</button>{% endfor %}</div>
+{%- endif %}
+<div class="pf-body">
+  <div class="pf-main">
+  {%- for market in markets %}
+  <section class="pf-market" data-market-panel="{{ market.code|e }}" aria-label="{{ market.label|e }}">
+    {%- if markets|length > 1 %}<h2 class="pf-market-title">{{ market.label|e }}</h2>{% endif %}
+    {%- if groups %}
+    <div class="pf-groups">
+    {%- for group in groups %}
+      <section class="pf-group"><h3>{{ group.title|e }}</h3>
+        <dl>{% for parameter in group.parameters %}<div><dt>{{ parameter.name_zh|e }}</dt><dd>{{ value(cells.get(market.code ~ '|' ~ parameter.key)) }}</dd></div>{% endfor %}</dl>
+      </section>
+    {%- endfor %}
+    </div>
+    {%- else %}<p class="fr-empty">暂无参数。</p>{% endif %}
+  </section>
+  {%- endfor %}
+  </div>
+  <aside class="pf-side">
+    <section class="pf-source" data-pf-source hidden aria-live="polite">
+      <h2 data-pf-source-title>出处</h2>
+      <p class="pf-source-value" data-pf-source-value></p>
+      <p data-pf-source-where></p>
+      <blockquote data-pf-source-printed></blockquote>
+      <a data-pf-source-link href="#">打开说明书 →</a>
+      <button type="button" class="pf-source-close" data-pf-source-close aria-label="关闭出处">×</button>
+    </section>
+    {%- if manuals or guides %}
+    <section class="pf-card" id="manuals"><h2>说明书</h2>
+      {%- for item in manuals %}<div class="pf-manual"><b>{{ item.market|e }}</b><span>{% for doc in item.docs %}<a href="{{ pathto(doc.doc) }}">{{ doc.label|e }}</a>{% endfor %}</span></div>{% endfor %}
+      {%- for guide in guides %}<div class="pf-manual"><b>{{ guide.label|e }}</b><span>{% for doc in guide.docs %}<a href="{{ pathto(doc.doc) }}" title="{{ doc.title|e }}">{{ doc.label|e }}</a>{% endfor %}</span></div>{% endfor %}
+    </section>
+    {%- endif %}
+  </aside>
+</div>
+{%- if differences and markets|length > 1 %}
+<section class="pf-card pf-diff" id="differences"><h2>各市场差异</h2>
+  <div class="pf-scroll"><table>
+    <thead><tr><th scope="col">参数</th>{% for market in markets %}<th scope="col" data-diff-market="{{ market.code|e }}">{{ market.label|e }}</th>{% endfor %}</tr></thead>
+    <tbody>{% for row in differences %}<tr><th scope="row">{{ row.label|e }}</th>{% for cell in row.cells %}<td{% if cell.odd %} class="is-odd"{% endif %}>{% if cell.text %}{{ cell.text|e }}{% else %}<span class="pf-none">暂无</span>{% endif %}</td>{% endfor %}</tr>{% endfor %}</tbody>
+  </table></div>
+</section>
+{%- endif %}
+{%- if features and (features.all or features.some) %}
+<section class="pf-card" id="features"><h2>功能</h2>
+  <p class="pf-chips">{% for name in features.all %}<span>{{ name|e }}</span>{% endfor %}{% for item in features.some %}<span title="{{ item.tip|e }}">{{ item.name|e }}<em>部分市场</em></span>{% endfor %}</p>
+</section>
+{%- endif %}
+{%- if pairing %}
+<section class="pf-card" id="pairing"><h2>搭配</h2>
+  {%- if pairing.named %}<p class="pf-chips">{% for item in pairing.named %}{% if item.model %}<a href="{{ pathto('products/item/' ~ item.model) }}">{{ item.label|e }}</a>{% else %}<span>{{ item.label|e }}</span>{% endif %}{% endfor %}</p>{% endif %}
+  {%- for item in pairing.named_by %}<p>{% if item.model %}<a href="{{ pathto('products/item/' ~ item.model) }}">{{ item.name|e }}</a>{% else %}{{ item.name|e }}{% endif %} 的说明书写到「{{ item.label|e }}」。</p>{% endfor %}
+</section>
+{%- endif %}
+</main>
+</div>{{ site_script() }}</body></html>

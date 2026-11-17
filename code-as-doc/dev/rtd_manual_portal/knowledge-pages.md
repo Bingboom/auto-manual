@@ -422,9 +422,10 @@ address forwards here, and the public manual library never links to it.
   cell are one chip, `A(B)`: the first written outside the brackets, the others
   inside, each code its own link. The order is alphabetical until the snapshot
   carries the per-product SKU 创建时间 (`DATE_FIELD`); then it is oldest first, with
-  products without a date last. A model without a project is a chip of its own. Until
-  the product pages (产品档案) exist, a code links to the manual library filtered to
-  that model (`index.html?q=<model>`); its tooltip lists its markets.
+  products without a date last. A model without a project is a chip of its own. Each
+  code opens its [产品档案](#产品档案); its tooltip lists its markets. A 产品档案 links
+  its project back here as `matrix.html?project=<project>`, which preselects that
+  filter and opens the tab holding the first matching chip.
 - **Filters** (`_static/product-library.js`): 项目 (including 未归入项目 when a model
   has none) and 市场 (美规, 欧规, 日规, 国内, …). A chip that matches every set filter is
   highlighted and the rest are dimmed, never hidden; a pill names the active filters
@@ -438,10 +439,46 @@ address forwards here, and the public manual library never links to it.
   the rendered page.
 - **Former matrix.** The 2026-11 matrix read specifications from each published
   manual (`tools/rtd/product_matrix.py`, configured by `product_matrix.json`). Its
-  per-product detail rows left with the page; 产品档案 takes that role. The module
-  stays for 产品知识 (`positioning_groups`), the product-facts export and the base
-  extractor; its page-only context code awaits the operator's confirmation before
-  removal.
+  per-product detail rows left with the page; 产品档案 takes that role and reuses its
+  context for 功能, 搭配 and the guides. The module also stays for 产品知识
+  (`positioning_groups`), the product-facts export and the base extractor.
+
+### 产品档案
+
+`/products/item/<model>.html`, one page per model of the product-information snapshot
+(`tools/rtd/product_profile.py`, `product_profile.html`; step 13, REV-53). Private role
+only; without a usable snapshot no product page is built (产品库 says why).
+
+- **Head:** `‹ 产品库`, the name (the name printed in the product's first market in
+  the usual order, else its short name), then one line: model · category · series ·
+  capacity tier · project (a link to 产品库 filtered by it), and `SKU 创建时间：<date>`
+  or `暂无`. The date is the earliest SKU creation time of the project from PLM, not
+  a launch date, so 上市时间 is never shown.
+- **Market switch:** one market at a time (美规, 欧规, 日规, 国内, …). Without
+  JavaScript every market shows in turn.
+- **Parameters** in plain groups with Chinese names (`GROUPS`: 电池, 输出, 充电与输入,
+  接口与扩展, 尺寸与重量, 使用环境, 安全与认证, 其他, 保修), each with the parameters
+  any market of the model has, in the base's order; a market without one shows 暂无.
+  The name, model and launch-date parameters are not repeated. A value is written
+  with the parameter's unit when it is a figure, with its qualifier (约, 额定, 峰值).
+- **Source on click** (`_static/product-profile.js`): a value is a button. Clicking
+  it shows its source beside the parameters (a sheet at the bottom on phones): the
+  market, language and edition date of the manual, the printed sentence, and a link
+  to that manual. The source appears nowhere else. A value the manuals print
+  differently carries 各说明书写法不一致; no other verification mark is shown
+  (operator, 2026-11-17).
+- **各市场差异:** only the parameters whose values differ between the model's
+  markets. A figure unlike every other market's is marked; texts are listed but not
+  marked, since manuals in different languages always differ in wording.
+- **说明书:** per market, the model's Web manuals by language (the snapshot's
+  sources), then its 快速指南 and the 通用指南 that list it.
+- **功能 and 搭配** (carried over from the former matrix page, 2026-11-17, so nothing a
+  colleague used disappears): 功能 from the capability table (`部分市场` with the
+  markets in the tooltip), 搭配 from `product_matrix.json` pairings the manuals still
+  name, both ways, linking a product only when it has a page here. They need the
+  publish manifest; without it they are absent.
+- Tests: `tests/test_rtd_product_profile.py`, `tests/product_profile_ui.test.mjs`, and
+  the real-Sphinx sidebar build in `tests/test_rtd_portal.py`.
 
 ### 产品分类 snapshot
 
