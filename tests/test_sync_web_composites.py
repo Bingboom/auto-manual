@@ -327,6 +327,176 @@ class SyncWebCompositesTests(unittest.TestCase):
                 source.fetches,
             )
 
+    def test_sync_defaults_to_bound_base_token_without_env_var(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bindings = root / "data" / "asset_base_bindings.json"
+            bindings.parent.mkdir()
+            bindings.write_text(
+                json.dumps(
+                    {
+                        "base": {
+                            "base_token": "bound-asset-base",
+                        },
+                        "tables": {
+                            "asset_definitions": {
+                                "table_id": "tbl-definitions",
+                                "default_view_id": "view-definitions",
+                            },
+                            "asset_exports": {
+                                "table_id": "tbl-exports",
+                                "default_view_id": "view-exports",
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source = _Source(
+                records_by_table={
+                    "tbl-definitions": [_definition()],
+                    "tbl-exports": [_export()],
+                },
+                downloads={"file-en": b"panel"},
+            )
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "web_composites": {},
+                    }
+                }
+            }
+
+            result, write = sync_web_composites(
+                cfg,
+                source=source,
+                repo_root=root,
+                export_root=root / "snapshot",
+                dry_run=False,
+                generated_at="2026-08-01T00:00:00+00:00",
+                sha256_text=lambda text: _sha256(text.encode("utf-8")),
+                sha256_file=lambda _path: None,
+                result_cls=SimpleNamespace,
+            )
+
+            self.assertEqual("web_composite_manifest", result.logical_name)
+            self.assertEqual(
+                [
+                    ("bound-asset-base", "tbl-definitions", "view-definitions"),
+                    ("bound-asset-base", "tbl-exports", "view-exports"),
+                ],
+                source.fetches,
+            )
+
+    def test_sync_uses_explicit_web_composite_base_token_override(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bindings = root / "data" / "asset_base_bindings.json"
+            bindings.parent.mkdir()
+            bindings.write_text(
+                json.dumps(
+                    {
+                        "base": {
+                            "base_token": "bound-asset-base",
+                        },
+                        "tables": {
+                            "asset_definitions": {
+                                "table_id": "tbl-definitions",
+                                "default_view_id": "view-definitions",
+                            },
+                            "asset_exports": {
+                                "table_id": "tbl-exports",
+                                "default_view_id": "view-exports",
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source = _Source(
+                records_by_table={
+                    "tbl-definitions": [_definition()],
+                    "tbl-exports": [_export()],
+                },
+                downloads={"file-en": b"panel"},
+            )
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "web_composites": {
+                            "base_token_env": "CUSTOM_WEB_BASE_TOKEN",
+                        },
+                    }
+                }
+            }
+
+            with mock.patch.dict("os.environ", {"CUSTOM_WEB_BASE_TOKEN": "custom-override-base"}):
+                result, write = sync_web_composites(
+                    cfg,
+                    source=source,
+                    repo_root=root,
+                    export_root=root / "snapshot",
+                    dry_run=False,
+                    generated_at="2026-08-01T00:00:00+00:00",
+                    sha256_text=lambda text: _sha256(text.encode("utf-8")),
+                    sha256_file=lambda _path: None,
+                    result_cls=SimpleNamespace,
+                )
+
+            self.assertEqual(
+                [
+                    ("custom-override-base", "tbl-definitions", "view-definitions"),
+                    ("custom-override-base", "tbl-exports", "view-exports"),
+                ],
+                source.fetches,
+            )
+
+    def test_sync_raises_when_explicit_base_token_env_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bindings = root / "data" / "asset_base_bindings.json"
+            bindings.parent.mkdir()
+            bindings.write_text(
+                json.dumps(
+                    {
+                        "base": {
+                            "base_token": "bound-asset-base",
+                        },
+                        "tables": {
+                            "asset_definitions": {
+                                "table_id": "tbl-definitions",
+                            },
+                            "asset_exports": {
+                                "table_id": "tbl-exports",
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cfg = {
+                "sync": {
+                    "phase2": {
+                        "web_composites": {
+                            "base_token_env": "UNSET_WEB_BASE_TOKEN",
+                        },
+                    }
+                }
+            }
+            with mock.patch.dict("os.environ", {}, clear=True):
+                with self.assertRaisesRegex(RuntimeError, "UNSET_WEB_BASE_TOKEN is not set in the environment"):
+                    sync_web_composites(
+                        cfg,
+                        source=_Source(),
+                        repo_root=root,
+                        export_root=root / "snapshot",
+                        dry_run=False,
+                        generated_at="2026-08-01T00:00:00+00:00",
+                        sha256_text=lambda text: _sha256(text.encode("utf-8")),
+                        sha256_file=lambda _path: None,
+                        result_cls=SimpleNamespace,
+                    )
+
 
 if __name__ == "__main__":
     unittest.main()

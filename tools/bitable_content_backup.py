@@ -182,7 +182,7 @@ def restore_content(backup_dir: Path, base_token: str, tables: list[str] | None,
             if all(v is None or v is False for v in cells):
                 plan["empty_rows_skipped"] += 1
                 continue
-            payload_rows.append(cells)
+            payload_rows.append(dict(filter(lambda pair: pair[1] is not None, zip(writable, cells, strict=True))))
         plan["planned_rows"] = len(payload_rows)
         if not write:
             continue
@@ -190,7 +190,7 @@ def restore_content(backup_dir: Path, base_token: str, tables: list[str] | None,
             chunk = payload_rows[i:i + BATCH_CREATE_LIMIT]
             resp = bs._lark([
                 "base", "+record-batch-create", "--base-token", base_token, "--table-id", tid,
-                "--json", json.dumps({"fields": writable, "rows": chunk}, ensure_ascii=False),
+                "--json", json.dumps({"create_records": chunk}, ensure_ascii=False),
                 "--format", "json", "--as", "bot",
             ], lark_cli)
             if resp.get("ok") is False or (resp.get("code") not in (None, 0)):

@@ -11,15 +11,16 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from tools.web.document_link_queue import scalar_text
-from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity
+from tools.phase2_support import LarkCliSource, cli_bin, load_config
 
 DEFAULT_MANUAL_INDEX_SOURCE_URL = (
-    "https://test-degwga5x6ex8.feishu.cn/wiki/AS02w8ZL2iDv44kDLHIcHCPqntd"
-    "?table=tbl1ypQJJPbKostu&view=vewytqcvDc"
+    "https://xcn57j1urbe6.feishu.cn/wiki/QKNGwHFwPiY7J7kZ0bzcximKnyb"
+    "?table=tbldqnNBxFQsxpeN&view=vewytqcvDc"
 )
-DEFAULT_MANUAL_INDEX_BASE_TOKEN = "ASabb6mXaafMtlsQYWScuqEYnAg"
-DEFAULT_MANUAL_INDEX_TABLE_ID = "tbl1ypQJJPbKostu"
+DEFAULT_MANUAL_INDEX_BASE_TOKEN = "WGVwb2HctauRi7sEiKqcIzTRn1c"
+DEFAULT_MANUAL_INDEX_TABLE_ID = "tbldqnNBxFQsxpeN"
 DEFAULT_MANUAL_INDEX_VIEW_ID = "vewytqcvDc"
+DEFAULT_MANUAL_INDEX_IDENTITY = "bot"
 
 MANUAL_INDEX_BASE_TOKEN_ENV = "FEISHU_MANUAL_INDEX_BASE_TOKEN"
 MANUAL_INDEX_TABLE_ID_ENV = "FEISHU_MANUAL_INDEX_TABLE_ID"
@@ -379,7 +380,7 @@ def manual_index_settings_from_env(cfg: dict[str, Any]) -> ManualIndexSettings:
     identity = (
         os.environ.get(MANUAL_INDEX_IDENTITY_ENV, "").strip().lower()
         or os.environ.get("FEISHU_PHASE2_IDENTITY", "").strip().lower()
-        or phase2_identity()
+        or DEFAULT_MANUAL_INDEX_IDENTITY
     )
     if identity not in {"user", "bot"}:
         raise RuntimeError(f"{MANUAL_INDEX_IDENTITY_ENV} must be one of: bot, user")

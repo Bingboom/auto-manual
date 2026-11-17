@@ -131,12 +131,14 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _bindings(repo_root: Path) -> dict[str, dict[str, Any]]:
+def _bindings(repo_root: Path) -> tuple[str, dict[str, dict[str, Any]]]:
     path = repo_root / PathSegments.DATA / _BINDINGS_FILE_NAME
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise RuntimeError(f"cannot load frozen asset Base bindings {path}: {exc}") from exc
+    base = payload.get("base") if isinstance(payload, dict) else None
+    bound_base_token = str(base.get("base_token") or "").strip() if isinstance(base, dict) else ""
     tables = payload.get("tables") if isinstance(payload, dict) else None
     if not isinstance(tables, dict):
         raise RuntimeError(f"{path} has no tables mapping")
@@ -146,7 +148,7 @@ def _bindings(repo_root: Path) -> dict[str, dict[str, Any]]:
         if not isinstance(table, dict) or not str(table.get("table_id") or "").strip():
             raise RuntimeError(f"{path} has no {key}.table_id")
         resolved[key] = table
-    return resolved
+    return bound_base_token, resolved
 
 
 def _fetch_records(
@@ -420,16 +422,25 @@ def sync_web_composites(
         return None, None
     if not isinstance(web_cfg, dict):
         raise RuntimeError("sync.phase2.web_composites must be a mapping")
-    base_token_env = str(
-        web_cfg.get("base_token_env") or phase2.get("base_token_env") or ""
-    ).strip()
-    base_token = os.environ.get(base_token_env, "").strip() if base_token_env else ""
-    if not base_token:
-        raise RuntimeError(
-            "sync.phase2.web_composites is configured but "
-            f"{base_token_env or 'base_token_env'} is not set in the environment"
-        )
-    tables = _bindings(repo_root)
+    bound_base_token, tables = _bindings(repo_root)
+    explicit_base_token_env = str(web_cfg.get("base_token_env") or "").strip()
+    if explicit_base_token_env:
+        base_token = os.environ.get(explicit_base_token_env, "").strip()
+        if not base_token:
+            raise RuntimeError(
+                "sync.phase2.web_composites is configured but "
+                f"{explicit_base_token_env} is not set in the environment"
+            )
+    else:
+        base_token = bound_base_token
+        if not base_token:
+            fallback_env = str(phase2.get("base_token_env") or "").strip()
+            base_token = os.environ.get(fallback_env, "").strip() if fallback_env else ""
+            if not base_token:
+                raise RuntimeError(
+                    "sync.phase2.web_composites is configured but "
+                    f"{fallback_env or 'base_token_env'} is not set in the environment"
+                )
     definition_records = _fetch_records(
         source,
         base_token=base_token,
