@@ -562,3 +562,15 @@ details[open] > summary .ds-fold,.ds-row[open] .ds-more::after {transform:transl
   .ds-inks,.ds-page-figures {grid-template-columns:1fr}
   .ds-row-body > div,.ds-comp-notes dl > div {grid-template-columns:1fr;gap:2px}
 }
+
+/* 视觉媒体's inventory, folded at the foot of 图标与素材 (_media_inventory.html; asset-layers.css styles its blocks). */
+.ds-inventory {margin-top:24px;min-width:0;max-width:100%;border:1px solid var(--app-line);border-radius:12px;background:#fff}
+.ds-inventory * {box-sizing:border-box}
+.ds-inventory > summary {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:14px 18px;cursor:pointer;list-style:none}
+.ds-inventory > summary::-webkit-details-marker {display:none}
+.ds-inventory > summary span {font-size:13px;color:var(--app-muted)}
+.ds-inventory[open] > summary {border-bottom:1px solid var(--app-line)}
+.ds-inventory > .al-grid, .ds-inventory > section {margin:16px}
+.ds-inventory .al-table-wrap {max-width:100%;overflow-x:auto}
+.ds-inventory .al-table {min-width:960px}
+.ds-inventory .al-table td {white-space:nowrap}

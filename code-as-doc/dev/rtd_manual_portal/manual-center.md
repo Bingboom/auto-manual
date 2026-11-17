@@ -59,18 +59,14 @@ its market list from the same settings, and CN/JP display their own market notes
 Every portal page (manual library root, 搜索说明书正文, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范,
 产品矩阵) shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. In the manuals-only public role (`RTD_SITE_ROLE=manuals`)
-the manual library root and the search page pass `internal=false` to both shell macros: the sidebar
-contains only 说明书资料库 and 搜索说明书正文, and its top bar keeps the breadcrumb and
-region selector, with no internal knowledge links or 知识库 / 说明书资料库 switch.
+the manual library root and the search page pass `internal=false` to both shell macros: the top bar keeps the
+brand and the search icon only, the left list contains only 说明书资料库 and 搜索说明书正文, and the breadcrumb
+row keeps the region selector, with no internal knowledge links or main sections.
 In the combined (private) role the root gets the full internal shell, so a reader
-can return to the knowledge base: the same sidebar groups as internal pages and the
-switch, with 说明书资料库 marked selected. Internal pages (since step 12, see
-[asset-layers.md](asset-layers.md#navigation); regrouped by the front cleanup of
-2026-11-17) open with 首页 and 资产 (产品信息, 产品知识, 语料库) before 说明书, then 参考
-(市场与政策), then 维护 (说明书工作台, 内容与表现, 视觉媒体, 系统建设, 设计规范) as one
-bottom group, collapsed by default and open on its own pages, plus the switch. Their breadcrumb section is 知识库,
-and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer in
-both roles. Every other sidebar entry is a page and carries
+can return to the knowledge base: the four main sections in the top bar (知识资产, 工作台, Agent 能力, 设计规范;
+layout of 2026-11-17) and the 知识资产 left list, where 说明书资料库 is one entry. Every internal page uses the
+same shell; [asset-layers.md](asset-layers.md#navigation) lists the sections and their left lists. The breadcrumb
+reads 工作资料 / section / page. Every other left entry is a page and carries
 `aria-current="page"` on that page; 分享资料 is a link on the
 知识库首页 (`workspace/index.html#shares`), not a sidebar entry.
 Optional entries follow the same rules as before: 系统建设, 设计规范 and
@@ -198,7 +194,7 @@ publication, online tables and OSS uploads are outside this change.
 ## 搜索说明书正文 (2026-11-09)
 
 `/search.html` (`tools/rtd_portal_assets/search.html`, `_static/manual-search.js` and `.css`) is a portal page
-in the site shell, with 搜索说明书正文 current in the sidebar. It searches `portal-search-index.js`, the section index
+in the site shell, with the top bar's search icon marked current (and 搜索说明书正文 current in the public left list). It searches `portal-search-index.js`, the section index
 above, in the browser; Sphinx still writes `searchindex.js`, which nothing reads now.
 
 - Matching: every query token must match the product words (model, 商品简称, product name), the section title or

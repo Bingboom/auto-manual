@@ -61,7 +61,9 @@ class HomeRenderTests(unittest.TestCase):
     def test_three_asset_cards_each_with_one_dated_figure(self):
         home = render(cards=front_cards(self.MATRIX, self.LEARNING, CORPUS))
         cards = home.select("#now .home-front-card")
-        self.assertEqual([card.strong.get_text() for card in cards], ["产品信息", "产品知识", "语料库"])
+        self.assertEqual([card.strong.get_text() for card in cards], ["产品信息矩阵", "产品知识", "语料库"])
+        self.assertEqual([card.select_one(".home-front-line").get_text() for card in cards],
+                         ["项目 · 属性 · 时间", "功能 · 限制 · 关系", "句对 · 术语 · 复用"])
         self.assertEqual([card["href"] for card in cards],
                          ["products/matrix", "products/knowledge", "assets/language/index"])
         self.assertEqual([card.select_one(".home-front-fig b").get_text() for card in cards], ["3", "2", "1,372"])
@@ -85,7 +87,7 @@ class HomeRenderTests(unittest.TestCase):
         for card in cards:
             self.assertIsNotNone(card.select_one(".home-tile svg.ic"))
         sidebar = home.select("#app-sidebar a.app-nav-link")
-        self.assertEqual(sidebar[0].span.get_text(), "首页")
+        self.assertEqual(sidebar[0].span.get_text(), "产品信息")
         self.assertTrue(all(link.select_one("svg.ic") for link in sidebar))
 
     def test_share_link_shows_only_with_the_package(self):
