@@ -72,5 +72,15 @@
   };
   window.addEventListener('hashchange', fromHash);
   fromHash();
+  // A product page links its project here as ?project=…: preselect it when it is one of the options.
+  const wanted = new URLSearchParams(window.location.search).get('project');
+  const projectSelect = selects.find(select => select.dataset.plFilter === 'project');
+  if (wanted && projectSelect && [...projectSelect.options].some(option => option.value === wanted)) {
+    projectSelect.value = wanted;
+    apply();
+    const first = chips.find(chip => chip.classList.contains('is-on'));
+    const panel = first && panels.find(item => item.contains(first));
+    if (panel) show(panel.dataset.panel);
+  }
   apply();
 })();
