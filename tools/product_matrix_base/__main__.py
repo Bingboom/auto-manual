@@ -152,14 +152,7 @@ def _matrix(args: argparse.Namespace) -> int:
         snapshot = matrix.read_base(run)
         built = matrix.build(snapshot["products"], snapshot["attributes"], snapshot["facts"], snapshot["sources"])
         planned = matrix.plan(run, snapshot, built)
-        filled, possible = matrix.filled_cells(built)
-        print(f"矩阵: {len(built['rows'])} 行，属性列 {len(built['columns'])}（数值列 "
-              f"{sum(c['type'] == 'number' for c in built['columns'])}），有值单元格 {filled}/{possible}，"
-              f"有组件事实的产品 {built['components']}，数值缺失留空 {len(built['empty'])}")
-        print(f"  待加列 {len(planned['add'])}，待新建行 {len(planned['create'])}，待更新行 {len(planned['update'])}，"
-              f"待删行 {len(planned['remove'])}，不再使用的列 {len(planned['unused'])}，类型冲突列 {len(planned['clash'])}")
-        if planned["remove"]:
-            print("  待删行（产品表已没有或标了不收录）：" + "、".join(item["key"] for item in planned["remove"]))
+        _print_matrix_plan(built, planned)
         if args.manifest:
             _update_manifest(args.manifest, matrix.manifest_fields(built))
         if args.report:
@@ -167,8 +160,9 @@ def _matrix(args: argparse.Namespace) -> int:
                                                      "plan": _plan_summary(planned)},
                                                     ensure_ascii=False, indent=1, default=str) + "\n",
                                          encoding="utf-8")
+        planned["remove"] = matrix.select_removal(planned, args.remove_row)
         if not (args.write and args.yes):
-            print("dry run: nothing written")
+            print(f"dry run: nothing written（本次指定删除 {len(planned['remove'])} 行）")
             return 0
         try:
             written = matrix.write(run, planned)
@@ -186,6 +180,19 @@ def _matrix(args: argparse.Namespace) -> int:
     except LoadError as exc:
         print(f"ERROR   {exc}")
         return 2
+
+
+def _print_matrix_plan(built: dict[str, Any], planned: dict[str, Any]) -> None:
+    from tools.product_matrix_base import matrix
+
+    filled, possible = matrix.filled_cells(built)
+    print(f"矩阵: {len(built['rows'])} 行，属性列 {len(built['columns'])}（数值列 "
+          f"{sum(c['type'] == 'number' for c in built['columns'])}），有值单元格 {filled}/{possible}，"
+          f"有组件事实的产品 {built['components']}，数值缺失留空 {len(built['empty'])}")
+    print(f"  待加列 {len(planned['add'])}，待新建行 {len(planned['create'])}，待更新行 {len(planned['update'])}，"
+          f"待删行 {len(planned['remove'])}，不再使用的列 {len(planned['unused'])}，类型冲突列 {len(planned['clash'])}")
+    if planned["remove"]:
+        print("  待删行（产品表已没有或标了不收录）：" + "、".join(item["key"] for item in planned["remove"]))
 
 
 def _plan_summary(planned: dict[str, Any]) -> dict[str, Any]:
@@ -335,6 +342,9 @@ def main(argv: list[str] | None = None) -> int:
     mx.add_argument("--drop", action="append", default=[], metavar="COLUMN",
                     help="after a clean write, delete this matrix column if the generator no longer produces it and "
                          "every row is empty (repeat per column; nothing is dropped by sweep)")
+    mx.add_argument("--remove-row", action="append", default=[], metavar="产品键",
+                    help="delete this matrix row; only a row whose product left 产品 or is marked 不收录 (repeat per "
+                         "row; a normal refresh lists such rows but never deletes them)")
     mx.set_defaults(func=_matrix)
     args = parser.parse_args(argv)
     return args.func(args)

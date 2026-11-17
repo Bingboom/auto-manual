@@ -233,6 +233,15 @@ def _equal(want: Any, have: Any, kind: str) -> bool:
     return same(want, have, kind)
 
 
+def select_removal(planned: dict[str, Any], keys: list[str]) -> list[dict[str, Any]]:
+    """The removable rows a person named by product key; naming any other row is a LoadError (nothing is swept)."""
+    removable = {item["key"] for item in planned["remove"]}
+    unknown = sorted(set(keys) - removable)
+    if unknown:
+        raise LoadError(f"--remove-row names rows that are not removable (still in 产品 and not 不收录): {unknown}")
+    return [item for item in planned["remove"] if item["key"] in set(keys)]
+
+
 def write(run: Runner, planned: dict[str, Any], *, now: datetime | None = None, settle: float = 3.0,
           sleep: Callable[[float], None] | None = None) -> dict[str, Any]:
     """Add the columns, create and update the rows, then read every row back and compare."""

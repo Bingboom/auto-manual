@@ -429,6 +429,11 @@ class MatrixWriteTest(unittest.TestCase):
         kept = [dict(PRODUCTS[0], 不收录=True)] + PRODUCTS[1:]
         planned = matrix.plan(base, snapshot, matrix.build(kept, ATTRIBUTES, FACTS, SOURCES))
         self.assertEqual([item["key"] for item in planned["remove"]], [PRODUCTS[0]["产品键"]])
+        with self.assertRaises(LoadError):  # a kept product's row can never be named for removal
+            matrix.select_removal(planned, [PRODUCTS[1]["产品键"]])
+        self.assertEqual(matrix.write(base, dict(planned, remove=matrix.select_removal(planned, [])),
+                                      sleep=lambda _s: None)["removed"], 0)  # a refresh deletes nothing by itself
+        planned["remove"] = matrix.select_removal(planned, [PRODUCTS[0]["产品键"]])
         report = matrix.write(base, planned, sleep=lambda _s: None)
         self.assertEqual((report["removed"], report["lingering"]), (1, []))
         again = matrix.plan(base, snapshot, matrix.build(PRODUCTS[1:], ATTRIBUTES, FACTS, SOURCES))
