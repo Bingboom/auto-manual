@@ -30,9 +30,7 @@ from tools.rtd.page_metadata import (
 )
 from tools.rtd.system_data import system_data_page_context
 from tools.rtd.site_role import resolve_site_role
-from tools.rtd.system_workspace import (
-    CONTRACT_NAME, SYSTEM_PAGE, SYSTEM_TEMPLATE, ContractError, load_contract, system_page_context,
-)
+from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.rtd.web_manual_value import band_context, load_value, page_context as value_page_context
 from tools.safe_copy import copytree_replace_no_symlinks
 
@@ -513,21 +511,10 @@ def product_profile_pages(app, settings: dict, products: list[dict]):
     if not has_cells(snapshot):
         return
     legacy = product_matrix_page_context(app, ASSETS, settings, products, catalog)
-    pages = profile_pages(snapshot, labels=_language_names(settings), extras=matrix_extras(legacy),
+    pages = profile_pages(snapshot, labels=dict(settings.get("language_labels") or {}), extras=matrix_extras(legacy),
                           warn=sphinx_logging.getLogger(__name__).warning)
     for page, context in pages:
         yield page, {**context, "site_nav": nav}, TEMPLATE
-
-
-def _language_names(settings: dict) -> dict[str, str]:
-    """Language names in Chinese (the corpus languages of system_workspace.yaml), else the settings' own labels."""
-    names = dict(settings.get("language_labels") or {})
-    try:
-        languages = load_contract(ASSETS / CONTRACT_NAME)["corpus"]["languages"]
-        names.update({str(item["code"]): str(item["label"]) for item in languages})
-    except (ContractError, OSError, KeyError, TypeError):
-        pass
-    return names
 
 
 def _build_date(deliverables: dict, system: dict | None) -> str:

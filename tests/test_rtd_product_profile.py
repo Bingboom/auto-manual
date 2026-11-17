@@ -13,7 +13,7 @@ from jinja2 import Environment, FileSystemLoader
 from tools.rtd import product_profile as pp
 from tools.rtd.portal import ASSETS
 
-LABELS = {"en": "英语", "ja": "日语"}
+LABELS = {"en": "English", "ja": "日本語"}
 PARAMETERS = [
     {"key": "capacity_wh", "name_zh": "标称容量", "group": "电池", "order": 1, "unit": "Wh"},
     {"key": "cycle_life", "name_zh": "循环寿命", "group": "电池", "order": 5, "unit": "次"},
@@ -126,7 +126,7 @@ class ProfileTests(unittest.TestCase):
         one = pages()["products/item/FAKE-1"]
         sources = one["cells"]["US|capacity_wh|"]["sources"]
         self.assertEqual([s["printed"] for s in sources], ["Capacity: 1000Wh", "Capacity: 1002Wh"])
-        self.assertEqual(sources[0], {"manual": "《Fake Station 1 说明书》", "market": "美规", "language": "英语",
+        self.assertEqual(sources[0], {"manual": "《Fake Station 1 说明书》", "market": "美规", "language": "English",
                                       "date": "", "position": "SPECIFICATIONS > GENERAL",
                                       "printed": "Capacity: 1000Wh", "doc": "FAKE-1/US/en/md/manual_us"})
         self.assertEqual(sources[1]["date"], "2026-01-02")
@@ -173,7 +173,7 @@ class TemplateTests(unittest.TestCase):
         sources = page.find(id=button["data-sources"])
         self.assertTrue(sources.has_attr("hidden"))
         self.assertEqual([p.get_text() for p in sources.select(".pf-src")[0].select("p")],
-                         ["来自《Fake Station 1 说明书》· 美规 · 英语", "SPECIFICATIONS > GENERAL"])
+                         ["来自《Fake Station 1 说明书》· 美规 · English", "SPECIFICATIONS > GENERAL"])
         self.assertEqual(sources.select(".pf-src")[1].select("p")[1].get_text(), "版本日期 2026-01-02 · SPECIFICATIONS")
         self.assertEqual(sources.select_one("a")["href"], "FAKE-1/US/en/md/manual_us")
         weight = [div for div in us.select(".pf-group dl > div") if div.dt.get_text() == "重量"][0]
