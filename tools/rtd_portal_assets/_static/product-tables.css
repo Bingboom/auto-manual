@@ -64,3 +64,8 @@ th[aria-sort="descending"] .pt-sort::after {content:" ↓"}
   .pt-head {flex-wrap:wrap}
   .pc-add input {min-width:0;flex:1}
 }
+/* The product column stays in view while a wide table scrolls sideways (phones especially). */
+.pt-table tbody th, .pt-table thead th:first-child {position:sticky;left:0;z-index:2;background:var(--surface)}
+.pt-table thead th:first-child {z-index:3;background:#f8fafc}
+.pt-table tbody tr.pt-group th {position:static}
+.pc-table tbody tr.is-diff th {background:#faf0dc}

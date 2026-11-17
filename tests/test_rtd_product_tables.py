@@ -119,6 +119,14 @@ class CompareTests(unittest.TestCase):
         self.assertEqual(view["data"]["groups"][1]["parameters"][1], ["pv_power|STC", "额定功率（STC）"])
         self.assertEqual(view["data"]["labels"], {"US": "美规", "JP": "日规"})
 
+    def test_only_safe_model_codes_reach_the_pages(self):
+        # The comparison links item/<code>; codes are the allow-listed page names, so a link always has its page.
+        unsafe = {**SNAPSHOT, "products": [*SNAPSHOT["products"], product("../x", "US"), product('FAKE"9', "US")]}
+        models = [p["model"] for p in pt.compare_view(unsafe)["data"]["products"]]
+        self.assertEqual(models, ["FAKE-A", "FAKE-B", "FAKE-P"])
+        rows = [r["model"] for c in pt.table_view(unsafe, CATALOG)["categories"] for r in c["rows"]]
+        self.assertNotIn("../x", rows)
+
     def test_without_cells_the_page_says_so(self):
         view = pt.compare_view({k: v for k, v in SNAPSHOT.items() if k != "cells"})
         page = render(pt.COMPARE_TEMPLATE, view)

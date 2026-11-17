@@ -29,9 +29,9 @@
     const hits = data.products.filter(product => `${product.model} ${product.name}`.toLowerCase().includes(wanted));
     return hits.length === 1 ? hits[0].model : '';
   };
-  // Groups of rows for the picked products in one market: a row differs when the values of the products sold in that
-  // market (comparison keys, a missing value counting as its own) are not all the same; a product not sold there is
-  // shown as such and left out of the comparison; rows nobody states are left out.
+  // Groups of rows for the picked products in one market: a row differs when at least two products sold in that
+  // market state a value and those values (comparison keys) are not all the same; a missing value shows 暂无 and
+  // takes no part; a product not sold there is shown as such; rows nobody states are left out.
   const comparison = (data, state) => {
     const products = state.picked.map(code => data.products.find(product => product.model === code)).filter(Boolean);
     const sold = products.map(product => product.markets.includes(state.market));
@@ -44,7 +44,9 @@
           return value ? {text: value[0], key: value[1], conflict: Boolean(value[2])} : {text: '', key: '', conflict: false};
         });
         if (cells.every(cell => !cell.text)) return;
-        const differs = new Set(cells.filter((cell, index) => sold[index]).map(cell => cell.key)).size > 1;
+        // As on 产品档案: only products sold in the market with a value take part; a missing value is no value.
+        const stated = cells.filter((cell, index) => sold[index] && cell.text);
+        const differs = stated.length >= 2 && new Set(stated.map(cell => cell.key)).size > 1;
         if (state.diffOnly && !differs) return;
         rows.push({name, cells, differs});
       });
@@ -58,14 +60,17 @@
     const shared = markets.filter(code => products.every(product => product.markets.includes(code)));
     return shared.includes(current) ? current : (shared[0] || '');
   };
-  globalThis.ProductCompare = {LIMIT, parseState, stateQuery, resolvePick, comparison, sharedMarket};
+  // The 产品档案 path segment of a model: page names are the model code itself (letters, digits, ".", "-", "_"
+  // only), which encodeURIComponent leaves unchanged, so both always agree.
+  const itemPath = model => encodeURIComponent(model);
+  globalThis.ProductCompare = {LIMIT, parseState, stateQuery, resolvePick, comparison, sharedMarket, itemPath};
 
   if (typeof document === 'undefined') return;
   const app = document.querySelector('[data-pc]');
   const source = document.getElementById('pc-data');
   if (!app || !source) return;
   const data = JSON.parse(source.textContent);
-  const itemHref = model => app.dataset.itemBase.replace('__MODEL__', encodeURIComponent(model));
+  const itemHref = model => app.dataset.itemBase.replace('__MODEL__', itemPath(model));
   const picked = app.querySelector('[data-pc-picked]');
   const input = app.querySelector('[data-pc-input]');
   const market = app.querySelector('[data-pc-market]');

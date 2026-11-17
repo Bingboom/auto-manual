@@ -8,15 +8,30 @@
     (!filter.project || (filter.project === '-' ? row.project === '' : row.project === filter.project))
     && (!filter.market || row.market === filter.market)
     && (!filter.series || row.series === filter.series);
-  // Compare two sort values; empty last whatever the direction.
+  // A sort value's class: a number first, then text (a text-only cell in a number column), then empty; the
+  // classes keep that order whatever the direction, so the order is stable.
+  const sortClass = (value, numeric) => {
+    if (value === '' || value === undefined || value === null) return 2;
+    return numeric && Number.isFinite(Number(value)) ? 0 : 1;
+  };
   const compareValues = (a, b, numeric, direction) => {
-    if (a === '' || b === '') return a === b ? 0 : (a === '' ? 1 : -1);
-    const order = numeric ? Number(a) - Number(b) : String(a).localeCompare(String(b), 'zh-CN');
+    const ca = sortClass(a, numeric);
+    const cb = sortClass(b, numeric);
+    if (ca !== cb) return ca - cb;
+    if (ca === 2) return 0;
+    const order = ca === 0 ? Number(a) - Number(b) : String(a).localeCompare(String(b), 'zh-CN');
     return direction === 'descending' ? -order : order;
   };
-  const csvCell = text => (/[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text);
-  const csvText = rows => '﻿' + rows.map(cells => cells.map(csvCell).join(',')).join('\r\n') + '\r\n';
-  globalThis.ProductTable = {rowMatches, compareValues, csvText};
+  // CSV cells that a spreadsheet would read as a formula (=, +, -, @, tab, CR first) get a leading apostrophe,
+  // so Excel and WPS show them as text and run nothing; a plain number, negative included, stays a number.
+  const PLAIN_NUMBER = /^[+-]?(\d+(\.\d*)?|\.\d+)$/;
+  const defuse = text => (/^[=+\-@\t\r]/.test(text) && !PLAIN_NUMBER.test(text) ? `'${text}` : text);
+  const csvCell = raw => {
+    const text = defuse(String(raw));
+    return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+  };
+  const csvText = rows => '\uFEFF' + rows.map(cells => cells.map(csvCell).join(',')).join('\r\n') + '\r\n';
+  globalThis.ProductTable = {rowMatches, compareValues, csvText, csvCell};
 
   if (typeof document === 'undefined') return;
   const panels = [...document.querySelectorAll('[data-pt-panel]')];

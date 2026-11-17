@@ -520,17 +520,23 @@ product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 (`_produ
   市场, 项目 (未归入 when none), SKU 创建时间, then the (parameter, condition) columns that
   category's products state, in page order (a figure column shows its unit). With JavaScript:
   category pills, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
-  project last), sorting by any column (figures as numbers, 暂无 last) and 下载表格: the
-  visible rows of the open table as `参数表-<类别>.csv`, UTF-8 with a BOM so spreadsheet
-  programs read the Chinese text. Long texts show four lines with the whole text as a
+  project last), sorting by any column (in a number column: numbers, then cells holding
+  only text, then 暂无, in either direction) and 下载表格: the visible rows of the open
+  table as `参数表-<类别>.csv`, UTF-8 with a BOM so spreadsheet programs read the Chinese
+  text. A cell that a spreadsheet would read as a formula (starting with `=`, `+`, `-`,
+  `@`, a tab or CR) gets a leading apostrophe, so Excel and WPS show it as text and run
+  nothing; a plain number, negative included, stays a number. The product column stays
+  fixed while the table scrolls sideways. Long texts show four lines with the whole text as a
   tooltip; the CSV keeps the whole text. Without JavaScript every table shows in full.
 - **产品对比** (`/products/compare.html`, `product_compare.html`,
   `_static/product-compare.js`): two to four products side by side in one market. The
   visitor adds products by code or name (a unique match), removes them with ×, picks the
   market and can keep only 只看不同的参数. The choice stays in the URL
-  (`?p=A,B&market=US`), so a comparison can be shared. A row differs when the products
-  sold in that market state different values (a missing value counts as different); a
-  product not sold there says 无<市场>版本 and is left out of that check. After a
+  (`?p=A,B&market=US`), so a comparison can be shared. As on 产品档案, a row differs only
+  when at least two products sold in that market state a value and those values
+  differ; a missing value shows 暂无 and takes no part; a product not sold there says
+  无<市场>版本. Only allow-listed model codes reach the page, so each product link has its
+  page. After a
   product is added or removed the market moves to one every picked product is sold in,
   when there is one. The page carries every product's values as one JSON block
   (`|tojson`, so `<` and `&` are escaped) and writes everything with `textContent`.
