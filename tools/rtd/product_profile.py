@@ -17,7 +17,7 @@ import re
 from collections import defaultdict
 from typing import Any
 
-from tools.rtd.product_library import DATE_FIELD, MARKET_ORDER, market_label
+from tools.rtd.product_library import MARKET_ORDER, market_label
 
 PAGE_PREFIX = "products/item/"
 TEMPLATE = "product_profile.html"
@@ -31,6 +31,10 @@ HIDDEN_UNITS = {"count"}
 PREFIX_QUALIFIERS = {"约"}
 SUFFIX_QUALIFIERS = {"额定", "峰值"}
 CONFLICT = "各说明书写法不一致"
+# SKU 创建时间: the earliest creation time of the SKUs of the product's project in PLM (Beijing time). It is no launch
+# date. Older products loaded in bulk carry only an upper bound. Shown as year-month only.
+SKU_DATE, SKU_DATE_UPPER_BOUND = "first_sku_created", "first_sku_created_upper_bound"
+_YEAR_MONTH = re.compile(r"^(\d{4})-(\d{2})")
 
 
 def page_name(model: str) -> str:
@@ -168,9 +172,19 @@ def _head(model: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
     first = rows[0]
     return {"model": model, "name": _name(rows),
             "project": next((str(row["project"]) for row in rows if row.get("project")), ""),
-            "sku_date": next((str(row[DATE_FIELD]) for row in rows if DATE_FIELD and row.get(DATE_FIELD)), ""),
+            "sku_date": sku_date(rows),
             "classes": [str(part) for part in (first.get("category"), first.get("series"), first.get("capacity_tier"))
                         if part]}
+
+
+def sku_date(rows: list[dict[str, Any]]) -> str:
+    """``YYYY-MM``, ``不晚于 YYYY-MM`` for an upper bound, or "" (the page then writes 暂无)."""
+    for row in rows:
+        match = _YEAR_MONTH.match(str(row.get(SKU_DATE) or ""))
+        if match:
+            month = f"{match.group(1)}-{match.group(2)}"
+            return f"不晚于 {month}" if row.get(SKU_DATE_UPPER_BOUND) is True else month
+    return ""
 
 
 def _markets(rows: list[dict[str, Any]]) -> list[str]:
@@ -240,5 +254,5 @@ def _linkable(extra: dict[str, Any] | None, models: set[str]) -> dict[str, Any] 
     return {**extra, "pairing": {"named": named, "named_by": named_by}}
 
 
-__all__ = ["CONFLICT", "GROUPS", "PAGE_PREFIX", "TEMPLATE", "display", "matrix_extras", "page_name", "profile_pages",
-           "profile_view"]
+__all__ = ["CONFLICT", "GROUPS", "PAGE_PREFIX", "SKU_DATE", "SKU_DATE_UPPER_BOUND", "TEMPLATE", "display", "matrix_extras",
+           "page_name", "profile_pages", "profile_view", "sku_date"]
