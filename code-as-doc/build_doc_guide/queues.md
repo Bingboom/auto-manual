@@ -3,7 +3,9 @@
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
-> **2026-11 Legacy Route Retirement**: The `sync-data + RST template` Feishu queue and review-branch workflows (`feishu-start-review.yml`, `feishu-draft-build-queue.yml`, `feishu-build-queue.yml`, `feishu-web-publish-queue.yml`, `backport-reminder.yml`, `review-branch-sync-check.yml`, `nightly-render.yml`, `feishu-schema-parity.yml`) are disabled on both `auto-manual` and `Hello-Docs`, have no `schedule:` triggers, and require `vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true'` for emergency replay only. Active production authoring follows the Web `manual_sources` + `ComponentSpec` + `TM-B` mainline.
+> **2026-11 Legacy Route Retirement**: The `sync-data + RST template` Feishu queue and review-branch workflows (`feishu-start-review.yml`, `feishu-draft-build-queue.yml`, `feishu-build-queue.yml`, `feishu-web-publish-queue.yml`, `backport-reminder.yml`, `review-branch-sync-check.yml`, `nightly-render.yml`, `feishu-schema-parity.yml`) are disabled on both `auto-manual` and `Hello-Docs`, have no `schedule:` triggers, and require `vars.LEGACY_TEMPLATE_QUEUE_ENABLED == 'true'` for emergency replay only.
+>
+> The main writing route is the private Hello-Docs-Review workbench (`docs/review-drafts/`): agents reuse reference content, templates and TM-B for human review. Web conversion and publication consume frozen `manual_sources` packages and shared `ComponentSpec` components; the supported inputs and approved-draft-to-Web handoff status follow [project positioning §5.1](../architecture/Hello_Docs_Positioning.md#51-网页说明书的三条路线).
 
 - `sync-review`: refresh review files affected by CSV data changes
 - `tools/check_review_branch_sync.py --base <ref> --remote origin --json`: emit

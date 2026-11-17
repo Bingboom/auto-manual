@@ -3,8 +3,7 @@
 Status: active
 
 The single source of truth for **who may merge what without waiting for the operator's per-PR review**. Default remains AGENTS.md §8.6: agents do not self-merge. A self-merge is allowed only when a **live entry in the table
-below covers the PR** and the gate-on-green protocol passes. Chat authority
-alone is not enough: when the operator grants an authorization in chat, the
+below covers the PR** and the gate-on-green protocol passes. Chat authority alone is not enough: when the operator grants an authorization in chat, the
 agent's FIRST action is to record it here (this file is the durable form —
 session memory is not), then act on it.
 
@@ -57,6 +56,7 @@ grep it by `MA-nnn` when you need one; do not read it whole.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-449 | 仅 auto-manual PR #1756（head `chore/retire-legacy-template-workflows`，含本登记）：保留已审的八个 legacy 参数/RST 自动构建工作流退役改动，并修正构建指南两处及工作流指南一处退役说明，明确写稿主线在 Hello-Docs-Review，冻结 `manual_sources` 与共享 `ComponentSpec` 属于网页转换/发布链路，审核稿转网页状态以定位文档为准。允许以普通合并同步最新 main、处理本范围冲突并补必要验证；最终 head 的全部适用检查须成功（含非必需项，pending/queued 不算绿；仅现有仓库分面守卫明确不适用的 business-content 跳过项除外），且无 changes-requested 或未解决评审线程，方可 squash 合入、删除远端 head 并回读 main SHA。合入后确认对应主干提交的 Sync Hello-Docs Mirror 正式同步成功，核对两路实际提交、退役工作流及三处说明同步、受保护内容目录保留。不含其它 PR、扩大退役范围、重启旧队列或飞书/Base/源表/队列线上写入。 | 「把那三处文案改准确，授权你等全部检查全绿后按 merge_authorizations.md 协议合入 #1756，并确认镜像同步成功。」2026-11-17，操作者在本会话直接下达 | #1756 合入并完成主干镜像同步核验，或 PR 关闭，或操作者撤销 | 生效（推送后生效） |
 | MA-448 | 仅以下两项，按顺序：① auto-manual #1752（head `feat/product-matrix-cells`，「feat(product-matrix): add cells and value ids to the snapshot (v1.1)」，含本登记，并把已完成的 MA-445 移入归档）；② 私有镜像仓库 Hello-Docs 中刷新产品信息矩阵快照的一个纯数据 PR：仅 `docs/knowledge/` 下的文件、不含代码，条数与操作者确认的试运行一致；② 须在 ① 合入 main 且镜像已带有接受 schema v1.1 的读取器之后方可合入。允许 ① 以普通合并提交同步最新 main、处理登记漂移并补必要验证；每个 PR 的最终 head 每项检查成功（含非必需项，pending/queued 不算绿；仓库守卫预期跳过的检查除外），无 changes-requested 或未解决评审线程后由编排会话 squash 合入、删除远端 head 并回读 main SHA。不含其它 PR（包括 MA-446 的门户四个 PR）、线上多维表写入、workflow、依赖与公开 CLI 改动。 | 「全部合入」2026-11-17，操作者在编排会话回答列出门户四个页面 PR（已登记为 MA-446）、#1752 及矩阵窗口试运行之后的一次快照刷新的提问；随后操作者在矩阵窗口对该试运行回答「确认刷新」（2026-11-17） | 两项均合入并回读 main SHA，或 2026-11-18 结束，以先到者为准；或操作者撤销 | 生效（推送后生效） |
 | MA-447 | 仅本会话三个 P2 工程 auto-manual PR：#1754（head `feat/web-ir-multilingual-qc-and-attribution`）、#1755（head `feat/manual-knowledge-ir-native-all-regions`）、#1753（head `feat/skill-web-manual-agent-authoring`，含本登记，并把已完成的 MA-435 移入归档）。三单相互独立、无先后顺序要求；允许各 PR 同步最新 main、处理主干登记漂移并补必要验证；各 PR 最终 head 的全部适用检查须成功（含非必需项，pending/queued 不算绿；仅现有仓库分面守卫明确预期的 business-content 跳过项除外），且无 changes-requested 或未解决评审线程，方可 squash 合入并删除远端 head、回读 main SHA。不含其它 PR、飞书/Base/源表/队列线上写入，以及这三个 PR 已审范围以外的改动。 | 「授权合入」2026-11-17（本会话，操作者在审阅 P2 三单说明后直接下达） | 三个 PR 全部合入并回读 main SHA，或操作者撤销 | 生效（推送后生效） |
 | MA-446 | 仅门户窗口的四个 PR，在 #1748（MA-445）合入之后按此顺序：① #1743（head `feat/rtd-product-library`）：产品库；② #1744（head `feat/rtd-product-profile`）：产品档案；③ #1745（head `feat/rtd-product-compare`）：产品对比与参数表；④ #1749（head `feat/rtd-front-home`）：页面内改动（标题下数量与日期、语料库方案甲与「Agent 怎样用这份语料库」卡片、产品知识页脚声明删除、产品库 `?q=`）。允许每个 PR 以普通合并提交同步最新 main、把叠放 PR 的 base 改为 main、在本范围内解决冲突并适配新外壳、补必要的测试与文档、解除 Draft；每个 PR 的最终 head 每项检查成功（含非必需项，pending/queued 不算绿；工程仓库的 business-content 按仓库守卫预期跳过），无 changes-requested 或未解决评审线程后 squash 合入、删除远端 head 并回读 main SHA。不含其它 PR（包括 #1752 与快照刷新）、线上多维表写入、workflow、依赖与公开 CLI 改动。 | 「就这样 合入吧」2026-11-17，操作者在门户窗口看过产品档案页等截图后直接下达 | 四个 PR 均合入并回读 main SHA，或 PR 关闭，或操作者撤销 | 生效（推送后生效） |
