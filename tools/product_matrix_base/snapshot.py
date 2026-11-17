@@ -123,13 +123,14 @@ def _owner(row: dict[str, Any]) -> str:
 
 
 def _value(row: dict[str, Any]) -> dict[str, Any]:
-    from tools.product_matrix_base.cells import value_id
+    from tools.product_matrix_base.cells import split_derived, value_id
 
     return {"id": value_id(_text(row.get("事实键"))), "product": _text(row.get("产品键")), "parameter": _text(row.get("属性键")),
             "source": source_id(_text(row.get("来源键"))), "condition": _single(row.get("条件")),
-            "printed": _single(row.get("原文")), "number": _single(row.get("数值")), "text": _single(row.get("文本值")),
+            "printed": split_derived(row.get("原文"))[0], "derived": split_derived(row.get("原文"))[1],
+            "number": _single(row.get("数值")), "text": _single(row.get("文本值")),
             "printed_unit": _single(row.get("原单位")), "qualifier": _single(row.get("限定")),
-            "position": _single(row.get("来源位置")), "state": _single(row.get("核实状态")) or "候选",
+            "position": split_derived(row.get("来源位置"))[0], "state": _single(row.get("核实状态")) or "候选",
             "effective_from": _date(row.get("生效起")), "effective_to": _date(row.get("生效止")),
             "recorded": _date(row.get("记录时间")), "current": bool(row.get("当前值")), "conflict": bool(row.get("冲突"))}
 

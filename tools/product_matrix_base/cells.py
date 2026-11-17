@@ -34,6 +34,18 @@ def cell_condition(condition: str) -> str | None:
     return found.group(1).upper() if found else None
 
 
+DERIVED = re.compile(r"^派生[:：]\s*")  # the loader's marker on a value derived from several printed rows
+
+
+def split_derived(original: Any) -> tuple[str | None, bool]:
+    """A fact's 原文 for pages: the text without the loader's 「派生:」 marker, and whether it was derived."""
+    text = _text(original)
+    if not text:
+        return None, False
+    found = DERIVED.match(text)
+    return (text[found.end():] or None, True) if found else (text, False)
+
+
 def _plain(number: Any) -> str:
     """A number in plain decimal notation (never 1e-07), without trailing zeros."""
     if isinstance(number, float):
@@ -73,7 +85,8 @@ def _one(facts: list[dict[str, Any]], attribute: dict[str, Any], by_source: dict
     return {"display": display_text(display, numeric, unit),
             "number": None if skip_reason(best, unit) else _number(best.get("数值")),
             "text": _text(best.get("文本值")) or None, "unit": unit,
-            "printed": _text(best.get("原文")) or None, "printed_unit": _text(best.get("原单位")) or None,
+            "printed": split_derived(best.get("原文"))[0], "derived": split_derived(best.get("原文"))[1],
+            "printed_unit": _text(best.get("原单位")) or None,
             "source": source_id(_text(best.get("来源键"))), "value": value_id(_text(best.get("事实键"))),
             "verified": _state(best) == "已核实",
             "sources_disagree": len({_same_value(f) for f in ranked}) > 1,  # within this cell only
@@ -145,5 +158,5 @@ def check_references(document: dict[str, Any]) -> None:
                         f"cell values, {repeated} repeated candidates, {sourceless} cells whose source has no row")
 
 
-__all__ = ["SnapshotReferenceError", "TEST_CONDITION", "build_cells", "cell_condition", "check_references", "display_text",
+__all__ = ["DERIVED", "SnapshotReferenceError", "TEST_CONDITION", "split_derived", "build_cells", "cell_condition", "check_references", "display_text",
            "reference_rows", "value_id"]

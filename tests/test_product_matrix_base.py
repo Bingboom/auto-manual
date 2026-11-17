@@ -416,6 +416,14 @@ class CellsTest(unittest.TestCase):
         self.assertEqual((cell["number"], cell["verified"], cell["candidates"]),
                          (333, True, [cells.value_id("s"), cells.value_id("w")]))
 
+    def test_the_derived_marker_stays_out_of_printed_text(self):
+        self.assertEqual([cells.split_derived(t) for t in ("派生: 3 × AC", "派生：1 × USB-A", "AC Output: 3", "", None)],
+                         [("3 × AC", True), ("1 × USB-A", True), ("AC Output: 3", False), (None, False), (None, False)])
+        facts = [{"事实键": "d", "产品键": "P/US", "属性键": "ac_input", "来源键": "web/a", "文本值": "3 × AC",
+                  "原文": "派生: 3 × AC"}]
+        [cell] = self.build(facts)
+        self.assertEqual((cell["display"], cell["printed"], cell["derived"]), ("3 × AC", "3 × AC", True))
+
     def test_condition_names_match_without_word_boundaries(self):
         self.assertEqual([cells.cell_condition(c) for c in ("STC条件", "NOCT: 800W/m²", "BNPI", "BNPIX", "to 70% capacity",
                                                             "stc")],
