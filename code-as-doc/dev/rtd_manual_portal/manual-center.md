@@ -65,14 +65,14 @@ region selector, with no internal knowledge links or 知识库 / 说明书资料
 In the combined (private) role the root gets the full internal shell, so a reader
 can return to the knowledge base: the same sidebar groups as internal pages and the
 switch, with 说明书资料库 marked selected. Internal pages (since step 12, see
-[asset-layers.md](asset-layers.md)) open with 首页 and 资产 · 按优先级 (产品信息,
-内容与表现, 视觉媒体, 语言, numbered) before 说明书, then 生产与方向 (说明书工作台,
-系统建设) and 参考 (市场与政策, 设计规范), plus the switch. 产品信息 stays current on
-its three tabs (产品矩阵, 属性字典, 产品知识). Their breadcrumb section is 知识库,
+[asset-layers.md](asset-layers.md#navigation); regrouped by the front cleanup of
+2026-11-17) open with 首页 and 资产 (产品信息, 产品知识, 语料库) before 说明书, then 参考
+(市场与政策), then 维护 (说明书工作台, 内容与表现, 视觉媒体, 系统建设, 设计规范) as one
+bottom group, collapsed by default and open on its own pages, plus the switch. Their breadcrumb section is 知识库,
 and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer in
 both roles. Every other sidebar entry is a page and carries
-`aria-current="page"` on that page; 分享资料 and 最近更新 are sections of the
-知识库首页 (`workspace/index.html#shares`, `#updates`), not sidebar entries.
+`aria-current="page"` on that page; 分享资料 is a link on the
+知识库首页 (`workspace/index.html#shares`), not a sidebar entry.
 Optional entries follow the same rules as before: 系统建设, 设计规范 and
 产品矩阵 only when their context builds (each computed once per build and shared
 with the sidebar). Page stylesheets style only what
@@ -85,8 +85,7 @@ The 系统建设 and 说明书工作台 pages share the page tabs (`.page-tabs` 
 panels, so without JavaScript every panel shows; any in-page link or URL hash that
 points inside a panel opens that panel, and any collapsed section around it.
 系统建设 opens with the 阶段门 stepper (G1–G3 with the current gate filled, then a
-接下来 line and the folded gates) above three tabs: 当前工作 (正在做, the same
-list as 知识库首页, and the focus lanes), 能力与架构 (capability map, production flow, 工作入口, architecture,
+接下来 line and the folded gates) above three tabs: 当前工作 (正在做 and the focus lanes), 能力与架构 (capability map, production flow, 工作入口, architecture,
 language assets, skills and engineering scale) and 来源与演变 (data sources, then
 the system's evolution). The former tab ids (`#tab-architecture`, `#tab-corpus`,
 `#tab-tooling`, `#tab-evolution`) stay on their sections. 说明书工作台 opens with
@@ -129,8 +128,8 @@ Inside the shell the root page has these bounded zones on one container width
    and series hide instead. In the private role a closing line names the
    source (the 网页文档 table, the same grouping as 产品矩阵).
 5. **网页说明书的定位与价值** (white band, after the catalog so the first screen stays search):
-   reader-facing copy in the public role; in the private role the themes with status tags,
-   linking to their cards on 知识库首页. See [网页说明书的定位与价值](web-manual-value.md).
+   reader-facing copy in both roles (since the front cleanup of 2026-11-17 the private
+   role no longer shows status tags or links into 知识库首页). See [网页说明书的定位与价值](web-manual-value.md).
 6. **Footer** (light grey band), which also holds the Read the Docs ad placement.
 
 Categories and series are the 产品类别 and 产品系列 of each model's 项目号 row

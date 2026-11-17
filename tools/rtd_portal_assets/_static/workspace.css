@@ -138,3 +138,13 @@
   #home .updates-list strong{white-space:normal}
   #home .updates-list small,#home .updates-list .ic-chevron{display:none}
 }
+/* Front cleanup (2026-11-17): three asset cards and the entrances, nothing else. */
+#home .home-front-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+#home .home-front-card{background:var(--surface);gap:10px}
+#home .home-front-line{font-size:13px;line-height:20px;color:var(--app-muted)}
+#home .home-front-fig{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+#home .home-front-fig b{font-size:var(--text-2xl);line-height:28px;font-weight:700;font-variant-numeric:tabular-nums}
+#home .home-front-fig b.is-pending{font-size:15px;color:var(--app-muted)}
+#home .home-front-fig small{font-size:12px;color:var(--app-muted)}
+#home .home-front-fig time{margin-left:auto;font-size:12px;color:var(--app-faint)}
+#home .home-front-doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}

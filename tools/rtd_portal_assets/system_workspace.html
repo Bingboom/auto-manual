@@ -358,8 +358,8 @@
     <div class="sw-subpanel" id="tab-corpus">
     <section class="sw-section sw-box" id="language-assets">
       <h2>语言资产<small>已移到资产页</small></h2>
-      <p class="sw-moved">句对、术语、语言覆盖和术语规则都在 <a href="{{ pathto('assets/language/index') }}">语言</a> 页（资产 4）{% if corpus %}，最近一次语料导出 {{ corpus.exported_at|e }}{% endif %}。</p>
-      <p><a class="sw-moved-link" href="{{ pathto('assets/language/index') }}">打开语言页 →</a></p>
+      <p class="sw-moved">句对和术语的数字在 <a href="{{ pathto('assets/language/index') }}">语料库</a> 页{% if corpus %}，最近一次语料导出 {{ corpus.exported_at|e }}{% endif %}。</p>
+      <p><a class="sw-moved-link" href="{{ pathto('assets/language/index') }}">打开语料库 →</a></p>
     </section>
     </div>
     {%- endif %}

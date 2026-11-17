@@ -20,8 +20,8 @@ the positioning document cited beside it.
   验收 the gate and starts the next; the folded gates (IDML, G4) follow on the same
   line. The rows themselves stay in the ledger and the lane cards.
 - **「当前工作」** (`#tab-progress`, kept): the focus note, **正在做** (`#now-next`, kept
-  for links): `focus.doing` in `system_workspace.yaml`, the one list 知识库首页 shows
-  too. Each item is the operator's plain words (a bold lead and one line, such as
+  for links): `focus.doing` in `system_workspace.yaml` (知识库首页 no longer
+  repeats it since 2026-11-17). Each item is the operator's plain words (a bold lead and one line, such as
   「网页化：印刷版说明书持续转成网页版」) with the in-progress mark and a link to the
   lane it belongs to, which must be a lane marked `now`; `check` rejects any other
   lane and the retired `now_next.now_labels`. Then the lanes
@@ -218,7 +218,7 @@ manuals; the manuals-only public project leaves it out (see
 login required), but the operator can make it public at any time, and
 `noindex` is not access control. The contract and the page therefore hold only
 publishable facts. Gap narratives and resource needs belong to the Feishu
-internal page, not this file. The sidebar lists it under 生产与方向 only when
+internal page, not this file. The sidebar lists it under 维护 only when
 the page was built.
 
 ### Current focus
