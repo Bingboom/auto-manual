@@ -82,6 +82,7 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
     """
     root = repo_root()
     publications = [item for product in products for item in product["publications"]]
+    labels = dict(settings.get("language_labels") or {})
     extra = curated(assets, root, system, warn)
     chips = extra["chips"]
     media = {**layers.media_view(root, srcdir, publications, build_date=build_date), "chip": chips["media"]}
