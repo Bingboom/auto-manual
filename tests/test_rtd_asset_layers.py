@@ -99,19 +99,6 @@ class LayerViewTests(unittest.TestCase):
                          [(1, "产品信息"), (2, "内容与表现"), (3, "视觉媒体"), (4, "语料库")])
         self.assertEqual(al.layer_entries(False)[0]["page"], "products/knowledge")
 
-    def test_content_view_reads_chapters_by_language(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            templates = Path(tmp)
-            for lang, stems in {"en": ["11_warranty", "02_whats_in_the_box"], "de": ["11_warranty"]}.items():
-                (templates / "page_shared" / lang).mkdir(parents=True)
-                for stem in stems:
-                    (templates / "page_shared" / lang / f"{stem}.rst").write_text("x", encoding="utf-8")
-            view = al.shared_chapters(templates)
-            self.assertIsNone(al.shared_chapters(templates / "nowhere"))
-        self.assertEqual((view["pages"], view["languages"]), (3, ["de", "en"]))
-        self.assertEqual([(c["label"], c["langs"]) for c in view["chapters"]],
-                         [("包装清单", ["en"]), ("保修", ["de", "en"])])
-
     def test_corpus_page_without_the_snapshot_says_so_plainly(self):
         view = al.language_view(None)
         self.assertIsNone(view["corpus"])
@@ -291,7 +278,7 @@ class PositioningQuoteTests(unittest.TestCase):
         self.assertIn(yaml_value("boundary"), joined)
         self.assertIn(data["main_line"], joined)
         # The operator's value statement, both of its sentences, as §4.1 carries it.
-        for sentence in data["product_value"].split("。")[:-1]:
+        for sentence in statement().split("。")[:-1]:
             self.assertIn(sentence + "。", joined)
         self.assertIn(sw.load_contract(ASSETS / sw.CONTRACT_NAME)["hero"]["subtitle"], joined)
 
@@ -300,6 +287,13 @@ def yaml_value(key: str) -> str:
     import yaml
 
     return yaml.safe_load((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8"))["path"][key]
+
+
+def statement() -> str:
+    """The operator's value statement, read from the data file itself: no code loads it any more."""
+    import yaml
+
+    return yaml.safe_load((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8"))["product_value"].strip()
 
 
 class CuratedTests(unittest.TestCase):
@@ -316,13 +310,14 @@ class CuratedTests(unittest.TestCase):
 class ProductValueTests(unittest.TestCase):
     def test_the_operator_statement_is_shown_on_no_page(self):
         # Operator, 2026-11-17: 「我写的那段价值定位不用显示在页面上」. The data file keeps it, once.
-        data = ald.load_layer_data(ASSETS)
-        value = data["product_value"]
+        value = statement()
+        self.assertTrue(value)
         self.assertEqual((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8").count(value), 1)
+        self.assertNotIn(value, json.dumps(ald.load_layer_data(ASSETS), ensure_ascii=False))
         cards = json.dumps(ap.front_cards({"facts": {"products": 3}, "built_on": "2026-11-17"}, None, None),
                            ensure_ascii=False)
         self.assertNotIn(value, cards)
-        page = render("product_matrix.html", product={"value": value}, built=False, problem="还没有产品数据。")
+        page = render("product_matrix.html", built=False, problem="还没有产品数据。")
         self.assertNotIn(value[:12], page.get_text())
         self.assertEqual(page.select_one(".fr-head").get_text(), "产品库")
 

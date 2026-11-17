@@ -58,7 +58,7 @@ class CopyTests(unittest.TestCase):
         self.assertEqual(wmv.theme_status(["available", "planned"]), ("partial", "部分可用"))
 
     def test_public_copy_is_the_approved_reader_text_only(self):
-        band = wmv.band_context(wmv.load_value(ASSETS), internal=False)
+        band = wmv.band_context(wmv.load_value(ASSETS))
         self.assertEqual(set(band), {"internal", "title", "lead", "points"})
         self.assertEqual(band["title"], "网页说明书的定位与价值")
         self.assertEqual(band["lead"], "网页说明书基于印刷版 PDF 转录，提供更方便查找和阅读的网页版本。")
@@ -125,21 +125,10 @@ class ValidationTests(unittest.TestCase):
 
 class RenderTests(unittest.TestCase):
     def test_public_band_has_no_links_statuses_or_eyebrow(self):
-        band = render("_value_band.html", value=wmv.band_context(wmv.load_value(ASSETS), internal=False))
+        band = render("_value_band.html", value=wmv.band_context(wmv.load_value(ASSETS)))
         self.assertEqual(band.h2.get_text(), "网页说明书的定位与价值")
         self.assertEqual(len(band.select(".value-item")), 3)
         self.assertEqual(band.select("a, .value-status, .value-eyebrow"), [])
-
-    def test_internal_band_links_each_theme_to_its_card_on_the_knowledge_home(self):
-        band = render("_value_band.html", value=wmv.band_context(wmv.load_value(ASSETS), internal=True))
-        self.assertEqual(band.h2.get_text(), "人能读，AI 能读，团队能持续复用")
-        self.assertEqual([(a["href"], a.select_one(".value-text").get_text()) for a in band.select("a.value-item")], [
-            (f"{wmv.HOME}#reading", "统一呈现、扫码直达、快速查阅"),
-            (f"{wmv.HOME}#machine", "机读导出、AI 问答、市场覆盖"),
-            (f"{wmv.HOME}#governance", "版本追溯、读者反馈、质量改进"),
-            (f"{wmv.HOME}#knowledge", "规范沉淀、可信复用、辅助创作"),
-        ])
-        self.assertEqual(band.select_one(".value-more a")["href"], f"{wmv.HOME}#value")
 
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
