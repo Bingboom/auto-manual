@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="知识库首页：产品信息、产品知识、语料库，说明书资料库与市场与政策。">
-  <title>知识库</title>
+  <meta name="description" content="知识资产：产品信息矩阵、产品知识、语料库，说明书资料库与市场与政策。">
+  <title>知识资产</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script, icon with context %}
-{#- 知识库首页 (front cleanup, 2026-11-17): for product colleagues. The title and one line, the three asset cards
+{#- 知识资产 (the 知识库首页; layout of 2026-11-17: the first page of the 知识资产 section): for product colleagues. The title and one line, the three asset cards
     (产品信息, 产品知识, 语料库; tools/rtd/asset_pages.py front_cards), then the entrances to 说明书资料库 and 市场与政策.
     Management text (主线, 正在做, 定位与价值 statuses, 最近更新) is not on this page; 系统建设 keeps the main line. -#}
 {#- An asset card: name, one line, one figure with its date (待统计 when the figure cannot be read). -#}
@@ -29,8 +29,8 @@
   <main id="home">
     <section class="intro page-head">
       <div>
-        <h1>知识库</h1>
-        <p class="home-line">{% if value %}{{ value.tagline|e }}{% else %}产品与市场的知识、说明书生产的工作台与进度，从这里进入。{% endif %}</p>
+        <h1>知识资产</h1>
+        <p class="home-line">让产品信息和生产资料持续积累、关联和复用。</p>
       </div>
     </section>
 
