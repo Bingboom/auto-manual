@@ -18,7 +18,7 @@ from typing import Any
 
 from tools.rtd.product_library import MARKET_ORDER, OTHER_CATEGORY, UNSORTED_SERIES, has_cells, market_label
 from tools.rtd.product_profile import (
-    HIDDEN_PARAMETERS, compare_key, markets_of, models_of, page_name, parameter_rows, product_name, row_key, sku_date,
+    HIDDEN_PARAMETERS, compare_key, markets_of, models_of, named_parameters, page_name, parameter_rows, product_name, row_key, sku_date,
 )
 
 TABLE_PAGE, TABLE_TEMPLATE = "products/table", "product_table.html"
@@ -41,8 +41,8 @@ def plain_number(number: float | int) -> str:
 def _index(snapshot: dict[str, Any]) -> tuple[dict[str, dict[str, Any]], dict[str, list[dict[str, Any]]],
                                               dict[tuple[str, str], dict[str, Any]]]:
     """Parameters by key, product rows by model (safe codes only), and (product key, row id) → the cell as shown."""
-    parameters = {str(p.get("key")): p for p in snapshot.get("parameters") or []
-                  if isinstance(p, dict) and str(p.get("key")) not in HIDDEN_PARAMETERS}
+    # A parameter without a Chinese name is left out (产品档案 warns about it once per build).
+    parameters = {key: p for key, p in named_parameters(snapshot).items() if key not in HIDDEN_PARAMETERS}
     cells: dict[tuple[str, str], dict[str, Any]] = {}
     for cell in snapshot.get("cells") or []:
         if not isinstance(cell, dict) or str(cell.get("parameter")) not in parameters:
@@ -73,8 +73,10 @@ def _table_rows(models: dict[str, list[dict[str, Any]]], columns: list[dict[str,
                 cells: dict[tuple[str, str], dict[str, Any]]) -> list[dict[str, Any]]:
     rows = []
     for model, market_rows in sorted(models.items()):
-        name, date = product_name(market_rows), sku_date(market_rows)
+        name = product_name(market_rows)
         for row in market_rows:
+            # SKU 创建时间 is per market (契约 §3/§4.1): each row shows its own market's date.
+            date = sku_date([row])
             key, market = row_key(row), str(row.get("market") or "")
             shown = []
             for column in columns:

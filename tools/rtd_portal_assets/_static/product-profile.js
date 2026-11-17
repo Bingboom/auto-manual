@@ -6,7 +6,9 @@
 // globalThis.ProductProfile for tests/product_profile_ui.test.mjs.
 (() => {
   const sourceTitle = label => `${label || '数值'} · 出处`;
-  globalThis.ProductProfile = {sourceTitle};
+  // The head's SKU 创建时间 is the chosen market's own: show that market's date, hide the others.
+  const showDates = (dates, code) => dates.forEach(date => { date.hidden = date.dataset.marketDate !== code; });
+  globalThis.ProductProfile = {sourceTitle, showDates};
 
   if (typeof document === 'undefined') return;
   const panels = [...document.querySelectorAll('[data-market-panel]')];
@@ -22,6 +24,7 @@
   };
   const showMarket = code => {
     panels.forEach(panel => { panel.hidden = panel.dataset.marketPanel !== code; });
+    showDates([...document.querySelectorAll('[data-market-date]')], code);
     tabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.marketTab === code)));
     document.querySelectorAll('[data-diff-market]').forEach(cell => {
       cell.classList.toggle('is-current', cell.dataset.diffMarket === code);

@@ -87,14 +87,20 @@ class TableTests(unittest.TestCase):
         self.assertEqual(rows[0]["data-project"], "P-FAKE-1")
         self.assertEqual(rows[0].th.a["href"], "products/item/FAKE-B")
         self.assertEqual(rows[2].select("td")[2].get_text(), "未归入")
-        # The SKU date belongs to the project, so every market row of the model shows it; a model without one: 暂无.
-        self.assertEqual([row.select("td")[3].get_text() for row in rows], ["2021-05", "2021-05", "暂无"])
+        # SKU 创建时间 is each market's own: FAKE-B's JP row has none, so it reads 暂无 (never the US date).
+        self.assertEqual([row.select("td")[3].get_text() for row in rows], ["2021-05", "暂无", "暂无"])
         self.assertEqual(rows[0].select("td")[3]["data-sort"], "2021-05")
         self.assertEqual(portable.select_one(".pt-badge").get_text(), "各说明书写法不一致")
         self.assertTrue(page.select_one("[data-pt-download]").has_attr("hidden"))
         text = page.select_one("main").get_text()
         for word in ("capacity_wh", "snapshot", "未核实", "候选", "无数值"):
             self.assertNotIn(word, text)
+
+    def test_each_market_row_shows_its_own_sku_date(self):
+        products = [product("FAKE-B", "US", first_sku_created="2021-05-01"),
+                    product("FAKE-B", "JP", first_sku_created="2020-02-03", first_sku_created_upper_bound=True)]
+        rows = pt.table_view({**SNAPSHOT, "products": products}, CATALOG)["categories"][-1]["rows"]
+        self.assertEqual([(r["market"], r["sku_date"]) for r in rows], [("US", "2021-05"), ("JP", "不晚于 2020-02")])
 
     def test_plain_numbers_and_a_number_cell_without_a_number(self):
         self.assertEqual([pt.plain_number(n) for n in (333, 333.0, 2.5, 0.25)], ["333", "333", "2.5", "0.25"])

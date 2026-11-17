@@ -108,8 +108,9 @@ class ProfileTests(unittest.TestCase):
         self.assertEqual(list(built), ["products/item/FAKE-1", "products/item/FAKE-2"])
         self.assertEqual(len(warnings), 4)
         one = built["products/item/FAKE-1"]
-        self.assertEqual((one["name"], one["project"], one["classes"], one["sku_date"]),
-                         ("Fake Station 1", "P-FAKE-1", ["便携储能", "标准", "1度电"], "2021-03"))
+        self.assertEqual((one["name"], one["project"], one["classes"]), ("Fake Station 1", "P-FAKE-1", ["便携储能", "标准", "1度电"]))
+        # SKU 创建时间 is each market's own; the JP row has none.
+        self.assertEqual(one["sku_dates"], [{"code": "US", "text": "2021-03"}, {"code": "JP", "text": ""}])
         self.assertEqual([m["label"] for m in one["markets"]], ["美规", "日规"])
         two = built["products/item/FAKE-2"]
         self.assertEqual((two["name"], two["project"], two["classes"], two["groups"]), ("FAKE-2", "", [], []))
@@ -127,7 +128,7 @@ class ProfileTests(unittest.TestCase):
         sources = one["cells"]["US|capacity_wh|"]["sources"]
         self.assertEqual([s["printed"] for s in sources], ["Capacity: 1000Wh", "Capacity: 1002Wh"])
         self.assertEqual(sources[0], {"manual": "《Fake Station 1 说明书》", "market": "美规", "language": "English",
-                                      "date": "", "position": "SPECIFICATIONS > GENERAL",
+                                      "date": "", "position": "SPECIFICATIONS > GENERAL", "anchor": "",
                                       "printed": "Capacity: 1000Wh", "derived": False,
                                       "doc": "FAKE-1/US/en/md/manual_us"})
         self.assertEqual(sources[1]["date"], "2026-01-02")
@@ -166,7 +167,11 @@ class TemplateTests(unittest.TestCase):
         self.assertEqual(page.select_one(".fr-head h1").get_text(), "Fake Station 1")
         lines = page.select(".fr-head p")
         self.assertEqual(len(lines), 1)
-        self.assertEqual(lines[0].get_text(), "FAKE-1 · 便携储能 · 标准 · 1度电 · P-FAKE-1 · SKU 创建时间 2021-03")
+        visible = "".join(t for t in lines[0].find_all(string=True) if not t.find_parent(attrs={"hidden": True}))
+        self.assertEqual(visible, "FAKE-1 · 便携储能 · 标准 · 1度电 · P-FAKE-1 · SKU 创建时间 2021-03")
+        # The JP date (暂无) waits, hidden, for the market switch.
+        self.assertEqual([(d["data-market-date"], d.get_text(), d.has_attr("hidden")) for d in lines[0].select("[data-market-date]")],
+                         [("US", "2021-03", False), ("JP", "暂无", True)])
         self.assertNotIn("上市时间", page.get_text())
         us = page.select_one('[data-market-panel="US"]')
         button = us.select_one(".pf-val")
@@ -195,6 +200,36 @@ class TemplateTests(unittest.TestCase):
         self.assertIsNone(card[0].blockquote)
         self.assertEqual(card[1].blockquote.get_text(), "Capacity: 1002Wh")  # an older value without the field
         self.assertNotIn("派生", page.get_text())
+
+    def test_each_market_shows_its_own_sku_date(self):
+        # The markets' months differ, and one is only an upper bound: the page never picks one for the model.
+        products = [{**PRODUCTS[0], "first_sku_created": "2021-03-14"},
+                    {**PRODUCTS[1], "first_sku_created": "2020-11-02", "first_sku_created_upper_bound": True}, PRODUCTS[2]]
+        one = pages({**SNAPSHOT, "products": products})["products/item/FAKE-1"]
+        self.assertEqual(one["sku_dates"], [{"code": "US", "text": "2021-03"}, {"code": "JP", "text": "不晚于 2020-11"}])
+
+    def test_an_anchor_leaves_the_position_and_joins_the_manual_link(self):
+        anchored = {**SNAPSHOT, "values": [{**VALUES[0], "position": "SPECIFICATIONS > GENERAL #native-specifications"},
+                                           *VALUES[1:]]}
+        page = render(pages(anchored)["products/item/FAKE-1"])
+        card = page.find(id=page.select_one('[data-market-panel="US"] .pf-val')["data-sources"]).select(".pf-src")[0]
+        self.assertEqual(card.select("p")[1].get_text(), "SPECIFICATIONS > GENERAL")
+        self.assertEqual(card.a["href"], "FAKE-1/US/en/md/manual_us#native-specifications")
+        self.assertNotIn("#native", page.select_one("main").get_text())
+
+    def test_a_parameter_without_a_chinese_name_is_skipped_with_a_warning(self):
+        warnings = []
+        unnamed = {**SNAPSHOT, "parameters": [{**PARAMETERS[0], "name_zh": ""}, *PARAMETERS[1:]]}
+        built = pages(unnamed, warn=lambda *args: warnings.append(args))
+        one = built["products/item/FAKE-1"]
+        labels = [row["label"] for group in one["groups"] for row in group["rows"]]
+        self.assertNotIn(PARAMETERS[0]["key"], labels)
+        self.assertTrue(any("没有中文名" in str(w[0]) for w in warnings))
+        render(one)  # the page still renders
+        self.assertEqual(pp.matrix_extras({"categories": [{"rows": [{"products": [
+            {"key": "p", "rows": [{"model": "FAKE-1"}], "detail": {"pairing": {"named": [{"key": "x"}],
+                                                                                "named_by": [{"name": "n"}]}}}]}]}]}),
+            {"FAKE-1": {"features": None, "pairing": None, "guides": []}})
 
     def test_snapshot_text_is_escaped(self):
         nasty = {**SNAPSHOT, "values": [{**VALUES[0], "printed": 'x</div><script>&"'}],
