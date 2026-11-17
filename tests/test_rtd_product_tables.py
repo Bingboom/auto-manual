@@ -65,7 +65,11 @@ class TableTests(unittest.TestCase):
                          [("FAKE-B", "US", "P-FAKE-1"), ("FAKE-B", "JP", "P-FAKE-1"), ("FAKE-A", "US", "")])
         first = portable["rows"][0]
         self.assertEqual((first["name"], first["sku_date"], first["market_label"]), ("Name FAKE-B", "2021-05", "美规"))
-        self.assertEqual(first["cells"][0], {"text": "1,000 Wh", "conflict": False, "sort": 1000})
+        # A number column's head carries the unit, so its cells show the bare number; text columns show display.
+        self.assertEqual(first["cells"][0], {"text": "1000", "conflict": False, "sort": 1000})
+        self.assertEqual(portable["rows"][1]["cells"][0]["text"], "1000")  # 1000.0: no trailing .0
+        self.assertEqual(first["cells"][1]["text"], "LFP")
+        self.assertEqual(view["categories"][0]["rows"][0]["cells"][1]["text"], "100")
         self.assertEqual(first["cells"][1]["conflict"], True)
         self.assertEqual(portable["rows"][2]["cells"][1]["text"], "")  # display null: 暂无
         self.assertEqual((portable["projects"], portable["unassigned"], portable["series"]),
@@ -91,6 +95,15 @@ class TableTests(unittest.TestCase):
         text = page.select_one("main").get_text()
         for word in ("capacity_wh", "snapshot", "未核实", "候选", "无数值"):
             self.assertNotIn(word, text)
+
+    def test_plain_numbers_and_a_number_cell_without_a_number(self):
+        self.assertEqual([pt.plain_number(n) for n in (333, 333.0, 2.5, 0.25)], ["333", "333", "2.5", "0.25"])
+        # A number column's cell whose number is missing (a range printed as text) shows the display text in full.
+        snapshot = {**SNAPSHOT, "cells": [cell("FAKE-B/US", "capacity_wh", "1,000 Wh", number=1000),
+                                          cell("FAKE-A/US", "capacity_wh", "500–600 Wh")]}
+        rows = pt.table_view(snapshot, CATALOG)["categories"][-1]["rows"]
+        self.assertEqual({r["model"]: r["cells"][0]["text"] for r in rows if r["market"] == "US"},
+                         {"FAKE-B": "1000", "FAKE-A": "500–600 Wh"})
 
     def test_no_products_or_no_cells_say_so(self):
         empty = pt.table_view({**SNAPSHOT, "products": []}, CATALOG)

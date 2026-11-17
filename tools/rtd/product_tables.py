@@ -33,6 +33,11 @@ def _number(cell: dict[str, Any]) -> float | int | None:
     return number if isinstance(number, (int, float)) and not isinstance(number, bool) else None
 
 
+def plain_number(number: float | int) -> str:
+    """A number as 参数表 shows it: no trailing .0, no unit (the column head names it)."""
+    return str(int(number)) if float(number).is_integer() else repr(float(number))
+
+
 def _index(snapshot: dict[str, Any]) -> tuple[dict[str, dict[str, Any]], dict[str, list[dict[str, Any]]],
                                               dict[tuple[str, str], dict[str, Any]]]:
     """Parameters by key, product rows by model (safe codes only), and (product key, row id) → the cell as shown."""
@@ -75,7 +80,9 @@ def _table_rows(models: dict[str, list[dict[str, Any]]], columns: list[dict[str,
             for column in columns:
                 cell = cells.get((key, column["id"])) or {}
                 number = cell.get("number")
-                shown.append({"text": cell.get("text", ""), "conflict": bool(cell.get("conflict")),
+                # A number column's head carries the unit, so its cells show the bare number (the CSV too).
+                text = plain_number(number) if column["numeric"] and number is not None else cell.get("text", "")
+                shown.append({"text": text, "conflict": bool(cell.get("conflict")),
                               "sort": number if number is not None else cell.get("text", "")})
             rows.append({"model": model, "name": name, "page": page_name(model), "market": market,
                          "market_label": market_label(market), "project": str(row.get("project") or ""),

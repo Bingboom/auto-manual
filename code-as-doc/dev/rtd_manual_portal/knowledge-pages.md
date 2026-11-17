@@ -518,7 +518,9 @@ product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 (`_produ
   the operator's 产品矩阵 frame, named 参数表 so it is not confused with 产品库): one table
   per category, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
   市场, 项目 (未归入 when none), SKU 创建时间, then the (parameter, condition) columns that
-  category's products state, in page order (a figure column shows its unit). With JavaScript:
+  category's products state, in page order. A figure column's head names its unit and its cells
+  show the bare number (the cell's `number`, no trailing .0), so the downloaded CSV holds plain numbers; a cell
+  without a number shows its `display` in full. 产品档案 and 产品对比 show `display` as it is. With JavaScript:
   category pills, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
   project last), sorting by any column (in a number column: numbers, then cells holding
   only text, then 暂无, in either direction) and 下载表格: the visible rows of the open
