@@ -27,7 +27,7 @@
 {{ site_topbar('知识库', '市场与政策') }}
 <main class="market">
 <header class="mp-head">
-  <div class="mp-head-text"><h1>市场与政策</h1><p>各地区的政策变化，对说明书和产品意味着什么。先按主题看，点开一条再看原理、影响和出处。</p></div>
+  <div class="mp-head-text"><h1>市场与政策</h1><p>{{ records|length }} 条资料{% if reviewed %} · 更新于 {{ reviewed|e }}{% endif %}</p></div>
   <div class="mp-head-meta">
     <a href="{{ pathto('products/knowledge') }}">产品知识 →</a>
   </div>

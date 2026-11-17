@@ -428,6 +428,9 @@ address forwards here, and the public manual library never links to it.
   code opens its [产品档案](#产品档案); its tooltip lists its markets. A 产品档案 links
   its project back here as `matrix.html?project=<project>`, which preselects that
   filter and opens the tab holding the first matching chip.
+- **Search.** A search box matches model codes, product names, short names and projects
+  (each chip's `data-search`); `matrix.html?q=<text>` fills it and opens the tab holding
+  the first match. Where the entry to it sits waits for the new site shell.
 - **Filters** (`_static/product-library.js`): 项目 (including 未归入项目 when a model
   has none) and 市场 (美规, 欧规, 日规, 国内, …). They match per model × market row (a
   chip carries its `project|market` pairs): a chip with a row that satisfies every set

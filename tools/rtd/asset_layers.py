@@ -143,9 +143,18 @@ def web_languages(publications: list[dict[str, Any]], labels: dict[str, str]) ->
     return [{"code": code, "label": labels.get(code, code), "versions": count} for code, count in counts.most_common()]
 
 
-def language_view(system: dict[str, Any] | None) -> dict[str, Any]:
-    """语料库: the translation-memory snapshot as 系统建设 reads it (totals, each language's pairs, export date)."""
+def language_view(system: dict[str, Any] | None, labels: dict[str, str] | None = None) -> dict[str, Any]:
+    """语料库: the translation-memory snapshot as 系统建设 reads it (totals, each language's pairs, export date).
+
+    Each language is named as the manual library names it (``language_labels``: English, 日本語); a code the library
+    does not list keeps the snapshot's label; a row's ``manual`` code (``system_workspace.yaml``) maps
+    the translation memory's code to the library's.
+    """
     corpus = (system or {}).get("corpus")
+    if corpus and labels:
+        rows = [{**row, "label": labels.get(str(row.get("manual") or row.get("code")), row["label"])}
+                for row in corpus.get("rows") or []]
+        corpus = {**corpus, "rows": rows}
     tiles = {tile["key"]: tile for tile in (corpus or {}).get("tiles") or []}
     return {**layer("language"), "corpus": corpus, "tiles": tiles}
 

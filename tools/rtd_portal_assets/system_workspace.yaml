@@ -439,6 +439,8 @@ corpus:
   # Counts only, from `python tools/rtd/system_workspace.py corpus-export`
   # (read-only TM read). 每批 TM 写回后由 Workspace Data Refresh 刷新；时限见
   # source_registry.yaml。The snapshot file is named by its `corpus` domain.
+  # `manual`: the manual library's code (settings.json language_labels) where it differs; 语料库 names
+  # each language by that label.
   languages:
     - {code: en, label: 英语}
     - {code: zh, label: 简体中文}
@@ -449,8 +451,8 @@ corpus:
     - {code: it, label: 意大利语}
     - {code: uk, label: 乌克兰语}
     - {code: ko, label: 韩语}
-    - {code: jp, label: 日语}
-    - {code: pt-BR, label: 巴西葡语}
+    - {code: jp, label: 日语, manual: ja}
+    - {code: pt-BR, label: 巴西葡语, manual: pt}
 
 flow:
   - from: 规格书
