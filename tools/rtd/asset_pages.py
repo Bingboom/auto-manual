@@ -59,7 +59,7 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
     tiles = {tile["key"]: tile for tile in (corpus or {}).get("tiles") or []}
     topics = None if learning is None or learning.get("content_missing") else len(learning.get("topics") or [])
     cards = [{"id": "product", "title": "产品信息", "icon": "product", "page": "products/matrix",
-              "line": "已发布网页说明书的产品，按类别和系列排列", "value": facts.get("products"), "unit": "款产品",
+              "line": "按类别、系列和容量找产品", "value": facts.get("products"), "unit": "个产品",
               "date": (matrix or {}).get("built_on") or ""}] if matrix else []
     return cards + [
         {"id": "knowledge", "title": "产品知识", "icon": "chapters", "page": "products/knowledge",

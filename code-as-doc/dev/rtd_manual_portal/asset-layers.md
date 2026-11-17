@@ -48,11 +48,13 @@ authorization numbers, hashes, snapshot names, 建设中 / 已规划 chips, tabs
 unbuilt parts, or provenance and refresh small print. A figure keeps one date
 (截至 …). `front.css` holds their shared head, figure row and bar list.
 
-- **产品信息** (`product_matrix.html`): the title, `product_value` as its lead with
-  no caption, then the matrix (category tabs, product rows, manual links). The
+- **产品信息** opens on **产品库** (`product_matrix.html`, step 13, REV-53): the
+  title, `<n> 个产品 · 更新于 <date>`, then the matrix read from the product-information
+  snapshot; see [knowledge-pages.md](knowledge-pages.md#product-matrix-page). The
   former 规模, 在哪里维护, 被谁使用, 来源与时间 and 质量与缺口 blocks, the kicker, the
   chips, the sub-labels and the page-foot provenance are gone, and so are the
-  属性字典 tab and page and the 待核实与冲突 placeholder.
+  属性字典 tab and page and the 待核实与冲突 placeholder. The approved 产品库 design
+  carries no value statement, so `product_value` is no longer shown.
 - **产品知识** (`product_knowledge.html`): the title, one line, then the topics and
   cases. See [knowledge-pages.md](knowledge-pages.md).
 - **语料库** (`asset_language.html`, `language_view`): the title, one line, the

@@ -130,6 +130,14 @@ class RtdPortalTests(unittest.TestCase):
         share = self.root / "knowledge" / "ai-share"
         share.mkdir(parents=True)
         (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
+        # The product-information snapshot holds private project numbers and values: the public role never reads it.
+        matrix = self.root / "knowledge" / "product-matrix"
+        matrix.mkdir(parents=True)
+        (matrix / "snapshot.json").write_text(json.dumps({
+            "schema": "hello-docs-product-matrix-snapshot/v1", "read_at": "2026-01-02T00:00:00Z",
+            "products": [{"model": "FAKE-SECRET-MODEL", "market": "US", "project": "P-FAKE-SECRET",
+                          "category": "便携储能", "series": "标准", "capacity_tier": "1度电"}]}))
+        (matrix / "README.md").write_text("P-FAKE-SECRET-README")
         with (root / "conf.py").open("a") as conf:
             conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
             conf.write(f"rtd_knowledge_dir = {str(self.root / 'knowledge')!r}\n")
@@ -144,6 +152,14 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assert_public_only(out)
         self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
+        # Nothing of knowledge/product-matrix reaches any public file, by name or by content.
+        for path in out.rglob("*"):
+            self.assertNotIn("product-matrix", path.relative_to(out).as_posix())
+            if path.is_file():
+                text = path.read_bytes().decode("utf-8", errors="ignore")
+                for marker in ("FAKE-SECRET", "hello-docs-product-matrix-snapshot", "product-matrix/snapshot"):
+                    self.assertNotIn(marker, text, path.relative_to(out).as_posix())
+        self.assertFalse((out / "products").exists())
         self.assertIn("说明书资料库", (out / "index.html").read_text())
         shells = [p.relative_to(out).as_posix() for p in out.rglob("*.html")
                   if 'id="app-sidebar"' in p.read_text(errors="ignore")]
@@ -385,10 +401,11 @@ class RtdPortalTests(unittest.TestCase):
         self.assertNotIn('sd-code', workbench)
         self.assertNotIn("Jackery", data_page)
         self.assertTrue((self.root / "after" / "_static" / "system-data.js").is_file())
-        # Without a publish manifest the product matrix and every link to it drop out.
-        self.assertFalse((self.root / "after" / "products" / "matrix.html").exists())
-        self.assertNotIn("products/matrix", workspace)
-        self.assertNotIn("products/matrix", data_page)
+        # Without the product-information snapshot 产品库 still builds and says so plainly, with no figures.
+        library = BeautifulSoup((self.root / "after" / "products" / "matrix.html").read_text(), "html.parser")
+        self.assertEqual(library.select_one("#matrix").get_text(), "还没有产品数据。")
+        self.assertIsNone(library.select_one(".pl-chip, .fr-head p"))
+        self.assertIn('href="../products/matrix.html"', workspace)
         knowledge_page = (self.root / "after" / "products" / "knowledge.html").read_text()
         self.assertIn('href="../index.html"', knowledge_page)
         self.assertIn("返回说明书资料库", knowledge_page)
@@ -432,7 +449,12 @@ class RtdPortalTests(unittest.TestCase):
         share = self.root / "knowledge" / "ai-share"
         share.mkdir(parents=True)
         (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
-        # A publish manifest makes the optional product matrix page build as well.
+        # 产品库 reads the product-information snapshot from the knowledge directory (invented products only).
+        (self.root / "knowledge" / "product-matrix").mkdir(parents=True)
+        (self.root / "knowledge" / "product-matrix" / "snapshot.json").write_text(json.dumps({
+            "schema": "hello-docs-product-matrix-snapshot/v1", "read_at": "2026-01-02T00:00:00Z", "products": [
+                {"model": model, "market": "US", "project": "P-FAKE-1", "category": "便携储能", "series": "标准",
+                 "capacity_tier": "1度电"} for model in ("FAKE-B", "FAKE-A")]}))
         target = {"model": "JE-1000F", "region": "US", "lang": "en", "route": "JE-1000F/US/en/md",
                   "manual": "manual_je1000f_us.md", "version": "9.9", "built_at": "2026-09-20T00:00:00+00:00"}
         (self.root / "publish_manifest.json").write_text(json.dumps({"targets": [target]}))
@@ -474,6 +496,9 @@ class RtdPortalTests(unittest.TestCase):
                          {"index.html": knowledge, "search.html": knowledge, **dict.fromkeys(pages, knowledge)})
         current = BeautifulSoup((out / "search.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([a.span.get_text() for a in current.select('a.app-nav-link[aria-current="page"]')], ["搜索说明书正文"])
+        library = BeautifulSoup((out / "products/matrix.html").read_text(encoding="utf-8"), "html.parser")
+        self.assertEqual([chip.get_text() for chip in library.select(".pl-chip")], ["FAKE-A(FAKE-B)"])
+        self.assertEqual(library.select_one(".fr-head p").get_text(), "2 个产品 · 更新于 2026-01-02")
         # 维护 is one collapsed group, open only on its own pages.
         for page in sidebars:
             more = sidebars[page].select_one("details.app-nav-more")
