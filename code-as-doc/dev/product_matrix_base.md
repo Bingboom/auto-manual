@@ -196,7 +196,8 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
     - 写快照前校验引用：`values` / `component_values` 的 id 在文件内唯一，cells 的 `value`、`candidates`、`source`
       全部能解析，`candidates` 无重复；不满足就停止，只报数量。多维表里删了仍被事实引用的来源行、或出现同键事实时，
       在本地加 `--explain-references` 重跑预演，列出问题行的事实键和来源键（同键事实 / 来源行缺失），按它们在多维表里修正；
-      这些键不含项目号，只打印在本地终端，不写进文件、报告或 PR。数字的 `display` 用普通小数写法，不用科学计数法。
+      只列导致失败的行（同键事实全列；来源行缺失只列格子选中的事实）。这些键不含项目号，但含说明书版本标签和人工填写的
+      条件文字，所以只在本地终端显示，不写进文件、报告、PR 或 CI 日志。数字的 `display` 用普通小数写法，不用科学计数法。
       条件名不区分大小写（「stc」也开 STC 格）。
     - 先后顺序：门户读取器接受 v1.1（并继续接受 v1）之前，不把 v1.1 的快照写进 Hello-Docs，否则产品页读不到数据；
   - `component_values`：组件的值，单列，不并入主产品；

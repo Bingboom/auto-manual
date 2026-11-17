@@ -882,7 +882,7 @@ class SnapshotTest(unittest.TestCase):
         with self.assertRaises(LoadError) as caught:
             snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
         self.assertIn("1 cells whose source has no row", str(caught.exception))
-        self.assertIn(("来源行缺失", "k1", "web/gone"), caught.exception.rows)
+        self.assertEqual(caught.exception.rows, [("来源行缺失", "k1", "web/gone")])  # only the chosen fact causes it
         twin = self.base()
         twin.rows["事实"][1]["事实键"] = "k1"  # two facts with one key: one id twice
         with self.assertRaises(LoadError) as caught:

@@ -191,12 +191,12 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
         "component_values": sorted(components, key=lambda v: (*order(v), v["component"])),
         "cells": cells,
     }
-    from tools.product_matrix_base.cells import ReferenceError, check_references, reference_rows
+    from tools.product_matrix_base.cells import SnapshotReferenceError, check_references, reference_rows
 
     try:
         check_references(document)  # never write a file whose cells point nowhere
-    except ReferenceError as exc:
-        exc.rows = reference_rows(facts, raw_sources)
+    except SnapshotReferenceError as exc:
+        exc.rows = reference_rows(facts, raw_sources, {cell["value"] for cell in cells})
         raise
     return document
 

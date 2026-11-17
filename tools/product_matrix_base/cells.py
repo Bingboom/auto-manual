@@ -99,7 +99,7 @@ def build_cells(facts: list[dict[str, Any]], attributes: list[dict[str, Any]], s
             for (product, key, condition), found in sorted(groups.items(), key=lambda g: (g[0][0], g[0][1], g[0][2] or ""))]
 
 
-class ReferenceError(LoadError):
+class SnapshotReferenceError(LoadError):
     """The snapshot's references do not resolve; `rows` names the base rows behind it (fact and source keys only)."""
 
     def __init__(self, message: str, rows: list[tuple[str, str, str]] | None = None):
@@ -107,17 +107,25 @@ class ReferenceError(LoadError):
         self.rows = rows or []
 
 
-def reference_rows(facts: list[dict[str, Any]], sources: list[dict[str, Any]]) -> list[tuple[str, str, str]]:
-    """The base rows a failed check points at: facts sharing a key, and facts whose source row is gone.
+def _takes_part(fact: dict[str, Any]) -> bool:
+    return not _text(fact.get("条件")).startswith(COMPONENT) and _state(fact) not in EXCLUDED_STATES
 
-    Keys only (no project numbers); for a person to fix the base, printed locally and never written to a file."""
+
+def reference_rows(facts: list[dict[str, Any]], sources: list[dict[str, Any]],
+                   chosen: set[str] | None = None) -> list[tuple[str, str, str]]:
+    """The base rows behind a failed check: facts sharing a key, and cell-chosen facts whose source row is gone.
+
+    Only rows that cause the failure: every fact for duplicate ids (component values carry ids too), and for missing
+    sources only the facts a cell chose (`chosen`, by value id). Keys only, no project numbers; they carry edition
+    labels and free condition text, so they are printed locally and never written to a file."""
     seen: dict[str, int] = defaultdict(int)
     for fact in facts:
         seen[_text(fact.get("事实键"))] += 1
     known = {_text(s.get("来源键")) for s in sources}
     rows = [("同键事实", key, "") for key, count in sorted(seen.items()) if count > 1]
     rows += sorted(("来源行缺失", _text(f.get("事实键")), _text(f.get("来源键"))) for f in facts
-                   if _text(f.get("来源键")) not in known)
+                   if _takes_part(f) and _text(f.get("来源键")) not in known
+                   and (chosen is None or value_id(_text(f.get("事实键"))) in chosen))
     return rows
 
 
@@ -133,9 +141,9 @@ def check_references(document: dict[str, Any]) -> None:
     repeated = sum(len(c["candidates"]) - len(set(c["candidates"])) for c in document.get("cells", []))
     sourceless = sum(1 for c in document.get("cells", []) if c["source"] not in sources)
     if duplicate or unresolved or repeated or sourceless:
-        raise ReferenceError(f"snapshot references do not resolve: {duplicate} duplicate value ids, {unresolved} unresolved "
+        raise SnapshotReferenceError(f"snapshot references do not resolve: {duplicate} duplicate value ids, {unresolved} unresolved "
                         f"cell values, {repeated} repeated candidates, {sourceless} cells whose source has no row")
 
 
-__all__ = ["ReferenceError", "TEST_CONDITION", "build_cells", "cell_condition", "check_references", "display_text",
+__all__ = ["SnapshotReferenceError", "TEST_CONDITION", "build_cells", "cell_condition", "check_references", "display_text",
            "reference_rows", "value_id"]
