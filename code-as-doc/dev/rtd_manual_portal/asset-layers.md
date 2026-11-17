@@ -48,7 +48,9 @@ site keeps its own palette. A page's section is declared once, in the `site_sect
 The top bar also carries the brand, a search icon (搜索说明书正文, current on the search page) and an Agent icon
 (系统建设). 知识资产's first page and the search page are reached from the top bar, not the left list; the search
 page sits under 说明书资料库, which it highlights. The breadcrumb reads 工作资料 / section / page (工作资料 /
-知识资产 / 说明书资料库 / 搜索说明书正文 for the search page). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (brand and tools, then the
+知识资产 / 说明书资料库 / 搜索说明书正文 for the search page). 产品信息's tab pages (产品库, 产品档案, 产品对比, 参数表) are `also`
+entries `under` 产品信息, so their crumb reads 工作资料 / 知识资产 / 产品信息 / <tab>. An address naming a folded block
+(`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (brand and tools, then the
 sections) and the left list opens from the menu button. The pages keep their content. 产品信息 links 产品知识 when the matrix is not built.
 
 Old addresses keep working:

@@ -1,27 +1,27 @@
-/* 视觉媒体 front page (tools/rtd_portal_assets/asset_media.html). Tokens: site-shell.css; head and figures: front.css. */
+/* 视觉媒体 front page (tools/rtd_portal_assets/asset_media.html). Tokens only (site-shell.css); head and figures: front.css. */
 .mf-filters {display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
 .mf-filters[hidden] {display:none}
 .mf-chips {display:flex;flex-wrap:wrap;gap:6px}
 .mf-chip {min-height:34px;padding:0 12px;border:1px solid var(--app-line);border-radius:var(--radius-full);background:var(--surface);
   font:inherit;font-size:13px;color:var(--app-text2,var(--app-ink));cursor:pointer}
 .mf-chip b {font-weight:600;color:var(--app-muted)}
-.mf-chip[aria-pressed="true"] {background:var(--brand-soft);border-color:var(--brand);color:#7a2f0e}
+.mf-chip[aria-pressed="true"] {background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
 .mf-chip:focus-visible,.mf-tile:focus-visible,.mf-search input:focus-visible {outline:2px solid var(--brand);outline-offset:2px}
 .mf-search {margin-left:auto}
-.mf-search input {min-height:36px;width:240px;max-width:100%;box-sizing:border-box;padding:0 12px;border:1px solid #c9d2dd;
+.mf-search input {min-height:36px;width:240px;max-width:100%;box-sizing:border-box;padding:0 12px;border:1px solid var(--app-line);
   border-radius:9px;background:var(--surface);font:inherit;font-size:14px}
 .mf-grid {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px}
 .mf-grid li[hidden] {display:none}
 .mf-tile {width:100%;display:flex;flex-direction:column;gap:8px;padding:10px;border:1px solid var(--app-line);
   border-radius:var(--radius-lg);background:var(--surface);font:inherit;text-align:left;cursor:pointer;
   transition:border-color .15s,box-shadow .15s}
-.mf-tile:hover {border-color:#cdd5df;box-shadow:var(--shadow-raised)}
+.mf-tile:hover {border-color:var(--app-faint);box-shadow:var(--shadow-raised)}
 .mf-art {display:grid;place-items:center;aspect-ratio:4/3;border-radius:var(--radius-md);overflow:hidden}
 .mf-art img {width:60%;height:60%;object-fit:contain}
 .mf-name {font-size:13px;line-height:18px;color:var(--app-ink);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;
   -webkit-box-orient:vertical}
 .mf-dialog {box-sizing:border-box;width:min(440px,calc(100vw - 32px));padding:20px;border:0;border-radius:var(--radius-lg);box-shadow:0 24px 64px #0003}
-.mf-dialog::backdrop {background:#1d1f2366}
+.mf-dialog::backdrop {background:color-mix(in srgb, var(--app-ink) 40%, transparent)}
 .mf-dialog-art {display:grid;place-items:center;aspect-ratio:4/3;border-radius:var(--radius-md);background:var(--app-bg)}
 .mf-dialog-art img {width:56%;height:72%;object-fit:contain}
 .mf-dialog h2 {margin:16px 0 4px;font-size:var(--text-lg);line-height:26px}
