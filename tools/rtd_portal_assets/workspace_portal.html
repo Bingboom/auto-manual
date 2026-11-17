@@ -10,49 +10,39 @@
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script, icon with context %}
-{#- 知识库首页 (step 13, F1): for product colleagues. The title, one line and a product search (model, product name
-    or project, opening 产品库 with the matches marked), the three asset cards (产品信息 with 产品库 / 产品对比 / 参数表,
-    产品知识, 语料库; tools/rtd/asset_pages.py front_cards), then 也常用: 说明书资料库 and 市场与政策. Management text
-    (主线, 正在做, 定位与价值 statuses) is not on this page; 系统建设 keeps the main line. 最近更新 waits for a source
-    that dates new manuals. -#}
-{#- An asset card: name, one line, one figure with 更新于 its date (待统计 when unreadable), then its entrances. -#}
+{#- 知识库首页 (front cleanup, 2026-11-17): for product colleagues. The title and one line, the three asset cards
+    (产品信息, 产品知识, 语料库; tools/rtd/asset_pages.py front_cards), then the entrances to 说明书资料库 and 市场与政策.
+    Management text (主线, 正在做, 定位与价值 statuses, 最近更新) is not on this page; 系统建设 keeps the main line. -#}
+{#- An asset card: name, one line, one figure with its date (待统计 when the figure cannot be read). -#}
 {%- macro asset_card(card) -%}
-<article class="home-asset home-front-card{% if card.id == 'product' %} is-main{% endif %}" id="asset-{{ card.id|e }}">
-  <a class="home-front-link" href="{{ pathto(card.page) }}"><span class="home-asset-head"><span class="home-asset-icon">{{ icon(card.icon, 16) }}</span><strong>{{ card.title|e }}</strong></span>
+<a class="home-asset home-front-card" id="asset-{{ card.id|e }}" href="{{ pathto(card.page) }}">
+  <span class="home-asset-head"><span class="home-asset-icon">{{ icon(card.icon, 16) }}</span><strong>{{ card.title|e }}</strong></span>
   <span class="home-front-line">{{ card.line|e }}</span>
-  <span class="home-front-fig">{% if card.value is none %}<b class="is-pending">待统计</b>{% else %}<b>{{ card.value|e }}</b><small>{{ card.unit|e }}{% if card.date %} · 更新于 {{ card.date|e }}{% endif %}</small>{% endif %}</span></a>
-  {%- if card.doors|length > 1 %}<span class="home-front-doors-row">{% for door in card.doors %}<a class="home-door{% if loop.first %} is-primary{% endif %}" href="{{ pathto(door.page) }}">{{ door.label|e }}</a>{% endfor %}</span>{% endif %}
-</article>
+  <span class="home-front-fig">{% if card.value is none %}<b class="is-pending">待统计</b>{% else %}<b>{{ card.value|e }}</b><small>{{ card.unit|e }}</small>{% endif %}{% if card.date %}<time datetime="{{ card.date|e }}">截至 {{ card.date|e }}</time>{% endif %}</span>
+</a>
 {%- endmacro -%}
 <body class="app kb">
-{{ site_sidebar('overview', site_nav if site_nav is defined else {'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'matrix': matrix_entry}) }}
+{{ site_sidebar('overview', {'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
   {{ site_topbar('知识库', '首页') }}
 
   <main id="home">
     <section class="intro page-head">
       <div>
-        <h1>产品信息中台</h1>
-        <p class="home-line">查产品参数，比较产品和市场，找说明书。</p>
-        {%- if search_entry %}
-        <form class="home-search" role="search" action="{{ pathto('products/matrix') }}" method="get">
-          <label class="sr-only" for="home-q">搜索产品</label>
-          <input id="home-q" name="q" type="search" placeholder="输入型号、产品名或项目号" autocomplete="off">
-          <button type="submit">搜索</button>
-        </form>
-        {%- endif %}
+        <h1>知识库</h1>
+        <p class="home-line">{% if value %}{{ value.tagline|e }}{% else %}产品与市场的知识、说明书生产的工作台与进度，从这里进入。{% endif %}</p>
       </div>
     </section>
 
-    {#- 资产 (step 13, F1): 产品信息 the large card with its three entrances, then 产品知识 and 语料库. #}
+    {#- 资产: what product colleagues read (front cleanup, 2026-11-17): name, one line, one figure with its date. #}
     {% if cards %}<section id="now" class="home-front" aria-label="资产">
       <div class="home-front-grid">{% for card in cards %}{{ asset_card(card) }}{% endfor %}</div>
     </section>{% endif %}
 
-    <section id="doors" class="home-front-doors" aria-labelledby="doors-title">
-      <h2 id="doors-title" class="home-section-title">也常用</h2>
-      <a class="home-card" href="{{ pathto('index') }}"><span class="home-tile">{{ icon('book', 22) }}</span><span class="home-card-text"><strong>说明书资料库</strong><small>{% if manual_count %}{{ manual_count }} 本说明书{% else %}按型号、市场和语言查找{% endif %}</small></span>{{ icon('chevron', 16) }}</a>
-      <a class="home-card" href="{{ pathto('market/policy') }}"><span class="home-tile">{{ icon('globe', 22) }}</span><span class="home-card-text"><strong>市场与政策</strong><small>各地区电压、插座与认证</small></span>{{ icon('chevron', 16) }}</a>
+    <section id="doors" class="home-front-doors" aria-label="说明书与参考">
+      <a class="home-card" href="{{ pathto('index') }}"><span class="home-tile">{{ icon('book', 22) }}</span><span class="home-card-text"><strong>说明书资料库</strong><small>按型号、市场和语言查找</small></span>{{ icon('chevron', 16) }}</a>
+      <a class="home-card" href="{{ pathto('market/policy') }}"><span class="home-tile">{{ icon('globe', 22) }}</span><span class="home-card-text"><strong>市场与政策</strong><small>各地区的市场与政策</small></span>{{ icon('chevron', 16) }}</a>
+      {% if share_entry %}<a class="home-card" id="shares" href="{{ share_entry|e }}"><span class="home-tile">{{ icon('share', 22) }}</span><span class="home-card-text"><strong>AI 使用知识分享</strong><small>分享资料</small></span>{{ icon('chevron', 16) }}</a>{% endif %}
     </section>
   </main>
 </div>

@@ -138,6 +138,3 @@ a.kpi:hover {border-color:#d3d6db;box-shadow:0 6px 18px #1d1f2312}
 @media (prefers-reduced-motion:reduce) {
   .app-sidebar,.app-nav-link {transition:none}
 }
-.app-nav-sub {margin:10px 10px 2px;font-size:11.5px;color:var(--app-faint);letter-spacing:.04em}
-.app-nav-note {margin:10px 6px 4px;padding:8px 10px;border-radius:8px;background:var(--app-bg);font-size:12px;line-height:18px;
-  color:var(--app-muted)}

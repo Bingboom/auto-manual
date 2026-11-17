@@ -17,8 +17,7 @@ SYSTEM = {
 }
 COPY = {"assets_note": "每写一本都在积累，下一本直接复用"}
 CORPUS = {"exported_at": "2026-09-24", "stale": ["语料快照已超过 7 天"], "rows": [], "tiles": [
-    {"key": "pairs", "label": "句对", "value": "1,372"}, {"key": "approved", "label": "句对已批准", "value": "71%"}],
-    "counts": {"pairs": 1372, "pairs_approved": 974, "terms": 9, "terms_approved": 9, "languages": 3}}
+    {"key": "pairs", "label": "句对", "value": "1,372"}, {"key": "approved", "label": "句对已批准", "value": "71%"}]}
 
 
 def render(**context) -> BeautifulSoup:
@@ -60,33 +59,17 @@ class HomeRenderTests(unittest.TestCase):
     LEARNING = {"topics": [{}, {}], "latest_added": "2026-10-22"}
 
     def test_three_asset_cards_each_with_one_dated_figure(self):
-        matrix = {**self.MATRIX, "built": True}
-        home = render(cards=front_cards(matrix, self.LEARNING, CORPUS), search_entry=True, manual_count=12)
-        self.assertEqual(home.select_one("h1").get_text(), "产品信息中台")
-        form = home.select_one("form.home-search")
-        self.assertEqual((form["action"], form.input["name"]), ("products/matrix", "q"))
+        home = render(cards=front_cards(self.MATRIX, self.LEARNING, CORPUS))
         cards = home.select("#now .home-front-card")
         self.assertEqual([card.strong.get_text() for card in cards], ["产品信息", "产品知识", "语料库"])
-        self.assertIn("is-main", cards[0]["class"])
-        self.assertEqual([card.select_one(".home-front-link")["href"] for card in cards],
+        self.assertEqual([card["href"] for card in cards],
                          ["products/matrix", "products/knowledge", "assets/language/index"])
-        self.assertEqual([card.select_one(".home-front-fig").get_text(" ", strip=True) for card in cards],
-                         ["3 个产品 · 更新于 2026-11-13", "2 个知识点 · 更新于 2026-10-22",
-                          "1,372 组句子 · 更新于 2026-09-24"])
-        self.assertEqual([(a.get_text(), a["href"]) for a in cards[0].select(".home-door")],
-                         [("产品库", "products/matrix"), ("产品对比", "products/compare"), ("参数表", "products/table")])
-        self.assertFalse(cards[1].select(".home-door"))
+        self.assertEqual([card.select_one(".home-front-fig b").get_text() for card in cards], ["3", "2", "1,372"])
+        self.assertEqual([card.time["datetime"] for card in cards], ["2026-11-13", "2026-10-22", "2026-09-24"])
         text = home.select_one("#home").get_text()
-        for word in ("已规划", "建设中", "REV-", "主线", "正在做", "台账", "AI 使用知识分享"):
+        for word in ("已规划", "建设中", "REV-", "主线", "正在做", "最近更新", "台账"):
             self.assertNotIn(word, text)
-        self.assertEqual(home.select_one("#doors-title").get_text(), "也常用")
-        self.assertEqual([(a.strong.get_text(), a.small.get_text()) for a in home.select("#doors .home-card")],
-                         [("说明书资料库", "12 本说明书"), ("市场与政策", "各地区电压、插座与认证")])
-
-    def test_without_products_there_is_no_search_and_one_entrance(self):
-        home = render(cards=front_cards({"facts": {}, "built": False}, None, None))
-        self.assertIsNone(home.select_one("form.home-search"))
-        self.assertEqual([a.get_text() for a in home.select("#asset-product .home-door")], [])
+        self.assertEqual([a.strong.get_text() for a in home.select("#doors .home-card")], ["说明书资料库", "市场与政策"])
 
     def test_cards_without_a_source_say_pending_never_zero(self):
         cards = front_cards(None, None, None)
@@ -105,10 +88,10 @@ class HomeRenderTests(unittest.TestCase):
         self.assertEqual(sidebar[0].span.get_text(), "首页")
         self.assertTrue(all(link.select_one("svg.ic") for link in sidebar))
 
-    def test_the_share_package_is_not_on_the_home_page(self):
-        # 分享资料 sits under 维护 › 其他 in the sidebar since step 13.
-        home = render(share_entry="../ai-share/00_打开分享.html")
-        self.assertIsNone(home.select_one("#shares"))
+    def test_share_link_shows_only_with_the_package(self):
+        self.assertIsNone(render().select_one("#shares"))
+        share = render(share_entry="../ai-share/00_打开分享.html").select_one("a#shares")
+        self.assertEqual(share["href"], "../ai-share/00_打开分享.html")
 
 
 if __name__ == "__main__":

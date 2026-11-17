@@ -144,12 +144,11 @@ class RenderTests(unittest.TestCase):
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
 
-    def test_knowledge_home_has_its_own_line_and_no_theme_cards(self):
+    def test_knowledge_home_keeps_the_tagline_and_drops_the_theme_cards(self):
         value = wmv.load_value(ASSETS)
         home = render("workspace_portal.html", value=wmv.page_context(value), share_entry="", system_entry=True,
                       deliverables_entry=True, design_entry=True, matrix_entry=True, cards=[])
-        # Step 13 (F1): the home page says what colleagues do there; the value file's tagline is not used on it.
-        self.assertEqual(home.select_one(".home-line").get_text(), "查产品参数，比较产品和市场，找说明书。")
+        self.assertEqual(home.select_one(".home-line").get_text(), value["internal"]["tagline"])
         # Since the front cleanup (2026-11-17) the theme statuses are not on the home page.
         self.assertIsNone(home.select_one("#value, article.home-theme, .home-status"))
         self.assertNotIn("REV-", home.get_text())

@@ -26,12 +26,9 @@ is unchanged).
 ## Navigation
 
 The private sidebar (`_site_shell.html`) is: 首页; 资产 (产品信息, 产品知识, 语料库;
-no numbers); 说明书 (说明书资料库); 参考 (市场与政策); 维护 (说明书工作台, 系统建设,
-设计规范, then the sub-label 资产 with 内容与表现 and 视觉媒体, and the sub-label 其他
-with AI 使用知识分享 when the share package is bundled; the note 产品数据在飞书多维表里维护。),
-one bottom group collapsed by default (`details.app-nav-more`) and open on its own
-pages. 搜索说明书正文 is reached from the top of 说明书资料库 (a link shown on the
-private site only); the public shell keeps its own search entry. The pages under 维护 keep
+no numbers); 说明书 (说明书资料库, 搜索说明书正文); 参考 (市场与政策); 维护 (说明书工作台,
+内容与表现, 视觉媒体, 系统建设, 设计规范), one bottom group collapsed by default
+(`details.app-nav-more`) and open on its own pages. The pages under 维护 keep
 their content. 产品信息 links 产品知识 when the matrix is not built.
 
 Old addresses keep working:
@@ -62,8 +59,10 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
   cases. See [knowledge-pages.md](knowledge-pages.md).
 - **语料库** (`asset_language.html`, `language_view`): the title, one line
   (已批准的术语和标准句，多语言对照 · 更新于 <date>), three figures (句对, 术语, 语言) and a
-  table per language (语言, 句子 with a bar, 术语), language names as the manual
-  library labels them (`corpus_view` `counts`, `terms`). The counts are pairs, never a
+  table per language (语言, 句子 with a bar, 术语). Languages are named as the manual
+  library names them (`settings.json` `language_labels`); a corpus language whose
+  translation-memory code differs carries the library's code as `manual` in
+  `system_workspace.yaml` (`corpus_view` `counts`, `terms`). The counts are pairs, never a
   percentage that could read as manual localization completion. Without a
   readable snapshot the page says 暂时没有可显示的语料数字. The terminology rules, the
   Web-manual language list and the staleness note left the page.
@@ -166,12 +165,11 @@ layers that is not a figure:
 
 ## 知识库首页 and 系统建设
 
-- **知识库首页** (front cleanup, 2026-11-17; step 13 D): the title 产品信息中台, one line,
-  a search box into 产品库, then three asset cards (`#now`; 产品信息, 产品知识, 语料库;
-  `asset_pages.front_cards`), each with its name, one line and one figure with
-  `· 更新于 <date>` (待统计 when unreadable), 产品信息 with doors to 产品库, 产品对比 and
-  参数表, then 也常用 (`#doors`: 说明书资料库, 市场与政策). The share package moved to the
-  sidebar (维护 › 其他). No status chips or ledger references. The slice-2
+- **知识库首页** (front cleanup, 2026-11-17): the title and the value file's tagline,
+  then three asset cards (`#now`; 产品信息, 产品知识, 语料库; `asset_pages.front_cards`),
+  each with its name, one line and one figure with its date (待统计 when unreadable),
+  then the entrances to 说明书资料库 and 市场与政策 (`#doors`) and, with a share
+  package, 分享资料 (`#shares`). No status chips or ledger references. The slice-2
   主线, 正在做, 定位与价值 statuses and 最近更新 left the page; 正在做 and 当前主线 stay on
   系统建设. `workspace_home.py` and `knowledge_updates.py` are no longer read by the
   build (their removal waits for the operator).

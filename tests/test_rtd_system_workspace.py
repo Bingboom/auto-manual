@@ -883,10 +883,10 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
             self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
-            # 分享资料 is the sidebar's 维护 › 其他 entry since step 13; 最近更新 left the home page; no filters.
-            self.assertNotIn('id="shares"', workspace)
+            # 分享资料 stays on the 知识库首页; 最近更新 left it (front cleanup, 2026-11-17); no search box or filters.
+            self.assertIn('id="shares"', workspace)
             self.assertNotIn('id="updates"', workspace)
-            for removed in ('class="filter-bar"',):
+            for removed in ('id="search"', 'class="filter-bar"'):
                 self.assertNotIn(removed, workspace)
             self.assert_no_sidebar_links_to_overview_sections(base / "good")
 
@@ -925,7 +925,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertFalse((base / "broken" / "workspace" / "system" / "index.html").exists())
             workspace = (base / "broken" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertNotIn("system/index.html", workspace)
-            self.assertIn("AI 使用知识分享", workspace)
+            self.assertIn("分享资料", workspace)
 
 
 if __name__ == "__main__":
