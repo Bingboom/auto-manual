@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -582,24 +583,81 @@ class SnapshotTest(unittest.TestCase):
         self.assertEqual(snapshot.encode(snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))), snapshot.encode(document))
         self.assertNotIn("P-FAKE", snapshot.summary(document))
 
+    @staticmethod
+    def checkout(root: Path, name: str, landing: str, remote: str | None) -> Path:
+        checkout = root / name
+        checkout.mkdir()
+        subprocess.run(["git", "init", "-q", str(checkout)], check=True)
+        if remote:
+            subprocess.run(["git", "-C", str(checkout), "remote", "add", "origin", f"https://example.test/Org/{remote}"],
+                           check=True)
+        for mirror, text in (("Hello-Docs", "hello docs"), ("Hello-Docs-Review", "review")):
+            (checkout / "mirrors" / mirror).mkdir(parents=True)
+            (checkout / "mirrors" / mirror / "README.md").write_text(text, encoding="utf-8")
+        (checkout / "README.md").write_text(landing, encoding="utf-8")
+        (checkout / "docs" / "knowledge").mkdir(parents=True)
+        return checkout
+
     def test_it_is_written_only_under_the_knowledge_directory_of_the_private_mirror(self):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
-            for name, landing in (("public", "auto-manual"), ("private", "hello docs"), ("review", "review")):
-                checkout = root / name
-                (checkout / ".git").mkdir(parents=True)
-                for mirror, text in (("Hello-Docs", "hello docs"), ("Hello-Docs-Review", "review")):
-                    (checkout / "mirrors" / mirror).mkdir(parents=True)
-                    (checkout / "mirrors" / mirror / "README.md").write_text(text, encoding="utf-8")
-                (checkout / "README.md").write_text(landing, encoding="utf-8")
-                (checkout / "docs" / "knowledge").mkdir(parents=True)
-            target = snapshot.safe_destination(root / "private" / "docs" / "knowledge" / "product-matrix")
-            self.assertEqual(target.name, "product_matrix.json")
-            for refused in (root / "public" / "docs" / "knowledge" / "product-matrix",
-                            root / "review" / "docs" / "knowledge" / "product-matrix",
-                            root / "private" / "docs" / "publish", root / "elsewhere"):
-                with self.assertRaises(snapshot.SnapshotError):
-                    snapshot.safe_destination(refused)
+            private = self.checkout(root, "private", "hello docs", "Hello-Docs.git")
+            target = snapshot.safe_destination(private / "docs" / "knowledge" / "product-matrix")
+            self.assertEqual(target.name, "snapshot.json")
+            refused = [
+                self.checkout(root, "public", "auto-manual", "auto-manual") / "docs" / "knowledge" / "pm",
+                # a copied mirror README does not turn a public checkout into the mirror
+                self.checkout(root, "copied", "hello docs", "auto-manual") / "docs" / "knowledge" / "pm",
+                self.checkout(root, "no-remote", "hello docs", None) / "docs" / "knowledge" / "pm",
+                self.checkout(root, "review", "review", "Hello-Docs-Review") / "docs" / "knowledge" / "pm",
+                self.checkout(root, "other", "hello docs", "something-else") / "docs" / "knowledge" / "pm",
+                private / "docs" / "publish", root / "elsewhere"]
+            for path in refused:
+                with self.assertRaises(snapshot.SnapshotError, msg=str(path)):
+                    snapshot.safe_destination(path)
+            from tools.check_maintainability_guardrails import mirror_name
+            self.assertIsNone(mirror_name(root / "copied"))  # the guardrail sees the public checkout too
+            self.assertEqual(mirror_name(private), "Hello-Docs")
+
+    def test_a_planted_link_is_never_written_through(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            private = self.checkout(root, "private", "hello docs", "hello-docs")
+            out = private / "docs" / "knowledge" / "product-matrix"
+            out.mkdir()
+            victim = root / "victim.txt"
+            victim.write_text("keep", encoding="utf-8")
+            (out / "snapshot.json").symlink_to(victim)
+            with self.assertRaises(snapshot.SnapshotError):
+                snapshot.safe_destination(out)
+            with self.assertRaises(snapshot.SnapshotError):
+                snapshot.write_snapshot(out / "snapshot.json", {"schema": "x"})
+            self.assertEqual(victim.read_text(encoding="utf-8"), "keep")
+            (out / "snapshot.json").unlink()
+            snapshot.write_snapshot(snapshot.safe_destination(out), {"schema": "x"})
+            self.assertEqual(json.loads((out / "snapshot.json").read_text(encoding="utf-8")), {"schema": "x"})
+
+    def test_a_failed_read_never_echoes_row_data(self):
+        def failing(args):
+            if args[0] == "+table-list":
+                return {"ok": True, "data": {"tables": [{"name": n, "id": n} for n in ("产品", "属性", "来源", "事实")]}}
+            return {"ok": False, "error": {"code": 99, "message": "row JE-A/US P-FAKE-1 could not be read"}}
+
+        with self.assertRaises(LoadError) as caught:
+            snapshot.build_snapshot(failing)
+        self.assertNotIn("P-FAKE", str(caught.exception))
+
+
+    def test_cli_output_that_is_not_json_is_never_echoed(self):
+        from tools.product_matrix_base.stage import lark_runner
+
+        with TemporaryDirectory() as tmp:
+            fake = Path(tmp) / "fake-cli"
+            fake.write_text("#!/bin/sh\necho 'JE-A/US P-FAKE-1 partial row'\nexit 3\n", encoding="utf-8")
+            fake.chmod(0o755)
+            result = lark_runner("base", lark_cli=str(fake))(["+record-list"])
+        self.assertFalse(result["ok"])
+        self.assertNotIn("P-FAKE", json.dumps(result))
 
 
 if __name__ == "__main__":

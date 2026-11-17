@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,7 +22,7 @@ from typing import Any
 from tools.product_matrix_base.stage import CST, LoadError, Runner, _instant, _text, read_rows, table_ids
 
 SCHEMA = "hello-docs-product-matrix-snapshot/v1"
-FILE_NAME = "product_matrix.json"
+FILE_NAME = "snapshot.json"
 PRIVATE_MIRROR = "Hello-Docs"
 KNOWLEDGE = Path("docs") / "knowledge"
 PROJECT_SOURCE = "项目号（仅飞书）"
@@ -122,10 +123,10 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
     missing = [name for name in ("产品", "属性", "来源", "事实") if name not in ids]
     if missing:
         raise LoadError(f"tables missing in the base: {missing}")
-    products = [_product(r) for r in read_rows(run, ids["产品"], list(PRODUCT_FIELDS))]
-    parameters = [_parameter(r) for r in read_rows(run, ids["属性"], list(PARAMETER_FIELDS))]
-    sources = [_source(r) for r in read_rows(run, ids["来源"], list(SOURCE_FIELDS))]
-    facts = read_rows(run, ids["事实"], list(FACT_FIELDS))
+    products = [_product(r) for r in read_rows(run, ids["产品"], list(PRODUCT_FIELDS), sensitive=True)]
+    parameters = [_parameter(r) for r in read_rows(run, ids["属性"], list(PARAMETER_FIELDS), sensitive=True)]
+    sources = [_source(r) for r in read_rows(run, ids["来源"], list(SOURCE_FIELDS), sensitive=True)]
+    facts = read_rows(run, ids["事实"], list(FACT_FIELDS), sensitive=True)
     main = [_value(r) for r in facts if not _text(r.get("条件")).startswith(COMPONENT)]
     components = [{**_value(r), "component": _text(r.get("条件"))[len(COMPONENT):].split("#")[0]}
                   for r in facts if _text(r.get("条件")).startswith(COMPONENT)]
@@ -158,11 +159,15 @@ def _checkout_root(path: Path) -> Path | None:
 
 def safe_destination(out_dir: Path) -> Path:
     """The snapshot file path, only under docs/knowledge/ of a Hello-Docs mirror checkout; else SnapshotError."""
-    from tools.check_maintainability_guardrails import mirror_name
+    from tools.check_maintainability_guardrails import mirror_name, origin_repository
 
     root = _checkout_root(out_dir if out_dir.exists() else out_dir.parent)
     if root is None:
         raise SnapshotError(f"{out_dir} is not inside a git checkout; the snapshot goes to the Hello-Docs mirror")
+    remote = origin_repository(root)
+    if remote != PRIVATE_MIRROR.lower():
+        raise SnapshotError(f"{out_dir} is in a checkout whose origin is {remote or 'unreadable'}; the snapshot "
+                            f"holds project numbers and may only go to a checkout of the {PRIVATE_MIRROR} repository")
     mirror = mirror_name(root)
     if mirror != PRIVATE_MIRROR:
         raise SnapshotError(f"{out_dir} is in a checkout of {mirror or 'auto-manual (public)'}; the snapshot "
@@ -171,7 +176,21 @@ def safe_destination(out_dir: Path) -> Path:
     target = out_dir.resolve()
     if target != knowledge and knowledge not in target.parents:
         raise SnapshotError(f"{out_dir} is outside {KNOWLEDGE}/ of the {PRIVATE_MIRROR} checkout")
+    if (target / FILE_NAME).is_symlink():
+        raise SnapshotError(f"{FILE_NAME} under {out_dir} is a symbolic link; refusing to write through it")
     return target / FILE_NAME
+
+
+def write_snapshot(target: Path, document: dict[str, Any]) -> None:
+    """Write through a temporary file in the same directory and rename it over the target (never follows a link)."""
+    if target.is_symlink():
+        raise SnapshotError(f"{target.name} is a symbolic link; refusing to write through it")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_name(f".{target.name}.tmp")
+    if temporary.is_symlink():
+        temporary.unlink()
+    temporary.write_bytes(encode(document))
+    os.replace(temporary, target)
 
 
 def summary(document: dict[str, Any]) -> str:
@@ -182,4 +201,4 @@ def summary(document: dict[str, Any]) -> str:
 
 
 __all__ = ["FILE_NAME", "SCHEMA", "SnapshotError", "build_snapshot", "encode", "safe_destination", "source_id",
-           "summary"]
+           "summary", "write_snapshot"]

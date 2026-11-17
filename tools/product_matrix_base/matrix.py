@@ -181,7 +181,7 @@ def read_base(run: Runner) -> dict[str, Any]:
         raise LoadError(f"tables missing in the base: {missing}")
     return {
         "ids": ids,
-        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH]),
+        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH], sensitive=True),
         "attributes": read_rows(run, ids["属性"], ["属性键", "中文名", "值类型", "规范单位", "状态", "排序"]),
         "facts": read_rows(run, ids["事实"], ["事实键", "产品键", "属性键", "数值", "文本值", "原单位", "条件",
                                              "核实状态", "来源键", "记录时间", "冲突", "原文"]),
@@ -214,7 +214,7 @@ def plan(run: Runner, base: dict[str, Any], built: dict[str, Any]) -> dict[str, 
         raise LoadError(f"{MATRIX} would hold {len(have) + len(add)} fields, over the limit of {FIELD_LIMIT}")
     names = [f["name"] for f in wanted if f["name"] != STAMP]
     kinds = {f["name"]: f["type"] for f in wanted}
-    current = {_text(r.get("产品键")): r for r in read_rows(run, table_id, [n for n in names if n in have])}
+    current = {_text(r.get("产品键")): r for r in read_rows(run, table_id, [n for n in names if n in have], sensitive=True)}
     create, update = _changes(built, current, names, have, kinds)
     return {"table_id": table_id, "add": add, "create": create, "update": update, "kinds": kinds,
             "clash": [f["name"] for f in wanted if f["name"] in have and have[f["name"]].get("type") != f["type"]],
@@ -265,7 +265,7 @@ def _read_back(run: Runner, planned: dict[str, Any], created: list[dict[str, Any
     expected = {row["产品键"]: row for row in created}
     expected.update({c["key"]: c["fields"] for c in planned["update"]})
     names = sorted({n for row in expected.values() for n in row} | {"产品键"})
-    back = {_text(r.get("产品键")): r for r in read_rows(run, table_id, names)}
+    back = {_text(r.get("产品键")): r for r in read_rows(run, table_id, names, sensitive=True)}
     missing = [key for key in expected if key not in back]
     mismatched = [f"{key} · {name}" for key, row in expected.items() if key in back for name, value in row.items()
                   if not _equal(value, back[key].get(name), planned["kinds"].get(name, "text"))]
@@ -284,7 +284,7 @@ def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list
     produced = sorted(set(names) - set(planned["unused"]))
     if produced:
         raise LoadError(f"{MATRIX} columns still produced or absent, not dropped: {produced}")
-    rows = read_rows(run, planned["table_id"], names)
+    rows = read_rows(run, planned["table_id"], names, sensitive=True)
     filled = sorted({name for row in rows for name in names if row.get(name) not in (None, "", [])})
     if filled:
         raise LoadError(f"{MATRIX} columns to drop still hold values: {filled}")

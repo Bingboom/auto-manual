@@ -164,7 +164,9 @@ def lark_runner(base_token: str, *, profile: str | None = None, identity: str = 
                     return json.loads(text[text.index("{"):])
                 except ValueError:
                     continue
-        return {"ok": False, "error": {"message": (done.stdout + done.stderr)[:200]}}
+        # Never echo raw output: a failed read can print row data (project numbers included).
+        return {"ok": False, "error": {"code": f"exit {done.returncode}",
+                                       "message": f"lark-cli gave no JSON (exit {done.returncode})"}}
     return run
 
 
@@ -193,18 +195,21 @@ def fields(run: Runner, table_id: str) -> dict[str, dict[str, Any]]:
 FIELDS_PER_READ = 50  # the CLI projects at most 50 fields per record list
 
 
-def read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, Any]]:
-    """Every row of a table with the named fields, read 50 fields at a time and merged by record id."""
+def read_rows(run: Runner, table_id: str, names: list[str], *, sensitive: bool = False) -> list[dict[str, Any]]:
+    """Every row of a table with the named fields, read 50 fields at a time and merged by record id.
+
+    ``sensitive``: the rows carry project numbers, so a failed read reports only the CLI's error code.
+    """
     if len(names) <= FIELDS_PER_READ:
-        return _read_rows(run, table_id, names)
+        return _read_rows(run, table_id, names, sensitive)
     merged: dict[str, dict[str, Any]] = {}
     for start in range(0, len(names), FIELDS_PER_READ):
-        for row in _read_rows(run, table_id, names[start:start + FIELDS_PER_READ]):
+        for row in _read_rows(run, table_id, names[start:start + FIELDS_PER_READ], sensitive):
             merged.setdefault(row["_record_id"], {}).update(row)
     return list(merged.values())
 
 
-def _read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, Any]]:
+def _read_rows(run: Runner, table_id: str, names: list[str], sensitive: bool = False) -> list[dict[str, Any]]:
     """Every row of a table (paged, 200 at a time), as {"_record_id", field: value} for the named fields."""
     rows: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -213,7 +218,7 @@ def _read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, A
         args = ["+record-list", "--table-id", table_id, "--limit", "200", "--offset", str(offset)]
         for name in names:
             args += ["--field-id", name]
-        data = _check(run(args), "record list")
+        data = _check(run(args), "record list", sensitive=sensitive)
         columns = data.get("fields") or []
         values = data.get("data") or []
         ids = data.get("record_id_list") or []

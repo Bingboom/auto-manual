@@ -259,8 +259,11 @@ def _snapshot(args: argparse.Namespace) -> int:
     if not (args.write and target):
         print("dry run: nothing written" + ("" if target else " (give --out <Hello-Docs>/docs/knowledge/<dir>)"))
         return 0
-    target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_bytes(snapshot.encode(document))
+    try:
+        snapshot.write_snapshot(target, document)
+    except snapshot.SnapshotError as exc:
+        print(f"ERROR   {exc}")
+        return 2
     print(f"wrote {target.name} under the Hello-Docs knowledge directory")
     return 0
 

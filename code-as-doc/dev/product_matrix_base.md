@@ -144,7 +144,7 @@ python -m tools.product_matrix_base stage ... --write --yes
 不再从各本说明书里用正则读。为此 base 的内容以快照形式进入私有仓库 Hello-Docs，私有站点构建时读它。
 
 - 命令：`python -m tools.product_matrix_base snapshot [--out <Hello-Docs 检出>/docs/knowledge/product-matrix] [--write]`。
-  只读 base；默认只打印计数，加 `--write` 才写出 `product_matrix.json`。
+  只读 base；默认只打印计数，加 `--write` 才写出 `snapshot.json`（不叫 `product_matrix.json`，以免和门户的同名配置文件混淆）。
 - 内容（`hello-docs-product-matrix-snapshot/v1`，每个列表按键排序，两次快照可直接 diff）：
   - `products`：产品键、型号、市场、品牌、商品简称与各语言名称、类别、系列、容量档、项目号、上市日期等；
   - `parameters`：属性键（只作关联用）、中英文名、分组、值类型、规范单位、定义、适用类别、排序；
@@ -154,9 +154,12 @@ python -m tools.product_matrix_base stage ... --write --yes
   - `component_values`：组件的值，单列，不并入主产品；
   - 头部：读 base 的时间、各表计数、快照 schema。
   不含飞书 record id、table id、token、网址，也不含来源版本标签（含流水线构建号）：来源只用不透明 id 和页面路径。
-- 写入位置由代码把关：只能写在 Hello-Docs 镜像检出的 `docs/knowledge/` 下（按根 README 等于
-  `mirrors/Hello-Docs/README.md` 识别，与维护性守卫识别镜像的方法相同）；auto-manual 检出、Hello-Docs-Review 检出
-  或 `docs/knowledge/` 以外一律拒绝。命令打印的摘要只有计数，不打印项目号或数值。
+- 写入位置由代码把关，两个条件同时满足才写：检出的 `origin` 远端指向 Hello-Docs 仓库（读不到远端就拒绝），
+  且根 README 等于 `mirrors/Hello-Docs/README.md`（与维护性守卫识别镜像的方法相同；`origin` 指向 auto-manual 的检出
+  不论 README 如何都不算镜像，守卫也按这条判断）；目标还必须在 `docs/knowledge/` 下。目标文件是符号链接时拒绝，
+  写入先写同目录临时文件再改名。命令打印的摘要只有计数；读写带项目号的表失败时，只报操作和 lark-cli 错误码，
+  不转出 CLI 的原始输出。
+- 每个产品都有 `project` 字段（没有项目号时为 null）；对到多个项目的产品不会被随便选一个，保持为空，由人在 base 里填。
 - 刷新：base 有改动后在 Hello-Docs 检出上重跑命令，以 Hello-Docs 的内容 PR（只含该目录）提交。
 
 ## 7. 不进 git 的内容

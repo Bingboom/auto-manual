@@ -209,13 +209,29 @@ _TARGET_SCOPED_IDML_PAGE_PREDICATE_RE = re.compile(
 MIRROR_OWNED_PATHS = ("docs/publish", "docs/knowledge", "docs/review-drafts")
 
 
+PUBLIC_REPOSITORY = "auto-manual"
+_REPOSITORY_NAME = re.compile(r"[/:]([^/:]+?)(?:\.git)?/*$")
+
+
+def origin_repository(repo_root: Path) -> str | None:
+    """The repository name the checkout's `origin` remote points at (lower case), or None when it cannot be read."""
+    try:
+        result = subprocess.run(["git", "-C", str(repo_root), "config", "--get", "remote.origin.url"],
+                                capture_output=True, text=True, check=False)
+    except OSError:
+        return None
+    match = _REPOSITORY_NAME.search(result.stdout.strip()) if result.returncode == 0 else None
+    return match.group(1).lower() if match else None
+
+
 def mirror_name(repo_root: Path) -> str | None:
     """The mirror a checkout is (`Hello-Docs`, `Hello-Docs-Review`), or None for auto-manual itself.
 
-    A mirror's sync installs `mirrors/<name>/README.md` as the root README.
+    A mirror's sync installs `mirrors/<name>/README.md` as the root README. A checkout whose `origin` names the
+    public repository is never a mirror, whatever its README says.
     """
     readme = repo_root / "README.md"
-    if not readme.is_file():
+    if not readme.is_file() or origin_repository(repo_root) == PUBLIC_REPOSITORY:
         return None
     landing = readme.read_bytes()
     return next((candidate.parent.name for candidate in sorted(repo_root.glob("mirrors/*/README.md"))
