@@ -21,6 +21,7 @@ from typing import Any
 
 from tools.product_matrix_base.stage import (
     LoadError, PartialWrite, Runner, _check, _instant, SKU_TIME_FIELD, _stamp, earliest, _text, fields, read_rows, same, table_ids,
+    EXCLUDE, require_exclude_field,
 )
 
 MATRIX = "矩阵"
@@ -31,7 +32,6 @@ PROJECT = "项目号"  # the leading index; copied from 产品.项目号（仅�
 PROJECT_SOURCE = "项目号（仅飞书）"
 LAUNCH = "上市日期"
 SKU_TIME = "SKU 最早创建时间"  # matrix column: the earliest PLM creation of the product's SKUs in its market; not a launch
-EXCLUDE = "不收录"  # a product a person keeps out of the matrix (the reader would otherwise add it back)
 TRACE = ("来源", "事实数")  # the path back: the pages the row's values were read from, and how many facts it has
 STAMP = "生成时间"
 NUMERIC = {"数值", "整数"}
@@ -178,12 +178,6 @@ def build(products: list[dict[str, Any]], attributes: list[dict[str, Any]], fact
     return {"columns": columns, "rows": rows, "empty": empty, "launch": any(LAUNCH in r for r in rows.values()),
             "sku_time": any(SKU_TIME in r for r in rows.values()),
             "components": sum(1 for v in components.values() if v)}
-
-
-def require_exclude_field(run: Runner, products_table: str) -> None:
-    """Stop unless 产品 has the 不收录 field: without it every excluded product would silently come back."""
-    if EXCLUDE not in fields(run, products_table, sensitive=True):
-        raise LoadError(f"产品 has no {EXCLUDE} field (renamed or deleted?); excluded products would return")
 
 
 def read_base(run: Runner) -> dict[str, Any]:

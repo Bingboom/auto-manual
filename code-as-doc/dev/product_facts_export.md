@@ -83,9 +83,9 @@ python -m tools.product_facts --check product_facts.json   # 文件不是当前�
 
 ## 5. 使用方
 
-- **产品信息矩阵 base：** 这份导出的 9 个键和读表规则是矩阵的第一个装载来源。矩阵装载工具
-  （`python -m tools.product_matrix_base`）对每个语言版本调用同一套规则，把每个数值作为一条 候选 事实
-  写进发布文档管理 base，在那里长期维护、逐步核实；导出本身仍是无状态的机读文件。见
+- **产品信息矩阵 base：** 矩阵沿用这份导出的 9 个属性键，但有自己的读取器（`python -m tools.product_matrix_base read`），
+  读全部语言版本的全部规格行、140 个属性，把每个数值作为一条 候选 事实写进发布文档管理 base，在那里长期维护、
+  逐步核实；导出本身仍是无状态的机读文件，两者的读法不同，数值以 base 里核实过的为准。见
   [产品信息矩阵 base](product_matrix_base.md)。
 
 使用方在自己机器上的私有 Hello-Docs 检出里运行命令，读输出文件；导出不另设分发通道。
