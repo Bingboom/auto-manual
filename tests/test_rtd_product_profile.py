@@ -278,7 +278,7 @@ class DifferenceTests(unittest.TestCase):
         cells = [cell("FAKE-1/US", "cycle_life", "4000 次", number=4000), cell("FAKE-1/JP", "cycle_life", "4000 次", number=4000),
                  cell("FAKE-1/EU", "cycle_life", "6000 次", number=6000)]
         one = pages({**SNAPSHOT, "products": three, "cells": cells})["products/item/FAKE-1"]
-        line = {m["code"]: c for m, c in zip(one["markets"], one["differences"][0]["cells"])}
+        line = {m["code"]: c for m, c in zip(one["markets"], one["differences"][0]["cells"], strict=True)}
         self.assertEqual({code: c["odd"] for code, c in line.items()}, {"US": False, "JP": False, "EU": True})
 
 
