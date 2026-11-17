@@ -46,7 +46,8 @@
     {% endif %}
     <div class="app-nav-group">说明书</div>
     {{ nav_link(pathto('index'), 'book', '说明书资料库', active == 'manuals') }}
-    {{ nav_link(pathto('search'), 'search', '搜索说明书正文', active == 'search') }}
+    {#- The private shell reaches 搜索说明书正文 from the top of 说明书资料库 (step 13); the public one keeps the entry. -#}
+    {% if not internal %}{{ nav_link(pathto('search'), 'search', '搜索说明书正文', active == 'search') }}{% endif %}
     {% if internal %}
     <div class="app-nav-group">参考</div>
     {{ nav_link(pathto('market/policy'), 'globe', '市场与政策', active == 'market-policy') }}
@@ -54,10 +55,16 @@
     <details class="app-nav-more"{% if active in maintenance %} open{% endif %}>
       <summary class="app-nav-group">维护</summary>
       {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), 'workbench', '说明书工作台', active == 'deliverables') }}{% endif %}
-      {{ nav_link(pathto('assets/content/index'), 'chapters', '内容与表现', active == 'asset-content') }}
-      {{ nav_link(pathto('assets/media/index'), 'image', '视觉媒体', active == 'asset-media') }}
       {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), 'system', '系统建设', active == 'system') }}{% endif %}
       {% if nav.design %}{{ nav_link(pathto('workspace/design/index'), 'design', '设计规范', active == 'design-system') }}{% endif %}
+      <div class="app-nav-sub">资产</div>
+      {{ nav_link(pathto('assets/content/index'), 'chapters', '内容与表现', active == 'asset-content') }}
+      {{ nav_link(pathto('assets/media/index'), 'image', '视觉媒体', active == 'asset-media') }}
+      {%- if nav.share %}
+      <div class="app-nav-sub">其他</div>
+      {{ nav_link(pathto('ai-share/00_打开分享.html', 1), 'share', 'AI 使用知识分享', false) }}
+      {%- endif %}
+      <p class="app-nav-note">产品数据在飞书多维表里维护。</p>
     </details>
     {% endif %}
   </nav>

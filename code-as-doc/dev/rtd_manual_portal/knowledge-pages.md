@@ -10,16 +10,20 @@ also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page
 front cleanup (operator review 2026-11-17: the front is for product colleagues, not
 for maintainers) it is minimal:
 
-- The page header gives the web manuals' positioning in one line (the `tagline`
-  of `web_manual_value.yaml`).
-- **资产** (`#now`): three cards, 产品信息, 产品知识 and 语料库, each with its name, one
-  line and one figure with its date (`tools/rtd/asset_pages.py` `front_cards`;
-  待统计 when the figure cannot be read). 产品信息 shows only when the matrix is
-  built. No status chips or ledger references; see
+- The page header is the title 产品信息中台 and one line (查产品参数，比较产品和市场，找说明书。),
+  then a search box that sends `?q=` to 产品库 (`products/matrix.html`), where
+  `product-library.js` fills the search filter and opens the tab of the first match.
+- **资产** (`#now`): three cards, 产品信息 (the larger one), 产品知识 and 语料库, each
+  with its name, one line and one figure with `· 更新于 <date>`
+  (`tools/rtd/asset_pages.py` `front_cards`; 待统计 when the figure cannot be read).
+  产品信息 shows only when the matrix is built, and then carries the doors
+  产品库, 产品对比 and 参数表. No status chips or ledger references; see
   [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
-- **入口** (`#doors`): 说明书资料库 and 市场与政策, then, with the bundled
-  beginner-facing AI sharing package, **分享资料** (`#shares`, a link to
-  `/ai-share/00_打开分享.html`).
+- **也常用** (`#doors`): 说明书资料库 (`<n> 本说明书`) and 市场与政策.
+- 最近更新 waits for a per-route first-seen date in the web-progress export; the
+  build time is not used in its place.
+- The AI sharing package is not a home card; the sidebar lists it under 维护 › 其他
+  as AI 使用知识分享 when the package is bundled.
 
 The former 主线, 正在做, 去哪里 groups, 定位与价值 theme cards and 最近更新 list left
 the page. 正在做 and 当前主线 stay on 系统建设; the 维护 pages are reached from the

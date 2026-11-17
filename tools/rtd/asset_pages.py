@@ -54,20 +54,27 @@ def curated(assets: Path, root: Path, system: dict[str, Any] | None, warn) -> di
 
 def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
                 corpus: dict[str, Any] | None) -> list[dict[str, Any]]:
-    """知识库首页's three asset cards: name, one line, one figure with its date (None reads 待统计)."""
+    """知识库首页's three asset cards (step 13, F1): name, one line, one figure with its date (None reads 待统计).
+
+    产品信息 is the large card and opens 产品库, 产品对比 and 参数表 when 产品库 has products.
+    """
     facts = (matrix or {}).get("facts") or {}
-    tiles = {tile["key"]: tile for tile in (corpus or {}).get("tiles") or []}
+    counts = (corpus or {}).get("counts") or {}
     topics = None if learning is None or learning.get("content_missing") else len(learning.get("topics") or [])
+    doors = [{"label": "产品库", "page": "products/matrix"}]
+    if (matrix or {}).get("built"):
+        doors += [{"label": "产品对比", "page": "products/compare"}, {"label": "参数表", "page": "products/table"}]
     cards = [{"id": "product", "title": "产品信息", "icon": "product", "page": "products/matrix",
-              "line": "按类别、系列和容量找产品", "value": facts.get("products"), "unit": "个产品",
-              "date": (matrix or {}).get("built_on") or ""}] if matrix else []
+              "line": "每个产品在各市场的参数，可以对比。", "value": facts.get("products"), "unit": "个产品",
+              "date": (matrix or {}).get("built_on") or "", "doors": doors}] if matrix else []
+    pairs = counts.get("pairs")
     return cards + [
         {"id": "knowledge", "title": "产品知识", "icon": "chapters", "page": "products/knowledge",
-         "line": "从已发布的产品理解原理", "value": topics, "unit": "个知识点",
-         "date": (learning or {}).get("latest_added") or ""},
+         "line": "参数背后的原理，讲给非工程同事。", "value": topics, "unit": "个知识点",
+         "date": (learning or {}).get("latest_added") or "", "doors": []},
         {"id": "corpus", "title": "语料库", "icon": "languages", "page": "assets/language/index",
-         "line": "已批准的句对和术语可以直接复用", "value": (tiles.get("pairs") or {}).get("value"), "unit": "句对",
-         "date": (corpus or {}).get("exported_at") or ""},
+         "line": "已批准的术语和标准句，多语言对照。", "value": f"{pairs:,}" if isinstance(pairs, int) else None,
+         "unit": "组句子", "date": (corpus or {}).get("exported_at") or "", "doors": []},
     ]
 
 
@@ -86,7 +93,7 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
     chips = extra["chips"]
     content = {**layers.content_view(root, build_date=build_date, web_languages=len(web)), "chip": chips["content"]}
     media = {**layers.media_view(root, srcdir, publications, build_date=build_date), "chip": chips["media"]}
-    language = layers.language_view(system)
+    language = layers.language_view(system, labels)
     moved = "products/matrix#matrix" if matrix else "products/knowledge#knowledge-list"
     pages = [
         ("products/attributes", {"moved_target": moved, "moved_title": "产品信息" if matrix else "产品知识"},

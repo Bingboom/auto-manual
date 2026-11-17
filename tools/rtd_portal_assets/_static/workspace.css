@@ -148,3 +148,18 @@
 #home .home-front-fig small{font-size:12px;color:var(--app-muted)}
 #home .home-front-fig time{margin-left:auto;font-size:12px;color:var(--app-faint)}
 #home .home-front-doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+/* 知识库首页 step 13 (F1): the product search, the large 产品信息 card with its entrances, 也常用. */
+.home-search{display:flex;gap:10px;max-width:720px;margin-top:18px}
+.home-search input{flex:1;min-width:0;height:52px;padding:0 16px;border:1px solid #c9d2dd;border-radius:12px;background:#fff;font:inherit;font-size:15px}
+.home-search input:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.home-search button{height:52px;padding:0 22px;border:0;border-radius:12px;background:var(--brand);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+#home .home-front-grid{grid-template-columns:1.4fr 1fr 1fr}
+.home-front-card{display:flex;flex-direction:column;gap:12px}
+.home-front-card.is-main{border-color:#e8c3ae;box-shadow:inset 0 3px 0 var(--brand)}
+.home-front-link{display:flex;flex-direction:column;gap:8px;color:inherit;text-decoration:none}
+.home-front-doors-row{display:flex;flex-wrap:wrap;gap:8px}
+.home-door{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--ink);background:#fff}
+.home-door.is-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.home-section-title{grid-column:1/-1;margin:0;font-size:18px;font-weight:650}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:820px){#home .home-front-grid{grid-template-columns:1fr}.home-search button{padding:0 16px}.home-door{min-height:44px}}

@@ -384,12 +384,14 @@ def site_nav(app) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
     if manuals_only(app):
         # The public shell hides internal entries; do not build their contexts at all.
-        return dict.fromkeys(("system", "deliverables", "design", "matrix"), False)
+        return dict.fromkeys(("system", "deliverables", "design", "matrix", "share"), False)
     return {
         "system": cached_system_context(app) is not None,
         "deliverables": True,
         "design": cached_design_context(app) is not None,
         "matrix": cached_matrix_context(app) is not None,
+        # 分享资料 sits under 维护 › 其他 (step 13) when the AI sharing package is there.
+        "share": (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file(),
     }
 
 
@@ -447,10 +449,13 @@ def collect_workspace_pages(app):
         sphinx_logging.getLogger(__name__).warning(
             "Market policy record %s links to unknown product knowledge topic #%s", record, anchor)
     yield MARKET_PAGE, {**market, "site_nav": site_nav(app)}, MARKET_TEMPLATE
-    # 知识库首页 since the front cleanup (2026-11-17): the three asset cards and the entrances; its one line is the
-    # value file's tagline. 主线, 正在做, 定位与价值 and 最近更新 stay off it (系统建设 keeps the main line).
+    # 知识库首页 (step 13, F1): the search box, the three asset cards and 也常用. 主线, 正在做 and 定位与价值 stay off it
+    # (系统建设 keeps the main line); 分享资料 sits under 维护 › 其他 in the sidebar.
     yield "workspace/index", {
+        "site_nav": site_nav(app),
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
+        "search_entry": bool(matrix and matrix.get("built")),
+        "manual_count": len(products),
         "system_entry": system is not None,
         "deliverables_entry": True,
         "design_entry": design is not None,
@@ -461,10 +466,10 @@ def collect_workspace_pages(app):
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 
-        yield SYSTEM_PAGE, {**system, **layers["system"], "deliverables_entry": True,
+        yield SYSTEM_PAGE, {**system, **layers["system"], "deliverables_entry": True, "site_nav": site_nav(app),
                             "design_entry": design is not None,
                             "matrix_entry": matrix is not None, "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
-    yield DELIVERABLES_PAGE, {**deliverables, "system_entry": system is not None,
+    yield DELIVERABLES_PAGE, {**deliverables, "system_entry": system is not None, "site_nav": site_nav(app),
                               "design_entry": design is not None,
                               "matrix_entry": matrix is not None, "statistics": data}, DELIVERABLES_TEMPLATE
     if design is not None:

@@ -7,7 +7,7 @@
 <div class="app-content">
 {% call site_topbar('工作资料', '说明书资料库', internal=internal_shell) %}<label class="region"><span>区域</span> <select id="region" aria-label="区域">{% for region, binding in portal.regions.items() %}<option value="{{ region|e }}" data-binding="{{ binding|e }}"{% if region == portal.default_region %} selected{% endif %}>{{ region|e }}</option>{% endfor %}</select></label>{% endcall %}
 <main>
-<section class="intro"><div class="wrap intro-inner"><h1>说明书资料库</h1><p>输入型号、商品简称、产品名称或任意关键词，查找已发布的说明书。</p><div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><label class="sr-only" for="search">搜索型号、商品简称、产品名称或说明书内容</label><input id="search" type="search" placeholder="搜索型号、商品简称、产品名称或说明书内容…" autocomplete="off"><button id="clear" aria-label="清除搜索" hidden>×</button></div></div></section>
+<section class="intro"><div class="wrap intro-inner"><h1>说明书资料库</h1><p>输入型号、商品简称、产品名称或任意关键词，查找已发布的说明书。{% if internal_shell %}<a class="intro-search-link" href="{{ pathto('search') }}">在说明书正文里搜索 →</a>{% endif %}</p><div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><label class="sr-only" for="search">搜索型号、商品简称、产品名称或说明书内容</label><input id="search" type="search" placeholder="搜索型号、商品简称、产品名称或说明书内容…" autocomplete="off"><button id="clear" aria-label="清除搜索" hidden>×</button></div></div></section>
 {%- from "_category_icons.html" import category_icon -%}
 {#- Categories and series come from the 产品分类 snapshot (tools/rtd/portal_navigation.py); the chips link to them. -#}
 <section class="catalog" aria-label="说明书资料">

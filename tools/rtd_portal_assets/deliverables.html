@@ -25,7 +25,7 @@
     to the four asset pages) the evidence table and the snapshot hashes. The page
     counts Web manuals only (2026-11-09): no Feishu cloud-document deliveries, no 交付链接 snapshot. -#}
 {%- set chip_names = {'corpus': '语料', 'web_progress': '网页进度'} -%}
-{{ site_sidebar('deliverables', {'system': system_entry, 'deliverables': True, 'design': design_entry, 'matrix': matrix_entry}) }}
+{{ site_sidebar('deliverables', site_nav if site_nav is defined else {'system': system_entry, 'deliverables': True, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
   {{ site_topbar('知识库', '说明书工作台') }}
 

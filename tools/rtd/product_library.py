@@ -88,7 +88,11 @@ def _models(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     for row in rows:
         model = str(row["model"]).strip()
         entry = models.setdefault(model, {"model": model, "markets": set(), "project": None, "category": None,
-                                          "series": None, "tier": None, "rows": set()})
+                                          "series": None, "tier": None, "rows": set(), "names": set()})
+        # What the home search matches: the printed names and the short name (the code and project come from rows).
+        entry["names"].update(str(name).strip() for name in (row.get("names") or {}).values() if str(name or "").strip())
+        if row.get("short_name"):
+            entry["names"].add(str(row["short_name"]).strip())
         if row.get("market"):
             entry["markets"].add(str(row["market"]))
         # The filters match per model × market row: a project chosen together with a market needs both on one row.
@@ -120,8 +124,11 @@ def _chips(models: list[dict[str, Any]]) -> list[dict[str, Any]]:
                           key=lambda group: _chip_order(group[0])):
         markets = set().union(*(member["markets"] for member in members))
         rows = sorted({pair for member in members for pair in member["rows"]})
+        terms = {member["model"] for member in members} | {name for member in members for name in member["names"]}
+        terms |= {project for project, _ in rows if project}
         chips.append({"project": members[0]["project"] or "", "markets": _ordered(markets, MARKET_ORDER),
                       "rows": " ".join(f"{project}|{market}" for project, market in rows),
+                      "search": " ".join(sorted(terms)).lower(),
                       "models": [{"model": member["model"], "markets": _ordered(member["markets"], MARKET_ORDER),
                                   "label": "、".join(map(market_label, _ordered(member["markets"], MARKET_ORDER)))}
                                  for member in members]})

@@ -299,7 +299,10 @@ class RtdPortalTests(unittest.TestCase):
         for internal_path in ("workspace/index.html", "workspace/deliverables/index.html",
                               "products/knowledge.html", "market/policy.html"):
             self.assertIn(f'href="{internal_path}"', page)
-        self.assertNotIn('href="ai-share/', page)
+        # The sharing package is reached only from the sidebar's 维护 › 其他 (step 13), never from the page body.
+        root = BeautifulSoup(page, "html.parser")
+        self.assertEqual([a["href"] for a in root.select('a[href^="ai-share/"]')],
+                         [a["href"] for a in root.select('#app-sidebar .app-nav-more a[href^="ai-share/"]')])
         self.assertNotIn("先学最少必要的产品知识", page)
         switch = BeautifulSoup(page, "html.parser").select_one(".app-switch")
         self.assertEqual([(a.get_text(), a.get("class")) for a in switch.select("a")],
@@ -310,13 +313,15 @@ class RtdPortalTests(unittest.TestCase):
         self.assertNotIn("AI 分享与说明书", page)
 
         workspace = (self.root / "after" / "workspace" / "index.html").read_text()
-        # The docs link these 知识库首页 sections as workspace/index.html#now and, with a share package, #shares.
+        # The docs link the 知识库首页 asset cards as workspace/index.html#now. 分享资料 is the sidebar's
+        # 维护 › 其他 entry (AI 使用知识分享) since step 13, not a home section.
         self.assertIn('id="now"', workspace)
-        self.assertIn('id="shares"', workspace)
+        self.assertNotIn('id="shares"', workspace)
         self.assertNotIn('id="updates"', workspace)  # 最近更新 left the home page (front cleanup, 2026-11-17)
         self.assertIn("知识库", workspace)
         self.assertNotIn("我的知识库", workspace)
-        self.assertIn("分享资料", workspace)
+        self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
+        self.assertIn("AI 使用知识分享", workspace)
         self.assertIn('href="../products/knowledge.html"', workspace)
         self.assertIn('href="../market/policy.html"', workspace)
         self.assertIn(">知识库</a>", workspace)
@@ -429,7 +434,8 @@ class RtdPortalTests(unittest.TestCase):
         search_page = (self.root / "after" / "search.html").read_text()
         search = BeautifulSoup(search_page, "html.parser")
         self.assertEqual(search.title.text, "搜索说明书正文 · 说明书资料库")
-        self.assertEqual(search.select_one('.app-nav-link[aria-current="page"]').text.strip(), "搜索说明书正文")
+        # In the private role the search page has no sidebar entry of its own (说明书资料库 links it from its top).
+        self.assertIsNone(search.select_one('.app-nav-link[aria-current="page"]'))
         self.assertIsNotNone(search.select_one('#ms-query[name="q"][type="search"]'))
         self.assertIsNotNone(search.select_one("#search-results"))
         self.assertEqual([s["src"] for s in search.select("script[src]")][:2],
@@ -483,10 +489,12 @@ class RtdPortalTests(unittest.TestCase):
                     groups[-1][1].append(node.span.get_text())
             return [group for group in groups if group != ("", [])]
 
-        manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
+        # Step 13: the private 说明书 group has only 说明书资料库 (搜索说明书正文 is reached from its top), and 维护
+        # lists 说明书工作台, 系统建设, 设计规范, then 资产 (内容与表现, 视觉媒体) and 其他 (the sharing package).
+        manuals = [("说明书", ["说明书资料库"])]
         knowledge = [("", ["首页"]), ("资产", ["产品信息", "产品知识", "语料库"]), *manuals,
                      ("参考", ["市场与政策"]),
-                     ("维护", ["说明书工作台", "内容与表现", "视觉媒体", "系统建设", "设计规范"])]
+                     ("维护", ["说明书工作台", "系统建设", "设计规范", "内容与表现", "视觉媒体", "AI 使用知识分享"])]
         pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html",
                  "assets/content/index.html", "assets/media/index.html", "assets/language/index.html",
                  "workspace/index.html", "workspace/system/index.html", "workspace/deliverables/index.html",
@@ -497,7 +505,10 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
                          {"index.html": knowledge, "search.html": knowledge, **dict.fromkeys(pages, knowledge)})
         current = BeautifulSoup((out / "search.html").read_text(encoding="utf-8"), "html.parser")
-        self.assertEqual([a.span.get_text() for a in current.select('a.app-nav-link[aria-current="page"]')], ["搜索说明书正文"])
+        # The private search page has no sidebar entry of its own; 说明书资料库 links it from its top.
+        self.assertEqual(current.select('a.app-nav-link[aria-current="page"]'), [])
+        root_page = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser")
+        self.assertEqual(root_page.select_one(".intro-search-link")["href"], "search.html")
         library = BeautifulSoup((out / "products/matrix.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([chip.get_text() for chip in library.select(".pl-chip")], ["FAKE-A(FAKE-B)"])
         # Each code opens its 产品档案, which leads back to 产品库 and to the project there.
@@ -544,8 +555,7 @@ class RtdPortalTests(unittest.TestCase):
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([c.strong.text for c in home.select("#now .home-front-card")], ["产品信息", "产品知识", "语料库"])
-        self.assertEqual([c.strong.text for c in home.select("#doors .home-card")],
-                         ["说明书资料库", "市场与政策", "AI 使用知识分享"])
+        self.assertEqual([c.strong.text for c in home.select("#doors .home-card")], ["说明书资料库", "市场与政策"])
         # The private library's band reads like the public one: no statuses, no links into the home page.
         band = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser").select_one("section.value")
         self.assertEqual(band.select("a, .value-status"), [])
@@ -560,6 +570,9 @@ class RtdPortalTests(unittest.TestCase):
             to_self = [link.get_text() for link in links
                        if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
+            if page == "search.html":
+                self.assertEqual((to_self, current), ([], []), page)
+                continue
             if page.startswith("products/item/") or page in ("products/table.html", "products/compare.html"):
                 # Product pages, 参数表 and 产品对比 sit under 产品信息, whose entry opens 产品库.
                 self.assertEqual((to_self, current), ([], ["产品信息"]), page)

@@ -137,7 +137,7 @@
 {%- if lane.condition %}{% set _ = parts.append(lane.condition) %}{% endif -%}
 {{ parts|join(' · ')|e }}
 {%- endmacro -%}
-{{ site_sidebar('system', {'system': True, 'deliverables': deliverables_entry, 'design': design_entry, 'matrix': matrix_entry}) }}
+{{ site_sidebar('system', site_nav if site_nav is defined else {'system': True, 'deliverables': deliverables_entry, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
   {{ site_topbar('知识库', '系统建设') }}
 

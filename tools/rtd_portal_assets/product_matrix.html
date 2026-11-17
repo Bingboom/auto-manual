@@ -18,7 +18,7 @@
     per model, the models of one project merged as A(B). 项目 and 市场 highlight matching chips and dim the rest.
     Without JavaScript every category shows and the filters stay hidden. -#}
 {%- macro chip(item) -%}
-<span class="pl-chip" data-rows="{{ item.rows|e }}">
+<span class="pl-chip" data-rows="{{ item.rows|e }}" data-search="{{ item.search|e }}">
   {%- for member in item.models -%}
   <span class="pl-code">{% if loop.index == 2 %}<span class="pl-paren">(</span>{% elif not loop.first %}<span class="pl-sep">、</span>{% endif -%}
   <a href="{% if member.page %}{{ pathto('products/item/' ~ member.model)|e }}{% else %}{{ pathto('index')|e }}?q={{ member.model|urlencode }}{% endif %}" title="{{ member.label|e }}">{{ member.model|e }}</a>
@@ -39,6 +39,7 @@
 {%- else %}
 <nav class="pl-tabs" aria-label="产品类别" hidden>{% for category in categories %}<a class="pl-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }}</a>{% endfor %}</nav>
 <form class="pl-filters" data-pl-filters hidden onsubmit="return false">
+  <label class="pl-search"><span class="sr-only">搜索产品</span><input type="search" data-pl-q placeholder="型号、产品名或项目号" autocomplete="off"></label>
   <label>项目<select data-pl-filter="project"><option value="">全部项目</option>{% for project in projects %}<option value="{{ project|e }}">{{ project|e }}</option>{% endfor %}{% if unassigned %}<option value="-">未归入项目</option>{% endif %}</select></label>
   <label>市场<select data-pl-filter="market"><option value="">全部市场</option>{% for market in markets %}<option value="{{ market.code|e }}">{{ market.label|e }}</option>{% endfor %}</select></label>
   <span class="pl-active" data-pl-active hidden><span data-pl-active-text></span><button type="button" data-pl-clear>清除</button></span>

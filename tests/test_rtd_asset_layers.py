@@ -111,15 +111,29 @@ class LayerViewTests(unittest.TestCase):
         self.assertEqual(page.select_one(".fr-empty").get_text(), "暂时没有可显示的语料数字。")
         self.assertIsNone(page.select_one("section.al-block"))
 
-    def test_corpus_page_shows_totals_dated_once_and_languages_with_pairs(self):
+    def test_corpus_page_shows_counts_dated_once_and_each_language(self):
+        # 语料库 方案甲 (step 13): pairs and terms with how many are approved, the languages, then per language.
         corpus = {"exported_at": "2026-11-01",
-                  "tiles": [{"key": "pairs", "value": "10", "label": "句对"}, {"key": "terms", "value": "3", "label": "术语"}],
-                  "rows": [{"label": "English", "count": 5, "count_text": "5", "percent": 100},
-                           {"label": "Deutsch", "count": 0, "count_text": "0", "percent": 0}]}
+                  "counts": {"pairs": 1200, "pairs_approved": 900, "terms": 30, "terms_approved": 20, "languages": 1},
+                  "rows": [{"label": "English", "count": 5, "count_text": "5", "percent": 100, "terms": 3,
+                            "terms_text": "3"},
+                           {"label": "Deutsch", "count": 0, "count_text": "0", "percent": 0, "terms": 0,
+                            "terms_text": "0"}]}
         page = render("asset_language.html", layer=al.language_view({"corpus": corpus}))
-        self.assertEqual([d.strong.get_text() for d in page.select(".fr-figs div")], ["10", "3"])
-        self.assertEqual(page.select_one(".fr-date").get_text(), "截至 2026-11-01")
-        self.assertEqual([li.span.get_text() for li in page.select(".fr-bars li")], ["English"])
+        self.assertEqual(page.select_one(".fr-head p").get_text(), "已批准的术语和标准句，多语言对照 · 更新于 2026-11-01")
+        self.assertEqual([d.get_text(" ") for d in page.select(".fr-figs div")],
+                         ["1,200 组句子，其中 900 组已批准", "30 个术语，其中 20 个已批准", "1 种语言"])
+        rows = page.select(".fr-langs tbody tr")
+        self.assertEqual([(r.th.get_text(), r.select("td")[0].get_text(), r.select("td")[2].get_text()) for r in rows],
+                         [("English", "5", "3")])
+        self.assertNotIn("%", "".join(td.get_text() for td in page.select(".fr-langs td")))
+
+    def test_corpus_languages_are_named_as_the_manual_library_names_them(self):
+        corpus = {"rows": [{"code": "en", "label": "英语"}, {"code": "jp", "manual": "ja", "label": "日语"},
+                           {"code": "xx", "label": "未列语言"}]}
+        view = al.language_view({"corpus": corpus}, {"en": "English", "ja": "日本語"})
+        self.assertEqual([row["label"] for row in view["corpus"]["rows"]], ["English", "日本語", "未列语言"])
+        self.assertEqual(corpus["rows"][0]["label"], "英语")  # 系统建设's own copy is untouched
 
 
 class TemplateTests(unittest.TestCase):

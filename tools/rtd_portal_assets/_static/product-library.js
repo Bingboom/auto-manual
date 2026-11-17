@@ -7,7 +7,11 @@
   // A chip's state under a filter: '' when no filter is set, else 'on' when one of its model × market rows
   // ("project|market", space-separated in data-rows) satisfies every set filter, else 'off'.
   const chipState = (chip, filter) => {
-    if (!filter.project && !filter.market) return '';
+    const query = (filter.q || '').trim().toLowerCase();
+    if (!filter.project && !filter.market && !query) return '';
+    // The search matches a chip's model codes, product names and project (data-search, lower case).
+    if (query && !(chip.search || '').includes(query)) return 'off';
+    if (!filter.project && !filter.market) return 'on';
     const rows = (chip.rows || '').split(' ').filter(Boolean).map(pair => pair.split('|'));
     const hit = rows.some(([project, market]) => {
       const projectOk = !filter.project || (filter.project === '-' ? project === '' : project === filter.project);
@@ -29,6 +33,7 @@
   const active = document.querySelector('[data-pl-active]');
   const activeLabel = document.querySelector('[data-pl-active-text]');
   const chips = [...document.querySelectorAll('.pl-chip')];
+  const search = document.querySelector('[data-pl-q]');
   document.documentElement.classList.add('pl-js');
   tabs.forEach(tab => { tab.closest('nav').hidden = false; });
   if (form) form.hidden = false;
@@ -46,12 +51,14 @@
   };
   const apply = () => {
     const filter = Object.fromEntries(selects.map(select => [select.dataset.plFilter, select.value]));
+    filter.q = search ? search.value : '';
     chips.forEach(chip => {
       const state = chipState(chip.dataset, filter);
       chip.classList.toggle('is-on', state === 'on');
       chip.classList.toggle('is-off', state === 'off');
     });
     const labels = selects.filter(select => select.value).map(select => select.options[select.selectedIndex].text);
+    if (filter.q.trim()) labels.unshift(`搜索：${filter.q.trim()}`);
     if (active) active.hidden = !labels.length;
     if (activeLabel) activeLabel.textContent = activeText(labels);
   };
@@ -61,9 +68,20 @@
     show(tab.dataset.tab);
     setHash(`#cat-${tab.dataset.tab}`);
   }));
+  // Open the tab holding the first highlighted chip (after a search or a project chosen from elsewhere).
+  const showFirstMatch = () => {
+    const first = chips.find(chip => chip.classList.contains('is-on'));
+    const panel = first && panels.find(item => item.contains(first));
+    if (panel) show(panel.dataset.panel);
+  };
   selects.forEach(select => select.addEventListener('change', apply));
+  if (search) search.addEventListener('input', () => { apply(); showFirstMatch(); });
   const clear = document.querySelector('[data-pl-clear]');
-  if (clear) clear.addEventListener('click', () => { selects.forEach(select => { select.value = ''; }); apply(); });
+  if (clear) clear.addEventListener('click', () => {
+    selects.forEach(select => { select.value = ''; });
+    if (search) search.value = '';
+    apply();
+  });
 
   const fromHash = () => {
     const id = decodeURIComponent(window.location.hash.slice(1));
@@ -72,15 +90,14 @@
   };
   window.addEventListener('hashchange', fromHash);
   fromHash();
-  // A product page links its project here as ?project=…: preselect it when it is one of the options.
-  const wanted = new URLSearchParams(window.location.search).get('project');
+  // A product page links its project here as ?project=…, the home search sends ?q=…: preselect them.
+  const params = new URLSearchParams(window.location.search);
+  const wanted = params.get('project');
   const projectSelect = selects.find(select => select.dataset.plFilter === 'project');
   if (wanted && projectSelect && [...projectSelect.options].some(option => option.value === wanted)) {
     projectSelect.value = wanted;
-    apply();
-    const first = chips.find(chip => chip.classList.contains('is-on'));
-    const panel = first && panels.find(item => item.contains(first));
-    if (panel) show(panel.dataset.panel);
   }
+  if (search && params.get('q')) search.value = params.get('q');
   apply();
+  if (wanted || params.get('q')) showFirstMatch();
 })();

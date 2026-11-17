@@ -8,30 +8,33 @@
 <link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{#- 语料库 (front cleanup, 2026-11-17): a page for product colleagues, so a title, one line, then the content: the
-    translation memory's totals and each language's translated pairs, dated once. Context: tools/rtd/asset_layers.py
-    language_view. No sources, refresh notes, rules or maintenance links here. -#}
-{%- set g = layer -%}{%- set corpus = g.corpus -%}{%- set tiles = g.tiles -%}
+{#- 语料库 (step 13, 方案甲): a page for product colleagues, so a title, one line, then the content: sentence pairs and
+    terms with how many are approved, the languages, and each language's pairs and terms, dated once by the export.
+    Context: tools/rtd/asset_layers.py language_view (the corpus view of system_workspace). No sources, refresh notes,
+    rules or maintenance links here. The lookup (方案乙) waits for the corpus content to be exported. -#}
+{%- set g = layer -%}{%- set corpus = g.corpus -%}
 <body class="app kb">
 {{ site_sidebar('asset-language', site_nav) }}
 <div class="app-content">
 {{ site_topbar('知识库', '语料库') }}
 <main class="fr-page">
-<header class="fr-head"><h1>语料库</h1><p>翻译时先查这里，已经批准的句对和术语可以直接复用。</p></header>
-{%- if corpus %}
+<header class="fr-head"><h1>语料库</h1><p>已批准的术语和标准句，多语言对照{% if corpus %} · 更新于 {{ corpus.exported_at|e }}{% endif %}</p></header>
+{%- if corpus %}{% set n = corpus.counts %}
 <section class="fr-figs" aria-label="语料库规模">
-  {%- for key in ('pairs', 'terms', 'approved') if tiles[key] %}
-  <div><strong>{{ tiles[key].value|e }}</strong><span>{{ tiles[key].label|e }}</span></div>
-  {%- endfor %}
-  <time class="fr-date" datetime="{{ corpus.exported_at|e }}">截至 {{ corpus.exported_at|e }}</time>
+  <div><strong>{{ '{:,}'.format(n.pairs) }}</strong><span>组句子，其中 {{ '{:,}'.format(n.pairs_approved) }} 组已批准</span></div>
+  <div><strong>{{ '{:,}'.format(n.terms) }}</strong><span>个术语，其中 {{ '{:,}'.format(n.terms_approved) }} 个已批准</span></div>
+  <div><strong>{{ n.languages }}</strong><span>种语言</span></div>
 </section>
 <section class="fr-section" aria-labelledby="langs-title">
-  <h2 id="langs-title">各语言已有的句对</h2>
-  <ul class="fr-bars">
-    {%- for row in corpus.rows if row.count %}
-    <li><span>{{ row.label|e }}</span><span class="fr-track" aria-hidden="true"><i style="width:{{ row.percent }}%"></i></span><span class="fr-val">{{ row.count_text|e }}</span></li>
+  <h2 id="langs-title">各语言</h2>
+  <table class="fr-langs">
+    <thead><tr><th scope="col">语言</th><th scope="col" class="is-num">句子</th><th scope="col"><span class="sr-only">句子数量对比</span></th><th scope="col" class="is-num">术语</th></tr></thead>
+    <tbody>
+    {%- for row in corpus.rows if row.count or row.terms %}
+      <tr><th scope="row">{{ row.label|e }}</th><td class="is-num">{{ row.count_text|e }}</td><td><span class="fr-track" aria-hidden="true"><i style="width:{{ row.percent }}%"></i></span></td><td class="is-num">{{ row.terms_text|e }}</td></tr>
     {%- endfor %}
-  </ul>
+    </tbody>
+  </table>
 </section>
 {%- else %}
 <p class="fr-empty">暂时没有可显示的语料数字。</p>
