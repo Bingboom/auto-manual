@@ -20,7 +20,6 @@ from tools.rtd.design_system import (
     PAGE as DESIGN_PAGE, TEMPLATE as DESIGN_TEMPLATE, design_page_context, template_context, write_design_system,
 )
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
-from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, updates_view
 from tools.rtd.manual_reader import frame_text, load_text, locale_options, reader_context
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_short_names import attach_short_names, load_short_names
@@ -33,7 +32,6 @@ from tools.rtd.system_data import system_data_page_context
 from tools.rtd.site_role import resolve_site_role
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.rtd.web_manual_value import band_context, load_value, page_context as value_page_context
-from tools.rtd.workspace_home import load_home_copy, now_view
 from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).resolve().parents[1] / "rtd_portal_assets"
@@ -299,8 +297,8 @@ def page_context(app, pagename, templatename, context, doctree):
     context["library"] = library_view(settings, products, getattr(app, "_rtd_product_catalog", None))
     context["site_nav"] = site_nav(app)
     context["internal_shell"] = not manuals_only(app)
-    # 网页说明书的定位与价值 band: the public role gets only the reader-facing copy.
-    context["value"] = band_context(load_value(ASSETS), internal=not manuals_only(app))
+    # Since the front cleanup (2026-11-17) both roles show the reader-facing band: no statuses, no links into 维护.
+    context["value"] = band_context(load_value(ASSETS), internal=False)
     context["analytics_beacon"] = beacon_markup(beacon_token)
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
     context["product_voc"] = voc_markup
@@ -423,9 +421,7 @@ def collect_workspace_pages(app):
 
     layers = asset_layer_pages(
         srcdir=Path(app.srcdir), assets=ASSETS, settings=settings, products=products, system=system, matrix=matrix,
-        topics=None if learning["content_missing"] else len(learning["topics"]),
-        build_date=_build_date(deliverables, system),
-        coverage=(deliverables.get("progress") or {}).get("coverage"),
+        learning=learning, build_date=_build_date(deliverables, system),
         warn=sphinx_logging.getLogger(__name__).warning)
     product = layers.pop("product")
     yield PAGE, {**learning, "site_nav": site_nav(app), "product": product}, TEMPLATE
@@ -444,25 +440,16 @@ def collect_workspace_pages(app):
         sphinx_logging.getLogger(__name__).warning(
             "Market policy record %s links to unknown product knowledge topic #%s", record, anchor)
     yield MARKET_PAGE, {**market, "site_nav": site_nav(app)}, MARKET_TEMPLATE
-    entries, problems = load_updates(ASSETS)
-    for problem in problems:
-        sphinx_logging.getLogger(__name__).warning("Knowledge home update skipped: %s", problem)
-    # 最近更新 links only to what this build made; the other pages always build.
-    built = {**dict.fromkeys(UPDATE_PAGES, True), "share": has_share, "product-matrix": matrix is not None,
-             "system": system is not None, "design-system": design is not None}
+    # 知识库首页 since the front cleanup (2026-11-17): the three asset cards and the entrances; its one line is the
+    # value file's tagline. 主线, 正在做, 定位与价值 and 最近更新 stay off it (系统建设 keeps the main line).
     yield "workspace/index", {
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,
         "deliverables_entry": True,
         "design_entry": design is not None,
         "matrix_entry": matrix is not None,
-        # 现在: reusable assets (each from the source that owns it), then 当前主线 and 正在做 from 系统建设;
-        # then 去哪里, 定位与价值 and the newest 5 updates.
-        "now": now_view(system, load_home_copy(ASSETS)),
-        # 四类资产 (step 12): the layer cards, the main line and its two figures (tools/rtd/asset_pages.py).
-        "layers": layers["home"],
+        "cards": layers["cards"],
         "value": value_page_context(load_value(ASSETS)),
-        "updates": updates_view(entries, built),
     }, "workspace_portal.html"
     if system is not None:
         from tools.rtd.workspace_revision import page_revision

@@ -29,8 +29,6 @@
 <header class="mp-head">
   <div class="mp-head-text"><h1>市场与政策</h1><p>各地区的政策变化，对说明书和产品意味着什么。先按主题看，点开一条再看原理、影响和出处。</p></div>
   <div class="mp-head-meta">
-    {%- if records %}<span class="mp-pill">{{ records|length }} 条资料 · {{ country_count }} 个国家和地区</span>{% endif %}
-    {%- if reviewed %}<span class="mp-pill"><i aria-hidden="true"></i>政策核对 <time datetime="{{ reviewed|e }}">{{ reviewed[5:]|e }}</time></span>{% endif %}
     <a href="{{ pathto('products/knowledge') }}">产品知识 →</a>
   </div>
 </header>

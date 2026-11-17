@@ -14,7 +14,7 @@
 /* Head: title and lead, then the counts and the sibling page. */
 .pk-head {display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
 .pk-head > div:first-child {display:flex;flex-direction:column;gap:8px;max-width:640px}
-.pk-head .pk-title {margin:0;font-size:22px;line-height:30px;font-weight:700}
+.pk-head .pk-title {margin:0;font-size:30px;line-height:38px;font-weight:700}
 .pk-head p {margin:0;font-size:15px;line-height:24px;color:var(--app-text2)}
 .pk-head-meta {display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .pk-pill {display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:#fff;
@@ -217,5 +217,5 @@
 }
 @media (max-width:660px) {
   .learning {padding:25px 18px 48px}
-  .pk-head .pk-title {font-size:20px;line-height:28px}
+  .pk-head .pk-title {font-size:26px;line-height:34px}
 }

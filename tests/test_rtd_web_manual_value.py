@@ -144,27 +144,14 @@ class RenderTests(unittest.TestCase):
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
 
-    def test_knowledge_home_shows_one_card_per_theme_with_its_facets(self):
+    def test_knowledge_home_keeps_the_tagline_and_drops_the_theme_cards(self):
         value = wmv.load_value(ASSETS)
         home = render("workspace_portal.html", value=wmv.page_context(value), share_entry="", system_entry=True,
-                      deliverables_entry=True, design_entry=True, matrix_entry=True, updates=[])
+                      deliverables_entry=True, design_entry=True, matrix_entry=True, cards=[])
         self.assertEqual(home.select_one(".home-line").get_text(), value["internal"]["tagline"])
-        cards = home.select("#value article.home-theme")
-        self.assertEqual([card["id"] for card in cards], ["reading", "machine", "governance", "knowledge"])
-        for card, theme in zip(cards, value["internal"]["themes"], strict=True):
-            # First level: name, status and one sentence.
-            self.assertEqual(card.h3.get_text(), theme["theme"])
-            self.assertEqual(card.select_one("header .home-status")["class"][-1], f"is-{theme['status']}")
-            self.assertEqual(card.select_one(":scope > p").get_text(), theme["summary"])
-            # Then each facet with its status mark; the note is the row's tooltip.
-            facets = card.select("ul > li")
-            self.assertEqual([(li.span.get_text(), li.svg["class"][-1]) for li in facets],
-                             [(f["label"], f"is-{f['status']}") for f in theme["facets"]])
-            self.assertEqual([li["title"] for li in facets],
-                             [f"{f['status_label']}：{f['note']}" for f in theme["facets"]])
-        # REV ids are evidence in the data file, never shown; no 总纲, principles or direction block.
+        # Since the front cleanup (2026-11-17) the theme statuses are not on the home page.
+        self.assertIsNone(home.select_one("#value, article.home-theme, .home-status"))
         self.assertNotIn("REV-", home.get_text())
-        self.assertIsNone(home.select_one("#direction, .vp-key, .vp-principle"))
         current = home.select('#app-sidebar a[aria-current="page"]')
         self.assertEqual([(a.span.get_text(), a["href"]) for a in current], [("首页", wmv.HOME)])
         self.assertNotIn("定位与价值", [a.span.get_text() for a in home.select("#app-sidebar a.app-nav-link")])

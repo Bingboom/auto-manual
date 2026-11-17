@@ -105,7 +105,6 @@ updates:
     title: 定位与价值 · 网页说明书的定位与价值
     note: 新增一页：网页说明书的三个主题（便捷阅读、内容治理、知识积累）各自的现状，以及长期方向；说明书资料库首页同步加了定位板块
     page: home
-    anchor: value
     evidence: "pr:auto-manual#1669"
   - date: 2026-10-22
     title: 产品知识 · 美规 ATS 与日本切替分電盤

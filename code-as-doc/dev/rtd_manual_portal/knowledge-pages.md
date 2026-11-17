@@ -6,49 +6,26 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 ## Personal workspace entry
 
 The manual library root (说明书资料库) remains independent. The portal extension
-also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page. Its
-2026-11 design (an operator-approved design canvas) answers, from top to bottom,
-what has built up and can be reused, what is being done now, and where to go:
+also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page. Since the
+front cleanup (operator review 2026-11-17: the front is for product colleagues, not
+for maintainers) it is minimal:
 
 - The page header gives the web manuals' positioning in one line (the `tagline`
   of `web_manual_value.yaml`).
-- **现在** (`#now`) opens, since step 12 slice 2, with the four asset layers in priority
-  order and the main line; see [asset-layers.md](asset-layers.md#知识库首页-and-系统建设-slice-2).
-  Each card's figures come from the layer views the layer pages render (no figure is
-  read a second way), its chip only from ledger rows. Below the cards, 主线 prints the
-  main-line statement of `asset_layers.yaml` with 网页覆盖 and the 产品信息矩阵 stage, and
-  正在做 shows 系统建设's own list (`focus.doing` in `system_workspace.yaml`), so the two
-  pages always agree; without the 系统建设 page 正在做 does not show.
-  `tools/rtd_portal_assets/workspace_home.yaml` (schema v2) holds only the note beside
-  the cards and refuses a `doing` list of its own; a malformed one fails the build.
-- **去哪里** (`#doors`) has one card per sidebar group after 首页 (step 12): 资产 ·
-  按优先级 (`#products`: 产品信息, 内容与表现, 视觉媒体, 语言), 说明书 (`#manuals`:
-  说明书资料库, 搜索说明书正文), 生产与方向 (`#production`: 说明书工作台, 系统建设) and
-  参考 (`#reference`: 市场与政策, 设计规范). Each entry carries its sidebar
-  icon and one line on what is there. A link shows only when its sidebar entry
-  does, so it never points to a page this build skipped, and the cards carry no
-  counts. The sidebar test in `tests/test_rtd_portal.py` pins the cards to the
-  sidebar's groups and order. Under the cards, **分享资料** (`#shares`) is one
-  link to the bundled beginner-facing AI sharing package at
-  `/ai-share/00_打开分享.html`.
-- **定位与价值** (`#value`) holds the four theme cards, each with its status, one
-  sentence and its facets with status marks (a facet's note is its row's
-  tooltip), under a legend of the marks used; see
-  [网页说明书的定位与价值](web-manual-value.md).
-- **最近更新** (`#updates`) lists dated changes, one line each (`YYYY-MM-DD`,
-  page · title, the note cut to fit), from
-  `tools/rtd_portal_assets/knowledge_updates.yaml`
-  (`tools/rtd/knowledge_updates.py` reads it): the newest 5 entries whose page
-  this build made, newest first, ties in file order. The date is the change's
-  merge day, as `git log --date=short` shows the squash commit on main, and each
-  entry cites `pr:<repo>#<n>` as evidence for reviewers (not shown). The list is
-  curated because no build-time source carries per-page change dates: snapshot
-  and manifest dates measure freshness, which 说明书工作台 and 系统建设 already
-  show. An entry without a valid (unquoted) date reads 日期未记录 and sorts last;
-  one with an unknown page, an empty title or note, or a bad anchor is dropped.
-  Both log `Knowledge home update skipped`, and the build date is never shown
-  instead. An unreadable file leaves 暂无更新记录。 A PR that adds a knowledge
-  page, or changes one in a way readers should notice, adds its entry there.
+- **资产** (`#now`): three cards, 产品信息, 产品知识 and 语料库, each with its name, one
+  line and one figure with its date (`tools/rtd/asset_pages.py` `front_cards`;
+  待统计 when the figure cannot be read). 产品信息 shows only when the matrix is
+  built. No status chips or ledger references; see
+  [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
+- **入口** (`#doors`): 说明书资料库 and 市场与政策, then, with the bundled
+  beginner-facing AI sharing package, **分享资料** (`#shares`, a link to
+  `/ai-share/00_打开分享.html`).
+
+The former 主线, 正在做, 去哪里 groups, 定位与价值 theme cards and 最近更新 list left
+the page. 正在做 and 当前主线 stay on 系统建设; the 维护 pages are reached from the
+sidebar. `tools/rtd/workspace_home.py`, `workspace_home.yaml`,
+`tools/rtd/knowledge_updates.py` and `knowledge_updates.yaml` are no longer read
+by the build; they stay until the operator confirms their removal.
 
 The shared shell (`_site_shell.html`) draws one line icon set (24 grid, 1.75
 stroke, round caps, `currentColor`); pages import its `icon()` macro, and a path
@@ -75,13 +52,12 @@ workspace path is navigation, not a separate access-control boundary.
 
 The workspace exists in every combined portal build; knowledge pages link back
 to the manual center. In the combined role the manual-center homepage links into
-the workspace only through the shared shell and the 定位与价值 band; in the
+the workspace only through the shared shell; in the
 public role it links nowhere internal. The system page lives inside it. The sharing package is an
 optional entry. Without `ai-share/00_打开分享.html`, the 知识库首页
-(`workspace/index.html`) hides its 分享资料 link (`#shares`)
-and the 最近更新 rows (`#updates`) that link to the package. Nothing else changes.
-分享资料 and 最近更新 are sections of the 知识库首页, not sidebar entries: the
-sidebar lists pages only, so each entry is marked current on its own page.
+(`workspace/index.html`) hides its 分享资料 link (`#shares`). Nothing else changes.
+分享资料 is a link on the 知识库首页, not a sidebar entry: the sidebar lists pages
+only, so each entry is marked current on its own page.
 
 Rollback: revert the portal extension's RTD activation and rebuild. Frozen
 content, QR aliases and nested manual URLs are unchanged.
@@ -236,8 +212,8 @@ fails the export instead of silently dropping a format.
   发布清单里还没有网页说明书.
 - The Feishu snapshot is not read for the page, so an unsound or old one
   changes nothing there; `check` still reports it.
-- The page always renders. Every knowledge page lists it first under 生产与方向,
-  and the 知识库首页 links to it from its 生产与方向 group too.
+- The page always renders. Every knowledge page lists it first under 维护,
+  the sidebar group collapsed by default; the 知识库首页 does not link it.
 
 ### 数据统计
 
@@ -420,9 +396,9 @@ entries now link directly to the workbench statistics tab; the retired
 
 `/products/matrix.html` (产品矩阵) lays out the products the published Web
 manuals describe, grouped the way the 网页文档 table groups them (2026-11
-redesign). Since step 12 it is the first tab of 产品信息 (资产 1; see
-[asset-layers.md](asset-layers.md)), with 属性字典 and 产品知识; the public manual
-library does not link to it.
+redesign). It is the 产品信息 page (资产; see [asset-layers.md](asset-layers.md#front-pages)):
+since the front cleanup (2026-11-17) the title, then the matrix, with no tabs, chips, provenance labels or page foot. The
+former 属性字典 address forwards here. The public manual library does not link to it.
 
 - **Products and their classes.** One product is one 商品简称 of the
   [产品分类 snapshot](#产品分类-snapshot). A model whose 商品简称 ends in a
@@ -564,17 +540,17 @@ python -m tools.rtd.product_catalog check
 
 产品知识（产品案例是其末节）、市场与政策都与说明书共用同一个 RTD 项目（2026-10-06 定为同项目发布）。2026-10-13 起 Hello-Docs 转为私有仓库，站点改由 Read the Docs for Business 托管于 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，访问需要登录并具备项目权限；页面路径须带 `/en/latest/` 前缀，例如 `/en/latest/products/knowledge.html`。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；分享知识页直达链接给有权限的人。
 
-`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。内容属于业务面：通用功能原理、常见误区与阅读提示（标签与词条）在 Hello-Docs 的 `docs/knowledge/product-knowledge/topics.json`，词条之后的实际产品案例在同目录的 `cases.json`（两者都是 `schema_version: 1`，2026-11-09 从 auto-manual 迁出）；在 Hello-Docs 内容分支修改，只走 `docs/knowledge/**` 的内容 PR，不复制回 auto-manual。工程面的 `tools/rtd/product_learning.py` 读取这两个文件，模板、校验与 `circuit-*.svg` 电路图留在 auto-manual；本地预览用 `rtd_knowledge_dir` 指向内容目录。内容目录缺失时页面为空、不发警告（与市场政策一致，auto-manual 自身不带业务内容）；文件格式或版本错误、条目引用不存在的标签、分组或电路图时构建失败；导航或产品矩阵列出、却没有任何词条覆盖的型号在构建时以警告列出。测试只用 `tests/fixtures/rtd_product_knowledge/` 的合成样本（真实 id 与结构、占位文字）。每项写入 `added`（首次发布日期，YYYY-MM-DD）；知识库首页的增长线读取它，有一项缺少时只显示主题数。适用产品取产品矩阵模块的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：`settings.json` 的 `navigation` 分组（说明书资料库已改按产品分类分组，`navigation` 只留作这层定位）加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句在产品矩阵构建时核对，原文不再出现只给出警告），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。区域选择与说明书资料库共用浏览器 `localStorage` 的 `hello-docs.manual-portal.region`（按区域名，如 UK 仍显示为 UK、筛选共用的 EU 说明书）：任一页选过的区域，两页下次都从它打开；“全部区域”只在本页，记在 `hello-docs.manual-portal.region-all`，直到在任一页再选具体区域；词条链接为显示被隐藏词条而清除的区域不记住；没有有效记录（首次访问、存储被清除或禁用、记录已不是选项）时用配置的默认区域。覆盖测试见 `tests/product_knowledge_ui.test.mjs`。
+`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。内容属于业务面：通用功能原理、常见误区与阅读提示（标签与词条）在 Hello-Docs 的 `docs/knowledge/product-knowledge/topics.json`，词条之后的实际产品案例在同目录的 `cases.json`（两者都是 `schema_version: 1`，2026-11-09 从 auto-manual 迁出）；在 Hello-Docs 内容分支修改，只走 `docs/knowledge/**` 的内容 PR，不复制回 auto-manual。工程面的 `tools/rtd/product_learning.py` 读取这两个文件，模板、校验与 `circuit-*.svg` 电路图留在 auto-manual；本地预览用 `rtd_knowledge_dir` 指向内容目录。内容目录缺失时页面为空、不发警告（与市场政策一致，auto-manual 自身不带业务内容）；文件格式或版本错误、条目引用不存在的标签、分组或电路图时构建失败；导航或产品矩阵列出、却没有任何词条覆盖的型号在构建时以警告列出。测试只用 `tests/fixtures/rtd_product_knowledge/` 的合成样本（真实 id 与结构、占位文字）。每项写入 `added`（首次发布日期，YYYY-MM-DD）；知识库首页的产品知识卡以最新的 `added` 作为数字的日期。适用产品取产品矩阵模块的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：`settings.json` 的 `navigation` 分组（说明书资料库已改按产品分类分组，`navigation` 只留作这层定位）加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句在产品矩阵构建时核对，原文不再出现只给出警告），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。区域选择与说明书资料库共用浏览器 `localStorage` 的 `hello-docs.manual-portal.region`（按区域名，如 UK 仍显示为 UK、筛选共用的 EU 说明书）：任一页选过的区域，两页下次都从它打开；“全部区域”只在本页，记在 `hello-docs.manual-portal.region-all`，直到在任一页再选具体区域；词条链接为显示被隐藏词条而清除的区域不记住；没有有效记录（首次访问、存储被清除或禁用、记录已不是选项）时用配置的默认区域。覆盖测试见 `tests/product_knowledge_ui.test.mjs`。
 
 通用知识不构成某型号内部电路、芯片或跨产品兼容性的认定，也不把教程中的算例当作产品实测。标签和型号过滤只控制阅读范围；技术值、操作和兼容条件仍以对应地区说明书为准。未启用 JavaScript 时全部知识条目与来源链接可读。工程面的模板、交互和课程词条与业务面的 `docs/knowledge/**` 个人分享文章分别维护。
 
-页面（2026-11 改版）先给两张图，再给词条卡：“先看懂能量怎样流动”把来源 → 充电转换 → 电池 → 逆变/直流转换 → 设备画成一行，扩容挂在电池下，旁路走在下方，每个环节标出对应主题的条数，点击即按该主题筛选并跳到列表；“按主题找”每个主题一张卡，列出其下词条的短名（标题全角冒号前的部分），点短名直达词条，词条被筛选隐藏时先清除主题与型号，仍不可见再清除区域。手机宽度下主题卡只留标题与条数。词条卡把示意与原理、产品应用、易混淆点和来源放在一起：一般示意由 `diagram_nodes` 生成 HTML 步骤链；`_knowledge_diagram.html` 里手绘的 SVG 示意占更宽的图列；写了 `circuit` 的词条（须是 `_static` 中已有的 `circuit-*.svg`，否则构建报错）把电路图放在正文上方，按标注可读的尺寸显示，可点开原图。每卡列出当前区域的说明书，超过 8 本时其余收进“+N”；区域选“全部”时说明书名后标出区域。示意图不代表某型号内部电路。
+页首（2026-11-17 前台精简）只有标题“产品知识”和一句话，不再有资产层的页首、标签页与页脚。页面（2026-11 改版）先给两张图，再给词条卡：“先看懂能量怎样流动”把来源 → 充电转换 → 电池 → 逆变/直流转换 → 设备画成一行，扩容挂在电池下，旁路走在下方，每个环节标出对应主题的条数，点击即按该主题筛选并跳到列表；“按主题找”每个主题一张卡，列出其下词条的短名（标题全角冒号前的部分），点短名直达词条，词条被筛选隐藏时先清除主题与型号，仍不可见再清除区域。手机宽度下主题卡只留标题与条数。词条卡把示意与原理、产品应用、易混淆点和来源放在一起：一般示意由 `diagram_nodes` 生成 HTML 步骤链；`_knowledge_diagram.html` 里手绘的 SVG 示意占更宽的图列；写了 `circuit` 的词条（须是 `_static` 中已有的 `circuit-*.svg`，否则构建报错）把电路图放在正文上方，按标注可读的尺寸显示，可点开原图。每卡列出当前区域的说明书，超过 8 本时其余收进“+N”；区域选“全部”时说明书名后标出区域。示意图不代表某型号内部电路。
 
 AC 教学电路图（H 桥与 LC 滤波、插座并联、联锁切换）只用于逆变器、多口合计与 UPS 三条讲电路的词条。低压升压、隔离、体二极管与接地等未展开，不能当成实际产品原理图。实际产品案例（当前为 JHP-3600C US 的备电案例）在词条之后，由 `cases.json` 逐题给出标题、电路图（`circuit`：文件、替代文字与图注）或说明书关键数值（`stats`）及正文段落；来源链接与知识条目一样从冻结发布目录取得，目录中没有案例所引型号与区域的说明书时整段不显示；分相、旁路、ATS/MTS 与级联条件按说明书描述。尚未发布的说明书（例如审核稿阶段的日规）内容在其发布后再写入案例。
 
 ## 市场与政策
 
-`/market/policy.html` 与产品知识并列，记录“政策变化 → 原理解释 → 产品影响”。页面（2026-11 改版）先放每个主题一张卡（主题名、条数、一句说明，以及每个国家一个标签，标签上的圆点标出核实状态，点标签直达该国第一条），下面一行说明状态圆点；再按主题分组，每条记录收成一行（国家、标题、时间、状态），点开才显示三段（第一段对业务需求写“需求变化”）、适用边界，以及适用范围、时间、相关产品知识与出处。页面不再设筛选；“全部展开”需要 JavaScript，链接到某条记录（`#记录 id`）时该条自动展开。主题划分写在 `tools/rtd_portal_assets/market_policy_themes.yaml`（`hello-docs-market-themes/v1`）：快照只带标签，记录归入第一个列出其任一标签的主题；没有主题认领的记录显示在“其他”并给出 Sphinx 警告，此时把它的标签加进该文件；`cross_region`（跨地区）不计入“国家和地区”数。该文件格式有误时构建失败。每条记录显示适用地区和时间；“政策要点已核实”只表示政策事实已查官方出处，产品影响单独标注为分析判断。官方出处以简短参考链接呈现；页面不展示原始资料截图、整理流程或核对过程说明，未经核实的信息仍保留状态标识。
+`/market/policy.html` 与产品知识并列，记录“政策变化 → 原理解释 → 产品影响”。页首只有标题、一句话和去产品知识的链接（2026-11-17 起不再显示资料条数与政策核对日期）。页面（2026-11 改版）先放每个主题一张卡（主题名、条数、一句说明，以及每个国家一个标签，标签上的圆点标出核实状态，点标签直达该国第一条），下面一行说明状态圆点；再按主题分组，每条记录收成一行（国家、标题、时间、状态），点开才显示三段（第一段对业务需求写“需求变化”）、适用边界，以及适用范围、时间、相关产品知识与出处。页面不再设筛选；“全部展开”需要 JavaScript，链接到某条记录（`#记录 id`）时该条自动展开。主题划分写在 `tools/rtd_portal_assets/market_policy_themes.yaml`（`hello-docs-market-themes/v1`）：快照只带标签，记录归入第一个列出其任一标签的主题；没有主题认领的记录显示在“其他”并给出 Sphinx 警告，此时把它的标签加进该文件；`cross_region`（跨地区）不计入“国家和地区”数。该文件格式有误时构建失败。每条记录显示适用地区和时间；“政策要点已核实”只表示政策事实已查官方出处，产品影响单独标注为分析判断。官方出处以简短参考链接呈现；页面不展示原始资料截图、整理流程或核对过程说明，未经核实的信息仍保留状态标识。
 
 工程面的 `tools/rtd/market_policy.py` 读取业务内容目录下的 `market-policy/records.json`（`schema_version: 1`）。默认业务目录为 Hello-Docs 的 `docs/knowledge/`，本地预览可用 `rtd_knowledge_dir` 指向临时目录。该快照及原始截图不放入 auto-manual；当前未接入飞书多维表，也不在线读取飞书。
 

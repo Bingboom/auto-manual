@@ -294,9 +294,10 @@ class RtdPortalTests(unittest.TestCase):
         self.assertNotIn("AI 分享与说明书", page)
 
         workspace = (self.root / "after" / "workspace" / "index.html").read_text()
-        # The docs link these 知识库首页 sections as workspace/index.html#updates and, with a share package, #shares.
-        self.assertIn('id="updates"', workspace)
+        # The docs link these 知识库首页 sections as workspace/index.html#now and, with a share package, #shares.
+        self.assertIn('id="now"', workspace)
         self.assertIn('id="shares"', workspace)
+        self.assertNotIn('id="updates"', workspace)  # 最近更新 left the home page (front cleanup, 2026-11-17)
         self.assertIn("知识库", workspace)
         self.assertNotIn("我的知识库", workspace)
         self.assertIn("分享资料", workspace)
@@ -460,9 +461,10 @@ class RtdPortalTests(unittest.TestCase):
             return [group for group in groups if group != ("", [])]
 
         manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
-        knowledge = [("", ["首页"]), ("资产 · 按优先级", ["产品信息", "内容与表现", "视觉媒体", "语言"]), *manuals,
-                     ("生产与方向", ["说明书工作台", "系统建设"]), ("参考", ["市场与政策", "设计规范"])]
-        pages = ("products/knowledge.html", "products/matrix.html", "products/attributes.html", "market/policy.html",
+        knowledge = [("", ["首页"]), ("资产", ["产品信息", "产品知识", "语料库"]), *manuals,
+                     ("参考", ["市场与政策"]),
+                     ("维护", ["说明书工作台", "内容与表现", "视觉媒体", "系统建设", "设计规范"])]
+        pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html",
                  "assets/content/index.html", "assets/media/index.html", "assets/language/index.html",
                  "workspace/index.html", "workspace/system/index.html", "workspace/deliverables/index.html",
                  "workspace/design/index.html")
@@ -472,47 +474,45 @@ class RtdPortalTests(unittest.TestCase):
                          {"index.html": knowledge, "search.html": knowledge, **dict.fromkeys(pages, knowledge)})
         current = BeautifulSoup((out / "search.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([a.span.get_text() for a in current.select('a.app-nav-link[aria-current="page"]')], ["搜索说明书正文"])
-        # 产品信息 is current on its three tabs, each tab marks its own page, and the layer numbers follow the order.
-        for page in ("products/matrix.html", "products/attributes.html", "products/knowledge.html"):
+        # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
+        from tools.rtd.asset_layer_data import load_layer_data
+        statement = load_layer_data(rtd_portal.ASSETS)["product_value"][:12]
+        for path in out.rglob("*.html"):
+            self.assertNotIn(statement, path.read_text(encoding="utf-8", errors="ignore"), path.relative_to(out))
+        # 维护 is one collapsed group, open only on its own pages.
+        for page in sidebars:
+            more = sidebars[page].select_one("details.app-nav-more")
+            maintained = page.startswith(("assets/content", "assets/media", "workspace/system", "workspace/deliverables",
+                                          "workspace/design"))
+            self.assertEqual(more.has_attr("open"), maintained, page)
+        # The former 属性字典 address forwards to 产品信息 and keeps no sidebar of its own.
+        moved = BeautifulSoup((out / "products/attributes.html").read_text(encoding="utf-8"), "html.parser")
+        self.assertEqual(moved.select_one("#moved-target")["href"], "matrix.html#matrix")
+        self.assertIn('id="matrix"', (out / "products/matrix.html").read_text(encoding="utf-8"))
+        # The front pages are a title, at most one short line, then content: no chips, tabs or small print.
+        for page in ("workspace/index.html", "products/matrix.html", "products/knowledge.html",
+                     "assets/language/index.html", "market/policy.html"):
             soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
-            self.assertEqual([a.span.get_text() for a in soup.select('a.app-nav-link[aria-current="page"]')], ["产品信息"])
-            self.assertEqual([a.get_text() for a in soup.select('.al-tabs a')], ["产品矩阵", "属性字典", "产品知识"])
-            current_tab = {"matrix": "产品矩阵", "attributes": "属性字典", "knowledge": "产品知识"}[page[9:-5]]
-            self.assertEqual(soup.select_one('.al-tabs a[aria-current="page"]').get_text(), current_tab)
-        self.assertEqual([a.em.get_text() for a in sidebars["index.html"].select("a.app-nav-link") if a.em],
-                         ["1", "2", "3", "4"])
-        # Every layer page has the six blocks, in order, and no maturity status.
-        for page in ("assets/content/index.html", "assets/media/index.html", "assets/language/index.html"):
+            main = soup.select_one("main")
+            self.assertFalse(main.select(".al-tabs, .al-chip, .sw-chip, .home-status, .al-building, .mp-pill, "
+                                         ".al-foot, .mx-foot, .al-eyebrow"), page)
+            text = main.get_text()
+            for word in ("已规划", "建设中", "REV-", "台账", "构建时读取", "属性字典", "待核实与冲突", ".csv", ".yaml"):
+                self.assertNotIn(word, text, (page, word))
+        # Only the 维护 pages keep the six blocks.
+        for page in ("assets/content/index.html", "assets/media/index.html"):
             soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
             self.assertEqual([b["id"] for b in soup.select("section.al-block")],
                              ["scale", "maintained", "inventory", "used-by", "sources", "gaps"], page)
             self.assertFalse(soup.select(".sw-badge, .home-status"), page)
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
-        # 知识库首页's 去哪里 cards mirror the sidebar's groups after 首页, in its order (every page is built here).
-        self.assertEqual([(s.h3.text, [c.strong.text for c in s.select(".home-card")])
-                          for s in home.select("#doors .home-group")], knowledge[1:])
-        # Each 最近更新 row is dated and links to a page, and an id on it, that this build made.
-        rows = home.select("#updates a")
-        self.assertTrue(rows)
-        for row in rows:
-            self.assertIsNotNone(row.select_one("time[datetime]"), row["href"])
-            url = urlsplit(urljoin(site + "workspace/index.html", row["href"]))
-            target = out / url.path.removeprefix("/")
-            self.assertTrue(target.is_file(), row["href"])
-            if url.fragment:
-                self.assertIn(f'id="{url.fragment}"', target.read_text(encoding="utf-8"), row["href"])
-        # The private home's band tags each theme and links it to its card on 知识库首页.
+        self.assertEqual([c.strong.text for c in home.select("#now .home-front-card")], ["产品信息", "产品知识", "语料库"])
+        self.assertEqual([c.strong.text for c in home.select("#doors .home-card")],
+                         ["说明书资料库", "市场与政策", "AI 使用知识分享"])
+        # The private library's band reads like the public one: no statuses, no links into the home page.
         band = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser").select_one("section.value")
-        self.assertEqual(band.select_one(".value-eyebrow").get_text(), "HELLO-DOCS · DIGITAL MANUAL LIBRARY")
-        themes = band.select("a.value-item")
-        self.assertEqual([(a.strong.get_text(), a.em.get_text()) for a in themes],
-                         [("便捷阅读", "可用"), ("AI 可读", "部分可用"), ("内容治理", "部分可用"), ("知识积累", "建设中")])
-        for link in [*themes, band.select_one(".value-more a")]:
-            url = urlsplit(urljoin(site + "index.html", link["href"]))
-            self.assertEqual(url.path, "/workspace/index.html", link["href"])
-            if url.fragment:
-                self.assertIn(f'id="{url.fragment}"', (out / url.path.removeprefix("/")).read_text(encoding="utf-8"))
+        self.assertEqual(band.select("a, .value-status"), [])
         for page, sidebar in sidebars.items():
             links = sidebar.select("a.app-nav-link")
             for link in links:
@@ -524,10 +524,6 @@ class RtdPortalTests(unittest.TestCase):
             to_self = [link.get_text() for link in links
                        if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
-            if page in ("products/attributes.html", "products/knowledge.html"):
-                # 产品信息's other tabs: its entry opens on 产品矩阵 and stays current here.
-                self.assertEqual((to_self, current), ([], ["产品信息1"]), page)
-                continue
             self.assertEqual(len(to_self), 1, (page, to_self))
             self.assertEqual(current, to_self, page)
 

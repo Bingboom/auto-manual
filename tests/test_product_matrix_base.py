@@ -1,18 +1,20 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.product_matrix_base import matrix, projects
+from tools.product_matrix_base import matrix, projects, snapshot
 from tools.product_matrix_base.reader import inside_git_work_tree, read_publication
 from tools.product_matrix_base.reader.labels import UNMAPPED, map_label
 from tools.product_matrix_base.reader.values import parse_value
 from tools.product_matrix_base.rows import load_dictionary, stage_rows
 from tools.product_matrix_base.stage import (
-    BATCH, LoadError, PartialWrite, correct, correction_plan, fact_key, plan, preflight, without_excluded, provenance, read_rows, same, write,
+    BATCH, LoadError, PartialWrite, correct, correction_plan, earliest, fact_key, plan, preflight, provenance,
+    read_rows, same, without_excluded, write,
 )
 
 MANIFEST = Path(__file__).resolve().parents[1] / "bitable_schema" / "product_matrix_base_manifest.json"
@@ -379,6 +381,7 @@ class MatrixBuildTest(unittest.TestCase):
         names = [f["name"] for f in matrix.manifest_fields(self.built)]
         self.assertEqual(names[:3], ["产品键", "项目号", "型号"])
         self.assertNotIn("上市日期", names)
+        self.assertFalse(self.built["sku_time"])
         dated = matrix.build([dict(PRODUCTS[0], 上市日期="2026-03-01T00:00:00.000+08:00")], ATTRIBUTES, FACTS, SOURCES)
         self.assertEqual(dated["rows"]["JE-A/US"]["上市日期"], "2026-03-01 00:00:00")
         self.assertEqual(self.built["components"], 1)
@@ -390,6 +393,48 @@ class MatrixBuildTest(unittest.TestCase):
         self.assertEqual(matrix.skip_reason({"数值": 12, "原单位": "V"}, "W"), "单位与列不符")
         self.assertEqual(matrix.skip_reason({"数值": 7.1, "原单位": "lbs"}, "kg"), "")
         self.assertEqual(matrix.filled_cells(self.built), (4, 8))
+
+
+class EarliestTest(unittest.TestCase):
+    def test_lookup_cells_yield_their_earliest_moment(self):
+        joined = "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"
+        self.assertEqual(earliest(joined), int(datetime(2024, 7, 30, 1, 15, tzinfo=timezone.utc).timestamp()))
+        self.assertEqual(earliest(["2025-01-01T00:00:00.000+08:00", 1704067200000]), 1704067200)
+        self.assertEqual(earliest({"type": 5, "value": [1704067200000]}), 1704067200)
+        self.assertEqual(earliest("2024-01-01 08:00"), 1704067200)  # no offset: Beijing time
+        self.assertEqual(earliest("45292.3333333333"), 1704067200)  # a formula's day serial, Beijing time
+        self.assertEqual(earliest(45292.5), 1704067200 + 4 * 3600)
+        self.assertIsNone(earliest("2024"))  # a bare year is not a day serial of 1905
+        self.assertIsNone(earliest("2014/12/31 23:00"))  # before any product of ours
+        self.assertIsNone(earliest(4102444800000))  # 2100: in the future
+        self.assertEqual(earliest(["2024", "2024-01-01 08:00"]), 1704067200)  # the implausible one is skipped
+        self.assertIsNone(earliest(""))
+        self.assertIsNone(earliest("no date here"))
+
+    def test_the_upper_bound_ends_with_2023(self):
+        self.assertTrue(snapshot._first_sku("2023-12-31 23:00")["first_sku_created_upper_bound"])
+        self.assertFalse(snapshot._first_sku("2024-01-01 00:00")["first_sku_created_upper_bound"])
+        self.assertEqual(snapshot._first_sku("2024")["first_sku_created"], None)
+
+    def test_matrix_and_snapshot_carry_it_apart_from_the_launch_date(self):
+        product = dict(PRODUCTS[0], **{"SKU 最早创建时间（本市场）": "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"})
+        built = matrix.build([product], ATTRIBUTES, FACTS, SOURCES)
+        self.assertEqual(built["rows"]["JE-A/US"]["SKU 最早创建时间"], "2024-07-30 09:15:00")
+        self.assertNotIn("上市日期", built["rows"]["JE-A/US"])
+        self.assertIn({"name": "SKU 最早创建时间", "type": "datetime"}, matrix.manifest_fields(built))
+        base = SnapshotTest().base()
+        base.rows["产品"][1]["SKU 最早创建时间（本市场）"] = "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"
+        base.rows["产品"][0]["SKU 最早创建时间（本市场）"] = "45215.5"  # a formula's day serial: 2023-10-16 12:00
+        document = snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        first = document["products"][0]
+        self.assertEqual((first["first_sku_created"], first["launch_date"]), ("2024-07-30", "2026-03-01"))
+        self.assertIn("不是上市日期", first["first_sku_created_basis"])
+        self.assertFalse(first["first_sku_created_upper_bound"])
+        loaded = document["products"][1]  # within PLM's late-2023 data load (to 2023-12-31): only an upper bound
+        self.assertEqual((loaded["first_sku_created"], loaded["first_sku_created_upper_bound"]), ("2023-10-16", True))
+        bare = snapshot.build_snapshot(SnapshotTest().base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual({(p["first_sku_created"], p["first_sku_created_basis"]) for p in bare["products"]},
+                         {(None, None)})
 
 
 class MatrixBase(FakeBase):
@@ -412,6 +457,10 @@ class MatrixBase(FakeBase):
             row = next(r for r in self.rows[table] if r["_id"] == record)
             row.update(json.loads(args[args.index("--json") + 1]))
             return {"ok": True, "data": {}}
+        if command == "+record-delete":
+            gone = set(json.loads(args[args.index("--json") + 1])["record_id_list"])
+            self.rows[table] = [r for r in self.rows[table] if r["_id"] not in gone]
+            return {"ok": True, "data": {}}
         return super().__call__(args)
 
 
@@ -431,6 +480,54 @@ class MatrixWriteTest(unittest.TestCase):
         update = matrix.plan(base, snapshot, changed)["update"]
         self.assertEqual([(u["key"], u["fields"]) for u in update],
                          [("JE-B/JP", {"型号（说明书）": "JE-B", "事实数": 2, "候选数": 1})])
+
+    def test_excluded_and_deleted_products_leave_the_matrix(self):
+        base = MatrixBase()
+        snapshot = {"ids": {name: name for name in base.schema}}
+        matrix.write(base, matrix.plan(base, snapshot, matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES)),
+                     sleep=lambda _s: None)
+        kept = [dict(PRODUCTS[0], 不收录=True)] + PRODUCTS[1:]
+        planned = matrix.plan(base, snapshot, matrix.build(kept, ATTRIBUTES, FACTS, SOURCES))
+        self.assertEqual(([item["key"] for item in planned["removable"]], planned["remove"]),
+                         ([PRODUCTS[0]["产品键"]], []))  # a candidate, never deleted by default
+        with self.assertRaises(LoadError):  # a kept product's row can never be named for removal
+            matrix.select_removal(planned, [PRODUCTS[1]["产品键"]])
+        untouched = matrix.write(base, planned, sleep=lambda _s: None)  # a caller writing a plan deletes nothing
+        self.assertEqual((untouched["removed"], untouched["rows_after"], untouched["row_count_ok"]), (0, 2, True))
+        planned["remove"] = matrix.select_removal(planned, [PRODUCTS[0]["产品键"]])
+        report = matrix.write(base, planned, sleep=lambda _s: None)
+        self.assertEqual((report["removed"], report["removed_keys"], report["lingering"]),
+                         (1, [PRODUCTS[0]["产品键"]], []))
+        self.assertEqual((report["rows_after"], report["rows_expected"], report["row_count_ok"]), (1, 1, True))
+        again = matrix.plan(base, snapshot, matrix.build(PRODUCTS[1:], ATTRIBUTES, FACTS, SOURCES))
+        self.assertEqual((again["create"], again["update"], again["removable"]), ([], [], []))
+
+    def test_without_the_exclude_field_nothing_runs(self):
+        base = MatrixBase()
+        base.schema["产品"] = [f for f in base.schema["产品"] if f["name"] != "不收录"]
+        with self.assertRaises(LoadError) as caught:
+            matrix.read_base(base)
+        self.assertIn("不收录", str(caught.exception))
+        snap = SnapshotTest().base()
+        snap.schema["产品"] = [f for f in snap.schema["产品"] if f["name"] != "不收录"]
+        with self.assertRaises(LoadError):
+            snapshot.build_snapshot(snap)
+
+    def test_a_row_count_that_does_not_add_up_fails_the_read_back(self):
+        base = MatrixBase()
+        snapshot = {"ids": {name: name for name in base.schema}}
+        planned = matrix.plan(base, snapshot, matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        planned["rows_before"] = 5  # as if rows vanished between the plan and the read-back
+        self.assertFalse(matrix.write(base, planned, sleep=lambda _s: None)["row_count_ok"])
+
+    def test_two_rows_with_one_key_leave_one_behind_without_deleting_more(self):
+        base = MatrixBase()
+        base.rows["矩阵"] += [{"产品键": "GONE/US", "_id": "d1"}, {"产品键": "GONE/US", "_id": "d2"}]
+        snapshot = {"ids": {name: name for name in base.schema}}
+        planned = matrix.plan(base, snapshot, matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        planned["remove"] = matrix.select_removal(planned, ["GONE/US"])
+        report = matrix.write(base, planned, sleep=lambda _s: None)
+        self.assertEqual((report["lingering"], len(base.rows["矩阵"])), (["GONE/US"], 3))  # 2 created + 1 left
 
     def test_wide_tables_are_read_fifty_fields_at_a_time(self):
         base = MatrixBase()
@@ -462,6 +559,27 @@ class ExcludedProductTest(unittest.TestCase):
                          {"产品": ["JE-B/JP"], "来源": ["web/JE-B/JP/ja/v"], "事实": ["JE-B/JP"]})
         self.assertEqual(skipped, {"产品": 1, "来源": 1, "事实": 1})
         self.assertEqual(without_excluded(staged, set()), (staged, {}))
+
+    STAGED = {"产品": [{"产品键": "JE-A/US", "型号": "JE-A"}, {"产品键": "JE-B/JP", "型号": "JE-B"}],
+              "来源": [{"来源键": "web/JE-A/US/en/v", "型号": "JE-A", "市场": "US"},
+                      {"来源键": "web/JE-B/JP/ja/v", "型号": "JE-B", "市场": "JP"}],
+              "事实": [{"事实键": "a", "产品键": "JE-A/US"}, {"事实键": "b", "产品键": "JE-B/JP"}]}
+
+    def test_plan_skips_an_excluded_product_end_to_end(self):
+        base = FakeBase()
+        base.rows["产品"].append({"产品键": "JE-A/US", "型号": "JE-A", "不收录": True, "_id": "p1"})
+        planned = plan(base, self.STAGED)
+        self.assertEqual((planned["excluded"], planned["skipped"]), (["JE-A/US"], {"产品": 1, "来源": 1, "事实": 1}))
+        self.assertEqual({t: [r.get("产品键") or r["来源键"] for r in info["create"]] for t, info in planned["tables"].items()},
+                         {"产品": ["JE-B/JP"], "来源": ["web/JE-B/JP/ja/v"], "事实": ["JE-B/JP"]})
+        self.assertEqual([r["事实键"] for r in planned["staged"]["事实"]], ["b"])  # provenance runs on these rows
+
+    def test_plan_stops_without_the_exclude_field(self):
+        base = FakeBase()
+        base.schema["产品"] = [f for f in base.schema["产品"] if f["name"] != "不收录"]
+        with self.assertRaises(LoadError) as caught:
+            plan(base, self.STAGED)
+        self.assertIn("不收录", str(caught.exception))
 
 
 class ProvenanceTest(unittest.TestCase):
@@ -635,6 +753,139 @@ class ProjectSafetyTest(unittest.TestCase):
         with self.assertRaises(PartialWrite) as caught:
             matrix.write(failing, planned, sleep=lambda _s: None)
         self.assertNotIn("P-FAKE", str(caught.exception))
+
+
+class SnapshotTest(unittest.TestCase):
+    def base(self) -> MatrixBase:
+        base = MatrixBase()
+        base.rows["产品"] = [
+            {"产品键": "JE-B/JP", "型号": "JE-B", "市场": ["JP"], "品牌": ["自有"], "_id": "r2"},
+            {"产品键": "JE-A/US", "型号": "JE-A", "市场": ["US"], "品牌": ["自有"], "产品类别": ["便携储能"],
+             "项目号（仅飞书）": "P-FAKE-1", "上市日期": "2026-03-01T00:00:00.000+08:00", "_id": "r1"}]
+        base.rows["属性"] = [{"属性键": "capacity_wh", "中文名": "标称容量", "值类型": ["数值"], "规范单位": "Wh",
+                             "适用类别": ["便携储能", "加电包"], "排序": 2, "_id": "a1"},
+                            {"属性键": "product_name", "中文名": "产品名称", "排序": 1, "_id": "a2"}]
+        base.rows["来源"] = [{"来源键": "web/JE-A/US/en/git-20260101-abc-internal", "来源类型": ["网页说明书"],
+                             "型号": "JE-A", "市场": ["US"], "语言": ["en"], "页面或文件": "JE-A/US/en/md/m.html",
+                             "_id": "s1"},
+                            {"来源键": "sheet/JE-A/1", "来源类型": ["规格书"], "型号": "JE-A", "_id": "s2"}]
+        base.rows["事实"] = [
+            {"事实键": "k1", "产品键": "JE-A/US", "属性键": "capacity_wh", "来源键": "web/JE-A/US/en/git-20260101-abc-internal",
+             "原文": "Capacity: 333 Wh", "数值": 333, "核实状态": ["候选"], "_id": "f1"},
+            {"事实键": "k2", "产品键": "JE-A/US", "属性键": "capacity_wh", "来源键": "sheet/JE-A/1", "数值": 334,
+             "核实状态": ["候选"], "_id": "f2"},
+            {"事实键": "k3", "产品键": "JE-A/US", "属性键": "capacity_wh", "来源键": "sheet/JE-A/1",
+             "文本值": "7777Wh", "条件": "组件:Fake Pack#2", "核实状态": ["候选"], "_id": "f3"}]
+        return base
+
+    def test_snapshot_is_sorted_opaque_and_keeps_components_apart(self):
+        document = snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual(document["counts"], {"products": 2, "parameters": 2, "sources": 2, "values": 2,
+                                              "component_values": 1, "products_with_project": 1,
+                                              "products_with_first_sku": 0, "first_sku_upper_bound": 0})
+        self.assertEqual([p["key"] for p in document["products"]], ["JE-A/US", "JE-B/JP"])
+        self.assertEqual([p["key"] for p in document["parameters"]], ["product_name", "capacity_wh"])
+        product = document["products"][0]
+        self.assertEqual((product["project"], product["launch_date"], product["market"], product["category"]),
+                         ("P-FAKE-1", "2026-03-01", "US", "便携储能"))
+        self.assertEqual(document["parameters"][1]["applies_to"], ["便携储能", "加电包"])
+        encoded = snapshot.encode(document).decode()
+        for withheld in ("git-20260101", "web/JE-A", "_id", "\"k1\"", "\"f1\"", "\"s1\""):
+            self.assertNotIn(withheld, encoded)
+        self.assertEqual({v["source"] for v in document["values"]},
+                         {snapshot.source_id("web/JE-A/US/en/git-20260101-abc-internal"), snapshot.source_id("sheet/JE-A/1")})
+        self.assertTrue(all(v["sources_disagree"] for v in document["values"]))  # 333 vs 334
+        self.assertEqual(document["component_values"][0]["component"], "Fake Pack")
+        self.assertEqual(snapshot.encode(snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))), snapshot.encode(document))
+        self.assertNotIn("P-FAKE", snapshot.summary(document))
+
+    def test_excluded_products_take_their_values_and_sources_out(self):
+        base = self.base()
+        base.rows["产品"][1]["不收录"] = True  # JE-A/US
+        document = snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual([p["key"] for p in document["products"]], ["JE-B/JP"])
+        self.assertEqual((document["counts"]["values"], document["counts"]["component_values"],
+                          document["counts"]["sources"], document["counts"]["products_with_project"]), (0, 0, 0, 0))
+        self.assertNotIn("P-FAKE", snapshot.encode(document).decode())
+        base.rows["来源"].append({"来源键": "web/JE-B/JP/ja/v", "型号": "JE-B", "市场": ["JP"], "_id": "s3"})
+        uncited = snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual(uncited["counts"]["sources"], 1)  # a kept product's source stays without a value
+
+    @staticmethod
+    def checkout(root: Path, name: str, landing: str, remote: str | None) -> Path:
+        checkout = root / name
+        checkout.mkdir()
+        subprocess.run(["git", "init", "-q", str(checkout)], check=True)
+        if remote:
+            subprocess.run(["git", "-C", str(checkout), "remote", "add", "origin", f"https://example.test/Org/{remote}"],
+                           check=True)
+        for mirror, text in (("Hello-Docs", "hello docs"), ("Hello-Docs-Review", "review")):
+            (checkout / "mirrors" / mirror).mkdir(parents=True)
+            (checkout / "mirrors" / mirror / "README.md").write_text(text, encoding="utf-8")
+        (checkout / "README.md").write_text(landing, encoding="utf-8")
+        (checkout / "docs" / "knowledge").mkdir(parents=True)
+        return checkout
+
+    def test_it_is_written_only_under_the_knowledge_directory_of_the_private_mirror(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            private = self.checkout(root, "private", "hello docs", "Hello-Docs.git")
+            target = snapshot.safe_destination(private / "docs" / "knowledge" / "product-matrix")
+            self.assertEqual(target.name, "snapshot.json")
+            refused = [
+                self.checkout(root, "public", "auto-manual", "auto-manual") / "docs" / "knowledge" / "pm",
+                # a copied mirror README does not turn a public checkout into the mirror
+                self.checkout(root, "copied", "hello docs", "auto-manual") / "docs" / "knowledge" / "pm",
+                self.checkout(root, "no-remote", "hello docs", None) / "docs" / "knowledge" / "pm",
+                self.checkout(root, "review", "review", "Hello-Docs-Review") / "docs" / "knowledge" / "pm",
+                self.checkout(root, "other", "hello docs", "something-else") / "docs" / "knowledge" / "pm",
+                private / "docs" / "publish", root / "elsewhere"]
+            for path in refused:
+                with self.assertRaises(snapshot.SnapshotError, msg=str(path)):
+                    snapshot.safe_destination(path)
+            from tools.check_maintainability_guardrails import mirror_name
+            self.assertIsNone(mirror_name(root / "copied"))  # the guardrail sees the public checkout too
+            self.assertEqual(mirror_name(private), "Hello-Docs")
+
+    def test_a_planted_link_is_never_written_through(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            private = self.checkout(root, "private", "hello docs", "hello-docs")
+            out = private / "docs" / "knowledge" / "product-matrix"
+            out.mkdir()
+            victim = root / "victim.txt"
+            victim.write_text("keep", encoding="utf-8")
+            (out / "snapshot.json").symlink_to(victim)
+            with self.assertRaises(snapshot.SnapshotError):
+                snapshot.safe_destination(out)
+            with self.assertRaises(snapshot.SnapshotError):
+                snapshot.write_snapshot(out / "snapshot.json", {"schema": "x"})
+            self.assertEqual(victim.read_text(encoding="utf-8"), "keep")
+            (out / "snapshot.json").unlink()
+            snapshot.write_snapshot(snapshot.safe_destination(out), {"schema": "x"})
+            self.assertEqual(json.loads((out / "snapshot.json").read_text(encoding="utf-8")), {"schema": "x"})
+
+    def test_a_failed_read_never_echoes_row_data(self):
+        def failing(args):
+            if args[0] == "+table-list":
+                return {"ok": True, "data": {"tables": [{"name": n, "id": n} for n in ("产品", "属性", "来源", "事实")]}}
+            return {"ok": False, "error": {"code": 99, "message": "row JE-A/US P-FAKE-1 could not be read"}}
+
+        with self.assertRaises(LoadError) as caught:
+            snapshot.build_snapshot(failing)
+        self.assertNotIn("P-FAKE", str(caught.exception))
+
+
+    def test_cli_output_that_is_not_json_is_never_echoed(self):
+        from tools.product_matrix_base.stage import lark_runner
+
+        with TemporaryDirectory() as tmp:
+            fake = Path(tmp) / "fake-cli"
+            fake.write_text("#!/bin/sh\necho 'JE-A/US P-FAKE-1 partial row'\nexit 3\n", encoding="utf-8")
+            fake.chmod(0o755)
+            result = lark_runner("base", lark_cli=str(fake))(["+record-list"])
+        self.assertFalse(result["ok"])
+        self.assertNotIn("P-FAKE", json.dumps(result))
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ domains:
     refresh: python tools/workspace_refresh.py refresh corpus
     stale_after_days: 7
     fallback: 语料快照当前不可读
-    used_by: 语言资产页（资产 4 · 语言）、系统建设的阶段指标
+    used_by: 语料库页、系统建设的阶段指标
 
   - id: deliverables_feishu
     label: 交付物飞书链接
