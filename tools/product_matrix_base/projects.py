@@ -24,11 +24,11 @@ def plan(run: Runner) -> dict[str, Any]:
     if PRODUCTS not in ids or CATALOG not in ids:
         raise LoadError(f"the base needs the {PRODUCTS} and {CATALOG} tables")
     projects: dict[str, set[str]] = defaultdict(set)
-    for row in read_rows(run, ids[CATALOG], ["型号", "项目号"]):
+    for row in read_rows(run, ids[CATALOG], ["型号", "项目号"], sensitive=True):
         model, project = _text(row.get("型号")).strip(), _text(row.get("项目号")).strip()
         if model and project:
             projects[model].add(project)
-    products = read_rows(run, ids[PRODUCTS], ["产品键", "型号", FIELD])
+    products = read_rows(run, ids[PRODUCTS], ["产品键", "型号", FIELD], sensitive=True)
     result: dict[str, Any] = {"table_id": ids[PRODUCTS], "products": len(products), "filled": [], "fill": [],
                               "ambiguous": [], "unknown": [], "differs": []}
     used: set[str] = set()
@@ -66,7 +66,7 @@ def write(run: Runner, planned: dict[str, Any], *, settle: float = 3.0,
             break
         sent.append(item)
     sleep(settle)
-    back = {r["_record_id"]: _text(r.get(FIELD)) for r in read_rows(run, planned["table_id"], ["产品键", FIELD])}
+    back = {r["_record_id"]: _text(r.get(FIELD)) for r in read_rows(run, planned["table_id"], ["产品键", FIELD], sensitive=True)}
     problems = [item["key"] for item in sent if back.get(item["record_id"]) != item["value"]]
     report = {"sent": len(sent), "matched": len(sent) - len(problems), "problems": problems,
               "written": [item["key"] for item in sent],
