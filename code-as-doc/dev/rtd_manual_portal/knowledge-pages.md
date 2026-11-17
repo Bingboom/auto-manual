@@ -452,30 +452,45 @@ address forwards here, and the public manual library never links to it.
 
 `/products/item/<model>.html`, one page per model of the product-information snapshot
 (`tools/rtd/product_profile.py`, `product_profile.html`; step 13, REV-53). Private role
-only; without a usable snapshot no product page is built (产品库 says why).
+only. Pages are built only from a snapshot that carries the decided **cells** (schema
+v1.1): without a usable snapshot, or without cells, no product page is built and
+产品库 links each code to the manual library instead, so no link points to a missing
+page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`, never
+`..`) gets no page, with a Sphinx warning.
 
+- **The page never chooses a value.** Each cell is the base's pick for one product,
+  parameter and test condition (rejected and superseded values left out, verified
+  first, then by source kind, then the newest), written for display (`display`), with
+  its number for comparison and the ids of every value that took part (`candidates`,
+  the chosen one first). A test condition (STC, NOCT, …) is its own row, labelled
+  `额定功率（STC）`. A cell whose `display` is empty shows 暂无; `empty_reason` is never
+  shown.
 - **Head:** `‹ 产品库`, the name (the name printed in the product's first market in
   the usual order, else its short name), then one line: model · category · series ·
-  capacity tier · project (a link to 产品库 filtered by it), and `SKU 创建时间：` with
-  year and month (`first_sku_created`), `不晚于 <年-月>` when the snapshot marks it an
-  upper bound (`first_sku_created_upper_bound`), or `暂无`. The date is the earliest SKU
-  creation time of the project from PLM, not a launch date, so 上市时间 is never shown.
+  capacity tier · project (a link to 产品库 filtered by it) · `SKU 创建时间` with year and
+  month (`first_sku_created`), `不晚于 <年-月>` when the snapshot marks it an upper bound
+  (`first_sku_created_upper_bound`), or `暂无`. The date is the earliest SKU creation time
+  of the project from PLM, not a launch date, so 上市时间 is never shown.
 - **Market switch:** one market at a time (美规, 欧规, 日规, 国内, …). Without
   JavaScript every market shows in turn.
 - **Parameters** in plain groups with Chinese names (`GROUPS`: 电池, 输出, 充电与输入,
-  接口与扩展, 尺寸与重量, 使用环境, 安全与认证, 其他, 保修), each with the parameters
-  any market of the model has, in the base's order; a market without one shows 暂无.
-  The name, model and launch-date parameters are not repeated. A value is written
-  with the parameter's unit when it is a figure, with its qualifier (约, 额定, 峰值).
-- **Source on click** (`_static/product-profile.js`): a value is a button. Clicking
-  it shows its source beside the parameters (a sheet at the bottom on phones): the
-  market, language and edition date of the manual, the printed sentence, and a link
-  to that manual. The source appears nowhere else. A value the manuals print
-  differently carries 各说明书写法不一致; no other verification mark is shown
-  (operator, 2026-11-17).
-- **各市场差异:** only the parameters whose values differ between the model's
-  markets. A figure unlike every other market's is marked; texts are listed but not
-  marked, since manuals in different languages always differ in wording.
+  接口与扩展, 尺寸与重量, 使用环境, 安全与认证, 其他, 保修), each with the rows any market
+  of the model has, in the base's order; a market without one shows 暂无. The name,
+  model and launch-date parameters are not repeated.
+- **Sources on click** (`_static/product-profile.js`): a value is a button. Clicking
+  it shows `<参数> · 出处`, the value, and every value that took part, the chosen one
+  first: `来自《<产品名> 说明书》· 美规 · 英语`, the edition date only when the snapshot has
+  one (never 未知), the manual's section, the printed sentence and `打开说明书 →`
+  (the manual; a jump to the exact line waits for anchors in the snapshot). The page
+  renders each list, escaped, in a hidden block; the script copies those nodes into
+  the card (a sheet at the bottom on phones). Language names come in Chinese from the
+  corpus languages of `system_workspace.yaml`, else the settings' own labels.
+  各说明书写法不一致 marks a cell whose values disagree (`sources_disagree`); no other
+  verification mark is shown (operator, 2026-11-17), and `conflict` has no page form yet.
+- **各市场差异:** only the rows whose values differ between the model's markets,
+  numbers compared rounded (1 and 1.0 agree). A figure unlike every other market's is
+  marked; texts are listed but not marked, since manuals in different languages always
+  differ in wording.
 - **说明书:** per market, the model's Web manuals by language (the snapshot's
   sources), then its 快速指南 and the 通用指南 that list it.
 - **功能 and 搭配** (carried over from the former matrix page, 2026-11-17, so nothing a
@@ -490,15 +505,19 @@ only; without a usable snapshot no product page is built (产品库 says why).
 ### 产品对比与参数表
 
 Both read the same snapshot (`tools/rtd/product_tables.py`; step 13, REV-53), private role
-only, and share 产品档案's display rules (units, qualifiers, 各说明书写法不一致). The
+only, and, like 产品档案, its decided cells: each shows a cell's `display`, sorts and
+compares by its `number` (else its text), and a test condition is its own column or row
+(`额定功率（STC）`). They are built whenever 产品库 has a snapshot, so its tabs never point to
+a missing page; a snapshot without cells makes both say 产品数据暂时读不到，请稍后再看。 with no
+figures, and one without products 还没有产品数据。. The
 product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 (`_product_tabs.html`; a
 产品档案 counts as 产品库).
 
 - **参数表** (`/products/table.html`, `product_table.html`, `_static/product-table.js`;
   the operator's 产品矩阵 frame, named 参数表 so it is not confused with 产品库): one table
   per category, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
-  市场, 项目 (未归入 when none), SKU 创建时间, then the parameters that category's
-  products state, in page order (a figure column shows its unit). With JavaScript:
+  市场, 项目 (未归入 when none), SKU 创建时间, then the (parameter, condition) columns that
+  category's products state, in page order (a figure column shows its unit). With JavaScript:
   category pills, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
   project last), sorting by any column (figures as numbers, 暂无 last) and 下载表格: the
   visible rows of the open table as `参数表-<类别>.csv`, UTF-8 with a BOM so spreadsheet

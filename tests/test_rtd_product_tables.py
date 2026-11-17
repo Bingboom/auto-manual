@@ -1,4 +1,4 @@
-"""参数表 and 产品对比 (tools/rtd/product_tables.py): read from the product snapshot, with invented data only."""
+"""参数表 and 产品对比 (tools/rtd/product_tables.py): read from the snapshot's decided cells, with invented data only."""
 from __future__ import annotations
 
 import json
@@ -23,20 +23,26 @@ def product(model, market, *, project="P-FAKE-1", category="便携储能", serie
             "series": series, "capacity_tier": "1度电", "names": {"en": f"Name {model}"}, **extra}
 
 
-def value(product_key, parameter, *, number=None, text=None, disagree=False):
-    return {"product": product_key, "parameter": parameter, "number": number, "text": text, "qualifier": "无",
-            "sources_disagree": disagree, "printed": "x", "source": "s"}
+def cell(product_key, parameter, display, *, number=None, condition=None, disagree=False):
+    return {"product": product_key, "parameter": parameter, "condition": condition, "display": display,
+            "number": number, "text": None if number is not None else display, "unit": "", "printed": "x",
+            "printed_unit": None, "source": "s", "value": "v", "verified": False, "sources_disagree": disagree,
+            "conflict": False, "candidates": ["v"], "empty_reason": None}
 
 
 SNAPSHOT = {
-    "schema": "hello-docs-product-matrix-snapshot/v1", "read_at": "2026-01-02T00:00:00Z", "parameters": PARAMETERS,
-    "sources": [],
+    "schema": "hello-docs-product-matrix-snapshot/v1.1", "read_at": "2026-01-02T00:00:00Z", "parameters": PARAMETERS,
+    "sources": [], "values": [],
     "products": [product("FAKE-B", "US", first_sku_created="2021-05-01"), product("FAKE-B", "JP"),
                  product("FAKE-A", "US", project=None, series="Plus"),
                  product("FAKE-P", "US", project="P-FAKE-2", category="太阳能板", series="Solar")],
-    "values": [value("FAKE-B/US", "capacity_wh", number=1000), value("FAKE-B/JP", "capacity_wh", number=1000),
-               value("FAKE-B/US", "cell", text="LFP", disagree=True), value("FAKE-A/US", "capacity_wh", number=500),
-               value("FAKE-P/US", "pv_power", number=100), value("FAKE-B/US", "product_name", text="Name FAKE-B")],
+    "cells": [cell("FAKE-B/US", "capacity_wh", "1,000 Wh", number=1000),
+              cell("FAKE-B/JP", "capacity_wh", "1,000 Wh", number=1000.0),
+              cell("FAKE-B/US", "cell", "LFP", disagree=True), cell("FAKE-A/US", "capacity_wh", "500 Wh", number=500),
+              cell("FAKE-P/US", "pv_power", "100 W", number=100, condition="STC"),
+              cell("FAKE-P/US", "pv_power", "75 W", number=75, condition="NOCT"),
+              cell("FAKE-B/US", "product_name", "Name FAKE-B"),
+              {**cell("FAKE-A/US", "cell", None), "empty_reason": "无数值"}],
 }
 CATALOG = {"categories": [{"name": "太阳能板", "series": []}, {"name": "便携储能", "series": []}]}
 
@@ -61,9 +67,11 @@ class TableTests(unittest.TestCase):
         self.assertEqual((first["name"], first["sku_date"], first["market_label"]), ("Name FAKE-B", "2021-05", "美规"))
         self.assertEqual(first["cells"][0], {"text": "1,000 Wh", "conflict": False, "sort": 1000})
         self.assertEqual(first["cells"][1]["conflict"], True)
+        self.assertEqual(portable["rows"][2]["cells"][1]["text"], "")  # display null: 暂无
         self.assertEqual((portable["projects"], portable["unassigned"], portable["series"]),
                          (["P-FAKE-1"], True, ["Plus", "标准"]))
-        self.assertEqual([c["name"] for c in view["categories"][0]["columns"]], ["额定功率"])
+        # A test condition is its own column.
+        self.assertEqual([c["name"] for c in view["categories"][0]["columns"]], ["额定功率（NOCT）", "额定功率（STC）"])
 
     def test_the_page_renders_sortable_columns_and_plain_cells(self):
         page = render(pt.TABLE_TEMPLATE, pt.table_view(SNAPSHOT, CATALOG))
@@ -81,35 +89,49 @@ class TableTests(unittest.TestCase):
         self.assertEqual(portable.select_one(".pt-badge").get_text(), "各说明书写法不一致")
         self.assertTrue(page.select_one("[data-pt-download]").has_attr("hidden"))
         text = page.select_one("main").get_text()
-        for word in ("capacity_wh", "snapshot", "未核实", "候选"):
+        for word in ("capacity_wh", "snapshot", "未核实", "候选", "无数值"):
             self.assertNotIn(word, text)
 
-    def test_no_products_says_so(self):
-        view = pt.table_view({**SNAPSHOT, "products": []}, CATALOG)
-        self.assertFalse(view["built"])
-        self.assertEqual(render(pt.TABLE_TEMPLATE, view).select_one(".fr-empty").get_text(), "还没有产品数据。")
+    def test_no_products_or_no_cells_say_so(self):
+        empty = pt.table_view({**SNAPSHOT, "products": []}, CATALOG)
+        self.assertEqual((empty["built"], empty["problem"]), (False, "还没有产品数据。"))
+        without = pt.table_view({k: v for k, v in SNAPSHOT.items() if k != "cells"}, CATALOG)
+        self.assertEqual((without["built"], without["problem"]), (False, "产品数据暂时读不到，请稍后再看。"))
+        page = render(pt.TABLE_TEMPLATE, without)
+        self.assertEqual(page.select_one(".fr-empty").get_text(), "产品数据暂时读不到，请稍后再看。")
+        self.assertIsNone(page.select_one("table"))
 
 
 class CompareTests(unittest.TestCase):
-    def test_every_model_carries_its_values_per_market(self):
+    def test_every_model_carries_its_cells_per_market(self):
         view = pt.compare_view(SNAPSHOT)
         products = {p["model"]: p for p in view["data"]["products"]}
         self.assertEqual(sorted(products), ["FAKE-A", "FAKE-B", "FAKE-P"])
         self.assertEqual(products["FAKE-B"]["markets"], ["US", "JP"])
-        self.assertEqual(products["FAKE-B"]["values"]["US"]["capacity_wh"], ["1,000 Wh", "#1000.0", False])
-        self.assertEqual(products["FAKE-B"]["values"]["US"]["cell"][2], True)
-        self.assertNotIn("product_name", products["FAKE-B"]["values"]["US"])
-        self.assertEqual(view["data"]["groups"][0], {"title": "电池", "parameters": [["capacity_wh", "标称容量"],
-                                                                                      ["cell", "电芯类型"]]})
+        self.assertEqual(products["FAKE-B"]["values"]["US"]["capacity_wh|"], ["1,000 Wh", "#1000", False])
+        self.assertEqual(products["FAKE-B"]["values"]["JP"]["capacity_wh|"][1], "#1000")  # 1000.0 compares equal
+        self.assertEqual(products["FAKE-B"]["values"]["US"]["cell|"][2], True)
+        self.assertNotIn("product_name|", products["FAKE-B"]["values"]["US"])
+        self.assertNotIn("cell|", products["FAKE-A"]["values"]["US"])  # an empty display is no value
+        self.assertEqual(products["FAKE-P"]["values"]["US"]["pv_power|STC"][0], "100 W")
+        self.assertEqual(view["data"]["groups"][0], {"title": "电池", "parameters": [["capacity_wh|", "标称容量"],
+                                                                                      ["cell|", "电芯类型"]]})
+        self.assertEqual(view["data"]["groups"][1]["parameters"][1], ["pv_power|STC", "额定功率（STC）"])
         self.assertEqual(view["data"]["labels"], {"US": "美规", "JP": "日规"})
 
+    def test_without_cells_the_page_says_so(self):
+        view = pt.compare_view({k: v for k, v in SNAPSHOT.items() if k != "cells"})
+        page = render(pt.COMPARE_TEMPLATE, view)
+        self.assertEqual(page.select_one(".fr-empty").get_text(), "产品数据暂时读不到，请稍后再看。")
+        self.assertIsNone(page.select_one("#pc-data"))
+
     def test_the_json_block_cannot_close_its_script(self):
-        nasty = {**SNAPSHOT, "products": [product("FAKE-</script><b>&", "US")]}
+        nasty = {**SNAPSHOT, "products": [product("FAKE-1", "US", names={"en": "</script><b>&"})]}
         html = Environment(loader=FileSystemLoader(ASSETS)).get_template(pt.COMPARE_TEMPLATE).render(
             **pt.compare_view(nasty), site_nav={}, pathto=lambda name, *args: name)
         block = html.split('<script type="application/json" id="pc-data">', 1)[1].split("</script>", 1)[0]
         self.assertNotIn("<", block)
-        self.assertEqual(json.loads(block)["products"][0]["model"], "FAKE-</script><b>&")
+        self.assertEqual(json.loads(block)["products"][0]["name"], "</script><b>&")
         page = BeautifulSoup(html, "html.parser")
         self.assertTrue(page.select_one("[data-pc]").has_attr("hidden"))
         self.assertEqual(page.select_one(".pt-tabs .is-on").get_text(), "产品对比")

@@ -452,7 +452,8 @@ class RtdPortalTests(unittest.TestCase):
         # 产品库 reads the product-information snapshot from the knowledge directory (invented products only).
         (self.root / "knowledge" / "product-matrix").mkdir(parents=True)
         (self.root / "knowledge" / "product-matrix" / "snapshot.json").write_text(json.dumps({
-            "schema": "hello-docs-product-matrix-snapshot/v1", "read_at": "2026-01-02T00:00:00Z", "products": [
+            "schema": "hello-docs-product-matrix-snapshot/v1.1", "read_at": "2026-01-02T00:00:00Z", "cells": [],
+            "products": [
                 {"model": model, "market": "US", "project": "P-FAKE-1", "category": "便携储能", "series": "标准",
                  "capacity_tier": "1度电"} for model in ("FAKE-B", "FAKE-A")]}))
         target = {"model": "JE-1000F", "region": "US", "lang": "en", "route": "JE-1000F/US/en/md",

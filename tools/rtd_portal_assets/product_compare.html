@@ -24,7 +24,7 @@
 {{ product_tabs('products/compare') }}
 <header class="fr-head"><h1>产品对比</h1></header>
 {%- if not built %}
-<p class="fr-empty">还没有产品数据。</p>
+<p class="fr-empty">{{ problem|e }}</p>
 {%- else %}
 <noscript><p class="fr-empty">产品对比需要启用 JavaScript。</p></noscript>
 <div class="pc-app" data-pc hidden data-item-base="{{ pathto('products/item/__MODEL__')|e }}">

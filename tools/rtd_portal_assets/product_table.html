@@ -23,7 +23,7 @@
 {{ product_tabs('products/table') }}
 <header class="fr-head pt-head"><h1>参数表</h1><button type="button" class="pt-download" data-pt-download hidden>下载表格</button></header>
 {%- if not built %}
-<p class="fr-empty">还没有产品数据。</p>
+<p class="fr-empty">{{ problem|e }}</p>
 {%- else %}
 <nav class="pt-cats" aria-label="产品类别" data-pt-cats hidden>{% for category in categories %}<button type="button" data-pt-cat="{{ category.id|e }}">{{ category.title|e }}</button>{% endfor %}</nav>
 {%- for category in categories %}

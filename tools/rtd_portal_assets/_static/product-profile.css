@@ -73,3 +73,6 @@
 .pf-compare {align-self:flex-start;margin-top:4px;padding:6px 14px;border:1px solid var(--app-line);border-radius:10px;background:var(--surface);
   color:var(--app-ink);font-size:14px;text-decoration:none}
 .pf-compare:hover {border-color:var(--brand);color:var(--brand)}
+.pf-src + .pf-src {margin-top:10px;padding-top:10px;border-top:1px solid #eef1f5}
+.pf-src p {margin:0 0 4px}
+.pf-src-list[hidden] {display:none}

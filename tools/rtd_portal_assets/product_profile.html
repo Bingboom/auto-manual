@@ -16,10 +16,20 @@
 {#- 产品档案 (step 13; REV-53; tools/rtd/product_profile.py). A front page: the product's name and one line, then
     its parameters one market at a time. A value's source shows only when it is clicked. Without JavaScript every
     market shows in turn and the values are plain text. -#}
-{%- macro value(cell) -%}
-{%- if cell -%}
-<button type="button" class="pf-val" aria-expanded="false" data-market="{{ cell.source.market|e }}" data-language="{{ cell.source.language|e }}" data-date="{{ cell.source.date|e }}" data-position="{{ cell.source.position|e }}" data-printed="{{ cell.source.printed|e }}"{% if cell.source.doc %} data-doc="{{ pathto(cell.source.doc) }}"{% endif %}>{{ cell.text|e }}</button>
-{%- if cell.conflict %}<span class="pf-badge" title="各说明书写法不一致">各说明书写法不一致</span>{% endif -%}
+{%- macro value(cell, label, id) -%}
+{%- if cell and cell.text -%}
+<button type="button" class="pf-val" aria-expanded="false" aria-controls="pf-source" data-label="{{ label|e }}" data-sources="{{ id|e }}">{{ cell.text|e }}</button>
+{%- if cell.conflict %}<span class="pf-badge">各说明书写法不一致</span>{% endif -%}
+<div class="pf-src-list" id="{{ id|e }}" hidden>
+  {%- for item in cell.sources %}
+  <div class="pf-src">
+    <p>来自{{ item.manual|e }}{% if item.market %}· {{ item.market|e }}{% endif %}{% if item.language %} · {{ item.language|e }}{% endif %}</p>
+    {%- if item.date or item.position %}<p>{% if item.date %}版本日期 {{ item.date|e }}{% if item.position %} · {% endif %}{% endif %}{{ item.position|e }}</p>{% endif %}
+    {%- if item.printed %}<blockquote>{{ item.printed|e }}</blockquote>{% endif %}
+    {%- if item.doc %}<a href="{{ pathto(item.doc)|e }}">打开说明书 →</a>{% endif %}
+  </div>
+  {%- endfor %}
+</div>
 {%- else -%}<span class="pf-none">暂无</span>{%- endif -%}
 {%- endmacro -%}
 <body class="app kb">
@@ -28,12 +38,11 @@
 {{ site_topbar('知识库', '产品档案') }}
 <main class="fr-page pf-page">
 {{ product_tabs('products/matrix') }}
-<a class="pf-back" href="{{ pathto('products/matrix') }}">‹ 产品库</a>
+<a class="pf-back" href="{{ pathto('products/matrix')|e }}">‹ 产品库</a>
 <header class="fr-head pf-head">
   <h1>{{ name|e }}</h1>
-  <p><b>{{ model|e }}</b>{% for part in classes %} · {{ part|e }}{% endfor %}{% if project %} · <a href="{{ pathto('products/matrix') }}?project={{ project|urlencode }}">{{ project|e }}</a>{% endif %}</p>
-  <p class="pf-date">SKU 创建时间：{{ sku_date|e if sku_date else '暂无' }}</p>
-  <a class="pf-compare" href="{{ pathto('products/compare') }}?p={{ model|urlencode }}">加入对比</a>
+  <p><b>{{ model|e }}</b>{% for part in classes %} · {{ part|e }}{% endfor %}{% if project %} · <a href="{{ pathto('products/matrix')|e }}?project={{ project|urlencode }}">{{ project|e }}</a>{% endif %} · <span class="pf-date">SKU 创建时间 {{ sku_date|e if sku_date else '暂无' }}</span></p>
+  <a class="pf-compare" href="{{ pathto('products/compare')|e }}?p={{ model|urlencode }}">加入对比</a>
 </header>
 {%- if markets|length > 1 %}
 <div class="pf-switch" role="tablist" aria-label="市场" data-pf-switch hidden>{% for market in markets %}<button type="button" role="tab" data-market-tab="{{ market.code|e }}" aria-selected="{{ 'true' if loop.first else 'false' }}">{{ market.label|e }}</button>{% endfor %}</div>
@@ -47,7 +56,7 @@
     <div class="pf-groups">
     {%- for group in groups %}
       <section class="pf-group"><h3>{{ group.title|e }}</h3>
-        <dl>{% for parameter in group.parameters %}<div><dt>{{ parameter.name_zh|e }}</dt><dd>{{ value(cells.get(market.code ~ '|' ~ parameter.key)) }}</dd></div>{% endfor %}</dl>
+        <dl>{% for row in group.rows %}<div><dt>{{ row.label|e }}</dt><dd>{{ value(cells.get(market.code ~ '|' ~ row.id), row.label, 'src-' ~ market.code ~ '-' ~ group.id ~ '-' ~ loop.index) }}</dd></div>{% endfor %}</dl>
       </section>
     {%- endfor %}
     </div>
@@ -56,18 +65,16 @@
   {%- endfor %}
   </div>
   <aside class="pf-side">
-    <section class="pf-source" data-pf-source hidden aria-live="polite">
+    <section class="pf-source" id="pf-source" data-pf-source hidden aria-live="polite">
       <h2 data-pf-source-title>出处</h2>
       <p class="pf-source-value" data-pf-source-value></p>
-      <p data-pf-source-where></p>
-      <blockquote data-pf-source-printed></blockquote>
-      <a data-pf-source-link href="#">打开说明书 →</a>
+      <div data-pf-source-list></div>
       <button type="button" class="pf-source-close" data-pf-source-close aria-label="关闭出处">×</button>
     </section>
     {%- if manuals or guides %}
     <section class="pf-card" id="manuals"><h2>说明书</h2>
-      {%- for item in manuals %}<div class="pf-manual"><b>{{ item.market|e }}</b><span>{% for doc in item.docs %}<a href="{{ pathto(doc.doc) }}">{{ doc.label|e }}</a>{% endfor %}</span></div>{% endfor %}
-      {%- for guide in guides %}<div class="pf-manual"><b>{{ guide.label|e }}</b><span>{% for doc in guide.docs %}<a href="{{ pathto(doc.doc) }}" title="{{ doc.title|e }}">{{ doc.label|e }}</a>{% endfor %}</span></div>{% endfor %}
+      {%- for item in manuals %}<div class="pf-manual"><b>{{ item.market|e }}</b><span>{% for doc in item.docs %}<a href="{{ pathto(doc.doc)|e }}">{{ doc.label|e }}</a>{% endfor %}</span></div>{% endfor %}
+      {%- for guide in guides %}<div class="pf-manual"><b>{{ guide.label|e }}</b><span>{% for doc in guide.docs %}<a href="{{ pathto(doc.doc)|e }}" title="{{ doc.title|e }}">{{ doc.label|e }}</a>{% endfor %}</span></div>{% endfor %}
     </section>
     {%- endif %}
   </aside>
@@ -87,8 +94,8 @@
 {%- endif %}
 {%- if pairing %}
 <section class="pf-card" id="pairing"><h2>搭配</h2>
-  {%- if pairing.named %}<p class="pf-chips">{% for item in pairing.named %}{% if item.model %}<a href="{{ pathto('products/item/' ~ item.model) }}">{{ item.label|e }}</a>{% else %}<span>{{ item.label|e }}</span>{% endif %}{% endfor %}</p>{% endif %}
-  {%- for item in pairing.named_by %}<p>{% if item.model %}<a href="{{ pathto('products/item/' ~ item.model) }}">{{ item.name|e }}</a>{% else %}{{ item.name|e }}{% endif %} 的说明书写到「{{ item.label|e }}」。</p>{% endfor %}
+  {%- if pairing.named %}<p class="pf-chips">{% for item in pairing.named %}{% if item.model %}<a href="{{ pathto('products/item/' ~ item.model)|e }}">{{ item.label|e }}</a>{% else %}<span>{{ item.label|e }}</span>{% endif %}{% endfor %}</p>{% endif %}
+  {%- for item in pairing.named_by %}<p>{% if item.model %}<a href="{{ pathto('products/item/' ~ item.model)|e }}">{{ item.name|e }}</a>{% else %}{{ item.name|e }}{% endif %} 的说明书写到「{{ item.label|e }}」。</p>{% endfor %}
 </section>
 {%- endif %}
 </main>
