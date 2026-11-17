@@ -164,6 +164,9 @@ python -m tools.product_matrix_base stage ... --write --yes
   - `sources`：不透明的来源 id（来源键的哈希）、来源类型、型号、市场、语言、版本日期、页面路径（链到已发布说明书）；
   - `values`：每个产品 × 参数 × 来源一条：原文、数值、文本值、原单位、限定、条件、来源位置、核实状态、
     当前值、冲突，以及同一产品同一参数的不同来源是否写法不一（`sources_disagree`）；
+    单位：`number` 和 `text` 是规范化后的值，单位一律是该参数的规范单位（`parameters[].unit`）；`printed` 与
+    `printed_unit` 是说明书原样印的文字及其单位（例如原文写 cm，规范化后的尺寸文本是 mm）。页面显示值时读
+    `number`/`text` 配 `parameters[].unit`，`printed`/`printed_unit` 只用于「说明书原文」的对照；
   - `component_values`：组件的值，单列，不并入主产品；
   - 勾了「不收录」或已从产品表删除的产品不进快照，它们的值不进 `values` / `component_values`；
     `sources` 不含这些产品的来源（被收录产品的来源即使暂无值也保留）；
