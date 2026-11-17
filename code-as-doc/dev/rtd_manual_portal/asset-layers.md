@@ -124,7 +124,9 @@ layers that is not a figure:
   2026-11-16 (positioning §1.2); a later change is a one-line edit here. `product_value` is the operator's
   own statement of the product matrix's value (2026-11-16; positioning §4.1). It is shown
   on no page (operator, 2026-11-17: 「我写的那段价值定位不用显示在页面上」); the data file
-  keeps it and nothing reads it any more. Since the front cleanup `main_line` is
+  keeps it. `asset_layer_data` still loads it and `asset_pages` still passes it to the
+  产品信息 context as `product.value`, which no template renders; removing that pass
+  waits for the operator (AGENTS §8.7). Since the front cleanup `main_line` is
   no longer shown on 知识库首页; 系统建设 keeps its own 当前主线.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and
