@@ -67,6 +67,36 @@
           </details>
         </article>
 {%- endmacro -%}
+{#- A layer card (step 12, frame E): the capability items regrouped under one asset layer (asset_layers.yaml). Each item
+    keeps its own status and evidence; the layer's chip comes only from its ledger rows, and a layer without rows has
+    none. The old card ids the regrouped items came from stay as anchors (lane links point at them). -#}
+{%- macro layer_card(layer, group, chip, anchors) -%}
+        <article class="sw-card sw-layer-card" id="layer-{{ layer.id|e }}">
+          {%- for anchor in anchors %}<span id="cap-{{ anchor|e }}"></span>{% endfor %}
+          <header>
+            <div><h3><span class="sw-layer-no">{{ layer.order }}</span>{{ layer.title|e }}</h3><small><a href="{{ pathto(layer.page) }}">资产页 →</a></small></div>
+            {%- if chip %}<span class="sw-badge is-{{ chip.status|e }}" title="据台账 {{ chip.revs|join('、')|e }}：{{ chip.tally|e }}">{{ chip.status_label|e }}</span>{% else %}<span class="sw-layer-nochip" title="台账里还没有这一层的行">未登记</span>{% endif %}
+          </header>
+          {%- if group.entries %}
+          <div class="sw-stack" role="img" aria-label="{% for row in group.counts %}{{ row.status_label|e }} {{ row.count }}{% if not loop.last %}，{% endif %}{% endfor %}">{% for row in group.counts %}<i class="is-{{ row.status|e }}" style="width:{{ row.percent }}%"></i>{% endfor %}</div>
+          <ul class="sw-items">
+            {%- for entry in group.entries %}
+            <li><span class="sw-dot is-{{ entry.status|e }}" aria-hidden="true"></span>{{ entry.short|e }}</li>
+            {%- endfor %}
+          </ul>
+          <details class="sw-evidence">
+            <summary>各项说明与依据</summary>
+            <ul>
+              {%- for entry in group.entries %}
+              <li><div class="sw-item-head"><b>{{ entry.label|e }}</b>{{ badge(entry.status, entry.status_label) }}{{ stale_mark(entry.stale) }}</div>{% if entry.note %}<p>{{ entry.note|e }}</p>{% endif %}<span class="sw-refs">{{ evidence_links(entry.evidence) }}</span></li>
+              {%- endfor %}
+            </ul>
+          </details>
+          {%- else %}
+          <p class="sw-summary">还没有登记的能力项。</p>
+          {%- endif %}
+        </article>
+{%- endmacro -%}
 {%- macro gate_card(gate) -%}
         <div class="sw-gate is-{{ gate.state|e }}">
           <div class="sw-gate-head"><b>{{ gate.id|e }}</b><span>{{ gate.label|e }}</span><em>{{ gate.done }} / {{ gate.total }}</em></div>
@@ -229,27 +259,66 @@
 
     <div class="tab-panel" id="tab-capabilities" role="tabpanel" aria-label="能力与架构">
     <nav class="sw-jump" aria-label="能力与架构的内容">
-      <a href="#capabilities">能力地图</a><a href="#flow">生产链路</a>{% if deliverables_entry %}<a href="#work-map">工作入口</a>{% endif %}{% if evolution and evolution.architecture %}<a href="#tab-architecture">系统架构</a>{% endif %}{% if corpus_enabled %}<a href="#language-assets">语言资产</a>{% endif %}<a href="#codebase">工程规模</a>{% if tooling %}<a href="#tooling">技能与钩子</a>{% endif %}
+      <a href="#capabilities">能力地图</a>{% if asset_path %}<a href="#path">长期方向</a>{% endif %}<a href="#flow">生产链路</a>{% if deliverables_entry %}<a href="#work-map">工作入口</a>{% endif %}{% if evolution and evolution.architecture %}<a href="#tab-architecture">系统架构</a>{% endif %}{% if corpus_enabled %}<a href="#language-assets">语言资产</a>{% endif %}<a href="#codebase">工程规模</a>{% if tooling %}<a href="#tooling">技能与钩子</a>{% endif %}
     </nav>
     <section class="sw-section" id="capabilities">
       <div class="section-header"><div>
         <h2>能力地图</h2>
+        {%- if asset_map %}
+        <p>四类资产按优先级排，下面一行是生产能力；共 {{ capability_total }} 项能力，每项状态都附证据。资产卡的状态只取台账登记行，没有登记行的不标。</p>
+        {%- else %}
         <p>{{ cards|length }} 个能力域、{{ capability_total }} 项能力。每项状态都附证据；点「各项说明与依据」看每项在做什么、凭什么。</p>
+        {%- endif %}
       </div>{{ counts_line(capability_counts) }}</div>
       {%- if capability_stale %}
       <p class="sw-review-note"><b>待复核 {{ capability_stale }} 项</b><span>能力状态每 {{ stale_after_days }} 天复核一次；超期不改状态，只在展开的条目上标出。复核后更新 system_workspace.yaml。</span></p>
       {%- endif %}
+      {%- if asset_map %}
+      <h3 class="sw-map-group">四类资产 · 按优先级</h3>
+      <div class="sw-cards sw-layer-cards">
+        {%- for layer in asset_layers %}
+{{ layer_card(layer, asset_map.layers[layer.id], asset_chips[layer.id], asset_map.layers[layer.id].anchors) }}
+        {%- endfor %}
+      </div>
+      <h3 class="sw-map-group">生产 · 把资产变成交付物</h3>
+      <div class="sw-cards">
+        {%- for card in asset_map.production %}
+{{ capability_card(card) }}
+        {%- endfor %}
+      </div>
+      {%- else %}
       <div class="sw-cards">
         {%- for card in cards %}
 {{ capability_card(card) }}
         {%- endfor %}
       </div>
+      {%- endif %}
       <ul class="sw-legend" aria-label="状态说明">
         {%- for row in legend %}
         <li><span class="sw-dot is-{{ row.status|e }}" aria-hidden="true"></span>{{ row.label|e }}：{{ row.description|e }}</li>
         {%- endfor %}
       </ul>
     </section>
+
+    {%- if asset_path %}
+    <section class="sw-section" id="path" aria-labelledby="path-title">
+      <div class="section-header"><div>
+        <h2 id="path-title">长期方向</h2>
+        <p>定位文档 §4.2 的分阶段路径。有台账行的阶段标台账状态；没有的只引用定位文档的方向，不标状态。</p>
+      </div><a class="sw-path-source" href="{{ asset_path.link|e }}" target="_blank" rel="noopener">定位文档 §4.2 ↗</a></div>
+      <ol class="sw-path">
+        {%- for stage in asset_path.stages %}
+        <li class="sw-path-step" id="path-{{ stage.id|e }}">
+          <div class="sw-path-head"><span class="sw-path-no">第 {{ loop.index }} 步</span><strong>{{ stage.title|e }}</strong>
+            {%- if stage.chip %}<span class="sw-badge is-{{ stage.chip.status|e }}" title="{{ stage.chip.tally|e }}">{{ stage.chip.status_label|e }}</span><small>据台账 {{ stage.chip.revs|join('、')|e }}</small>{% else %}<small>未登记台账行，只记方向</small>{% endif %}</div>
+          <blockquote>「{{ stage.quote|e }}」</blockquote>
+          {%- if stage.scope %}<p class="sw-path-scope">{{ stage.scope|e }}</p>{% endif %}
+        </li>
+        {%- endfor %}
+      </ol>
+      {%- if asset_path.boundary %}<p class="sw-path-boundary"><b>系统边界</b>「{{ asset_path.boundary|e }}」不在本系统的状态里计算。</p>{% endif %}
+    </section>
+    {%- endif %}
 
     <section class="sw-section" id="flow">
       <div class="section-header"><div>

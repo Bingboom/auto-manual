@@ -126,11 +126,13 @@ Precision facts that decide between rows:
       12-hex prefix (`data/asset_registry.csv`) · pinned test censuses
       (`tests/test_asset_registry.py` ×2, `tests/test_asset_recipe.py`
       contract). One place stale = CI red or, worse, silent drift.
-- [ ] **Registry enrollment both sides**: CSV mirror row + Feishu 插图资产表
-      (`tblxFBWaDG4OYhqu`) row/attachment, read back (row id + non-empty file
-      token reported). Naming contract `<asset_key>[-<lang>].{pdf,png}`;
-      `overview/` prefix has no filename_prefix; a missing `v2-` file falls
-      back to `renderers/latex/assets`.
+- [ ] **Registry enrollment both sides**: CSV mirror row + active Feishu
+      `04_资产*` tables (`04_资产源文件` `tblsXlZx61Ff5pQC` / `04_资产定义`
+      `tblWilXeN5FXPraC` / `04_资产导出物` `tblavT0dcjZGK9DR`, bound in
+      `data/asset_base_bindings.json`) row/attachment, read back (row id +
+      non-empty file token reported). Naming contract
+      `<asset_key>[-<lang>].{pdf,png}`; `overview/` prefix has no
+      filename_prefix; a missing `v2-` file falls back to `renderers/latex/assets`.
 - [ ] **Never delete registry rows** — debts and superseded assets get status
       flips/notes, not deletion (the J1 merge rule).
 - [ ] **Consumers verified, not assumed** (grep template `asset:` refs; e.g.

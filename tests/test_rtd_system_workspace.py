@@ -15,6 +15,7 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 import yaml
+from bs4 import BeautifulSoup
 
 from tools.rtd import portal as rtd_portal
 from tools.rtd import system_workspace as sw
@@ -256,7 +257,7 @@ class SystemWorkspaceContractTests(unittest.TestCase):
     def test_active_ledger_rows_read_as_in_progress(self):
         ledger = sw.parse_ledger(LEDGER.replace("REV-03 | WP2 | G1 | x | planned", "REV-03 | WP2 | G1 | x | active"))
         self.assertEqual(ledger.statuses["REV-03"], "active")
-        progress = sw._progress(["REV-03", "REV-04"], ledger)
+        progress = sw.ledger_progress(["REV-03", "REV-04"], ledger)
         self.assertEqual((progress["state"], progress["tally"]), ("active", "在做 1 · 暂缓 1"))
         self.assertEqual(sw.parse_evidence("rev:REV-03=active"), ("rev", "REV-03", "active"))
 
@@ -812,9 +813,30 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # The shipped contract names the manual library as the site does.
             self.assertIn("<b>说明书资料库</b>", page)
             self.assertNotIn("手册中心", page)
-            # Every capability card shows (2026-11 design, step 9); none is folded away.
+            # Every capability shows (2026-11 design, step 9); none is folded away. Since step 12 the map is four
+            # layer cards (asset_layers.yaml regroups the items) and the production cards kept whole.
             self.assertNotIn('class="sw-more"', page)
-            self.assertEqual(page.count('<article class="sw-card"'), len(sw.load_contract(assets / sw.CONTRACT_NAME)["capabilities"]))
+            contract = sw.load_contract(assets / sw.CONTRACT_NAME)
+            layer_data = yaml.safe_load((assets / "asset_layers.yaml").read_text(encoding="utf-8"))
+            self.assertEqual(page.count('<article class="sw-card"'), len(layer_data["production"]))
+            self.assertEqual(page.count('<article class="sw-card sw-layer-card"'), 4)
+            # Regrouping changes no status word and no evidence: every item shows once, as the contract has it.
+            soup = BeautifulSoup(page, "html.parser")
+            shown = sorted((li.b.get_text(), li.select_one(".sw-badge").get_text(),
+                            tuple(a.get_text() for a in li.select(".sw-refs > *")))
+                           for li in soup.select("#capabilities .sw-evidence > ul > li"))
+            repositories = {k: str(v).rstrip("/") for k, v in contract["repositories"].items()}
+
+            def evidence_label(ref):  # as evidence_links prints it: an operator confirmation shows its month
+                label = sw.evidence_view(ref, repositories, "")["label"]
+                return label[:-3] if label.startswith("操作者确认 ") else label
+
+            expected = sorted((item["label"], sw.STATUS_LABELS[item["status"]],
+                               tuple(evidence_label(ref) for ref in item["evidence"]))
+                              for card in contract["capabilities"] for item in card["items"])
+            self.assertEqual(shown, expected)
+            for old_id in ("language", "content_foundation"):  # lane links still land
+                self.assertIn(f'id="cap-{old_id}"', page)
             self.assertIn('<details class="sw-link">', capabilities)
             # Skills and hooks come from this tree, not from the contract.
             self.assertIn('id="tooling"', page)

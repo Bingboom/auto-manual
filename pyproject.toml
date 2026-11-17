@@ -3,6 +3,7 @@ target-version = "py312"
 extend-exclude = [
     ".venv",
     ".tmp",
+    ".claude/worktrees",
     "docs/_build",
     "docs/_review",
     "reports",

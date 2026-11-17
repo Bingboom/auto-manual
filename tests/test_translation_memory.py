@@ -339,3 +339,140 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
                 )
 
             self.assertIsNone(cached)
+
+    def test_is_usable_tm_row_status_filtering(self) -> None:
+        is_usable = query_live_translation_memory.is_usable_tm_row
+
+        # Approved rows (str, dict, list)
+        self.assertTrue(is_usable({"Status": "Approved"}))
+        self.assertTrue(is_usable({"Status": "approved"}))
+        self.assertTrue(is_usable({"status": {"name": "Approved"}}))
+        self.assertTrue(is_usable({"Status": [{"name": "Approved"}]}))
+        self.assertTrue(is_usable({"Status": ["Approved"]}))
+
+        # Draft rows
+        self.assertFalse(is_usable({"Status": "Draft"}, include_draft=False))
+        self.assertTrue(is_usable({"Status": "Draft"}, include_draft=True))
+        self.assertFalse(is_usable({"status": {"name": "Draft"}}, include_draft=False))
+        self.assertTrue(is_usable({"status": {"name": "Draft"}}, include_draft=True))
+
+        # Deprecated rows are ALWAYS excluded
+        self.assertFalse(is_usable({"Status": "Deprecated"}, include_draft=False))
+        self.assertFalse(is_usable({"Status": "Deprecated"}, include_draft=True))
+        self.assertFalse(is_usable({"status": {"name": "Deprecated"}}, include_draft=True))
+
+        # Missing or empty status (legacy fixtures / tables)
+        self.assertTrue(is_usable({}))
+        self.assertTrue(is_usable({"Status": ""}))
+        self.assertTrue(is_usable({"Status": None}))
+        self.assertTrue(is_usable({"status": ""}))
+
+        # Unknown non-empty status
+        self.assertFalse(is_usable({"Status": "Review"}))
+        self.assertFalse(is_usable({"Status": "Pending"}))
+
+    def test_build_sentence_pair_entries_supports_eu_languages_and_draft_toggle(self) -> None:
+        rows = [
+            {
+                "record_id": "rec_app",
+                "Status": "Approved",
+                "en": "Solar generator",
+                "nl": "Zonnegenerator",
+                "pl": "Generator sloneczny",
+                "pt": "Gerador solar",
+            },
+            {
+                "record_id": "rec_draft",
+                "Status": "Draft",
+                "en": "Portable power station",
+                "nl": "Draagbare krachtcentrale",
+            },
+            {
+                "record_id": "rec_dep",
+                "Status": "Deprecated",
+                "en": "Old battery",
+                "nl": "Oude batterij",
+            },
+            {
+                "record_id": "rec_legacy",
+                "en": "Clean energy",
+                "nl": "Schone energie",
+                "pl": "Czysta energia",
+                "pt": "Energia limpa",
+            },
+        ]
+        lang_fields = ["en", "nl", "pl", "pt"]
+
+        self.assertIn("nl", query_live_translation_memory.LIVE_TM_LANGUAGE_FIELDS)
+        self.assertIn("pl", query_live_translation_memory.LIVE_TM_LANGUAGE_FIELDS)
+        self.assertIn("pt", query_live_translation_memory.LIVE_TM_LANGUAGE_FIELDS)
+
+        # By default (include_draft=False): rec_app and rec_legacy kept; rec_draft and rec_dep excluded
+        entries_default = query_live_translation_memory.build_sentence_pair_entries(
+            rows, language_fields=lang_fields, include_draft=False
+        )
+        keys_default = [e.row_key for e in entries_default]
+        self.assertEqual(["rec_app", "rec_legacy"], keys_default)
+        self.assertEqual("Zonnegenerator", entries_default[0].translations.get("nl"))
+        self.assertEqual("Generator sloneczny", entries_default[0].translations.get("pl"))
+        self.assertEqual("Gerador solar", entries_default[0].translations.get("pt"))
+
+        # With include_draft=True: rec_draft also kept; rec_dep still excluded
+        entries_with_draft = query_live_translation_memory.build_sentence_pair_entries(
+            rows, language_fields=lang_fields, include_draft=True
+        )
+        keys_draft = [e.row_key for e in entries_with_draft]
+        self.assertEqual(["rec_app", "rec_draft", "rec_legacy"], keys_draft)
+
+    def test_list_records_pagination_unlimited_and_capped(self) -> None:
+        def make_page(page_idx: int, page_size: int, has_more: bool) -> dict:
+            return {
+                "ok": True,
+                "data": {
+                    "fields": ["en", "fr"],
+                    "record_id_list": [f"rec_{page_idx}_{i}" for i in range(page_size)],
+                    "data": [["Hello", "Bonjour"] for _ in range(page_size)],
+                    "has_more": has_more,
+                },
+            }
+
+        # Case 1: max_records = 0 (unlimited pagination past 2000 rows, e.g. 11 pages of 200 = 2200 rows)
+        page_calls = []
+
+        def fake_run_unlimited(cmd: list[str]) -> dict:
+            page_calls.append(cmd)
+            current_page = len(page_calls) - 1
+            has_more = current_page < 10
+            return make_page(current_page, 200, has_more)
+
+        with mock.patch.object(query_live_translation_memory, "run_lark_json", side_effect=fake_run_unlimited):
+            rows = query_live_translation_memory.list_records(
+                cli="lark-cli",
+                base_token="base123",
+                table_id="tbl123",
+                view_id="vew123",
+                max_records=0,
+            )
+        self.assertEqual(2200, len(rows))
+        self.assertEqual(11, len(page_calls))
+
+        # Case 2: max_records = 50 (explicit positive cap)
+        capped_calls = []
+
+        def fake_run_capped(cmd: list[str]) -> dict:
+            capped_calls.append(cmd)
+            return make_page(0, 50, True)
+
+        with mock.patch.object(query_live_translation_memory, "run_lark_json", side_effect=fake_run_capped):
+            rows = query_live_translation_memory.list_records(
+                cli="lark-cli",
+                base_token="base123",
+                table_id="tbl123",
+                view_id="vew123",
+                max_records=50,
+            )
+        self.assertEqual(50, len(rows))
+        self.assertEqual(1, len(capped_calls))
+        # Ensure limit passed in cmd was 50
+        limit_idx = capped_calls[0].index("--limit")
+        self.assertEqual("50", capped_calls[0][limit_idx + 1])

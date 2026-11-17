@@ -628,3 +628,22 @@ body.app.kb.system-workspace .sw-stale { border: 0; border-radius: 999px; paddin
   .sw-stage-body { padding-left: 16px; }
   .sw-hero .sw-update { align-items: flex-start; }
 }
+
+/* 四类资产 (step 12, frame E): the capability map's layer cards and the staged path. */
+.sw-map-group { margin: 18px 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--app-muted); }
+.sw-map-group:first-of-type { margin-top: 6px; }
+.sw-layer-no { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 8px; border-radius: 6px; background: var(--brand-soft); color: var(--brand-strong); font-size: 12px; font-weight: 800; vertical-align: 1px; }
+.sw-layer-card header small a { color: var(--brand-strong); text-decoration: none; }
+.sw-layer-nochip { font-size: 12px; color: var(--app-faint); white-space: nowrap; }
+.sw-path-source { font-size: 13px; color: var(--brand-strong); text-decoration: none; white-space: nowrap; }
+.sw-path { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.sw-path-step { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; background: #fff; border: 1px solid var(--app-line); border-radius: 12px; }
+.sw-path-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.sw-path-head strong { font-size: 15px; }
+.sw-path-head small { font-size: 12px; color: var(--app-faint); }
+.sw-path-no { font-size: 12px; font-weight: 600; color: var(--brand-strong); }
+.sw-path-step blockquote { margin: 0; font-size: 13px; line-height: 20px; color: #474e4e; }
+.sw-path-scope { margin: 0; font-size: 12.5px; line-height: 19px; color: var(--app-muted); }
+.sw-path-boundary { margin: 12px 0 0; padding: 10px 14px; border: 1px dashed #c9d2dd; border-radius: 10px; font-size: 13px; color: #474e4e; }
+.sw-path-boundary b { margin-right: 8px; }
+.sw-cards.sw-layer-cards { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }

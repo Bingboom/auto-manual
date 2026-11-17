@@ -206,7 +206,57 @@ def language_view(system: dict[str, Any] | None, publications: list[dict[str, An
             "system_entry": system is not None}
 
 
+
+
+# --- 知识库首页 (step 12, frame B) ---------------------------------------------------------------------------------
+
+
+def _figure(value: object, unit: str, label: str, date: str) -> dict[str, Any]:
+    """A home-card figure; None shows as 待统计, never 0."""
+    return {"value": None if value is None else (f"{value:,}" if isinstance(value, int) else str(value)),
+            "unit": unit, "label": label, "date": date}
+
+
+def home_cards(product: dict[str, Any], content: dict[str, Any], media: dict[str, Any], language: dict[str, Any],
+               chips: dict[str, dict[str, Any] | None]) -> list[dict[str, Any]]:
+    """The four layer cards of 知识库首页, from the same views the layer pages render (no figure is read twice)."""
+    built = f"构建 {product['build_date']}"
+    chapters, components = content.get("chapters"), content.get("components")
+    registry, symbols = media.get("registry"), media.get("symbols")
+    corpus, tiles = language.get("corpus"), language.get("tiles") or {}
+    exported = f"导出 {corpus['exported_at']}" if corpus else ""
+    approved = (tiles.get("approved") or {}).get("value", "")
+    cards = [
+        {"figures": [_figure(product.get("models"), "个", "型号（产品矩阵）",
+                             f"发布清单 {product['built_on']}" if product.get("built_on") else built),
+                     _figure(product.get("attributes"), "项", "属性定义", built)],
+         "where": "说明书规格表；产品信息矩阵建设中", "weak": "数值未经人工核实，也没有生效日期。"},
+        {"figures": [_figure(chapters["pages"] if chapters else None, "篇", "通用章节", built),
+                     _figure(components["total"] if components else None, "个", "登记组件", built)],
+         "where": "工程仓库",
+         "weak": (f"通用章节 {len(chapters['languages'])} 种语言，网页说明书 {content['web_languages']} 种。"
+                  if chapters and content.get("web_languages") else "每个章节、组件用进了哪几本：待统计。")},
+        {"figures": [_figure(registry["total"] if registry else None, "项", "已登记素材", built),
+                     _figure(symbols["total"] if symbols else None, "个", "共用符号", built)],
+         "where": "工程仓库 · 素材登记表", "weak": "素材没有版本字段，换图后分不出新旧。"},
+        {"figures": [_figure((tiles.get("pairs") or {}).get("value") if corpus else None, "", "句对", exported),
+                     _figure(approved or None if corpus else None, "", "句对已批准", exported)],
+         "where": "翻译记忆库（飞书多维表）",
+         "weak": _language_weak(corpus, approved)},
+    ]
+    entries = layer_entries(any(page == "products/matrix" for page, _ in product["tabs"]))
+    return [{**entries[index], **card, "chip": chips.get(LAYERS[index]["id"])} for index, card in enumerate(cards)]
+
+
+def _language_weak(corpus: dict[str, Any] | None, approved: str) -> str:
+    if not corpus:
+        return "语料快照不可读。"
+    unapproved = f"{100 - int(approved[:-1])}% 句对未批准" if approved.endswith("%") and approved[:-1].isdigit() else ""
+    stale = f"数字停在 {corpus['exported_at']} 的导出" if corpus.get("stale") else ""
+    return "；".join(part for part in (unapproved, stale) if part) + "。" if unapproved or stale else "使用记录：待统计。"
+
+
 __all__ = ["ATTRIBUTES_PAGE", "ATTRIBUTES_TEMPLATE", "BLOCKS", "BUILDING", "LAYERS", "PENDING", "PRODUCT_TABS",
-           "attributes_view", "chapter_label", "components_view", "content_view", "language_view", "layer",
-           "layer_entries", "media_view", "product_layer", "product_tabs", "shared_chapters", "terminology_rules",
-           "web_languages"]
+           "attributes_view", "chapter_label", "components_view", "content_view", "home_cards", "language_view",
+           "layer", "layer_entries", "media_view", "product_layer", "product_tabs", "shared_chapters",
+           "terminology_rules", "web_languages"]

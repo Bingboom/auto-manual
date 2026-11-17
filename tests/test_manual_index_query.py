@@ -1,11 +1,18 @@
 from __future__ import annotations
 
 import unittest
+from unittest import mock
 
 from tools.manual_index_query import (
+    DEFAULT_MANUAL_INDEX_BASE_TOKEN,
+    DEFAULT_MANUAL_INDEX_IDENTITY,
+    DEFAULT_MANUAL_INDEX_SOURCE_URL,
+    DEFAULT_MANUAL_INDEX_TABLE_ID,
+    DEFAULT_MANUAL_INDEX_VIEW_ID,
     ManualIndexSettings,
     _extract_filters,
     infer_manual_index_intent,
+    manual_index_settings_from_env,
     query_manual_index_records,
 )
 
@@ -120,6 +127,35 @@ class TestExtractFilters(unittest.TestCase):
     def test_language_alias_boundary(self) -> None:
         self.assertEqual(("EN",), _extract_filters("查 en 说明书").source_langs)
         self.assertEqual((), _extract_filters("energy 说明书").source_langs)
+
+
+class TestManualIndexSettings(unittest.TestCase):
+    def test_default_settings_from_env(self) -> None:
+        with mock.patch.dict("os.environ", {}, clear=True):
+            settings = manual_index_settings_from_env({})
+            self.assertEqual(DEFAULT_MANUAL_INDEX_BASE_TOKEN, settings.base_token)
+            self.assertEqual(DEFAULT_MANUAL_INDEX_TABLE_ID, settings.table_id)
+            self.assertEqual(DEFAULT_MANUAL_INDEX_VIEW_ID, settings.view_id)
+            self.assertEqual(DEFAULT_MANUAL_INDEX_IDENTITY, settings.identity)
+            self.assertEqual(DEFAULT_MANUAL_INDEX_SOURCE_URL, settings.source_url)
+            self.assertEqual("WGVwb2HctauRi7sEiKqcIzTRn1c", settings.base_token)
+            self.assertEqual("tbldqnNBxFQsxpeN", settings.table_id)
+            self.assertEqual("vewytqcvDc", settings.view_id)
+            self.assertEqual("bot", settings.identity)
+
+    def test_settings_from_env_with_explicit_overrides(self) -> None:
+        overrides = {
+            "FEISHU_MANUAL_INDEX_BASE_TOKEN": "custom_base",
+            "FEISHU_MANUAL_INDEX_TABLE_ID": "custom_table",
+            "FEISHU_MANUAL_INDEX_VIEW_ID": "custom_view",
+            "FEISHU_MANUAL_INDEX_IDENTITY": "user",
+        }
+        with mock.patch.dict("os.environ", overrides, clear=True):
+            settings = manual_index_settings_from_env({})
+            self.assertEqual("custom_base", settings.base_token)
+            self.assertEqual("custom_table", settings.table_id)
+            self.assertEqual("custom_view", settings.view_id)
+            self.assertEqual("user", settings.identity)
 
 
 if __name__ == "__main__":

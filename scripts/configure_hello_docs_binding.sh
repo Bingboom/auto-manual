@@ -20,7 +20,7 @@ Options:
   --env-file FILE             Source a local shell env file before validation
   --pause                     Set FEISHU_BUILD_QUEUE_PAUSED=true, default
   --unpause                   Set FEISHU_BUILD_QUEUE_PAUSED=false after audit passes
-  --include-optional          Also write optional Vercel / DingTalk / Feishu IM / OpenClaw values when present
+  --include-optional          Also write optional Vercel / Feishu IM / OpenClaw values when present
   --dry-run                   Show what would be written without changing GitHub
   -h, --help                  Show this help
 
@@ -124,11 +124,6 @@ optional_secret_names=(
   VERCEL_TOKEN
   VERCEL_ORG_ID
   VERCEL_PROJECT_ID
-  DINGTALK_DOCS_TARGET_NODE_URL
-  DINGTALK_DOCS_A_TOKEN
-  DINGTALK_DOCS_XSRF_TOKEN
-  DINGTALK_DOCS_COOKIE
-  DINGTALK_DOCS_BX_V
   FEISHU_IM_APP_ID
   FEISHU_IM_APP_SECRET
   FEISHU_IM_VERIFICATION_TOKEN

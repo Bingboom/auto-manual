@@ -6,7 +6,7 @@ Add new notes for this topic here, not to the hub.
 ### 1.1 Wukong MCP bridge source and intake contract
 
 The DingTalk Wukong stdio MCP bridge is maintained in Git under
-[`agent/wukong-bridge/`](../../agent/wukong-bridge). Its runtime registration must
+`agent/wukong-bridge/`. Its runtime registration must
 point to that checked-in `server.py`; credentials and `lark-cli` auth remain
 external, while jobs/exports go to `~/.local/state/hello-docs-bridge` (or
 `HELLO_DOCS_BRIDGE_STATE_DIR`).
@@ -28,8 +28,8 @@ KR/ko family. Family-default discovery routes automatic close checks to that
 config; a target-scoped verification uses `python build.py check --config
 configs/config.kr.yaml --model JE-2000E --region KR`.
 
-- [`../tools/dingtalk/spike_cli.py`](../../tools/dingtalk/spike_cli.py) is the manual Phase 0 smoke helper for future app-only DingTalk provider research; it defaults to the official App-Only token flow and lets maintainers inject product-specific list/update/upload endpoints without changing the current queue runtime. A minimal smoke run looks like `python tools\dingtalk\spike_cli.py all --record-id <stable_row_id> --update-set smoke_checked=true --upload-file .tmp\phase0-smoke.docx`.
-- [`../tools/dingtalk/auth.py`](../../tools/dingtalk/auth.py) now exposes the verified App-Only token helper behind `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, and [`../tools/dingtalk/workspace.py`](../../tools/dingtalk/workspace.py) can parse a target node ID from a normal DingTalk docs URL such as `https://alidocs.dingtalk.com/i/nodes/<node_id>`.
+- `../tools/dingtalk/spike_cli.py` is the manual Phase 0 smoke helper for future app-only DingTalk provider research; it defaults to the official App-Only token flow and lets maintainers inject product-specific list/update/upload endpoints without changing the current queue runtime. A minimal smoke run looks like `python tools\dingtalk\spike_cli.py all --record-id <stable_row_id> --update-set smoke_checked=true --upload-file .tmp\phase0-smoke.docx`.
+- `../tools/dingtalk/auth.py` now exposes the verified App-Only token helper behind `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, and `../tools/dingtalk/workspace.py` can parse a target node ID from a normal DingTalk docs URL such as `https://alidocs.dingtalk.com/i/nodes/<node_id>`.
 
 - `queue-query`: OpenClaw Phase 2 queue resolution helper; it reads the Feishu-bound review/build rows and returns the concrete `record_id`, optional `Task_id`, workflow intent, `Git_ref`, status fields, and explicit `delivery_kind / delivery_url / delivery_ready` contract that a natural-language control layer needs before dispatch or status reporting
 - `queue-resolve-action`: structured OpenClaw dry-run resolver; it turns one natural-language ask into the bounded action contract from the control-layer plan, including `action_name`, `resolution_status`, required confirmation, missing required fields, and the matched queue row
