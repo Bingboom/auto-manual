@@ -155,7 +155,7 @@ python -m tools.product_matrix_base stage ... --write --yes
     当前值、冲突，以及同一产品同一参数的不同来源是否写法不一（`sources_disagree`）；
   - `component_values`：组件的值，单列，不并入主产品；
   - 勾了「不收录」或已从产品表删除的产品不进快照，它们的值不进 `values` / `component_values`；
-    `sources` 只含仍被收录产品的值引用的来源；
+    `sources` 不含这些产品的来源（被收录产品的来源即使暂无值也保留）；
   - 头部：读 base 的时间、各表计数、快照 schema。
   不含飞书 record id、table id、token、网址，也不含来源版本标签（含流水线构建号）：来源只用不透明 id 和页面路径。
 - 写入位置由代码把关，两个条件同时满足才写：检出的 `origin` 远端指向 Hello-Docs 仓库（读不到远端就拒绝），

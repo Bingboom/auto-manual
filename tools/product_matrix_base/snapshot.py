@@ -97,6 +97,11 @@ def _source(row: dict[str, Any]) -> dict[str, Any]:
             "page": _single(row.get("页面或文件"))}
 
 
+def _owner(row: dict[str, Any]) -> str:
+    """The product key a source belongs to (型号/市场)."""
+    return f"{_text(row.get('型号'))}/{_single(row.get('市场')) or ''}"
+
+
 def _value(row: dict[str, Any]) -> dict[str, Any]:
     return {"product": _text(row.get("产品键")), "parameter": _text(row.get("属性键")),
             "source": source_id(_text(row.get("来源键"))), "condition": _single(row.get("条件")),
@@ -117,21 +122,26 @@ def _mark_disagreement(values: list[dict[str, Any]]) -> None:
         value["sources_disagree"] = len(seen[(value["product"], value["parameter"])]) > 1
 
 
+def _kept(run: Runner, ids: dict[str, str]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    """Products not marked 不收录, their facts, and the sources they own or cite (a deleted product leaves none)."""
+    rows = read_rows(run, ids["产品"], list(PRODUCT_FIELDS), sensitive=True)
+    products = [_product(r) for r in rows if not r.get("不收录")]
+    kept = {p["key"] for p in products}
+    facts = [r for r in read_rows(run, ids["事实"], list(FACT_FIELDS), sensitive=True) if _text(r.get("产品键")) in kept]
+    cited = {_text(r.get("来源键")) for r in facts}
+    sources = [_source(r) for r in read_rows(run, ids["来源"], list(SOURCE_FIELDS), sensitive=True)
+               if _text(r.get("来源键")) in cited or _owner(r) in kept]
+    return products, facts, sources
+
+
 def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
     """The snapshot document, every list sorted by its key so successive snapshots diff cleanly."""
     ids = table_ids(run)
     missing = [name for name in ("产品", "属性", "来源", "事实") if name not in ids]
     if missing:
         raise LoadError(f"tables missing in the base: {missing}")
-    rows = read_rows(run, ids["产品"], list(PRODUCT_FIELDS), sensitive=True)
-    products = [_product(r) for r in rows if not r.get("不收录")]  # 不收录: kept out by a person
-    kept = {p["key"] for p in products}
+    products, facts, sources = _kept(run, ids)
     parameters = [_parameter(r) for r in read_rows(run, ids["属性"], list(PARAMETER_FIELDS), sensitive=True)]
-    facts = [r for r in read_rows(run, ids["事实"], list(FACT_FIELDS), sensitive=True)
-             if _text(r.get("产品键")) in kept]  # a product no longer in 产品 (or 不收录) leaves no value behind
-    cited = {_text(r.get("来源键")) for r in facts}
-    sources = [_source(r) for r in read_rows(run, ids["来源"], list(SOURCE_FIELDS), sensitive=True)
-               if _text(r.get("来源键")) in cited]  # only sources a kept value cites
     main = [_value(r) for r in facts if not _text(r.get("条件")).startswith(COMPONENT)]
     components = [{**_value(r), "component": _text(r.get("条件"))[len(COMPONENT):].split("#")[0]}
                   for r in facts if _text(r.get("条件")).startswith(COMPONENT)]

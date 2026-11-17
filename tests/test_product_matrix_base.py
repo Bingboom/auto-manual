@@ -608,6 +608,9 @@ class SnapshotTest(unittest.TestCase):
         self.assertEqual((document["counts"]["values"], document["counts"]["component_values"],
                           document["counts"]["sources"], document["counts"]["products_with_project"]), (0, 0, 0, 0))
         self.assertNotIn("P-FAKE", snapshot.encode(document).decode())
+        base.rows["来源"].append({"来源键": "web/JE-B/JP/ja/v", "型号": "JE-B", "市场": ["JP"], "_id": "s3"})
+        uncited = snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual(uncited["counts"]["sources"], 1)  # a kept product's source stays without a value
 
     @staticmethod
     def checkout(root: Path, name: str, landing: str, remote: str | None) -> Path:
