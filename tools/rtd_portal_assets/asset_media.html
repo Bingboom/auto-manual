@@ -3,104 +3,59 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>视觉媒体</title><meta name="description" content="资产 3 · 视觉媒体：素材登记表与共用符号的规模、维护位置、清单、使用、出处与缺口。">
+<title>视觉媒体</title><meta name="description" content="视觉媒体：说明书里共用的图标和插图。">
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/asset-layers.css', 1) }}">
-<script defer src="{{ pathto('_static/asset-layers.js', 1) }}"></script>
+<link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/media-front.css', 1) }}">
+<script defer src="{{ pathto('_static/media-front.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{% import '_asset_layer.html' as al with context %}
-{#- 视觉媒体 (asset layer 3). Context: tools/rtd/asset_layers.py media_view, tools/rtd/asset_media.py. The asset
-    registry as counts and a list filtered by type, model, region and language (asset-layers.js; ALL rows and rows
-    without language-specific text match every model, region or language); the shared symbols with their source,
-    hash and the published language versions that show them. The registry has no version column: said, not hidden. -#}
-{%- set engineering = 'https://github.com/Bingboom/auto-manual' -%}
-{%- set m = layer -%}{%- set r = m.registry -%}{%- set s = m.symbols -%}
-<body class="app kb al-root">
+{#- 视觉媒体 (front page, 2026-11-17): for colleagues. A title, one line, the counts by type, then the shared icons
+    and illustrations to browse (filter by type, search by meaning); a tile opens a larger view and how many manuals
+    show it. Context: tools/rtd/asset_media.py front_view; the images are the copies the 设计规范 page publishes.
+    No keys, hashes, paths, statuses or block numbers here: those are on 素材清单 (asset_media_inventory.html), and the
+    old section anchors of this page forward there. -#}
+{%- set v = media -%}
+<body class="app kb">
 {{ site_sidebar('asset-media', site_nav) }}
 <div class="app-content">
 {{ site_topbar('知识库', '视觉媒体') }}
-<main class="al-page">
-{{ al.head(m) }}
-<div class="al-grid">
-  {%- call al.block('scale', 1, '规模') %}
-  <div class="al-figs">
-    {{ al.figure(r.total if r else none, '项', '已登记 · 成品 ' ~ (r.finished if r else '—'), '构建时读取') }}
-    {{ al.figure(r.neutral if r else none, '项', '不分语言', '构建时读取') }}
-    {{ al.figure(r.every_model if r else none, '项', '全型号共用', '构建时读取') }}
-    {{ al.figure(s.total if s else none, '个', '共用符号', '构建时读取') }}
-  </div>
-  <div class="al-fig-gap"><b>版本号</b><span>素材登记表没有版本字段</span></div>
-  {%- endcall %}
-  {%- call al.block('maintained', 2, '在哪里维护') %}
-  <dl class="al-kv">
-    <dt>素材登记</dt><dd><a href="{{ engineering }}/blob/main/data/asset_registry.csv" target="_blank" rel="noopener"><code>data/asset_registry.csv</code> ↗</a></dd>
-    <dt>共用符号</dt><dd><a href="{{ engineering }}/blob/main/docs/renderers/web/assets/shared/symbols/manifest.json" target="_blank" rel="noopener">符号清单 ↗</a></dd>
-    <dt>画法与选材</dt><dd><a href="{{ pathto('workspace/design/index') }}#assets">设计规范 › 图标与素材</a>：先复用再提取；这里只放清单。</dd>
-  </dl>
-  {%- endcall %}
-</div>
-
-{%- call al.block('inventory', 3, '清单', true) %}
-<h3 class="al-sub" id="registry">素材库</h3>
-{%- if r %}
-<form class="al-filters" data-al-filters aria-label="筛选素材" hidden>
-  {%- for key, label in [('category', '类型'), ('model', '型号'), ('region', '区域'), ('language', '语言')] %}
-  <label>{{ label }}<select data-al-filter="{{ key }}"><option value="">全部</option>{% for value in r.filters[key] if value not in ('ALL', 'shared') %}<option>{{ value|e }}</option>{% endfor %}</select></label>
+<main class="fr-page mf-page">
+<header class="fr-head"><h1>视觉媒体</h1><p>说明书里共用的图标和插图{% if v %} · 更新于 {{ v.updated|e }}{% endif %}</p></header>
+{%- if v %}
+<section class="fr-figs" aria-label="按类型的数量">
+  {%- for type in v.types %}
+  <div><strong>{{ type.count }}</strong><span>{{ type.title|e }}</span></div>
   {%- endfor %}
-  <label class="al-check"><input type="checkbox" data-al-unfinished>只看未完成</label>
-  <output data-al-count>{{ r.total }} 项</output>
-</form>
-<p class="al-note">选型号、区域或语言时，全型号（ALL）、全区域和不分语言的素材也算在内。哈希取内容哈希的前 12 位。</p>
-<div class="al-table-wrap" role="region" aria-label="素材库，可横向滚动" tabindex="0">
-<table class="al-table" data-al-list>
-  <thead><tr><th scope="col">素材</th><th scope="col">类型</th><th scope="col">型号</th><th scope="col">区域</th><th scope="col">语言</th><th scope="col">状态</th><th scope="col">哈希</th><th scope="col">版本</th></tr></thead>
-  <tbody>{% for item in r['items'] %}<tr data-category="{{ item.category|e }}" data-models="{{ item.models|join(' ')|e }}" data-regions="{{ item.regions|join(' ')|e }}" data-languages="{{ item.languages|join(' ')|e }}" data-neutral="{{ 'true' if item.dimension == '中立' else 'false' }}" data-finished="{{ 'true' if item.finished else 'false' }}">
-    <th scope="row"><code>{{ item.key|e }}</code></th><td>{{ item.category|e }}</td><td>{{ item.models|join('、')|e or '—' }}</td><td>{{ item.regions|join('、')|e or '—' }}</td>
-    <td>{% if item.dimension == '中立' %}不分语言{% else %}{{ item.languages|join('、')|e or '—' }}{% endif %}</td>
-    <td>{% if item.finished %}{{ item.status|e }}{% else %}<span class="al-flag">{{ item.status|e }}</span>{% endif %}</td>
-    <td><code>{{ item.hash|e or '—' }}</code></td><td><span class="al-miss">无</span></td></tr>{% endfor %}</tbody>
-</table>
+</section>
+<div class="mf-filters" data-mf-filters hidden>
+  <div class="mf-chips" role="group" aria-label="按类型筛选">
+    <button type="button" class="mf-chip" data-mf-type="" aria-pressed="true">全部 <b>{{ v.count }}</b></button>
+    {%- for type in v.types %}
+    <button type="button" class="mf-chip" data-mf-type="{{ type.id|e }}" aria-pressed="false">{{ type.title|e }} <b>{{ type.count }}</b></button>
+    {%- endfor %}
+  </div>
+  <label class="mf-search"><span class="sr-only">按名称或用途搜索</span><input type="search" data-mf-q placeholder="名称或用途，如“警告”" autocomplete="off"></label>
 </div>
-<p class="al-empty" data-al-empty hidden>没有符合条件的素材。</p>
-{%- else %}<p>{{ al.pending('无数据', '素材登记表不可读。') }}</p>{% endif %}
-
-<h3 class="al-sub" id="symbols">共用符号</h3>
-{%- if s %}
-<p class="al-note">{% if s.counted %}按已发布说明书正文计：{{ s.pages }} 个已发布语言版本里，{{ s.used }} 个符号至少出现一次。发布步骤按内容哈希存放图片，正文写的是哈希，所以按哈希数，不需要另存数据。{% else %}用于几本：{{ al.pending('待统计', '本次构建没有可读的已发布说明书正文。') }}{% endif %}</p>
-<div class="al-table-wrap" role="region" aria-label="共用符号，可横向滚动" tabindex="0">
-<table class="al-table">
-  <thead><tr><th scope="col">符号</th><th scope="col">文件</th><th scope="col">用于</th><th scope="col">状态</th><th scope="col">出处</th><th scope="col">哈希</th></tr></thead>
-  <tbody>{% for row in s.rows %}<tr><th scope="row"><code>{{ row.key|e }}</code></th><td><code>{{ row.file|e }}</code></td>
-    <td>{% if row.versions is none %}{{ al.pending() }}{% elif row.versions %}{{ row.versions }} 个语言版本 · {{ row.editions }} 本{% else %}<span class="al-miss">未使用</span>{% endif %}</td>
-    <td>{{ row.status|e or '—' }}</td><td>{% if row.source %}有{% else %}<span class="al-flag">缺</span>{% endif %}</td><td><code>{{ row.hash|e }}</code></td></tr>{% endfor %}</tbody>
-</table>
-</div>
-{%- else %}<p>{{ al.pending('无数据', '符号清单不可读。') }}</p>{% endif %}
-{%- endcall %}
-
-<div class="al-grid">
-  {%- call al.block('used-by', 4, '被谁使用') %}
-  {%- if s and s.counted %}<p>共用符号：{{ s.used }} / {{ s.total }} 个出现在已发布网页说明书里（{{ s.pages }} 个语言版本）。逐个见上表。</p>{% else %}<p>共用符号：{{ al.pending() }}</p>{% endif %}
-  <p>素材库里的插图用进了哪几本：{{ al.pending('待统计', '登记表与发布图片的对应还没建立。') }}</p>
-  {%- endcall %}
-  {%- call al.block('sources', 5, '来源与时间') %}
-  <dl class="al-kv">
-    <dt>出处</dt><dd>素材登记表的备注列{% if s %}；共用符号 {{ s.with_source }} / {{ s.total }} 个记了来源文件{% endif %}</dd>
-    <dt>内容哈希</dt><dd>{% if r %}{{ r.hashed }} / {{ r.total }} 项有，可判断文件是否变了{% else %}{{ al.pending('无数据') }}{% endif %}</dd>
-    <dt>版本</dt><dd><span class="al-flag">没有</span></dd>
-    <dt>读取</dt><dd>构建时 {{ m.build_date|e }}</dd>
-  </dl>
-  {%- endcall %}
-  {%- call al.block('gaps', 6, '质量与缺口', true, 'gap') %}
-  <ul class="al-gaps">
-    <li>素材没有版本字段：换图后分不出新旧，也说不清哪本说明书用的是哪一版。</li>
-    {%- if r and r.total - r.finished %}<li>{{ r.total - r.finished }} 项登记了但还不是成品；勾「只看未完成」可列出。</li>{% endif %}
-    {%- if r and r.total - r.hashed %}<li>{{ r.total - r.hashed }} 项没有内容哈希。</li>{% endif %}
-    {%- if s and s.counted and s.total - s.used %}<li>{{ s.total - s.used }} 个共用符号还没用上。</li>{% endif %}
-  </ul>
-  {%- endcall %}
-</div>
-<p class="al-foot">原「说明书工作台 › 资产与证据」里的插图资产口径移到这里；设计规范「图标与素材」只留画法规则。</p>
+<ul class="mf-grid" id="gallery">
+  {%- for item in v['items'] %}
+  <li data-type="{{ item.group|e }}" data-search="{{ item.search|e }}">
+    <button type="button" class="mf-tile" data-mf-open aria-label="{{ (item.label or item.type)|e }}"{% if item.editions %} data-mf-used="{{ item.editions }}"{% endif %} data-mf-type-label="{{ item.type|e }}">
+      <span class="mf-art" style="background:{{ item.background|e }}"><img src="{{ pathto('workspace/design/assets/' ~ item.src, 1)|e }}" alt="" loading="lazy"></span>
+      {%- if item.label %}<span class="mf-name">{{ item.label|e }}</span>{% endif %}
+    </button>
+  </li>
+  {%- endfor %}
+</ul>
+<p class="fr-empty" data-mf-empty hidden>没有符合条件的素材。</p>
+<dialog class="mf-dialog" data-mf-dialog aria-labelledby="mf-dialog-title">
+  <div class="mf-dialog-art"><img alt="" data-mf-dialog-img></div>
+  <h2 id="mf-dialog-title" data-mf-dialog-title></h2>
+  <p data-mf-dialog-meta></p>
+  <form method="dialog"><button type="submit">关闭</button></form>
+</dialog>
+{%- else %}
+<p class="fr-empty">暂时没有可显示的素材。</p>
+{%- endif %}
 </main>
 </div>{{ site_script() }}</body></html>

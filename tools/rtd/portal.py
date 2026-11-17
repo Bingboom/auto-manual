@@ -422,7 +422,7 @@ def collect_workspace_pages(app):
     layers = asset_layer_pages(
         srcdir=Path(app.srcdir), assets=ASSETS, settings=settings, products=products, system=system, matrix=matrix,
         learning=learning, build_date=_build_date(deliverables, system),
-        warn=sphinx_logging.getLogger(__name__).warning)
+        warn=sphinx_logging.getLogger(__name__).warning, design=design)
     product = layers.pop("product")
     yield PAGE, {**learning, "site_nav": site_nav(app), "product": product}, TEMPLATE
     for page, context, template in layers["pages"]:

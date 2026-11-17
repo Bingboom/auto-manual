@@ -13,8 +13,9 @@ not for maintainers) split them into front pages and maintenance pages:
 | 产品信息 | `/products/matrix.html` | `product_matrix.html` | 资产 (front) |
 | 产品知识 | `/products/knowledge.html` | `product_knowledge.html` | 资产 (front) |
 | 语料库 (was 语言) | `/assets/language/` | `asset_language.html` | 资产 (front) |
-| 内容与表现 | `/assets/content/` | `asset_content.html` | 维护 |
-| 视觉媒体 | `/assets/media/` | `asset_media.html` | 维护 |
+| 视觉媒体 | `/assets/media/` | `asset_media.html` | 知识资产 (front) |
+| 内容与表现 | `/assets/content/` | `asset_content.html` | 设计规范 (maintenance) |
+| 素材清单 (视觉媒体's inventory) | `/assets/media/inventory.html` | `asset_media_inventory.html` | 设计规范 (maintenance) |
 
 `tools/rtd/asset_layers.py` builds the views (layer order, content, media,
 language), `tools/rtd/asset_media.py` reads the media inventories, and
@@ -33,7 +34,7 @@ The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四
 | 知识资产 | 产品信息, 产品知识, 说明书资料库, 语料库, 视觉媒体, 市场与政策 | 知识资产 (`workspace/index.html`) |
 | 工作台 | 说明书工作台 | 说明书工作台 |
 | Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
-| 设计规范 | 设计规范, 内容与表现 | 设计规范 |
+| 设计规范 | 设计规范, 内容与表现, 素材清单 | 设计规范 |
 
 The operator confirmed the three other lists on 2026-11-17 (工作台 = 说明书工作台, Agent 能力 = 系统建设,
 设计规范 = 设计规范 + 内容与表现) and the shell as built (“先这样吧”); the canvas's colours are not used, the
@@ -79,9 +80,20 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
   Web-manual language list and the staleness note left the page.
 - **市场与政策** lost its count and review-date pills in the head.
 
-## The shared anatomy (维护 pages)
+## 视觉媒体 (front)
 
-内容与表现 and 视觉媒体 use `_asset_layer.html`: a head (the title, one
+`asset_media.html` (`asset_media.front_view`) is for colleagues: the title, one line (说明书里共用的图标和插图 ·
+更新于 <build date>), a count per type, then the shared icons and illustrations as tiles, filtered by type and
+searched by meaning (`_static/media-front.js`, `tests/media_front_ui.test.mjs`). A tile opens a larger view with
+its type and, for a symbol the published manuals show, 用于 <n> 本说明书. The tiles are the 图标与素材 gallery of
+the 设计规范 page (`design_assets.asset_gallery`) and its published copies under `workspace/design/assets/`;
+a caption is the gallery note up to its first colon. No keys, hashes, paths, statuses or numbered blocks. Without
+the design page the page says 暂时没有可显示的素材. The page's former section anchors (`#scale` … `#gaps`,
+`#registry`, `#symbols`) forward to 素材清单.
+
+## The shared anatomy (maintenance pages)
+
+内容与表现 and 素材清单 (the former 视觉媒体 page) use `_asset_layer.html`: a head (the title, one
 line and the build date), then six blocks with fixed ids, in this order:
 
 | Block | id | Answers |
@@ -113,7 +125,7 @@ instances bound to models (`production_evidence.component_references`); links
 to the six 设计规范 tabs for styles, which are kept only there. Use per chapter or
 component is 待统计.
 
-**视觉媒体.** `data/asset_registry.csv`: registered, finished, language-neutral and
+**素材清单.** `data/asset_registry.csv`: registered, finished, language-neutral and
 every-model counts; a table of every row (key, type, models, regions, language,
 status, the first 12 hex digits of the content hash, version) with filters for
 type, model, region and language and 只看未完成 (`_static/asset-layers.js`; an
@@ -206,9 +218,9 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 ## Tests
 
 `tests/test_rtd_asset_layers.py` (views and templates without data),
-`tests/asset_layers_ui.test.mjs` (the filters), and the real-Sphinx sidebar test
+`tests/asset_layers_ui.test.mjs` and `tests/media_front_ui.test.mjs` (the filters), and the real-Sphinx sidebar test
 in `tests/test_rtd_portal.py` (each page's section, left list and breadcrumb, an
 unplaced page selecting no section, the moved 属性字典 address, the front pages without chips or small print, the six blocks
-on the 维护 pages, and that the public build links no internal page);
+on 内容与表现 and 素材清单, 视觉媒体 absent from the public build, and that the public build links no internal page);
 `tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
 top bar).

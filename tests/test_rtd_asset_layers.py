@@ -128,7 +128,7 @@ class TemplateTests(unittest.TestCase):
                    "recipes": None, "recipe_sets": [], "families": None, "components": None,
                    "design_tabs": al.DESIGN_TABS, "web_languages": None}
         media = {**al.layer("media"), "build_date": "2026-11-16", "registry": None, "symbols": None}
-        for template, view in (("asset_content.html", content), ("asset_media.html", media)):
+        for template, view in (("asset_content.html", content), ("asset_media_inventory.html", media)):
             page = render(template, layer=view)
             figures = [fig.strong.get_text() for fig in page.select("#scale .al-fig")]
             self.assertTrue(figures and set(figures) == {"待统计"}, (template, figures))
@@ -140,13 +140,42 @@ class TemplateTests(unittest.TestCase):
             path.write_text(REGISTRY, encoding="utf-8")
             view = {**al.layer("media"), "build_date": "2026-11-16", "registry": am.registry_view(path),
                     "symbols": None}
-        page = render("asset_media.html", layer=view)
+        page = render("asset_media_inventory.html", layer=view)
         rows = page.select("[data-al-list] tbody tr")
         self.assertEqual([row["data-languages"] for row in rows], ["", "en", "en fr"])  # finished first, by type
         self.assertEqual(rows[0]["data-neutral"], "true")
         self.assertTrue(page.select_one("[data-al-filters]").has_attr("hidden"))  # shown by the script only
         self.assertNotIn("ALL", [o.get_text() for o in page.select('[data-al-filter="model"] option')])
         self.assertIn("没有版本字段", page.select_one("#gaps").get_text())
+
+    def test_media_front_shows_types_tiles_and_no_maintenance_detail(self):
+        library = {"groups": [
+            {"id": "symbols", "title": "通用符号", "items": [
+                {"ref": "symbols/a.svg", "note": "警告与注意符号：提醒读者。", "ground": "paper", "key": "warning/a"},
+                {"ref": "symbols/b.svg", "note": None, "ground": "paper", "key": "other/b"}]},
+            {"id": "buttons", "title": "按键", "items": [
+                {"ref": "buttons/c.svg", "note": "<code>电源</code>键。", "ground": "dark", "key": None}]}]}
+        symbols = {"rows": [{"key": "warning/a", "editions": 3}, {"key": "other/b", "editions": None}]}
+        view = am.front_view(library, {"paper": "#fff", "dark": "#222"}, symbols, build_date="2026-11-17")
+        self.assertEqual([(i["label"], i["editions"], i["background"]) for i in view["items"]],
+                         [("警告与注意符号", 3, "#fff"), ("", None, "#fff"), ("电源键", None, "#222")])
+        page = render("asset_media.html", media=view)
+        self.assertEqual(page.select_one(".fr-head p").get_text(), "说明书里共用的图标和插图 · 更新于 2026-11-17")
+        self.assertEqual([d.get_text(" ") for d in page.select(".fr-figs div")], ["2 通用符号", "1 按键"])
+        tiles = page.select(".mf-grid > li")
+        self.assertEqual([(t["data-type"], t.img["src"]) for t in tiles],
+                         [("symbols", "workspace/design/assets/symbols/a.svg"),
+                          ("symbols", "workspace/design/assets/symbols/b.svg"),
+                          ("buttons", "workspace/design/assets/buttons/c.svg")])
+        self.assertEqual(tiles[0].button["data-mf-used"], "3")
+        self.assertTrue(page.select_one("[data-mf-filters]").has_attr("hidden"))
+        text = page.select_one("main").get_text()
+        for word in ("哈希", "warning/a", ".svg", "REV-", "成品", "规模"):
+            self.assertNotIn(word, text, word)
+        self.assertIsNone(page.select_one("section.al-block, .al-eyebrow, .al-chip"))
+        self.assertIsNone(am.front_view(None, {}, None, build_date="2026-11-17"))
+        empty = render("asset_media.html", media=None)
+        self.assertEqual(empty.select_one(".fr-empty").get_text(), "暂时没有可显示的素材。")
 
 
 if __name__ == "__main__":

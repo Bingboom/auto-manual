@@ -13,6 +13,7 @@ from typing import Any
 
 from tools.rtd import asset_layer_data as layer_data
 from tools.rtd import asset_layers as layers
+from tools.rtd.asset_media import front_view
 from tools.rtd.system_workspace import CONTRACT_NAME, ContractError, load_contract, load_ledger
 from tools.utils.path_utils import repo_root
 
@@ -72,7 +73,7 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
 
 
 def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: list[dict], system, matrix,
-                      learning: dict[str, Any] | None, build_date: str, warn) -> dict:
+                      learning: dict[str, Any] | None, build_date: str, warn, design=None) -> dict:
     """The layer pages' contexts, 知识库首页's cards and the 系统建设 part.
 
     Since the front cleanup (2026-11-17) 产品信息 carries only the operator's value statement as its lead; 内容与表现
@@ -92,7 +93,10 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
         ("products/attributes", {"moved_target": moved, "moved_title": "产品信息" if matrix else "产品知识"},
          "moved_page.html"),
         ("assets/content/index", {"layer": content}, "asset_content.html"),
-        ("assets/media/index", {"layer": media}, "asset_media.html"),
+        # 视觉媒体 is a front page for colleagues; the inventory (counts, hashes, gaps) is 设计规范's 素材清单.
+        ("assets/media/index", {"media": front_view((design or {}).get("asset_library"), (design or {}).get("grounds") or {},
+                                                    media["symbols"], build_date=build_date)}, "asset_media.html"),
+        ("assets/media/inventory", {"layer": media}, "asset_media_inventory.html"),
         ("assets/language/index", {"layer": language}, "asset_language.html"),
     ]
     return {"product": {"value": extra["product_value"]}, "pages": pages,
