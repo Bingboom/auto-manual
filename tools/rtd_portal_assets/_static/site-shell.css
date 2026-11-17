@@ -1,4 +1,4 @@
-/* Shared site shell (sidebar + top bar) for every portal page.
+/* Shared site shell (top bar with the four sections + left list of the current section) for every portal page.
    Page stylesheets own only what sits inside .app-content. */
 :root {
   --brand:#ed6508;
@@ -9,8 +9,8 @@
   --app-faint:#9a9ea6;
   --app-line:#e4e6ea;
   --app-bg:#f4f5f7;
-  --app-sidebar:232px;
-  --app-topbar:60px;
+  --app-sidebar:240px;
+  --app-topbar:64px;
   /* Design tokens (2026-11-05), adopted page by page; 知识库首页 first. One type scale (CJK line heights), one
      spacing scale, one radius scale; text greys are --app-ink / --app-muted / --app-faint, the one accent --brand.
      Nested shapes take radius = outer radius - gap. No one-sided card borders, no gradients. */
@@ -40,48 +40,51 @@ body.app.kb {--brand:#a64e24;--brand-strong:#a64e24;--brand-soft:#f8e6dc;--brand
   /* workspace.css page tokens follow the palette too */
   --orange:var(--brand);--ink:var(--app-ink);--muted:var(--app-muted);--line:var(--app-line);--bg:var(--app-bg)}
 
-.app-sidebar {position:fixed;inset:0 auto 0 0;z-index:40;width:var(--app-sidebar);box-sizing:border-box;display:flex;flex-direction:column;
-  background:#fff;border-right:1px solid var(--app-line);padding:22px 14px 16px;overflow-y:auto}
-.app-brand {display:flex;align-items:center;gap:10px;padding:0 10px;margin-bottom:24px;font-size:18px;font-weight:700;
-  line-height:1.2;letter-spacing:.02em;color:var(--app-ink);text-decoration:none}
+/* Top bar (2026-11-17 layout): brand, the four main sections, search and Agent. Fixed, full width. */
+.app-header {position:fixed;inset:0 0 auto 0;z-index:45;height:var(--app-topbar);box-sizing:border-box;display:flex;
+  align-items:center;gap:28px;padding:0 24px;background:#fff;border-bottom:1px solid var(--app-line)}
+.app-brand {flex:none;display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;line-height:1.2;
+  letter-spacing:.02em;color:var(--app-ink);text-decoration:none}
 .app-brand b {font-weight:inherit}
-.app-brand span {color:var(--brand)}
-.app-brand-mark {flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:8px;
-  background:var(--app-ink);color:#fff}
-.app-brand-mark .ic-accent {stroke:var(--brand-mark-accent,var(--brand))}
+.app-brand-mark {flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:9px;
+  background:var(--app-tile,var(--app-bg));color:var(--app-ink)}
+.app-brand-mark .ic-accent {stroke:var(--brand)}
+.app-tabs {display:flex;align-items:center;gap:4px;min-width:0;overflow-x:auto;scrollbar-width:none}
+.app-tabs::-webkit-scrollbar {display:none}
+.app-tabs a {flex:none;padding:7px 16px;border-radius:var(--radius-md);font-size:15px;font-weight:500;color:var(--app-text2,#50545c);
+  text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.app-tabs a:hover {background:var(--app-bg);color:var(--app-ink)}
+.app-tabs a.selected {background:var(--app-tile,var(--app-bg));color:var(--app-ink);font-weight:600}
+.app-header-tools {margin-left:auto;display:flex;align-items:center;gap:4px}
+.app-tool,.app-menu {display:grid;place-items:center;width:36px;height:36px;border:0;border-radius:var(--radius-md);
+  background:none;color:var(--app-ink);cursor:pointer;text-decoration:none}
+.app-tool:hover,.app-menu:hover,.app-tool.selected {background:var(--app-bg)}
+.app-menu {display:none;flex:none}
+
+/* Left list: the entries of the current section only. */
+.app-sidebar {position:fixed;top:var(--app-topbar);bottom:0;left:0;z-index:40;width:var(--app-sidebar);box-sizing:border-box;
+  background:var(--app-sidebar-bg,#f7f8fa);border-right:1px solid var(--app-line);padding:22px 14px 16px;overflow-y:auto}
 .app-nav {display:flex;flex-direction:column;gap:2px}
-.app-nav-group {margin:18px 12px 6px;font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--app-muted)}
-.app-nav-group:first-child {margin-top:0}
+.app-nav-group {margin:0 12px 10px;font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--app-muted)}
 /* Sidebar icons stay one colour: the line set's accent detail is for page cards only. */
-.app-nav-link {display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border-radius:8px;
-  font-size:14px;font-weight:500;color:var(--app-text2,#50545c);text-decoration:none;transition:background .15s,color .15s}
+.app-nav-link {display:flex;align-items:center;gap:10px;height:40px;padding:0 12px;border-radius:var(--radius-md);
+  font-size:15px;font-weight:500;color:var(--app-text2,#50545c);text-decoration:none;transition:background .15s,color .15s}
 .app-nav-link .ic {flex:none;color:var(--app-muted)}
-.app-nav-link:hover {background:var(--app-bg);color:var(--app-ink)}
-.app-nav-link.active {background:var(--brand-soft);color:var(--brand-strong);font-weight:600}
-.app-nav-link.active .ic {color:var(--brand-strong)}
-.app-nav-more {margin-top:auto}
-.app-nav-more > summary {cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px}
-.app-nav-more > summary::-webkit-details-marker {display:none}
-.app-nav-more > summary::after {content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s}
-.app-nav-more[open] > summary::after {transform:rotate(45deg)}
+.app-nav-link:hover {background:#fff;color:var(--app-ink)}
+.app-nav-link.active {background:#fff;color:var(--app-ink);font-weight:650;box-shadow:0 1px 2px rgba(29,31,35,.06)}
+.app-nav-link.active .ic {color:var(--app-ink)}
 .app-nav-link em {margin-left:auto;font-style:normal;font-size:11px;font-weight:700;line-height:18px;min-width:18px;text-align:center;border-radius:5px;background:var(--app-bg);color:var(--app-muted)}
-.app-nav-link.active em {background:var(--surface);color:var(--brand-strong)}
 .app-scrim {display:none}
 
-.app-content {margin-left:var(--app-sidebar);min-width:0}
-.app-topbar {position:sticky;top:0;z-index:30;height:var(--app-topbar);display:flex;align-items:center;gap:16px;
-  padding:0 32px;background:#ffffffeb;backdrop-filter:blur(8px);border-bottom:1px solid var(--app-line)}
-body.app.kb .app-topbar {background:#f3f6faeb}
-.app-menu {display:none;border:0;background:none;font-size:20px;width:36px;height:36px;border-radius:8px;cursor:pointer;color:var(--app-ink)}
+/* Content: below the top bar, beside the left list; the crumb row opens it. */
+.app-content {margin-left:var(--app-sidebar);padding-top:var(--app-topbar);min-width:0}
+.app-topbar {display:flex;align-items:center;gap:16px;min-height:44px;padding:14px 32px 0}
 .app-crumb {font-size:13px;color:var(--app-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.app-crumb span {margin:0 8px;color:#c6c9cf}
-.app-crumb b {font-weight:600;color:var(--app-ink)}
+.app-crumb span {margin:0 6px;color:#c6c9cf}
+.app-crumb b {font-weight:500;color:var(--app-muted)}
 .app-topbar-right {margin-left:auto;display:flex;align-items:center;gap:16px}
-.app-switch {display:flex;padding:3px;border-radius:8px;background:var(--app-track,var(--app-bg))}
-.app-switch a {padding:6px 14px;border-radius:6px;font-size:13px;color:var(--app-muted);text-decoration:none;white-space:nowrap}
-.app-switch a.selected {background:#fff;color:var(--app-ink);font-weight:600;box-shadow:0 1px 3px #17191f1a}
-.app-sidebar a:focus-visible,.app-topbar a:focus-visible,.app-topbar button:focus-visible,.app-topbar select:focus-visible {
-  outline:3px solid var(--brand);outline-offset:2px}
+.app-header a:focus-visible,.app-header button:focus-visible,.app-sidebar a:focus-visible,.app-topbar a:focus-visible,
+.app-topbar button:focus-visible,.app-topbar select:focus-visible {outline:3px solid var(--brand);outline-offset:2px}
 
 /* Shared page header: one title style for every page. */
 .page-head h1 {font-size:30px;font-weight:700;line-height:1.3;margin:0}
@@ -119,22 +122,29 @@ a.kpi:hover {border-color:#d3d6db;box-shadow:0 6px 18px #1d1f2312}
 .page-meta[open] > summary {margin-bottom:10px}
 
 @media (max-width:900px) {
-  :root {--app-sidebar:0px}
+  /* Two rows on a phone: menu, brand and tools, then the four main sections. */
+  :root {--app-sidebar:0px;--app-topbar:108px}
+  .app-header {flex-wrap:wrap;align-content:center;row-gap:8px;column-gap:8px;padding:8px 12px}
+  .app-menu {display:grid}
+  .app-tabs {order:3;flex:1 0 100%}
+  .app-tabs a {padding:7px 12px;font-size:15px}
   .app-sidebar {width:260px;transform:translateX(-100%);transition:transform .2s}
   .app-menu-open .app-sidebar {transform:none;box-shadow:12px 0 50px #0003}
-  .app-menu-open .app-scrim {display:block;position:fixed;inset:0;z-index:35;background:#0005}
-  .app-menu {display:grid;place-items:center}
-  .app-topbar {padding:0 16px;gap:8px}
+  .app-menu-open .app-scrim {display:block;position:fixed;inset:var(--app-topbar) 0 0 0;z-index:35;background:#0005}
+  .app-topbar {padding:12px 16px 0}
+}
+@media (max-width:420px) {
+  /* The four sections stay on one row down to 320px wide, none cut off. */
+  .app-tabs {gap:0;justify-content:space-between}
+  .app-tabs a {padding:7px 8px;font-size:14px}
 }
 @media (max-width:560px) {
   .kpi-row {grid-template-columns:1fr 1fr}
   .kpi > strong {font-size:22px}
   .page-tabs a {padding:10px 12px;font-size:14px}
   .page-head h1 {font-size:24px}
-  .app-crumb {display:none}
-  .app-switch a {padding:6px 10px;font-size:12px}
   .app-topbar-right {gap:8px}
 }
 @media (prefers-reduced-motion:reduce) {
-  .app-sidebar,.app-nav-link {transition:none}
+  .app-sidebar,.app-nav-link,.app-tabs a {transition:none}
 }

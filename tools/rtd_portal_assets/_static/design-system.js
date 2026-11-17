@@ -195,3 +195,15 @@
     });
   });
 })();
+
+// An address naming a folded block (#assets-inventory, where 视觉媒体's old anchors lead) opens it; the shared tab
+// script has already shown the tab that holds it.
+(() => {
+  if (typeof document === 'undefined' || typeof location === 'undefined') return;
+  const openTarget = () => {
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target && target.tagName === 'DETAILS') target.open = true;
+  };
+  window.addEventListener('hashchange', openTarget);
+  openTarget();
+})();

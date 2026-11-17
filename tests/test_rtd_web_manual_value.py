@@ -144,16 +144,18 @@ class RenderTests(unittest.TestCase):
     def test_without_a_band_the_home_renders_nothing_for_it(self):
         self.assertIsNone(render("_value_band.html").select_one("section"))
 
-    def test_knowledge_home_keeps_the_tagline_and_drops_the_theme_cards(self):
+    def test_knowledge_home_has_its_own_line_and_drops_the_theme_cards(self):
         value = wmv.load_value(ASSETS)
         home = render("workspace_portal.html", value=wmv.page_context(value), share_entry="", system_entry=True,
                       deliverables_entry=True, design_entry=True, matrix_entry=True, cards=[])
-        self.assertEqual(home.select_one(".home-line").get_text(), value["internal"]["tagline"])
+        # The 知识资产 page carries its own line (layout of 2026-11-17), not the web-manual tagline.
+        self.assertEqual(home.select_one("h1").get_text(), "知识资产")
+        self.assertEqual(home.select_one(".home-line").get_text(), "让产品信息和生产资料持续积累、关联和复用。")
         # Since the front cleanup (2026-11-17) the theme statuses are not on the home page.
         self.assertIsNone(home.select_one("#value, article.home-theme, .home-status"))
         self.assertNotIn("REV-", home.get_text())
-        current = home.select('#app-sidebar a[aria-current="page"]')
-        self.assertEqual([(a.span.get_text(), a["href"]) for a in current], [("首页", wmv.HOME)])
+        current = home.select('.app-tabs a.selected')
+        self.assertEqual([(a.get_text(), a["href"]) for a in current], [("知识资产", wmv.HOME)])
         self.assertNotIn("定位与价值", [a.span.get_text() for a in home.select("#app-sidebar a.app-nav-link")])
 
 

@@ -8,6 +8,7 @@ Project skills in `.claude/skills/` load on demand for this repo. They are separ
 - `hardcore-task-execution`: a working method for large, high-stakes, multi-step engineering tasks — discovery-first decomposition, safety-net-before-refactor, mechanical high-risk edits, a cheap-to-expensive verification ladder, revertable phase-per-PR, and stop-and-ask gates.
 - `ai-manual-pagenum-fix`: diagnose and fix page-number/TOC defects in a standalone design-team `.ai` multi-language manual (outside this repo's own build pipeline) via PyMuPDF diagnosis + a JXA→Illustrator scripting bridge, and re-export a clean portrait PDF.
 - `manual-review-draft`: thin entry for the shared `.agents/skills/manual-review-draft/` skill — manual review drafts (审核稿), currently US→US English reuse or US→JP Japanese-corpus reuse; shared reference structure, target-spec fill and review-note rules, with JP-specific terminology and translation counts retained.
+- `web-manual-agent-authoring`: thin entry for the shared `.agents/skills/web-manual-agent-authoring/` skill — 6-stage Agent authoring SOP for batch Web manuals built on `data/asset_registry.csv`, `ComponentSpec` + `web_*.css`, and `TM-B` / sibling `manual-ir/v2`.
 
 ## When To Add A Skill
 

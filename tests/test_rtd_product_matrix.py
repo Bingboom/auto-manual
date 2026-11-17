@@ -9,8 +9,6 @@ from unittest.mock import patch
 
 from tools.rtd import product_matrix
 from tools.rtd.portal import ASSETS
-from bs4 import BeautifulSoup
-from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd.product_matrix import (
     ProductMatrixError, capacity_mismatch, display_name, evidence_excerpt, load_config, matrix_context, number, positioning_groups,
@@ -319,11 +317,6 @@ class MatrixContextTests(unittest.TestCase):
             {"label": "太阳能连接指南", "quick": False, "docs": [
                 {"label": "日规", "doc": "JS-G/JP/ja/md/manual_ja", "title": "日规：日本語"}]}])
         self.assertEqual(products["HP3600"]["detail"]["guides"], [])
-        template = Environment(loader=FileSystemLoader(ASSETS)).get_template("product_matrix.html")
-        page = BeautifulSoup(template.render(**context, pathto=lambda name, *args: name, site_nav={}), "html.parser")
-        link = page.select_one(".mx-detail#p-A500 a.mx-pair[href='JS-G/JP/ja/md/manual_ja']")
-        self.assertEqual(link.get_text(), "太阳能连接指南日规")
-        self.assertIsNone(page.select_one(".mx-detail#p-HP3600 a.mx-pair[href^='JS-G']"))
 
     def test_evidence_excerpt_keeps_the_sentence_and_ignores_case_and_spacing(self):
         text = "Intro. The unit can supply Backup  Power to home circuits. Next."
@@ -358,33 +351,6 @@ class MatrixContextTests(unittest.TestCase):
             context = product_matrix_page_context(app, self.assets, SETTINGS, self.catalog, CATALOG)
         self.assertIsNotNone(context)
         self.assertEqual(get_logger.return_value.warning.call_count, len(context["warnings"]))
-
-    def test_the_page_renders_tabs_cards_and_a_detail_under_each_row(self):
-        template = Environment(loader=FileSystemLoader(ASSETS)).get_template("product_matrix.html")
-        page = BeautifulSoup(template.render(**self.context(), pathto=lambda name, *args: name, site_nav={}),
-                             "html.parser")
-        self.assertEqual([(a["href"], a.get_text()) for a in page.select(".mx-tabs a")],
-                         [("#cat-portable", "便携电源1"), ("#cat-category-2", "家庭备电1"),
-                          ("#cat-category-3", "太阳能板1"), ("#cat-other", "其他1")])
-        # Only a category without 容量档 lays its cards out flat, side by side.
-        self.assertEqual([("is-flat" in grid["class"]) for grid in page.select(".mx-grid")], [False, False, True, True])
-        card = page.select_one('.mx-prod[data-product="p-A500"]')
-        self.assertEqual((card["href"], card["aria-expanded"]), ("#p-A500", "false"))
-        self.assertEqual(card.select_one(".mx-code").get_text(), "A500")
-        self.assertEqual([i.get_text() for i in card.select(".mx-mks i")], ["美", "欧", "日"])
-        self.assertEqual(card.select_one("em").get_text(), "+沙金色")
-        # The detail follows its series row inside the grid, and links each market's manual.
-        detail = page.select_one(".mx-detail#p-A500")
-        self.assertIn("mx-row", detail.find_previous_sibling("div")["class"])
-        self.assertEqual([th.get_text() for th in detail.select("thead th")],
-                         ["型号", "简称", "容量", "AC 额定 / 峰值", "重量", "说明书"])
-        self.assertEqual(detail.select_one("td.is-note")["colspan"], "3")
-        self.assertEqual(detail.select_one(".mx-doc")["href"], "JE-A/US/en/md/manual_en")
-        self.assertEqual(detail.select_one("[data-close]")["href"], "#cat-portable")
-        paired = page.select_one(".mx-detail#p-100W .mx-dbox")
-        self.assertEqual(paired.select_one("a.mx-pair")["data-product"], "p-HP3600")
-        self.assertIn("HomePower H 的说明书写到「SolarSaga 100」", paired.get_text())
-        self.assertIsNone(page.select_one("#capabilities, #specs, #pairings, .pm-filter"))
 
 
 if __name__ == "__main__":

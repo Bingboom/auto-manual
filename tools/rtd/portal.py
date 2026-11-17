@@ -24,7 +24,7 @@ from tools.rtd.manual_reader import frame_text, load_text, locale_options, reade
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_short_names import attach_short_names, load_short_names
 from tools.rtd.product_catalog import classify, load_catalog, short_names as catalog_short_names
-from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
+from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE
 from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup, SITE_NAME,
 )
@@ -363,12 +363,19 @@ def cached_data_context(app):
 
 
 def cached_matrix_context(app):
-    """Build the product-matrix context once per build; the sidebar and the page share it."""
+    """Build the 产品库 context once per build; the sidebar, the home card and the page share it.
+
+    Private (combined) role only: it reads the product-information snapshot from the knowledge directory
+    (tools/rtd/product_library.py). Without a usable snapshot the page still builds and says so.
+    """
     cached = getattr(app, "_rtd_matrix_context", _UNSET)
     if cached is _UNSET:
-        settings, products = portal_data(app)
-        cached = product_matrix_page_context(app, ASSETS, settings, products,
-                                             getattr(app, "_rtd_product_catalog", None))
+        from sphinx.util import logging as sphinx_logging
+        from tools.rtd.product_library import library_context
+
+        portal_data(app)  # loads the 产品分类 snapshot, whose category, series and tier order the page follows
+        cached = library_context(workspace_content(app), getattr(app, "_rtd_product_catalog", None),
+                                 warn=sphinx_logging.getLogger(__name__).warning)
         app._rtd_matrix_context = cached
     return cached
 
@@ -422,7 +429,7 @@ def collect_workspace_pages(app):
     layers = asset_layer_pages(
         srcdir=Path(app.srcdir), assets=ASSETS, settings=settings, products=products, system=system, matrix=matrix,
         learning=learning, build_date=_build_date(deliverables, system),
-        warn=sphinx_logging.getLogger(__name__).warning)
+        warn=sphinx_logging.getLogger(__name__).warning, design=design)
     product = layers.pop("product")
     yield PAGE, {**learning, "site_nav": site_nav(app), "product": product}, TEMPLATE
     for page, context, template in layers["pages"]:
@@ -461,7 +468,8 @@ def collect_workspace_pages(app):
                               "design_entry": design is not None,
                               "matrix_entry": matrix is not None, "statistics": data}, DELIVERABLES_TEMPLATE
     if design is not None:
-        yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app)}, DESIGN_TEMPLATE
+        yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app),
+                            "media_inventory": layers["media_inventory"]}, DESIGN_TEMPLATE
     # Keep old shared URLs working after removing 系统数据 from the knowledge base.
     yield "workspace/data/index", {
         "moved_target": f"{DELIVERABLES_PAGE}#statistics",

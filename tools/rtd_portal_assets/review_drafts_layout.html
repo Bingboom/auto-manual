@@ -16,8 +16,11 @@
   <link rel="stylesheet" href="{{ root }}_static/review-drafts.css">
 </head>
 <body class="app review-drafts">
+<header class="app-header">
+  <button class="app-menu" type="button" aria-label="展开目录" aria-controls="app-sidebar" aria-expanded="false">☰</button>
+  <a class="app-brand" href="{{ root }}index.html">工作资料</a>
+</header>
 <aside class="app-sidebar" id="app-sidebar">
-  <a class="app-brand" href="{{ root }}index.html">工作资料<span>.</span></a>
   <nav class="app-nav" aria-label="站点导航">
     <div class="app-nav-group">说明书生产</div>
     {{ nav("index.html", "▧", "审核稿总览", lines|length) }}
@@ -30,10 +33,9 @@
 </aside>
 <div class="app-scrim" aria-hidden="true"></div>
 <div class="app-content">
-  <header class="app-topbar">
-    <button class="app-menu" type="button" aria-label="展开导航" aria-controls="app-sidebar" aria-expanded="false">☰</button>
+  <div class="app-topbar">
     <div class="app-crumb">{% block crumb %}{% endblock %}</div>
-  </header>
+  </div>
   <main class="rd-main">
 {% block main %}{% endblock %}
   </main>
