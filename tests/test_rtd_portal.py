@@ -462,13 +462,14 @@ class RtdPortalTests(unittest.TestCase):
 
         # Layout of 2026-11-17: four main sections in the top bar; the left list holds the current section only.
         knowledge = [("知识资产", ["产品信息", "产品知识", "说明书资料库", "语料库", "视觉媒体", "市场与政策"])]
-        workbench = [("工作台", ["说明书工作台", "内容与表现"])]
+        workbench = [("工作台", ["说明书工作台"])]
+        design = [("设计规范", ["设计规范", "内容与表现"])]
         sections = {"index.html": knowledge, "search.html": knowledge, "workspace/index.html": knowledge,
                     **dict.fromkeys(("products/knowledge.html", "products/matrix.html", "market/policy.html",
                                      "assets/media/index.html", "assets/language/index.html"), knowledge),
-                    "workspace/deliverables/index.html": workbench, "assets/content/index.html": workbench,
+                    "workspace/deliverables/index.html": workbench, "assets/content/index.html": design,
                     "workspace/system/index.html": [("Agent 能力", ["系统建设"])],
-                    "workspace/design/index.html": [("设计规范", ["设计规范"])]}
+                    "workspace/design/index.html": design}
         # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
         self.assertFalse((out / "workspace" / "positioning").exists())
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()}, sections)

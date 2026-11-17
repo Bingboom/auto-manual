@@ -31,9 +31,12 @@ The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四
 | Top bar | Left list | First page |
 | --- | --- | --- |
 | 知识资产 | 产品信息, 产品知识, 说明书资料库, 语料库, 视觉媒体, 市场与政策 | 知识资产 (`workspace/index.html`) |
-| 工作台 | 说明书工作台, 内容与表现 | 说明书工作台 |
+| 工作台 | 说明书工作台 | 说明书工作台 |
 | Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
-| 设计规范 | 设计规范 | 设计规范 |
+| 设计规范 | 设计规范, 内容与表现 | 设计规范 |
+
+The screenshot shows the 知识资产 list only; 工作台, Agent 能力 and 设计规范 hold the former 维护 pages as defaults
+until the operator confirms them.
 
 The top bar also carries the brand, a search icon (搜索说明书正文, current on the search page) and an Agent icon
 (系统建设). 知识资产's first page and the search page are reached from the top bar, not the left list. The
