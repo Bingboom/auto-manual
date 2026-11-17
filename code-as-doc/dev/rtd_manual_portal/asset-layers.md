@@ -62,7 +62,11 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
   table per language (语言, 句子 with a bar, 术语). Languages are named as the manual
   library names them (`settings.json` `language_labels`); a corpus language whose
   translation-memory code differs carries the library's code as `manual` in
-  `system_workspace.yaml` (`corpus_view` `counts`, `terms`). The counts are pairs, never a
+  `system_workspace.yaml` (`corpus_view` `counts`, `terms`).
+  Beside the table (below it on a phone), **Agent 怎样用这份语料库** (`#agent-uses`; operator,
+  2026-11-17: 「这种可以用」) lists the three uses the repository's skills perform: Word / Feishu pre-translation
+  (`lark-tm-translation-preprocess`), Markdown rewrite (`manual-rewrite-with-tm`) and confirmed write-back
+  (`bilingual-tm-maintenance`), with one example ask. Its wording changes only together with those skills. The counts are pairs, never a
   percentage that could read as manual localization completion. Without a
   readable snapshot the page says 暂时没有可显示的语料数字. The terminology rules, the
   Web-manual language list and the staleness note left the page.
