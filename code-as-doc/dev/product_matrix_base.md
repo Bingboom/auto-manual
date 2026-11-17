@@ -194,7 +194,10 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
       如「STC条件」）。某参数的事实如果全带测试条件，矩阵显示其中排第一的，快照没有主格（`condition` 为 null 的格），
       只有条件格；页面要按条件格显示。
     - 写快照前校验引用：`values` / `component_values` 的 id 在文件内唯一，cells 的 `value`、`candidates`、`source`
-      全部能解析，`candidates` 无重复；不满足就停止，只报数量。
+      全部能解析，`candidates` 无重复；不满足就停止，只报数量。多维表里删了仍被事实引用的来源行、或出现同键事实时，
+      在本地加 `--explain-references` 重跑预演，列出问题行的事实键和来源键（同键事实 / 来源行缺失），按它们在多维表里修正；
+      这些键不含项目号，只打印在本地终端，不写进文件、报告或 PR。数字的 `display` 用普通小数写法，不用科学计数法。
+      条件名不区分大小写（「stc」也开 STC 格）。
     - 先后顺序：门户读取器接受 v1.1（并继续接受 v1）之前，不把 v1.1 的快照写进 Hello-Docs，否则产品页读不到数据；
   - `component_values`：组件的值，单列，不并入主产品；
   - 勾了「不收录」或已从产品表删除的产品不进快照，它们的值不进 `values` / `component_values`；

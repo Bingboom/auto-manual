@@ -417,8 +417,11 @@ class CellsTest(unittest.TestCase):
                          (333, True, [cells.value_id("s"), cells.value_id("w")]))
 
     def test_condition_names_match_without_word_boundaries(self):
-        self.assertEqual([cells.cell_condition(c) for c in ("STC条件", "NOCT: 800W/m²", "BNPI", "BNPIX", "to 70% capacity")],
-                         ["STC", "NOCT", "BNPI", None, None])
+        self.assertEqual([cells.cell_condition(c) for c in ("STC条件", "NOCT: 800W/m²", "BNPI", "BNPIX", "to 70% capacity",
+                                                            "stc")],
+                         ["STC", "NOCT", "BNPI", None, None, "STC"])
+        self.assertEqual([cells.display_text(v, True, "Wh") for v in (1e-07, 2.50, 300.0, 0.0)],
+                         ["0.0000001 Wh", "2.5 Wh", "300 Wh", "0 Wh"])
 
     def test_a_bare_range_shows_its_printed_text_and_equal_numbers_agree(self):
         facts = [{"事实键": "a", "产品键": "P/US", "属性键": "ac_input", "来源键": "web/a", "文本值": "100~120",
@@ -879,12 +882,14 @@ class SnapshotTest(unittest.TestCase):
         with self.assertRaises(LoadError) as caught:
             snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
         self.assertIn("1 cells whose source has no row", str(caught.exception))
+        self.assertIn(("来源行缺失", "k1", "web/gone"), caught.exception.rows)
         twin = self.base()
         twin.rows["事实"][1]["事实键"] = "k1"  # two facts with one key: one id twice
         with self.assertRaises(LoadError) as caught:
             snapshot.build_snapshot(twin, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
         self.assertIn("1 duplicate value ids", str(caught.exception))
         self.assertNotIn("k1", str(caught.exception))
+        self.assertEqual(caught.exception.rows, [("同键事实", "k1", "")])  # for --explain-references, never in the message
 
     def test_excluded_products_take_their_values_and_sources_out(self):
         base = self.base()

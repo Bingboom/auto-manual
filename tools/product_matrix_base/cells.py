@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+from decimal import Decimal
 from collections import defaultdict
 from typing import Any
 
@@ -19,7 +20,7 @@ from tools.product_matrix_base.matrix import (
 from tools.product_matrix_base.stage import LoadError, _text
 
 # Solar test conditions, each with its own cell. Bounded by non-letters, not \b: 「STC条件」 must match too.
-TEST_CONDITION = re.compile(r"(?<![A-Za-z])(STC|NOCT|BNPI)(?![A-Za-z])")
+TEST_CONDITION = re.compile(r"(?<![A-Za-z])(STC|NOCT|BNPI)(?![A-Za-z])", re.IGNORECASE)
 
 
 def value_id(fact_key: str) -> str:
@@ -30,7 +31,15 @@ def value_id(fact_key: str) -> str:
 def cell_condition(condition: str) -> str | None:
     """The cell a fact's condition opens: the test condition's name, or None for the main cell."""
     found = TEST_CONDITION.search(condition or "")
-    return found.group(1) if found else None
+    return found.group(1).upper() if found else None
+
+
+def _plain(number: Any) -> str:
+    """A number in plain decimal notation (never 1e-07), without trailing zeros."""
+    if isinstance(number, float):
+        text = format(Decimal(repr(number)), "f")  # the shortest exact digits, without an exponent
+        return text.rstrip("0").rstrip(".") if "." in text else text
+    return str(number)
 
 
 def display_text(value: Any, numeric: bool, unit: str) -> str | None:
@@ -39,8 +48,8 @@ def display_text(value: Any, numeric: bool, unit: str) -> str | None:
     if value is None:
         return None
     if numeric:
-        number = _number(value)
-        return f"{number} {unit}" if unit not in NO_UNIT else str(number)
+        number = _plain(_number(value))
+        return f"{number} {unit}" if unit not in NO_UNIT else number
     return str(value)
 
 
@@ -90,6 +99,28 @@ def build_cells(facts: list[dict[str, Any]], attributes: list[dict[str, Any]], s
             for (product, key, condition), found in sorted(groups.items(), key=lambda g: (g[0][0], g[0][1], g[0][2] or ""))]
 
 
+class ReferenceError(LoadError):
+    """The snapshot's references do not resolve; `rows` names the base rows behind it (fact and source keys only)."""
+
+    def __init__(self, message: str, rows: list[tuple[str, str, str]] | None = None):
+        super().__init__(message)
+        self.rows = rows or []
+
+
+def reference_rows(facts: list[dict[str, Any]], sources: list[dict[str, Any]]) -> list[tuple[str, str, str]]:
+    """The base rows a failed check points at: facts sharing a key, and facts whose source row is gone.
+
+    Keys only (no project numbers); for a person to fix the base, printed locally and never written to a file."""
+    seen: dict[str, int] = defaultdict(int)
+    for fact in facts:
+        seen[_text(fact.get("事实键"))] += 1
+    known = {_text(s.get("来源键")) for s in sources}
+    rows = [("同键事实", key, "") for key, count in sorted(seen.items()) if count > 1]
+    rows += sorted(("来源行缺失", _text(f.get("事实键")), _text(f.get("来源键"))) for f in facts
+                   if _text(f.get("来源键")) not in known)
+    return rows
+
+
 def check_references(document: dict[str, Any]) -> None:
     """Stop before writing unless every id is unique and every cell's value, candidates and source resolve.
 
@@ -102,8 +133,9 @@ def check_references(document: dict[str, Any]) -> None:
     repeated = sum(len(c["candidates"]) - len(set(c["candidates"])) for c in document.get("cells", []))
     sourceless = sum(1 for c in document.get("cells", []) if c["source"] not in sources)
     if duplicate or unresolved or repeated or sourceless:
-        raise LoadError(f"snapshot references do not resolve: {duplicate} duplicate value ids, {unresolved} unresolved "
+        raise ReferenceError(f"snapshot references do not resolve: {duplicate} duplicate value ids, {unresolved} unresolved "
                         f"cell values, {repeated} repeated candidates, {sourceless} cells whose source has no row")
 
 
-__all__ = ["TEST_CONDITION", "build_cells", "cell_condition", "check_references", "display_text", "value_id"]
+__all__ = ["ReferenceError", "TEST_CONDITION", "build_cells", "cell_condition", "check_references", "display_text",
+           "reference_rows", "value_id"]
