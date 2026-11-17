@@ -1,13 +1,14 @@
 # Environment and caches
 .git/
 .venv/
+.claude/worktrees/**
 __pycache__/
 **/__pycache__/
 *.pyc
 .DS_Store
 
 # Temporary work products
-tmp/
+.tmp/
 
 # Generated runtime bundle and preview outputs
 docs/_build/**

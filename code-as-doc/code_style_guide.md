@@ -104,7 +104,7 @@ Responsibilities:
 ### 2.8 Build Queue and Delivery
 
 - [`../tools/build_queue/`](../tools/build_queue) (since CQ-1.4: `process_build_queue*.py`, `process_review_start_queue*.py`, and the `queue_*.py` family without its prefix)
-- [`../tools/dingtalk/`](../tools/dingtalk) (the `listen_*` / `message_*` modules moved into `tools/build_queue/`)
+- `../tools/dingtalk/` (the `listen_*` / `message_*` modules moved into `tools/build_queue/`)
 
 Responsibilities:
 

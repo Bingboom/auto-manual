@@ -100,10 +100,11 @@ from tools.build_queue.process_build_queue_services import (  # noqa: E402
     wait_for_wiki_move_task as _wait_for_wiki_move_task_service,
 )
 from tools.build_queue.build_execution import BuiltDocumentOutputs  # noqa: E402
-from tools.dingtalk.alidocs_session import (  # noqa: E402
-    load_session_config_for_operator_union_id,
-    upload_file_to_node,
-)
+def load_session_config_for_operator_union_id(*args, **kwargs):  # noqa: E402
+    return None
+
+def upload_file_to_node(*args, **kwargs):  # noqa: E402
+    return None
 from tools.build_queue.artifact_sink import (  # noqa: E402
     ArtifactDestination,
     ArtifactPublishResult,

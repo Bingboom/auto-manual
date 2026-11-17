@@ -179,6 +179,76 @@ class TestManualCopySource(unittest.TestCase):
         self.assertEqual("输入端口", rows[0]["title_zh"])
         self.assertEqual("2", rows[0]["section_order"])
 
+    def test_build_localized_copy_rows_should_ignore_draft_and_deprecated_tm_rows(self) -> None:
+        manual_rows = [
+            {
+                "copy_key": "battery.label",
+                "page_id": "battery",
+                "copy_type": "label",
+                "Market": "ALL",
+                "Model": "ALL",
+                "Source_lang": "en",
+                "Is_Latest": "TRUE",
+                "Version": "V1.0",
+                "source_text": "Battery",
+            }
+        ]
+        tm_rows = [
+            {
+                "en": "Battery",
+                "zh": "电池",
+                "fr": "Batterie",
+                MANUAL_COPY_TAG_FIELD: "manual_copy",
+                "Status": "Approved",
+            },
+            {
+                "en": "Battery",
+                "zh": "电池",
+                "fr": "Pile (brouillon)",
+                MANUAL_COPY_TAG_FIELD: "manual_copy",
+                "Status": "Draft",
+            },
+            {
+                "en": "Battery",
+                "zh": "电池",
+                "fr": "Accu (obsolète)",
+                MANUAL_COPY_TAG_FIELD: "manual_copy",
+                "Status": "Deprecated",
+            },
+        ]
+
+        # Draft and Deprecated conflicting rows should be ignored, avoiding ManualCopyConflictError
+        rows, missing = build_localized_copy_rows(manual_rows, tm_rows)
+        self.assertEqual(1, len(rows))
+        self.assertEqual("Batterie", rows[0]["text_fr"])
+
+    def test_build_localized_copy_rows_should_include_legacy_rows_without_status(self) -> None:
+        manual_rows = [
+            {
+                "copy_key": "inverter.label",
+                "page_id": "inverter",
+                "copy_type": "label",
+                "Market": "ALL",
+                "Model": "ALL",
+                "Source_lang": "en",
+                "Is_Latest": "TRUE",
+                "Version": "V1.0",
+                "source_text": "Inverter",
+            }
+        ]
+        tm_rows = [
+            {
+                "en": "Inverter",
+                "zh": "逆变器",
+                "fr": "Onduleur",
+                MANUAL_COPY_TAG_FIELD: "manual_copy",
+                # No Status field - legacy compatibility
+            }
+        ]
+        rows, missing = build_localized_copy_rows(manual_rows, tm_rows)
+        self.assertEqual(1, len(rows))
+        self.assertEqual("Onduleur", rows[0]["text_fr"])
+
 
 if __name__ == "__main__":
     unittest.main()

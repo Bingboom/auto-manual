@@ -35,7 +35,7 @@ As of 2026-04-14, the hybrid path is already implemented:
   [`../../tools/build_queue/artifact_sink.py`](../../tools/build_queue/artifact_sink.py)
 - queue execution supports `lark_drive` and `dingtalk_alidocs_session`
 - DingTalk browser-session upload exists in
-  [`../../tools/dingtalk/alidocs_session.py`](../../tools/dingtalk/alidocs_session.py)
+  `../../tools/dingtalk/alidocs_session.py`
 - the manual smoke helper for that upload path was
   `tools/dingtalk/alidocs_session_upload_cli.py` (removed 2026-07-02)
 - local wrappers existed for Feishu-only and Feishu-plus-DingTalk runs:
@@ -105,8 +105,8 @@ Current repo cut points:
 - current Feishu upload path:
   [`../../tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
 - DingTalk upload helpers:
-  [`../../tools/dingtalk/README.md`](../../tools/dingtalk/README.md),
-  [`../../tools/dingtalk/alidocs_session.py`](../../tools/dingtalk/alidocs_session.py)
+  `../../tools/dingtalk/README.md`,
+  `../../tools/dingtalk/alidocs_session.py`
 - queue writeback field construction:
   [`../../tools/build_queue/writeback.py`](../../tools/build_queue/writeback.py)
 

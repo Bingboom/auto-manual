@@ -263,8 +263,8 @@ If phase 0 fails, stop and choose a different DingTalk storage product before re
 
 Current verified status:
 
-- the official App-Only token flow for an internal DingTalk app is now verified in-repo through [`../../tools/dingtalk/auth.py`](../../tools/dingtalk/auth.py)
-- the spike tooling can already normalize a standard DingTalk docs URL of the form `https://alidocs.dingtalk.com/i/nodes/<node_id>` into a stable node identifier through [`../../tools/dingtalk/workspace.py`](../../tools/dingtalk/workspace.py)
+- the official App-Only token flow for an internal DingTalk app is now verified in-repo through `../../tools/dingtalk/auth.py`
+- the spike tooling can already normalize a standard DingTalk docs URL of the form `https://alidocs.dingtalk.com/i/nodes/<node_id>` into a stable node identifier through `../../tools/dingtalk/workspace.py`
 - the remaining unresolved phase-0 question is the public upload or attach API for the chosen DingTalk docs / knowledge-space product
 
 ### Phase 1: Snapshot Sync Parity

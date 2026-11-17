@@ -55,10 +55,10 @@ Optional:
 - `FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS`; defaults to `60` for deployed adapters and controls how long the adapter waits for fresh batch writeback before sending a follow-up status summary
 - `FEISHU_IM_BATCH_STATUS_POLL_SECONDS`; defaults to `5` for batch writeback polling
 - `FEISHU_IM_MANUAL_INDEX_LIMIT`; defaults to `10` rows in manual-index replies
-- `FEISHU_MANUAL_INDEX_BASE_TOKEN`; optional override for the `发布文档管理` Base token; defaults to the Base behind `AS02w8ZL2iDv44kDLHIcHCPqntd`
-- `FEISHU_MANUAL_INDEX_TABLE_ID`; optional override for the manual-index table; defaults to `tbl1ypQJJPbKostu`
+- `FEISHU_MANUAL_INDEX_BASE_TOKEN`; optional override for the `发布文档管理` Base token; defaults to the Base behind `QKNGwHFwPiY7J7kZ0bzcximKnyb`
+- `FEISHU_MANUAL_INDEX_TABLE_ID`; optional override for the manual-index table; defaults to `tbldqnNBxFQsxpeN`
 - `FEISHU_MANUAL_INDEX_VIEW_ID`; optional override for the manual-index view; defaults to `vewytqcvDc`, preserving the table's visible-record scope
-- `FEISHU_MANUAL_INDEX_IDENTITY`; optional `user` / `bot` override; defaults to `FEISHU_PHASE2_IDENTITY` or `user`
+- `FEISHU_MANUAL_INDEX_IDENTITY`; optional `user` / `bot` override; defaults to `FEISHU_PHASE2_IDENTITY` or `bot`
 - `FEISHU_IM_STATE_FILE`
 - `FEISHU_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR`
 - `FEISHU_IM_DISABLE_LOCAL_PROFILE` or `OPENCLAW_DISABLE_LOCAL_PROFILE`
