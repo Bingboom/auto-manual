@@ -229,7 +229,8 @@ class MarketThemeTests(unittest.TestCase):
         self.assertEqual([span.get_text() for span in page.select(".mp-legend > span")][:2], ["已核实", "业务需求"])
         self.assertTrue(page.select_one("#mp-expand").has_attr("hidden"))
         self.assertIsNone(page.select_one("#policy-filters"))
-        self.assertEqual(page.select_one(".mp-head .mp-pill").get_text(), "3 条资料 · 2 个国家和地区")
+        # A front page: no count or review-date pills in the head (front cleanup, 2026-11-17).
+        self.assertIsNone(page.select_one(".mp-head .mp-pill"))
 
     def test_without_a_snapshot_the_page_says_nothing_is_recorded_yet(self):
         with TemporaryDirectory() as folder:

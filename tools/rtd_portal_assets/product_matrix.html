@@ -4,14 +4,13 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="产品矩阵：已发布网页说明书的产品，按网页文档表的产品类别、产品系列和容量排列；点一款产品看它各市场的型号、规格和说明书。">
-<title>产品矩阵</title>
+<title>产品信息</title>
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/product-matrix.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/asset-layers.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 <script defer src="{{ pathto('_static/product-matrix.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{% import '_asset_layer.html' as al with context %}
 {#- 产品矩阵 (2026-11 layout): a tab per 产品类别, each a grid of 产品系列 rows × capacity tiers, and per product a
     detail that opens under its row (型号 · 商品简称 · figures · a link per market, then 功能 and 搭配). Without
     JavaScript every category shows and a card's link opens its detail through :target. -#}
@@ -39,7 +38,7 @@
   {%- if info.features or info.pairing or info.guides %}
   <div class="mx-dmore">
     {%- if info.features %}
-    <section class="mx-dbox"><h3>功能<small>能力表 · {{ info.features.model|e }}</small></h3>
+    <section class="mx-dbox"><h3>功能</h3>
       <div class="mx-fchips">{% for name in info.features.all %}<span class="mx-f">{{ name|e }}</span>{% endfor %}{% for item in info.features.some %}<span class="mx-f is-some" title="{{ item.tip|e }}">{{ item.name|e }}<em>部分市场</em></span>{% endfor %}</div>
       {%- if info.features.none %}<p>不支持：{{ info.features.none|join('、')|e }}</p>{% endif %}
     </section>
@@ -64,17 +63,9 @@
 <a class="skip" href="#matrix">跳到产品矩阵</a>
 {{ site_sidebar('product-matrix', site_nav) }}
 <div class="app-content">
-{{ site_topbar('知识库', '产品矩阵') }}
+{{ site_topbar('知识库', '产品信息') }}
 <main class="matrix">
-{%- if product %}{{ al.product_head(product, 'products/matrix') }}{% endif %}
-<p class="al-building" role="note"><b>建设中</b>每个值的来源链接、核实状态和日期正在建设（产品信息矩阵）。本页数值照说明书规格表原文读取，未经人工核实。</p>
-<header class="mx-head">
-  <div class="mx-head-text"><h2 class="mx-title">产品矩阵</h2><p>已发布网页说明书的产品，按网页文档表的「产品类别」「产品系列」排列。点一款产品，看它在各市场的型号、规格和说明书。</p></div>
-  <div class="mx-head-meta">
-    <span class="mx-pill">{{ facts.products }} 款产品 · {{ facts.models }} 个型号</span>
-    <span class="mx-pill"><i aria-hidden="true"></i>分类来自网页文档表 <time datetime="{{ classified_on|e }}">{{ classified_on[5:]|e }}</time></span>
-      </div>
-</header>
+<header class="fr-head"><h1>产品信息</h1>{% if product and product.value %}<p>{{ product.value|e }}</p>{% endif %}</header>
 <nav class="mx-tabs" aria-label="产品类别">{% for category in categories %}<a class="mx-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }}<span>{{ category.count }}</span></a>{% endfor %}</nav>
 <div id="matrix" class="mx-panels">
 {%- for category in categories %}
@@ -95,7 +86,6 @@
 </section>
 {%- endfor %}
 </div>
-{%- if product %}{{ al.product_foot(product) }}{% endif %}
-<footer class="mx-foot"><p>类别与系列：网页文档表的「产品类别」「产品系列」，在表里修改并刷新产品分类快照后生效。型号与说明书：发布清单{% if built_on %}（{{ built_on|e }}）{% endif %}。规格：各说明书的规格表，照原文数值。功能：能力表。搭配：说明书正文写到的产品。</p></footer>
+
 </main>
 </div>{{ site_script() }}</body></html>

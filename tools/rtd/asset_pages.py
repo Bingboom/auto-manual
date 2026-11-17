@@ -52,34 +52,53 @@ def curated(assets: Path, root: Path, system: dict[str, Any] | None, warn) -> di
             "main_line": {"text": data["main_line"], "umbrella": data["umbrella"], "source": path["link"]}}
 
 
+def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
+                corpus: dict[str, Any] | None) -> list[dict[str, Any]]:
+    """知识库首页's three asset cards: name, one line, one figure with its date (None reads 待统计)."""
+    facts = (matrix or {}).get("facts") or {}
+    tiles = {tile["key"]: tile for tile in (corpus or {}).get("tiles") or []}
+    topics = None if learning is None or learning.get("content_missing") else len(learning.get("topics") or [])
+    cards = [{"id": "product", "title": "产品信息", "icon": "product", "page": "products/matrix",
+              "line": "已发布网页说明书的产品，按类别和系列排列", "value": facts.get("products"), "unit": "款产品",
+              "date": (matrix or {}).get("built_on") or ""}] if matrix else []
+    return cards + [
+        {"id": "knowledge", "title": "产品知识", "icon": "chapters", "page": "products/knowledge",
+         "line": "从已发布的产品理解原理", "value": topics, "unit": "个知识点",
+         "date": (learning or {}).get("latest_added") or ""},
+        {"id": "corpus", "title": "语料库", "icon": "languages", "page": "assets/language/index",
+         "line": "已批准的句对和术语可以直接复用", "value": (tiles.get("pairs") or {}).get("value"), "unit": "句对",
+         "date": (corpus or {}).get("exported_at") or ""},
+    ]
+
+
 def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: list[dict], system, matrix,
-                      topics: int | None, build_date: str, coverage: dict[str, Any] | None, warn) -> dict:
-    """Everything the four layers add to one build: page contexts, the home part and the 系统建设 part."""
+                      learning: dict[str, Any] | None, build_date: str, warn) -> dict:
+    """The layer pages' contexts, 知识库首页's cards and the 系统建设 part.
+
+    Since the front cleanup (2026-11-17) 产品信息 carries only the operator's value statement as its lead; 内容与表现
+    and 视觉媒体 sit under 维护 unchanged; 语言 is the 语料库 page; the former 属性字典 address forwards to 产品信息.
+    """
     root = repo_root()
     publications = [item for product in products for item in product["publications"]]
     labels = dict(settings.get("language_labels") or {})
     web = layers.web_languages(publications, labels)
-    attributes = layers.attributes_view()
     extra = curated(assets, root, system, warn)
     chips = extra["chips"]
-    product = {**layers.product_layer(matrix, attributes, topics=topics, build_date=build_date),
-               "chip": chips["product"], "value": extra["product_value"]}
     content = {**layers.content_view(root, build_date=build_date, web_languages=len(web)), "chip": chips["content"]}
     media = {**layers.media_view(root, srcdir, publications, build_date=build_date), "chip": chips["media"]}
-    language = {**layers.language_view(system, publications, root=root, labels=labels, build_date=build_date),
-                "chip": chips["language"]}
+    language = layers.language_view(system)
+    moved = "products/matrix#matrix" if matrix else "products/knowledge#knowledge-list"
     pages = [
-        (layers.ATTRIBUTES_PAGE, {"product": product, "attributes": attributes}, layers.ATTRIBUTES_TEMPLATE),
+        ("products/attributes", {"moved_target": moved, "moved_title": "产品信息" if matrix else "产品知识"},
+         "moved_page.html"),
         ("assets/content/index", {"layer": content}, "asset_content.html"),
         ("assets/media/index", {"layer": media}, "asset_media.html"),
         ("assets/language/index", {"layer": language}, "asset_language.html"),
     ]
-    matrix_stage = next((stage for stage in (extra["path"] or {}).get("stages") or [] if stage["id"] == "matrix"), None)
-    home = {"cards": layers.home_cards(product, content, media, language, chips),
-            "main_line": extra["main_line"], "coverage": coverage, "matrix_stage": matrix_stage}
-    return {"product": product, "pages": pages, "home": home,
+    return {"product": {"value": extra["product_value"]}, "pages": pages,
+            "cards": front_cards(matrix, learning, language["corpus"]),
             "system": {"asset_map": extra["capability_map"], "asset_path": extra["path"],
                        "asset_layers": layers.layer_entries(matrix is not None), "asset_chips": chips}}
 
 
-__all__ = ["asset_layer_pages", "curated"]
+__all__ = ["asset_layer_pages", "curated", "front_cards"]

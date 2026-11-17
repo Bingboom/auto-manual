@@ -3,103 +3,38 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>语言</title><meta name="description" content="资产 4 · 语言：句对、术语、语言覆盖与术语规则的规模、维护位置、清单、使用、来源与缺口。">
+<title>语料库</title><meta name="description" content="语料库：句对、术语和各语言的译文数量。">
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/asset-layers.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{% import '_asset_layer.html' as al with context %}
-{% import '_work_links.html' as links %}
-{#- 语言 (asset layer 4). Context: tools/rtd/asset_layers.py language_view. The translation-memory figures are the
-    corpus snapshot as 系统建设 reads it (its export date beside every figure, 待复核 when stale); the language
-    coverage compares the languages registered in the snapshot, those with pairs and those with Web manuals; the
-    terminology rules come from data/terminology_rules.csv. Moved here from 系统建设's 语言资产 (2026-11-16). -#}
-{%- set engineering = 'https://github.com/Bingboom/auto-manual' -%}
+{#- 语料库 (front cleanup, 2026-11-17): a page for product colleagues, so a title, one line, then the content: the
+    translation memory's totals and each language's translated pairs, dated once. Context: tools/rtd/asset_layers.py
+    language_view. No sources, refresh notes, rules or maintenance links here. -#}
 {%- set g = layer -%}{%- set corpus = g.corpus -%}{%- set tiles = g.tiles -%}
-{%- set exported = ('导出 ' ~ corpus.exported_at) if corpus else '' -%}
-<body class="app kb al-root">
+<body class="app kb">
 {{ site_sidebar('asset-language', site_nav) }}
 <div class="app-content">
-{{ site_topbar('知识库', '语言') }}
-<main class="al-page">
-{{ al.head(g) }}
-{%- if corpus and corpus.stale %}<p class="al-stale" role="note"><b>待复核</b>{{ corpus.stale|join('；')|e }}。下面的句对与术语数字停在这次导出。</p>{% endif %}
-<div class="al-grid">
-  {%- call al.block('scale', 1, '规模') %}
-  <div class="al-figs">
-    {{ al.figure(tiles.pairs.value if tiles.pairs else none, '', '句对', exported) }}
-    {{ al.figure(tiles.terms.value if tiles.terms else none, '', '术语', exported) }}
-    {{ al.figure(tiles.approved.value if tiles.approved else none, '', '句对已批准', exported) }}
-    {{ al.figure(g.rules.total if g.rules else none, '条', '术语规则', '构建时读取') }}
-  </div>
-  {%- if corpus %}<p class="al-note">{% for key in ('pairs', 'terms', 'approved') if tiles[key] and tiles[key].delta %}{{ tiles[key].label|e }} {{ tiles[key].delta|e }}{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
-  {%- endcall %}
-  {%- call al.block('maintained', 2, '在哪里维护') %}
-  <dl class="al-kv">
-    <dt>句对与术语</dt><dd>翻译记忆库（飞书多维表）{% for label, url in links.materials if label == '翻译与术语' %} · <a href="{{ url|e }}" target="_blank" rel="noopener">打开 ↗</a>{% endfor %}。门户只显示最近一次导出。</dd>
-    <dt>维护指引</dt><dd><a href="{{ engineering }}/blob/main/user-guide/closed_loop_ops_guide.md" target="_blank" rel="noopener">闭环维护指引 ↗</a></dd>
-    <dt>术语规则</dt><dd><a href="{{ engineering }}/blob/main/data/terminology_rules.csv" target="_blank" rel="noopener"><code>data/terminology_rules.csv</code> ↗</a>，构建检查按它拦截不合规写法。</dd>
-  </dl>
-  {%- endcall %}
-</div>
-
-{%- call al.block('inventory', 3, '清单', true) %}
-<h3 class="al-sub" id="coverage">语言覆盖</h3>
-<div class="al-figs is-row">
-  {{ al.figure(g.registered if corpus else none, '种', '记忆库登记语言', exported) }}
-  {{ al.figure(g.with_pairs if corpus else none, '种', '有句对的语言', exported) }}
-  {{ al.figure(g.web|length, '种', '有网页说明书的语言', '构建时读取') }}
-</div>
+{{ site_topbar('知识库', '语料库') }}
+<main class="fr-page">
+<header class="fr-head"><h1>语料库</h1><p>翻译时先查这里，已经批准的句对和术语可以直接复用。</p></header>
 {%- if corpus %}
-<ul class="al-bars" aria-label="各语言有译文的句对数，及占记忆库全部句对的比例">
-  {%- for row in corpus.rows %}
-  <li title="{{ row.label|e }}：记忆库中 {{ row.count_text|e }} 条句对有该语言译文，占全部句对的 {{ row.percent }}%；不是说明书翻译完成率"><span>{{ row.label|e }}</span><span class="al-track" aria-hidden="true"><i style="width:{{ row.percent }}%"></i></span><span class="al-val">{{ row.count_text|e }}<em>{{ row.percent }}%</em></span></li>
+<section class="fr-figs" aria-label="语料库规模">
+  {%- for key in ('pairs', 'terms', 'approved') if tiles[key] %}
+  <div><strong>{{ tiles[key].value|e }}</strong><span>{{ tiles[key].label|e }}</span></div>
   {%- endfor %}
-</ul>
-<p class="al-note">句对覆盖：记忆库里有该语言译文的句对，不是说明书的翻译完成率。{{ exported }}{% if corpus.previous %}，上期 {{ corpus.previous|e }}{% endif %}；快照超过 {{ corpus.stale_after_days }} 天显示待复核。</p>
-{%- else %}<p>{{ al.pending('无数据', g.corpus_fallback ~ '。') }}</p>{% endif %}
-{%- if g.web %}
-<p class="al-chips" aria-label="有网页说明书的语言">{% for item in g.web %}<span>{{ item.label|e }} <b>{{ item.versions }}</b></span>{% endfor %}</p>
-<p class="al-note">网页说明书：每种语言已发布的单语版本数，来自本次构建的说明书目录。各语言上线进度见<a href="{{ pathto('workspace/deliverables/index') }}">说明书工作台</a>。</p>
-{%- endif %}
-
-<h3 class="al-sub" id="pairs">句对与术语</h3>
-<p>逐条浏览：{{ al.pending('建设中', '快照只存总数，不存句子；逐条查请到翻译记忆库。') }}</p>
-
-<h3 class="al-sub" id="rules">术语规则</h3>
-{%- if g.rules %}
-<p class="al-note">{% for lang, n in g.rules.by_lang %}{{ lang|e }} {{ n }} 条{% if not loop.last %} · {% endif %}{% endfor %}</p>
-<div class="al-table-wrap" role="region" aria-label="术语规则，可横向滚动" tabindex="0">
-<table class="al-table">
-  <thead><tr><th scope="col">规则</th><th scope="col">语言</th><th scope="col">不用</th><th scope="col">改用</th><th scope="col">说明</th></tr></thead>
-  <tbody>{% for rule in g.rules['items'] %}<tr><th scope="row"><code>{{ rule.id|e }}</code></th><td>{{ rule.lang|e }}</td><td><code>{{ rule.avoid|e }}</code></td><td>{{ rule.prefer|e }}</td><td>{{ rule.note|e }}</td></tr>{% endfor %}</tbody>
-</table>
-</div>
-{%- else %}<p>{{ al.pending('无数据', '术语规则表不可读。') }}</p>{% endif %}
-{%- endcall %}
-
-<div class="al-grid">
-  {%- call al.block('used-by', 4, '被谁使用') %}
-  <p>翻译预处理、按记忆改写、审核稿；术语规则用于构建检查。</p>
-  <p>每条句对用进了哪几本说明书：{{ al.pending() }}（库里有译文、预翻译命中，都不算成品采用）</p>
-  {%- endcall %}
-  {%- call al.block('sources', 5, '来源与时间') %}
-  <dl class="al-kv">
-    <dt>句对与术语</dt><dd>翻译记忆库快照{% if corpus %} · {{ exported }}{% endif %}{% if g.system_entry %} · <a href="{{ pathto('workspace/system/index') }}#sources">全部数据来源</a>{% endif %}</dd>
-    <dt>网页说明书语言</dt><dd>说明书目录 · 构建时 {{ g.build_date|e }}</dd>
-    <dt>术语规则</dt><dd>工程仓库 · 构建时 {{ g.build_date|e }}</dd>
-  </dl>
-  {%- endcall %}
-  {%- call al.block('gaps', 6, '质量与缺口', true, 'gap') %}
-  <ul class="al-gaps">
-    {%- if corpus and tiles.approved %}<li>句对已批准 {{ tiles.approved.value|e }}，其余还没批准。</li>{% endif %}
-    {%- if corpus %}<li>记忆库登记 {{ g.registered }} 种语言，有句对的 {{ g.with_pairs }} 种；网页说明书有 {{ g.web|length }} 种语言。</li>{% endif %}
-    {%- if corpus and corpus.stale %}<li>快照过期：{{ corpus.stale|join('；')|e }}。</li>{% endif %}
-    {%- if not corpus %}<li>{{ g.corpus_fallback|e }}。</li>{% endif %}
-    {%- if g.rules %}<li>术语规则只覆盖 {{ g.rules.by_lang|length }} 种语言。</li>{% endif %}
+  <time class="fr-date" datetime="{{ corpus.exported_at|e }}">截至 {{ corpus.exported_at|e }}</time>
+</section>
+<section class="fr-section" aria-labelledby="langs-title">
+  <h2 id="langs-title">各语言已有的句对</h2>
+  <ul class="fr-bars">
+    {%- for row in corpus.rows if row.count %}
+    <li><span>{{ row.label|e }}</span><span class="fr-track" aria-hidden="true"><i style="width:{{ row.percent }}%"></i></span><span class="fr-val">{{ row.count_text|e }}</span></li>
+    {%- endfor %}
   </ul>
-  {%- endcall %}
-</div>
-<p class="al-foot">原「系统建设 › 能力与架构 › 语言资产」的数字和语言覆盖条移到这里。</p>
+</section>
+{%- else %}
+<p class="fr-empty">暂时没有可显示的语料数字。</p>
+{%- endif %}
 </main>
 </div>{{ site_script() }}</body></html>

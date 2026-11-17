@@ -11,6 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd import asset_layer_data as ald
 from tools.rtd import asset_layers as al
+from tools.rtd import asset_pages as ap
 from tools.rtd import system_workspace as sw
 from tools.rtd import asset_media as am
 from tools.rtd.design_assets import REGISTRIES
@@ -86,16 +87,8 @@ class MediaTests(unittest.TestCase):
 class LayerViewTests(unittest.TestCase):
     def test_layers_follow_the_priority_order(self):
         self.assertEqual([(layer["order"], layer["title"]) for layer in al.LAYERS],
-                         [(1, "产品信息"), (2, "内容与表现"), (3, "视觉媒体"), (4, "语言")])
+                         [(1, "产品信息"), (2, "内容与表现"), (3, "视觉媒体"), (4, "语料库")])
         self.assertEqual(al.layer_entries(False)[0]["page"], "products/knowledge")
-        self.assertEqual([page for page, _ in al.product_tabs(False)], ["products/attributes", "products/knowledge"])
-
-    def test_attribute_dictionary_reads_the_shipped_definitions(self):
-        view = al.attributes_view()
-        self.assertGreater(view["total"], 0)
-        self.assertTrue(all(item["key"] and item["definition"] for item in view["items"]))
-        with tempfile.TemporaryDirectory() as tmp:
-            self.assertIsNone(al.attributes_view(Path(tmp) / "missing.json"))
 
     def test_content_view_reads_chapters_by_language(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -110,18 +103,23 @@ class LayerViewTests(unittest.TestCase):
         self.assertEqual([(c["label"], c["langs"]) for c in view["chapters"]],
                          [("包装清单", ["en"]), ("保修", ["de", "en"])])
 
-    def test_language_view_without_the_system_page_says_why(self):
-        pubs = [publication("JE-X", "EU", "en", "a"), publication("JE-X", "EU", "de", "b"),
-                publication("JE-Y", "US", "en", "c"), {"lang": None, "language_scope": "legacy_unspecified"}]
-        view = al.language_view(None, pubs, root=repo_root(), labels={"en": "English"}, build_date="2026-11-16")
+    def test_corpus_page_without_the_snapshot_says_so_plainly(self):
+        view = al.language_view(None)
         self.assertIsNone(view["corpus"])
-        self.assertEqual([(w["code"], w["label"], w["versions"]) for w in view["web"]],
-                         [("en", "English", 2), ("de", "de", 1)])
-        self.assertGreater(view["rules"]["total"], 0)
         page = render("asset_language.html", layer=view)
-        self.assertIn("语料快照当前不可读", page.select_one("#inventory").get_text())
-        self.assertEqual([b["id"] for b in page.select("section.al-block")],
-                         ["scale", "maintained", "inventory", "used-by", "sources", "gaps"])
+        self.assertEqual(page.select_one(".fr-head h1").get_text(), "语料库")
+        self.assertEqual(page.select_one(".fr-empty").get_text(), "暂时没有可显示的语料数字。")
+        self.assertIsNone(page.select_one("section.al-block"))
+
+    def test_corpus_page_shows_totals_dated_once_and_languages_with_pairs(self):
+        corpus = {"exported_at": "2026-11-01",
+                  "tiles": [{"key": "pairs", "value": "10", "label": "句对"}, {"key": "terms", "value": "3", "label": "术语"}],
+                  "rows": [{"label": "English", "count": 5, "count_text": "5", "percent": 100},
+                           {"label": "Deutsch", "count": 0, "count_text": "0", "percent": 0}]}
+        page = render("asset_language.html", layer=al.language_view({"corpus": corpus}))
+        self.assertEqual([d.strong.get_text() for d in page.select(".fr-figs div")], ["10", "3"])
+        self.assertEqual(page.select_one(".fr-date").get_text(), "截至 2026-11-01")
+        self.assertEqual([li.span.get_text() for li in page.select(".fr-bars li")], ["English"])
 
 
 class TemplateTests(unittest.TestCase):
@@ -249,18 +247,13 @@ class CuratedTests(unittest.TestCase):
 
 
 class ProductValueTests(unittest.TestCase):
-    def test_the_operator_statement_leads_the_product_pages_only(self):
+    def test_the_operator_statement_leads_the_product_page_only(self):
         data = ald.load_layer_data(ASSETS)
         value = data["product_value"]
         self.assertEqual((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8").count(value), 1)
-        product = {**al.product_layer(None, {"total": 9}, topics=None, build_date="2026-11-16"), "value": value}
-        page = render("product_attributes.html", product=product, attributes=None)
-        self.assertEqual(page.select_one(".al-head-text > p:not(.al-eyebrow)").get_text(), value)
-        # No caption under the statement (operator, 2026-11-16); the matrix page keeps its own 建设中 note.
-        self.assertIsNone(page.select_one(".al-lead-note"))
-        cards = al.home_cards(product, {**al.layer("content")}, {**al.layer("media")}, {**al.layer("language")},
-                              dict.fromkeys(ald.LAYER_IDS))
-        self.assertNotIn(value, json.dumps(cards, ensure_ascii=False))
+        cards = json.dumps(ap.front_cards({"facts": {"products": 3}, "built_on": "2026-11-17"}, None, None),
+                           ensure_ascii=False)
+        self.assertNotIn(value, cards)
 
 
 class HeadlineTests(unittest.TestCase):

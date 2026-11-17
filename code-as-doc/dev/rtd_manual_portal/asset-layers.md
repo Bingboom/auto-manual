@@ -1,44 +1,71 @@
 # 四类资产 (asset-layer pages)
 
 Status: active (slices 1 and 2 of the four-layer portal work, 2026-11-16; REV-51, registered
-in pull request #1734)
+in pull request #1734; front cleanup 2026-11-17)
 
-The operator maintains four layers of assets. Since step 12 of the 2026-11 redesign
-(operator-approved 2026-11-16) the private portal has one page per layer, in this
-priority order, as the sidebar group 资产 · 按优先级:
+The operator maintains four layers of assets. Step 12 of the 2026-11 redesign
+(operator-approved 2026-11-16) gave each layer a page on the private portal. The
+front cleanup (operator review 2026-11-17: the front is for product colleagues,
+not for maintainers) split them into front pages and maintenance pages:
 
-| # | Layer | Address | Template |
+| Layer | Address | Template | Where |
 | --- | --- | --- | --- |
-| 1 | 产品信息 | `/products/matrix.html` (tabs: 产品矩阵, 属性字典 `/products/attributes.html`, 产品知识 `/products/knowledge.html`) | `product_matrix.html`, `product_attributes.html`, `product_knowledge.html` |
-| 2 | 内容与表现 | `/assets/content/` | `asset_content.html` |
-| 3 | 视觉媒体 | `/assets/media/` | `asset_media.html` |
-| 4 | 语言 | `/assets/language/` | `asset_language.html` |
+| 产品信息 | `/products/matrix.html` | `product_matrix.html` | 资产 (front) |
+| 产品知识 | `/products/knowledge.html` | `product_knowledge.html` | 资产 (front) |
+| 语料库 (was 语言) | `/assets/language/` | `asset_language.html` | 资产 (front) |
+| 内容与表现 | `/assets/content/` | `asset_content.html` | 维护 |
+| 视觉媒体 | `/assets/media/` | `asset_media.html` | 维护 |
 
-`tools/rtd/asset_layers.py` builds the views (layer order, 产品信息's head, content,
+`tools/rtd/asset_layers.py` builds the views (layer order, content, media,
 language), `tools/rtd/asset_media.py` reads the media inventories, and
-`tools/rtd/portal.py` (`asset_layer_pages`) yields the pages on the private
-(combined) site only. A manuals-only build makes none of them, and the public
-shell links none of them (`tools/rtd/site_role.py` is unchanged).
+`tools/rtd/asset_pages.py` (`asset_layer_pages`, called by `tools/rtd/portal.py`)
+yields the pages on the private (combined) site only. A manuals-only build makes
+none of them, and the public shell links none of them (`tools/rtd/site_role.py`
+is unchanged).
 
 ## Navigation
 
-The private sidebar is: 首页; 资产 · 按优先级 (the four layers, each numbered);
-说明书 (说明书资料库, 搜索说明书正文); 生产与方向 (说明书工作台, 系统建设); 参考
-(市场与政策, 设计规范). 产品信息 opens on 产品矩阵, or on 产品知识 when the matrix is
-not built, and stays current on all three of its tabs. 知识库首页's 去哪里 cards
-mirror these groups; the old card ids stay (`#products` is now 资产, `#manuals`,
-`#production`; 参考 is `#reference`).
+The private sidebar (`_site_shell.html`) is: 首页; 资产 (产品信息, 产品知识, 语料库;
+no numbers); 说明书 (说明书资料库, 搜索说明书正文); 参考 (市场与政策); 维护 (说明书工作台,
+内容与表现, 视觉媒体, 系统建设, 设计规范), one bottom group collapsed by default
+(`details.app-nav-more`) and open on its own pages. The pages under 维护 keep
+their content. 产品信息 links 产品知识 when the matrix is not built.
 
-No page moved address, so no redirect was needed: 产品矩阵 and 产品知识 keep their
-URLs and become tabs of 产品信息. Old in-page anchors keep working:
+Old addresses keep working:
 
+- `/products/attributes.html` (the former 属性字典 tab) is a moved page
+  (`moved_page.html`) that forwards to `/products/matrix.html#matrix`, or to
+  `/products/knowledge.html#knowledge-list` when the matrix is not built;
 - 说明书工作台 `#reuse`, `#library-corpus`, `#library-styles`, `#library-templates`
-  now sit on a pointer row that links the three asset pages;
-- 系统建设 `#language-assets` and `#tab-corpus` now hold a pointer to 语言.
+  sit on a pointer row that links the asset pages;
+- 系统建设 `#language-assets` and `#tab-corpus` hold a pointer to 语料库.
 
-## The shared anatomy
+## Front pages
 
-Every layer page uses `_asset_layer.html`: a head (资产 N · 共四类, the title, one
+Every page outside 维护 is a title, at most one short line, then content. It shows
+no attribute keys, data types, file paths, repository or tool names, ledger or
+authorization numbers, hashes, snapshot names, 建设中 / 已规划 chips, tabs to
+unbuilt parts, or provenance and refresh small print. A figure keeps one date
+(截至 …). `front.css` holds their shared head, figure row and bar list.
+
+- **产品信息** (`product_matrix.html`): the title, `product_value` as its lead with
+  no caption, then the matrix (category tabs, product rows, manual links). The
+  former 规模, 在哪里维护, 被谁使用, 来源与时间 and 质量与缺口 blocks, the kicker, the
+  chips, the sub-labels and the page-foot provenance are gone, and so are the
+  属性字典 tab and page and the 待核实与冲突 placeholder.
+- **产品知识** (`product_knowledge.html`): the title, one line, then the topics and
+  cases. See [knowledge-pages.md](knowledge-pages.md).
+- **语料库** (`asset_language.html`, `language_view`): the title, one line, the
+  translation memory's totals (句对, 术语, 已批准) dated by the export, and each
+  language's pair count where it has pairs. The counts are pairs, never a
+  percentage that could read as manual localization completion. Without a
+  readable snapshot the page says 暂时没有可显示的语料数字. The terminology rules, the
+  Web-manual language list and the staleness note left the page.
+- **市场与政策** lost its count and review-date pills in the head.
+
+## The shared anatomy (维护 pages)
+
+内容与表现 and 视觉媒体 use `_asset_layer.html`: a head (the title, one
 line and the build date), then six blocks with fixed ids, in this order:
 
 | Block | id | Answers |
@@ -62,16 +89,6 @@ Rules:
 
 ## What each page reads
 
-**产品信息.** The head and the side blocks (`product_head`, `product_foot`) are
-shared by the three tabs. 规模: products and models from the 产品矩阵 context, the
-attribute count, the 产品知识 topic count. 产品矩阵 is the existing page with the
-same data and a visible note that source links, verification and dates are being
-built (the product-information base, REV-50, another window). 属性字典 lists the
-attributes `tools/product_facts/attributes.json` already defines (label, key,
-unit, type, the 产品类别 a gap is counted for, definition); it holds no product
-value. 产品知识 is the existing page. A 待核实与冲突 tab shows as 建设中 and is not
-a link: there is no data for it yet.
-
 **内容与表现.** Shared chapters under `docs/templates/page_shared` as a chapter ×
 language table; the skeletons (`skeletons_of`), the recipe files and sets under
 `docs/templates/recipes`, the page-template folders; the components in
@@ -94,13 +111,6 @@ Markdown source names the hash of every image it shows; the page counts the
 language versions and editions (model × market) whose source names the symbol's
 `sha256`. Without readable published sources the column says 待统计.
 
-**语言.** The translation-memory snapshot as 系统建设 reads it (句对, 术语, approved
-share, per-language pair counts, export date, 待复核 past `stale_after_days`); the
-registered languages against those with pairs and those with verified
-single-language Web manuals (from the catalog); `data/terminology_rules.csv`.
-Pair-by-pair browsing is 建设中: the snapshot stores totals only. The block moved
-here from 系统建设 › 能力与架构 › 语言资产, which keeps a pointer.
-
 ## Curated data: `asset_layers.yaml` (slice 2)
 
 `tools/rtd_portal_assets/asset_layers.yaml`, read by `tools/rtd/asset_layer_data.py` and
@@ -111,17 +121,18 @@ layers that is not a figure:
   扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。). The operator adopted both on
   2026-11-16 (positioning §1.2); a later change is a one-line edit here. `product_value` is the operator's
   own statement of the product matrix's value (2026-11-16), shown word for word as the
-  lead of the three 产品信息 pages and nowhere else, with no caption under it (operator,
-  2026-11-16); the 产品矩阵 page keeps its own 建设中 note on sources, verification and
-  dates. Its source is positioning §4.1.
+  lead of the 产品信息 page and nowhere else, with no caption under it (operator,
+  2026-11-16). Its source is positioning §4.1. Since the front cleanup `main_line` is
+  no longer shown on 知识库首页; 系统建设 keeps its own 当前主线.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and
   the state maps to a portal status word (`CHIP_STATUS`: all done → 已验证, any done,
   active or verifying → 建设中, all planned → 已规划). A layer with no row, or whose
   rows are all deferred, shows no chip; a REV id the ledger lacks is an authoring error
   (a build warning, and the pages fall back to no chips, no main line and the old
-  capability cards). The chip shows on the layer page head, the home card and the
-  系统建设 layer card, always with the rows it comes from.
+  capability cards). Since the front cleanup the chip shows only on the 系统建设 layer
+  card and the 维护 layer pages, always with the rows it comes from; front pages and
+  知识库首页 show none.
 
   | Layer | Rows | Chip (2026-11-16) |
   | --- | --- | --- |
@@ -143,17 +154,16 @@ layers that is not a figure:
   `tests/test_rtd_asset_layers.py` checks the quotes word for word once §4.2 is on the
   branch.
 
-## 知识库首页 and 系统建设 (slice 2)
+## 知识库首页 and 系统建设
 
-- **知识库首页 「现在」** shows the four layer cards in priority order (frame B): number,
-  title, chip, one line, two figures with the date they were read, where it is
-  maintained and its weakest point. The figures are the layer views'
-  (`asset_layers.home_cards`), never read a second way; a missing one says 待统计.
-  Below, **主线** prints `main_line` with two facts: 网页覆盖 (the workbench's
-  coverage, `web_progress.coverage`) and 产品信息矩阵 (the path's matrix stage chip).
-  正在做 is unchanged. The former 当前主线 lane list and the four
-  「已积累的可复用资产」 cards (translation corpus, images, chapters, knowledge growth) are
-  gone; their readers were removed from `workspace_home.py`.
+- **知识库首页** (front cleanup, 2026-11-17): the title and the value file's tagline,
+  then three asset cards (`#now`; 产品信息, 产品知识, 语料库; `asset_pages.front_cards`),
+  each with its name, one line and one figure with its date (待统计 when unreadable),
+  then the entrances to 说明书资料库 and 市场与政策 (`#doors`) and, with a share
+  package, 分享资料 (`#shares`). No status chips or ledger references. The slice-2
+  主线, 正在做, 定位与价值 statuses and 最近更新 left the page; 正在做 and 当前主线 stay on
+  系统建设. `workspace_home.py` and `knowledge_updates.py` are no longer read by the
+  build (their removal waits for the operator).
 - **系统建设** opens with the approved headline (`hero.subtitle` in
   `system_workspace.yaml`). 能力与架构's capability map shows four layer cards, then
   the 生产 row (网页发布, 多格式生产, 评审回写, Agent 执行), then **长期方向**
@@ -180,5 +190,7 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 
 `tests/test_rtd_asset_layers.py` (views and templates without data),
 `tests/asset_layers_ui.test.mjs` (the filters), and the real-Sphinx sidebar test
-in `tests/test_rtd_portal.py` (groups, numbering, the 产品信息 tabs, the six
-blocks, no status chip, and that the public build links no internal page).
+in `tests/test_rtd_portal.py` (the groups, 维护 collapsed except on its pages, the
+moved 属性字典 address, the front pages without chips or small print, the six blocks
+on the 维护 pages, and that the public build links no internal page);
+`tests/test_rtd_workspace_home.py` (the home cards).

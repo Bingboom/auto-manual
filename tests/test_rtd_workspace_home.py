@@ -1,4 +1,4 @@
-"""知识库首页 (step 12): the four layer cards, the main line and 正在做."""
+"""知识库首页 (front cleanup, 2026-11-17): three asset cards and the two entrances, with no management text."""
 from __future__ import annotations
 
 import tempfile
@@ -8,7 +8,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
-from tools.rtd import asset_layers as al
+from tools.rtd.asset_pages import front_cards
 from tools.rtd.portal import ASSETS
 from tools.rtd.workspace_home import load_home_copy, now_view
 
@@ -18,26 +18,6 @@ SYSTEM = {
 COPY = {"assets_note": "每写一本都在积累，下一本直接复用"}
 CORPUS = {"exported_at": "2026-09-24", "stale": ["语料快照已超过 7 天"], "rows": [], "tiles": [
     {"key": "pairs", "label": "句对", "value": "1,372"}, {"key": "approved", "label": "句对已批准", "value": "71%"}]}
-CHIP = {"status": "planned", "status_label": "已规划", "revs": ["REV-50", "REV-52"], "tally": "待做 2"}
-
-
-def views(*, data: bool = True):
-    """Layer views as asset_pages builds them; without data every figure is unknown."""
-    product = al.product_layer({"facts": {"products": 3, "models": 4}, "built_on": "2026-11-13"} if data else None,
-                               {"total": 9} if data else None, topics=None, build_date="2026-11-16")
-    content = {**al.layer("content"), "chapters": {"pages": 12, "languages": ["de", "en"]} if data else None,
-               "components": {"total": 19} if data else None, "web_languages": 5 if data else None}
-    media = {**al.layer("media"), "registry": {"total": 40} if data else None, "symbols": {"total": 7} if data else None}
-    language = {**al.layer("language"), "corpus": CORPUS if data else None,
-                "tiles": {tile["key"]: tile for tile in CORPUS["tiles"]} if data else {}}
-    return product, content, media, language
-
-
-def layers(**kwargs):
-    chips = {"product": CHIP, "content": None, "media": None, "language": None}
-    return {"cards": al.home_cards(*views(**kwargs), chips),
-            "main_line": {"text": "主线的一句话", "umbrella": "统称", "source": "https://example.invalid/doc"},
-            "coverage": {"online": 3, "total": 5, "percent": 60}, "matrix_stage": {"id": "matrix", "chip": CHIP}}
 
 
 def render(**context) -> BeautifulSoup:
@@ -75,33 +55,28 @@ class NowViewTests(unittest.TestCase):
 
 
 class HomeRenderTests(unittest.TestCase):
-    def test_layer_cards_follow_the_priority_order_with_dated_figures(self):
-        home = render(now=now_view(SYSTEM, COPY), layers=layers())
-        cards = home.select("#layers .home-layer")
-        self.assertEqual([card.strong.get_text() for card in cards], ["产品信息", "内容与表现", "视觉媒体", "语言"])
+    MATRIX = {"facts": {"products": 3, "models": 4}, "built_on": "2026-11-13"}
+    LEARNING = {"topics": [{}, {}], "latest_added": "2026-10-22"}
+
+    def test_three_asset_cards_each_with_one_dated_figure(self):
+        home = render(cards=front_cards(self.MATRIX, self.LEARNING, CORPUS))
+        cards = home.select("#now .home-front-card")
+        self.assertEqual([card.strong.get_text() for card in cards], ["产品信息", "产品知识", "语料库"])
         self.assertEqual([card["href"] for card in cards],
-                         ["products/matrix", "assets/content/index", "assets/media/index", "assets/language/index"])
-        self.assertIn("is-first", cards[0]["class"])
-        # Every figure carries the date it was read on.
-        for card in cards:
-            for label in card.select(".home-layer-label"):
-                self.assertRegex(label.get_text(), r"(构建|导出|发布清单) \d{4}-\d{2}-\d{2}")
-        self.assertEqual(cards[3].select_one(".home-layer-fig b").get_text(), "1,372")
-        self.assertIn("29% 句对未批准", cards[3].select_one(".home-layer-weak").get_text())
-        # Chips only where ledger rows give one.
-        self.assertEqual([bool(card.select_one(".home-status")) for card in cards], [True, False, False, False])
-        main = home.select_one("#main-line")
-        self.assertEqual(main.select_one(".home-mainline-text").get_text(), "主线的一句话")
-        self.assertIn("3", main.select_one("li").get_text())
-        self.assertEqual([li.get_text() for li in home.select(".home-doing li")], ["网页化：印刷版说明书持续转成网页版"])
+                         ["products/matrix", "products/knowledge", "assets/language/index"])
+        self.assertEqual([card.select_one(".home-front-fig b").get_text() for card in cards], ["3", "2", "1,372"])
+        self.assertEqual([card.time["datetime"] for card in cards], ["2026-11-13", "2026-10-22", "2026-09-24"])
+        text = home.select_one("#home").get_text()
+        for word in ("已规划", "建设中", "REV-", "主线", "正在做", "最近更新", "台账"):
+            self.assertNotIn(word, text)
+        self.assertEqual([a.strong.get_text() for a in home.select("#doors .home-card")], ["说明书资料库", "市场与政策"])
 
     def test_cards_without_a_source_say_pending_never_zero(self):
-        home = render(now=now_view(None, COPY), layers={**layers(data=False), "coverage": None},
-                      system_entry=False)
-        pending = [b.get_text() for b in home.select("#layers .home-layer-fig b")]
-        self.assertEqual(set(pending), {"待统计"})
-        self.assertEqual(home.select_one("#main-line .is-pending").get_text(), "待统计")
-        self.assertIsNone(home.select_one("#now .home-doing"))
+        cards = front_cards(None, None, None)
+        self.assertEqual([card["id"] for card in cards], ["knowledge", "corpus"])  # no matrix, no 产品信息 card
+        home = render(cards=cards, system_entry=False)
+        self.assertEqual({b.get_text() for b in home.select(".home-front-fig b")}, {"待统计"})
+        self.assertIsNone(home.select_one(".home-front-fig time"))
 
     def test_entry_cards_carry_line_icons_not_glyphs(self):
         home = render()
@@ -115,7 +90,7 @@ class HomeRenderTests(unittest.TestCase):
 
     def test_share_link_shows_only_with_the_package(self):
         self.assertIsNone(render().select_one("#shares"))
-        share = render(share_entry="../ai-share/00_打开分享.html").select_one("#shares a.share-card")
+        share = render(share_entry="../ai-share/00_打开分享.html").select_one("a#shares")
         self.assertEqual(share["href"], "../ai-share/00_打开分享.html")
 
 

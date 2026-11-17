@@ -360,9 +360,9 @@ class RealSphinxTests(unittest.TestCase):
             self.assertTrue((base / "good" / "_static" / "deliverables.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             home = BeautifulSoup(workspace, "html.parser")
-            # The 知识库首页 links the page from its sidebar and from its 说明书生产 card.
-            for where in ("#app-sidebar", "#production"):
-                self.assertEqual(len(home.select(f'{where} a[href="deliverables/index.html"]')), 1, where)
+            # The 知识库首页 links the page from its sidebar's 维护 group only (front cleanup, 2026-11-17).
+            self.assertEqual(len(home.select('#app-sidebar .app-nav-more a[href="deliverables/index.html"]')), 1)
+            self.assertEqual(len(home.select('#home a[href="deliverables/index.html"]')), 0)
             system = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="../deliverables/index.html"', system)
             self.assertIn('href="../system/index.html"', page)

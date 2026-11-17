@@ -778,11 +778,11 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertEqual(head.count('<li class="sw-step '), 3)  # G1–G3; the folded gates are one line below
             self.assertEqual(head.count(' is-current"'), 1)
             self.assertIn('<span class="sw-next-more">其他阶段门：IDML 印刷独立验收', head)
-            # 正在做 is one list: 知识库首页 shows exactly what 系统建设 does, and neither names a ledger row.
+            # 正在做 lives on 系统建设 only; 知识库首页 is for product colleagues (front cleanup, 2026-11-17).
             home = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             doing = re.compile(r"<strong>([^<]+)</strong>：([^<]+)</span>")
             here = doing.findall(page.split('id="now-next"', 1)[1].split("</section>", 1)[0])
-            self.assertEqual(here, doing.findall(home.split('class="home-doing"', 1)[1].split("</div>", 1)[0]))
+            self.assertNotIn('class="home-doing"', home)
             self.assertEqual([lead for lead, _ in here], ["网页化", "多格式输出"])
             self.assertNotIn("代表目标修订", page + home)
             web_lane = page.split('id="lane-web"', 1)[1].split("</article>", 1)[0]
@@ -870,20 +870,22 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('href="../../assets/language/index.html"', page.split('id="language-assets"', 1)[1])
             self.assertNotIn('class="al-bars"', page)
             language = (base / "good" / "assets" / "language" / "index.html").read_text(encoding="utf-8")
-            self.assertIn('class="al-bars"', language)
-            # Corpus coverage must not read as manual localization completion.
-            self.assertIn("句对覆盖", language)
-            self.assertIn("不是说明书的翻译完成率", language)
-            # Snapshot freshness wording comes from the registry, not a fixed cadence.
-            self.assertIn(f"超过 {shipped_registry['corpus']['stale_after_days']} 天显示待复核", language)
+            self.assertIn('class="fr-bars"', language)
+            # 语料库 is a front page (2026-11-17): counts of pairs per language, dated once, never a percentage that
+            # could read as manual localization completion, and no refresh small print.
+            self.assertIn("各语言已有的句对", language)
+            bars = language.split('class="fr-bars"', 1)[1].split("</ul>", 1)[0]
+            self.assertNotIn("%</span>", bars)
+            self.assertNotIn("完成率", language)
+            self.assertNotIn("待复核", language)
             self.assertNotIn("按月快照", page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
             self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
-            # 分享资料 and 最近更新 stay as sections of the 知识库首页, without a search box or filters.
+            # 分享资料 stays on the 知识库首页; 最近更新 left it (front cleanup, 2026-11-17); no search box or filters.
             self.assertIn('id="shares"', workspace)
-            self.assertIn('id="updates"', workspace)
+            self.assertNotIn('id="updates"', workspace)
             for removed in ('id="search"', 'class="filter-bar"'):
                 self.assertNotIn(removed, workspace)
             self.assert_no_sidebar_links_to_overview_sections(base / "good")
@@ -896,7 +898,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('href="system/index.html"', workspace)
             for absent in ("ai-share", 'id="shares"', 'id="search"', 'href="#shares"'):
                 self.assertNotIn(absent, workspace)
-            self.assertIn('id="updates"', workspace)
+            self.assertNotIn('id="updates"', workspace)
             self.assertIn('document.querySelector(".app-menu")', workspace)
             page = (base / "no-share" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             self.assertIn("当前重点", page)

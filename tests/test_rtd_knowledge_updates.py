@@ -7,8 +7,6 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import yaml
-from bs4 import BeautifulSoup
-from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd import knowledge_updates as ku
 from tools.rtd import asset_layers, design_system, market_policy, product_learning, product_matrix, web_manual_value
@@ -51,7 +49,7 @@ class LoadUpdatesTests(unittest.TestCase):
         self.assertEqual(ku.PAGES, {
             "share": None, "home": web_manual_value.HOME,
             "product-knowledge": product_learning.PAGE, "product-matrix": product_matrix.PAGE,
-            "product-attributes": asset_layers.ATTRIBUTES_PAGE,
+            "product-attributes": "products/attributes",
             **{f"asset-{layer['id']}": layer["page"] for layer in asset_layers.LAYERS[1:]},
             "market-policy": market_policy.PAGE, "deliverables": DELIVERABLES_PAGE, "system": SYSTEM_PAGE,
             "design-system": design_system.PAGE, "manual-search": "search", "manual-library": "index",
@@ -127,46 +125,6 @@ class UpdatesViewTests(unittest.TestCase):
         self.assertIsNone(view[0]["docname"])
         self.assertEqual([row["title"] for row in ku.updates_view(entries, built, limit=2)], ["share", "s10"])
         self.assertEqual(ku.updates_view(entries, {}), [])
-
-
-class HomeTemplateTests(unittest.TestCase):
-    def render(self, **context):
-        base = {"share_entry": "", "system_entry": True, "deliverables_entry": True, "design_entry": True,
-                "matrix_entry": True, "updates": []}
-        template = Environment(loader=FileSystemLoader(ASSETS)).get_template("workspace_portal.html")
-        page = template.render(**{**base, **context}, pathto=lambda name, *args: name)
-        return BeautifulSoup(page, "html.parser")
-
-    def test_cards_follow_the_entries_and_carry_no_numbers(self):
-        soup = self.render(matrix_entry=False, system_entry=False)
-        groups = [(s.h3.text, [c.strong.text for c in s.select(".home-card")]) for s in soup.select(".home-group")]
-        self.assertEqual(groups, [("资产 · 按优先级", ["产品信息", "内容与表现", "视觉媒体", "语言"]),
-                                  ("说明书", ["说明书资料库", "搜索说明书正文"]),
-                                  ("生产与方向", ["说明书工作台"]),
-                                  ("参考", ["市场与政策", "设计规范"])])
-        # Without the matrix, 产品信息 opens on 产品知识.
-        self.assertEqual(soup.select_one("#products .home-card")["href"], "products/knowledge")
-        self.assertFalse(re.search(r"\d", "".join(c.text for c in soup.select(".home-card"))))
-        self.assertIsNone(soup.select_one("#shares"))
-
-    def test_rows_link_their_page_and_undated_rows_say_so(self):
-        updates = [{"date": "2026-10-04", "title": "工作入口", "note": "n", "page": "deliverables",
-                    "docname": DELIVERABLES_PAGE, "anchor": "work-map"},
-                   {"date": "2026-09-22", "title": "分享", "note": "n", "page": "share", "docname": None, "anchor": ""},
-                   {"date": "", "title": "无日期", "note": "n", "page": "system", "docname": SYSTEM_PAGE, "anchor": ""}]
-        soup = self.render(share_entry="../ai-share/00_打开分享.html", updates=updates)
-        rows = soup.select("#updates .updates-list > a")
-        self.assertEqual([a["href"] for a in rows],
-                         [f"{DELIVERABLES_PAGE}#work-map", "../ai-share/00_打开分享.html", SYSTEM_PAGE])
-        self.assertEqual([a.time["datetime"] for a in rows[:2]], ["2026-10-04", "2026-09-22"])
-        self.assertIsNone(rows[2].time)
-        self.assertEqual(rows[2].select_one(".updates-undated").text, "日期未记录")
-        self.assertIsNotNone(soup.select_one("#shares .share-card"))
-
-    def test_no_rows_shows_the_empty_note(self):
-        soup = self.render()
-        self.assertIsNone(soup.select_one("#updates .updates-list"))
-        self.assertEqual(soup.select_one("#updates .updates-empty").text, "暂无更新记录。")
 
 
 if __name__ == "__main__":
