@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 from tools.product_matrix_base.stage import (
-    LoadError, PartialWrite, Runner, _check, _instant, _stamp, _text, fields, read_rows, same, table_ids,
+    LoadError, PartialWrite, Runner, _check, _instant, SKU_TIME_FIELD, _stamp, earliest, _text, fields, read_rows, same, table_ids,
 )
 
 MATRIX = "矩阵"
@@ -30,6 +30,8 @@ COUNTS = ("已核实数", "候选数", "冲突数", "组件事实数", "空缺�
 PROJECT = "项目号"  # the leading index; copied from 产品.项目号（仅飞书）, never read out of Feishu by any report
 PROJECT_SOURCE = "项目号（仅飞书）"
 LAUNCH = "上市日期"
+SKU_TIME = "SKU 最早创建时间"  # matrix column: the earliest PLM creation of the product's SKUs in its market; not a launch
+EXCLUDE = "不收录"  # a product a person keeps out of the matrix (the reader would otherwise add it back)
 TRACE = ("来源", "事实数")  # the path back: the pages the row's values were read from, and how many facts it has
 STAMP = "生成时间"
 NUMERIC = {"数值", "整数"}
@@ -121,7 +123,7 @@ def _columns(attributes: list[dict[str, Any]], with_value: set[str]) -> list[dic
     """One column per enabled attribute that has a value, in the dictionary's order."""
     enabled = sorted((a for a in attributes if _text(a.get("状态")) in ("", "启用") and a["属性键"] in with_value),
                      key=lambda a: _number(a.get("排序")) or 0)
-    columns, taken = [], set(IDENTITY) | set(COUNTS) | set(TRACE) | {STAMP, PROJECT, LAUNCH}
+    columns, taken = [], set(IDENTITY) | set(COUNTS) | set(TRACE) | {STAMP, PROJECT, LAUNCH, SKU_TIME}
     for attribute in enabled:
         name = column_name(attribute, taken)
         taken.add(name)
@@ -137,6 +139,8 @@ def _row(product: dict[str, Any], columns: list[dict[str, Any]], main: dict, com
     row[PROJECT] = _text(product.get(PROJECT_SOURCE))
     launch = _instant(product.get(LAUNCH))
     row[LAUNCH] = _stamp(datetime.fromtimestamp(launch, timezone.utc)) if launch is not None else None
+    created = earliest(product.get(SKU_TIME_FIELD))  # a formula in 产品; the matrix only copies it
+    row[SKU_TIME] = _stamp(datetime.fromtimestamp(created, timezone.utc)) if created is not None else None
     counts: Counter[str] = Counter({"组件事实数": components[key]})
     pages: set[str] = set()
     facts_here = 0
@@ -169,9 +173,17 @@ def build(products: list[dict[str, Any]], attributes: list[dict[str, Any]], fact
     main, components = _group(facts)
     columns = _columns(attributes, {key for _product, key in main})
     empty: list[dict[str, Any]] = []
-    rows = {_text(p.get("产品键")): _row(p, columns, main, components, by_source, empty) for p in products}
+    kept = [p for p in products if not p.get(EXCLUDE)]
+    rows = {_text(p.get("产品键")): _row(p, columns, main, components, by_source, empty) for p in kept}
     return {"columns": columns, "rows": rows, "empty": empty, "launch": any(LAUNCH in r for r in rows.values()),
+            "sku_time": any(SKU_TIME in r for r in rows.values()),
             "components": sum(1 for v in components.values() if v)}
+
+
+def require_exclude_field(run: Runner, products_table: str) -> None:
+    """Stop unless 产品 has the 不收录 field: without it every excluded product would silently come back."""
+    if EXCLUDE not in fields(run, products_table, sensitive=True):
+        raise LoadError(f"产品 has no {EXCLUDE} field (renamed or deleted?); excluded products would return")
 
 
 def read_base(run: Runner) -> dict[str, Any]:
@@ -179,9 +191,10 @@ def read_base(run: Runner) -> dict[str, Any]:
     missing = [name for name in ("产品", "属性", "来源", "事实", MATRIX) if name not in ids]
     if missing:
         raise LoadError(f"tables missing in the base: {missing}")
+    require_exclude_field(run, ids["产品"])
     return {
         "ids": ids,
-        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH]),
+        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH, SKU_TIME_FIELD, EXCLUDE], sensitive=True),
         "attributes": read_rows(run, ids["属性"], ["属性键", "中文名", "值类型", "规范单位", "状态", "排序"]),
         "facts": read_rows(run, ids["事实"], ["事实键", "产品键", "属性键", "数值", "文本值", "原单位", "条件",
                                              "核实状态", "来源键", "记录时间", "冲突", "原文"]),
@@ -214,9 +227,13 @@ def plan(run: Runner, base: dict[str, Any], built: dict[str, Any]) -> dict[str, 
         raise LoadError(f"{MATRIX} would hold {len(have) + len(add)} fields, over the limit of {FIELD_LIMIT}")
     names = [f["name"] for f in wanted if f["name"] != STAMP]
     kinds = {f["name"]: f["type"] for f in wanted}
-    current = {_text(r.get("产品键")): r for r in read_rows(run, table_id, [n for n in names if n in have])}
+    rows = read_rows(run, table_id, [n for n in names if n in have], sensitive=True)
+    current = {_text(r.get("产品键")): r for r in rows}
     create, update = _changes(built, current, names, have, kinds)
-    return {"table_id": table_id, "add": add, "create": create, "update": update, "kinds": kinds,
+    removable = [{"key": key, "record_id": row["_record_id"]} for key, row in sorted(current.items())
+                 if key not in built["rows"]]  # the product left 产品 or is marked 不收录; deleted only when named
+    return {"table_id": table_id, "add": add, "create": create, "update": update, "removable": removable,
+            "remove": [], "rows_before": len(rows), "kinds": kinds,
             "clash": [f["name"] for f in wanted if f["name"] in have and have[f["name"]].get("type") != f["type"]],
             "unused": sorted(set(have) - {f["name"] for f in wanted})}
 
@@ -227,6 +244,15 @@ def _equal(want: Any, have: Any, kind: str) -> bool:
     if want in (None, "") or have in (None, "", []):
         return False
     return same(want, have, kind)
+
+
+def select_removal(planned: dict[str, Any], keys: list[str]) -> list[dict[str, Any]]:
+    """The removable rows a person named by product key; naming any other row is a LoadError (nothing is swept)."""
+    removable = {item["key"] for item in planned["removable"]}
+    unknown = sorted(set(keys) - removable)
+    if unknown:
+        raise LoadError(f"--remove-row names rows that are not removable (still in 产品 and not 不收录): {unknown}")
+    return [item for item in planned["removable"] if item["key"] in set(keys)]
 
 
 def write(run: Runner, planned: dict[str, Any], *, now: datetime | None = None, settle: float = 3.0,
@@ -251,6 +277,10 @@ def write(run: Runner, planned: dict[str, Any], *, now: datetime | None = None, 
             _check(run(["+record-upsert", "--table-id", table_id, "--record-id", change["record_id"], "--json",
                         json.dumps(dict(change["fields"], **{STAMP: stamp}), ensure_ascii=False)]),
                    f"{MATRIX} update {change['key']}", sensitive=True)
+        removed = [item["record_id"] for item in planned.get("remove", [])]
+        for start in range(0, len(removed), 100):
+            _check(run(["+record-delete", "--table-id", table_id, "--yes", "--json",
+                        json.dumps({"record_id_list": removed[start:start + 100]})]), f"{MATRIX} remove rows")
     except LoadError as exc:
         failure = exc
     (sleep or __import__("time").sleep)(settle)
@@ -265,12 +295,19 @@ def _read_back(run: Runner, planned: dict[str, Any], created: list[dict[str, Any
     expected = {row["产品键"]: row for row in created}
     expected.update({c["key"]: c["fields"] for c in planned["update"]})
     names = sorted({n for row in expected.values() for n in row} | {"产品键"})
-    back = {_text(r.get("产品键")): r for r in read_rows(run, table_id, names)}
+    rows = read_rows(run, table_id, names, sensitive=True)
+    back = {_text(r.get("产品键")): r for r in rows}
     missing = [key for key in expected if key not in back]
+    lingering = [item["key"] for item in planned.get("remove", []) if item["key"] in back]
     mismatched = [f"{key} · {name}" for key, row in expected.items() if key in back for name, value in row.items()
                   if not _equal(value, back[key].get(name), planned["kinds"].get(name, "text"))]
+    removed = [item["key"] for item in planned.get("remove", []) if item["key"] not in back]
+    arrived = sum(1 for row in created if row["产品键"] in back)
+    expected_rows = planned.get("rows_before", len(rows)) - len(removed) + arrived
     return {"columns_added": len(planned["add"]), "created": len(created), "updated": len(planned["update"]),
-            "missing": missing, "mismatched": mismatched, "rows_after": len(back)}
+            "removed": len(removed), "removed_keys": removed, "lingering": lingering,
+            "missing": missing, "mismatched": mismatched, "rows_after": len(rows),
+            "rows_expected": expected_rows, "row_count_ok": len(rows) == expected_rows}
 
 
 def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list[str]:
@@ -284,7 +321,7 @@ def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list
     produced = sorted(set(names) - set(planned["unused"]))
     if produced:
         raise LoadError(f"{MATRIX} columns still produced or absent, not dropped: {produced}")
-    rows = read_rows(run, planned["table_id"], names)
+    rows = read_rows(run, planned["table_id"], names, sensitive=True)
     filled = sorted({name for row in rows for name in names if row.get(name) not in (None, "", [])})
     if filled:
         raise LoadError(f"{MATRIX} columns to drop still hold values: {filled}")
@@ -299,6 +336,7 @@ def manifest_fields(built: dict[str, Any]) -> list[dict[str, str]]:
     return [{"name": IDENTITY[0], "type": "text"}, {"name": PROJECT, "type": "text"}] + \
         [{"name": n, "type": "text"} for n in IDENTITY[1:]] + \
         ([{"name": LAUNCH, "type": "datetime"}] if built.get("launch") else []) + \
+        ([{"name": SKU_TIME, "type": "datetime"}] if built.get("sku_time") else []) + \
         [{"name": c["name"], "type": c["type"]} for c in built["columns"]] + \
         [{"name": "来源", "type": "text"}, {"name": "事实数", "type": "number"}] + \
         [{"name": n, "type": "number"} for n in COUNTS] + [{"name": STAMP, "type": "datetime"}]

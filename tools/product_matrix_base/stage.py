@@ -164,7 +164,9 @@ def lark_runner(base_token: str, *, profile: str | None = None, identity: str = 
                     return json.loads(text[text.index("{"):])
                 except ValueError:
                     continue
-        return {"ok": False, "error": {"message": (done.stdout + done.stderr)[:200]}}
+        # Never echo raw output: a failed read can print row data (project numbers included).
+        return {"ok": False, "error": {"code": f"exit {done.returncode}",
+                                       "message": f"lark-cli gave no JSON (exit {done.returncode})"}}
     return run
 
 
@@ -185,26 +187,29 @@ def table_ids(run: Runner) -> dict[str, str]:
     return {t["name"]: t.get("id") or t.get("table_id") for t in data.get("tables") or data.get("items") or []}
 
 
-def fields(run: Runner, table_id: str) -> dict[str, dict[str, Any]]:
-    data = _check(run(["+field-list", "--table-id", table_id, "--limit", "200"]), "field list")
+def fields(run: Runner, table_id: str, *, sensitive: bool = False) -> dict[str, dict[str, Any]]:
+    data = _check(run(["+field-list", "--table-id", table_id, "--limit", "200"]), "field list", sensitive=sensitive)
     return {f["name"]: f for f in data.get("fields") or data.get("items") or []}
 
 
 FIELDS_PER_READ = 50  # the CLI projects at most 50 fields per record list
 
 
-def read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, Any]]:
-    """Every row of a table with the named fields, read 50 fields at a time and merged by record id."""
+def read_rows(run: Runner, table_id: str, names: list[str], *, sensitive: bool = False) -> list[dict[str, Any]]:
+    """Every row of a table with the named fields, read 50 fields at a time and merged by record id.
+
+    ``sensitive``: the rows carry project numbers, so a failed read reports only the CLI's error code.
+    """
     if len(names) <= FIELDS_PER_READ:
-        return _read_rows(run, table_id, names)
+        return _read_rows(run, table_id, names, sensitive)
     merged: dict[str, dict[str, Any]] = {}
     for start in range(0, len(names), FIELDS_PER_READ):
-        for row in _read_rows(run, table_id, names[start:start + FIELDS_PER_READ]):
+        for row in _read_rows(run, table_id, names[start:start + FIELDS_PER_READ], sensitive):
             merged.setdefault(row["_record_id"], {}).update(row)
     return list(merged.values())
 
 
-def _read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, Any]]:
+def _read_rows(run: Runner, table_id: str, names: list[str], sensitive: bool = False) -> list[dict[str, Any]]:
     """Every row of a table (paged, 200 at a time), as {"_record_id", field: value} for the named fields."""
     rows: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -213,7 +218,7 @@ def _read_rows(run: Runner, table_id: str, names: list[str]) -> list[dict[str, A
         args = ["+record-list", "--table-id", table_id, "--limit", "200", "--offset", str(offset)]
         for name in names:
             args += ["--field-id", name]
-        data = _check(run(args), "record list")
+        data = _check(run(args), "record list", sensitive=sensitive)
         columns = data.get("fields") or []
         values = data.get("data") or []
         ids = data.get("record_id_list") or []
@@ -250,6 +255,70 @@ def _instant(value: Any) -> int | None:
     except ValueError:
         return None
     return int((moment if moment.tzinfo else moment.replace(tzinfo=CST)).timestamp())
+
+
+_MOMENT = re.compile(r"(\d{4})[/-](\d{1,2})[/-](\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?"
+                     r"(?:\.\d+)?\s*(?:\(?(?:GMT|UTC)?([+-]\d{1,2})(?::?(\d{2}))?\)?|(Z))?")
+
+
+SKU_TIME_FIELD = "SKU 最早创建时间（本市场）"  # 产品 formula: earliest PLM SKU creation in the product's market
+# PLM holds SKU creation times from its data load in late 2023: an earlier-or-equal time is only an upper bound for when
+# the product existed, never its start (operator, 2026-11-17).
+PLM_LOADED_UNTIL = datetime(2023, 12, 31, 23, 59, 59, tzinfo=CST)
+SERIAL_LIMIT = 10_000_000  # below this a number is a spreadsheet day serial, above it epoch milliseconds
+_SERIAL = re.compile(r"\d{4,6}(?:\.\d+)?")
+_SERIAL_EPOCH = datetime(1899, 12, 30, tzinfo=CST)
+
+
+EARLIEST_PLAUSIBLE = datetime(2015, 1, 1, tzinfo=CST)
+
+
+def _plausible(seconds: int | None) -> int | None:
+    """A product time only between 2015 and tomorrow; anything else (text "2024" read as a 1905 serial, a mistyped
+    year) is treated as no value rather than shown."""
+    if seconds is None or seconds < EARLIEST_PLAUSIBLE.timestamp() or seconds > time.time() + 86400:
+        return None
+    return seconds
+
+
+def _serial(days: float) -> int:
+    """A formula's date as a spreadsheet day serial (days since 1899-12-30, Beijing time) to epoch seconds."""
+    return round((_SERIAL_EPOCH + timedelta(days=days)).timestamp())
+
+
+def _moment(match: re.Match[str]) -> int | None:
+    """One matched date text as epoch seconds (no offset: Beijing time); None for an impossible date."""
+    year, month, day, hour, minute, second, sign_hours, offset_minutes, zulu = match.groups()
+    hours = 0 if zulu else (int(sign_hours) if sign_hours else 8)
+    sign = -1 if sign_hours and sign_hours.startswith("-") else 1
+    zone = timezone(timedelta(hours=hours, minutes=sign * int(offset_minutes or 0)))
+    try:
+        moment = datetime(int(year), int(month), int(day), int(hour or 0), int(minute or 0), int(second or 0),
+                          tzinfo=zone)
+    except ValueError:
+        return None
+    return int(moment.timestamp())
+
+
+def earliest(value: Any) -> int | None:
+    """The earliest moment in a lookup or formula cell, as epoch seconds.
+
+    Such a cell may hold one value or several (a lookup's raw values come back as a list, or as text joined by commas
+    like ``2024/07/30 10:00 (GMT+8),2025/...``), each as epoch milliseconds or date text; text without an offset is
+    Beijing time. A formula field that yields a date comes back as a day serial such as ``45893.4375``.
+    """
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return _plausible(_serial(value) if value < SERIAL_LIMIT else int(value // 1000))
+    if isinstance(value, str) and _SERIAL.fullmatch(value.strip()):
+        return _plausible(_serial(float(value)))
+    if isinstance(value, list):
+        found = [m for m in (earliest(v) for v in value) if m is not None]
+        return min(found) if found else None
+    text = value.get("value") if isinstance(value, dict) and "value" in value else _text(value)
+    if not isinstance(text, str):
+        return earliest(text)
+    moments = [m for m in (_plausible(_moment(match)) for match in _MOMENT.finditer(text)) if m is not None]
+    return min(moments) if moments else None
 
 
 def same(want: Any, have: Any, kind: str) -> bool:
