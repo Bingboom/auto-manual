@@ -510,7 +510,8 @@ class RtdPortalTests(unittest.TestCase):
         sections = {"index.html": knowledge, "search.html": knowledge, "workspace/index.html": knowledge,
                     **dict.fromkeys(("products/knowledge.html", "products/matrix.html", "market/policy.html",
                                      "assets/media/index.html", "assets/language/index.html",
-                                     "products/item/FAKE-A.html", "products/item/FAKE-B.html"), knowledge),
+                                     "products/item/FAKE-A.html", "products/item/FAKE-B.html",
+                                     "products/table.html", "products/compare.html"), knowledge),
                     "workspace/deliverables/index.html": workbench,
                     "workspace/system/index.html": [("Agent 能力", ["系统建设"])],
                     "workspace/design/index.html": design}
@@ -531,7 +532,9 @@ class RtdPortalTests(unittest.TestCase):
                   "workspace/design/index.html": "工作资料 / 设计规范",
                   "workspace/index.html": "工作资料 / 知识资产",
                   "products/knowledge.html": "工作资料 / 知识资产 / 产品知识",
-                  "products/item/FAKE-A.html": "工作资料 / 知识资产 / 产品信息 / 产品档案"}
+                  "products/item/FAKE-A.html": "工作资料 / 知识资产 / 产品信息 / 产品档案",
+                  "products/compare.html": "工作资料 / 知识资产 / 产品信息 / 产品对比",
+                  "products/table.html": "工作资料 / 知识资产 / 产品信息 / 参数表"}
         for page, crumb in crumbs.items():
             soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
             self.assertEqual(" ".join(soup.select_one(".app-crumb").get_text().split()), crumb, page)
@@ -541,7 +544,10 @@ class RtdPortalTests(unittest.TestCase):
         # Each code opens its 产品档案, which leads back to 产品库 and to the project there.
         self.assertEqual([a["href"] for a in library.select(".pl-chip a")],
                          ["item/FAKE-A.html", "item/FAKE-B.html"])
+        self.assertEqual([(a.get_text(), a["href"]) for a in library.select(".pt-tabs a")],
+                         [("产品库", "#"), ("产品对比", "compare.html"), ("参数表", "table.html")])
         profile = BeautifulSoup((out / "products/item/FAKE-A.html").read_text(encoding="utf-8"), "html.parser")
+        self.assertEqual(profile.select_one(".pf-compare")["href"], "../compare.html?p=FAKE-A")
         self.assertEqual(profile.select_one(".pf-back")["href"], "../matrix.html")
         self.assertEqual(profile.select_one(".fr-head p a")["href"], "../matrix.html?project=P-FAKE-1")
         self.assertEqual(library.select_one(".fr-head p").get_text(), "2 个产品 · 更新于 2026-01-02")
@@ -592,11 +598,12 @@ class RtdPortalTests(unittest.TestCase):
             to_self = [link.get_text() for link in links
                        if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
-            # 知识资产's first page, the search page and product pages are reached without their own left row.
-            also = page in ("workspace/index.html", "search.html") or page.startswith("products/item/")
+            # 知识资产's first page, the search page and product subpages are reached without their own left row.
+            under_product = page.startswith("products/item/") or page in ("products/table.html", "products/compare.html")
+            also = page in ("workspace/index.html", "search.html") or under_product
             self.assertEqual(len(to_self), 0 if also else 1, (page, to_self))
             self.assertEqual(current, to_self, page)
-            if page.startswith("products/item/"):
+            if under_product:
                 self.assertEqual([(a.span.get_text(), a["aria-current"]) for a in sidebar.select("a.active")],
                                  [("产品信息", "true")], page)
 

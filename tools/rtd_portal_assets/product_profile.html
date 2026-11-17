@@ -8,9 +8,11 @@
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/product-profile.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/product-tables.css', 1) }}">
 <script defer src="{{ pathto('_static/product-profile.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{% from "_product_tabs.html" import product_tabs with context %}
 {#- 产品档案 (step 13; REV-53; tools/rtd/product_profile.py). A front page: the product's name and one line, then
     its parameters one market at a time. A value's source shows only when it is clicked. Without JavaScript every
     market shows in turn and the values are plain text. -#}
@@ -35,10 +37,12 @@
 <div class="app-content">
 {{ site_topbar('知识库', '产品档案') }}
 <main class="fr-page pf-page">
+{{ product_tabs('products/matrix') }}
 <a class="pf-back" href="{{ pathto('products/matrix')|e }}">‹ 产品库</a>
 <header class="fr-head pf-head">
   <h1>{{ name|e }}</h1>
   <p><b>{{ model|e }}</b>{% for part in classes %} · {{ part|e }}{% endfor %}{% if project %} · <a href="{{ pathto('products/matrix')|e }}?project={{ project|urlencode }}">{{ project|e }}</a>{% endif %} · <span class="pf-date">SKU 创建时间 {% for date in sku_dates %}<span data-market-date="{{ date.code|e }}"{% if not loop.first %} hidden{% endif %}>{{ date.text|e if date.text else '暂无' }}</span>{% else %}暂无{% endfor %}</span></p>
+  <a class="pf-compare" href="{{ pathto('products/compare')|e }}?p={{ model|urlencode }}">加入对比</a>
 </header>
 {%- if markets|length > 1 %}
 <div class="pf-switch" role="tablist" aria-label="市场" data-pf-switch hidden>{% for market in markets %}<button type="button" role="tab" data-market-tab="{{ market.code|e }}" aria-selected="{{ 'true' if loop.first else 'false' }}">{{ market.label|e }}</button>{% endfor %}</div>

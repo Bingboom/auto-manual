@@ -508,6 +508,51 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   publish manifest; without it they are absent.
 - Tests: `tests/test_rtd_product_profile.py`, `tests/product_profile_ui.test.mjs`, and
   the real-Sphinx sidebar build in `tests/test_rtd_portal.py`.
+- The head also has 加入对比, which opens [产品对比](#产品对比与参数表) with this model.
+
+### 产品对比与参数表
+
+Both read the same snapshot (`tools/rtd/product_tables.py`; step 13, REV-53), private role
+only, and, like 产品档案, its decided cells: each shows a cell's `display`, sorts and
+compares by its `number` (else its text), and a test condition is its own column or row
+(`额定功率（STC）`). They are built whenever 产品库 has a snapshot, so its tabs never point to
+a missing page; a snapshot without cells makes both say 产品数据暂时读不到，请稍后再看。 with no
+figures, and one without products 还没有产品数据。. The
+product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 (`_product_tabs.html`; a
+产品档案 counts as 产品库).
+
+- **参数表** (`/products/table.html`, `product_table.html`, `_static/product-table.js`;
+  the operator's 产品矩阵 frame, named 参数表 so it is not confused with 产品库): one table
+  per category, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
+  市场, 项目 (未归入 when none), SKU 创建时间 (each row's own market; 暂无 when that market has
+  none), then the (parameter, condition) columns that
+  category's products state, in page order. A figure column's head names its unit and its cells
+  show the bare number (the cell's `number`, no trailing .0), so the downloaded CSV holds plain numbers; a cell
+  without a number shows its `display` in full. 产品档案 and 产品对比 show `display` as it is. With JavaScript:
+  category pills, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
+  project last), sorting by any column (in a number column: numbers, then cells holding
+  only text, then 暂无, in either direction) and 下载表格: the visible rows of the open
+  table as `参数表-<类别>.csv`, UTF-8 with a BOM so spreadsheet programs read the Chinese
+  text. A cell that a spreadsheet would read as a formula (starting with `=`, `+`, `-`,
+  `@`, a tab or CR) gets a leading apostrophe, so Excel and WPS show it as text and run
+  nothing; a plain number, negative included, stays a number. The product column stays
+  fixed while the table scrolls sideways. Long texts show four lines with the whole text as a
+  tooltip; the CSV keeps the whole text. Without JavaScript every table shows in full.
+- **产品对比** (`/products/compare.html`, `product_compare.html`,
+  `_static/product-compare.js`): two to four products side by side in one market. The
+  visitor adds products by code or name (a unique match), removes them with ×, picks the
+  market and can keep only 只看不同的参数. The choice stays in the URL
+  (`?p=A,B&market=US`), so a comparison can be shared. As on 产品档案, a row differs only
+  when at least two products sold in that market state a value and those values
+  differ; a missing value shows 暂无 and takes no part; a product not sold there says
+  无<市场>版本. Only allow-listed model codes reach the page, so each product link has its
+  page. After a
+  product is added or removed the market moves to one every picked product is sold in,
+  when there is one. The page carries every product's values as one JSON block
+  (`|tojson`, so `<` and `&` are escaped) and writes everything with `textContent`.
+  Without JavaScript it says it needs JavaScript.
+- Tests: `tests/test_rtd_product_tables.py`, `tests/product_tables_ui.test.mjs`, and the
+  real-Sphinx sidebar build.
 
 ### 产品分类 snapshot
 
