@@ -148,8 +148,8 @@ class RtdPortalTests(unittest.TestCase):
         shells = [p.relative_to(out).as_posix() for p in out.rglob("*.html")
                   if 'id="app-sidebar"' in p.read_text(errors="ignore")]
         self.assertEqual(sorted(shells), ["index.html", "search.html"])
-        # 视觉媒体 and its 素材清单 (and the design page whose art they show) are private only.
-        for private in ("assets/media/index.html", "assets/media/inventory.html", "workspace/design/assets",
+        # 视觉媒体 (and the design page whose art and inventory it relies on) are private only.
+        for private in ("assets/media/index.html", "workspace/design/assets",
                         ):
             self.assertFalse((out / private).exists(), private)
         root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
@@ -472,12 +472,11 @@ class RtdPortalTests(unittest.TestCase):
         # Layout of 2026-11-17: four main sections in the top bar; the left list holds the current section only.
         knowledge = [("知识资产", ["产品信息", "产品知识", "说明书资料库", "语料库", "视觉媒体", "市场与政策"])]
         workbench = [("工作台", ["说明书工作台"])]
-        design = [("设计规范", ["设计规范", "内容与表现", "素材清单"])]
+        design = [("设计规范", ["设计规范", "内容与表现"])]
         sections = {"index.html": knowledge, "search.html": knowledge, "workspace/index.html": knowledge,
                     **dict.fromkeys(("products/knowledge.html", "products/matrix.html", "market/policy.html",
                                      "assets/media/index.html", "assets/language/index.html"), knowledge),
                     "workspace/deliverables/index.html": workbench, "assets/content/index.html": design,
-                    "assets/media/inventory.html": design,
                     "workspace/system/index.html": [("Agent 能力", ["系统建设"])],
                     "workspace/design/index.html": design}
         # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
@@ -521,8 +520,8 @@ class RtdPortalTests(unittest.TestCase):
             text = main.get_text()
             for word in ("已规划", "建设中", "REV-", "台账", "构建时读取", "属性字典", "待核实与冲突", ".csv", ".yaml"):
                 self.assertNotIn(word, text, (page, word))
-        # Only the maintenance pages (内容与表现, 素材清单) keep the six blocks.
-        for page in ("assets/content/index.html", "assets/media/inventory.html"):
+        # Only the maintenance views keep the six blocks: 内容与表现, and 视觉媒体's detail at the foot of 设计规范 › 图标与素材.
+        for page in ("assets/content/index.html", "workspace/design/index.html"):
             soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
             self.assertEqual([b["id"] for b in soup.select("section.al-block")],
                              ["scale", "maintained", "inventory", "used-by", "sources", "gaps"], page)

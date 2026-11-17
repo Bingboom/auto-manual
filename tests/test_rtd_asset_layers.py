@@ -33,8 +33,17 @@ def publication(model: str, region: str, lang: str, url: str) -> dict:
 def render(template: str, **context) -> BeautifulSoup:
     env = Environment(loader=FileSystemLoader(ASSETS))
     nav = {"system": True, "deliverables": True, "design": True, "matrix": True}
-    page = env.get_template(template).render(site_nav=nav, pathto=lambda name, *args: name, **context)
+    if template == INVENTORY:
+        # 视觉媒体's inventory is a macro shown at the foot of 设计规范 › 图标与素材.
+        source = env.from_string('{% import "_media_inventory.html" as inv with context %}'
+                                 "{{ inv.media_inventory(layer) }}")
+    else:
+        source = env.get_template(template)
+    page = source.render(site_nav=nav, pathto=lambda name, *args: name, **context)
     return BeautifulSoup(page, "html.parser")
+
+
+INVENTORY = "_media_inventory.html"
 
 
 class MediaTests(unittest.TestCase):
@@ -128,7 +137,7 @@ class TemplateTests(unittest.TestCase):
                    "recipes": None, "recipe_sets": [], "families": None, "components": None,
                    "design_tabs": al.DESIGN_TABS, "web_languages": None}
         media = {**al.layer("media"), "build_date": "2026-11-16", "registry": None, "symbols": None}
-        for template, view in (("asset_content.html", content), ("asset_media_inventory.html", media)):
+        for template, view in (("asset_content.html", content), (INVENTORY, media)):
             page = render(template, layer=view)
             figures = [fig.strong.get_text() for fig in page.select("#scale .al-fig")]
             self.assertTrue(figures and set(figures) == {"待统计"}, (template, figures))
@@ -140,7 +149,7 @@ class TemplateTests(unittest.TestCase):
             path.write_text(REGISTRY, encoding="utf-8")
             view = {**al.layer("media"), "build_date": "2026-11-16", "registry": am.registry_view(path),
                     "symbols": None}
-        page = render("asset_media_inventory.html", layer=view)
+        page = render(INVENTORY, layer=view)
         rows = page.select("[data-al-list] tbody tr")
         self.assertEqual([row["data-languages"] for row in rows], ["", "en", "en fr"])  # finished first, by type
         self.assertEqual(rows[0]["data-neutral"], "true")

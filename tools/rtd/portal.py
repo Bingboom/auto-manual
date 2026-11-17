@@ -461,7 +461,8 @@ def collect_workspace_pages(app):
                               "design_entry": design is not None,
                               "matrix_entry": matrix is not None, "statistics": data}, DELIVERABLES_TEMPLATE
     if design is not None:
-        yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app)}, DESIGN_TEMPLATE
+        yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app),
+                            "media_inventory": layers["media_inventory"]}, DESIGN_TEMPLATE
     # Keep old shared URLs working after removing 系统数据 from the knowledge base.
     yield "workspace/data/index", {
         "moved_target": f"{DELIVERABLES_PAGE}#statistics",

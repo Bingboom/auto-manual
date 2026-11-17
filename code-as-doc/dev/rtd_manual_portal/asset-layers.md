@@ -15,7 +15,7 @@ not for maintainers) split them into front pages and maintenance pages:
 | 语料库 (was 语言) | `/assets/language/` | `asset_language.html` | 资产 (front) |
 | 视觉媒体 | `/assets/media/` | `asset_media.html` | 知识资产 (front) |
 | 内容与表现 | `/assets/content/` | `asset_content.html` | 设计规范 (maintenance) |
-| 素材清单 (视觉媒体's inventory) | `/assets/media/inventory.html` | `asset_media_inventory.html` | 设计规范 (maintenance) |
+| 视觉媒体's inventory | `/workspace/design/#assets-inventory` | `_media_inventory.html` (folded at the foot of 设计规范 › 图标与素材) | 设计规范 (maintenance) |
 
 `tools/rtd/asset_layers.py` builds the views (layer order, content, media,
 language), `tools/rtd/asset_media.py` reads the media inventories, and
@@ -34,12 +34,12 @@ The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四
 | 知识资产 | 产品信息, 产品知识, 说明书资料库, 语料库, 视觉媒体, 市场与政策 | 知识资产 (`workspace/index.html`) |
 | 工作台 | 说明书工作台 | 说明书工作台 |
 | Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
-| 设计规范 | 设计规范, 内容与表现, 素材清单 | 设计规范 |
+| 设计规范 | 设计规范, 内容与表现 | 设计规范 |
 
 The layout image shows the 知识资产 list only. The lists of 工作台, Agent 能力 and 设计规范 were proposed as
 defaults and confirmed by the operator on 2026-11-17 (「都按建议」, in the orchestrating session: 工作台 =
-说明书工作台, Agent 能力 = 系统建设, 设计规范 = 设计规范 + 内容与表现; 素材清单 joined 设计规范 when 视觉媒体
-became a page for colleagues), and the shell as built (「先这样吧」); the canvas's colours are not used, the
+说明书工作台, Agent 能力 = 系统建设, 设计规范 = 设计规范 + 内容与表现; 视觉媒体's inventory folded into 设计规范 ›
+图标与素材 when 视觉媒体 became a page for colleagues — operator: 「按这个改」, so no page duplicates another), and the shell as built (「先这样吧」); the canvas's colours are not used, the
 site keeps its own palette. A page's section is declared once, in the `site_sections` table of
 `_site_shell.html`: a `list` entry is a left entry, an `also` entry belongs to the section without one, and
 `under` names the left entry it sits beneath. A key in no section selects no section and gets
@@ -91,12 +91,14 @@ its type and, for a symbol the published manuals show, 用于 <n> 本说明书. 
 the 设计规范 page (`design_assets.asset_gallery`) and its published copies under `workspace/design/assets/`;
 a caption is the gallery note up to its first colon. No keys, hashes, paths, statuses or numbered blocks. Without
 the design page the page says 暂时没有可显示的素材. The page's former section anchors (`#scale` … `#gaps`,
-`#registry`, `#symbols`) forward to 素材清单.
+`#registry`, `#symbols`) forward to `workspace/design/index.html#assets-inventory`.
 
 ## The shared anatomy (maintenance pages)
 
-内容与表现 and 素材清单 (the former 视觉媒体 page) use `_asset_layer.html`: a head (the title, one
-line and the build date), then six blocks with fixed ids, in this order:
+内容与表现 uses `_asset_layer.html`: a head (the title, one
+line and the build date), then six blocks; 视觉媒体's inventory (`_media_inventory.html`, the former 视觉媒体 page's
+body) is the same six blocks without the head, folded as 素材登记与共用符号明细 (`#assets-inventory`) at the foot of
+设计规范 › 图标与素材, beside the gallery and rules it counts with fixed ids, in this order:
 
 | Block | id | Answers |
 | --- | --- | --- |
@@ -127,7 +129,7 @@ instances bound to models (`production_evidence.component_references`); links
 to the six 设计规范 tabs for styles, which are kept only there. Use per chapter or
 component is 待统计.
 
-**素材清单.** `data/asset_registry.csv`: registered, finished, language-neutral and
+**视觉媒体's inventory.** `data/asset_registry.csv`: registered, finished, language-neutral and
 every-model counts; a table of every row (key, type, models, regions, language,
 status, the first 12 hex digits of the content hash, version) with filters for
 type, model, region and language and 只看未完成 (`_static/asset-layers.js`; an
@@ -223,7 +225,7 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 `tests/asset_layers_ui.test.mjs` and `tests/media_front_ui.test.mjs` (the filters), and the real-Sphinx sidebar test
 in `tests/test_rtd_portal.py` (each page's section, left list and breadcrumb, an
 unplaced page selecting no section, the moved 属性字典 address, the front pages without chips or small print, the six blocks
-on 内容与表现 and 素材清单, 视觉媒体 absent from the public build, and that the public build links no internal page);
+on 内容与表现 and in 设计规范's #assets-inventory, 视觉媒体 absent from the public build, and that the public build links no internal page);
 `tests/test_rtd_site_shell.py` (placement of every page key, crumbs, optional sections, the public shell);
 `tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
 top bar).

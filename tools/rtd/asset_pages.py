@@ -93,13 +93,13 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
         ("products/attributes", {"moved_target": moved, "moved_title": "产品信息" if matrix else "产品知识"},
          "moved_page.html"),
         ("assets/content/index", {"layer": content}, "asset_content.html"),
-        # 视觉媒体 is a front page for colleagues; the inventory (counts, hashes, gaps) is 设计规范's 素材清单.
+        # 视觉媒体 is a front page for colleagues; its inventory (counts, hashes, gaps) sits at the foot of
+        # 设计规范 › 图标与素材 (`media_inventory` below, passed to the design page by portal.py).
         ("assets/media/index", {"media": front_view((design or {}).get("asset_library"), (design or {}).get("grounds") or {},
                                                     media["symbols"], build_date=build_date)}, "asset_media.html"),
-        ("assets/media/inventory", {"layer": media}, "asset_media_inventory.html"),
         ("assets/language/index", {"layer": language}, "asset_language.html"),
     ]
-    return {"product": {"value": extra["product_value"]}, "pages": pages,
+    return {"product": {"value": extra["product_value"]}, "pages": pages, "media_inventory": media,
             "cards": front_cards(matrix, learning, language["corpus"]),
             "system": {"asset_map": extra["capability_map"], "asset_path": extra["path"],
                        "asset_layers": layers.layer_entries(matrix is not None), "asset_chips": chips}}

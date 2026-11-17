@@ -51,7 +51,6 @@ class SiteShellTests(unittest.TestCase):
             ("system", "系统建设"): "工作资料 / Agent 能力 / 系统建设",
             ("design-system", "设计规范"): "工作资料 / 设计规范",
             ("asset-content", "内容与表现"): "工作资料 / 设计规范 / 内容与表现",
-            ("asset-media-inventory", "素材清单"): "工作资料 / 设计规范 / 素材清单",
         }
         for (key, crumb), expected in cases.items():
             self.assertEqual(crumb_text(shell(key, crumb)), expected, key)
@@ -61,7 +60,7 @@ class SiteShellTests(unittest.TestCase):
         tabs = {a.get_text(): a["href"] for a in page.select(".app-tabs a")}
         # Without 说明书工作台 or 系统建设 their sections are absent; 设计规范 opens on 内容与表现 without its own page.
         self.assertEqual(tabs, {"知识资产": "workspace/index", "设计规范": "assets/content/index"})
-        self.assertEqual([a.span.get_text() for a in page.select("#app-sidebar a.app-nav-link")], ["内容与表现", "素材清单"])
+        self.assertEqual([a.span.get_text() for a in page.select("#app-sidebar a.app-nav-link")], ["内容与表现"])
         self.assertIsNone(page.select_one('.app-tool[aria-label="Agent 能力"]'))
         knowledge = shell("overview", "首页", {**ALL, "matrix": False})
         self.assertNotIn("产品信息", [a.span.get_text() for a in knowledge.select("#app-sidebar a.app-nav-link")])

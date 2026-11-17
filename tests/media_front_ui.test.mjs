@@ -10,9 +10,9 @@ sandbox.globalThis = sandbox;
 vm.runInNewContext(script, sandbox);
 const {movedTarget, matches, usedText} = sandbox.MediaFront;
 
-test('the old inventory anchors forward to 素材清单, others stay', () => {
-  assert.equal(movedTarget('#registry'), 'inventory.html#registry');
-  assert.equal(movedTarget('#used-by'), 'inventory.html#used-by');
+test('the old inventory anchors forward to 设计规范 › 图标与素材, others stay', () => {
+  assert.equal(movedTarget('#registry'), '../../workspace/design/index.html#assets-inventory');
+  assert.equal(movedTarget('#used-by'), '../../workspace/design/index.html#assets-inventory');
   assert.equal(movedTarget('#gallery'), '');
   assert.equal(movedTarget(''), '');
 });

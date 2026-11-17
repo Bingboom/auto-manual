@@ -1,14 +1,14 @@
 'use strict';
 // 视觉媒体 front page (tools/rtd_portal_assets/asset_media.html). Without JavaScript every tile shows and the filters
 // stay hidden. With it: a type chip and a search narrow the tiles, a tile opens a larger view, and the page's old
-// section anchors (now on 素材清单) forward there. The pure parts are on globalThis.MediaFront for
+// section anchors forward to the inventory at the foot of 设计规范 › 图标与素材. The pure parts are on globalThis.MediaFront for
 // tests/media_front_ui.test.mjs.
 (() => {
-  // The section ids this page had before the inventory moved to 素材清单 (assets/media/inventory.html).
+  // The section ids this page had before its inventory moved to 设计规范 › 图标与素材 (#assets-inventory).
   const MOVED = ['scale', 'maintained', 'inventory', 'registry', 'symbols', 'used-by', 'sources', 'gaps'];
   const movedTarget = hash => {
     const id = decodeURIComponent((hash || '').replace(/^#/, ''));
-    return MOVED.includes(id) ? `inventory.html#${id}` : '';
+    return MOVED.includes(id) ? '../../workspace/design/index.html#assets-inventory' : '';
   };
   const matches = (tile, filter) => {
     if (filter.type && tile.type !== filter.type) return false;

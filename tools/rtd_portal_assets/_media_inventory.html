@@ -1,27 +1,11 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>素材清单</title><meta name="description" content="素材清单：素材登记表与共用符号的规模、维护位置、清单、使用、出处与缺口。">
-<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/asset-layers.css', 1) }}">
-<script defer src="{{ pathto('_static/asset-layers.js', 1) }}"></script>
-</head>
-{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{#- The maintenance detail of 视觉媒体 (registry and shared symbols: counts, where maintained, inventory, use,
+    sources, gaps), shown at the foot of 设计规范 › 图标与素材 (operator, 2026-11-17: 视觉媒体 is the colleagues' page; its
+    detail lives with the drawing rules, not as a page of its own). Context: tools/rtd/asset_layers.py media_view and
+    tools/rtd/asset_media.py. Filters: _static/asset-layers.js. -#}
 {% import '_asset_layer.html' as al with context %}
-{#- 素材清单 (设计规范; the maintenance view of asset layer 3, 视觉媒体 — whose front page is asset_media.html). Context: tools/rtd/asset_layers.py media_view, tools/rtd/asset_media.py. The asset
-    registry as counts and a list filtered by type, model, region and language (asset-layers.js; ALL rows and rows
-    without language-specific text match every model, region or language); the shared symbols with their source,
-    hash and the published language versions that show them. The registry has no version column: said, not hidden. -#}
+{%- macro media_inventory(m) -%}
 {%- set engineering = 'https://github.com/Bingboom/auto-manual' -%}
-{%- set m = dict(layer, title='素材清单', lead='素材登记表与共用符号的规模、维护位置、清单与缺口。视觉媒体页是给同事浏览的那一版。', value='') -%}{%- set r = m.registry -%}{%- set s = m.symbols -%}
-<body class="app kb al-root">
-{{ site_sidebar('asset-media-inventory', site_nav) }}
-<div class="app-content">
-{{ site_topbar('知识库', '素材清单') }}
-<main class="al-page">
-{{ al.head(m) }}
+{%- set r = m.registry -%}{%- set s = m.symbols -%}
 <div class="al-grid">
   {%- call al.block('scale', 1, '规模') %}
   <div class="al-figs">
@@ -36,7 +20,7 @@
   <dl class="al-kv">
     <dt>素材登记</dt><dd><a href="{{ engineering }}/blob/main/data/asset_registry.csv" target="_blank" rel="noopener"><code>data/asset_registry.csv</code> ↗</a></dd>
     <dt>共用符号</dt><dd><a href="{{ engineering }}/blob/main/docs/renderers/web/assets/shared/symbols/manifest.json" target="_blank" rel="noopener">符号清单 ↗</a></dd>
-    <dt>画法与选材</dt><dd><a href="{{ pathto('workspace/design/index') }}#assets">设计规范 › 图标与素材</a>：先复用再提取；这里只放清单。</dd>
+    <dt>画法与选材</dt><dd>本页上方的规则与图块：先复用再提取。</dd>
   </dl>
   {%- endcall %}
 </div>
@@ -101,6 +85,4 @@
   </ul>
   {%- endcall %}
 </div>
-<p class="al-foot">原「说明书工作台 › 资产与证据」里的插图资产口径移到这里；设计规范「图标与素材」只留画法规则。</p>
-</main>
-</div>{{ site_script() }}</body></html>
+{%- endmacro -%}
