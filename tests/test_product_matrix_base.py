@@ -398,6 +398,7 @@ class MatrixBuildTest(unittest.TestCase):
 class CellsTest(unittest.TestCase):
     ATTRIBUTES = [{"属性键": "capacity_wh", "值类型": ["数值"], "规范单位": "Wh"},
                   {"属性键": "pv_power_w", "值类型": ["数值"], "规范单位": "W"},
+                  {"属性键": "ac_input", "值类型": ["文本"]},
                   {"属性键": "old_key", "状态": ["停用"]}]
     SOURCES = [{"来源键": "web/a", "来源类型": ["网页说明书"]}, {"来源键": "sheet/a", "来源类型": ["规格书"]}]
 
@@ -414,6 +415,19 @@ class CellsTest(unittest.TestCase):
         [cell] = self.build(facts)
         self.assertEqual((cell["number"], cell["verified"], cell["candidates"]),
                          (333, True, [cells.value_id("s"), cells.value_id("w")]))
+
+    def test_condition_names_match_without_word_boundaries(self):
+        self.assertEqual([cells.cell_condition(c) for c in ("STC条件", "NOCT: 800W/m²", "BNPI", "BNPIX", "to 70% capacity")],
+                         ["STC", "NOCT", "BNPI", None, None])
+
+    def test_a_bare_range_shows_its_printed_text_and_equal_numbers_agree(self):
+        facts = [{"事实键": "a", "产品键": "P/US", "属性键": "ac_input", "来源键": "web/a", "文本值": "100~120",
+                  "原文": "AC Input: 100~120V"},
+                 {"事实键": "b", "产品键": "P/JP", "属性键": "capacity_wh", "来源键": "web/a", "数值": 100},
+                 {"事实键": "c", "产品键": "P/JP", "属性键": "capacity_wh", "来源键": "sheet/a", "数值": 100.0}]
+        by_product = {c["product"]: c for c in self.build(facts)}
+        self.assertEqual((by_product["P/US"]["display"], by_product["P/US"]["number"]), ("100~120V", None))
+        self.assertEqual((by_product["P/JP"]["display"], by_product["P/JP"]["sources_disagree"]), ("100 Wh", False))
 
     def test_test_conditions_get_their_own_cell_and_others_share_the_main_one(self):
         facts = [{"事实键": "a", "产品键": "P/US", "属性键": "pv_power_w", "来源键": "web/a", "数值": 123},
@@ -838,7 +852,7 @@ class SnapshotTest(unittest.TestCase):
         self.assertTrue(all(len(v["id"]) == 12 and v["id"] not in ("k1", "k2") for v in document["values"]))
         cell = document["cells"][0]
         self.assertEqual((cell["product"], cell["parameter"], cell["condition"]), ("JE-A/US", "capacity_wh", None))
-        self.assertEqual((cell["number"], cell["display"], cell["unit"]), (333, "333", "Wh"))  # web manual beats the sheet
+        self.assertEqual((cell["number"], cell["display"], cell["unit"]), (333, "333 Wh", "Wh"))  # web manual beats the sheet
         self.assertEqual(cell["candidates"], [cells.value_id("k1"), cells.value_id("k2")])
         self.assertEqual(cell["value"], cell["candidates"][0])
         self.assertTrue(cell["sources_disagree"])
@@ -846,6 +860,31 @@ class SnapshotTest(unittest.TestCase):
         ids = {v["id"] for v in document["values"]}
         self.assertTrue(set(cell["candidates"]) <= ids)
         self.assertNotIn(cells.value_id("k3"), cell["candidates"])  # component facts never enter a cell
+        # The cell agrees with the matrix's cell for the same product and parameter (plus the unit after a number).
+        base = self.base()
+        built = matrix.build(base.rows["产品"], base.rows["属性"], base.rows["事实"], base.rows["来源"])
+        column = next(c for c in built["columns"] if c["key"] == "capacity_wh")
+        self.assertEqual(cell["display"], f'{built["rows"]["JE-A/US"][column["name"]]} {column["unit"]}')
+
+    def test_excluded_products_have_no_cells(self):
+        base = self.base()
+        base.rows["产品"][1]["不收录"] = True  # JE-A/US
+        self.assertEqual(snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))["cells"], [])
+
+    def test_unresolvable_references_stop_the_snapshot(self):
+        base = self.base()
+        base.rows["来源"] = [r for r in base.rows["来源"] if not r["来源键"].startswith("web/")]
+        for fact in base.rows["事实"][:2]:
+            fact["来源键"] = "web/gone"  # the cell's source has no row
+        with self.assertRaises(LoadError) as caught:
+            snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertIn("1 cells whose source has no row", str(caught.exception))
+        twin = self.base()
+        twin.rows["事实"][1]["事实键"] = "k1"  # two facts with one key: one id twice
+        with self.assertRaises(LoadError) as caught:
+            snapshot.build_snapshot(twin, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertIn("1 duplicate value ids", str(caught.exception))
+        self.assertNotIn("k1", str(caught.exception))
 
     def test_excluded_products_take_their_values_and_sources_out(self):
         base = self.base()

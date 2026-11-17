@@ -185,7 +185,17 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
     `printed_unit` / `source` / `value`、`verified`、`sources_disagree`、`conflict`、参与的全部 `candidates`（按取值顺序，
     第一个即选中），数字格没有可用数值时 `display` 为空并给 `empty_reason`。纯范围文本的功率行显示原文。
     组件事实不进 cells；一个参与值都没有的格子不生成。`values` 与 `component_values` 每条带不透明 `id`
-    （事实键的哈希），cells 用它引用；
+    （事实键的哈希），cells 用它引用。
+    - `display` 是页面可直接显示的完整文字：与矩阵那一格相同，只是数字后面多带参数单位（矩阵把单位放在列名里），
+      整数不带「.0」，单位为空时不加；文本照矩阵；纯范围文本的功率行（文字参数）显示原文；空格为 null 并带 `empty_reason`。
+    - 两个 `sources_disagree` 含义不同：`values[]` 上的按（产品、参数）跨所有条件算；`cells[]` 上的只看这一格参与的值，
+      数值按数字比较（100 与 100.0 相同）。页面用 cells 上的。
+    - 与矩阵的一处差别：矩阵按（产品、参数）只取一格；快照给 STC、NOCT、BNPI 各开一格（条件名前后不是字母即可，
+      如「STC条件」）。某参数的事实如果全带测试条件，矩阵显示其中排第一的，快照没有主格（`condition` 为 null 的格），
+      只有条件格；页面要按条件格显示。
+    - 写快照前校验引用：`values` / `component_values` 的 id 在文件内唯一，cells 的 `value`、`candidates`、`source`
+      全部能解析，`candidates` 无重复；不满足就停止，只报数量。
+    - 先后顺序：门户读取器接受 v1.1（并继续接受 v1）之前，不把 v1.1 的快照写进 Hello-Docs，否则产品页读不到数据；
   - `component_values`：组件的值，单列，不并入主产品；
   - 勾了「不收录」或已从产品表删除的产品不进快照，它们的值不进 `values` / `component_values`；
     `sources` 不含这些产品的来源（被收录产品的来源即使暂无值也保留）；
