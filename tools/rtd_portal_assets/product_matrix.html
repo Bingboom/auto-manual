@@ -16,7 +16,7 @@
     per model, the models of one project merged as A(B). 项目 and 市场 highlight matching chips and dim the rest.
     Without JavaScript every category shows and the filters stay hidden. -#}
 {%- macro chip(item) -%}
-<span class="pl-chip" data-project="{{ item.project|e }}" data-markets="{{ item.markets|join(' ')|e }}">
+<span class="pl-chip" data-rows="{{ item.rows|e }}">
   {%- for member in item.models -%}
   <span class="pl-code">{% if loop.index == 2 %}<span class="pl-paren">(</span>{% elif not loop.first %}<span class="pl-sep">、</span>{% endif -%}
   <a href="{{ pathto('index') }}?q={{ member.model|urlencode }}" title="{{ member.label|e }}">{{ member.model|e }}</a>

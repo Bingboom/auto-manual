@@ -115,7 +115,53 @@ class ViewTests(unittest.TestCase):
         self.assertEqual((view["projects"], view["unassigned"]), ([], True))
 
 
+    def test_a_project_split_across_cells_stays_split(self):
+        # A cell's position is its series and capacity tier: merging across cells would misplace a model, so each
+        # cell has its own chip, and the 项目 filter highlights both.
+        view = pl.library_view(snapshot(row("FAKE-1"), row("FAKE-2", tier="2度电"), row("FAKE-3", series="Plus")),
+                               CATALOG)
+        portable = view["categories"][0]
+        chips = [chip for r in portable["rows"] for cell in r["cells"] for chip in cell]
+        self.assertEqual([[m["model"] for m in chip["models"]] for chip in chips], [["FAKE-1"], ["FAKE-2"], ["FAKE-3"]])
+        self.assertEqual({chip["project"] for chip in chips}, {"P-FAKE-1"})
+        self.assertTrue(all(chip["rows"] == "P-FAKE-1|US" for chip in chips))
+
+    def test_three_members_read_a_b_c_d_in_code_order(self):
+        view = pl.library_view(snapshot(row("FAKE-D"), row("FAKE-B"), row("FAKE-A"), row("FAKE-C")), CATALOG)
+        chip = view["categories"][0]["rows"][0]["cells"][0][0]
+        self.assertEqual([m["model"] for m in chip["models"]], ["FAKE-A", "FAKE-B", "FAKE-C", "FAKE-D"])
+        self.assertEqual(render(view).select_one(".pl-chip").get_text(), "FAKE-A(FAKE-B、FAKE-C、FAKE-D)")
+
+    def test_a_repeated_row_counts_once(self):
+        view = pl.library_view(snapshot(row("FAKE-1"), row("FAKE-1"), row("FAKE-1", "JP")), CATALOG)
+        chip = view["categories"][0]["rows"][0]["cells"][0][0]
+        self.assertEqual((view["count"], chip["markets"], chip["rows"]), (1, ["US", "JP"], "P-FAKE-1|JP P-FAKE-1|US"))
+
+    def test_an_empty_product_list_reads_like_a_missing_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = pl.snapshot_path(Path(tmp))
+            path.parent.mkdir(parents=True)
+            path.write_text(json.dumps(snapshot()), encoding="utf-8")
+            context = pl.library_context(Path(tmp), CATALOG)
+        self.assertEqual((context["built"], context["problem"]), (False, "还没有产品数据。"))
+        page = render(context)
+        self.assertIsNone(page.select_one(".fr-head p"))
+        self.assertNotIn("0 个产品", page.get_text())
+
+
 class TemplateTests(unittest.TestCase):
+    def test_text_from_the_snapshot_is_escaped(self):
+        nasty = 'FAKE-<b>&"</script>'
+        view = pl.library_view(snapshot(row(nasty, project='P-FAKE-<i>&"', series='S</script>&')), CATALOG)
+        html = Environment(loader=FileSystemLoader(ASSETS)).get_template("product_matrix.html").render(
+            **view, site_nav={}, pathto=lambda name, *args: name)
+        for raw in ("<b>", "</script>&", "<i>"):
+            self.assertNotIn(raw, html.split("<main", 1)[1].split("</main>", 1)[0])
+        page = BeautifulSoup(html, "html.parser")
+        self.assertEqual(page.select_one(".pl-chip a").get_text(), nasty)
+        self.assertEqual(page.select_one("tbody th").get_text(), "S</script>&")
+        self.assertIn('P-FAKE-<i>&"', [o.get_text() for o in page.select('[data-pl-filter="project"] option')])
+
     def test_a_merged_chip_reads_a_b_and_links_each_code(self):
         view = pl.library_view(snapshot(row("FAKE-200B"), row("FAKE-100A", "EU"), row("FAKE-300A", project=None)),
                                CATALOG)
@@ -125,7 +171,8 @@ class TemplateTests(unittest.TestCase):
         chips = page.select(".pl-chip")
         self.assertEqual([chip.get_text() for chip in chips], ["FAKE-100A(FAKE-200B)", "FAKE-300A"])
         self.assertEqual([a["href"] for a in chips[0].select("a")], ["index?q=FAKE-100A", "index?q=FAKE-200B"])
-        self.assertEqual((chips[0]["data-project"], chips[0]["data-markets"]), ("P-FAKE-1", "US EU"))
+        self.assertEqual(chips[0]["data-rows"], "P-FAKE-1|EU P-FAKE-1|US")
+        self.assertEqual(chips[1]["data-rows"], "|US")
         self.assertEqual([o.get_text() for o in page.select('[data-pl-filter="project"] option')],
                          ["全部项目", "P-FAKE-1", "未归入项目"])
         self.assertEqual([o["value"] for o in page.select('[data-pl-filter="market"] option')], ["", "US", "EU"])

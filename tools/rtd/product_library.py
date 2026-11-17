@@ -28,9 +28,6 @@ FLAT_COLUMN = "产品"
 # Market codes as colleagues say them; a code not listed shows as itself.
 MARKET_LABELS = {"US": "美规", "EU": "欧规", "JP": "日规", "CN": "国内", "KR": "韩规", "TW": "台规"}
 MARKET_ORDER = ("US", "EU", "JP", "CN", "KR", "TW")
-# The per-product date (the earliest SKU creation time of the product's project) is not in the snapshot yet; once
-# its field is named, cell order reads it here (oldest first, products without one last).
-DATE_FIELD: str | None = None
 
 
 class SnapshotError(ValueError):
@@ -68,30 +65,27 @@ def _ordered(values: Iterable[str], preferred: Iterable[str]) -> list[str]:
     return first + sorted(values - set(first))
 
 
-def _date(row: dict[str, Any]) -> str:
-    return str(row.get(DATE_FIELD) or "") if DATE_FIELD else ""
-
-
 def _models(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
-    """One entry per model: its markets, project, classification and date, from its market rows."""
+    """One entry per model: its markets, project, classification and (project, market) rows."""
     models: dict[str, dict[str, Any]] = {}
     for row in rows:
         model = str(row["model"]).strip()
         entry = models.setdefault(model, {"model": model, "markets": set(), "project": None, "category": None,
-                                          "series": None, "tier": None, "date": ""})
+                                          "series": None, "tier": None, "rows": set()})
         if row.get("market"):
             entry["markets"].add(str(row["market"]))
+        # The filters match per model × market row: a project chosen together with a market needs both on one row.
+        entry["rows"].add((str(row.get("project") or "").strip(), str(row.get("market") or "")))
         for field, key in (("project", "project"), ("category", "category"), ("series", "series"),
                            ("tier", "capacity_tier")):
             if entry[field] is None and row.get(key):
                 entry[field] = str(row[key]).strip()
-        entry["date"] = min(filter(None, (entry["date"], _date(row))), default="")
     return models
 
 
-def _chip_order(model: dict[str, Any]) -> tuple[bool, str, str]:
-    # Oldest first once the date field exists; products without a date last; then by model code.
-    return (not model["date"], model["date"], model["model"])
+def _chip_order(model: dict[str, Any]) -> str:
+    # By model code: the operator's examples put JE outside the brackets and JHP inside (JE-2000E(JHP-2000A)).
+    return model["model"]
 
 
 def _chips(models: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -104,11 +98,13 @@ def _chips(models: list[dict[str, Any]]) -> list[dict[str, Any]]:
         else:
             alone.append([model])
     chips = []
-    # A chip sorts by its first (oldest, else alphabetically first) member, which is also written outside the brackets.
+    # A chip sorts by its first (alphabetically first) member, which is also written outside the brackets.
     for members in sorted((sorted(group, key=_chip_order) for group in [*groups.values(), *alone]),
                           key=lambda group: _chip_order(group[0])):
         markets = set().union(*(member["markets"] for member in members))
+        rows = sorted({pair for member in members for pair in member["rows"]})
         chips.append({"project": members[0]["project"] or "", "markets": _ordered(markets, MARKET_ORDER),
+                      "rows": " ".join(f"{project}|{market}" for project, market in rows),
                       "models": [{"model": member["model"], "markets": _ordered(member["markets"], MARKET_ORDER),
                                   "label": "、".join(map(market_label, _ordered(member["markets"], MARKET_ORDER)))}
                                  for member in members]})
@@ -174,14 +170,18 @@ def library_view(snapshot: dict[str, Any], product_catalog: dict[str, Any] | Non
 
 
 def library_context(knowledge_dir: Path, product_catalog: dict[str, Any] | None, warn=None) -> dict[str, Any]:
-    """The page context; without a usable snapshot the page says so and shows no figures."""
+    """The page context; without a usable snapshot, or with no product in it, the page says so and shows no figures.
+
+    An unusable snapshot is a Sphinx warning, which never fails the build: the RTD build runs without ``-W`` or
+    ``fail_on_warning`` (``.readthedocs.yaml``), so a bad snapshot cannot hold back the manuals.
+    """
     try:
         snapshot = load_snapshot(knowledge_dir)
     except SnapshotError as exc:
         if warn:
             warn("产品库 snapshot unusable: %s", exc)
         return empty_context("产品数据暂时读不到，请稍后再看。")
-    if snapshot is None:
+    if snapshot is None or not snapshot.get("products"):
         return empty_context("还没有产品数据。")
     return library_view(snapshot, product_catalog)
 
@@ -191,6 +191,6 @@ def empty_context(problem: str) -> dict[str, Any]:
             "unassigned": False, "markets": [], "facts": {}, "built_on": ""}
 
 
-__all__ = ["DATE_FIELD", "FLAT_COLUMN", "MARKET_LABELS", "OTHER_CATEGORY", "SCHEMA", "SNAPSHOT", "SnapshotError",
+__all__ = ["FLAT_COLUMN", "MARKET_LABELS", "OTHER_CATEGORY", "SCHEMA", "SNAPSHOT", "SnapshotError",
            "UNSORTED_SERIES", "UNSTATED_TIER", "empty_context", "library_context", "library_view", "load_snapshot",
            "market_label", "snapshot_path"]

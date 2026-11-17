@@ -4,14 +4,17 @@
 // and 项目 / 市场 highlight the chips that match and dim the rest; nothing is hidden. The pure parts are on
 // globalThis.ProductLibrary for tests/product_library_ui.test.mjs.
 (() => {
-  // A chip's state under a filter: '' when no filter is set, else 'on' (matches every set filter) or 'off'.
+  // A chip's state under a filter: '' when no filter is set, else 'on' when one of its model × market rows
+  // ("project|market", space-separated in data-rows) satisfies every set filter, else 'off'.
   const chipState = (chip, filter) => {
     if (!filter.project && !filter.market) return '';
-    const project = chip.project || '';
-    const markets = (chip.markets || '').split(' ').filter(Boolean);
-    const projectOk = !filter.project || (filter.project === '-' ? project === '' : project === filter.project);
-    const marketOk = !filter.market || markets.includes(filter.market);
-    return projectOk && marketOk ? 'on' : 'off';
+    const rows = (chip.rows || '').split(' ').filter(Boolean).map(pair => pair.split('|'));
+    const hit = rows.some(([project, market]) => {
+      const projectOk = !filter.project || (filter.project === '-' ? project === '' : project === filter.project);
+      const marketOk = !filter.market || market === filter.market;
+      return projectOk && marketOk;
+    });
+    return hit ? 'on' : 'off';
   };
   // The text of the active-filter pill: the chosen options' labels, joined.
   const activeText = labels => labels.filter(Boolean).join(' · ');

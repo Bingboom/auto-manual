@@ -420,21 +420,26 @@ address forwards here, and the public manual library never links to it.
   without tiers.
 - **Chips.** Each cell holds the model codes as chips. Models of one project in one
   cell are one chip, `A(B)`: the first written outside the brackets, the others
-  inside, each code its own link. The order is alphabetical until the snapshot
-  carries the per-product SKU 创建时间 (`DATE_FIELD`); then it is oldest first, with
-  products without a date last. A model without a project is a chip of its own. Until
+  inside (`A(B、C)` with more), each code its own link, in code order: the operator's
+  examples put the JE model outside and the JHP model inside (`JE-2000E(JHP-2000A)`).
+  The SKU 创建时间 does not order chips. A model without a project is a chip of its own.
+  Models of one project in different cells are not merged across cells, since a cell's
+  place is its series and tier; the 项目 filter highlights all of them. Until
   the product pages (产品档案) exist, a code links to the manual library filtered to
   that model (`index.html?q=<model>`); its tooltip lists its markets.
 - **Filters** (`_static/product-library.js`): 项目 (including 未归入项目 when a model
-  has none) and 市场 (美规, 欧规, 日规, 国内, …). A chip that matches every set filter is
-  highlighted and the rest are dimmed, never hidden; a pill names the active filters
+  has none) and 市场 (美规, 欧规, 日规, 国内, …). They match per model × market row (a
+  chip carries its `project|market` pairs): a chip with a row that satisfies every set
+  filter is highlighted and the rest are dimmed, never hidden; a pill names the active filters
   with 清除. The tabs switch categories and keep the open one in the hash
   (`#cat-c1`). Without JavaScript every category shows stacked and the filters stay
   hidden. Node tests: `tests/product_library_ui.test.mjs`.
-- **Failure.** Without the snapshot the page says 还没有产品数据。; with an unreadable
-  or wrong-schema one it says 产品数据暂时读不到，请稍后再看。 with a Sphinx warning.
-  Neither shows a count, date or chip, and the build never falls back to other
-  figures. `tests/test_rtd_product_library.py` covers reading, grouping, merging and
+- **Failure.** Without the snapshot, or with no product in it, the page says
+  还没有产品数据。; with an unreadable or wrong-schema one it says
+  产品数据暂时读不到，请稍后再看。 with a Sphinx warning. A warning never fails the
+  build (the RTD build runs without `-W` or `fail_on_warning`), so a bad snapshot cannot
+  hold back the manuals. Neither state shows a count, date or chip, and the build never
+  falls back to other figures. `tests/test_rtd_product_library.py` covers reading, grouping, merging and
   the rendered page.
 - **Former matrix.** The 2026-11 matrix read specifications from each published
   manual (`tools/rtd/product_matrix.py`, configured by `product_matrix.json`). Its
