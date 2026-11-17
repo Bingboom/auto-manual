@@ -15,7 +15,8 @@
 {% from "_product_tabs.html" import product_tabs with context %}
 {#- 产品档案 (step 13; REV-53; tools/rtd/product_profile.py). A front page: the product's name and one line, then
     its parameters one market at a time. A value's source shows only when it is clicked. Without JavaScript every
-    market shows in turn and the values are plain text. -#}
+    market shows in turn, the head lists every market's SKU 创建时间 with its market, and the values are plain text;
+    the script reduces the head to the chosen market's date. -#}
 {%- macro value(cell, label, id) -%}
 {%- if cell and cell.text -%}
 <button type="button" class="pf-val" aria-expanded="false" aria-controls="pf-source" data-label="{{ label|e }}" data-sources="{{ id|e }}">{{ cell.text|e }}</button>
@@ -23,7 +24,7 @@
 <div class="pf-src-list" id="{{ id|e }}" hidden>
   {%- for item in cell.sources %}
   <div class="pf-src">
-    <p>{% if item.derived %}由{{ item.manual|e }}的多处内容整理 {% else %}来自{{ item.manual|e }}{% endif %}{% if item.market %}· {{ item.market|e }}{% endif %}{% if item.language %} · {{ item.language|e }}{% endif %}</p>
+    <p>{% if item.derived %}由{{ item.manual|e }}的多处内容整理{% else %}来自{{ item.manual|e }}{% endif %}{% if item.market %} · {{ item.market|e }}{% endif %}{% if item.language %} · {{ item.language|e }}{% endif %}</p>
     {%- if item.date or item.position %}<p>{% if item.date %}版本日期 {{ item.date|e }}{% if item.position %} · {% endif %}{% endif %}{{ item.position|e }}</p>{% endif %}
     {%- if item.printed and not item.derived %}<blockquote>{{ item.printed|e }}</blockquote>{% endif %}
     {%- if item.doc %}<a href="{{ pathto(item.doc)|e }}{% if item.anchor %}#{{ item.anchor|e }}{% endif %}">打开说明书 →</a>{% endif %}
@@ -37,11 +38,11 @@
 <div class="app-content">
 {{ site_topbar('知识库', '产品档案') }}
 <main class="fr-page pf-page">
-{{ product_tabs('products/matrix') }}
+{{ product_tabs('products/matrix', child=True) }}
 <a class="pf-back" href="{{ pathto('products/matrix')|e }}">‹ 产品库</a>
 <header class="fr-head pf-head">
   <h1>{{ name|e }}</h1>
-  <p><b>{{ model|e }}</b>{% for part in classes %} · {{ part|e }}{% endfor %}{% if project %} · <a href="{{ pathto('products/matrix')|e }}?project={{ project|urlencode }}">{{ project|e }}</a>{% endif %} · <span class="pf-date">SKU 创建时间 {% for date in sku_dates %}<span data-market-date="{{ date.code|e }}"{% if not loop.first %} hidden{% endif %}>{{ date.text|e if date.text else '暂无' }}</span>{% else %}暂无{% endfor %}</span></p>
+  <p><b>{{ model|e }}</b>{% for part in classes %} · {{ part|e }}{% endfor %}{% if project %} · <a href="{{ pathto('products/matrix')|e }}?project={{ project|urlencode }}">{{ project|e }}</a>{% endif %} · <span class="pf-date">SKU 创建时间 {% for date in sku_dates %}<span data-market-date="{{ date.code|e }}">{% if sku_dates|length > 1 %}<span data-market-date-label>{% if not loop.first %}；{% endif %}{{ date.label|e }} </span>{% endif %}{{ date.text|e if date.text else '暂无' }}</span>{% else %}暂无{% endfor %}</span></p>
   <a class="pf-compare" href="{{ pathto('products/compare')|e }}?p={{ model|urlencode }}">加入对比</a>
 </header>
 {%- if markets|length > 1 %}
