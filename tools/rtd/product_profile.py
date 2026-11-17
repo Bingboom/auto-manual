@@ -248,6 +248,15 @@ def profile_view(model: str, rows: list[dict[str, Any]], snapshot: dict[str, Any
     }
 
 
+def _pairing(pairing: dict[str, Any], first: dict[str, str]) -> dict[str, Any] | None:
+    """搭配 from the former matrix context; a pairing without a label is left out rather than failing the build."""
+    named = [{"label": item["label"], "model": first.get(item.get("key") or "", "")}
+             for item in pairing.get("named") or [] if item.get("label")]
+    named_by = [{"label": item["label"], "name": item.get("name") or "", "model": item.get("model") or ""}
+                for item in pairing.get("named_by") or [] if item.get("label")]
+    return {"named": named, "named_by": named_by} if named or named_by else None
+
+
 def matrix_extras(matrix: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
     """功能, 搭配 and guides per model, carried over from the former matrix page's context (None: nothing)."""
     products = [product for category in (matrix or {}).get("categories") or [] for row in category["rows"]
@@ -256,14 +265,7 @@ def matrix_extras(matrix: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
     extras: dict[str, dict[str, Any]] = {}
     for product in products:
         detail = product.get("detail") or {}
-        pairing = detail.get("pairing") or {}
-        # A pairing without a label is left out rather than failing the build.
-        named = [{"label": item["label"], "model": first.get(item.get("key") or "", "")}
-                 for item in pairing.get("named") or [] if item.get("label")]
-        named_by = [{"label": item["label"], "name": item.get("name") or "", "model": item.get("model") or ""}
-                    for item in pairing.get("named_by") or [] if item.get("label")]
-        entry = {"features": detail.get("features"),
-                 "pairing": {"named": named, "named_by": named_by} if named or named_by else None,
+        entry = {"features": detail.get("features"), "pairing": _pairing(detail.get("pairing") or {}, first),
                  "guides": detail.get("guides") or []}
         for row in product["rows"]:
             extras.setdefault(row["model"], entry)
