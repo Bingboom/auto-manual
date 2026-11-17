@@ -12,7 +12,7 @@ from tools.product_matrix_base.extract import (
     compare, extract, inside_git_work_tree, load_dictionary, parse_value, quantities, spec_rows, table_rows,
 )
 from tools.product_matrix_base.stage import (
-    BATCH, LoadError, PartialWrite, fact_key, plan, preflight, provenance, read_rows, same, stage_rows, write,
+    earliest, BATCH, LoadError, PartialWrite, fact_key, plan, preflight, provenance, read_rows, same, stage_rows, write,
 )
 
 MANIFEST = Path(__file__).resolve().parents[1] / "bitable_schema" / "product_matrix_base_manifest.json"
@@ -364,6 +364,7 @@ class MatrixBuildTest(unittest.TestCase):
         names = [f["name"] for f in matrix.manifest_fields(self.built)]
         self.assertEqual(names[:3], ["产品键", "项目号", "型号"])
         self.assertNotIn("上市日期", names)
+        self.assertFalse(self.built["sku_time"])
         dated = matrix.build([dict(PRODUCTS[0], 上市日期="2026-03-01T00:00:00.000+08:00")], ATTRIBUTES, FACTS, SOURCES)
         self.assertEqual(dated["rows"]["JE-A/US"]["上市日期"], "2026-03-01 00:00:00")
         self.assertEqual(self.built["components"], 1)
@@ -375,6 +376,31 @@ class MatrixBuildTest(unittest.TestCase):
         self.assertEqual(matrix.skip_reason({"数值": 12, "原单位": "V"}, "W"), "单位与列不符")
         self.assertEqual(matrix.skip_reason({"数值": 7.1, "原单位": "lbs"}, "kg"), "")
         self.assertEqual(matrix.filled_cells(self.built), (4, 8))
+
+
+class EarliestTest(unittest.TestCase):
+    def test_lookup_cells_yield_their_earliest_moment(self):
+        joined = "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"
+        self.assertEqual(earliest(joined), int(datetime(2024, 7, 30, 1, 15, tzinfo=timezone.utc).timestamp()))
+        self.assertEqual(earliest(["2025-01-01T00:00:00.000+08:00", 1704067200000]), 1704067200)
+        self.assertEqual(earliest({"type": 5, "value": [1704067200000]}), 1704067200)
+        self.assertEqual(earliest("2024-01-01 08:00"), 1704067200)  # no offset: Beijing time
+        self.assertIsNone(earliest(""))
+        self.assertIsNone(earliest("no date here"))
+
+    def test_matrix_and_snapshot_carry_it_apart_from_the_launch_date(self):
+        product = dict(PRODUCTS[0], **{"SKU 最早创建时间": "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"})
+        built = matrix.build([product], ATTRIBUTES, FACTS, SOURCES)
+        self.assertEqual(built["rows"]["JE-A/US"]["SKU 最早创建时间"], "2024-07-30 09:15:00")
+        self.assertNotIn("上市日期", built["rows"]["JE-A/US"])
+        self.assertIn({"name": "SKU 最早创建时间", "type": "datetime"}, matrix.manifest_fields(built))
+        base = SnapshotTest().base()
+        base.rows["产品"][1]["SKU 最早创建时间"] = "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"
+        document = snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        first = document["products"][0]
+        self.assertEqual((first["first_sku_created"], first["launch_date"]), ("2024-07-30", "2026-03-01"))
+        self.assertIn("不是上市日期", first["first_sku_created_basis"])
+        self.assertIsNone(document["products"][1]["first_sku_created_basis"])
 
 
 class MatrixBase(FakeBase):

@@ -257,6 +257,43 @@ def _instant(value: Any) -> int | None:
     return int((moment if moment.tzinfo else moment.replace(tzinfo=CST)).timestamp())
 
 
+_MOMENT = re.compile(r"(\d{4})[/-](\d{1,2})[/-](\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?"
+                     r"(?:\.\d+)?\s*(?:\(?(?:GMT|UTC)?([+-]\d{1,2})(?::?(\d{2}))?\)?|(Z))?")
+
+
+def _moment(match: re.Match[str]) -> int | None:
+    """One matched date text as epoch seconds (no offset: Beijing time); None for an impossible date."""
+    year, month, day, hour, minute, second, sign_hours, offset_minutes, zulu = match.groups()
+    hours = 0 if zulu else (int(sign_hours) if sign_hours else 8)
+    sign = -1 if sign_hours and sign_hours.startswith("-") else 1
+    zone = timezone(timedelta(hours=hours, minutes=sign * int(offset_minutes or 0)))
+    try:
+        moment = datetime(int(year), int(month), int(day), int(hour or 0), int(minute or 0), int(second or 0),
+                          tzinfo=zone)
+    except ValueError:
+        return None
+    return int(moment.timestamp())
+
+
+def earliest(value: Any) -> int | None:
+    """The earliest moment in a lookup or formula cell, as epoch seconds.
+
+    Such a cell may hold one value or several (a lookup's raw values come back as a list, or as text joined by commas
+    like ``2024/07/30 10:00 (GMT+8),2025/...``), each as epoch milliseconds or date text; text without an offset is
+    Beijing time.
+    """
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return int(value // 1000)
+    if isinstance(value, list):
+        found = [m for m in (earliest(v) for v in value) if m is not None]
+        return min(found) if found else None
+    text = value.get("value") if isinstance(value, dict) and "value" in value else _text(value)
+    if not isinstance(text, str):
+        return earliest(text)
+    moments = [m for m in (_moment(match) for match in _MOMENT.finditer(text)) if m is not None]
+    return min(moments) if moments else None
+
+
 def same(want: Any, have: Any, kind: str) -> bool:
     """Whether a read-back cell holds the written value (datetime to the second; select: same option names)."""
     if kind == "datetime":

@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from tools.product_matrix_base.stage import CST, LoadError, Runner, _instant, _text, read_rows, table_ids
+from tools.product_matrix_base.stage import CST, LoadError, Runner, _instant, _text, earliest, read_rows, table_ids
 
 SCHEMA = "hello-docs-product-matrix-snapshot/v1"
 FILE_NAME = "snapshot.json"
@@ -28,9 +28,11 @@ KNOWLEDGE = Path("docs") / "knowledge"
 PROJECT_SOURCE = "项目号（仅飞书）"
 COMPONENT = "组件:"
 EXCLUDED_STATES = {"已驳回", "已取代"}
+SKU_BASIS = "PLM：本产品在本市场的 SKU 中最早的创建时间（不是上市日期）"
 
 PRODUCT_FIELDS = ("产品键", "型号", "市场", "品牌", "商品简称", "名称_en", "名称_ja", "名称_zh", "产品类别", "产品系列",
-                  "容量档", "共用说明书于", PROJECT_SOURCE, "上市日期", "上市日期依据", "停售日期", "产品阶段", "不收录")
+                  "容量档", "共用说明书于", PROJECT_SOURCE, "上市日期", "上市日期依据", "停售日期", "产品阶段", "不收录",
+                  "SKU 最早创建时间")
 NAME_FIELDS = tuple(field for field in PRODUCT_FIELDS if field.startswith("名称_"))
 PARAMETER_FIELDS = ("属性键", "中文名", "英文名", "分组", "值类型", "规范单位", "定义", "适用类别", "说明书通常写", "状态",
                     "排序")
@@ -53,9 +55,9 @@ def _cell(value: Any) -> Any:
     return None if value in ("", None) else value
 
 
-def _date(value: Any) -> str | None:
-    """A datetime cell as its Beijing-time date."""
-    seconds = _instant(value)
+def _date(value: Any, *, first: bool = False) -> str | None:
+    """A datetime cell as its Beijing-time date (``first``: the earliest moment in a lookup or formula cell)."""
+    seconds = earliest(value) if first else _instant(value)
     return datetime.fromtimestamp(seconds, CST).strftime("%Y-%m-%d") if seconds is not None else None
 
 
@@ -77,7 +79,11 @@ def _product(row: dict[str, Any]) -> dict[str, Any]:
             "capacity_tier": _single(row.get("容量档")), "shares_manual_with": _single(row.get("共用说明书于")),
             "project": _single(row.get(PROJECT_SOURCE)), "launch_date": _date(row.get("上市日期")),
             "launch_date_basis": _single(row.get("上市日期依据")), "end_of_sale": _date(row.get("停售日期")),
-            "stage": _single(row.get("产品阶段"))}
+            "stage": _single(row.get("产品阶段")),
+            # Not a launch date: when the product's first SKU for this market was created in PLM (a stand-in for
+            # when it entered the system). Kept apart from launch_date so a reader cannot take one for the other.
+            "first_sku_created": _date(row.get("SKU 最早创建时间"), first=True),
+            "first_sku_created_basis": SKU_BASIS if _date(row.get("SKU 最早创建时间"), first=True) else None}
 
 
 def _parameter(row: dict[str, Any]) -> dict[str, Any]:
