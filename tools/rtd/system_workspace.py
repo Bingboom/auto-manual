@@ -935,7 +935,7 @@ def flow_summary(flow: list[dict[str, Any]], groups: dict[str, str]) -> dict[str
             "flow_stale": sum(1 for link in flow if link["stale"])}
 
 
-def _progress(revs: list[str], ledger: Ledger) -> dict[str, Any]:
+def ledger_progress(revs: list[str], ledger: Ledger) -> dict[str, Any]:
     """Done count, bar width, state and tally for a set of ledger rows."""
     counts: dict[str, int] = {}
     for rev in revs:
@@ -1044,7 +1044,7 @@ def _gate_views(contract: dict[str, Any], ledger: Ledger | None, lanes: list[dic
         gates.append({"id": gate["id"], "label": gate["label"], "fold": bool(gate.get("fold")),
                       "lanes": [_lane_tag(lane) for lane in lanes if gate["id"] in (lane.get("gates") or [])],
                       "remaining": [rev for rev in revs if ledger.statuses.get(rev, "planned") != "done"],
-                      **_progress(revs, ledger)})
+                      **ledger_progress(revs, ledger)})
     return gates
 
 
@@ -1104,7 +1104,7 @@ def _lane_progress(lane: dict[str, Any], *, ledger: Ledger | None, gates_by_id: 
             rows.append({"rev": rev, "status": state, "status_label": LEDGER_LABELS.get(state, state),
                          "href": f"{ledger_url}#{rev.lower()}"})
         progress.append({"kind": "revs", "id": "台账", "label": "执行台账", "revs": rows,
-                         **_progress(revs, ledger)})
+                         **ledger_progress(revs, ledger)})
     return progress
 
 
@@ -1173,7 +1173,8 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
     for card in contract["capabilities"]:
         entries = []
         for item in card["items"]:
-            view = {"label": item["label"], "short": item.get("short") or item["label"], **entry_view(item)}
+            view = {"id": item["id"], "label": item["label"], "short": item.get("short") or item["label"],
+                    **entry_view(item)}
             items_by_ref[f"{card['id']}.{item['id']}"] = view
             entries.append(view)
         cards.append({"id": card["id"], "title": card["title"], "en": card.get("en") or "",

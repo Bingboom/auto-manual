@@ -1,0 +1,1059 @@
+{
+  "schema_version": "bitable-schema/v1",
+  "note": "产品信息矩阵（发布文档管理 base）的五张表。名称为键，不含 id 和数据；每张表第一个字段是主字段。link 类型字段由人工在飞书界面建立（apply 只列出不创建）。契约见 code-as-doc/dev/product_matrix_base.md。",
+  "tables": [
+    {
+      "name": "产品",
+      "fields": [
+        {
+          "name": "产品键",
+          "type": "text"
+        },
+        {
+          "name": "型号",
+          "type": "text"
+        },
+        {
+          "name": "市场",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "US",
+            "EU",
+            "UK",
+            "JP",
+            "CN",
+            "TW",
+            "KR",
+            "AU",
+            "PH",
+            "BR"
+          ]
+        },
+        {
+          "name": "代际",
+          "type": "text"
+        },
+        {
+          "name": "品牌",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "自有"
+          ]
+        },
+        {
+          "name": "商品简称",
+          "type": "text"
+        },
+        {
+          "name": "产品类别",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "便携储能",
+            "家庭备电",
+            "加电包",
+            "太阳能板",
+            "配件"
+          ]
+        },
+        {
+          "name": "产品系列",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "标准",
+            "Plus",
+            "PlusV2",
+            "Pro",
+            "ProMax",
+            "Ultra",
+            "卫士",
+            "充电宝",
+            "SolarSaga",
+            "SolarSaga Air",
+            "充电与输入",
+            "连接与配电",
+            "保护与搬运"
+          ]
+        },
+        {
+          "name": "容量档",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "1度以下",
+            "1度电",
+            "1.2度电",
+            "1.5度电",
+            "1.8度电",
+            "2度电",
+            "3度电",
+            "3.6度电",
+            "5度电"
+          ]
+        },
+        {
+          "name": "名称_en",
+          "type": "text"
+        },
+        {
+          "name": "名称_ja",
+          "type": "text"
+        },
+        {
+          "name": "名称_zh",
+          "type": "text"
+        },
+        {
+          "name": "共用说明书于",
+          "type": "text"
+        },
+        {
+          "name": "上市日期",
+          "type": "datetime"
+        },
+        {
+          "name": "上市日期依据",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "官方公告",
+            "首份说明书",
+            "规格书",
+            "PLM SKU 创建时间",
+            "估计"
+          ]
+        },
+        {
+          "name": "停售日期",
+          "type": "datetime"
+        },
+        {
+          "name": "产品阶段",
+          "type": "text"
+        },
+        {
+          "name": "项目号（仅飞书）",
+          "type": "text"
+        },
+        {
+          "name": "关联 SKU",
+          "type": "link",
+          "detail": {
+            "target_table": "SKU（plm数据）",
+            "note": "预留，由操作者手工建立并填写"
+          }
+        },
+        {
+          "name": "SKU 最早创建时间",
+          "type": "datetime"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "最后更新",
+          "type": "datetime"
+        }
+      ]
+    },
+    {
+      "name": "属性",
+      "fields": [
+        {
+          "name": "属性键",
+          "type": "text"
+        },
+        {
+          "name": "中文名",
+          "type": "text"
+        },
+        {
+          "name": "英文名",
+          "type": "text"
+        },
+        {
+          "name": "分组",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "电池",
+            "输出",
+            "输入",
+            "物理",
+            "环境",
+            "认证",
+            "接口",
+            "商业",
+            "其他"
+          ]
+        },
+        {
+          "name": "值类型",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "数值",
+            "整数",
+            "布尔",
+            "文本",
+            "范围"
+          ]
+        },
+        {
+          "name": "规范单位",
+          "type": "text"
+        },
+        {
+          "name": "定义",
+          "type": "text"
+        },
+        {
+          "name": "适用类别",
+          "type": "select",
+          "multiple": true,
+          "options": [
+            "便携储能",
+            "家庭备电",
+            "加电包",
+            "太阳能板",
+            "配件"
+          ]
+        },
+        {
+          "name": "说明书通常写",
+          "type": "checkbox"
+        },
+        {
+          "name": "标签别名",
+          "type": "text"
+        },
+        {
+          "name": "竞情字段名",
+          "type": "text"
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "启用",
+            "停用"
+          ]
+        },
+        {
+          "name": "排序",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "来源",
+      "fields": [
+        {
+          "name": "来源键",
+          "type": "text"
+        },
+        {
+          "name": "来源类型",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "网页说明书",
+            "印刷说明书",
+            "规格书",
+            "官网",
+            "其他"
+          ]
+        },
+        {
+          "name": "型号",
+          "type": "text"
+        },
+        {
+          "name": "市场",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "US",
+            "EU",
+            "UK",
+            "JP",
+            "CN",
+            "TW",
+            "KR",
+            "AU",
+            "PH",
+            "BR"
+          ]
+        },
+        {
+          "name": "语言",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "en",
+            "zh",
+            "zh-TW",
+            "ja",
+            "ko",
+            "fr",
+            "de",
+            "es",
+            "it",
+            "nl",
+            "pl",
+            "pt",
+            "pt-BR",
+            "uk"
+          ]
+        },
+        {
+          "name": "版本",
+          "type": "text"
+        },
+        {
+          "name": "版本日期",
+          "type": "datetime"
+        },
+        {
+          "name": "版本日期依据",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "审批日期",
+            "归档日期",
+            "规格书版本日期",
+            "首次网页发布",
+            "未知"
+          ]
+        },
+        {
+          "name": "页面或文件",
+          "type": "text"
+        },
+        {
+          "name": "文件哈希",
+          "type": "text"
+        },
+        {
+          "name": "读取时间",
+          "type": "datetime"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "写入批次",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "事实",
+      "fields": [
+        {
+          "name": "事实键",
+          "type": "text"
+        },
+        {
+          "name": "产品键",
+          "type": "text"
+        },
+        {
+          "name": "属性键",
+          "type": "text"
+        },
+        {
+          "name": "来源键",
+          "type": "text"
+        },
+        {
+          "name": "原文",
+          "type": "text"
+        },
+        {
+          "name": "数值",
+          "type": "number"
+        },
+        {
+          "name": "文本值",
+          "type": "text"
+        },
+        {
+          "name": "原单位",
+          "type": "text"
+        },
+        {
+          "name": "限定",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "无",
+            "约",
+            "最大",
+            "最小",
+            "典型",
+            "额定",
+            "峰值",
+            "≥",
+            "≤"
+          ]
+        },
+        {
+          "name": "条件",
+          "type": "text"
+        },
+        {
+          "name": "来源位置",
+          "type": "text"
+        },
+        {
+          "name": "生效起",
+          "type": "datetime"
+        },
+        {
+          "name": "生效依据",
+          "type": "text"
+        },
+        {
+          "name": "生效止",
+          "type": "datetime"
+        },
+        {
+          "name": "记录时间",
+          "type": "datetime"
+        },
+        {
+          "name": "核实状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "候选",
+            "已核实",
+            "有疑问",
+            "已驳回",
+            "已取代"
+          ]
+        },
+        {
+          "name": "核实人",
+          "type": "text"
+        },
+        {
+          "name": "核实时间",
+          "type": "datetime"
+        },
+        {
+          "name": "当前值",
+          "type": "checkbox"
+        },
+        {
+          "name": "冲突",
+          "type": "checkbox"
+        },
+        {
+          "name": "冲突说明",
+          "type": "text"
+        },
+        {
+          "name": "裁定说明",
+          "type": "text"
+        },
+        {
+          "name": "取代者",
+          "type": "text"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "写入批次",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "矩阵",
+      "fields": [
+        {
+          "name": "产品键",
+          "type": "text"
+        },
+        {
+          "name": "项目号",
+          "type": "text"
+        },
+        {
+          "name": "型号",
+          "type": "text"
+        },
+        {
+          "name": "市场",
+          "type": "text"
+        },
+        {
+          "name": "品牌",
+          "type": "text"
+        },
+        {
+          "name": "商品简称",
+          "type": "text"
+        },
+        {
+          "name": "产品类别",
+          "type": "text"
+        },
+        {
+          "name": "产品系列",
+          "type": "text"
+        },
+        {
+          "name": "容量档",
+          "type": "text"
+        },
+        {
+          "name": "产品名称",
+          "type": "text"
+        },
+        {
+          "name": "型号（说明书）",
+          "type": "text"
+        },
+        {
+          "name": "颜色",
+          "type": "text"
+        },
+        {
+          "name": "消费品类别",
+          "type": "text"
+        },
+        {
+          "name": "IEC 代码",
+          "type": "text"
+        },
+        {
+          "name": "回收标识",
+          "type": "text"
+        },
+        {
+          "name": "标称容量（Wh）",
+          "type": "number"
+        },
+        {
+          "name": "容量（非 Wh）",
+          "type": "text"
+        },
+        {
+          "name": "电池组电压/容量",
+          "type": "text"
+        },
+        {
+          "name": "AC 额定输出能量",
+          "type": "text"
+        },
+        {
+          "name": "电芯类型",
+          "type": "text"
+        },
+        {
+          "name": "循环寿命（次）",
+          "type": "number"
+        },
+        {
+          "name": "AC 输出口（W）",
+          "type": "number"
+        },
+        {
+          "name": "AC 总输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "旁路 AC 输出",
+          "type": "text"
+        },
+        {
+          "name": "旁路 AC 输入/输出",
+          "type": "text"
+        },
+        {
+          "name": "AC 并机输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "AC 额定电压",
+          "type": "text"
+        },
+        {
+          "name": "USB-C 输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "USB-A 输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "USB 总输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "多口同时输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "车充/DC12V 输出",
+          "type": "text"
+        },
+        {
+          "name": "DC 输出",
+          "type": "text"
+        },
+        {
+          "name": "总输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "输出功率（W）",
+          "type": "number"
+        },
+        {
+          "name": "输出电压",
+          "type": "text"
+        },
+        {
+          "name": "输出电流",
+          "type": "text"
+        },
+        {
+          "name": "输出参数",
+          "type": "number"
+        },
+        {
+          "name": "PPS 档位",
+          "type": "text"
+        },
+        {
+          "name": "电压",
+          "type": "text"
+        },
+        {
+          "name": "电流",
+          "type": "text"
+        },
+        {
+          "name": "AC 输入",
+          "type": "text"
+        },
+        {
+          "name": "旁路 AC 输入",
+          "type": "text"
+        },
+        {
+          "name": "DC 输入（W）",
+          "type": "number"
+        },
+        {
+          "name": "DC8020 输入（W）",
+          "type": "number"
+        },
+        {
+          "name": "车充输入（W）",
+          "type": "number"
+        },
+        {
+          "name": "USB-C 输入（W）",
+          "type": "number"
+        },
+        {
+          "name": "输入参数",
+          "type": "text"
+        },
+        {
+          "name": "AC 充电时间（h）",
+          "type": "number"
+        },
+        {
+          "name": "车充充电时间（h）",
+          "type": "number"
+        },
+        {
+          "name": "太阳能充电时间（h）",
+          "type": "number"
+        },
+        {
+          "name": "加热模块输入",
+          "type": "text"
+        },
+        {
+          "name": "加热模块功率（W）",
+          "type": "number"
+        },
+        {
+          "name": "加热模块工作温度",
+          "type": "text"
+        },
+        {
+          "name": "加热模块存储温度",
+          "type": "text"
+        },
+        {
+          "name": "太阳能输入（W）",
+          "type": "number"
+        },
+        {
+          "name": "高压光伏输入（W）",
+          "type": "number"
+        },
+        {
+          "name": "低压光伏输入（W）",
+          "type": "number"
+        },
+        {
+          "name": "DC 扩展口",
+          "type": "text"
+        },
+        {
+          "name": "AC 扩展口（W）",
+          "type": "number"
+        },
+        {
+          "name": "并机端口",
+          "type": "text"
+        },
+        {
+          "name": "最大并联数",
+          "type": "text"
+        },
+        {
+          "name": "最大串联数",
+          "type": "text"
+        },
+        {
+          "name": "重量（kg）",
+          "type": "number"
+        },
+        {
+          "name": "净重（kg）",
+          "type": "number"
+        },
+        {
+          "name": "尺寸",
+          "type": "text"
+        },
+        {
+          "name": "尺寸与重量",
+          "type": "text"
+        },
+        {
+          "name": "折叠尺寸",
+          "type": "text"
+        },
+        {
+          "name": "展开尺寸",
+          "type": "text"
+        },
+        {
+          "name": "材质",
+          "type": "text"
+        },
+        {
+          "name": "面料",
+          "type": "text"
+        },
+        {
+          "name": "充电温度",
+          "type": "text"
+        },
+        {
+          "name": "放电温度范围",
+          "type": "text"
+        },
+        {
+          "name": "工作温度",
+          "type": "text"
+        },
+        {
+          "name": "存储温度",
+          "type": "text"
+        },
+        {
+          "name": "工作海拔（m）",
+          "type": "number"
+        },
+        {
+          "name": "工作湿度",
+          "type": "text"
+        },
+        {
+          "name": "组件额定工作温度",
+          "type": "text"
+        },
+        {
+          "name": "组件最高温度",
+          "type": "text"
+        },
+        {
+          "name": "防护等级",
+          "type": "text"
+        },
+        {
+          "name": "防触电等级",
+          "type": "text"
+        },
+        {
+          "name": "过电压类别",
+          "type": "text"
+        },
+        {
+          "name": "防火等级",
+          "type": "text"
+        },
+        {
+          "name": "抗冲击等级",
+          "type": "text"
+        },
+        {
+          "name": "外壳类型",
+          "type": "text"
+        },
+        {
+          "name": "最大短路电流与持续时间",
+          "type": "text"
+        },
+        {
+          "name": "最大输入短路电流",
+          "type": "text"
+        },
+        {
+          "name": "最大输入电流",
+          "type": "text"
+        },
+        {
+          "name": "最大输出电流",
+          "type": "text"
+        },
+        {
+          "name": "逆变器拓扑",
+          "type": "text"
+        },
+        {
+          "name": "功率因数",
+          "type": "text"
+        },
+        {
+          "name": "馈电类型",
+          "type": "text"
+        },
+        {
+          "name": "负载支路数",
+          "type": "text"
+        },
+        {
+          "name": "主回路",
+          "type": "text"
+        },
+        {
+          "name": "分支回路",
+          "type": "text"
+        },
+        {
+          "name": "最大负载",
+          "type": "text"
+        },
+        {
+          "name": "通信方式",
+          "type": "text"
+        },
+        {
+          "name": "UPS/EPS",
+          "type": "text"
+        },
+        {
+          "name": "太阳能板 STC 功率（W）",
+          "type": "number"
+        },
+        {
+          "name": "最大功率点电压 Vmp（V）",
+          "type": "number"
+        },
+        {
+          "name": "最大功率点电流 Imp（A）",
+          "type": "number"
+        },
+        {
+          "name": "开路电压 Voc（V）",
+          "type": "number"
+        },
+        {
+          "name": "短路电流 Isc（A）",
+          "type": "number"
+        },
+        {
+          "name": "最大系统电压（V）",
+          "type": "number"
+        },
+        {
+          "name": "最大反向电流",
+          "type": "text"
+        },
+        {
+          "name": "最大串联保险丝额定值",
+          "type": "text"
+        },
+        {
+          "name": "功率温度系数",
+          "type": "text"
+        },
+        {
+          "name": "电压温度系数",
+          "type": "text"
+        },
+        {
+          "name": "双面系数",
+          "type": "text"
+        },
+        {
+          "name": "电池片技术",
+          "type": "text"
+        },
+        {
+          "name": "连接器类型",
+          "type": "text"
+        },
+        {
+          "name": "连接器厂商",
+          "type": "text"
+        },
+        {
+          "name": "最小设计载荷",
+          "type": "text"
+        },
+        {
+          "name": "应用等级",
+          "type": "text"
+        },
+        {
+          "name": "测试条件",
+          "type": "text"
+        },
+        {
+          "name": "保修期（year）",
+          "type": "number"
+        },
+        {
+          "name": "认证",
+          "type": "text"
+        },
+        {
+          "name": "包装清单",
+          "type": "text"
+        },
+        {
+          "name": "特殊功能",
+          "type": "text"
+        },
+        {
+          "name": "AC 额定输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "AC 峰值输出（W）",
+          "type": "number"
+        },
+        {
+          "name": "AC 插座数量",
+          "type": "number"
+        },
+        {
+          "name": "AC 插座类型",
+          "type": "text"
+        },
+        {
+          "name": "AC 输出电压（V）",
+          "type": "number"
+        },
+        {
+          "name": "AC 输出频率（Hz）",
+          "type": "number"
+        },
+        {
+          "name": "USB-C 口数量",
+          "type": "number"
+        },
+        {
+          "name": "USB-C 单口上限（W）",
+          "type": "number"
+        },
+        {
+          "name": "USB-A 口数量",
+          "type": "number"
+        },
+        {
+          "name": "AC 输入上限（W）",
+          "type": "number"
+        },
+        {
+          "name": "DC/光伏输入最大功率（W）",
+          "type": "number"
+        },
+        {
+          "name": "太阳能输入上限（W）",
+          "type": "number"
+        },
+        {
+          "name": "太阳能输入电压范围",
+          "type": "text"
+        },
+        {
+          "name": "车充输入最大功率（W）",
+          "type": "number"
+        },
+        {
+          "name": "UPS 切换时间",
+          "type": "text"
+        },
+        {
+          "name": "扩展电池接口",
+          "type": "text"
+        },
+        {
+          "name": "来源",
+          "type": "text"
+        },
+        {
+          "name": "事实数",
+          "type": "number"
+        },
+        {
+          "name": "已核实数",
+          "type": "number"
+        },
+        {
+          "name": "候选数",
+          "type": "number"
+        },
+        {
+          "name": "冲突数",
+          "type": "number"
+        },
+        {
+          "name": "组件事实数",
+          "type": "number"
+        },
+        {
+          "name": "空缺数值数",
+          "type": "number"
+        },
+        {
+          "name": "生成时间",
+          "type": "datetime"
+        }
+      ]
+    }
+  ]
+}

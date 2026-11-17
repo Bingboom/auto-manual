@@ -29,6 +29,10 @@ PAGES: dict[str, str | None] = {
     "home": "workspace/index",
     "product-knowledge": "products/knowledge",
     "product-matrix": "products/matrix",
+    "product-attributes": "products/attributes",  # the four asset layers (step 12; tools/rtd/asset_layers.py)
+    "asset-content": "assets/content/index",
+    "asset-media": "assets/media/index",
+    "asset-language": "assets/language/index",
     "market-policy": "market/policy",
     "deliverables": "workspace/deliverables/index",
     "system": "workspace/system/index",

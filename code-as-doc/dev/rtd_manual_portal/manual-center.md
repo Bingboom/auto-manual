@@ -64,11 +64,13 @@ contains only 说明书资料库 and 搜索说明书正文, and its top bar keep
 region selector, with no internal knowledge links or 知识库 / 说明书资料库 switch.
 In the combined (private) role the root gets the full internal shell, so a reader
 can return to the knowledge base: the same sidebar groups as internal pages and the
-switch, with 说明书资料库 marked selected. Internal pages add three groups
-after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
-说明书生产 (说明书工作台, 系统建设, 设计规范), plus the switch. Their breadcrumb section is 知识库,
+switch, with 说明书资料库 marked selected. Internal pages (since step 12, see
+[asset-layers.md](asset-layers.md)) open with 首页 and 资产 · 按优先级 (产品信息,
+内容与表现, 视觉媒体, 语言, numbered) before 说明书, then 生产与方向 (说明书工作台,
+系统建设) and 参考 (市场与政策, 设计规范), plus the switch. 产品信息 stays current on
+its three tabs (产品矩阵, 属性字典, 产品知识). Their breadcrumb section is 知识库,
 and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer in
-both roles. Every sidebar entry is a page and carries
+both roles. Every other sidebar entry is a page and carries
 `aria-current="page"` on that page; 分享资料 and 最近更新 are sections of the
 知识库首页 (`workspace/index.html#shares`, `#updates`), not sidebar entries.
 Optional entries follow the same rules as before: 系统建设, 设计规范 and
@@ -89,7 +91,8 @@ language assets, skills and engineering scale) and 来源与演变 (data sources
 the system's evolution). The former tab ids (`#tab-architecture`, `#tab-corpus`,
 `#tab-tooling`, `#tab-evolution`) stay on their sections. 说明书工作台 opens with
 snapshot chips beside the title, the four delivery totals in one card and the
-常用入口 strip, above three tabs: 进度 (open by default), 交付物 and 资产与证据; it
+常用入口 strip, above three tabs: 进度 (open by default, led by coverage), 交付物 and 生产证据
+(资产与证据 until step 12); it
 owns the publication counts. 工作入口 (`manual_workbench.html`, on 系统建设「能力与架构」)
 draws the content-authority map and states current maturity rather than a target
 architecture:

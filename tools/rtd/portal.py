@@ -1,6 +1,7 @@
 """Root-only Sphinx portal over frozen publications; no live data or writes."""
 from __future__ import annotations
 
+import datetime as dt
 import json
 import os
 import re
@@ -32,7 +33,7 @@ from tools.rtd.system_data import system_data_page_context
 from tools.rtd.site_role import resolve_site_role
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.rtd.web_manual_value import band_context, load_value, page_context as value_page_context
-from tools.rtd.workspace_home import load_home_copy, now_view, reusable_assets
+from tools.rtd.workspace_home import load_home_copy, now_view
 from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).resolve().parents[1] / "rtd_portal_assets"
@@ -418,7 +419,18 @@ def collect_workspace_pages(app):
     if not learning["content_missing"] and learning["uncovered_models"]:
         sphinx_logging.getLogger(__name__).warning(
             "Product knowledge has no topic for these placed models: %s", ", ".join(learning["uncovered_models"]))
-    yield PAGE, {**learning, "site_nav": site_nav(app)}, TEMPLATE
+    from tools.rtd.asset_pages import asset_layer_pages
+
+    layers = asset_layer_pages(
+        srcdir=Path(app.srcdir), assets=ASSETS, settings=settings, products=products, system=system, matrix=matrix,
+        topics=None if learning["content_missing"] else len(learning["topics"]),
+        build_date=_build_date(deliverables, system),
+        coverage=(deliverables.get("progress") or {}).get("coverage"),
+        warn=sphinx_logging.getLogger(__name__).warning)
+    product = layers.pop("product")
+    yield PAGE, {**learning, "site_nav": site_nav(app), "product": product}, TEMPLATE
+    for page, context, template in layers["pages"]:
+        yield page, {**context, "site_nav": site_nav(app)}, template
     from tools.rtd.market_policy import (
         PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context, missing_knowledge_anchors,
     )
@@ -447,14 +459,15 @@ def collect_workspace_pages(app):
         # 现在: reusable assets (each from the source that owns it), then 当前主线 and 正在做 from 系统建设;
         # then 去哪里, 定位与价值 and the newest 5 updates.
         "now": now_view(system, load_home_copy(ASSETS)),
-        "assets": reusable_assets(system, workspace_content(app), repo_root()),
+        # 四类资产 (step 12): the layer cards, the main line and its two figures (tools/rtd/asset_pages.py).
+        "layers": layers["home"],
         "value": value_page_context(load_value(ASSETS)),
         "updates": updates_view(entries, built),
     }, "workspace_portal.html"
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 
-        yield SYSTEM_PAGE, {**system, "deliverables_entry": True,
+        yield SYSTEM_PAGE, {**system, **layers["system"], "deliverables_entry": True,
                             "design_entry": design is not None,
                             "matrix_entry": matrix is not None, "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
     yield DELIVERABLES_PAGE, {**deliverables, "system_entry": system is not None,
@@ -468,7 +481,14 @@ def collect_workspace_pages(app):
         "moved_title": "说明书工作台「数据统计」",
     }, "moved_page.html"
     if matrix is not None:
-        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app)}, MATRIX_TEMPLATE
+        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app), "product": product}, MATRIX_TEMPLATE
+
+
+
+def _build_date(deliverables: dict, system: dict | None) -> str:
+    """The date the workspace pages read their figures on: the workbench's, else 系统建设's, else today (UTC)."""
+    return (deliverables.get("build_date") or (system or {}).get("build_date")
+            or dt.datetime.now(dt.timezone.utc).date().isoformat())
 
 
 def write_design_pages(app, exception) -> None:

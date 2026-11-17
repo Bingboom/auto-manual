@@ -103,6 +103,11 @@ owns that snapshot (产品类别, 产品系列 and 商品简称 per model from t
 reading for the read-only own-product facts export (one record per model and
 market, each figure with its source row); it is a CLI, not part of the RTD
 build. See [product facts export](../product_facts_export.md).
+[`tools/product_matrix_base/`](../../../tools/product_matrix_base/) extracts every
+specification-table row of every published Web manual and stages and loads the
+product information matrix tables in the published-documents Feishu base (dry run
+by default, read-back after every write); it is a CLI, not part of the RTD build.
+See [product matrix base](../product_matrix_base.md).
 
 Internal frozen Web language projection lives in
 [`tools/web/language_bundle.py`](../../../tools/web/language_bundle.py); it projects

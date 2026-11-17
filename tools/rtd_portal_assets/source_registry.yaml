@@ -43,7 +43,7 @@ domains:
     refresh: python tools/workspace_refresh.py refresh corpus
     stale_after_days: 7
     fallback: 语料快照当前不可读
-    used_by: 语言资产
+    used_by: 语言资产页（资产 4 · 语言）、系统建设的阶段指标
 
   - id: deliverables_feishu
     label: 交付物飞书链接
@@ -67,7 +67,7 @@ domains:
     refresh: python tools/workspace_refresh.py refresh web_progress
     stale_after_days: 7
     fallback: 网页进度快照当前不可读
-    used_by: 说明书工作台·交付物的审核中、待转、已核对与上线进度
+    used_by: 说明书工作台·进度的覆盖，交付物的审核中、待转、已核对与上线进度
 
   - id: product_catalog
     label: 产品分类

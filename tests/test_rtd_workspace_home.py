@@ -1,6 +1,6 @@
+"""知识库首页 (step 12): the four layer cards, the main line and 正在做."""
 from __future__ import annotations
 
-import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,52 +8,36 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
+from tools.rtd import asset_layers as al
 from tools.rtd.portal import ASSETS
-from tools.rtd.workspace_home import (
-    knowledge_growth, load_home_copy, now_view, read_image_assets, read_shared_chapters, reusable_assets,
-)
+from tools.rtd.workspace_home import load_home_copy, now_view
 
 SYSTEM = {
-    "focus": {"groups": [
-        {"horizon": "now", "lanes": [
-            {"id": "workbench", "title": "资料开发工作台", "goal": "在工作台写作，由人审核"},
-            {"id": "web", "title": "网页发布与维护闭环", "goal": ""},
-        ]},
-        {"horizon": "next", "lanes": [{"id": "corpus", "title": "语料库建设与管理", "goal": "按需补齐"}]},
-    ], "doing": [{"lead": "网页化", "text": "印刷版说明书持续转成网页版", "lane": "web", "lane_name": "网页发布与维护闭环"}]},
-    "corpus": {"exported_at": "2026-09-24", "tiles": [
-        {"key": "pairs", "label": "句对", "value": "1,372"}, {"key": "terms", "label": "术语", "value": "232"},
-        {"key": "languages", "label": "语料覆盖语言", "value": "11"},
-        {"key": "approved", "label": "句对已批准", "value": "71%"},
-    ]},
+    "focus": {"doing": [{"lead": "网页化", "text": "印刷版说明书持续转成网页版", "lane": "web"}]},
 }
 COPY = {"assets_note": "每写一本都在积累，下一本直接复用"}
-REGISTRY = ("asset_key,override_for,类别,语言维度,状态,适用机型\n"
-            "a,,插图,中立,✅成品,ALL\nb,,图标,中立,✅成品,JE-1000F\nc,,插图,按语言,✅成品,JE-1000F\n"
-            "d,,插图,按语言,❌缺失,JE-1000F\n")
+CORPUS = {"exported_at": "2026-09-24", "stale": ["语料快照已超过 7 天"], "rows": [], "tiles": [
+    {"key": "pairs", "label": "句对", "value": "1,372"}, {"key": "approved", "label": "句对已批准", "value": "71%"}]}
+CHIP = {"status": "planned", "status_label": "已规划", "revs": ["REV-50", "REV-52"], "tally": "待做 2"}
 
 
-def make_repo(root: Path, *, registry: str | None = REGISTRY, chapters: bool = True) -> None:
-    if registry is not None:
-        (root / "data").mkdir(parents=True)
-        (root / "data" / "asset_registry.csv").write_text(registry, encoding="utf-8")
-    if chapters:
-        for lang, stems in {"en": ("11_warranty", "10_troubleshooting", "00_toc"), "de": ("11_warranty",)}.items():
-            folder = root / "docs" / "templates" / "page_shared" / lang
-            folder.mkdir(parents=True)
-            for stem in stems:
-                (folder / f"{stem}.rst").write_text("x", encoding="utf-8")
+def views(*, data: bool = True):
+    """Layer views as asset_pages builds them; without data every figure is unknown."""
+    product = al.product_layer({"facts": {"products": 3, "models": 4}, "built_on": "2026-11-13"} if data else None,
+                               {"total": 9} if data else None, topics=None, build_date="2026-11-16")
+    content = {**al.layer("content"), "chapters": {"pages": 12, "languages": ["de", "en"]} if data else None,
+               "components": {"total": 19} if data else None, "web_languages": 5 if data else None}
+    media = {**al.layer("media"), "registry": {"total": 40} if data else None, "symbols": {"total": 7} if data else None}
+    language = {**al.layer("language"), "corpus": CORPUS if data else None,
+                "tiles": {tile["key"]: tile for tile in CORPUS["tiles"]} if data else {}}
+    return product, content, media, language
 
 
-KNOWLEDGE = Path(__file__).parent / "fixtures" / "rtd_product_knowledge"
-
-
-def make_knowledge(root: Path, added: list[str]) -> None:
-    folder = root / "product-knowledge"
-    folder.mkdir(parents=True, exist_ok=True)
-    topics = [{"id": f"t{index}", **({"added": day} if day else {})} for index, day in enumerate(added)]
-    (folder / "topics.json").write_text(json.dumps({"schema_version": 1, "tags": [], "topics": topics}),
-                                        encoding="utf-8")
+def layers(**kwargs):
+    chips = {"product": CHIP, "content": None, "media": None, "language": None}
+    return {"cards": al.home_cards(*views(**kwargs), chips),
+            "main_line": {"text": "主线的一句话", "umbrella": "统称", "source": "https://example.invalid/doc"},
+            "coverage": {"online": 3, "total": 5, "percent": 60}, "matrix_stage": {"id": "matrix", "chip": CHIP}}
 
 
 def render(**context) -> BeautifulSoup:
@@ -82,101 +66,42 @@ class HomeCopyTests(unittest.TestCase):
 class NowViewTests(unittest.TestCase):
     def test_main_lines_and_doing_come_from_the_system_page(self):
         view = now_view(SYSTEM, COPY)
-        self.assertEqual([lane["title"] for lane in view["lanes"]], ["资料开发工作台", "网页发布与维护闭环"])
+        self.assertNotIn("lanes", view)  # the main line replaced the lane list (step 12)
         self.assertEqual(view["doing"], [{"lead": "网页化", "text": "印刷版说明书持续转成网页版"}])
         self.assertEqual(view["assets_note"], COPY["assets_note"])
         self.assertTrue(view["system"])
         alone = now_view(None, COPY)
-        self.assertEqual((alone["lanes"], alone["doing"], alone["system"]), ([], [], False))
-
-
-class AssetSourceTests(unittest.TestCase):
-    def test_image_assets_count_finished_neutral_and_every_model(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            make_repo(Path(tmp), chapters=False)
-            self.assertEqual(read_image_assets(Path(tmp) / "data" / "asset_registry.csv"),
-                             {"finished": 3, "neutral": 2, "every_model": 1})
-            self.assertIsNone(read_image_assets(Path(tmp) / "missing.csv"))
-
-    def test_shared_chapters_count_pages_languages_and_name_known_chapters(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            make_repo(Path(tmp), registry=None)
-            templates = Path(tmp) / "docs" / "templates"
-            self.assertEqual(read_shared_chapters(templates), {"pages": 4, "languages": 2, "names": ["保修", "故障排除"]})
-            self.assertIsNone(read_shared_chapters(Path(tmp) / "nowhere"))
-
-    def test_knowledge_growth_draws_the_cumulative_topic_count(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            assets = Path(tmp)
-            make_knowledge(assets, ["2026-10-08"] * 15 + ["2026-10-21"] * 4 + ["2026-10-22"] * 5)
-            growth = knowledge_growth(assets)
-            self.assertEqual((growth["total"], growth["since"], growth["delta"]), (24, "10 月 8 日", 9))
-            self.assertEqual(growth["spark"]["line"], "4.0,26.0 108.0,17.1 116.0,6.0")
-            # A topic without its date leaves the count but drops the line.
-            make_knowledge(assets, ["2026-10-08", ""])
-            self.assertEqual((knowledge_growth(assets)["total"], knowledge_growth(assets)["spark"]), (2, None))
-            self.assertIsNone(knowledge_growth(Path(tmp) / "nowhere"))
-
-    def test_fixture_topics_all_carry_their_added_date(self):
-        growth = knowledge_growth(KNOWLEDGE)
-        self.assertIsNotNone(growth["spark"])
-        self.assertGreater(growth["total"], growth["delta"])
-
-
-class ReusableAssetTests(unittest.TestCase):
-    def test_cards_read_each_source(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            make_repo(root)
-            make_knowledge(root / "assets", ["2026-10-08", "2026-10-08", "2026-10-22"])
-            cards = {card["id"]: card for card in reusable_assets(SYSTEM, root / "assets", root)}
-        self.assertEqual(list(cards), ["corpus", "images", "chapters", "knowledge"])
-        self.assertEqual([part["value"] for part in cards["corpus"]["stock"]], ["1,372", "232"])
-        self.assertEqual(cards["corpus"]["bar"]["percent"], 71)
-        self.assertEqual(cards["corpus"]["caption"], "11 种语言 · 快照 2026-09-24")
-        self.assertEqual((cards["images"]["stock"][0]["value"], cards["images"]["bar"]["percent"]), ("3", 67))
-        self.assertEqual(cards["images"]["caption"], "1 张全型号共用")
-        self.assertEqual(cards["chapters"]["chips"], ["保修", "故障排除"])
-        self.assertEqual(cards["knowledge"]["spark"]["value"], "+1")
-
-    def test_unreadable_sources_leave_their_cards_without_figures(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            cards = reusable_assets(None, Path(tmp), Path(tmp))
-        self.assertEqual([card["stock"] for card in cards], [[], [], [], []])
-        self.assertIsNone(cards[0]["docname"])  # no 系统建设 page to link to
+        self.assertEqual((alone["doing"], alone["system"]), ([], False))
 
 
 class HomeRenderTests(unittest.TestCase):
-    def test_now_shows_asset_cards_main_lines_and_doing(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            make_repo(root)
-            make_knowledge(root / "assets", ["2026-10-08", "2026-10-22"])
-            home = render(now=now_view(SYSTEM, COPY), assets=reusable_assets(SYSTEM, root / "assets", root))
-        now = home.select_one("#now")
-        self.assertEqual(now.select_one(".home-assets-head span").get_text(), COPY["assets_note"])
-        cards = now.select(".home-asset")
-        self.assertEqual([card.strong.get_text() for card in cards], ["翻译语料", "图片素材", "通用章节", "产品知识"])
-        self.assertEqual(cards[0]["href"], "workspace/system/index#language-assets")
-        self.assertEqual(cards[0].select_one(".home-asset-track i")["style"], "width:71%")
-        self.assertEqual(cards[1]["href"], "workspace/deliverables/index#statistics")
-        self.assertEqual(cards[2].name, "div")  # 通用章节 has no page of its own
-        self.assertEqual([chip.get_text() for chip in cards[2].select(".home-asset-chips span")], ["保修", "故障排除"])
-        self.assertIsNotNone(cards[3].select_one("svg.home-asset-spark polyline"))
-        self.assertEqual([li.get_text() for li in now.select(".home-lanes li")], ["资料开发工作台", "网页发布与维护闭环"])
-        self.assertEqual([(li.strong.get_text(), li.span.get_text()) for li in now.select(".home-doing li")],
-                         [("网页化", "网页化：印刷版说明书持续转成网页版")])
-        self.assertNotIn("REV-", now.get_text())
-        self.assertEqual(now.select_one(".home-head a")["href"], "workspace/system/index")
+    def test_layer_cards_follow_the_priority_order_with_dated_figures(self):
+        home = render(now=now_view(SYSTEM, COPY), layers=layers())
+        cards = home.select("#layers .home-layer")
+        self.assertEqual([card.strong.get_text() for card in cards], ["产品信息", "内容与表现", "视觉媒体", "语言"])
+        self.assertEqual([card["href"] for card in cards],
+                         ["products/matrix", "assets/content/index", "assets/media/index", "assets/language/index"])
+        self.assertIn("is-first", cards[0]["class"])
+        # Every figure carries the date it was read on.
+        for card in cards:
+            for label in card.select(".home-layer-label"):
+                self.assertRegex(label.get_text(), r"(构建|导出|发布清单) \d{4}-\d{2}-\d{2}")
+        self.assertEqual(cards[3].select_one(".home-layer-fig b").get_text(), "1,372")
+        self.assertIn("29% 句对未批准", cards[3].select_one(".home-layer-weak").get_text())
+        # Chips only where ledger rows give one.
+        self.assertEqual([bool(card.select_one(".home-status")) for card in cards], [True, False, False, False])
+        main = home.select_one("#main-line")
+        self.assertEqual(main.select_one(".home-mainline-text").get_text(), "主线的一句话")
+        self.assertIn("3", main.select_one("li").get_text())
+        self.assertEqual([li.get_text() for li in home.select(".home-doing li")], ["网页化：印刷版说明书持续转成网页版"])
 
-    def test_cards_without_a_source_read_no_data(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            home = render(now=now_view(None, COPY), assets=reusable_assets(None, Path(tmp), Path(tmp)),
-                          system_entry=False)
-        self.assertEqual([em.get_text() for em in home.select("#now .home-asset em")], ["无数据"] * 4)
-        self.assertIsNone(home.select_one("#now .home-lanes"))
+    def test_cards_without_a_source_say_pending_never_zero(self):
+        home = render(now=now_view(None, COPY), layers={**layers(data=False), "coverage": None},
+                      system_entry=False)
+        pending = [b.get_text() for b in home.select("#layers .home-layer-fig b")]
+        self.assertEqual(set(pending), {"待统计"})
+        self.assertEqual(home.select_one("#main-line .is-pending").get_text(), "待统计")
         self.assertIsNone(home.select_one("#now .home-doing"))
-        self.assertIsNone(home.select_one("#now .home-head a"))
 
     def test_entry_cards_carry_line_icons_not_glyphs(self):
         home = render()

@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script, icon with context %}
-{#- 知识库首页 (2026-11 design). 现在 opens with the reusable assets every manual adds to (tools/rtd/workspace_home.py
-    reads each figure from the source that owns it), then 当前主线 (系统建设's focus) and 正在做 (workspace_home.yaml).
+{#- 知识库首页 (2026-11 design; 现在 since step 12). 现在 opens with the four asset layers in priority order (figures,
+    chips and wording from tools/rtd/asset_pages.py), then 主线 (asset_layers.yaml) and 正在做 (系统建设's focus.doing).
     Then 去哪里, 定位与价值 (web_manual_value.yaml) and 最近更新. -#}
-{#- One 去哪里 card per sidebar group (ids manuals, products, production stay stable for links): the sidebar's icon
+{#- One 去哪里 card per sidebar group (ids products — now 资产 —, manuals, production stay stable for links; 参考 is
+    reference): the sidebar's icon
     and label for each page, with one line on what is there. -#}
 {%- macro door(group, links, anchor) -%}
 <section class="home-group" id="{{ anchor }}">
@@ -31,30 +32,18 @@
 {%- else -%}<circle class="ring dashed" cx="6" cy="6" r="4.25"/>
 {%- endif -%}</svg>
 {%- endmacro -%}
-{#- A reusable-asset card: the amount so far, then how much of it is reusable now (a bar, chapter names or a growth
-    line). A card whose source is unreadable shows 无数据. -#}
+{#- A layer card (step 12, frame B): the layer's place and title, its status chip only when ledger rows give one,
+    one line, one or two figures with the date they were read (待统计 when none), where it is maintained and its
+    weakest point. Figures come from the layer views (tools/rtd/asset_pages.py), the ones the layer pages show. -#}
 {%- macro asset_card(card) -%}
-{%- set tag = 'a' if card.docname else 'div' -%}
-<{{ tag }} class="home-asset" id="asset-{{ card.id|e }}"{% if card.docname %} href="{{ pathto(card.docname) }}{% if card.anchor %}#{{ card.anchor|e }}{% endif %}"{% endif %}>
-  <span class="home-asset-head"><span class="home-asset-icon">{{ icon(card.icon, 16) }}</span><strong>{{ card.title|e }}</strong></span>
-  {%- if card.stock %}
-  <span class="home-asset-stock">{% for part in card.stock %}<span><b>{{ part.value|e }}</b><small>{{ part.unit|e }}</small></span>{% endfor %}</span>
-  {%- if card.bar %}
-  <span class="home-asset-measure"><span class="home-asset-track"><i style="width:{{ card.bar.percent }}%"></i></span><span class="home-asset-label"><span>{{ card.bar.label|e }}</span><b>{{ card.bar.percent }}%</b></span></span>
-  {%- endif %}
-  {%- if card.chips %}
-  <span class="home-asset-chips">{% for chip in card.chips %}<span>{{ chip|e }}</span>{% endfor %}</span>
-  {%- endif %}
-  {%- if card.spark %}
-  <span class="home-asset-measure"><svg class="home-asset-spark" width="{{ card.spark.width }}" height="{{ card.spark.height }}" viewBox="0 0 {{ card.spark.width }} {{ card.spark.height }}" aria-hidden="true" focusable="false"><polygon class="area" points="{{ card.spark.area }}"/><polyline class="line" points="{{ card.spark.line }}"/><circle class="end" cx="{{ card.spark.x }}" cy="{{ card.spark.y }}" r="3"/></svg><span class="home-asset-label"><span>{{ card.spark.label|e }}</span><b>{{ card.spark.value|e }}</b></span></span>
-  {%- endif %}
-  {%- if card.caption %}
-  <span class="home-asset-caption">{{ card.caption|e }}</span>
-  {%- endif %}
-  {%- else %}
-  <span class="home-asset-stock"><em>无数据</em></span>
-  {%- endif %}
-</{{ tag }}>
+<a class="home-asset home-layer{% if card.order == 1 %} is-first{% endif %}" id="asset-{{ card.id|e }}" href="{{ pathto(card.page) }}">
+  <span class="home-asset-head"><span class="home-layer-no" aria-hidden="true">{{ card.order }}</span><strong>{{ card.title|e }}</strong>
+    {%- if card.chip %}<em class="home-status is-{{ card.chip.status|e }}" title="据台账 {{ card.chip.revs|join('、')|e }}：{{ card.chip.tally|e }}">{{ status_mark(card.chip.status) }}{{ card.chip.status_label|e }}</em>{% endif %}</span>
+  <span class="home-layer-line">{{ card.lead|e }}</span>
+  <span class="home-asset-stock">{% for fig in card.figures %}<span class="home-layer-fig"><span class="home-layer-num">{% if fig.value is none %}<b class="is-pending">待统计</b>{% else %}<b>{{ fig.value|e }}</b>{% if fig.unit %}<small>{{ fig.unit|e }}</small>{% endif %}{% endif %}</span><small class="home-layer-label">{{ fig.label|e }}{% if fig.date %} · {{ fig.date|e }}{% endif %}</small></span>{% endfor %}</span>
+  <span class="home-asset-caption">在哪里维护：{{ card.where|e }}</span>
+  <span class="home-layer-weak"><b>最弱一点</b>{{ card.weak|e }}</span>
+</a>
 {%- endmacro -%}
 <body class="app kb">
 {{ site_sidebar('overview', {'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'matrix': matrix_entry}) }}
@@ -72,14 +61,19 @@
     {% if now %}<section id="now" class="home-now" aria-labelledby="now-title">
       <div class="home-head"><h2 id="now-title">现在</h2>{% if now.system %}<a class="home-more" href="{{ pathto('workspace/system/index') }}">系统建设{{ icon('arrow', 14) }}</a>{% endif %}</div>
       <div class="home-panel">
-        {% if assets %}<div class="home-assets">
-          <div class="home-assets-head"><h3>已积累的可复用资产</h3><span>{{ now.assets_note|e }}</span></div>
-          <div class="home-asset-grid">{% for card in assets %}{{ asset_card(card) }}{% endfor %}</div>
+        {% if layers %}<div class="home-assets" id="layers">
+          <div class="home-assets-head"><h3>四类资产 · 按优先级{% if layers.main_line %} · {{ layers.main_line.umbrella|e }}{% endif %}</h3><span>{{ now.assets_note|e }}；状态以台账登记为准</span></div>
+          <div class="home-asset-grid">{% for card in layers.cards %}{{ asset_card(card) }}{% endfor %}</div>
         </div>{% endif %}
         <div class="home-status-row">
-          {% if now.lanes %}<div class="home-lanes">
-            <h3>当前主线</h3>
-            <ul>{% for lane in now.lanes %}<li>{{ lane.title|e }}</li>{% endfor %}</ul>
+          {% if layers and layers.main_line %}<div class="home-lanes home-mainline" id="main-line">
+            <h3>主线</h3>
+            <p class="home-mainline-text">{{ layers.main_line.text|e }}</p>
+            <ul>
+              <li><a href="{{ pathto('workspace/deliverables/index') }}#web-progress-coverage">网页覆盖</a>{% if layers.coverage and layers.coverage.total %}<span><b>{{ layers.coverage.online }}</b> / {{ layers.coverage.total }} 本已上线 · {{ layers.coverage.percent }}%</span>{% else %}<span class="is-pending">待统计</span>{% endif %}</li>
+              {%- if layers.matrix_stage %}<li><a href="{{ pathto(layers.cards[0].page) }}">产品信息矩阵</a>{% if layers.matrix_stage.chip %}<em class="home-status is-{{ layers.matrix_stage.chip.status|e }}" title="据台账 {{ layers.matrix_stage.chip.revs|join('、')|e }}">{{ status_mark(layers.matrix_stage.chip.status) }}{{ layers.matrix_stage.chip.status_label|e }}</em>{% endif %}</li>{% endif %}
+            </ul>
+            <p class="home-mainline-note">网页覆盖的分母只含已有网页说明书的型号；表述见<a href="{{ layers.main_line.source|e }}" target="_blank" rel="noopener">定位文档 ↗</a></p>
           </div>{% endif %}
           {% if now.doing %}<div class="home-doing">
             <h3>正在做</h3>
@@ -93,11 +87,13 @@
     <section id="doors" aria-labelledby="doors-title">
       <div class="home-head"><h2 id="doors-title">去哪里</h2></div>
       <div class="home-doors">
+        {%- set assets = [('products/matrix' if matrix_entry else 'products/knowledge', 'product', '产品信息', '产品矩阵、属性字典与产品知识'), ('assets/content/index', 'chapters', '内容与表现', '骨架、通用章节、组件与版式'), ('assets/media/index', 'image', '视觉媒体', '素材库与共用符号'), ('assets/language/index', 'languages', '语言', '句对、术语与术语规则')] %}
+        {{ door('资产 · 按优先级', assets, 'products') }}
         {{ door('说明书', [('index', 'book', '说明书资料库', '按型号、市场和语言查找'), ('search', 'search', '搜索说明书正文', '按关键词检索说明书正文')], 'manuals') }}
-        {%- set learn = [('products/knowledge', 'product', '产品知识', '参数、电池、逆变、充电与备电')] + ([('products/matrix', 'matrix', '产品矩阵', '产品线、容量与发布市场')] if matrix_entry else []) + [('market/policy', 'globe', '市场与政策', '各地区的市场与政策')] %}
-        {{ door('产品与市场', learn, 'products') }}
-        {%- set make = ([('workspace/deliverables/index', 'workbench', '说明书工作台', '网页说明书进度、交付物与生产证据')] if deliverables_entry else []) + ([('workspace/system/index', 'system', '系统建设', '阶段门、当前主线与能力架构')] if system_entry else []) + ([('workspace/design/index', 'design', '设计规范', '颜色、字体、组件与图标')] if design_entry else []) %}
-        {{ door('说明书生产', make, 'production') }}
+        {%- set make = ([('workspace/deliverables/index', 'workbench', '说明书工作台', '网页说明书覆盖、交付物与生产证据')] if deliverables_entry else []) + ([('workspace/system/index', 'system', '系统建设', '阶段门、当前主线与能力架构')] if system_entry else []) %}
+        {{ door('生产与方向', make, 'production') }}
+        {%- set refs = [('market/policy', 'globe', '市场与政策', '各地区的市场与政策')] + ([('workspace/design/index', 'design', '设计规范', '颜色、字体、组件与图标')] if design_entry else []) %}
+        {{ door('参考', refs, 'reference') }}
       </div>
       {% if share_entry %}<p id="shares" class="home-share-row"><a class="share-card" href="{{ share_entry|e }}"><span class="home-tile">{{ icon('share', 18) }}</span><small>分享资料</small><strong>AI 使用知识分享</strong>{{ icon('chevron', 16) }}</a></p>{% endif %}
     </section>

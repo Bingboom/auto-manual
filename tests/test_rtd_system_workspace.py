@@ -15,6 +15,7 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 import yaml
+from bs4 import BeautifulSoup
 
 from tools.rtd import portal as rtd_portal
 from tools.rtd import system_workspace as sw
@@ -256,7 +257,7 @@ class SystemWorkspaceContractTests(unittest.TestCase):
     def test_active_ledger_rows_read_as_in_progress(self):
         ledger = sw.parse_ledger(LEDGER.replace("REV-03 | WP2 | G1 | x | planned", "REV-03 | WP2 | G1 | x | active"))
         self.assertEqual(ledger.statuses["REV-03"], "active")
-        progress = sw._progress(["REV-03", "REV-04"], ledger)
+        progress = sw.ledger_progress(["REV-03", "REV-04"], ledger)
         self.assertEqual((progress["state"], progress["tally"]), ("active", "在做 1 · 暂缓 1"))
         self.assertEqual(sw.parse_evidence("rev:REV-03=active"), ("rev", "REV-03", "active"))
 
@@ -812,9 +813,30 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # The shipped contract names the manual library as the site does.
             self.assertIn("<b>说明书资料库</b>", page)
             self.assertNotIn("手册中心", page)
-            # Every capability card shows (2026-11 design, step 9); none is folded away.
+            # Every capability shows (2026-11 design, step 9); none is folded away. Since step 12 the map is four
+            # layer cards (asset_layers.yaml regroups the items) and the production cards kept whole.
             self.assertNotIn('class="sw-more"', page)
-            self.assertEqual(page.count('<article class="sw-card"'), len(sw.load_contract(assets / sw.CONTRACT_NAME)["capabilities"]))
+            contract = sw.load_contract(assets / sw.CONTRACT_NAME)
+            layer_data = yaml.safe_load((assets / "asset_layers.yaml").read_text(encoding="utf-8"))
+            self.assertEqual(page.count('<article class="sw-card"'), len(layer_data["production"]))
+            self.assertEqual(page.count('<article class="sw-card sw-layer-card"'), 4)
+            # Regrouping changes no status word and no evidence: every item shows once, as the contract has it.
+            soup = BeautifulSoup(page, "html.parser")
+            shown = sorted((li.b.get_text(), li.select_one(".sw-badge").get_text(),
+                            tuple(a.get_text() for a in li.select(".sw-refs > *")))
+                           for li in soup.select("#capabilities .sw-evidence > ul > li"))
+            repositories = {k: str(v).rstrip("/") for k, v in contract["repositories"].items()}
+
+            def evidence_label(ref):  # as evidence_links prints it: an operator confirmation shows its month
+                label = sw.evidence_view(ref, repositories, "")["label"]
+                return label[:-3] if label.startswith("操作者确认 ") else label
+
+            expected = sorted((item["label"], sw.STATUS_LABELS[item["status"]],
+                               tuple(evidence_label(ref) for ref in item["evidence"]))
+                              for card in contract["capabilities"] for item in card["items"])
+            self.assertEqual(shown, expected)
+            for old_id in ("language", "content_foundation"):  # lane links still land
+                self.assertIn(f'id="cap-{old_id}"', page)
             self.assertIn('<details class="sw-link">', capabilities)
             # Skills and hooks come from this tree, not from the contract.
             self.assertIn('id="tooling"', page)
@@ -843,13 +865,17 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertNotIn("代表手册 · Explorer 1000", page)
             self.assertNotIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("Jackery", page)
+            # 语言资产 moved to the 语言 asset page (step 12); the old anchors stay on a pointer to it.
             self.assertIn("语言资产", page)
-            self.assertIn('class="sw-corpus-bars"', page)
+            self.assertIn('href="../../assets/language/index.html"', page.split('id="language-assets"', 1)[1])
+            self.assertNotIn('class="al-bars"', page)
+            language = (base / "good" / "assets" / "language" / "index.html").read_text(encoding="utf-8")
+            self.assertIn('class="al-bars"', language)
             # Corpus coverage must not read as manual localization completion.
-            self.assertIn("语料库句对覆盖", page)
-            self.assertIn("不是说明书的翻译完成率", page)
+            self.assertIn("句对覆盖", language)
+            self.assertIn("不是说明书的翻译完成率", language)
             # Snapshot freshness wording comes from the registry, not a fixed cadence.
-            self.assertIn(f"超过 {shipped_registry['corpus']['stale_after_days']} 天显示待复核", page)
+            self.assertIn(f"超过 {shipped_registry['corpus']['stale_after_days']} 天显示待复核", language)
             self.assertNotIn("按月快照", page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
