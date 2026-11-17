@@ -24,7 +24,7 @@ from tools.product_matrix_base.stage import (
     require_exclude_field, table_ids,
 )
 
-SCHEMA = "hello-docs-product-matrix-snapshot/v1"
+SCHEMA = "hello-docs-product-matrix-snapshot/v1.1"  # v1.1 adds values[].id and cells (additions only)
 FILE_NAME = "snapshot.json"
 PRIVATE_MIRROR = "Hello-Docs"
 KNOWLEDGE = Path("docs") / "knowledge"
@@ -123,11 +123,14 @@ def _owner(row: dict[str, Any]) -> str:
 
 
 def _value(row: dict[str, Any]) -> dict[str, Any]:
-    return {"product": _text(row.get("产品键")), "parameter": _text(row.get("属性键")),
+    from tools.product_matrix_base.cells import split_derived, value_id
+
+    return {"id": value_id(_text(row.get("事实键"))), "product": _text(row.get("产品键")), "parameter": _text(row.get("属性键")),
             "source": source_id(_text(row.get("来源键"))), "condition": _single(row.get("条件")),
-            "printed": _single(row.get("原文")), "number": _single(row.get("数值")), "text": _single(row.get("文本值")),
+            "printed": split_derived(row.get("原文"))[0], "derived": split_derived(row.get("原文"))[1],
+            "number": _single(row.get("数值")), "text": _single(row.get("文本值")),
             "printed_unit": _single(row.get("原单位")), "qualifier": _single(row.get("限定")),
-            "position": _single(row.get("来源位置")), "state": _single(row.get("核实状态")) or "候选",
+            "position": split_derived(row.get("来源位置"))[0], "state": _single(row.get("核实状态")) or "候选",
             "effective_from": _date(row.get("生效起")), "effective_to": _date(row.get("生效止")),
             "recorded": _date(row.get("记录时间")), "current": bool(row.get("当前值")), "conflict": bool(row.get("冲突"))}
 
@@ -142,7 +145,8 @@ def _mark_disagreement(values: list[dict[str, Any]]) -> None:
         value["sources_disagree"] = len(seen[(value["product"], value["parameter"])]) > 1
 
 
-def _kept(run: Runner, ids: dict[str, str]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+def _kept(run: Runner, ids: dict[str, str]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]],
+                                                 list[dict[str, Any]]]:
     """Products not marked 不收录, their facts, and the sources they own or cite (a deleted product leaves none)."""
     require_exclude_field(run, ids["产品"])  # without it every excluded product would reach the private site
     rows = read_rows(run, ids["产品"], list(PRODUCT_FIELDS), sensitive=True)
@@ -150,9 +154,9 @@ def _kept(run: Runner, ids: dict[str, str]) -> tuple[list[dict[str, Any]], list[
     kept = {p["key"] for p in products}
     facts = [r for r in read_rows(run, ids["事实"], list(FACT_FIELDS), sensitive=True) if _text(r.get("产品键")) in kept]
     cited = {_text(r.get("来源键")) for r in facts}
-    sources = [_source(r) for r in read_rows(run, ids["来源"], list(SOURCE_FIELDS), sensitive=True)
-               if _text(r.get("来源键")) in cited or _owner(r) in kept]
-    return products, facts, sources
+    raw = [r for r in read_rows(run, ids["来源"], list(SOURCE_FIELDS), sensitive=True)
+           if _text(r.get("来源键")) in cited or _owner(r) in kept]
+    return products, facts, [_source(r) for r in raw], raw
 
 
 def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
@@ -161,8 +165,12 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
     missing = [name for name in ("产品", "属性", "来源", "事实") if name not in ids]
     if missing:
         raise LoadError(f"tables missing in the base: {missing}")
-    products, facts, sources = _kept(run, ids)
-    parameters = [_parameter(r) for r in read_rows(run, ids["属性"], list(PARAMETER_FIELDS), sensitive=True)]
+    from tools.product_matrix_base.cells import build_cells
+
+    products, facts, sources, raw_sources = _kept(run, ids)
+    attribute_rows = read_rows(run, ids["属性"], list(PARAMETER_FIELDS), sensitive=True)
+    parameters = [_parameter(r) for r in attribute_rows]
+    cells = build_cells(facts, attribute_rows, raw_sources, source_id)
     main = [_value(r) for r in facts if not _text(r.get("条件")).startswith(COMPONENT)]
     components = [{**_value(r), "component": _text(r.get("条件"))[len(COMPONENT):].split("#")[0]}
                   for r in facts if _text(r.get("条件")).startswith(COMPONENT)]
@@ -172,7 +180,7 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
         "schema": SCHEMA,
         "read_at": (now or datetime.now(timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "counts": {"products": len(products), "parameters": len(parameters), "sources": len(sources),
-                   "values": len(main), "component_values": len(components),
+                   "values": len(main), "component_values": len(components), "cells": len(cells),
                    "products_with_project": sum(1 for p in products if p["project"]),
                    "products_with_first_sku": sum(1 for p in products if p["first_sku_created"]),
                    "first_sku_upper_bound": sum(1 for p in products if p["first_sku_created_upper_bound"])},
@@ -182,7 +190,15 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
         "sources": sorted(sources, key=lambda s: (s["model"] or "", s["market"] or "", s["language"] or "", s["id"])),
         "values": sorted(main, key=order),
         "component_values": sorted(components, key=lambda v: (*order(v), v["component"])),
+        "cells": cells,
     }
+    from tools.product_matrix_base.cells import SnapshotReferenceError, check_references, reference_rows
+
+    try:
+        check_references(document)  # never write a file whose cells point nowhere
+    except SnapshotReferenceError as exc:
+        exc.rows = reference_rows(facts, raw_sources, {cell["value"] for cell in cells})
+        raise
     return document
 
 

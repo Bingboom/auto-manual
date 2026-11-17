@@ -96,6 +96,7 @@ One line per skill below; full descriptions, trigger phrases, and scope notes li
 - [`local-publish-queue-run`](.agents/skills/local-publish-queue-run/SKILL.md): run the build-queue publish locally as the CI bot when Actions cannot run or a publish needs local repair.
 - [`hello-docs-pipeline-dispatch-triage`](.agents/skills/hello-docs-pipeline-dispatch-triage/SKILL.md): dispatch and triage the Hello-Docs mirror pipeline; code changes NEVER PR the mirror's main — only `backport/...` → `review/*` data-plane PRs belong there.
 - [`manual-review-draft`](.agents/skills/manual-review-draft/SKILL.md): writes off-pipeline manual review drafts (审核稿), currently in US→US English reuse and US→JP Japanese-corpus reuse modes; inherit reference structure and wording, fill target-spec parameters, keep suggestions in review notes; Claude entry in `.claude/skills/manual-review-draft/`.
+- [`web-manual-agent-authoring`](.agents/skills/web-manual-agent-authoring/SKILL.md): author batch Web manuals in `manual-ir/v2` from `asset_registry.csv`, `ComponentSpec` + `web_*.css`, and TM-B/sibling corpus; Claude entry in `.claude/skills/web-manual-agent-authoring/`.
 - For TM-guided translation jobs, route by carrier: `.docx` / Feishu cloud doc pre-translation → `lark-tm-translation-preprocess`; Markdown / plain-text rewrite → `bitable-translation-memory` for lookup, then `manual-rewrite-with-tm` for the structure-preserving rewrite flow.
 
 ## 8. Multi-Window Parallel Development
