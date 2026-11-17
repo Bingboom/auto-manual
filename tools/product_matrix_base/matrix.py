@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 from tools.product_matrix_base.stage import (
-    LoadError, PartialWrite, Runner, _check, _instant, _stamp, earliest, _text, fields, read_rows, same, table_ids,
+    LoadError, PartialWrite, Runner, _check, _instant, SKU_TIME_FIELD, _stamp, earliest, _text, fields, read_rows, same, table_ids,
 )
 
 MATRIX = "矩阵"
@@ -30,7 +30,7 @@ COUNTS = ("已核实数", "候选数", "冲突数", "组件事实数", "空缺�
 PROJECT = "项目号"  # the leading index; copied from 产品.项目号（仅飞书）, never read out of Feishu by any report
 PROJECT_SOURCE = "项目号（仅飞书）"
 LAUNCH = "上市日期"
-SKU_TIME = "SKU 最早创建时间"  # the earliest PLM creation time of the product's SKUs in its market; not the launch date
+SKU_TIME = "SKU 最早创建时间"  # matrix column: the earliest PLM creation of the product's SKUs in its market; not a launch
 EXCLUDE = "不收录"  # a product a person keeps out of the matrix (the reader would otherwise add it back)
 TRACE = ("来源", "事实数")  # the path back: the pages the row's values were read from, and how many facts it has
 STAMP = "生成时间"
@@ -139,7 +139,7 @@ def _row(product: dict[str, Any], columns: list[dict[str, Any]], main: dict, com
     row[PROJECT] = _text(product.get(PROJECT_SOURCE))
     launch = _instant(product.get(LAUNCH))
     row[LAUNCH] = _stamp(datetime.fromtimestamp(launch, timezone.utc)) if launch is not None else None
-    created = earliest(product.get(SKU_TIME))  # a lookup or formula in 产品; the matrix only copies it
+    created = earliest(product.get(SKU_TIME_FIELD))  # a formula in 产品; the matrix only copies it
     row[SKU_TIME] = _stamp(datetime.fromtimestamp(created, timezone.utc)) if created is not None else None
     counts: Counter[str] = Counter({"组件事实数": components[key]})
     pages: set[str] = set()
@@ -187,7 +187,7 @@ def read_base(run: Runner) -> dict[str, Any]:
         raise LoadError(f"tables missing in the base: {missing}")
     return {
         "ids": ids,
-        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH, SKU_TIME, EXCLUDE], sensitive=True),
+        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH, SKU_TIME_FIELD, EXCLUDE], sensitive=True),
         "attributes": read_rows(run, ids["属性"], ["属性键", "中文名", "值类型", "规范单位", "状态", "排序"]),
         "facts": read_rows(run, ids["事实"], ["事实键", "产品键", "属性键", "数值", "文本值", "原单位", "条件",
                                              "核实状态", "来源键", "记录时间", "冲突", "原文"]),

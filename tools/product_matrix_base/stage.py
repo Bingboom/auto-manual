@@ -261,6 +261,20 @@ _MOMENT = re.compile(r"(\d{4})[/-](\d{1,2})[/-](\d{1,2})(?:[ T](\d{1,2}):(\d{2})
                      r"(?:\.\d+)?\s*(?:\(?(?:GMT|UTC)?([+-]\d{1,2})(?::?(\d{2}))?\)?|(Z))?")
 
 
+SKU_TIME_FIELD = "SKU 最早创建时间（本市场）"  # 产品 formula: earliest PLM SKU creation in the product's market
+# PLM holds SKU creation times from its data load in late 2023: an earlier-or-equal time is only an upper bound for when
+# the product existed, never its start (operator, 2026-11-17).
+PLM_LOADED_UNTIL = datetime(2023, 12, 31, 23, 59, 59, tzinfo=CST)
+SERIAL_LIMIT = 10_000_000  # below this a number is a spreadsheet day serial, above it epoch milliseconds
+_SERIAL = re.compile(r"\d{4,6}(?:\.\d+)?")
+_SERIAL_EPOCH = datetime(1899, 12, 30, tzinfo=CST)
+
+
+def _serial(days: float) -> int:
+    """A formula's date as a spreadsheet day serial (days since 1899-12-30, Beijing time) to epoch seconds."""
+    return round((_SERIAL_EPOCH + timedelta(days=days)).timestamp())
+
+
 def _moment(match: re.Match[str]) -> int | None:
     """One matched date text as epoch seconds (no offset: Beijing time); None for an impossible date."""
     year, month, day, hour, minute, second, sign_hours, offset_minutes, zulu = match.groups()
@@ -280,10 +294,12 @@ def earliest(value: Any) -> int | None:
 
     Such a cell may hold one value or several (a lookup's raw values come back as a list, or as text joined by commas
     like ``2024/07/30 10:00 (GMT+8),2025/...``), each as epoch milliseconds or date text; text without an offset is
-    Beijing time.
+    Beijing time. A formula field that yields a date comes back as a day serial such as ``45893.4375``.
     """
     if isinstance(value, (int, float)) and not isinstance(value, bool):
-        return int(value // 1000)
+        return _serial(value) if value < SERIAL_LIMIT else int(value // 1000)
+    if isinstance(value, str) and _SERIAL.fullmatch(value.strip()):
+        return _serial(float(value))
     if isinstance(value, list):
         found = [m for m in (earliest(v) for v in value) if m is not None]
         return min(found) if found else None

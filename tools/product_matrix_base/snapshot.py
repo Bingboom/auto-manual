@@ -19,7 +19,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from tools.product_matrix_base.stage import CST, LoadError, Runner, _instant, _text, earliest, read_rows, table_ids
+from tools.product_matrix_base.stage import (
+    CST, PLM_LOADED_UNTIL, SKU_TIME_FIELD, LoadError, Runner, _instant, _text, earliest, read_rows, table_ids,
+)
 
 SCHEMA = "hello-docs-product-matrix-snapshot/v1"
 FILE_NAME = "snapshot.json"
@@ -32,7 +34,7 @@ SKU_BASIS = "PLM：本产品在本市场的 SKU 中最早的创建时间（不�
 
 PRODUCT_FIELDS = ("产品键", "型号", "市场", "品牌", "商品简称", "名称_en", "名称_ja", "名称_zh", "产品类别", "产品系列",
                   "容量档", "共用说明书于", PROJECT_SOURCE, "上市日期", "上市日期依据", "停售日期", "产品阶段", "不收录",
-                  "SKU 最早创建时间")
+                  SKU_TIME_FIELD)
 NAME_FIELDS = tuple(field for field in PRODUCT_FIELDS if field.startswith("名称_"))
 PARAMETER_FIELDS = ("属性键", "中文名", "英文名", "分组", "值类型", "规范单位", "定义", "适用类别", "说明书通常写", "状态",
                     "排序")
@@ -80,10 +82,21 @@ def _product(row: dict[str, Any]) -> dict[str, Any]:
             "project": _single(row.get(PROJECT_SOURCE)), "launch_date": _date(row.get("上市日期")),
             "launch_date_basis": _single(row.get("上市日期依据")), "end_of_sale": _date(row.get("停售日期")),
             "stage": _single(row.get("产品阶段")),
-            # Not a launch date: when the product's first SKU for this market was created in PLM (a stand-in for
-            # when it entered the system). Kept apart from launch_date so a reader cannot take one for the other.
-            "first_sku_created": _date(row.get("SKU 最早创建时间"), first=True),
-            "first_sku_created_basis": SKU_BASIS if _date(row.get("SKU 最早创建时间"), first=True) else None}
+            **_first_sku(row.get(SKU_TIME_FIELD))}
+
+
+def _first_sku(value: Any) -> dict[str, Any]:
+    """When the product's first SKU for this market was created in PLM: not a launch date, kept apart from it.
+
+    A time from PLM's late-2023 data load only bounds the product from above (``first_sku_created_upper_bound``: it
+    existed by then, perhaps long before); no value gives nulls.
+    """
+    seconds = earliest(value)
+    if seconds is None:
+        return {"first_sku_created": None, "first_sku_created_upper_bound": False, "first_sku_created_basis": None}
+    return {"first_sku_created": datetime.fromtimestamp(seconds, CST).strftime("%Y-%m-%d"),
+            "first_sku_created_upper_bound": seconds <= PLM_LOADED_UNTIL.timestamp(),
+            "first_sku_created_basis": SKU_BASIS}
 
 
 def _parameter(row: dict[str, Any]) -> dict[str, Any]:
@@ -158,7 +171,9 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
         "read_at": (now or datetime.now(timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "counts": {"products": len(products), "parameters": len(parameters), "sources": len(sources),
                    "values": len(main), "component_values": len(components),
-                   "products_with_project": sum(1 for p in products if p["project"])},
+                   "products_with_project": sum(1 for p in products if p["project"]),
+                   "products_with_first_sku": sum(1 for p in products if p["first_sku_created"]),
+                   "first_sku_upper_bound": sum(1 for p in products if p["first_sku_created_upper_bound"])},
         "products": sorted(products, key=lambda p: p["key"]),
         "parameters": sorted(parameters, key=lambda p: (p["order"] if isinstance(p["order"], (int, float)) else 1e9,
                                                          p["key"])),
@@ -217,7 +232,8 @@ def write_snapshot(target: Path, document: dict[str, Any]) -> None:
 def summary(document: dict[str, Any]) -> str:
     """Counts only: never a project number, a value or a source key."""
     counts = document["counts"]
-    return (f"产品 {counts['products']}（带项目号 {counts['products_with_project']}），参数 {counts['parameters']}，"
+    return (f"产品 {counts['products']}（带项目号 {counts['products_with_project']}，带 SKU 时间 "
+            f"{counts['products_with_first_sku']}，其中仅为上限 {counts['first_sku_upper_bound']}），参数 {counts['parameters']}，"
             f"来源 {counts['sources']}，主产品值 {counts['values']}，组件值 {counts['component_values']}")
 
 

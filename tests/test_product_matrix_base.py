@@ -385,22 +385,30 @@ class EarliestTest(unittest.TestCase):
         self.assertEqual(earliest(["2025-01-01T00:00:00.000+08:00", 1704067200000]), 1704067200)
         self.assertEqual(earliest({"type": 5, "value": [1704067200000]}), 1704067200)
         self.assertEqual(earliest("2024-01-01 08:00"), 1704067200)  # no offset: Beijing time
+        self.assertEqual(earliest("45292.3333333333"), 1704067200)  # a formula's day serial, Beijing time
+        self.assertEqual(earliest(45292.5), 1704067200 + 4 * 3600)
         self.assertIsNone(earliest(""))
         self.assertIsNone(earliest("no date here"))
 
     def test_matrix_and_snapshot_carry_it_apart_from_the_launch_date(self):
-        product = dict(PRODUCTS[0], **{"SKU 最早创建时间": "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"})
+        product = dict(PRODUCTS[0], **{"SKU 最早创建时间（本市场）": "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"})
         built = matrix.build([product], ATTRIBUTES, FACTS, SOURCES)
         self.assertEqual(built["rows"]["JE-A/US"]["SKU 最早创建时间"], "2024-07-30 09:15:00")
         self.assertNotIn("上市日期", built["rows"]["JE-A/US"])
         self.assertIn({"name": "SKU 最早创建时间", "type": "datetime"}, matrix.manifest_fields(built))
         base = SnapshotTest().base()
-        base.rows["产品"][1]["SKU 最早创建时间"] = "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"
+        base.rows["产品"][1]["SKU 最早创建时间（本市场）"] = "2025/02/03 10:00 (GMT+8),2024/07/30 09:15 (GMT+8)"
+        base.rows["产品"][0]["SKU 最早创建时间（本市场）"] = "45215.5"  # a formula's day serial: 2023-10-16 12:00
         document = snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
         first = document["products"][0]
         self.assertEqual((first["first_sku_created"], first["launch_date"]), ("2024-07-30", "2026-03-01"))
         self.assertIn("不是上市日期", first["first_sku_created_basis"])
-        self.assertIsNone(document["products"][1]["first_sku_created_basis"])
+        self.assertFalse(first["first_sku_created_upper_bound"])
+        loaded = document["products"][1]  # within PLM's late-2023 data load: only an upper bound
+        self.assertEqual((loaded["first_sku_created"], loaded["first_sku_created_upper_bound"]), ("2023-10-16", True))
+        bare = snapshot.build_snapshot(SnapshotTest().base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual({(p["first_sku_created"], p["first_sku_created_basis"]) for p in bare["products"]},
+                         {(None, None)})
 
 
 class MatrixBase(FakeBase):
@@ -614,7 +622,8 @@ class SnapshotTest(unittest.TestCase):
     def test_snapshot_is_sorted_opaque_and_keeps_components_apart(self):
         document = snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))
         self.assertEqual(document["counts"], {"products": 2, "parameters": 2, "sources": 2, "values": 2,
-                                              "component_values": 1, "products_with_project": 1})
+                                              "component_values": 1, "products_with_project": 1,
+                                              "products_with_first_sku": 0, "first_sku_upper_bound": 0})
         self.assertEqual([p["key"] for p in document["products"]], ["JE-A/US", "JE-B/JP"])
         self.assertEqual([p["key"] for p in document["parameters"]], ["product_name", "capacity_wh"])
         product = document["products"][0]
