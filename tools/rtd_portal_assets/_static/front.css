@@ -1,0 +1,29 @@
+/* The front pages product colleagues read (front cleanup, 2026-11-17): a title, at most one short line, then the
+   content. Used by 产品信息 (with product-matrix.css) and 语料库. Tokens: site-shell.css. */
+.fr-page {max-width:1120px;margin:0 auto;padding:40px 48px 80px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px}
+.fr-head {display:flex;flex-direction:column;gap:8px;max-width:820px;margin-bottom:8px}
+.fr-head h1 {margin:0;font-size:var(--text-3xl);line-height:38px;font-weight:700}
+.fr-head p {margin:0;font-size:15px;line-height:24px;color:var(--app-muted)}
+.fr-figs {display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 40px;padding:20px 24px;background:var(--surface);
+  border:1px solid var(--app-line);border-radius:var(--radius-lg)}
+.fr-figs div {display:flex;flex-direction:column;gap:2px}
+.fr-figs strong {font-size:28px;line-height:34px;font-weight:700;font-variant-numeric:tabular-nums}
+.fr-figs span {font-size:13px;color:var(--app-muted)}
+.fr-date {margin-left:auto;font-size:12px;color:var(--app-faint)}
+.fr-section {display:flex;flex-direction:column;gap:12px;padding:20px 24px;background:var(--surface);
+  border:1px solid var(--app-line);border-radius:var(--radius-lg)}
+.fr-section h2 {margin:0;font-size:var(--text-lg);line-height:26px;font-weight:600}
+.fr-bars {list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.fr-bars li {display:grid;grid-template-columns:110px minmax(0,1fr) 72px;align-items:center;gap:12px;font-size:14px}
+.fr-track {height:8px;border-radius:4px;background:var(--app-bg);overflow:hidden}
+.fr-track i {display:block;height:100%;background:var(--brand)}
+.fr-val {text-align:right;font-variant-numeric:tabular-nums}
+.fr-empty {color:var(--app-muted)}
+/* 产品信息 sits inside the matrix page's own container. */
+.matrix .fr-head {margin-bottom:4px}
+@media (max-width:820px) {
+  .fr-page {padding:24px 16px 56px}
+  .fr-head h1 {font-size:var(--text-2xl);line-height:32px}
+  .fr-date {margin-left:0;width:100%}
+  .fr-bars li {grid-template-columns:76px minmax(0,1fr) 60px;gap:8px}
+}
