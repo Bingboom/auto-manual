@@ -424,6 +424,12 @@ class CellsTest(unittest.TestCase):
         [cell] = self.build(facts)
         self.assertEqual((cell["display"], cell["printed"], cell["derived"]), ("3 × AC", "3 × AC", True))
 
+    def test_a_derived_bare_range_displays_without_the_marker(self):
+        facts = [{"事实键": "a", "产品键": "P/US", "属性键": "ac_input", "来源键": "web/a", "文本值": "100~120",
+                  "原文": "派生: 100~120V"}]
+        [cell] = self.build(facts)
+        self.assertEqual((cell["display"], cell["printed"], cell["derived"]), ("100~120V", "100~120V", True))
+
     def test_condition_names_match_without_word_boundaries(self):
         self.assertEqual([cells.cell_condition(c) for c in ("STC条件", "NOCT: 800W/m²", "BNPI", "BNPIX", "to 70% capacity",
                                                             "stc")],
@@ -876,6 +882,20 @@ class SnapshotTest(unittest.TestCase):
         built = matrix.build(base.rows["产品"], base.rows["属性"], base.rows["事实"], base.rows["来源"])
         column = next(c for c in built["columns"] if c["key"] == "capacity_wh")
         self.assertEqual(cell["display"], f'{built["rows"]["JE-A/US"][column["name"]]} {column["unit"]}')
+
+    def test_the_derived_marker_leaves_values_and_components(self):
+        base = self.base()
+        base.rows["事实"][0].update({"原文": "派生: 333 Wh", "来源位置": "派生：同一说明书的多行"})
+        base.rows["事实"][2].update({"原文": "派生: 7777Wh", "来源位置": "派生：同一说明书的多行"})
+        document = snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        by_id = {v["id"]: v for v in document["values"] + document["component_values"]}
+        derived, plain, component = by_id[cells.value_id("k1")], by_id[cells.value_id("k2")], by_id[cells.value_id("k3")]
+        self.assertEqual((derived["derived"], derived["printed"], derived["position"]),
+                         (True, "333 Wh", "同一说明书的多行"))
+        self.assertFalse(plain["derived"])
+        self.assertEqual((component["derived"], component["printed"], component["position"]),
+                         (True, "7777Wh", "同一说明书的多行"))
+        self.assertNotIn("派生", snapshot.encode(document).decode())
 
     def test_excluded_products_have_no_cells(self):
         base = self.base()
