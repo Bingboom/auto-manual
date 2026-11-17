@@ -469,8 +469,10 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   the usual order, else its short name), then one line: model · category · series ·
   capacity tier · project (a link to 产品库 filtered by it) · `SKU 创建时间` with year and
   month (`first_sku_created`), `不晚于 <年-月>` when the snapshot marks it an upper bound
-  (`first_sku_created_upper_bound`), or `暂无`. The date is the earliest SKU creation time
-  of the project from PLM, not a launch date, so 上市时间 is never shown.
+  (`first_sku_created_upper_bound`), or `暂无`. The date is per market (契约 §3/§4.1, SKU
+  最早创建时间（本市场）): the head shows the market the switch has chosen and follows the
+  switch; the page never picks one market's date for the model. It is the earliest SKU
+  creation time from PLM, not a launch date, so 上市时间 is never shown.
 - **Market switch:** one market at a time (美规, 欧规, 日规, 国内, …). Without
   JavaScript every market shows in turn.
 - **Parameters** in plain groups with Chinese names (`GROUPS`: 电池, 输出, 充电与输入,
@@ -480,11 +482,13 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
 - **Sources on click** (`_static/product-profile.js`): a value is a button. Clicking
   it shows `<参数> · 出处`, the value, and every value that took part, the chosen one
   first: `来自《<产品名> 说明书》· 美规 · 英语`, the edition date only when the snapshot has
-  one (never 未知), the manual's section, the printed sentence and `打开说明书 →`. A value
-  marked `derived` (put together from several lines of one manual) is not quoted: its card
-  reads `由《<产品名> 说明书》的多处内容整理` with the market and language; a snapshot without
-  the field reads as not derived
-  (the manual; a jump to the exact line waits for anchors in the snapshot). The page
+  one (never 未知), the manual's section, the printed sentence and `打开说明书 →`. A
+  position's trailing page anchor (` #native-specifications`) is not shown; it is added to
+  `打开说明书 →`, which then jumps to that section. A value marked `derived` (put together
+  from several lines of one manual) is not quoted: its card reads
+  `由《<产品名> 说明书》的多处内容整理` with the market and language; a snapshot without the
+  field reads as not derived. A parameter without a Chinese name is left out with a
+  build warning, never shown by its key. The page
   renders each list, escaped, in a hidden block; the script copies those nodes into
   the card (a sheet at the bottom on phones). Language names are the manual library's
   own (`settings.json` `language_labels`: English, 日本語, …), so the site writes a

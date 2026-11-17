@@ -133,10 +133,21 @@ class RtdPortalTests(unittest.TestCase):
         # The product-information snapshot holds private project numbers and values: the public role never reads it.
         matrix = self.root / "knowledge" / "product-matrix"
         matrix.mkdir(parents=True)
+        # v1.1 with decided cells, so the 产品档案 / 参数表 / 产品对比 path would run if the role let it.
         (matrix / "snapshot.json").write_text(json.dumps({
-            "schema": "hello-docs-product-matrix-snapshot/v1", "read_at": "2026-01-02T00:00:00Z",
-            "products": [{"model": "FAKE-SECRET-MODEL", "market": "US", "project": "P-FAKE-SECRET",
-                          "category": "便携储能", "series": "标准", "capacity_tier": "1度电"}]}))
+            "schema": "hello-docs-product-matrix-snapshot/v1.1", "read_at": "2026-01-02T00:00:00Z",
+            "products": [{"key": "FAKE-SECRET-MODEL/US", "model": "FAKE-SECRET-MODEL", "market": "US",
+                          "project": "P-FAKE-SECRET", "category": "便携储能", "series": "标准", "capacity_tier": "1度电",
+                          "first_sku_created": "2021-03-01"}],
+            "parameters": [{"key": "capacity_wh", "name_zh": "标称容量", "group": "电池", "order": 1, "unit": "Wh"}],
+            "sources": [{"id": "s1", "model": "FAKE-SECRET-MODEL", "market": "US", "language": "en",
+                         "page": "FAKE-SECRET-MODEL/US/en/md/manual.html"}],
+            "values": [{"id": "v1", "product": "FAKE-SECRET-MODEL/US", "parameter": "capacity_wh",
+                        "printed": "FAKE-SECRET-PRINTED", "source": "s1", "position": "FAKE-SECRET-POSITION"}],
+            "cells": [{"product": "FAKE-SECRET-MODEL/US", "parameter": "capacity_wh", "condition": None,
+                       "display": "FAKE-SECRET-VALUE 9 Wh", "number": 9, "text": None, "unit": "Wh",
+                       "printed": "FAKE-SECRET-PRINTED", "source": "s1", "value": "v1", "verified": False,
+                       "sources_disagree": False, "conflict": False, "candidates": ["v1"], "empty_reason": None}]}))
         (matrix / "README.md").write_text("P-FAKE-SECRET-README")
         with (root / "conf.py").open("a") as conf:
             conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
