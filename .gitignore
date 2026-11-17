@@ -16,10 +16,7 @@ docs/generated/
 # Offline knowledge observations are regenerable derivatives (Phase 2 decision D7a).
 /reports/knowledge_observations/
 
-# Delivery outbox: the hand-off drop that the DingTalk delivery agent consumes
-# (tools/delivery_outbox.py, AUTO_MANUAL_DELIVERY_OUTBOX_ROOT). Runtime payloads
-# never belong in Git, and this pattern also covers the mirror checkout because
-# sync-hello-docs.yml carries this file into the mirror tree.
+# Runtime delivery drops (never belong in Git).
 /output/
 
 # Outputs of the review-branch-sync-check job (review-branch-sync-check.yml); never committed.
@@ -63,8 +60,6 @@ integrations/openclaw/auto-manual-control-layer/node_modules/
 integrations/openclaw/auto-manual-control-layer/runtime/
 integrations/openclaw/feishu-im-webhook-adapter/node_modules/
 integrations/openclaw/feishu-im-webhook-adapter/runtime/
-integrations/openclaw/dingtalk-im-adapter/node_modules/
-integrations/openclaw/dingtalk-im-adapter/runtime/
 
 # OpenClaw local-only operator profile and workspace notes
 .openclaw/

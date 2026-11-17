@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import Any, Callable
 from uuid import uuid4
 
-from tools.delivery_outbox import drop_publish_delivery_outbox
 from tools.web.document_link_queue import scalar_text
 from tools.build_queue.contract import BASELINE_DOC_FIELD
 from tools.build_queue.transitions import (
@@ -116,90 +115,6 @@ class _GroupRunState:
     claim_token: str = ""
 
 
-def _primary_dingtalk_destination(
-    *,
-    cfg: dict[str, Any],
-    cli_bin: str,
-    identity: str,
-    binding: Any,
-    label: str,
-    artifact_destination: Any,
-    upload_dingtalk: bool,
-    dingtalk_target_node_url: str,
-    resolve_row_artifact_destination: Callable[..., Any],
-    resolve_lark_wiki_destination: Callable[..., Any],
-) -> Any:
-    """Pick the upload target when DingTalk is the primary artifact provider."""
-
-    if not upload_dingtalk:
-        _LOG.info(f"[build-queue] Skipping DingTalk upload for {label}; using Feishu/wiki upload.")
-        return resolve_lark_wiki_destination(
-            cli_bin=cli_bin,
-            identity=identity,
-            binding=binding,
-        )
-    if dingtalk_target_node_url:
-        destination = resolve_row_artifact_destination(
-            cfg=cfg,
-            cli_bin=cli_bin,
-            identity=identity,
-            binding=binding,
-            target_node_url=dingtalk_target_node_url,
-        )
-        _LOG.info(
-            f"[build-queue] Using DingTalk upload for {label} "
-            f"with row target {dingtalk_target_node_url}."
-        )
-        return destination
-    if not getattr(artifact_destination, "runtime_target", None):
-        raise RuntimeError(
-            "DingTalk target node URL is required: provide row DingTalk_target_node_url "
-            "or configure DINGTALK_DOCS_TARGET_NODE_URL for the remote worker"
-        )
-    _LOG.info(f"[build-queue] Using DingTalk upload for {label} with default target.")
-    return artifact_destination
-
-
-def _dingtalk_mirror_destination(
-    *,
-    cfg: dict[str, Any],
-    label: str,
-    dingtalk_target_node_url: str,
-    dingtalk_operator_union_id: str,
-    resolve_dingtalk_mirror_destination: Callable[..., Any],
-    ensure_dingtalk_session_ready: Callable[..., None],
-    stderr: Any,
-) -> tuple[Any, tuple[str, ...]]:
-    """Resolve the DingTalk mirror; a failure only downgrades to Feishu/wiki."""
-
-    try:
-        if dingtalk_target_node_url:
-            destination = resolve_dingtalk_mirror_destination(
-                cfg=cfg,
-                target_node_url=dingtalk_target_node_url,
-            )
-            _LOG.info(
-                f"[build-queue] Syncing DingTalk upload for {label} "
-                f"with row target {dingtalk_target_node_url}."
-            )
-        else:
-            destination = resolve_dingtalk_mirror_destination(cfg=cfg)
-            _LOG.info(f"[build-queue] Syncing DingTalk upload for {label} with default target.")
-        ensure_dingtalk_session_ready(
-            cfg=cfg,
-            operator_union_id=dingtalk_operator_union_id,
-        )
-    except Exception as exc:  # noqa: BLE001 - DingTalk mirror is a side channel recorded in status notes
-        message = str(exc).strip()
-        print(
-            f"[build-queue] WARNING DingTalk sync unavailable for {label}; "
-            f"using Feishu/wiki only: {message}",
-            file=stderr,
-        )
-        return None, ("dingtalk_sync=failed", f"dingtalk_sync_error={message}")
-    return destination, ()
-
-
 def _resolve_upload_destinations(
     *,
     cfg: dict[str, Any],
@@ -209,65 +124,19 @@ def _resolve_upload_destinations(
     label: str,
     artifact_destination: Any,
     effective_doc_phase: str | None,
-    has_upload_dingtalk_field: bool,
-    upload_dingtalk: bool,
-    dingtalk_target_node_url: str,
-    dingtalk_operator_union_id: str,
-    resolve_artifact_mirror_provider: Callable[..., str | None],
-    resolve_row_artifact_destination: Callable[..., Any],
-    resolve_lark_wiki_destination: Callable[..., Any],
-    resolve_dingtalk_mirror_destination: Callable[..., Any],
-    ensure_dingtalk_session_ready: Callable[..., None],
-    stderr: Any,
+    has_upload_dingtalk_field: bool = False,
+    upload_dingtalk: bool = False,
+    dingtalk_target_node_url: str = "",
+    dingtalk_operator_union_id: str = "",
+    resolve_artifact_mirror_provider: Callable[..., str | None] | None = None,
+    resolve_row_artifact_destination: Callable[..., Any] | None = None,
+    resolve_lark_wiki_destination: Callable[..., Any] | None = None,
+    resolve_dingtalk_mirror_destination: Callable[..., Any] | None = None,
+    ensure_dingtalk_session_ready: Callable[..., None] | None = None,
+    stderr: Any = None,
 ) -> tuple[Any, Any, tuple[str, ...]]:
-    """Return ``(artifact destination, DingTalk mirror destination, status notes)``."""
-
-    effective_artifact_destination = artifact_destination
-    dingtalk_mirror_destination = None
-    deferred_status_notes: tuple[str, ...] = ()
-    primary_provider = str(getattr(artifact_destination, "provider", "") or "lark_drive")
-    mirror_provider = (
-        resolve_artifact_mirror_provider(cfg=cfg)
-        if effective_doc_phase != "web_publish"
-        else None
-    )
-    if primary_provider == "dingtalk_alidocs_session" and has_upload_dingtalk_field:
-        effective_artifact_destination = _primary_dingtalk_destination(
-            cfg=cfg,
-            cli_bin=cli_bin,
-            identity=identity,
-            binding=binding,
-            label=label,
-            artifact_destination=artifact_destination,
-            upload_dingtalk=upload_dingtalk,
-            dingtalk_target_node_url=dingtalk_target_node_url,
-            resolve_row_artifact_destination=resolve_row_artifact_destination,
-            resolve_lark_wiki_destination=resolve_lark_wiki_destination,
-        )
-    elif primary_provider == "lark_drive" and mirror_provider == "dingtalk_alidocs_session":
-        if has_upload_dingtalk_field and not upload_dingtalk:
-            _LOG.info(f"[build-queue] Skipping DingTalk sync for {label}; using Feishu/wiki only.")
-            deferred_status_notes = ("dingtalk_sync=skipped",)
-        else:
-            dingtalk_mirror_destination, deferred_status_notes = _dingtalk_mirror_destination(
-                cfg=cfg,
-                label=label,
-                dingtalk_target_node_url=dingtalk_target_node_url,
-                dingtalk_operator_union_id=dingtalk_operator_union_id,
-                resolve_dingtalk_mirror_destination=resolve_dingtalk_mirror_destination,
-                ensure_dingtalk_session_ready=ensure_dingtalk_session_ready,
-                stderr=stderr,
-            )
-    if (
-        effective_doc_phase != "web_publish"
-        and str(getattr(effective_artifact_destination, "provider", "") or "")
-        == "dingtalk_alidocs_session"
-    ):
-        ensure_dingtalk_session_ready(
-            cfg=cfg,
-            operator_union_id=dingtalk_operator_union_id,
-        )
-    return effective_artifact_destination, dingtalk_mirror_destination, deferred_status_notes
+    """Return (artifact destination, DingTalk mirror destination, status notes)."""
+    return artifact_destination, None, ()
 
 
 def _sync_phase2_snapshot(
@@ -315,9 +184,9 @@ def _publish_artifact(
     cli_bin: str,
     identity: str,
     artifact_destination: Any,
-    dingtalk_mirror_destination: Any,
-    dingtalk_operator_union_id: str,
     publish_word_artifact: Callable[..., Any],
+    dingtalk_mirror_destination: Any = None,
+    dingtalk_operator_union_id: str = "",
 ) -> tuple[str, str, tuple[str, ...]]:
     """Upload the publish artifact; return ``(link, DingTalk link, status notes)``."""
 
@@ -683,22 +552,6 @@ def process_queue_record_group(
         # artifact already reached the knowledge base. It stays visible through the
         # row's status notes, same contract as dingtalk_sync=*.
         delivery_status_notes: tuple[str, ...] = ()
-        if effective_doc_phase == "publish":
-            delivery_status_notes = drop_publish_delivery_outbox(
-                model=model,
-                region=region,
-                version=record.version,
-                git_ref=record.git_ref,
-                workflow_action=effective_doc_phase,
-                built_at=built_at,
-                queue_record_ids=queue_record_ids,
-                document_link_url=document_link_url,
-                artifact_output_path=state.artifact_output_path,
-                word_output_path=state.word_output_path,
-                pdf_output_path=state.pdf_output_path,
-                md_output_path=state.md_output_path,
-                stderr=stderr,
-            )
         feishu_cloud_doc_url = ""
         baseline_doc_url = ""
         cloud_doc_status_notes: tuple[str, ...] = ()

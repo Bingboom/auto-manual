@@ -195,7 +195,7 @@ Publish 的原料是：
 
 - 只要一个环境变量：`AUTO_MANUAL_DELIVERY_OUTBOX_ROOT`，指向一个 git 之外的目录（仓库已 ignore `/output/`，所以 `output/outbox` 可直接用）。不设这个变量整条链路静默不动，其它 worker 行为完全不变
 - 配好后每次成功 Publish 会在 `<root>/<job_id>/` 落一份产物（PDF / handoff zip / DOCX / Markdown）加一个 `delivery_manifest.json`，交给交付 agent 消费；`latex/`、`html/` 渲染目录不进 outbox
-- `构建结果` 会多一条注记：`delivery_outbox=ok`（附 `delivery_outbox_job=<job id>`）、`delivery_outbox=skipped`（该目标没在 [`../data/dingtalk_delivery_map.csv`](../../data/dingtalk_delivery_map.csv) 里，属正常状态）、或 `delivery_outbox=failed`（附原因）。投递侧出问题不会把已经上传成功的构建行判失败
+- `构建结果` 会多一条注记：`delivery_outbox=ok`（附 `delivery_outbox_job=<job id>`）、`delivery_outbox=skipped`（该目标没在 `../data/dingtalk_delivery_map.csv` 里，属正常状态）、或 `delivery_outbox=failed`（附原因）。投递侧出问题不会把已经上传成功的构建行判失败
 - 哪些目标会投递看那张映射表：按 `(型号, 区域)` 一行，对应钉钉的项目代码 + 安规 + 该区域整本覆盖的文案语言集合。Publish 行的 `Lang` 必须留空、产出的是一本多语合订本，所以映射按区域而不是按语言
 - 验收单个 drop：`python -m tools.delivery_outbox --manifest <root>/<job_id>/delivery_manifest.json`
 - 已消费的 job 目录不会自动回收（里面是完整 PDF 和 zip），要定期清理；同一目标同一版本同一秒内重复 Publish 会被拒绝而不是覆盖

@@ -23,7 +23,7 @@ Add new notes for this topic here, not to the hub.
 ### 1.3 DingTalk Wukong MCP Bridge
 
 The version-controlled Wukong bridge lives at
-[`agent/wukong-bridge/`](../../agent/wukong-bridge). Do not maintain a second
+`agent/wukong-bridge/`. Do not maintain a second
 untracked source copy under a home-directory `wukong-bridge` folder. Point the
 MCP registration at the checked-in `server.py`, keep authentication in the
 external `lark-cli` profile, and keep runtime jobs/exports under the external
@@ -38,10 +38,10 @@ partial staging response is not a complete target: inspect
 `coverage_missing_rows`, finish the missing structures, review every value in
 Base, and use the existing checkbox plus explicit-chat approval gates before
 formal intake. Full configuration and the current contract version are in
-[`agent/wukong-bridge/README.md`](../../agent/wukong-bridge/README.md).
+`agent/wukong-bridge/README.md`.
 
-   - for future app-only DingTalk provider research, [`../tools/dingtalk/spike_cli.py`](../../tools/dingtalk/spike_cli.py) is the manual Phase 0 smoke helper; it gets an App-Only token by default, then lets you supply the exact DingTalk list/update/upload endpoints for the chosen product without changing the current queue runtime
-   - [`../tools/dingtalk/auth.py`](../../tools/dingtalk/auth.py) now wraps the verified App-Only token flow behind `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, and [`../tools/dingtalk/workspace.py`](../../tools/dingtalk/workspace.py) can already extract a target docs node ID from a standard `alidocs.dingtalk.com/i/nodes/...` URL
+   - for future app-only DingTalk provider research, `../tools/dingtalk/spike_cli.py` is the manual Phase 0 smoke helper; it gets an App-Only token by default, then lets you supply the exact DingTalk list/update/upload endpoints for the chosen product without changing the current queue runtime
+   - `../tools/dingtalk/auth.py` now wraps the verified App-Only token flow behind `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, and `../tools/dingtalk/workspace.py` can already extract a target docs node ID from a standard `alidocs.dingtalk.com/i/nodes/...` URL
 
  - `python build.py queue-query --config configs/config.us.yaml --queue-scope all --task-id "JE-1000F_US_0.3_Build Draft Package" --json` is the recommended local Phase 2 lookup before a natural-language OpenClaw action; it resolves the exact Feishu row and returns the `record_id`, `Task_id`, `Workflow_action`, `Git_ref`, `构建结果`, and the phase-aware `delivery_kind / delivery_url / delivery_ready` contract
  - `python build.py queue-resolve-action --config configs/config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json` is the structured dry-run resolver for the control layer; it returns the bounded `action_name`, `resolution_status`, confirmation requirement, and matched row fields before any dispatch happens

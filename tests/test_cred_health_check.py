@@ -4,8 +4,7 @@ import os
 import unittest
 from unittest import mock
 
-from tools.cred_health_check import _failure_detail, probe_dingtalk_docs_session
-from tools.dingtalk import alidocs_session
+from tools.cred_health_check import ProbeResult, _failure_detail, main, probe_github
 
 
 class TestFailureDetail(unittest.TestCase):
@@ -39,74 +38,62 @@ class TestFailureDetail(unittest.TestCase):
         self.assertLessEqual(len(detail), 300)
 
 
-class TestDingTalkDocsSessionProbe(unittest.TestCase):
-    def test_missing_session_secret_is_skipped_and_names_missing_values(self) -> None:
+class TestGithubProbe(unittest.TestCase):
+    def test_missing_github_token_is_skipped(self) -> None:
         with mock.patch.dict(os.environ, {}, clear=True):
-            result = probe_dingtalk_docs_session()
-
+            result = probe_github()
         self.assertEqual("skipped", result.status)
-        self.assertIn("DINGTALK_DOCS_COOKIE", result.detail)
-        self.assertIn("DINGTALK_DOCS_XSRF_TOKEN", result.detail)
-        self.assertIn("DINGTALK_DOCS_A_TOKEN", result.detail)
+        self.assertIn("GITHUB_TOKEN", result.detail)
 
-    def test_configured_session_runs_authenticated_read_only_probe(self) -> None:
-        values = {
-            "DINGTALK_DOCS_COOKIE": "cookie",
-            "DINGTALK_DOCS_XSRF_TOKEN": "xsrf",
-            "DINGTALK_DOCS_A_TOKEN": "a-token",
-        }
-        with mock.patch.dict(os.environ, values, clear=True), mock.patch(
-            "tools.dingtalk.alidocs_session.check_authenticated_session"
-        ) as check:
-            result = probe_dingtalk_docs_session()
+    def test_missing_gh_cli_is_skipped(self) -> None:
+        with mock.patch.dict(os.environ, {"GITHUB_TOKEN": "token"}, clear=True), mock.patch(
+            "shutil.which", return_value=None
+        ):
+            result = probe_github()
+        self.assertEqual("skipped", result.status)
+        self.assertIn("gh CLI not installed", result.detail)
 
+    def test_gh_auth_status_success_is_ok(self) -> None:
+        with mock.patch.dict(os.environ, {"GITHUB_TOKEN": "token"}, clear=True), mock.patch(
+            "shutil.which", return_value="/usr/bin/gh"
+        ), mock.patch(
+            "tools.cred_health_check._run", return_value=(0, "Logged in to github.com", "")
+        ):
+            result = probe_github()
         self.assertEqual("ok", result.status)
-        check.assert_called_once()
 
-    def test_blank_session_secret_is_skipped_like_an_unset_one(self) -> None:
-        # GitHub Actions injects an empty string for a secret that is not configured.
-        values = {
-            "DINGTALK_DOCS_COOKIE": "",
-            "DINGTALK_DOCS_XSRF_TOKEN": "",
-            "DINGTALK_DOCS_A_TOKEN": "",
-        }
-        with mock.patch.dict(os.environ, values, clear=True):
-            result = probe_dingtalk_docs_session()
-
-        self.assertEqual("skipped", result.status)
-        self.assertIn("DINGTALK_DOCS_COOKIE", result.detail)
-
-    def test_expired_session_is_reported_as_failed_so_the_job_turns_red(self) -> None:
-        values = {
-            "DINGTALK_DOCS_COOKIE": "cookie",
-            "DINGTALK_DOCS_XSRF_TOKEN": "xsrf",
-            "DINGTALK_DOCS_A_TOKEN": "a-token",
-        }
-        with mock.patch.dict(os.environ, values, clear=True), mock.patch(
-            "tools.dingtalk.alidocs_session.check_authenticated_session",
-            side_effect=RuntimeError("AliDocs session rejected: login required"),
+    def test_gh_auth_status_failure_is_failed(self) -> None:
+        with mock.patch.dict(os.environ, {"GITHUB_TOKEN": "token"}, clear=True), mock.patch(
+            "shutil.which", return_value="/usr/bin/gh"
+        ), mock.patch(
+            "tools.cred_health_check._run", return_value=(1, "", "authentication failed")
         ):
-            result = probe_dingtalk_docs_session()
-
+            result = probe_github()
         self.assertEqual("failed", result.status)
-        self.assertIn("login required", result.detail)
-        self.assertTrue(result.is_failure)
 
 
-class TestSessionCheckRejectsUnauthenticatedResponse(unittest.TestCase):
-    def test_non_success_payload_raises_so_the_probe_reports_failed(self) -> None:
-        session = alidocs_session.AliDocsSessionConfig(
-            a_token="token",
-            xsrf_token="xsrf",
-            cookie="cookie",
-        )
-        with mock.patch.object(
-            alidocs_session,
-            "_json_request",
-            return_value={"isSuccess": False, "code": "NOT_LOGIN"},
+class TestMain(unittest.TestCase):
+    def test_main_succeeds_when_all_probes_pass_or_skip(self) -> None:
+        with mock.patch(
+            "tools.cred_health_check.probe_feishu",
+            return_value=ProbeResult("Feishu", "ok", "ok"),
+        ), mock.patch(
+            "tools.cred_health_check.probe_github",
+            return_value=ProbeResult("GitHub", "skipped", "skipped"),
         ):
-            with self.assertRaises(RuntimeError):
-                alidocs_session.check_authenticated_session(session=session)
+            code = main(["--config", "configs/config.us.yaml"])
+        self.assertEqual(code, 0)
+
+    def test_main_fails_when_probe_fails(self) -> None:
+        with mock.patch(
+            "tools.cred_health_check.probe_feishu",
+            return_value=ProbeResult("Feishu", "failed", "token expired"),
+        ), mock.patch(
+            "tools.cred_health_check.probe_github",
+            return_value=ProbeResult("GitHub", "ok", "ok"),
+        ):
+            code = main(["--config", "configs/config.us.yaml"])
+        self.assertEqual(code, 1)
 
 
 if __name__ == "__main__":

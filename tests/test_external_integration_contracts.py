@@ -443,35 +443,6 @@ class TestExternalIntegrationContracts(unittest.TestCase):
 
         mock_cli.assert_not_called()
 
-    def test_dingtalk_mirror_unavailable_falls_back_to_feishu_wiki_with_warning(self) -> None:
-        with tempfile.TemporaryDirectory() as td:
-            artifact_path = Path(td) / "manual.docx"
-            artifact_path.write_text("fake docx", encoding="utf-8")
-            source = FakeSource()
-            stderr = io.StringIO()
-
-            result, publish_calls, captured = self._process_group(
-                record=_queue_record("document_link_dingtalk_mirror"),
-                source=source,
-                artifact_output_path=artifact_path,
-                stderr=stderr,
-                mirror_provider="dingtalk_alidocs_session",
-                mirror_error="DingTalk session expired",
-            )
-
-        self.assertEqual(1, result.processed_rows)
-        self.assertIsNone(result.failure_message)
-        self.assertEqual(1, len(source.upserts))
-        # Draft no longer uploads the artifact, so the publish artifact is never invoked;
-        # the DingTalk mirror probe still runs before the phase gate and its failure is
-        # surfaced as a warning + deferred status note.
-        self.assertEqual(0, len(publish_calls))
-        self.assertIn("WARNING DingTalk sync unavailable", stderr.getvalue())
-        self.assertIn("using Feishu/wiki only", stderr.getvalue())
-        status_notes = captured["status_notes"]
-        self.assertIn("dingtalk_sync=failed", status_notes)
-        self.assertIn("dingtalk_sync_error=DingTalk session expired", status_notes)
-
 
 if __name__ == "__main__":
     unittest.main()
