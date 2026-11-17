@@ -215,6 +215,12 @@ class SourceTableLarkTransport:
 
     def get(self, *, table: str, record_id: str, field: str) -> Any:
         base_token, table_id = self._binding_for(table)
+        fetch_one = getattr(self._source, "fetch_record_by_id", None)
+        if callable(fetch_one):
+            record = fetch_one(base_token=base_token, table_id=table_id, record_id=record_id)
+            if isinstance(record, Mapping):
+                return (record.get("fields") or {}).get(field)
+            return None
         for record in self._source.fetch_records_with_ids(base_token=base_token, table_id=table_id, view_id=None):
             if record.get("record_id") == record_id:
                 return (record.get("fields") or {}).get(field)
@@ -281,6 +287,12 @@ class TranslationMemoryLarkTransport:
         )
 
     def get(self, *, record_id: str, field: str) -> Any:
+        fetch_one = getattr(self._source, "fetch_record_by_id", None)
+        if callable(fetch_one):
+            record = fetch_one(base_token=self._base_token, table_id=self._table_id, record_id=record_id)
+            if isinstance(record, Mapping):
+                return (record.get("fields") or {}).get(field)
+            return None
         for record in self.list_records():
             if record.get("record_id") == record_id:
                 return (record.get("fields") or {}).get(field)
