@@ -9,9 +9,10 @@ import shlex
 import shutil
 import subprocess
 import tempfile
+import time
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Callable, Mapping
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -67,6 +68,11 @@ from tools.data.sync_data_runtime import (  # noqa: E402
     manifest_payload as _manifest_payload_impl,
     resolve_existing_row_key_mapping_path as _resolve_existing_row_key_mapping_path_impl,
     sync_phase2_snapshot as _sync_phase2_snapshot_impl,
+)
+from tools.feishu_record_transport import (  # noqa: E402
+    LarkRetryPolicy,
+    _is_rate_limited,
+    _retry_after_seconds,
 )
 from tools.utils.spec_master import build_row_label_row_key_mapping_rows  # noqa: E402
 
@@ -198,11 +204,81 @@ def _is_unknown_format_flag_error(exc: RuntimeError) -> bool:
     return "unknown flag: --format" in str(exc)
 
 
+def _try_parse_json_object(raw: str) -> dict[str, Any] | None:
+    text = (raw or "").strip()
+    if not text:
+        return None
+    try:
+        return _parse_json_payload(text)
+    except (RuntimeError, ValueError):
+        return None
+
+
+def _format_base_command_failure(returncode: int, stdout: str, stderr: str) -> str:
+    details = []
+    if stdout:
+        details.append(f"stdout={stdout.strip()}")
+    if stderr:
+        details.append(f"stderr={stderr.strip()}")
+    suffix = "; " + "; ".join(details) if details else ""
+    return f"Lark CLI base command failed with exit code {returncode}{suffix}"
+
+
 class LarkCliSource:
-    def __init__(self, *, cli_bin: str, identity: str = "user"):
+    def __init__(
+        self,
+        *,
+        cli_bin: str,
+        identity: str = "user",
+        retry_policy: LarkRetryPolicy | None = None,
+        sleep: Callable[[float], None] = time.sleep,
+    ) -> None:
         self.cli_bin = cli_bin
         self.identity = identity
+        self.retry_policy = retry_policy or LarkRetryPolicy()
+        if self.retry_policy.max_retries < 0:
+            raise ValueError("lark-cli max_retries must be non-negative")
+        self.sleep = sleep
         self._field_name_cache: dict[tuple[str, str], dict[str, str]] = {}
+
+    def _should_retry_failure(
+        self,
+        *,
+        attempt: int,
+        stdout: str,
+        stderr: str,
+    ) -> bool:
+        if attempt >= self.retry_policy.max_retries:
+            return False
+        payload = _try_parse_json_object(stdout) or _try_parse_json_object(stderr)
+        if not _is_rate_limited(payload, stdout, stderr):
+            return False
+        self.sleep(self.retry_policy.delay_for(attempt, _retry_after_seconds(payload)))
+        return True
+
+    def _parse_or_retry_success(
+        self,
+        *,
+        attempt: int,
+        stdout: str,
+        stderr: str,
+    ) -> dict[str, Any] | None:
+        rate_limited = _is_rate_limited(None, stdout, stderr)
+        try:
+            payload = _parse_json_payload(stdout)
+        except RuntimeError:
+            if not rate_limited:
+                raise
+            payload = {"code": 429}
+        effective_stdout = "" if payload.get("code") == 0 else stdout
+        if _is_rate_limited(payload, effective_stdout, stderr) and attempt < self.retry_policy.max_retries:
+            self.sleep(self.retry_policy.delay_for(attempt, _retry_after_seconds(payload)))
+            return None
+        code = payload.get("code")
+        if code not in (None, 0):
+            message = str(payload.get("msg") or payload.get("message") or "Lark CLI API request failed")
+            raise RuntimeError(f"Lark CLI API request failed: {message}")
+        return payload
 
     def _run_base_command(
         self,
@@ -214,29 +290,35 @@ class LarkCliSource:
             "base",
             *args,
         ]
-        try:
-            proc = subprocess.run(
-                cmd,
-                cwd=str(ROOT),
-                check=True,
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
-        except subprocess.CalledProcessError as exc:
-            details = []
-            if exc.stdout:
-                details.append(f"stdout={exc.stdout.strip()}")
-            if exc.stderr:
-                details.append(f"stderr={exc.stderr.strip()}")
-            suffix = "; " + "; ".join(details) if details else ""
-            raise RuntimeError(f"Lark CLI base command failed with exit code {exc.returncode}{suffix}") from exc
-        payload = _parse_json_payload(proc.stdout)
-        code = payload.get("code")
-        if code not in (None, 0):
-            message = str(payload.get("msg") or payload.get("message") or "Lark CLI API request failed")
-            raise RuntimeError(f"Lark CLI API request failed: {message}")
-        return payload
+        for attempt in range(self.retry_policy.max_retries + 1):
+            try:
+                proc = subprocess.run(
+                    cmd,
+                    cwd=str(ROOT),
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                )
+            except subprocess.CalledProcessError as exc:
+                stdout = exc.stdout if isinstance(exc.stdout, str) else ""
+                stderr = exc.stderr if isinstance(exc.stderr, str) else ""
+                if self._should_retry_failure(attempt=attempt, stdout=stdout, stderr=stderr):
+                    continue
+                raise RuntimeError(_format_base_command_failure(exc.returncode, stdout, stderr)) from exc
+
+            stdout = proc.stdout if isinstance(proc.stdout, str) else ""
+            stderr = proc.stderr if isinstance(proc.stderr, str) else ""
+            returncode = getattr(proc, "returncode", 0)
+            if isinstance(returncode, int) and not isinstance(returncode, bool) and returncode != 0:
+                if self._should_retry_failure(attempt=attempt, stdout=stdout, stderr=stderr):
+                    continue
+                raise RuntimeError(_format_base_command_failure(returncode, stdout, stderr))
+
+            payload = self._parse_or_retry_success(attempt=attempt, stdout=stdout, stderr=stderr)
+            if payload is not None:
+                return payload
+        raise AssertionError("lark-cli retry loop exited without a result")
 
     def _field_name_map(self, *, base_token: str, table_id: str) -> dict[str, str]:
         cache_key = (base_token, table_id)
@@ -366,6 +448,118 @@ class LarkCliSource:
             table_id=table_id,
             view_id=view_id,
             include_record_ids=True,
+        )
+
+    def _run_record_get(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        record_id: str,
+    ) -> dict[str, Any]:
+        base_args = [
+            "+record-get",
+            "--as",
+            self.identity,
+            "--base-token",
+            base_token,
+            "--table-id",
+            table_id,
+            "--record-id",
+            record_id,
+        ]
+        try:
+            return self._run_base_command(args=[*base_args, "--format", "json", "--jq", "."])
+        except RuntimeError as exc:
+            if not _is_unknown_format_flag_error(exc):
+                raise
+        return self._run_base_command(args=[*base_args, "--jq", "."])
+
+    def _resolve_record_get_field_names(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        data: Mapping[str, Any],
+    ) -> list[str]:
+        display_field_names = data.get("fields", [])
+        if not isinstance(display_field_names, list) or not all(
+            isinstance(name, str) for name in display_field_names
+        ):
+            raise RuntimeError("Lark CLI record get response has invalid field list")
+        field_ids = data.get("field_id_list")
+        if field_ids in (None, []):
+            return list(display_field_names)
+        if not isinstance(field_ids, list) or not all(isinstance(field_id, str) for field_id in field_ids):
+            raise RuntimeError("Lark CLI record get response has invalid field id list")
+        if len(field_ids) != len(display_field_names):
+            raise RuntimeError("Lark CLI record get response field metadata is misaligned")
+        field_name_map = self._field_name_map(base_token=base_token, table_id=table_id)
+        return [
+            field_name_map.get(field_id, display_name)
+            for field_id, display_name in zip(field_ids, display_field_names, strict=False)
+        ]
+
+    def _parse_record_get_payload(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        record_id: str,
+        payload: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        data = payload.get("data")
+        if not isinstance(data, dict):
+            raise RuntimeError("Lark CLI API response is missing data payload")
+        record_obj = data.get("record")
+        if isinstance(record_obj, dict) and isinstance(record_obj.get("fields"), dict):
+            resolved_id = str(record_obj.get("record_id") or record_id).strip() or record_id
+            return {"record_id": resolved_id, "fields": dict(record_obj["fields"])}
+        rows = data.get("data", [])
+        if not isinstance(rows, list):
+            raise RuntimeError("Lark CLI record get response has invalid record list")
+        if not rows:
+            return None
+        row = rows[0]
+        if not isinstance(row, list):
+            raise RuntimeError("Lark CLI record get response contains a non-list row")
+        field_names = self._resolve_record_get_field_names(
+            base_token=base_token,
+            table_id=table_id,
+            data=data,
+        )
+        record_ids = data.get("record_id_list")
+        resolved_id = record_id
+        if isinstance(record_ids, list) and record_ids:
+            candidate = str(record_ids[0] or "").strip()
+            if candidate:
+                resolved_id = candidate
+        fields_dict = {
+            field_name: row[index] if index < len(row) else None
+            for index, field_name in enumerate(field_names)
+        }
+        return {"record_id": resolved_id, "fields": fields_dict}
+
+    def fetch_record_by_id(
+        self,
+        *,
+        base_token: str,
+        table_id: str,
+        record_id: str,
+    ) -> dict[str, Any] | None:
+        clean_id = (record_id or "").strip()
+        if not clean_id:
+            raise RuntimeError("Lark CLI record get requires a non-empty record id")
+        payload = self._run_record_get(
+            base_token=base_token,
+            table_id=table_id,
+            record_id=clean_id,
+        )
+        return self._parse_record_get_payload(
+            base_token=base_token,
+            table_id=table_id,
+            record_id=clean_id,
+            payload=payload,
         )
 
     def download_drive_file(
