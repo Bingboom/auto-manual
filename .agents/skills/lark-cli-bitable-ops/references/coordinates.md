@@ -22,7 +22,9 @@ used week-to-week, so a session doesn't re-derive them.
 | 内容源_LCD icons | `tblW5fCuJ6YdAcND` | `Model` multi-select; no region dimension |
 | 内容源_TROUBLESHOOTING | `tblOmJoAfU35brkb` | `Region` is TEXT (comma-shared, e.g. `EU, AU`) |
 | 规格页Footnotes | `tblVusBZ8Fi56AWN` | shared `Model` multi-select + scalar `Footnote_order` — per-model renumbering means SPLITTING the record |
-| 内容源_插图资产表 (asset registry) | `tblxFBWaDG4OYhqu` | `.ai` masters + per-asset attachments live here |
+| 04_资产源文件 (asset sources) | `tblsXlZx61Ff5pQC` | `.ai` / source master packages + digests (`data/asset_base_bindings.json`) |
+| 04_资产定义 (asset definitions) | `tblWilXeN5FXPraC` | asset_key, replacement key, model/region/language scope |
+| 04_资产导出物 (asset exports) | `tblavT0dcjZGK9DR` | exported PNG/PDF attachments + content digests; old `tblxFBWaDG4OYhqu` (内容源_插图资产表) is retired/read-only |
 | 文档构建 (build/queue table, document_link) | `tblbnRHjpJeCVTtj` | InReview rows, `Git_ref`, 「基线文档」frozen baseline, `是否触发文档构建` Y/已构建 |
 
 - 过程文档管理 (baseline/review cloud-doc home): wiki node
