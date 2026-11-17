@@ -433,22 +433,6 @@ class RtdPortalTests(unittest.TestCase):
             self.assertTrue((self.root / "after" / "_static" / asset).is_file())
         self.assertNotIn("ms-config", (self.root / "before" / "search.html").read_text())
 
-    def test_a_page_missing_from_the_section_table_selects_no_section(self):
-        from jinja2 import Environment, FileSystemLoader
-        env = Environment(loader=FileSystemLoader(rtd_portal.ASSETS))
-        shell = env.from_string('{% from "_site_shell.html" import site_sidebar, site_topbar with context %}'
-                                "{{ site_sidebar(key, nav) }}{{ site_topbar('知识库', crumb) }}")
-        nav = dict.fromkeys(("system", "deliverables", "design", "matrix"), True)
-        page = BeautifulSoup(shell.render(pathto=lambda name, *args: name, key="new-page", nav=nav, crumb="新页面"),
-                             "html.parser")
-        self.assertIn("app-nav-unassigned", page.select_one("#app-sidebar")["class"])
-        self.assertEqual(page.select(".app-tabs a.selected, #app-sidebar a"), [])
-        self.assertEqual(" ".join(page.select_one(".app-crumb").get_text().split()), "工作资料 / 新页面")
-        known = BeautifulSoup(shell.render(pathto=lambda name, *args: name, key="system", nav=nav, crumb="系统建设"),
-                              "html.parser")
-        self.assertNotIn("app-nav-unassigned", known.select_one("#app-sidebar")["class"])
-        self.assertEqual([a.get_text() for a in known.select(".app-tabs a.selected")], ["Agent 能力"])
-
     def test_real_sphinx_sidebar_links_only_pages_and_marks_the_current_one(self):
         root = self.assemble()
         assets = self.root / "portal-assets"

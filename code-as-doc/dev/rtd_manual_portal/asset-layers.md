@@ -36,8 +36,10 @@ The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四
 | Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
 | 设计规范 | 设计规范, 内容与表现, 素材清单 | 设计规范 |
 
-The operator confirmed the three other lists on 2026-11-17 (工作台 = 说明书工作台, Agent 能力 = 系统建设,
-设计规范 = 设计规范 + 内容与表现) and the shell as built (“先这样吧”); the canvas's colours are not used, the
+The layout image shows the 知识资产 list only. The lists of 工作台, Agent 能力 and 设计规范 were proposed as
+defaults and confirmed by the operator on 2026-11-17 (「都按建议」, in the orchestrating session: 工作台 =
+说明书工作台, Agent 能力 = 系统建设, 设计规范 = 设计规范 + 内容与表现; 素材清单 joined 设计规范 when 视觉媒体
+became a page for colleagues), and the shell as built (「先这样吧」); the canvas's colours are not used, the
 site keeps its own palette. A page's section is declared once, in the `site_sections` table of
 `_site_shell.html`: a `list` entry is a left entry, an `also` entry belongs to the section without one, and
 `under` names the left entry it sits beneath. A key in no section selects no section and gets
@@ -222,5 +224,6 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 in `tests/test_rtd_portal.py` (each page's section, left list and breadcrumb, an
 unplaced page selecting no section, the moved 属性字典 address, the front pages without chips or small print, the six blocks
 on 内容与表现 and 素材清单, 视觉媒体 absent from the public build, and that the public build links no internal page);
+`tests/test_rtd_site_shell.py` (placement of every page key, crumbs, optional sections, the public shell);
 `tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
 top bar).
