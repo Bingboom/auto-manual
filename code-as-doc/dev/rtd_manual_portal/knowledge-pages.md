@@ -480,7 +480,10 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
 - **Sources on click** (`_static/product-profile.js`): a value is a button. Clicking
   it shows `<参数> · 出处`, the value, and every value that took part, the chosen one
   first: `来自《<产品名> 说明书》· 美规 · 英语`, the edition date only when the snapshot has
-  one (never 未知), the manual's section, the printed sentence and `打开说明书 →`
+  one (never 未知), the manual's section, the printed sentence and `打开说明书 →`. A value
+  marked `derived` (put together from several lines of one manual) is not quoted: its card
+  reads `由《<产品名> 说明书》的多处内容整理` with the market and language; a snapshot without
+  the field reads as not derived
   (the manual; a jump to the exact line waits for anchors in the snapshot). The page
   renders each list, escaped, in a hidden block; the script copies those nodes into
   the card (a sheet at the bottom on phones). Language names are the manual library's
