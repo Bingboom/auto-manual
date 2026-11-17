@@ -128,7 +128,8 @@ class ProfileTests(unittest.TestCase):
         self.assertEqual([s["printed"] for s in sources], ["Capacity: 1000Wh", "Capacity: 1002Wh"])
         self.assertEqual(sources[0], {"manual": "《Fake Station 1 说明书》", "market": "美规", "language": "English",
                                       "date": "", "position": "SPECIFICATIONS > GENERAL",
-                                      "printed": "Capacity: 1000Wh", "doc": "FAKE-1/US/en/md/manual_us"})
+                                      "printed": "Capacity: 1000Wh", "derived": False,
+                                      "doc": "FAKE-1/US/en/md/manual_us"})
         self.assertEqual(sources[1]["date"], "2026-01-02")
         self.assertTrue(one["cells"]["US|capacity_wh|"]["conflict"])
         # A chosen value missing from values still shows the cell's own printed text and source.
@@ -184,6 +185,16 @@ class TemplateTests(unittest.TestCase):
         text = page.select_one("main").get_text(" ")
         for word in ("snapshot", ".json", "capacity_wh", "未核实", "候选", "REV-", "无数值", "单位与列不符", "未知"):
             self.assertNotIn(word, text)
+
+    def test_a_derived_value_is_described_not_quoted(self):
+        # derived: put together from several lines of one manual, so the card says so instead of quoting it.
+        derived = {**SNAPSHOT, "values": [{**VALUES[0], "printed": "3 × AC", "derived": True}, *VALUES[1:]]}
+        page = render(pages(derived)["products/item/FAKE-1"])
+        card = page.find(id=page.select_one('[data-market-panel="US"] .pf-val')["data-sources"]).select(".pf-src")
+        self.assertEqual(card[0].p.get_text(), "由《Fake Station 1 说明书》的多处内容整理· 美规 · English")
+        self.assertIsNone(card[0].blockquote)
+        self.assertEqual(card[1].blockquote.get_text(), "Capacity: 1002Wh")  # an older value without the field
+        self.assertNotIn("派生", page.get_text())
 
     def test_snapshot_text_is_escaped(self):
         nasty = {**SNAPSHOT, "values": [{**VALUES[0], "printed": 'x</div><script>&"'}],

@@ -113,7 +113,7 @@ def _sources(cell: dict[str, Any], name: str, values: dict[str, dict[str, Any]],
     for value_id in ids:
         value = values.get(value_id)
         if value is None and value_id == chosen:
-            value = {"printed": cell.get("printed"), "source": cell.get("source")}
+            value = {"printed": cell.get("printed"), "source": cell.get("source"), "derived": cell.get("derived")}
         if value is None:
             continue
         source = sources.get(str(value.get("source") or "")) or {}
@@ -122,6 +122,9 @@ def _sources(cell: dict[str, Any], name: str, values: dict[str, dict[str, Any]],
         listed.append({"manual": f"《{name} 说明书》", "market": market_label(str(source.get("market") or "")),
                        "language": labels.get(language, language), "date": str(source.get("edition_date") or ""),
                        "position": str(value.get("position") or ""), "printed": str(value.get("printed") or ""),
+                       # A derived value was put together from several lines of the manual, so it is not quoted as
+                       # printed text; an older snapshot without the field reads as not derived.
+                       "derived": value.get("derived") is True,
                        "doc": page[:-5] if page.endswith(".html") else ""})
     return listed
 
