@@ -209,14 +209,22 @@ _TARGET_SCOPED_IDML_PAGE_PREDICATE_RE = re.compile(
 MIRROR_OWNED_PATHS = ("docs/publish", "docs/knowledge", "docs/review-drafts")
 
 
-def is_mirror_checkout(repo_root: Path) -> bool:
-    """True in a mirror: its sync installs `mirrors/<name>/README.md` as the root README."""
+def mirror_name(repo_root: Path) -> str | None:
+    """The mirror a checkout is (`Hello-Docs`, `Hello-Docs-Review`), or None for auto-manual itself.
+
+    A mirror's sync installs `mirrors/<name>/README.md` as the root README.
+    """
     readme = repo_root / "README.md"
     if not readme.is_file():
-        return False
+        return None
     landing = readme.read_bytes()
-    return any(candidate.read_bytes() == landing
-               for candidate in sorted(repo_root.glob("mirrors/*/README.md")))
+    return next((candidate.parent.name for candidate in sorted(repo_root.glob("mirrors/*/README.md"))
+                 if candidate.read_bytes() == landing), None)
+
+
+def is_mirror_checkout(repo_root: Path) -> bool:
+    """True in a mirror: its sync installs `mirrors/<name>/README.md` as the root README."""
+    return mirror_name(repo_root) is not None
 
 
 def collect_mirror_owned_paths(repo_root: Path) -> list[str]:

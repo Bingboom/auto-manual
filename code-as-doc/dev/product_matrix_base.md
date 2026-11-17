@@ -138,9 +138,33 @@ python -m tools.product_matrix_base stage ... --write --yes
 - 已知：功率类行没写瓦数时，种子批次的文本值存的是电压区间（原单位 V），第二个 PR 改正。
 - UPS 切换时间、App 连接、保修期在正文里，不在规格表：之后单独一轮。
 
+## 6.1 私有站点用的快照
+
+私有站点（登录后才能看）的产品页面——产品库、单品页、对比页、表格视图——从 base 读产品信息，
+不再从各本说明书里用正则读。为此 base 的内容以快照形式进入私有仓库 Hello-Docs，私有站点构建时读它。
+
+- 命令：`python -m tools.product_matrix_base snapshot [--out <Hello-Docs 检出>/docs/knowledge/product-matrix] [--write]`。
+  只读 base；默认只打印计数，加 `--write` 才写出 `product_matrix.json`。
+- 内容（`hello-docs-product-matrix-snapshot/v1`，每个列表按键排序，两次快照可直接 diff）：
+  - `products`：产品键、型号、市场、品牌、商品简称与各语言名称、类别、系列、容量档、项目号、上市日期等；
+  - `parameters`：属性键（只作关联用）、中英文名、分组、值类型、规范单位、定义、适用类别、排序；
+  - `sources`：不透明的来源 id（来源键的哈希）、来源类型、型号、市场、语言、版本日期、页面路径（链到已发布说明书）；
+  - `values`：每个产品 × 参数 × 来源一条：原文、数值、文本值、原单位、限定、条件、来源位置、核实状态、
+    当前值、冲突，以及同一产品同一参数的不同来源是否写法不一（`sources_disagree`）；
+  - `component_values`：组件的值，单列，不并入主产品；
+  - 头部：读 base 的时间、各表计数、快照 schema。
+  不含飞书 record id、table id、token、网址，也不含来源版本标签（含流水线构建号）：来源只用不透明 id 和页面路径。
+- 写入位置由代码把关：只能写在 Hello-Docs 镜像检出的 `docs/knowledge/` 下（按根 README 等于
+  `mirrors/Hello-Docs/README.md` 识别，与维护性守卫识别镜像的方法相同）；auto-manual 检出、Hello-Docs-Review 检出
+  或 `docs/knowledge/` 以外一律拒绝。命令打印的摘要只有计数，不打印项目号或数值。
+- 刷新：base 有改动后在 Hello-Docs 检出上重跑命令，以 Hello-Docs 的内容 PR（只含该目录）提交。
+
 ## 7. 不进 git 的内容
 
-不进 auto-manual（公开仓库）、它的 PR、issue 或消息：base 里的任何记录值、SKU、项目号、table id、
-base token、凭据、邮箱、内部网址；从说明书读出的产品数值（抽取结果、计划、读回报告）；
+不进 auto-manual（公开仓库）、它的 PR、issue、CI 日志或消息，也不进公开站点：base 里的任何记录值、SKU、项目号、
+table id、base token、凭据、邮箱、内部网址；从说明书读出的产品数值（抽取结果、计划、读回报告）；
 来源版本里的流水线构建标签（含提交哈希和内部批次号，只留在飞书里）。本仓库只放代码、表结构清单、
 属性字典和虚构的测试样例。
+
+项目号可以进入私有仓库 Hello-Docs（`docs/knowledge/` 下的快照）和私有站点（操作者 2026-11-17：
+「放开到私有站点和私有仓库」）；除此之外的规则不变，也不在对话输出里打印项目号。

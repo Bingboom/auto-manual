@@ -237,6 +237,34 @@ def _projects_report(path: Path | None, summary: dict[str, Any]) -> None:
         path.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
+def _snapshot(args: argparse.Namespace) -> int:
+    from tools.product_matrix_base import snapshot
+
+    try:
+        target = snapshot.safe_destination(args.out) if args.out else None
+    except snapshot.SnapshotError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+    base = args.base_token or os.environ.get(BASE_ENV)
+    if not base:
+        print("ERROR   no base given")
+        return 2
+    run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli)
+    try:
+        document = snapshot.build_snapshot(run)
+    except LoadError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+    print(f"快照: {snapshot.summary(document)}")
+    if not (args.write and target):
+        print("dry run: nothing written" + ("" if target else " (give --out <Hello-Docs>/docs/knowledge/<dir>)"))
+        return 0
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(snapshot.encode(document))
+    print(f"wrote {target.name} under the Hello-Docs knowledge directory")
+    return 0
+
+
 def _update_manifest(path: Path, matrix_fields: list[dict[str, str]]) -> None:
     manifest = json.loads(path.read_text(encoding="utf-8"))
     for table in manifest["tables"]:
@@ -281,6 +309,14 @@ def main(argv: list[str] | None = None) -> int:
     pj.add_argument("--write", action="store_true")
     pj.add_argument("--yes", action="store_true")
     pj.set_defaults(func=_projects)
+    sn = sub.add_parser("snapshot", help="read-only snapshot of the base for the private site (Hello-Docs only)")
+    sn.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
+    sn.add_argument("--profile")
+    sn.add_argument("--identity", default="bot", choices=["bot", "user"])
+    sn.add_argument("--lark-cli", default="lark-cli")
+    sn.add_argument("--out", type=Path, help="directory under docs/knowledge/ of a Hello-Docs mirror checkout")
+    sn.add_argument("--write", action="store_true", help="write the snapshot (else print counts only)")
+    sn.set_defaults(func=_snapshot)
     mx = sub.add_parser("matrix", help="generate the 矩阵 table from the facts in the base")
     mx.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
     mx.add_argument("--profile")

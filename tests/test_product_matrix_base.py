@@ -6,7 +6,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.product_matrix_base import matrix, projects
+from tools.product_matrix_base import matrix, projects, snapshot
 from tools.product_matrix_base.extract import (
     compare, extract, inside_git_work_tree, load_dictionary, parse_value, quantities, spec_rows, table_rows,
 )
@@ -537,6 +537,69 @@ class ProjectSafetyTest(unittest.TestCase):
         with self.assertRaises(PartialWrite) as caught:
             matrix.write(failing, planned, sleep=lambda _s: None)
         self.assertNotIn("P-FAKE", str(caught.exception))
+
+
+class SnapshotTest(unittest.TestCase):
+    def base(self) -> MatrixBase:
+        base = MatrixBase()
+        base.rows["产品"] = [
+            {"产品键": "JE-B/JP", "型号": "JE-B", "市场": ["JP"], "品牌": ["自有"], "_id": "r2"},
+            {"产品键": "JE-A/US", "型号": "JE-A", "市场": ["US"], "品牌": ["自有"], "产品类别": ["便携储能"],
+             "项目号（仅飞书）": "P-FAKE-1", "上市日期": "2026-03-01T00:00:00.000+08:00", "_id": "r1"}]
+        base.rows["属性"] = [{"属性键": "capacity_wh", "中文名": "标称容量", "值类型": ["数值"], "规范单位": "Wh",
+                             "适用类别": ["便携储能", "加电包"], "排序": 2, "_id": "a1"},
+                            {"属性键": "product_name", "中文名": "产品名称", "排序": 1, "_id": "a2"}]
+        base.rows["来源"] = [{"来源键": "web/JE-A/US/en/git-20260101-abc-internal", "来源类型": ["网页说明书"],
+                             "型号": "JE-A", "市场": ["US"], "语言": ["en"], "页面或文件": "JE-A/US/en/md/m.html",
+                             "_id": "s1"},
+                            {"来源键": "sheet/JE-A/1", "来源类型": ["规格书"], "型号": "JE-A", "_id": "s2"}]
+        base.rows["事实"] = [
+            {"事实键": "k1", "产品键": "JE-A/US", "属性键": "capacity_wh", "来源键": "web/JE-A/US/en/git-20260101-abc-internal",
+             "原文": "Capacity: 333 Wh", "数值": 333, "核实状态": ["候选"], "_id": "f1"},
+            {"事实键": "k2", "产品键": "JE-A/US", "属性键": "capacity_wh", "来源键": "sheet/JE-A/1", "数值": 334,
+             "核实状态": ["候选"], "_id": "f2"},
+            {"事实键": "k3", "产品键": "JE-A/US", "属性键": "capacity_wh", "来源键": "sheet/JE-A/1",
+             "文本值": "7777Wh", "条件": "组件:Fake Pack#2", "核实状态": ["候选"], "_id": "f3"}]
+        return base
+
+    def test_snapshot_is_sorted_opaque_and_keeps_components_apart(self):
+        document = snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual(document["counts"], {"products": 2, "parameters": 2, "sources": 2, "values": 2,
+                                              "component_values": 1, "products_with_project": 1})
+        self.assertEqual([p["key"] for p in document["products"]], ["JE-A/US", "JE-B/JP"])
+        self.assertEqual([p["key"] for p in document["parameters"]], ["product_name", "capacity_wh"])
+        product = document["products"][0]
+        self.assertEqual((product["project"], product["launch_date"], product["market"], product["category"]),
+                         ("P-FAKE-1", "2026-03-01", "US", "便携储能"))
+        self.assertEqual(document["parameters"][1]["applies_to"], ["便携储能", "加电包"])
+        encoded = snapshot.encode(document).decode()
+        for withheld in ("git-20260101", "web/JE-A", "_id", "\"k1\"", "\"f1\"", "\"s1\""):
+            self.assertNotIn(withheld, encoded)
+        self.assertEqual({v["source"] for v in document["values"]},
+                         {snapshot.source_id("web/JE-A/US/en/git-20260101-abc-internal"), snapshot.source_id("sheet/JE-A/1")})
+        self.assertTrue(all(v["sources_disagree"] for v in document["values"]))  # 333 vs 334
+        self.assertEqual(document["component_values"][0]["component"], "Fake Pack")
+        self.assertEqual(snapshot.encode(snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))), snapshot.encode(document))
+        self.assertNotIn("P-FAKE", snapshot.summary(document))
+
+    def test_it_is_written_only_under_the_knowledge_directory_of_the_private_mirror(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name, landing in (("public", "auto-manual"), ("private", "hello docs"), ("review", "review")):
+                checkout = root / name
+                (checkout / ".git").mkdir(parents=True)
+                for mirror, text in (("Hello-Docs", "hello docs"), ("Hello-Docs-Review", "review")):
+                    (checkout / "mirrors" / mirror).mkdir(parents=True)
+                    (checkout / "mirrors" / mirror / "README.md").write_text(text, encoding="utf-8")
+                (checkout / "README.md").write_text(landing, encoding="utf-8")
+                (checkout / "docs" / "knowledge").mkdir(parents=True)
+            target = snapshot.safe_destination(root / "private" / "docs" / "knowledge" / "product-matrix")
+            self.assertEqual(target.name, "product_matrix.json")
+            for refused in (root / "public" / "docs" / "knowledge" / "product-matrix",
+                            root / "review" / "docs" / "knowledge" / "product-matrix",
+                            root / "private" / "docs" / "publish", root / "elsewhere"):
+                with self.assertRaises(snapshot.SnapshotError):
+                    snapshot.safe_destination(refused)
 
 
 if __name__ == "__main__":
