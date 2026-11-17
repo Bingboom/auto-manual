@@ -83,6 +83,23 @@ def row_key(row: dict[str, Any]) -> str:
     return str(row.get("key") or f"{row['model']}/{row.get('market')}")
 
 
+def named_parameters(snapshot: dict[str, Any], warn=None) -> dict[str, dict[str, Any]]:
+    """The snapshot's parameters by key; one without a Chinese name is left out with a build warning (a page never
+    shows a key in its place)."""
+    parameters: dict[str, dict[str, Any]] = {}
+    unnamed = []
+    for parameter in snapshot.get("parameters") or []:
+        if not isinstance(parameter, dict):
+            continue
+        if not str(parameter.get("name_zh") or "").strip():
+            unnamed.append(str(parameter.get("key")))
+            continue
+        parameters[str(parameter.get("key"))] = parameter
+    if unnamed and warn:
+        warn("产品信息快照里有 %d 个参数没有中文名，已跳过：%s", len(unnamed), ", ".join(sorted(unnamed)))
+    return parameters
+
+
 def row_label(parameter: dict[str, Any], condition: str | None) -> str:
     return f"{parameter['name_zh']}（{condition}）" if condition else str(parameter["name_zh"])
 
@@ -104,6 +121,16 @@ def parameter_rows(parameters: dict[str, dict[str, Any]], keys: set[tuple[str, s
             for index, group in enumerate(order, 1)]
 
 
+# A value's position may end in the published page's anchor (" #native-specifications"): colleagues see the
+# section only, and 打开说明书 jumps to the anchor.
+_ANCHOR = re.compile(r"\s+#([A-Za-z0-9_-]+)$")
+
+
+def _position(position: str) -> dict[str, str]:
+    match = _ANCHOR.search(position)
+    return {"position": position[:match.start()].rstrip() if match else position, "anchor": match.group(1) if match else ""}
+
+
 def _sources(cell: dict[str, Any], name: str, values: dict[str, dict[str, Any]], sources: dict[str, dict[str, Any]],
              labels: dict[str, str]) -> list[dict[str, str]]:
     """Every value that took part in the cell, the chosen one first: where it is printed and how."""
@@ -121,7 +148,7 @@ def _sources(cell: dict[str, Any], name: str, values: dict[str, dict[str, Any]],
         language = str(source.get("language") or "")
         listed.append({"manual": f"《{name} 说明书》", "market": market_label(str(source.get("market") or "")),
                        "language": labels.get(language, language), "date": str(source.get("edition_date") or ""),
-                       "position": str(value.get("position") or ""), "printed": str(value.get("printed") or ""),
+                       **_position(str(value.get("position") or "")), "printed": str(value.get("printed") or ""),
                        # A derived value was put together from several lines of the manual, so it is not quoted as
                        # printed text; an older snapshot without the field reads as not derived.
                        "derived": value.get("derived") is True,
@@ -191,9 +218,13 @@ def _manuals(model: str, markets: list[str], sources: list[dict[str, Any]], labe
 
 def _head(model: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
     first = rows[0]
+    # SKU 创建时间 is per market (契约 §3/§4.1, 「SKU 最早创建时间（本市场）」): the head shows the market the switch
+    # has chosen, and a market without one reads 暂无. The page never picks one market's date for the model.
+    dates = [{"code": code, "text": sku_date([row for row in rows if str(row.get("market") or "") == code])}
+             for code in markets_of(rows)]
     return {"model": model, "name": product_name(rows),
             "project": next((str(row["project"]) for row in rows if row.get("project")), ""),
-            "sku_date": sku_date(rows),
+            "sku_dates": dates,
             "classes": [str(part) for part in (first.get("category"), first.get("series"), first.get("capacity_tier"))
                         if part]}
 
@@ -201,7 +232,7 @@ def _head(model: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
 def profile_view(model: str, rows: list[dict[str, Any]], snapshot: dict[str, Any], *, labels: dict[str, str],
                  extras: dict[str, Any] | None = None) -> dict[str, Any]:
     """The 产品档案 context of one model from its market rows and the snapshot's cells."""
-    parameters = {str(p.get("key")): p for p in snapshot.get("parameters") or [] if isinstance(p, dict)}
+    parameters = named_parameters(snapshot)
     head = _head(model, rows)
     markets = markets_of(rows)
     cells = _cells(rows, snapshot, head["name"], labels, parameters)
@@ -226,10 +257,11 @@ def matrix_extras(matrix: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
     for product in products:
         detail = product.get("detail") or {}
         pairing = detail.get("pairing") or {}
+        # A pairing without a label is left out rather than failing the build.
         named = [{"label": item["label"], "model": first.get(item.get("key") or "", "")}
-                 for item in pairing.get("named") or []]
-        named_by = [{"label": item["label"], "name": item["name"], "model": item["model"]}
-                    for item in pairing.get("named_by") or []]
+                 for item in pairing.get("named") or [] if item.get("label")]
+        named_by = [{"label": item["label"], "name": item.get("name") or "", "model": item.get("model") or ""}
+                    for item in pairing.get("named_by") or [] if item.get("label")]
         entry = {"features": detail.get("features"),
                  "pairing": {"named": named, "named_by": named_by} if named or named_by else None,
                  "guides": detail.get("guides") or []}
@@ -261,6 +293,7 @@ def profile_pages(snapshot: dict[str, Any], *, labels: dict[str, str], extras: d
     if not has_cells(snapshot):
         return []
     by_model = models_of(snapshot, warn)
+    named_parameters(snapshot, warn)  # warns once about parameters without a Chinese name
     return [(page_name(model), profile_view(model, rows, snapshot, labels=labels,
                                              extras=_linkable((extras or {}).get(model), set(by_model))))
             for model, rows in sorted(by_model.items())]
@@ -277,5 +310,5 @@ def _linkable(extra: dict[str, Any] | None, models: set[str]) -> dict[str, Any] 
 
 
 __all__ = ["CONFLICT", "GROUPS", "PAGE_PREFIX", "SKU_DATE", "SKU_DATE_UPPER_BOUND", "TEMPLATE", "compare_key",
-           "has_cells", "markets_of", "matrix_extras", "models_of", "page_name", "parameter_rows", "product_name",
+           "has_cells", "markets_of", "matrix_extras", "models_of", "named_parameters", "page_name", "parameter_rows", "product_name",
            "profile_pages", "profile_view", "row_key", "row_label", "safe_model", "sku_date"]
