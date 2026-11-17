@@ -127,12 +127,11 @@ class LayerViewTests(unittest.TestCase):
         self.assertEqual([(r.th.get_text(), r.select("td")[0].get_text(), r.select("td")[2].get_text()) for r in rows],
                          [("English", "5", "3")])
         self.assertNotIn("%", "".join(td.get_text() for td in page.select(".fr-langs td")))
-        # How agents use the corpus: the three skill-backed uses and one example ask, no skill names.
+        # How agents use the corpus: the operator's three uses today and one example ask, no skill names.
         uses = page.select_one("#agent-uses")
-        self.assertEqual([li.b.get_text() for li in uses.select("li")],
-                         ["飞书云文档 / Word 翻译预处理", "Markdown 按记忆库改写", "确认后写回语料库"])
-        self.assertIn("「把这篇飞书文档按记忆库做韩语翻译预处理，上传回原路径」", uses.get_text())
-        self.assertNotIn("skill", uses.get_text().lower())
+        self.assertEqual([li.b.get_text() for li in uses.select("li")], ["改飞书云文档", "改 AI 格式文件", "自己调用代码"])
+        self.assertIn("「按语料库把这篇飞书云文档改成韩语」", uses.get_text())
+        self.assertNotIn("Markdown", uses.get_text())
 
     def test_corpus_languages_are_named_as_the_manual_library_names_them(self):
         corpus = {"rows": [{"code": "en", "label": "英语"}, {"code": "jp", "manual": "ja", "label": "日语"},

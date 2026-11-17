@@ -37,17 +37,17 @@
     </tbody>
   </table>
 </section>
-{#- How agents use this corpus (operator, 2026-11-17: 「这种可以用」). Each use is what the repository's skill does:
-    lark-tm-translation-preprocess, manual-rewrite-with-tm and bilingual-tm-maintenance (.agents/skills/). Change the
-    wording here only together with those skills. -#}
+{#- How agents use this corpus (operator, 2026-11-17: 「这种可以用」). The three uses are the ones the operator works
+    with today: 「直接让agent基于语料 改飞书云文档 还有 Ai格式文件 还有自动调代码」. The skills that describe them
+    still need refreshing (REV-54); change this wording with the operator, not from the skill files. -#}
 <section class="fr-section fr-uses" id="agent-uses" aria-labelledby="uses-title">
   <h2 id="uses-title">Agent 怎样用这份语料库</h2>
   <ol>
-    <li><b>飞书云文档 / Word 翻译预处理</b><p>按记忆库替换原稿里能安全命中的句子：完全命中标黄，只差参数的标绿，没命中的保留原文。确认译文写进了文件，再上传到原文档所在目录，并列出没命中的高频句，供补进语料库。</p></li>
-    <li><b>Markdown 按记忆库改写</b><p>标题、列表、表格和图片保持不变，优先用记忆库里的句子和术语；没把握的句子保留原文，用 ==…== 标出。</p></li>
-    <li><b>确认后写回语料库</b><p>译文经确认「入库」后写进对应语言，追加这门语言的维护记录并读回核对。写回后重跑预处理，这些句子就成了完全命中。</p></li>
+    <li><b>改飞书云文档</b><p>按语料库里已批准的句子和术语，直接改飞书云文档里的文字。</p></li>
+    <li><b>改 AI 格式文件</b><p>按同一份语料，改 Illustrator（.ai）设计文件里的文字。</p></li>
+    <li><b>自己调用代码</b><p>查语料、替换和核对由 Agent 调用仓库里的代码完成，不用手动跑脚本。</p></li>
   </ol>
-  <p class="fr-uses-ask">可以这样说：「把这篇飞书文档按记忆库做韩语翻译预处理，上传回原路径」</p>
+  <p class="fr-uses-ask">可以这样说：「按语料库把这篇飞书云文档改成韩语」</p>
 </section>
 </div>
 {%- else %}
