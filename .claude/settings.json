@@ -10,6 +10,7 @@
       "Read(./.mypy_cache/**)",
       "Read(./.ruff_cache/**)",
       "Read(./.tmp/**)",
+      "Read(./.claude/worktrees/**)",
       "Read(./**/__pycache__/**)",
       "Read(./**/*.pyc)",
       "Read(./docs/_build/**)",
