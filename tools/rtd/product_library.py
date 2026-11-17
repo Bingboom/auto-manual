@@ -21,6 +21,8 @@ from typing import Any, Iterable
 
 SNAPSHOT = Path("product-matrix") / "snapshot.json"
 SCHEMA = "hello-docs-product-matrix-snapshot/v1"
+# v1.1 only adds fields (value ids and the decided cells); both read the same.
+SCHEMAS = (SCHEMA, "hello-docs-product-matrix-snapshot/v1.1")
 OTHER_CATEGORY = "其他"
 UNSORTED_SERIES = "未分类"
 UNSTATED_TIER = "容量未注明"
@@ -47,8 +49,9 @@ def load_snapshot(knowledge_dir: Path) -> dict[str, Any] | None:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise SnapshotError(f"cannot read {SNAPSHOT.as_posix()}: {exc}") from exc
-    if not isinstance(data, dict) or data.get("schema") != SCHEMA:
-        raise SnapshotError(f"schema is {data.get('schema') if isinstance(data, dict) else None!r}, not {SCHEMA}")
+    if not isinstance(data, dict) or data.get("schema") not in SCHEMAS:
+        raise SnapshotError(f"schema is {data.get('schema') if isinstance(data, dict) else None!r}, not one of "
+                            f"{', '.join(SCHEMAS)}")
     products = data.get("products")
     if not isinstance(products, list) or not all(isinstance(row, dict) and row.get("model") for row in products):
         raise SnapshotError("products must be a list of rows with a model")
@@ -191,6 +194,6 @@ def empty_context(problem: str) -> dict[str, Any]:
             "unassigned": False, "markets": [], "facts": {}, "built_on": ""}
 
 
-__all__ = ["FLAT_COLUMN", "MARKET_LABELS", "OTHER_CATEGORY", "SCHEMA", "SNAPSHOT", "SnapshotError",
+__all__ = ["FLAT_COLUMN", "MARKET_LABELS", "OTHER_CATEGORY", "SCHEMA", "SCHEMAS", "SNAPSHOT", "SnapshotError",
            "UNSORTED_SERIES", "UNSTATED_TIER", "empty_context", "library_context", "library_view", "load_snapshot",
            "market_label", "snapshot_path"]
