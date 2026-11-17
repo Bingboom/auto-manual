@@ -30,6 +30,7 @@ COUNTS = ("已核实数", "候选数", "冲突数", "组件事实数", "空缺�
 PROJECT = "项目号"  # the leading index; copied from 产品.项目号（仅飞书）, never read out of Feishu by any report
 PROJECT_SOURCE = "项目号（仅飞书）"
 LAUNCH = "上市日期"
+EXCLUDE = "不收录"  # a product a person keeps out of the matrix (the reader would otherwise add it back)
 TRACE = ("来源", "事实数")  # the path back: the pages the row's values were read from, and how many facts it has
 STAMP = "生成时间"
 NUMERIC = {"数值", "整数"}
@@ -169,7 +170,8 @@ def build(products: list[dict[str, Any]], attributes: list[dict[str, Any]], fact
     main, components = _group(facts)
     columns = _columns(attributes, {key for _product, key in main})
     empty: list[dict[str, Any]] = []
-    rows = {_text(p.get("产品键")): _row(p, columns, main, components, by_source, empty) for p in products}
+    kept = [p for p in products if not p.get(EXCLUDE)]
+    rows = {_text(p.get("产品键")): _row(p, columns, main, components, by_source, empty) for p in kept}
     return {"columns": columns, "rows": rows, "empty": empty, "launch": any(LAUNCH in r for r in rows.values()),
             "components": sum(1 for v in components.values() if v)}
 
@@ -181,7 +183,7 @@ def read_base(run: Runner) -> dict[str, Any]:
         raise LoadError(f"tables missing in the base: {missing}")
     return {
         "ids": ids,
-        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH], sensitive=True),
+        "products": read_rows(run, ids["产品"], [*IDENTITY, PROJECT_SOURCE, LAUNCH, EXCLUDE], sensitive=True),
         "attributes": read_rows(run, ids["属性"], ["属性键", "中文名", "值类型", "规范单位", "状态", "排序"]),
         "facts": read_rows(run, ids["事实"], ["事实键", "产品键", "属性键", "数值", "文本值", "原单位", "条件",
                                              "核实状态", "来源键", "记录时间", "冲突", "原文"]),
@@ -216,7 +218,9 @@ def plan(run: Runner, base: dict[str, Any], built: dict[str, Any]) -> dict[str, 
     kinds = {f["name"]: f["type"] for f in wanted}
     current = {_text(r.get("产品键")): r for r in read_rows(run, table_id, [n for n in names if n in have], sensitive=True)}
     create, update = _changes(built, current, names, have, kinds)
-    return {"table_id": table_id, "add": add, "create": create, "update": update, "kinds": kinds,
+    remove = [{"key": key, "record_id": row["_record_id"]} for key, row in sorted(current.items())
+              if key not in built["rows"]]  # the product left 产品 or is marked 不收录
+    return {"table_id": table_id, "add": add, "create": create, "update": update, "remove": remove, "kinds": kinds,
             "clash": [f["name"] for f in wanted if f["name"] in have and have[f["name"]].get("type") != f["type"]],
             "unused": sorted(set(have) - {f["name"] for f in wanted})}
 
@@ -251,6 +255,10 @@ def write(run: Runner, planned: dict[str, Any], *, now: datetime | None = None, 
             _check(run(["+record-upsert", "--table-id", table_id, "--record-id", change["record_id"], "--json",
                         json.dumps(dict(change["fields"], **{STAMP: stamp}), ensure_ascii=False)]),
                    f"{MATRIX} update {change['key']}", sensitive=True)
+        removed = [item["record_id"] for item in planned.get("remove", [])]
+        for start in range(0, len(removed), 100):
+            _check(run(["+record-delete", "--table-id", table_id, "--yes", "--json",
+                        json.dumps({"record_id_list": removed[start:start + 100]})]), f"{MATRIX} remove rows")
     except LoadError as exc:
         failure = exc
     (sleep or __import__("time").sleep)(settle)
@@ -267,9 +275,11 @@ def _read_back(run: Runner, planned: dict[str, Any], created: list[dict[str, Any
     names = sorted({n for row in expected.values() for n in row} | {"产品键"})
     back = {_text(r.get("产品键")): r for r in read_rows(run, table_id, names, sensitive=True)}
     missing = [key for key in expected if key not in back]
+    lingering = [item["key"] for item in planned.get("remove", []) if item["key"] in back]
     mismatched = [f"{key} · {name}" for key, row in expected.items() if key in back for name, value in row.items()
                   if not _equal(value, back[key].get(name), planned["kinds"].get(name, "text"))]
     return {"columns_added": len(planned["add"]), "created": len(created), "updated": len(planned["update"]),
+            "removed": len(planned.get("remove", [])) - len(lingering), "lingering": lingering,
             "missing": missing, "mismatched": mismatched, "rows_after": len(back)}
 
 

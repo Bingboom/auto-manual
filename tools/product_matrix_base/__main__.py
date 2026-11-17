@@ -157,7 +157,9 @@ def _matrix(args: argparse.Namespace) -> int:
               f"{sum(c['type'] == 'number' for c in built['columns'])}），有值单元格 {filled}/{possible}，"
               f"有组件事实的产品 {built['components']}，数值缺失留空 {len(built['empty'])}")
         print(f"  待加列 {len(planned['add'])}，待新建行 {len(planned['create'])}，待更新行 {len(planned['update'])}，"
-              f"不再使用的列 {len(planned['unused'])}，类型冲突列 {len(planned['clash'])}")
+              f"待删行 {len(planned['remove'])}，不再使用的列 {len(planned['unused'])}，类型冲突列 {len(planned['clash'])}")
+        if planned["remove"]:
+            print("  待删行（产品表已没有或标了不收录）：" + "、".join(item["key"] for item in planned["remove"]))
         if args.manifest:
             _update_manifest(args.manifest, matrix.manifest_fields(built))
         if args.report:
@@ -174,12 +176,13 @@ def _matrix(args: argparse.Namespace) -> int:
             print(f"  中途失败，已读回：{json.dumps(exc.report, ensure_ascii=False)}")
             raise
         print(f"  加列 {written['columns_added']}，新建 {written['created']}，更新 {written['updated']}，"
-              f"缺失 {len(written['missing'])}，字段不符 {len(written['mismatched'])}，表内现有 {written['rows_after']} 行")
+              f"删行 {written['removed']}，缺失 {len(written['missing'])}，字段不符 {len(written['mismatched'])}，"
+              f"未删掉 {len(written['lingering'])}，表内现有 {written['rows_after']} 行")
         if args.drop and (written["missing"] or written["mismatched"]):
             print("  读回有缺失或不符，不删列")
         elif args.drop:
             print(f"  删除空列 {len(matrix.drop_columns(run, planned, args.drop))}")
-        return 1 if written["missing"] or written["mismatched"] else 0
+        return 1 if written["missing"] or written["mismatched"] or written["lingering"] else 0
     except LoadError as exc:
         print(f"ERROR   {exc}")
         return 2
@@ -188,7 +191,7 @@ def _matrix(args: argparse.Namespace) -> int:
 def _plan_summary(planned: dict[str, Any]) -> dict[str, Any]:
     """The matrix plan without row contents: rows carry the project index, which never leaves Feishu."""
     return {"add": planned["add"], "clash": planned["clash"], "unused": planned["unused"],
-            "create": [row["产品键"] for row in planned["create"]],
+            "create": [row["产品键"] for row in planned["create"]], "remove": [r["key"] for r in planned["remove"]],
             "update": [{"key": u["key"], "fields": sorted(u["fields"])} for u in planned["update"]]}
 
 

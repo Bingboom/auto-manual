@@ -30,7 +30,7 @@ COMPONENT = "组件:"
 EXCLUDED_STATES = {"已驳回", "已取代"}
 
 PRODUCT_FIELDS = ("产品键", "型号", "市场", "品牌", "商品简称", "名称_en", "名称_ja", "名称_zh", "产品类别", "产品系列",
-                  "容量档", "共用说明书于", PROJECT_SOURCE, "上市日期", "上市日期依据", "停售日期", "产品阶段")
+                  "容量档", "共用说明书于", PROJECT_SOURCE, "上市日期", "上市日期依据", "停售日期", "产品阶段", "不收录")
 NAME_FIELDS = tuple(field for field in PRODUCT_FIELDS if field.startswith("名称_"))
 PARAMETER_FIELDS = ("属性键", "中文名", "英文名", "分组", "值类型", "规范单位", "定义", "适用类别", "说明书通常写", "状态",
                     "排序")
@@ -123,10 +123,15 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
     missing = [name for name in ("产品", "属性", "来源", "事实") if name not in ids]
     if missing:
         raise LoadError(f"tables missing in the base: {missing}")
-    products = [_product(r) for r in read_rows(run, ids["产品"], list(PRODUCT_FIELDS), sensitive=True)]
+    rows = read_rows(run, ids["产品"], list(PRODUCT_FIELDS), sensitive=True)
+    products = [_product(r) for r in rows if not r.get("不收录")]  # 不收录: kept out by a person
+    kept = {p["key"] for p in products}
     parameters = [_parameter(r) for r in read_rows(run, ids["属性"], list(PARAMETER_FIELDS), sensitive=True)]
-    sources = [_source(r) for r in read_rows(run, ids["来源"], list(SOURCE_FIELDS), sensitive=True)]
-    facts = read_rows(run, ids["事实"], list(FACT_FIELDS), sensitive=True)
+    facts = [r for r in read_rows(run, ids["事实"], list(FACT_FIELDS), sensitive=True)
+             if _text(r.get("产品键")) in kept]  # a product no longer in 产品 (or 不收录) leaves no value behind
+    cited = {_text(r.get("来源键")) for r in facts}
+    sources = [_source(r) for r in read_rows(run, ids["来源"], list(SOURCE_FIELDS), sensitive=True)
+               if _text(r.get("来源键")) in cited]  # only sources a kept value cites
     main = [_value(r) for r in facts if not _text(r.get("条件")).startswith(COMPONENT)]
     components = [{**_value(r), "component": _text(r.get("条件"))[len(COMPONENT):].split("#")[0]}
                   for r in facts if _text(r.get("条件")).startswith(COMPONENT)]

@@ -397,6 +397,10 @@ class MatrixBase(FakeBase):
             row = next(r for r in self.rows[table] if r["_id"] == record)
             row.update(json.loads(args[args.index("--json") + 1]))
             return {"ok": True, "data": {}}
+        if command == "+record-delete":
+            gone = set(json.loads(args[args.index("--json") + 1])["record_id_list"])
+            self.rows[table] = [r for r in self.rows[table] if r["_id"] not in gone]
+            return {"ok": True, "data": {}}
         return super().__call__(args)
 
 
@@ -416,6 +420,19 @@ class MatrixWriteTest(unittest.TestCase):
         update = matrix.plan(base, snapshot, changed)["update"]
         self.assertEqual([(u["key"], u["fields"]) for u in update],
                          [("JE-B/JP", {"型号（说明书）": "JE-B", "事实数": 2, "候选数": 1})])
+
+    def test_excluded_and_deleted_products_leave_the_matrix(self):
+        base = MatrixBase()
+        snapshot = {"ids": {name: name for name in base.schema}}
+        matrix.write(base, matrix.plan(base, snapshot, matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES)),
+                     sleep=lambda _s: None)
+        kept = [dict(PRODUCTS[0], 不收录=True)] + PRODUCTS[1:]
+        planned = matrix.plan(base, snapshot, matrix.build(kept, ATTRIBUTES, FACTS, SOURCES))
+        self.assertEqual([item["key"] for item in planned["remove"]], [PRODUCTS[0]["产品键"]])
+        report = matrix.write(base, planned, sleep=lambda _s: None)
+        self.assertEqual((report["removed"], report["lingering"]), (1, []))
+        again = matrix.plan(base, snapshot, matrix.build(PRODUCTS[1:], ATTRIBUTES, FACTS, SOURCES))
+        self.assertEqual((again["create"], again["update"], again["remove"]), ([], [], []))
 
     def test_wide_tables_are_read_fifty_fields_at_a_time(self):
         base = MatrixBase()
@@ -582,6 +599,15 @@ class SnapshotTest(unittest.TestCase):
         self.assertEqual(document["component_values"][0]["component"], "Fake Pack")
         self.assertEqual(snapshot.encode(snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))), snapshot.encode(document))
         self.assertNotIn("P-FAKE", snapshot.summary(document))
+
+    def test_excluded_products_take_their_values_and_sources_out(self):
+        base = self.base()
+        base.rows["产品"][1]["不收录"] = True  # JE-A/US
+        document = snapshot.build_snapshot(base, now=datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual([p["key"] for p in document["products"]], ["JE-B/JP"])
+        self.assertEqual((document["counts"]["values"], document["counts"]["component_values"],
+                          document["counts"]["sources"], document["counts"]["products_with_project"]), (0, 0, 0, 0))
+        self.assertNotIn("P-FAKE", snapshot.encode(document).decode())
 
     @staticmethod
     def checkout(root: Path, name: str, landing: str, remote: str | None) -> Path:
