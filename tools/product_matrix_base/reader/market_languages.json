@@ -1,0 +1,15 @@
+{
+  "schema": "hello-docs-matrix-market-languages/v1",
+  "note": "A market's main manual language, used when a model has no English edition in that market.",
+  "main_language": {
+    "JP": "ja",
+    "CN": "zh",
+    "TW": "zh-TW",
+    "KR": "ko",
+    "US": "en",
+    "EU": "en",
+    "UK": "en",
+    "AU": "en",
+    "CA": "en"
+  }
+}
