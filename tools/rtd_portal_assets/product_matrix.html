@@ -19,7 +19,7 @@
 <span class="pl-chip" data-rows="{{ item.rows|e }}">
   {%- for member in item.models -%}
   <span class="pl-code">{% if loop.index == 2 %}<span class="pl-paren">(</span>{% elif not loop.first %}<span class="pl-sep">、</span>{% endif -%}
-  <a href="{{ pathto('products/item/' ~ member.model)|e }}" title="{{ member.label|e }}">{{ member.model|e }}</a>
+  <a href="{% if member.page %}{{ pathto('products/item/' ~ member.model)|e }}{% else %}{{ pathto('index')|e }}?q={{ member.model|urlencode }}{% endif %}" title="{{ member.label|e }}">{{ member.model|e }}</a>
   {%- if loop.last and not loop.first %}<span class="pl-paren">)</span>{% endif %}</span>
   {%- endfor -%}
 </span>

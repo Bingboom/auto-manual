@@ -1,16 +1,12 @@
 'use strict';
 // 产品档案 (step 13; tools/rtd_portal_assets/product_profile.html). Without JavaScript every market shows in turn
-// and values are plain text. With it, the market switch shows one market (the hash ?market= is not used; the
-// choice lives on the page), and clicking a value shows its source beside the parameters (a sheet on phones).
-// The pure parts are on globalThis.ProductProfile for tests/product_profile_ui.test.mjs.
+// and values are plain text. With it, the market switch shows one market, and clicking a value shows its sources
+// beside the parameters (a sheet on phones): the page renders each value's source list, escaped, in a hidden block,
+// and this script copies those nodes into the card; nothing is built from strings. The pure part is on
+// globalThis.ProductProfile for tests/product_profile_ui.test.mjs.
 (() => {
-  // The source card's lines from a value button's data attributes.
-  const sourceLines = data => ({
-    where: [data.market, data.language].filter(Boolean).join(' · ') + (data.date ? ` · 版本日期 ${data.date}` : ''),
-    printed: data.printed || '',
-    position: data.position || '',
-  });
-  globalThis.ProductProfile = {sourceLines};
+  const sourceTitle = label => `${label || '数值'} · 出处`;
+  globalThis.ProductProfile = {sourceTitle};
 
   if (typeof document === 'undefined') return;
   const panels = [...document.querySelectorAll('[data-market-panel]')];
@@ -45,15 +41,11 @@
     if (open) open.setAttribute('aria-expanded', 'false');
     open = button;
     button.setAttribute('aria-expanded', 'true');
-    const lines = sourceLines(button.dataset);
-    const label = button.closest('div').querySelector('dt');
-    card.querySelector('[data-pf-source-title]').textContent = `${label ? label.textContent : ''} · 出处`;
+    card.querySelector('[data-pf-source-title]').textContent = sourceTitle(button.dataset.label);
     card.querySelector('[data-pf-source-value]').textContent = button.textContent;
-    card.querySelector('[data-pf-source-where]').textContent = lines.where;
-    card.querySelector('[data-pf-source-printed]').textContent = lines.printed;
-    const link = card.querySelector('[data-pf-source-link]');
-    link.hidden = !button.dataset.doc;
-    if (button.dataset.doc) link.href = button.dataset.doc;
+    const list = document.getElementById(button.dataset.sources);
+    const target = card.querySelector('[data-pf-source-list]');
+    target.replaceChildren(...(list ? [...list.children].map(node => node.cloneNode(true)) : []));
     card.hidden = false;
   });
   const close = document.querySelector('[data-pf-source-close]');

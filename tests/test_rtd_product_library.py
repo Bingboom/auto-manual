@@ -46,6 +46,7 @@ class LoadTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             self.assertIsNone(pl.load_snapshot(Path(tmp)))
         for text, reason in (("{not json", "cannot read"), (json.dumps({"schema": "other/v1"}), "schema is 'other/v1'"),
+                             (json.dumps({"schema": pl.SCHEMA + ".9"}), "not one of"),
                              (json.dumps({"schema": pl.SCHEMA, "products": [{"market": "US"}]}), "with a model")):
             with self.subTest(reason), tempfile.TemporaryDirectory() as tmp:
                 self.write(Path(tmp), text)
@@ -170,7 +171,11 @@ class TemplateTests(unittest.TestCase):
         self.assertEqual(page.select_one(".fr-head p").get_text(), "3 个产品 · 更新于 2026-01-02")
         chips = page.select(".pl-chip")
         self.assertEqual([chip.get_text() for chip in chips], ["FAKE-100A(FAKE-200B)", "FAKE-300A"])
-        self.assertEqual([a["href"] for a in chips[0].select("a")], ["products/item/FAKE-100A", "products/item/FAKE-200B"])
+        # Without the decided cells no 产品档案 is built: codes open the manual library filtered to them.
+        self.assertEqual([a["href"] for a in chips[0].select("a")], ["index?q=FAKE-100A", "index?q=FAKE-200B"])
+        with_cells = render(pl.library_view({**snapshot(row("FAKE-200B"), row("FAKE-1/x")), "cells": []}, CATALOG))
+        self.assertEqual([a["href"] for a in with_cells.select(".pl-chip a")],
+                         ["index?q=FAKE-1/x", "products/item/FAKE-200B"])
         self.assertEqual(chips[0]["data-rows"], "P-FAKE-1|EU P-FAKE-1|US")
         self.assertEqual(chips[1]["data-rows"], "|US")
         self.assertEqual([o.get_text() for o in page.select('[data-pl-filter="project"] option')],
