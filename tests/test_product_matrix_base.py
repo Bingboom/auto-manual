@@ -7,7 +7,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.product_matrix_base import matrix, projects, snapshot
+from tools.product_matrix_base import cells, matrix, projects, snapshot
 from tools.product_matrix_base.reader import inside_git_work_tree, read_publication
 from tools.product_matrix_base.reader.labels import UNMAPPED, map_label
 from tools.product_matrix_base.reader.values import parse_value
@@ -393,6 +393,41 @@ class MatrixBuildTest(unittest.TestCase):
         self.assertEqual(matrix.skip_reason({"数值": 12, "原单位": "V"}, "W"), "单位与列不符")
         self.assertEqual(matrix.skip_reason({"数值": 7.1, "原单位": "lbs"}, "kg"), "")
         self.assertEqual(matrix.filled_cells(self.built), (4, 8))
+
+
+class CellsTest(unittest.TestCase):
+    ATTRIBUTES = [{"属性键": "capacity_wh", "值类型": ["数值"], "规范单位": "Wh"},
+                  {"属性键": "pv_power_w", "值类型": ["数值"], "规范单位": "W"},
+                  {"属性键": "old_key", "状态": ["停用"]}]
+    SOURCES = [{"来源键": "web/a", "来源类型": ["网页说明书"]}, {"来源键": "sheet/a", "来源类型": ["规格书"]}]
+
+    def build(self, facts):
+        return cells.build_cells(facts, self.ATTRIBUTES, self.SOURCES, snapshot.source_id)
+
+    def test_verified_wins_then_source_rank_and_rejected_never_takes_part(self):
+        facts = [{"事实键": "w", "产品键": "P/US", "属性键": "capacity_wh", "来源键": "web/a", "数值": 321},
+                 {"事实键": "s", "产品键": "P/US", "属性键": "capacity_wh", "来源键": "sheet/a", "数值": 333,
+                  "核实状态": ["已核实"]},
+                 {"事实键": "r", "产品键": "P/US", "属性键": "capacity_wh", "来源键": "web/a", "数值": 7777,
+                  "核实状态": ["已驳回"]},
+                 {"事实键": "x", "产品键": "P/US", "属性键": "old_key", "来源键": "web/a", "文本值": "x"}]
+        [cell] = self.build(facts)
+        self.assertEqual((cell["number"], cell["verified"], cell["candidates"]),
+                         (333, True, [cells.value_id("s"), cells.value_id("w")]))
+
+    def test_test_conditions_get_their_own_cell_and_others_share_the_main_one(self):
+        facts = [{"事实键": "a", "产品键": "P/US", "属性键": "pv_power_w", "来源键": "web/a", "数值": 123},
+                 {"事实键": "b", "产品键": "P/US", "属性键": "pv_power_w", "来源键": "web/a", "数值": 99,
+                  "条件": "STC (as printed)"},
+                 {"事实键": "c", "产品键": "P/US", "属性键": "pv_power_w", "来源键": "web/a", "数值": 123,
+                  "条件": "to 70% capacity"}]
+        built = self.build(facts)
+        self.assertEqual([(c["condition"], len(c["candidates"])) for c in built], [(None, 2), ("STC", 1)])
+
+    def test_a_number_in_another_unit_leaves_the_cell_empty_with_its_reason(self):
+        facts = [{"事实键": "a", "产品键": "P/US", "属性键": "capacity_wh", "来源键": "web/a", "数值": 9, "原单位": "Ah"}]
+        [cell] = self.build(facts)
+        self.assertEqual((cell["display"], cell["number"], cell["empty_reason"]), (None, None, "单位与列不符"))
 
 
 class EarliestTest(unittest.TestCase):
@@ -781,7 +816,7 @@ class SnapshotTest(unittest.TestCase):
     def test_snapshot_is_sorted_opaque_and_keeps_components_apart(self):
         document = snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))
         self.assertEqual(document["counts"], {"products": 2, "parameters": 2, "sources": 2, "values": 2,
-                                              "component_values": 1, "products_with_project": 1,
+                                              "component_values": 1, "cells": 1, "products_with_project": 1,
                                               "products_with_first_sku": 0, "first_sku_upper_bound": 0})
         self.assertEqual([p["key"] for p in document["products"]], ["JE-A/US", "JE-B/JP"])
         self.assertEqual([p["key"] for p in document["parameters"]], ["product_name", "capacity_wh"])
@@ -798,6 +833,19 @@ class SnapshotTest(unittest.TestCase):
         self.assertEqual(document["component_values"][0]["component"], "Fake Pack")
         self.assertEqual(snapshot.encode(snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))), snapshot.encode(document))
         self.assertNotIn("P-FAKE", snapshot.summary(document))
+        # v1.1: every value has an opaque id; one cell per product × parameter, chosen as the matrix chooses.
+        self.assertEqual(document["schema"], "hello-docs-product-matrix-snapshot/v1.1")
+        self.assertTrue(all(len(v["id"]) == 12 and v["id"] not in ("k1", "k2") for v in document["values"]))
+        cell = document["cells"][0]
+        self.assertEqual((cell["product"], cell["parameter"], cell["condition"]), ("JE-A/US", "capacity_wh", None))
+        self.assertEqual((cell["number"], cell["display"], cell["unit"]), (333, "333", "Wh"))  # web manual beats the sheet
+        self.assertEqual(cell["candidates"], [cells.value_id("k1"), cells.value_id("k2")])
+        self.assertEqual(cell["value"], cell["candidates"][0])
+        self.assertTrue(cell["sources_disagree"])
+        self.assertFalse(cell["verified"])
+        ids = {v["id"] for v in document["values"]}
+        self.assertTrue(set(cell["candidates"]) <= ids)
+        self.assertNotIn(cells.value_id("k3"), cell["candidates"])  # component facts never enter a cell
 
     def test_excluded_products_take_their_values_and_sources_out(self):
         base = self.base()
