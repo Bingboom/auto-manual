@@ -152,12 +152,8 @@ def _matrix(args: argparse.Namespace) -> int:
         snapshot = matrix.read_base(run)
         built = matrix.build(snapshot["products"], snapshot["attributes"], snapshot["facts"], snapshot["sources"])
         planned = matrix.plan(run, snapshot, built)
-        filled, possible = matrix.filled_cells(built)
-        print(f"矩阵: {len(built['rows'])} 行，属性列 {len(built['columns'])}（数值列 "
-              f"{sum(c['type'] == 'number' for c in built['columns'])}），有值单元格 {filled}/{possible}，"
-              f"有组件事实的产品 {built['components']}，数值缺失留空 {len(built['empty'])}")
-        print(f"  待加列 {len(planned['add'])}，待新建行 {len(planned['create'])}，待更新行 {len(planned['update'])}，"
-              f"不再使用的列 {len(planned['unused'])}，类型冲突列 {len(planned['clash'])}")
+        planned["remove"] = matrix.select_removal(planned, args.remove_row)
+        _print_matrix_plan(built, planned)
         if args.manifest:
             _update_manifest(args.manifest, matrix.manifest_fields(built))
         if args.report:
@@ -174,21 +170,42 @@ def _matrix(args: argparse.Namespace) -> int:
             print(f"  中途失败，已读回：{json.dumps(exc.report, ensure_ascii=False)}")
             raise
         print(f"  加列 {written['columns_added']}，新建 {written['created']}，更新 {written['updated']}，"
-              f"缺失 {len(written['missing'])}，字段不符 {len(written['mismatched'])}，表内现有 {written['rows_after']} 行")
+              f"删行 {written['removed']}，缺失 {len(written['missing'])}，字段不符 {len(written['mismatched'])}，"
+              f"未删掉 {len(written['lingering'])}，表内现有 {written['rows_after']} 行"
+              f"（应为 {written['rows_expected']}）")
+        if written["removed_keys"]:
+            print("  已删行：" + "、".join(written["removed_keys"]))
         if args.drop and (written["missing"] or written["mismatched"]):
             print("  读回有缺失或不符，不删列")
         elif args.drop:
             print(f"  删除空列 {len(matrix.drop_columns(run, planned, args.drop))}")
-        return 1 if written["missing"] or written["mismatched"] else 0
+        failed = written["missing"] or written["mismatched"] or written["lingering"] or not written["row_count_ok"]
+        return 1 if failed else 0
     except LoadError as exc:
         print(f"ERROR   {exc}")
         return 2
 
 
+def _print_matrix_plan(built: dict[str, Any], planned: dict[str, Any]) -> None:
+    from tools.product_matrix_base import matrix
+
+    filled, possible = matrix.filled_cells(built)
+    print(f"矩阵: {len(built['rows'])} 行，属性列 {len(built['columns'])}（数值列 "
+          f"{sum(c['type'] == 'number' for c in built['columns'])}），有值单元格 {filled}/{possible}，"
+          f"有组件事实的产品 {built['components']}，数值缺失留空 {len(built['empty'])}")
+    print(f"  待加列 {len(planned['add'])}，待新建行 {len(planned['create'])}，待更新行 {len(planned['update'])}，"
+          f"不再使用的列 {len(planned['unused'])}，类型冲突列 {len(planned['clash'])}")
+    if planned["removable"]:
+        print(f"  可删候选 {len(planned['removable'])} 行（产品表已没有或标了不收录；不加 --remove-row 不删）："
+              + "、".join(item["key"] for item in planned["removable"]))
+    print(f"  本次删除 {len(planned['remove'])} 行" + (
+        "：" + "、".join(item["key"] for item in planned["remove"]) if planned["remove"] else ""))
+
+
 def _plan_summary(planned: dict[str, Any]) -> dict[str, Any]:
     """The matrix plan without row contents: rows carry the project index, which never leaves Feishu."""
     return {"add": planned["add"], "clash": planned["clash"], "unused": planned["unused"],
-            "create": [row["产品键"] for row in planned["create"]],
+            "create": [row["产品键"] for row in planned["create"]], "removable": [r["key"] for r in planned["removable"]], "remove": [r["key"] for r in planned["remove"]],
             "update": [{"key": u["key"], "fields": sorted(u["fields"])} for u in planned["update"]]}
 
 
@@ -237,6 +254,37 @@ def _projects_report(path: Path | None, summary: dict[str, Any]) -> None:
         path.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
+def _snapshot(args: argparse.Namespace) -> int:
+    from tools.product_matrix_base import snapshot
+
+    try:
+        target = snapshot.safe_destination(args.out) if args.out else None
+    except snapshot.SnapshotError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+    base = args.base_token or os.environ.get(BASE_ENV)
+    if not base:
+        print("ERROR   no base given")
+        return 2
+    run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli)
+    try:
+        document = snapshot.build_snapshot(run)
+    except LoadError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+    print(f"快照: {snapshot.summary(document)}")
+    if not (args.write and target):
+        print("dry run: nothing written" + ("" if target else " (give --out <Hello-Docs>/docs/knowledge/<dir>)"))
+        return 0
+    try:
+        snapshot.write_snapshot(target, document)
+    except snapshot.SnapshotError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+    print(f"wrote {target.name} under the Hello-Docs knowledge directory")
+    return 0
+
+
 def _update_manifest(path: Path, matrix_fields: list[dict[str, str]]) -> None:
     manifest = json.loads(path.read_text(encoding="utf-8"))
     for table in manifest["tables"]:
@@ -281,6 +329,14 @@ def main(argv: list[str] | None = None) -> int:
     pj.add_argument("--write", action="store_true")
     pj.add_argument("--yes", action="store_true")
     pj.set_defaults(func=_projects)
+    sn = sub.add_parser("snapshot", help="read-only snapshot of the base for the private site (Hello-Docs only)")
+    sn.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
+    sn.add_argument("--profile")
+    sn.add_argument("--identity", default="bot", choices=["bot", "user"])
+    sn.add_argument("--lark-cli", default="lark-cli")
+    sn.add_argument("--out", type=Path, help="directory under docs/knowledge/ of a Hello-Docs mirror checkout")
+    sn.add_argument("--write", action="store_true", help="write the snapshot (else print counts only)")
+    sn.set_defaults(func=_snapshot)
     mx = sub.add_parser("matrix", help="generate the 矩阵 table from the facts in the base")
     mx.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
     mx.add_argument("--profile")
@@ -293,6 +349,9 @@ def main(argv: list[str] | None = None) -> int:
     mx.add_argument("--drop", action="append", default=[], metavar="COLUMN",
                     help="after a clean write, delete this matrix column if the generator no longer produces it and "
                          "every row is empty (repeat per column; nothing is dropped by sweep)")
+    mx.add_argument("--remove-row", action="append", default=[], metavar="产品键",
+                    help="delete this matrix row; only a row whose product left 产品 or is marked 不收录 (repeat per "
+                         "row; a normal refresh lists such rows but never deletes them)")
     mx.set_defaults(func=_matrix)
     args = parser.parse_args(argv)
     return args.func(args)
