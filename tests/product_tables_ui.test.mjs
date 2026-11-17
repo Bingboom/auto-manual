@@ -12,7 +12,7 @@ const load = name => {
 };
 const plain = value => JSON.parse(JSON.stringify(value));
 const {rowMatches, compareValues, csvText, csvCell} = load('product-table.js').ProductTable;
-const {LIMIT, parseState, stateQuery, resolvePick, comparison, sharedMarket, itemPath} = load('product-compare.js').ProductCompare;
+const {LIMIT, parseState, stateQuery, resolvePick, comparison, sharedMarket, itemPath, columnHead} = load('product-compare.js').ProductCompare;
 
 test('参数表 rows match every set filter, 未归入项目 included', () => {
   const row = {project: 'P-FAKE-1', market: 'US', series: '标准'};
@@ -41,14 +41,23 @@ test('参数表 puts text-only cells of a number column after the numbers and be
 });
 
 test('no CSV cell can run as a formula; plain numbers stay numbers', () => {
-  for (const raw of ['=1+1', '+SUM(A1)', '-10~45 °C', '@cmd', '\t=1', '-x']) {
-    assert.ok(csvCell(raw).replace(/^"/, '').startsWith("'"), raw);
+  const defused = raw => csvCell(raw).replace(/^"/, '').startsWith("'");
+  for (const raw of ['=1+1', '+SUM(A1)', '@cmd', '@SUM(1)', '\t=1', '\r=1', '-x', "-1+cmd|' /C calc'!A0",
+    "+cmd|' /C calc'!A0", '-10-40', '+1*2', '-1,5 ', '-1+A1', '-1&"x"', '-1 (x)']) {
+    assert.ok(defused(raw), raw);
   }
   assert.equal(csvCell('-10'), '-10');
   assert.equal(csvCell('-0.5'), '-0.5');
   assert.equal(csvCell('+3'), '+3');
   assert.equal(csvCell('100 W'), '100 W');
   assert.equal(csvCell('=A1,"x"'), `"'=A1,""x"""`);
+});
+
+test('plain text after a sign, which cannot be a formula, keeps no apostrophe', () => {
+  for (const raw of ['-10–40 °C', '-10 ~ 40°C', '+5 °C', '-10~45 °C', '-20 °C to 60 °C']) {
+    assert.equal(csvCell(raw), raw);
+  }
+  for (const raw of ['-10', '-0.5', '-.5', '+3', '-12.']) assert.equal(csvCell(raw), raw);
 });
 
 test('the CSV starts with a BOM and quotes what needs quoting', () => {
@@ -60,10 +69,10 @@ test('the CSV starts with a BOM and quotes what needs quoting', () => {
 const DATA = {
   products: [
     {model: 'FAKE-1', name: 'Fake One', project: 'P-FAKE-1', markets: ['US', 'JP'],
-     values: {US: {cap: ['1,000 Wh', '#1000', false], cell: ['LFP', 'lfp', true]}, JP: {cap: ['1,000 Wh', '#1000', false]}}},
+     values: {US: {cap: ['1000 Wh', '#1000', false], cell: ['LFP', 'lfp', true]}, JP: {cap: ['1000 Wh', '#1000', false]}}},
     {model: 'FAKE-2', name: 'Fake Two', project: 'P-FAKE-1', markets: ['US'],
-     values: {US: {cap: ['2,000 Wh', '#2000', false], cell: ['LFP', 'lfp', false]}}},
-    {model: 'FAKE-3', name: 'Other Three', project: '', markets: ['JP'], values: {JP: {cap: ['1,000 Wh', '#1000', false]}}},
+     values: {US: {cap: ['2000 Wh', '#2000', false], cell: ['LFP', 'lfp', false]}}},
+    {model: 'FAKE-3', name: 'Other Three', project: '', markets: ['JP'], values: {JP: {cap: ['1000 Wh', '#1000', false]}}},
   ],
   groups: [{title: '电池', parameters: [['cap', '标称容量'], ['cell', '电芯类型'], ['none', '没人写']]}],
   labels: {US: '美规', JP: '日规'},
@@ -107,7 +116,7 @@ test('a missing value is no difference: at least two stated values must differ',
 });
 
 test('产品对比 links a product page by the model code itself', () => {
-  for (const model of ['JE-1000F', 'JA-AD01A.v2', 'X_1']) assert.equal(itemPath(model), model);
+  for (const model of ['FAKE-1000F', 'FAKE-AD01A.v2', 'X_1']) assert.equal(itemPath(model), model);
 });
 
 test('a product not sold in the market is shown as such and does not count as a difference', () => {
@@ -117,4 +126,11 @@ test('a product not sold in the market is shown as such and does not count as a 
   assert.equal(sharedMarket(DATA, ['FAKE-1', 'FAKE-2'], 'JP', ['US', 'JP']), 'US');
   assert.equal(sharedMarket(DATA, ['FAKE-1', 'FAKE-3'], 'US', ['US', 'JP']), 'JP');
   assert.equal(sharedMarket(DATA, ['FAKE-2', 'FAKE-3'], 'US', ['US', 'JP']), '');
+});
+
+test('产品对比 heads a column with the name and the model code, no project, and says when it is not sold', () => {
+  const [one, two] = DATA.products;
+  assert.deepEqual(plain(columnHead(one, true, '美规')), {name: 'Fake One', model: 'FAKE-1', absent: ''});
+  assert.deepEqual(plain(columnHead(two, false, '日规')), {name: 'Fake Two', model: 'FAKE-2', absent: '无日规版本'});
+  assert.ok(!JSON.stringify(columnHead(one, true, '美规')).includes('P-FAKE'));
 });

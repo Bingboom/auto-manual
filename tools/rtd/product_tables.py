@@ -14,6 +14,7 @@ market; the visitor picks them on the page, so the page carries every model's ce
 from __future__ import annotations
 
 from collections import defaultdict
+from decimal import Decimal
 from typing import Any
 
 from tools.rtd.product_library import MARKET_ORDER, OTHER_CATEGORY, UNSORTED_SERIES, has_cells, market_label
@@ -24,6 +25,9 @@ from tools.rtd.product_profile import (
 TABLE_PAGE, TABLE_TEMPLATE = "products/table", "product_table.html"
 COMPARE_PAGE, COMPARE_TEMPLATE = "products/compare", "product_compare.html"
 COMPARE_LIMIT = 4
+# The value types whose columns are numbers (contract product_matrix_base.md §4.1: 数值 and 整数 make number columns,
+# every other type a text column).
+NUMERIC_TYPES = frozenset({"数值", "整数"})
 NO_CELLS = "产品数据暂时读不到，请稍后再看。"
 NO_PRODUCTS = "还没有产品数据。"
 
@@ -34,8 +38,12 @@ def _number(cell: dict[str, Any]) -> float | int | None:
 
 
 def plain_number(number: float | int) -> str:
-    """A number as 参数表 shows it: no trailing .0, no unit (the column head names it)."""
-    return str(int(number)) if float(number).is_integer() else repr(float(number))
+    """A number as 参数表 shows it: plain decimals at any magnitude (never 1e-05), no trailing .0, no unit (the
+    column head names it)."""
+    value = float(number)
+    if value.is_integer():
+        return str(int(value))
+    return format(Decimal(repr(value)), "f")
 
 
 def _index(snapshot: dict[str, Any]) -> tuple[dict[str, dict[str, Any]], dict[str, list[dict[str, Any]]],
@@ -102,15 +110,14 @@ def _category_titles(by_category: dict[str, Any], product_catalog: dict[str, Any
 
 def _columns(parameters: dict[str, dict[str, Any]], members: dict[str, list[dict[str, Any]]],
              cells: dict[tuple[str, str], dict[str, Any]]) -> list[dict[str, Any]]:
-    """The (parameter, condition) rows the category's products state, in page order; numeric when any is a number."""
+    """The (parameter, condition) rows the category's products state, in page order; a column is numeric when its
+    parameter's value type is (``NUMERIC_TYPES``), whatever its cells hold."""
     keys = {row_key(row) for rows in members.values() for row in rows}
-    stated: dict[tuple[str, str | None], bool] = {}
-    for (product, _), cell in cells.items():
-        if product in keys and cell["text"]:
-            pair = (cell["parameter"], cell["condition"])
-            stated[pair] = stated.get(pair, False) or cell["number"] is not None
-    return [{**row, "name": row["label"], "numeric": stated[(row["key"], row["condition"])]}
-            for group in parameter_rows(parameters, set(stated)) for row in group["rows"]]
+    stated = {(cell["parameter"], cell["condition"]) for (product, _), cell in cells.items()
+              if product in keys and cell["text"]}
+    return [{**row, "name": row["label"],
+             "numeric": str(parameters[row["key"]].get("value_type") or "") in NUMERIC_TYPES}
+            for group in parameter_rows(parameters, stated) for row in group["rows"]]
 
 
 def table_view(snapshot: dict[str, Any], product_catalog: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -150,9 +157,7 @@ def compare_view(snapshot: dict[str, Any]) -> dict[str, Any]:
     for (product, row_id), cell in cells.items():
         if cell["text"]:
             by_product[product][row_id] = [cell["text"], cell["key"], cell["conflict"]]
-    products = [{"model": model, "name": product_name(rows),
-                 "project": next((str(r["project"]) for r in rows if r.get("project")), ""),
-                 "page": page_name(model), "markets": markets_of(rows),
+    products = [{"model": model, "name": product_name(rows), "page": page_name(model), "markets": markets_of(rows),
                  "values": {str(row.get("market") or ""): by_product.get(row_key(row), {}) for row in rows}}
                 for model, rows in sorted(models.items())]
     used = {(cell["parameter"], cell["condition"]) for cell in cells.values() if cell["text"]}
@@ -165,5 +170,5 @@ def compare_view(snapshot: dict[str, Any]) -> dict[str, Any]:
                      "labels": {code: market_label(code) for code in markets}}}
 
 
-__all__ = ["COMPARE_LIMIT", "COMPARE_PAGE", "COMPARE_TEMPLATE", "NO_CELLS", "NO_PRODUCTS", "TABLE_PAGE",
+__all__ = ["COMPARE_LIMIT", "COMPARE_PAGE", "COMPARE_TEMPLATE", "NO_CELLS", "NO_PRODUCTS", "NUMERIC_TYPES", "TABLE_PAGE",
            "TABLE_TEMPLATE", "compare_view", "table_view"]

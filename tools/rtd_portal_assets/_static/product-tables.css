@@ -54,7 +54,7 @@ th[aria-sort="descending"] .pt-sort::after {content:" ↓"}
   border-radius:10px;background:var(--surface);font-size:14px}
 .pc-chip button {width:30px;height:30px;border:0;border-radius:8px;background:transparent;font-size:16px;color:var(--app-muted);
   cursor:pointer}
-.pc-table thead th small {display:block;font-weight:400;font-size:12px}
+.pc-table thead th .pc-model, .pc-table thead th .pc-absent {display:block;font-weight:400}
 .pc-table thead th a {color:var(--app-ink);font-size:15px;text-decoration:none}
 .pc-table tbody th {width:170px;color:var(--app-muted);font-weight:400}
 .pc-table thead th .pc-absent {color:#8a3b16}
