@@ -316,6 +316,8 @@ def _snapshot(args: argparse.Namespace) -> int:
         document = snapshot.build_snapshot(run)
     except LoadError as exc:
         print(f"ERROR   {exc}")
+        for kind, fact, source in getattr(exc, "rows", []) if args.explain_references else []:
+            print(f"  {kind}: 事实键 {fact}" + (f"，来源键 {source}" if source else ""))  # keys only, printed locally
         return 2
     print(f"快照: {snapshot.summary(document)}")
     if not (args.write and target):
@@ -383,6 +385,8 @@ def main(argv: list[str] | None = None) -> int:
     sn.add_argument("--lark-cli", default="lark-cli")
     sn.add_argument("--out", type=Path, help="directory under docs/knowledge/ of a Hello-Docs mirror checkout")
     sn.add_argument("--write", action="store_true", help="write the snapshot (else print counts only)")
+    sn.add_argument("--explain-references", action="store_true",
+                    help="when the reference check fails, print the fact and source keys behind it (local use only)")
     sn.set_defaults(func=_snapshot)
     mx = sub.add_parser("matrix", help="generate the 矩阵 table from the facts in the base")
     mx.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
