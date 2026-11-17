@@ -157,6 +157,10 @@
         {
           "name": "最后更新",
           "type": "datetime"
+        },
+        {
+          "name": "不收录",
+          "type": "checkbox"
         }
       ]
     },
