@@ -65,7 +65,7 @@
 <div class="app-content">
 {{ site_topbar('知识库', '产品信息') }}
 <main class="matrix">
-<header class="fr-head"><h1>产品信息</h1>{% if product and product.value %}<p>{{ product.value|e }}</p>{% endif %}</header>
+<header class="fr-head"><h1>产品信息</h1></header>
 <nav class="mx-tabs" aria-label="产品类别">{% for category in categories %}<a class="mx-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }}<span>{{ category.count }}</span></a>{% endfor %}</nav>
 <div id="matrix" class="mx-panels">
 {%- for category in categories %}

@@ -397,8 +397,7 @@ entries now link directly to the workbench statistics tab; the retired
 `/products/matrix.html` (产品矩阵) lays out the products the published Web
 manuals describe, grouped the way the 网页文档 table groups them (2026-11
 redesign). It is the 产品信息 page (资产; see [asset-layers.md](asset-layers.md#front-pages)):
-since the front cleanup (2026-11-17) the title, the operator's value statement as its
-lead, then the matrix, with no tabs, chips, provenance labels or page foot. The
+since the front cleanup (2026-11-17) the title, then the matrix, with no tabs, chips, provenance labels or page foot. The
 former 属性字典 address forwards here. The public manual library does not link to it.
 
 - **Products and their classes.** One product is one 商品简称 of the

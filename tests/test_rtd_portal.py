@@ -474,6 +474,11 @@ class RtdPortalTests(unittest.TestCase):
                          {"index.html": knowledge, "search.html": knowledge, **dict.fromkeys(pages, knowledge)})
         current = BeautifulSoup((out / "search.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([a.span.get_text() for a in current.select('a.app-nav-link[aria-current="page"]')], ["搜索说明书正文"])
+        # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
+        from tools.rtd.asset_layer_data import load_layer_data
+        statement = load_layer_data(rtd_portal.ASSETS)["product_value"][:12]
+        for path in out.rglob("*.html"):
+            self.assertNotIn(statement, path.read_text(encoding="utf-8", errors="ignore"), path.relative_to(out))
         # 维护 is one collapsed group, open only on its own pages.
         for page in sidebars:
             more = sidebars[page].select_one("details.app-nav-more")

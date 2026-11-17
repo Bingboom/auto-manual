@@ -48,8 +48,7 @@ authorization numbers, hashes, snapshot names, 建设中 / 已规划 chips, tabs
 unbuilt parts, or provenance and refresh small print. A figure keeps one date
 (截至 …). `front.css` holds their shared head, figure row and bar list.
 
-- **产品信息** (`product_matrix.html`): the title, `product_value` as its lead with
-  no caption, then the matrix (category tabs, product rows, manual links). The
+- **产品信息** (`product_matrix.html`): the title, then the matrix (category tabs, product rows, manual links). The
   former 规模, 在哪里维护, 被谁使用, 来源与时间 and 质量与缺口 blocks, the kicker, the
   chips, the sub-labels and the page-foot provenance are gone, and so are the
   属性字典 tab and page and the 待核实与冲突 placeholder.
@@ -120,9 +119,9 @@ layers that is not a figure:
 - **Wording, each kept once.** `umbrella` (产品技术内容资产) and `main_line` (新说明书在工作台写作，是主线；
   扩大存量说明书的网页覆盖是积累线；产品信息矩阵是第一个要补全的资产。). The operator adopted both on
   2026-11-16 (positioning §1.2); a later change is a one-line edit here. `product_value` is the operator's
-  own statement of the product matrix's value (2026-11-16), shown word for word as the
-  lead of the 产品信息 page and nowhere else, with no caption under it (operator,
-  2026-11-16). Its source is positioning §4.1. Since the front cleanup `main_line` is
+  own statement of the product matrix's value (2026-11-16; positioning §4.1). It is shown
+  on no page (operator, 2026-11-17: 「我写的那段价值定位不用显示在页面上」); the data file
+  keeps it and nothing reads it any more. Since the front cleanup `main_line` is
   no longer shown on 知识库首页; 系统建设 keeps its own 当前主线.
 - **Status chips from ledger rows.** Each layer lists the REV rows that belong to it.
   The rows are read as 系统建设 reads them (`system_workspace.ledger_progress`) and

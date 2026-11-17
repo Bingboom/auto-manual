@@ -247,13 +247,17 @@ class CuratedTests(unittest.TestCase):
 
 
 class ProductValueTests(unittest.TestCase):
-    def test_the_operator_statement_leads_the_product_page_only(self):
+    def test_the_operator_statement_is_shown_on_no_page(self):
+        # Operator, 2026-11-17: 「我写的那段价值定位不用显示在页面上」. The data file keeps it, once.
         data = ald.load_layer_data(ASSETS)
         value = data["product_value"]
         self.assertEqual((ASSETS / ald.DATA_NAME).read_text(encoding="utf-8").count(value), 1)
         cards = json.dumps(ap.front_cards({"facts": {"products": 3}, "built_on": "2026-11-17"}, None, None),
                            ensure_ascii=False)
         self.assertNotIn(value, cards)
+        page = render("product_matrix.html", product={"value": value}, categories=[], markets={})
+        self.assertNotIn(value[:12], page.get_text())
+        self.assertEqual(page.select_one(".fr-head").get_text(), "产品信息")
 
 
 class HeadlineTests(unittest.TestCase):
