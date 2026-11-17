@@ -304,7 +304,7 @@ class RealSphinxTests(unittest.TestCase):
             self.assertEqual([section.get('id') for section in evidence.select(':scope > section')],
                              ['reuse', 'production-evidence-table'])
             self.assertEqual([a['href'] for a in evidence.select('#reuse a')],
-                             ['../../assets/content/index.html', '../../assets/media/index.html',
+                             ['../design/index.html', '../../assets/media/index.html',
                               '../../assets/language/index.html'])
             self.assertEqual([row['id'] for row in evidence.select('details.pe-row')],
                              ['production-overview', 'component-usage', 'production-effort', 'backflow', 'activity',

@@ -14,7 +14,7 @@ not for maintainers) split them into front pages and maintenance pages:
 | 产品知识 | `/products/knowledge.html` | `product_knowledge.html` | 资产 (front) |
 | 语料库 (was 语言) | `/assets/language/` | `asset_language.html` | 资产 (front) |
 | 视觉媒体 | `/assets/media/` | `asset_media.html` | 知识资产 (front) |
-| 内容与表现 | `/assets/content/` | `asset_content.html` | 设计规范 (maintenance) |
+| 内容与表现 | `/assets/content/` forwards to 设计规范 | — (not shown; operator: 「这个 不用放出来呀」) | — |
 | 视觉媒体's inventory | `/workspace/design/#assets-inventory` | `_media_inventory.html` (folded at the foot of 设计规范 › 图标与素材) | 设计规范 (maintenance) |
 
 `tools/rtd/asset_layers.py` builds the views (layer order, content, media,
@@ -34,11 +34,11 @@ The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四
 | 知识资产 | 产品信息, 产品知识, 说明书资料库, 语料库, 视觉媒体, 市场与政策 | 知识资产 (`workspace/index.html`) |
 | 工作台 | 说明书工作台 | 说明书工作台 |
 | Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
-| 设计规范 | 设计规范, 内容与表现 | 设计规范 |
+| 设计规范 | 设计规范 | 设计规范 |
 
 The layout image shows the 知识资产 list only. The lists of 工作台, Agent 能力 and 设计规范 were proposed as
 defaults and confirmed by the operator on 2026-11-17 (「都按建议」, in the orchestrating session: 工作台 =
-说明书工作台, Agent 能力 = 系统建设, 设计规范 = 设计规范 + 内容与表现; 视觉媒体's inventory folded into 设计规范 ›
+说明书工作台, Agent 能力 = 系统建设, 设计规范 = 设计规范 + 内容与表现, and 内容与表现 was then taken off the site; 视觉媒体's inventory folded into 设计规范 ›
 图标与素材 when 视觉媒体 became a page for colleagues — operator: 「按这个改」, so no page duplicates another), and the shell as built (「先这样吧」); the canvas's colours are not used, the
 site keeps its own palette. A page's section is declared once, in the `site_sections` table of
 `_site_shell.html`: a `list` entry is a left entry, an `also` entry belongs to the section without one, and
@@ -97,10 +97,9 @@ the design page the page says 暂时没有可显示的素材. The page's former 
 
 ## The shared anatomy (maintenance pages)
 
-内容与表现 uses `_asset_layer.html`: a head (the title, one
-line and the build date), then six blocks; 视觉媒体's inventory (`_media_inventory.html`, the former 视觉媒体 page's
-body) is the same six blocks without the head, folded as 素材登记与共用符号明细 (`#assets-inventory`) at the foot of
-设计规范 › 图标与素材, beside the gallery and rules it counts with fixed ids, in this order:
+视觉媒体's inventory (`_media_inventory.html`, the former 视觉媒体 page's body, using `_asset_layer.html`'s blocks) is
+folded as 素材登记与共用符号明细 (`#assets-inventory`) at the foot of 设计规范 › 图标与素材, beside the gallery and
+rules it counts. It holds six blocks with fixed ids, in this order:
 
 | Block | id | Answers |
 | --- | --- | --- |
@@ -123,7 +122,8 @@ Rules:
 
 ## What each page reads
 
-**内容与表现.** Shared chapters under `docs/templates/page_shared` as a chapter ×
+**内容与表现** (no longer built; `asset_layers.content_view` is kept for its tests until the operator confirms
+its removal). Shared chapters under `docs/templates/page_shared` as a chapter ×
 language table; the skeletons (`skeletons_of`), the recipe files and sets under
 `docs/templates/recipes`, the page-template folders; the components in
 `component_registry.yaml` with the only use the site computes, the 产品总览
@@ -227,7 +227,7 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 `tests/asset_layers_ui.test.mjs` and `tests/media_front_ui.test.mjs` (the filters), and the real-Sphinx sidebar test
 in `tests/test_rtd_portal.py` (each page's section, left list and breadcrumb, an
 unplaced page selecting no section, the moved 属性字典 address, the front pages without chips or small print, the six blocks
-on 内容与表现 and in 设计规范's #assets-inventory, 视觉媒体 absent from the public build, and that the public build links no internal page);
+in 设计规范's #assets-inventory, the 内容与表现 address forwarding to 设计规范, 视觉媒体 absent from the public build, and that the public build links no internal page);
 `tests/test_rtd_site_shell.py` (placement of every page key, crumbs, optional sections, the public shell);
 `tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
 top bar).

@@ -50,7 +50,6 @@ class SiteShellTests(unittest.TestCase):
             ("deliverables", "说明书工作台"): "工作资料 / 工作台 / 说明书工作台",
             ("system", "系统建设"): "工作资料 / Agent 能力 / 系统建设",
             ("design-system", "设计规范"): "工作资料 / 设计规范",
-            ("asset-content", "内容与表现"): "工作资料 / 设计规范 / 内容与表现",
             # 产品信息's pages name their tab in the crumb, beneath 产品信息 (the product branches pass these labels).
             ("product-matrix", "产品库"): "工作资料 / 知识资产 / 产品信息 / 产品库",
             ("product-matrix", "产品档案"): "工作资料 / 知识资产 / 产品信息 / 产品档案",
@@ -61,11 +60,11 @@ class SiteShellTests(unittest.TestCase):
             self.assertEqual(crumb_text(shell(key, crumb)), expected, key)
 
     def test_optional_sections_follow_their_pages(self):
-        page = shell("asset-content", "内容与表现", {"system": False, "deliverables": False, "design": False, "matrix": False})
+        page = shell("overview", "首页", {"system": False, "deliverables": False, "design": False, "matrix": False})
         tabs = {a.get_text(): a["href"] for a in page.select(".app-tabs a")}
-        # Without 说明书工作台 or 系统建设 their sections are absent; 设计规范 opens on 内容与表现 without its own page.
-        self.assertEqual(tabs, {"知识资产": "workspace/index", "设计规范": "assets/content/index"})
-        self.assertEqual([a.span.get_text() for a in page.select("#app-sidebar a.app-nav-link")], ["内容与表现"])
+        # A section whose pages are not built is absent (内容与表现 is not shown, so 设计规范 has its page only).
+        self.assertEqual(tabs, {"知识资产": "workspace/index"})
+        self.assertIsNone(shell("asset-content", "x").select_one(".app-tabs a.selected"))  # no longer placed
         self.assertIsNone(page.select_one('.app-tool[aria-label="Agent 能力"]'))
         knowledge = shell("overview", "首页", {**ALL, "matrix": False})
         self.assertNotIn("产品信息", [a.span.get_text() for a in knowledge.select("#app-sidebar a.app-nav-link")])

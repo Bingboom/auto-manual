@@ -77,22 +77,22 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
     """The layer pages' contexts, 知识库首页's cards and the 系统建设 part.
 
     Since the front cleanup (2026-11-17) 产品信息 carries only the operator's value statement as its lead; 内容与表现
-    and 视觉媒体 sit under 维护 unchanged; 语言 is the 语料库 page; the former 属性字典 address forwards to 产品信息.
+    is not shown (its address forwards to 设计规范); 视觉媒体 is a page for colleagues; 语言 is the 语料库 page; the
+    former 属性字典 address forwards to 产品信息.
     """
     root = repo_root()
     publications = [item for product in products for item in product["publications"]]
-    labels = dict(settings.get("language_labels") or {})
-    web = layers.web_languages(publications, labels)
     extra = curated(assets, root, system, warn)
     chips = extra["chips"]
-    content = {**layers.content_view(root, build_date=build_date, web_languages=len(web)), "chip": chips["content"]}
     media = {**layers.media_view(root, srcdir, publications, build_date=build_date), "chip": chips["media"]}
     language = layers.language_view(system)
     moved = "products/matrix#matrix" if matrix else "products/knowledge#knowledge-list"
     pages = [
         ("products/attributes", {"moved_target": moved, "moved_title": "产品信息" if matrix else "产品知识"},
          "moved_page.html"),
-        ("assets/content/index", {"layer": content}, "asset_content.html"),
+        # 内容与表现 is not shown (operator, 2026-11-17: 「这个 不用放出来呀」); its address forwards to 设计规范.
+        ("assets/content/index", {"moved_target": "workspace/design/index#overview" if design else "workspace/index#now",
+                                  "moved_title": "设计规范" if design else "知识资产"}, "moved_page.html"),
         # 视觉媒体 is a front page for colleagues; its inventory (counts, hashes, gaps) sits at the foot of
         # 设计规范 › 图标与素材 (`media_inventory` below, passed to the design page by portal.py).
         ("assets/media/index", {"media": front_view((design or {}).get("asset_library"), (design or {}).get("grounds") or {},

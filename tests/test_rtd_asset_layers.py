@@ -133,11 +133,8 @@ class LayerViewTests(unittest.TestCase):
 
 class TemplateTests(unittest.TestCase):
     def test_pages_render_without_data_and_never_show_zero_for_unknown(self):
-        content = {**al.layer("content"), "build_date": "2026-11-16", "chapters": None, "skeletons": None,
-                   "recipes": None, "recipe_sets": [], "families": None, "components": None,
-                   "design_tabs": al.DESIGN_TABS, "web_languages": None}
         media = {**al.layer("media"), "build_date": "2026-11-16", "registry": None, "symbols": None}
-        for template, view in (("asset_content.html", content), (INVENTORY, media)):
+        for template, view in ((INVENTORY, media),):
             page = render(template, layer=view)
             figures = [fig.strong.get_text() for fig in page.select("#scale .al-fig")]
             self.assertTrue(figures and set(figures) == {"待统计"}, (template, figures))

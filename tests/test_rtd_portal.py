@@ -472,11 +472,11 @@ class RtdPortalTests(unittest.TestCase):
         # Layout of 2026-11-17: four main sections in the top bar; the left list holds the current section only.
         knowledge = [("知识资产", ["产品信息", "产品知识", "说明书资料库", "语料库", "视觉媒体", "市场与政策"])]
         workbench = [("工作台", ["说明书工作台"])]
-        design = [("设计规范", ["设计规范", "内容与表现"])]
+        design = [("设计规范", ["设计规范"])]
         sections = {"index.html": knowledge, "search.html": knowledge, "workspace/index.html": knowledge,
                     **dict.fromkeys(("products/knowledge.html", "products/matrix.html", "market/policy.html",
                                      "assets/media/index.html", "assets/language/index.html"), knowledge),
-                    "workspace/deliverables/index.html": workbench, "assets/content/index.html": design,
+                    "workspace/deliverables/index.html": workbench,
                     "workspace/system/index.html": [("Agent 能力", ["系统建设"])],
                     "workspace/design/index.html": design}
         # 定位与价值 folded into 知识库首页 on 2026-11-05: its old page is gone.
@@ -494,7 +494,6 @@ class RtdPortalTests(unittest.TestCase):
         crumbs = {"workspace/deliverables/index.html": "工作资料 / 工作台 / 说明书工作台",
                   "workspace/system/index.html": "工作资料 / Agent 能力 / 系统建设",
                   "workspace/design/index.html": "工作资料 / 设计规范",
-                  "assets/content/index.html": "工作资料 / 设计规范 / 内容与表现",
                   "workspace/index.html": "工作资料 / 知识资产",
                   "products/knowledge.html": "工作资料 / 知识资产 / 产品知识"}
         for page, crumb in crumbs.items():
@@ -520,12 +519,15 @@ class RtdPortalTests(unittest.TestCase):
             text = main.get_text()
             for word in ("已规划", "建设中", "REV-", "台账", "构建时读取", "属性字典", "待核实与冲突", ".csv", ".yaml"):
                 self.assertNotIn(word, text, (page, word))
-        # Only the maintenance views keep the six blocks: 内容与表现, and 视觉媒体's detail at the foot of 设计规范 › 图标与素材.
-        for page in ("assets/content/index.html", "workspace/design/index.html"):
+        # Only 视觉媒体's detail at the foot of 设计规范 › 图标与素材 keeps the six blocks; 内容与表现 is not shown and its
+        # address forwards to 设计规范.
+        for page in ("workspace/design/index.html",):
             soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
             self.assertEqual([b["id"] for b in soup.select("section.al-block")],
                              ["scale", "maintained", "inventory", "used-by", "sources", "gaps"], page)
             self.assertFalse(soup.select(".sw-badge, .home-status"), page)
+        content = BeautifulSoup((out / "assets/content/index.html").read_text(encoding="utf-8"), "html.parser")
+        self.assertEqual(content.select_one("#moved-target")["href"], "../../workspace/design/index.html#overview")
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([c.strong.text for c in home.select("#now .home-front-card")], ["产品信息矩阵", "产品知识", "语料库"])

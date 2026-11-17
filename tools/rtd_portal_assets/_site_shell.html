@@ -62,8 +62,7 @@
   {'id': 'agent', 'label': 'Agent 能力',
    'list': [{'key': 'system', 'label': '系统建设', 'icon': 'system', 'page': 'workspace/system/index', 'needs': 'system'}]},
   {'id': 'design', 'label': '设计规范',
-   'list': [{'key': 'design-system', 'label': '设计规范', 'icon': 'design', 'page': 'workspace/design/index', 'needs': 'design'},
-            {'key': 'asset-content', 'label': '内容与表现', 'icon': 'chapters', 'page': 'assets/content/index'}]},
+   'list': [{'key': 'design-system', 'label': '设计规范', 'icon': 'design', 'page': 'workspace/design/index', 'needs': 'design'}]},
 ] -%}
 {%- macro _available(item, nav) -%}{{ 'yes' if not item.needs or nav[item.needs] else '' }}{%- endmacro -%}
 {%- macro site_sidebar(active, nav, internal=true) -%}
