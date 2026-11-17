@@ -10,11 +10,11 @@ not for maintainers) split them into front pages and maintenance pages:
 
 | Layer | Address | Template | Where |
 | --- | --- | --- | --- |
-| 产品信息 | `/products/matrix.html` | `product_matrix.html` | 资产 (front) |
-| 产品知识 | `/products/knowledge.html` | `product_knowledge.html` | 资产 (front) |
-| 语料库 (was 语言) | `/assets/language/` | `asset_language.html` | 资产 (front) |
-| 内容与表现 | `/assets/content/` | `asset_content.html` | 维护 |
-| 视觉媒体 | `/assets/media/` | `asset_media.html` | 维护 |
+| 产品信息 | `/products/matrix.html` | `product_matrix.html` | 知识资产 |
+| 产品知识 | `/products/knowledge.html` | `product_knowledge.html` | 知识资产 |
+| 语料库 (was 语言) | `/assets/language/` | `asset_language.html` | 知识资产 |
+| 内容与表现 | `/assets/content/` | `asset_content.html` | 设计规范 |
+| 视觉媒体 | `/assets/media/` | `asset_media.html` | 知识资产 (its page for colleagues: a separate portal PR; the maintenance detail moves under 设计规范) |
 
 `tools/rtd/asset_layers.py` builds the views (layer order, content, media,
 language), `tools/rtd/asset_media.py` reads the media inventories, and
@@ -35,8 +35,11 @@ The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四
 | Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
 | 设计规范 | 设计规范, 内容与表现 | 设计规范 |
 
-The screenshot shows the 知识资产 list only; 工作台, Agent 能力 and 设计规范 hold the former 维护 pages as defaults
-until the operator confirms them.
+The layout image shows the 知识资产 list only. The lists of 工作台, Agent 能力 and 设计规范 were proposed as
+defaults and confirmed by the operator on 2026-11-17 (「都按建议」, in the orchestrating session). The placement is
+defined once, as the `site_sections` table at the top of `_site_shell.html`; the left list, the selected section
+and the crumb all read it. A page key missing from the table gets no section and the class `app-nav-unassigned`,
+which the portal tests reject, so a new page must be placed there.
 
 The top bar also carries the brand, a search icon (搜索说明书正文, current on the search page) and an Agent icon
 (系统建设). 知识资产's first page and the search page are reached from the top bar, not the left list. The
@@ -202,7 +205,7 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 
 `tests/test_rtd_asset_layers.py` (views and templates without data),
 `tests/asset_layers_ui.test.mjs` (the filters), and the real-Sphinx sidebar test
-in `tests/test_rtd_portal.py` (the groups, 维护 collapsed except on its pages, the
-moved 属性字典 address, the front pages without chips or small print, the six blocks
-on the 维护 pages, and that the public build links no internal page);
+in `tests/test_rtd_portal.py` (per page: its section's left list, the four top-bar sections with the right one
+selected, the crumb, no unassigned page; the moved 属性字典 address, the front pages without chips or small print,
+the six blocks on 内容与表现 and 视觉媒体, and that the public build links no internal page);
 `tests/test_rtd_workspace_home.py` (the home cards).

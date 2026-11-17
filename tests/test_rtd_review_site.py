@@ -103,6 +103,12 @@ class ReviewSiteTests(unittest.TestCase):
             page = BeautifulSoup(line_page.read_text(encoding="utf-8"), "html.parser")
             self.assertEqual(page.h1.get_text(strip=True), "JHP-3600C 日规 JP")
             self.assertEqual(page.select_one('.app-nav-link[aria-current="page"]')["href"], "../JHP-3600C/JP.html")
+            # The shared shell's top bar (layout of 2026-11-17): brand and menu, no portal sections; the crumb row stays.
+            header = page.select_one("header.app-header")
+            self.assertEqual((header.select_one(".app-brand").get_text(strip=True), bool(header.select_one(".app-menu"))),
+                             ("工作资料", True))
+            self.assertIsNone(page.select_one(".app-tabs"))
+            self.assertIsNotNone(page.select_one(".app-content .app-topbar .app-crumb"))
             self.assertEqual(len(page.select("#rd-open li")), 2)
             milestones = page.select_one("#milestones").get_text(" ", strip=True)
             for expected in ("研发答复回填", "首个完整稿", "77 单元 · 879 词"):

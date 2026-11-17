@@ -50,7 +50,7 @@
             {'key': 'asset-language', 'label': '语料库', 'icon': 'languages', 'page': 'assets/language/index'},
             {'key': 'asset-media', 'label': '视觉媒体', 'icon': 'image', 'page': 'assets/media/index'},
             {'key': 'market-policy', 'label': '市场与政策', 'icon': 'globe', 'page': 'market/policy'}],
-   'also': [{'key': 'overview', 'label': '首页'}, {'key': 'search', 'label': '搜索说明书正文'}]},
+   'also': [{'key': 'overview', 'label': '首页'}, {'key': 'search', 'label': '搜索说明书正文', 'parent': '说明书资料库'}]},
   {'id': 'workbench', 'label': '工作台',
    'list': [{'key': 'deliverables', 'label': '说明书工作台', 'icon': 'workbench', 'page': 'workspace/deliverables/index', 'needs': 'deliverables'}]},
   {'id': 'agent', 'label': 'Agent 能力',
@@ -101,12 +101,12 @@
 {%- macro site_topbar(section, crumb, internal=true) -%}
 {#- The crumb names the main section of the page whose label is `crumb` (the same table as the sidebar); `section`
     is kept for its callers. -#}
-{%- set found = namespace(label=none) -%}
+{%- set found = namespace(label=none, parent=none) -%}
 {%- for main in site_sections -%}
-  {%- for item in main.list + main.get('also', []) if item.label == crumb -%}{%- set found.label = main.label -%}{%- endfor -%}
+  {%- for item in main.list + main.get('also', []) if item.label == crumb -%}{%- set found.label = main.label -%}{%- set found.parent = item.get('parent') -%}{%- endfor -%}
 {%- endfor -%}
 <div class="app-topbar">
-  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('首页', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> <b>{{ crumb }}</b>{% endif %}</div>
+  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('首页', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> {% if found.parent %}{{ found.parent }} <span>/</span> {% endif %}<b>{{ crumb }}</b>{% endif %}</div>
   <div class="app-topbar-right">{{ caller() if caller else '' }}</div>
 </div>
 {%- endmacro -%}

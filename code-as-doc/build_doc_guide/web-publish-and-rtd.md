@@ -155,11 +155,11 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 离线读取已封存的语料，写出不入库的 `manual-observations.json`（警示、安全、合规条目及其主题，以及跨产品、跨语言的比较），见[知识观察方案](../dev/machine_readable_knowledge_observation.md) §6。
 知识发现台账是 Hello-Docs 的业务内容 `docs/knowledge/governance/findings.json`，经内容 PR 维护；`python -m tools.manual_knowledge.findings check --ledger <文件>` 只读校验并汇总。重新发布并重跑观察后，同一命令的 `verify --observations <产物>` 核验台账，`propose` 列出台账尚未覆盖的候选条目，`coverage` 给出知识 × 版本的覆盖矩阵；三者都在产物旁写报告，只有 `verify --write` 回写核验字段。`bindings --corpus <manual-knowledge.json>` 列出台账各版本的编辑入口，标出尚未写明绑定的 `unclassified` 版本。见[知识治理方案](../dev/machine_readable_knowledge_governance.md) §6。
 
-同一个构建还会生成知识库首页 `/workspace/`，并从 Hello-Docs 的
+同一个构建还会生成知识资产页（原知识库首页）`/workspace/`，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到
-`/ai-share/`。首页面向产品同事（2026-11-17 前台精简）：标题与一句定位，三张资产卡（`#now`：产品信息、产品知识、语料库，每张一句话和一个带日期的数字，读不到显示待统计，不放状态标签或台账编号），再是说明书资料库、市场与政策两个入口（`#doors`）和分享资料（`#shares`）。主线、正在做、定位与价值和最近更新不再出现在首页（正在做与当前主线留在系统建设页），
+`/ai-share/`。首页面向产品同事（2026-11-17 前台精简与布局）：标题“知识资产”与一句“让产品信息和生产资料持续积累、关联和复用。”，三张资产卡（`#now`：产品信息矩阵、产品知识、语料库，每张一句话和一个带日期的数字，读不到显示待统计，不放状态标签或台账编号），再是说明书资料库、市场与政策两个入口（`#doors`）和分享资料（`#shares`）。主线、正在做、定位与价值和最近更新不再出现在首页（正在做与当前主线留在系统建设页），
 见[知识库首页](../dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry)。分享包是可选的：缺失时 `/workspace/` 与系统建设页照常生成，只隐藏分享入口。
-知识库各页侧栏先是“首页”，再分“资产”（产品信息、产品知识、语料库）、“说明书”、“参考”（市场与政策），最后是默认折叠的“维护”（说明书工作台、内容与表现、视觉媒体、系统建设、设计规范；见[四类资产](../dev/rtd_manual_portal/asset-layers.md#navigation)），顶部切换为“知识库 / 说明书资料库”；“工作资料”只作站点名，说明书资料库根页不变。原属性字典地址 `/products/attributes.html` 跳转到产品信息。
+私有站各页用同一个外壳（2026-11-17 操作者给出的布局）：顶栏是站名“工作资料”、四个导航（知识资产、工作台、Agent 能力、设计规范）和搜索、Agent 两个图标；左侧目录只列当前导航下的页面：知识资产是产品信息、产品知识、说明书资料库、语料库、视觉媒体、市场与政策，工作台是说明书工作台，Agent 能力是系统建设，设计规范是设计规范与内容与表现（见[四类资产](../dev/rtd_manual_portal/asset-layers.md#navigation)）；内容区开头是面包屑“工作资料 / 导航 / 页面”。公开站（只有说明书）的外壳不变。原属性字典地址 `/products/attributes.html` 跳转到产品信息。
 说明书资料库首页在目录之后放「网页说明书的定位与价值」板块，首屏仍是搜索：公开站和私有站都只放面向读者的精简版（2026-11-17 起私有站不再显示状态标签和链接）；文案维护见[网页说明书的定位与价值](../dev/rtd_manual_portal/web-manual-value.md)。
 系统建设页首是阶段门进度条（G1–G3，当前门高亮，下方一行写“接下来”和其他阶段门），其下三个标签：
 「当前工作」（保留 `#tab-progress` 链接）先列“正在做”（每项写明所属主线），再按主线 / 同期支撑 / 后置列各线的状态、目标、数字和台账进度；阶段门下方的“接下来”只数当前门剩余的台账项（如“完成 G1 最后一项”）；

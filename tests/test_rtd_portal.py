@@ -480,6 +480,7 @@ class RtdPortalTests(unittest.TestCase):
             self.assertEqual([a.get_text() for a in tabs if "selected" in (a.get("class") or [])], [expected[0][0]], page)
             self.assertIsNone(soup.select_one(".app-switch, details.app-nav-more"), page)
             self.assertTrue(soup.select_one('.app-header-tools a[aria-label="搜索说明书正文"]'), page)
+            self.assertNotIn("app-nav-unassigned", soup.select_one("#app-sidebar")["class"], page)
 
         # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
         from tools.rtd.asset_layer_data import load_layer_data

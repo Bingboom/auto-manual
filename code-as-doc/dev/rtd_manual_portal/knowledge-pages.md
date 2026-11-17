@@ -212,8 +212,7 @@ fails the export instead of silently dropping a format.
   发布清单里还没有网页说明书.
 - The Feishu snapshot is not read for the page, so an unsound or old one
   changes nothing there; `check` still reports it.
-- The page always renders. Every knowledge page lists it first under 维护,
-  the sidebar group collapsed by default; the 知识库首页 does not link it.
+- The page always renders. It is the 工作台 section's page (top bar); the 知识资产 page does not link it.
 
 ### 数据统计
 
