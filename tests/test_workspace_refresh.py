@@ -383,6 +383,86 @@ class AutoMergeTests(unittest.TestCase):
         self.assertEqual((report["stage"], report["review"]["status"]), ("verify-dispatch", "auto-merged"))
 
 
+
+class FailureStageTests(unittest.TestCase):
+    """A failed submission names its step and error class, never command output or record values."""
+
+    SECRET = "ghs_Secret0Token https://x-access-token:ghs_Secret0Token@github.com/o/r.git recLeakedRecord1"
+
+    def failing(self, message):
+        import sys
+        from tools import workspace_refresh_publish as publisher
+        script = f"import sys; sys.stderr.write({message!r}); sys.exit(128)"
+        with self.assertRaises(publisher.CommandFailed) as caught:
+            publisher.command([sys.executable, "-c", script])
+        return caught.exception
+
+    def run_main(self, fail_at, raise_exc):
+        from tools import workspace_refresh_publish as publisher
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            log = root / ".tmp/workspace-refresh/result.json"
+            snap.atomic_json(log, {"kind": "web_progress", "status": "changed", "stage": "snapshot-validated"})
+            snap.atomic_json(snap.data_dir(root) / "web_progress-status.json", {"status": "changed"})
+            def execute(args, cwd=None):
+                if args[:2] == fail_at:
+                    raise raise_exc
+                return "[]" if args[:3] == ["gh", "pr", "list"] else ""
+            out = io.StringIO()
+            with patch.object(publisher, "command", side_effect=execute), redirect_stdout(out):
+                code = publisher.main(["web_progress", "--root", str(root)])
+            return code, out.getvalue(), log.read_text()
+
+    def assert_no_leak(self, *texts):
+        for text in texts:
+            for needle in ("ghs_Secret0Token", "x-access-token", "recLeakedRecord1", "github.com/o/r"):
+                self.assertNotIn(needle, text)
+
+    def test_command_failure_keeps_only_program_exit_and_reason_code(self):
+        exc = self.failing(self.SECRET + " fatal: Authentication failed")
+        self.assertEqual((exc.program, exc.code, exc.reason), ("command", 128, "auth-failed"))
+        self.assert_no_leak(str(exc), repr(exc.args))
+        refused = self.failing("! [remote rejected] refusing to allow a GitHub App to create or update workflow "
+                               "`.github/workflows/x.yml` without `workflows` permission " + self.SECRET)
+        self.assertEqual(refused.reason, "workflow-permission")
+        self.assertEqual(self.failing(self.SECRET).reason, "unclassified")
+
+    def test_failed_git_step_reports_its_stage_without_stderr(self):
+        exc = self.failing(self.SECRET + " fatal: could not read Username for 'https://github.com'")
+        exc.program = "git"
+        code, out, log = self.run_main(["git", "-c"], exc)  # the clone carries a credential-helper option
+        self.assertEqual(code, 1)
+        self.assertIn("review submission failed at stage clone (CommandFailed: git exit 128, reason auth-failed)", out)
+        report = json.loads(log)
+        self.assertEqual((report["stage"], report["submission_stage"], report["error_type"], report["error_reason"]),
+                         ("review-submission", "clone", "CommandFailed", "auth-failed"))
+        self.assert_no_leak(out, log)
+
+    def test_record_values_in_an_internal_error_never_reach_the_log(self):
+        code, out, log = self.run_main(["git", "switch"], KeyError(self.SECRET))
+        self.assertEqual(code, 1)
+        self.assertIn("failed at stage branch-switch (KeyError)", out)
+        self.assertEqual(json.loads(log)["submission_stage"], "branch-switch")
+        self.assert_no_leak(out, log)
+
+    def test_auto_merge_failure_names_stage_and_reason(self):
+        from tools import workspace_refresh_publish as publisher
+        report = {"stage": "auto-merge"}
+        fields = publisher.failure_fields(report["stage"], publisher.CommandFailed("gh", 1, "branch-rule"))
+        self.assertEqual(publisher.describe_failure(fields),
+                         "stage auto-merge (CommandFailed: gh exit 1, reason branch-rule)")
+
+    def test_notice_text_rejects_values_outside_the_fixed_vocabulary(self):
+        from tools.workspace_refresh_publish import recorded_failure
+        self.assertEqual(recorded_failure({"submission_stage": "push", "error_type": "CommandFailed",
+                                           "command": "git", "exit_code": 1, "error_reason": "rejected-push"}),
+                         "stage push (CommandFailed: git exit 1, reason rejected-push)")
+        tampered = recorded_failure({"submission_stage": "push", "error_type": self.SECRET, "command": "git",
+                                     "exit_code": 1, "error_reason": self.SECRET})
+        self.assertEqual(tampered, "stage push (Exception)")
+        self.assertEqual(recorded_failure({"submission_stage": self.SECRET}), "")
+        self.assertEqual(recorded_failure({}), "")
+
 class RealGitHandoffTests(unittest.TestCase):
     @staticmethod
     def seed_remote(base: Path, original_command) -> tuple[Path, Path]:
