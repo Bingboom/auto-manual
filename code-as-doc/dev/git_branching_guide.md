@@ -166,11 +166,16 @@ Machine validation means the GitHub `Manual Validation` workflow that must pass 
 Use the local validation set that matches the change.
 
 - logic changes: `python -m tests.run_fast --all` (the CI `unit` check, in parallel; `--shard K/N` reproduces one CI shard; see the [tests guide](../tests/README.md))
-- build or quality-gate changes: `python scripts/local_build.py check --config configs/config.us.yaml --model JE-1000F --region US`
-- JP review or publish changes: `python scripts/local_build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP`
-- diff-report changes: `python scripts/local_build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US`
-- release traceability changes: `python scripts/local_build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP`
+- build or quality-gate changes: `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
+- JP review or publish changes: `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
+- diff-report changes: `python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
+- release traceability changes: `python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
 - docs-only changes: self-review links, paths, examples, and command accuracy
+
+These use the config, target and fixture data root of the `Manual Validation` `check-en` / `check-jp` / `workflow-smoke` jobs, plus a staging root.
+`--data-root tests/fixtures/phase2` reads the committed fixture snapshot, so they run without the private Feishu mirror in `data/phase2/`.
+`--staging-root .tmp/staging` sends `docs/_build`, `reports/version_tracking` and `reports/releases` output to the gitignored `.tmp/staging/` and skips the root-index rewrite; without it `check` rewrites the tracked `docs/index.rst` and writes into `docs/_build/`.
+Run a full `build.py publish` (LaTeX toolchain, release artefacts) only for an actual release, not as pre-PR validation.
 
 Do not open a pull request with unreviewed generated `html`, `word`, or `pdf` outputs.
 

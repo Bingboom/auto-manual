@@ -64,7 +64,7 @@ Web、Word、PDF、IDML、Markdown 和机器可读内容由各目标的批准来
 
 ```bash
 python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
-python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/readme-check
+python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 ```
 
 `doctor` 检查本机工具链，会列出 pandoc、xelatex 等缺口；`check` 只需 Python 依赖，

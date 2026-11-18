@@ -186,25 +186,25 @@ python -m unittest
 If build flow changed:
 
 ```powershell
-python build.py check --config configs/config.us.yaml --model JE-1000F --region US
+python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 ```
 
 If JP review flow changed:
 
 ```powershell
-python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 ```
 
 If diff-report changed:
 
 ```powershell
-python build.py diff-report --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 ```
 
 If release traceability changed:
 
 ```powershell
-python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 ```
 
 ## 6. Review Questions
