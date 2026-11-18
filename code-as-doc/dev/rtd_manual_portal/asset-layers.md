@@ -45,11 +45,17 @@ site keeps its own palette. A page's section is declared once, in the `site_sect
 `under` names the left entry it sits beneath. A key in no section selects no section and gets
 `app-nav-unassigned`, which the tests reject.
 
-The top bar also carries the brand, a search icon (搜索说明书正文, current on the search page) and an Agent icon
-(系统建设). `资产总览` (`workspace/index.html`) is the first left entry of 知识资产 and opens with a 3-figure summary capsule (收录机型, 正式说明书, 覆盖语种) above a unified 3×2 card grid covering all six 知识资产 pages (`front_summary` and `front_cards` in `tools/rtd/asset_pages.py`), where each card's secondary badge shows concise counts (such as `<n> 个市场 · <m> 语种` for 说明书资料库) and never enumerates market or language codes. The search page is reached from the top bar, not the left list; it sits under 说明书资料库, which it highlights. The breadcrumb reads 工作资料 / section / page (工作资料 /
-知识资产 / 说明书资料库 / 搜索说明书正文 for the search page). 产品信息's tab pages (产品库, 产品档案, 产品对比, 参数表) are `also`
+Since the operator's reference layout of 2026-11-18 (「我想调成这种布局」, 「你就看布局 数据按实际的来」, 「小字去掉」) the
+top bar is white with a hairline: the brand (a dark mark with the book glyph, the wordmark and an accent full stop),
+the sections as plain text (the current one darker, with an accent bar on the bar's bottom edge), and a search
+field at the right. The field is a plain GET form to 搜索说明书正文 (`?q=`, which the search page reads), so it works
+without JavaScript; "/" focuses it unless the reader is typing elsewhere (`site_script`), and below 640px it folds
+to its icon, which opens the search page. The former Agent icon opened the same page as the Agent 能力 section and
+was dropped; the section stays. The current left entry is a light accent pill. `资产总览` (`workspace/index.html`) is the first left entry of 知识资产 and opens with a 3-figure summary capsule (收录机型, 正式说明书, 覆盖语种) above a unified 3×2 card grid covering all six 知识资产 pages (`front_summary` and `front_cards` in `tools/rtd/asset_pages.py`), where each card's secondary badge shows concise counts (such as `<n> 个市场 · <m> 语种` for 说明书资料库) and never enumerates market or language codes. The search page is reached from the top bar, not the left list; it sits under 说明书资料库, which it highlights. The breadcrumb (工作资料 / section / page;
+工作资料 / 知识资产 / 说明书资料库 / 搜索说明书正文 for the search page) is kept for screen readers only; the crumb row still
+carries a page's own tools (说明书资料库's 区域). 产品信息's tab pages (产品库, 产品档案, 产品对比, 参数表) are `also`
 entries `under` 产品信息, so their crumb reads 工作资料 / 知识资产 / 产品信息 / <tab>. An address naming a folded block
-(`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (brand and tools, then the
+(`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (menu, brand and search, then the
 sections) and the left list opens from the menu button. The pages keep their content. 产品信息 links 产品知识 when the matrix is not built.
 
 Old addresses keep working:
@@ -245,6 +251,6 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 in `tests/test_rtd_portal.py` (each page's section, left list and breadcrumb, an
 unplaced page selecting no section, the moved 属性字典 address, the front pages without chips or small print, the six blocks
 in 设计规范's #assets-inventory, the 内容与表现 address forwarding to 设计规范, 视觉媒体 absent from the public build, and that the public build links no internal page);
-`tests/test_rtd_site_shell.py` (placement of every page key, crumbs, optional sections, the public shell);
-`tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
+`tests/test_rtd_site_shell.py` (placement of every page key, crumbs, optional sections, the public shell, 资产总览
+first in 知识资产, the search form); `tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
 top bar).

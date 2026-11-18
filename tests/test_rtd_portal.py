@@ -530,7 +530,13 @@ class RtdPortalTests(unittest.TestCase):
             self.assertEqual([a.get_text() for a in tabs], ["知识资产", "工作台", "Agent 能力", "设计规范"], page)
             self.assertEqual([a.get_text() for a in tabs if "selected" in (a.get("class") or [])], [expected[0][0]], page)
             self.assertIsNone(soup.select_one(".app-switch, details.app-nav-more"), page)
-            self.assertTrue(soup.select_one('.app-header-tools a[aria-label="搜索说明书正文"]'), page)
+            # The top-bar search field submits ?q= to 搜索说明书正文; the former Agent icon is gone (the tab stays).
+            search = soup.select_one('.app-header-tools form[role="search"]')
+            # On the search page itself Sphinx writes the link as "#", which submits to the same page.
+            self.assertTrue(search["action"] == "#" if page == "search.html" else search["action"].endswith("search.html"),
+                            page)
+            self.assertEqual(search.select_one("input[type=search]")["name"], "q", page)
+            self.assertIsNone(soup.select_one('.app-tool[aria-label="Agent 能力"]'), page)
             self.assertNotIn("app-nav-unassigned", soup.select_one("#app-sidebar")["class"], page)
         # The crumb names the page's section, then the page (a section's own first page shows the section alone).
         crumbs = {"workspace/deliverables/index.html": "工作资料 / 工作台 / 说明书工作台",
