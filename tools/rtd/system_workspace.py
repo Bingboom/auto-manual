@@ -91,7 +91,11 @@ MODE_LABELS = {"automated": "自动衔接", "manual": "人工衔接"}
 MODE_SHORT = {"automated": "自动", "manual": "人工"}  # 生产链路 rows; the full label is the title
 LEDGER_LABELS = {"done": "完成", "verifying": "在验", "active": "在做", "planned": "待做", "deferred": "暂缓"}
 EVIDENCE_KINDS = ("pr", "file", "url", "rev", "ack")
-CORPUS_SCHEMA = "hello-docs-tm-corpus/v1"
+CORPUS_SCHEMA_V1 = "hello-docs-tm-corpus/v1"
+# v1.1 only adds ``approved_by_language`` to both blocks; readers accept both, the export writes v1.1.
+CORPUS_SCHEMA = "hello-docs-tm-corpus/v1.1"
+CORPUS_SCHEMAS = (CORPUS_SCHEMA_V1, CORPUS_SCHEMA)
+CORPUS_APPROVED_KEY = "approved_by_language"
 CORPUS_STATUS_FIELD = "Status"
 CORPUS_APPROVED = "Approved"
 CORPUS_UNLABELLED = "(未标注)"
@@ -621,8 +625,10 @@ def _count(value: object) -> bool:
 
 def corpus_problems(snapshot: object, codes: list[str]) -> list[str]:
     """Why a committed corpus snapshot cannot be shown; empty when it is sound."""
-    if not isinstance(snapshot, dict) or snapshot.get("schema") != CORPUS_SCHEMA:
-        return [f"snapshot schema must be {CORPUS_SCHEMA}"]
+    if not isinstance(snapshot, dict) or snapshot.get("schema") not in CORPUS_SCHEMAS:
+        return [f"snapshot schema must be one of {', '.join(CORPUS_SCHEMAS)}"]
+    # v1.1 carries each language's approved rows in both blocks; v1 (the snapshot before it) does not.
+    approved_key = snapshot["schema"] != CORPUS_SCHEMA_V1
     problems = []
     try:
         exported = dt.date.fromisoformat(str(snapshot.get("exported_at")))
@@ -636,23 +642,50 @@ def corpus_problems(snapshot: object, codes: list[str]) -> list[str]:
         problems.append("invalid source content hash")
     problems += _history_problems(snapshot.get("history", []), exported)
     for key in ("sentence_pairs", "terms"):
-        block = snapshot.get(key)
-        if not isinstance(block, dict) or not _count(block.get("total")):
-            problems.append(f"{key}.total must be a non-negative integer")
-            continue
-        total = block["total"]
-        if set(block) - {"total", "by_language", "by_status"}:
-            problems.append(f"{key} carries unexpected keys (aggregates only)")
-        by_language = block.get("by_language")
-        if not isinstance(by_language, dict) or set(by_language) != set(codes):
-            problems.append(f"{key}.by_language must list exactly the contract languages")
-        elif not all(_count(v) and v <= total for v in by_language.values()):
-            problems.append(f"{key}.by_language counts must be integers between 0 and total")
-        by_status = block.get("by_status")
-        if (not isinstance(by_status, dict) or not all(_count(v) for v in by_status.values())
-                or sum(by_status.values()) != total):
-            problems.append(f"{key}.by_status must be integer counts that sum to total")
+        problems += _block_problems(key, snapshot.get(key), codes, approved_key)
     return problems
+
+
+def _block_problems(key: str, block: object, codes: list[str], approved_key: bool) -> list[str]:
+    """One table's counts: total, every contract language, statuses summing to total (and, in v1.1, approved rows)."""
+    if not isinstance(block, dict) or not _count(block.get("total")):
+        return [f"{key}.total must be a non-negative integer"]
+    problems = []
+    total = block["total"]
+    if set(block) - {"total", "by_language", "by_status", *([CORPUS_APPROVED_KEY] if approved_key else [])}:
+        problems.append(f"{key} carries unexpected keys (aggregates only)")
+    by_language = block.get("by_language")
+    if not isinstance(by_language, dict) or set(by_language) != set(codes):
+        problems.append(f"{key}.by_language must list exactly the contract languages")
+    elif not all(_count(v) and v <= total for v in by_language.values()):
+        problems.append(f"{key}.by_language counts must be integers between 0 and total")
+    by_status = block.get("by_status")
+    if (not isinstance(by_status, dict) or not all(_count(v) for v in by_status.values())
+            or sum(by_status.values()) != total):
+        problems.append(f"{key}.by_status must be integer counts that sum to total")
+    if approved_key:
+        problems += _approved_problems(key, block)
+    return problems
+
+
+def _approved_problems(key: str, block: dict[str, Any]) -> list[str]:
+    """``approved_by_language`` (v1.1): approved rows per language, within that language and the approved total."""
+    approved = block.get(CORPUS_APPROVED_KEY)
+    by_language = block.get("by_language") if isinstance(block.get("by_language"), dict) else {}
+    by_status = block.get("by_status") if isinstance(block.get("by_status"), dict) else {}
+    if not isinstance(approved, dict):
+        return [f"{key}.{CORPUS_APPROVED_KEY} must map language codes to counts"]
+    if not set(approved) <= set(by_language):
+        return [f"{key}.{CORPUS_APPROVED_KEY} names languages that by_language does not list"]
+    # Compare only against bounds that are counts: a malformed by_language or by_status value is reported by
+    # _block_problems, and comparing with it would raise instead of producing a problem line.
+    if not all(_count(v) and (not _count(by_language[code]) or v <= by_language[code])
+               for code, v in approved.items()):
+        return [f"{key}.{CORPUS_APPROVED_KEY} counts must be integers between 0 and that language's by_language"]
+    ceiling = by_status.get(CORPUS_APPROVED, 0)
+    if _count(ceiling) and any(v > ceiling for v in approved.values()):
+        return [f"{key}.{CORPUS_APPROVED_KEY} counts must not exceed the approved count in by_status"]
+    return []
 
 
 def _history_problems(history: object, exported: dt.date | None) -> list[str]:
@@ -696,12 +729,16 @@ def load_corpus(contract: dict[str, Any], assets: Path, name: str) -> tuple[dict
     return (None if problems else data), problems
 
 
-def _corpus_rows(languages: list[dict[str, Any]], pairs: dict[str, Any], terms: dict[str, Any]) -> list[dict[str, Any]]:
-    """One row per contract language, most pairs first; ``manual`` is the manual library's code for it."""
-    total = pairs["total"]
+def _corpus_rows(languages: list[dict[str, Any]], pairs: dict[str, Any], terms: dict[str, Any], total: int,
+                 key: str = "by_language") -> list[dict[str, Any]]:
+    """One row per contract language, most pairs first; ``manual`` is the manual library's code for it.
+
+    ``key`` picks the per-language counts (``by_language``, or ``approved_by_language`` for approved rows only)
+    and ``total`` is what each pair count is a share of.
+    """
     rows = [{"code": lang["code"], "label": lang["label"], "manual": lang.get("manual") or lang["code"],
-             "count": pairs["by_language"][lang["code"]],
-             "terms": (terms.get("by_language") or {}).get(lang["code"], 0)}
+             "count": (pairs.get(key) or {}).get(lang["code"], 0),
+             "terms": (terms.get(key) or {}).get(lang["code"], 0)}
             for lang in languages]
     rows.sort(key=lambda row: -row["count"])  # stable: ties keep the contract order
     for row in rows:
@@ -716,8 +753,9 @@ def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.da
     config = contract["corpus"]
     pairs, terms = snapshot["sentence_pairs"], snapshot["terms"]
     total = pairs["total"]
-    rows = _corpus_rows(config["languages"], pairs, terms)
+    rows = _corpus_rows(config["languages"], pairs, terms, total)
     approved = pairs["by_status"].get(CORPUS_APPROVED, 0)
+    terms_approved = (terms.get("by_status") or {}).get(CORPUS_APPROVED, 0)
     share = round(100 * approved / total) if total else None
     exported = dt.date.fromisoformat(snapshot["exported_at"])
     limit = stale_days
@@ -748,8 +786,13 @@ def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.da
         "rows": rows,
         # 语料库 (step 13, 方案甲): plain counts, approved pairs and terms, and the languages with any pair.
         "counts": {"pairs": total, "pairs_approved": approved, "terms": terms["total"],
-                   "terms_approved": (terms.get("by_status") or {}).get(CORPUS_APPROVED, 0),
+                   "terms_approved": terms_approved,
                    "languages": sum(1 for row in rows if row["count"])},
+        # 语料库 shows approved entries only once both blocks carry approved_by_language (schema v1.1);
+        # None for a v1 snapshot, which the page shows as before. 系统建设 keeps the whole-corpus tiles above.
+        "approved_only": ({"pairs": approved, "terms": terms_approved,
+                           "rows": _corpus_rows(config["languages"], pairs, terms, approved, CORPUS_APPROVED_KEY)}
+                          if CORPUS_APPROVED_KEY in pairs and CORPUS_APPROVED_KEY in terms else None),
         "exported_at": exported.isoformat(),
         "stale_after_days": limit,
         "previous": last["exported_at"] if last else "",
@@ -797,10 +840,12 @@ def _table_aggregate(header: list[str], rows: list[dict[str, Any]], codes: list[
     for row in rows:
         key = _cell_text(row.get(CORPUS_STATUS_FIELD)) or CORPUS_UNLABELLED
         status[key] = status.get(key, 0) + 1
+    approved = [row for row in rows if _cell_text(row.get(CORPUS_STATUS_FIELD)) == CORPUS_APPROVED]
     return {
         "total": len(rows),
         "by_language": {code: sum(_filled(row.get(code)) for row in rows) for code in codes},
         "by_status": dict(sorted(status.items())),
+        CORPUS_APPROVED_KEY: {code: sum(_filled(row.get(code)) for row in approved) for code in codes},
     }
 
 

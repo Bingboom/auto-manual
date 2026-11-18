@@ -263,6 +263,25 @@ class ExportServiceTests(unittest.TestCase):
         self.assertNotEqual(snap.content_digest(a), snap.content_digest(b))
         self.assertNotIn("Bonjour", json.dumps(a))
 
+    def test_approved_counts_pass_the_loss_check_against_a_v1_snapshot(self):
+        # The first v1.1 export replaces a v1 snapshot: the added key is not a loss, and approved counts may fall
+        # (an entry deprecated) without tripping the totals / by_language reduction protection.
+        from tests.test_rtd_system_workspace import approved_snapshot, corpus_snapshot
+        from tools.rtd.system_workspace import corpus_problems
+        candidate = approved_snapshot()
+        candidate["exported_at"] = "2026-10-01"
+        self.assertEqual(snap.loss_problems(candidate, corpus_snapshot()), [])
+        fewer = copy.deepcopy(candidate)
+        fewer["sentence_pairs"]["approved_by_language"]["fr"] = 6
+        fewer["sentence_pairs"]["by_status"] = {"Approved": 6, "Draft": 4}
+        self.assertEqual(snap.loss_problems(fewer, candidate), [])
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "corpus.json"
+            result = snap.save_snapshot(path, candidate, previous=corpus_snapshot(), source={"identity_sha256": "s"},
+                                        validate=lambda value: corpus_problems(value, ["en", "fr"]))
+            self.assertEqual(result["status"], "changed")
+            self.assertIn("approved_by_language", json.loads(path.read_text())["terms"])
+
 
 class SubmissionTests(unittest.TestCase):
     def test_timestamp_only_confirmations_are_equivalent(self):

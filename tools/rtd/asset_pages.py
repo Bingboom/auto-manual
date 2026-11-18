@@ -58,6 +58,9 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
     """知识库首页's three asset cards: name, one line, one figure with its date (None reads 暂无)."""
     facts = (matrix or {}).get("facts") or {}
     tiles = {tile["key"]: tile for tile in (corpus or {}).get("tiles") or []}
+    # The 语料库 page's own pair figure: approved pairs once the snapshot counts them (language_view), else all.
+    pairs = (f"{corpus['counts']['pairs']:,}" if (corpus or {}).get("approved")
+             else (tiles.get("pairs") or {}).get("value"))
     topics = None if learning is None or learning.get("content_missing") else len(learning.get("topics") or [])
     cards = [{"id": "product", "title": "产品信息矩阵", "icon": "product", "page": "products/matrix",
               "line": "项目 · 属性 · 时间", "value": facts.get("products"), "unit": "款产品",
@@ -67,7 +70,7 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
          "line": "功能 · 限制 · 关系", "value": topics, "unit": "个知识点",
          "date": (learning or {}).get("latest_added") or ""},
         {"id": "corpus", "title": "语料库", "icon": "languages", "page": "assets/language/index",
-         "line": "句对 · 术语 · 复用", "value": (tiles.get("pairs") or {}).get("value"), "unit": "句对",
+         "line": "句对 · 术语 · 复用", "value": pairs, "unit": "句对",
          "date": (corpus or {}).get("exported_at") or ""},
     ]
 
