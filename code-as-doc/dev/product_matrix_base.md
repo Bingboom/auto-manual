@@ -137,7 +137,8 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
   没有端口方向的标签只在小标题写明输入或输出时才映射；没有规则认领的行照样保留，列入 `unmapped`。
   旁路输入与输出合写一行的标签（如 Bypass Mode AC Input/Output）归入 `ac_output_bypass`；原 `ac_bypass_input_output`
   已停用（操作者 2026-11-18 决定合并；多维表里的相应事实随之改挂到 `ac_output_bypass`，写入经操作者确认并读回）。`ac_output_port` 与 `ac_output_total` 是两个不同的数
-  （每组插座的额定值 / 整机持续输出），中文名改为「AC 每组输出」「AC 整机持续输出」；跨型号比较看 `ac_rated_w`。
+  （每组插座的额定值 / 整机持续输出），中文名改为「AC 每组输出」「AC 整机持续输出」；跨型号比较看 `ac_rated_w`，它与 `ac_surge_w` 的排序移到这两项之前（12.1、12.2），
+  按字典顺序排列的页面与矩阵列随之先列额定和峰值。
 - 事实：每个型号 × 市场取一个主语言版本（英文，否则市场主语言，见 `reader/market_languages.json`，
   否则行数最多的版本），同一属性的多行合成一个值；其他语言版本只做比对，结论写进备注，不合并。
   日规「サイズ＆重量」一行同时读尺寸和重量。说明书里随附或另售组件的表（电池包、转换开关、太阳能板）
