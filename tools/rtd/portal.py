@@ -537,10 +537,10 @@ def collect_workspace_pages(app):
     if matrix is not None:
         yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app),
                             "freshness": product_freshness(app) if matrix.get("built") else None}, MATRIX_TEMPLATE
-    yield from product_profile_pages(app, settings, products)
+    yield from product_profile_pages(app, settings, products, build_date=_build_date(deliverables, system))
 
 
-def product_profile_pages(app, settings: dict, products: list[dict]):
+def product_profile_pages(app, settings: dict, products: list[dict], *, build_date: str = ""):
     """产品档案: one page per model of the product-information snapshot (private role only).
 
     None is built without a usable snapshot or without its decided cells (schema v1.1); 产品矩阵 then says so or links
@@ -552,20 +552,20 @@ def product_profile_pages(app, settings: dict, products: list[dict]):
     from tools.rtd.product_library import SnapshotError, has_cells, load_snapshot
     from tools.rtd.product_matrix import product_matrix_page_context
     from tools.rtd.product_profile import TEMPLATE, matrix_extras, profile_pages
-
-    from tools.rtd import product_tables
+    from tools.rtd import product_tables, product_timeline
 
     try:
         snapshot = load_snapshot(workspace_content(app))
     except SnapshotError:
-        return  # 产品矩阵 already warned and says so on its page, without the 产品对比 / 参数表 tabs
+        return  # 产品矩阵 already warned and says so on its page, without the sub-tabs
     if snapshot is None:
         return
     nav = site_nav(app)
     fresh = product_freshness(app)  # the same times and warning on every product page
     catalog = getattr(app, "_rtd_product_catalog", None)
-    # 产品矩阵 shows the 产品对比 / 参数表 tabs whenever it has products, so both pages exist then; without cells they
-    # say 产品数据暂时读不到 and show no figures.
+    # 产品矩阵 shows the sub-tabs whenever it has products, so all sub-pages exist then.
+    yield product_timeline.TIMELINE_PAGE, {**product_timeline.timeline_view(snapshot, catalog, today=build_date),
+                                           "site_nav": nav, "freshness": fresh}, product_timeline.TIMELINE_TEMPLATE
     yield product_tables.TABLE_PAGE, {**product_tables.table_view(snapshot, catalog), "site_nav": nav,
                                       "freshness": fresh}, product_tables.TABLE_TEMPLATE
     yield product_tables.COMPARE_PAGE, {**product_tables.compare_view(snapshot), "site_nav": nav,

@@ -538,18 +538,31 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   the real-Sphinx sidebar build in `tests/test_rtd_portal.py`.
 - The sync timestamp (`product_sync`) sits quietly at the foot of `<main>`; stale warnings remain at the top.
 
-### 产品对比与参数表
+### 演进时间轴、产品对比与参数表
 
-Both read the same snapshot (`tools/rtd/product_tables.py`; step 13, REV-53), private role
+All three sub-pages are built whenever 产品矩阵 has a snapshot, so its tabs never point to
+a missing page. The product pages carry the sub-tabs `产品矩阵 · 演进时间轴 · 产品对比 · 参数表`
+as a segmented control (`_product_tabs.html`) at the right of `.pl-head` on 产品矩阵, 演进时间轴,
+产品对比, 参数表 and 产品档案 (a 产品档案 counts as 产品矩阵, whose tab it marks
+`aria-current="true"` rather than `"page"`, since the page sits below that tab).
+
+- **演进时间轴** (`/products/timeline.html`, `product_timeline.html`, `tools/rtd/product_timeline.py`,
+  `_static/product-timeline.js`): plots models along PLM `first_sku_created` (`SKU 最早创建时间`,
+  exact months as solid dots, `first_sku_created_upper_bound` as hollow rings, with a vertical
+  dashed `今天` marker at the build date). Swimlanes switch in the browser across `按产品系列`
+  (default, `便携储能` selected first when available), `按容量档位`, `按市场区域` and `按产品大类`,
+  with category chips, market scope (`各机型最早市场` / per-market / `展开全部市场记录`), node label
+  mode (`商品简称` / `内部型号` / `简称 · 型号`) and horizontal zoom. Nearby dots on a lane spread
+  horizontally and stack labels across tiers so text does not collide; hovering or clicking a
+  node highlights all market entries of that model and shows links to `产品档案` (when `cells`
+  exist) and `产品对比`. Built from escaped JSON via `createElementNS` / `textContent`; no project
+  codes reach the page. Tests: `tests/test_rtd_product_timeline.py` and `tests/product_timeline_ui.test.mjs`.
+
+Both 参数表 and 产品对比 read the same snapshot (`tools/rtd/product_tables.py`; step 13, REV-53), private role
 only, and, like 产品档案, its decided cells: each shows a cell's `display`, sorts and
 compares by its `number` (else its text), and a test condition is its own column or row
-(`额定功率（STC）`). They are built whenever 产品矩阵 has a snapshot, so its tabs never point to
-a missing page; a snapshot without cells makes both say 产品数据暂时读不到，请稍后再看。 with no
-figures, and one without products 还没有产品数据。. The
-product pages carry the sub-tabs 产品矩阵 · 产品对比 · 参数表 as a segmented control (`_product_tabs.html`) at the
-right of `.pl-head` on 产品矩阵, 产品对比, 参数表 and 产品档案 (a
-产品档案 counts as 产品矩阵, whose tab it marks `aria-current="true"` rather than `"page"`,
-since the page sits below that tab).
+(`额定功率（STC）`). A snapshot without cells makes both say 产品数据暂时读不到，请稍后再看。 with no
+figures, and one without products 还没有产品数据。.
 
 - **参数表** (`/products/table.html`, `product_table.html`, `_static/product-table.js`;
   the operator's 产品矩阵 frame, named 参数表 so it is not confused with the 产品矩阵 page): one table

@@ -19,7 +19,7 @@ from tools.product_matrix_base.sync import STATUS_SCHEMA
 from tools.rtd import portal
 from tools.rtd import product_freshness as pf
 from tools.rtd import product_library as pl
-from tools.rtd import product_tables
+from tools.rtd import product_tables, product_timeline
 from tools.rtd.portal import ASSETS
 from tools.rtd.source_registry import load_registry
 
@@ -95,6 +95,7 @@ class TemplateTest(unittest.TestCase):
         matrix = {**pl.library_view(NEW), "freshness": fresh}
         snapshot = {**NEW, "parameters": [], "cells": []}
         pages = {"product_matrix.html": matrix,
+                 "product_timeline.html": {**product_timeline.timeline_view(snapshot, None), "freshness": fresh},
                  "product_table.html": {**product_tables.table_view(snapshot, None), "freshness": fresh},
                  "product_compare.html": {**product_tables.compare_view(snapshot), "freshness": fresh}}
         for template, context in pages.items():

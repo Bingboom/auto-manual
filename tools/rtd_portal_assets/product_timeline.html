@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="产品演进时间轴：按 PLM SKU 最早创建时间查看各系列、容量档位与市场的机型演进节奏。">
+<title>演进时间轴</title>
+<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/product-tables.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/product-timeline.css', 1) }}">
+<script defer src="{{ pathto('_static/product-timeline.js', 1) }}"></script>
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{% from "_product_tabs.html" import product_tabs, product_stale, product_sync with context %}
+{#- 产品演进时间轴 (tools/rtd/product_timeline.py timeline_view). Plots models along PLM first_sku_created across
+    product series, capacity tier, market or product category swimlanes. Private site only; stale warning above the
+    card, sync times at the foot. -#}
+<body class="app kb">
+{{ site_sidebar('product-timeline', site_nav) }}
+<div class="app-content">
+{{ site_topbar('知识库', '演进时间轴') }}
+<main class="fr-page tl-page">
+<div class="pl-head">
+<header class="fr-head"><h1>产品演进时间轴</h1>{% if built %}<p>按各机型 PLM SKU 最早创建时间，横向回看系列代际、容量档位与目标市场的落地节奏</p>{% endif %}</header>
+{{ product_tabs('products/timeline') }}
+</div>
+{{ product_stale(freshness) }}
+{%- if not built %}
+<p class="fr-empty">{{ problem|e }}</p>
+{%- else %}
+<noscript><p class="fr-empty">产品演进时间轴需要启用 JavaScript。</p></noscript>
+<div class="tl-app pt-card" data-tl hidden data-item-base="{{ pathto('products/item/__MODEL__')|e }}" data-compare-base="{{ pathto('products/compare')|e }}">
+  <div class="tl-toolbar">
+    <div class="tl-axis-row">
+      <div class="tl-seg-wrap">
+        <span class="tl-ctl-label">纵轴泳道</span>
+        <div class="tl-seg" role="group" aria-label="纵轴泳道" data-tl-yaxis>
+          <button type="button" data-yaxis="series" aria-pressed="true">按产品系列</button>
+          <button type="button" data-yaxis="capacity" aria-pressed="false">按容量档位</button>
+          <button type="button" data-yaxis="market" aria-pressed="false">按市场区域</button>
+          <button type="button" data-yaxis="category" aria-pressed="false">按产品大类</button>
+        </div>
+      </div>
+      <div class="tl-cats" role="group" aria-label="产品类别" data-tl-cats>
+        <span class="tl-ctl-label">品类</span>
+        {%- for cat in categories %}
+        <button type="button" data-cat="{{ cat|e }}" aria-pressed="{{ 'true' if cat == default_category else 'false' }}">{{ cat|e }}</button>
+        {%- endfor %}
+        {%- if categories|length > 1 %}
+        <button type="button" data-cat="ALL" aria-pressed="false">全部品类</button>
+        {%- endif %}
+      </div>
+    </div>
+    <div class="tl-options">
+      <label>市场口径<select data-tl-market>
+        <option value="EARLIEST">各机型最早市场</option>
+        {%- for market in markets %}
+        <option value="{{ market.code|e }}">仅看{{ market.label|e }} ({{ market.code|e }})</option>
+        {%- endfor %}
+        <option value="ALL_ROWS">展开全部市场记录</option>
+      </select></label>
+      <label>节点文字<select data-tl-label>
+        <option value="short">商品简称</option>
+        <option value="model">内部型号</option>
+        <option value="both">简称 · 型号</option>
+      </select></label>
+      <label>横向间距<select data-tl-zoom>
+        <option value="1">适中一屏</option>
+        <option value="1.55">宽幅展开 (1.6×)</option>
+      </select></label>
+    </div>
+  </div>
+  <div class="tl-canvas-scroll" data-tl-scroll>
+    <div class="tl-mount" data-tl-mount></div>
+  </div>
+  <div class="tl-foot">
+    <div class="tl-legend">
+      <span><i class="tl-dot-key is-solid"></i>精确建档月份</span>
+      <span><i class="tl-dot-key is-hollow"></i>历史归档上界（不晚于该月）</span>
+      <span><i class="tl-today-key"></i>今天</span>
+      <span class="tl-cross-hint" data-tl-cross hidden>悬停或点击节点可虚线串联同机型跨市场建档时间</span>
+    </div>
+    <span class="tl-stat" data-tl-stat></span>
+  </div>
+  <div class="tl-inspector" data-tl-inspector>
+    <p class="tl-inspector-hint" data-tl-empty>将鼠标移至或点击图上圆点，可固定查看该机型的各市场 SKU 创建时间并跳转产品档案。</p>
+    <div class="tl-inspector-body" data-tl-detail hidden></div>
+  </div>
+</div>
+<script type="application/json" id="tl-data">{{ data|tojson }}</script>
+{%- endif %}
+{{ product_sync(freshness) }}
+</main>
+</div>{{ site_script() }}</body></html>
