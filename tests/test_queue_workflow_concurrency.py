@@ -98,5 +98,30 @@ class QueueWorkflowConcurrencyTests(unittest.TestCase):
                     )
 
 
+class ProductMatrixRefreshWorkflowTests(unittest.TestCase):
+    """The product-matrix check is its own job in Workspace Data Refresh (operator 2026-11-18), not a revived
+    retired workflow: gated to the private mirror's main, on the daily schedule or when chosen by hand."""
+
+    def test_the_check_is_its_own_gated_job_and_the_other_sources_do_not_take_it(self) -> None:
+        workflow = _workflow("workspace-data-refresh.yml")
+        triggers = workflow.get(True) or workflow.get("on") or {}
+        self.assertIn("product_matrix", triggers["workflow_dispatch"]["inputs"]["source"]["options"])
+        jobs = workflow["jobs"]
+        self.assertIn("inputs.source != 'product_matrix'", jobs["refresh"]["if"])
+        job = jobs["product-matrix"]
+        for gate in ("github.repository == 'Bingboom/Hello-Docs'", "github.ref == 'refs/heads/main'",
+                     "github.event_name == 'schedule'", "inputs.source == 'product_matrix'"):
+            self.assertIn(gate, job["if"])
+        self.assertNotIn("LEGACY_TEMPLATE_QUEUE_ENABLED", str(workflow))
+        runs = [str(step.get("run", "")) for step in job["steps"]]
+        check = next(run for run in runs if "tools.product_matrix_base check" in run)
+        self.assertIn("--write --refresh", check)
+        self.assertTrue(any("tools.product_matrix_base.publish" in run for run in runs))
+        self.assertTrue(any("workspace_refresh_notice --kind product_matrix" in run for run in runs))
+        # Only the base token it reads; it is never echoed, and nothing merges the PR.
+        self.assertEqual(job["env"]["FEISHU_PUBLISHED_DOCS_BASE_TOKEN"], "${{ secrets.FEISHU_PUBLISHED_DOCS_BASE_TOKEN }}")
+        self.assertFalse(any("FEISHU_PUBLISHED_DOCS_BASE_TOKEN" in run or "pr merge" in run for run in runs))
+
+
 if __name__ == "__main__":
     unittest.main()
