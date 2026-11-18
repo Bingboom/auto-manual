@@ -45,7 +45,7 @@
 {%- else %}
 <div class="pl-card">
 <div class="pl-card-head">
-<nav class="pl-tabs" aria-label="产品类别" hidden>{% for category in categories %}<a class="pl-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }}<span class="pl-count">{{ category.count }}</span></a>{% endfor %}</nav>
+<nav class="pl-tabs" aria-label="产品类别" hidden>{% for category in categories %}<a class="pl-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }} <span class="pl-count">{{ category.count }}</span></a>{% endfor %}</nav>
 <form class="pl-filters" data-pl-filters hidden onsubmit="return false">
   <label class="pl-search"><span class="sr-only">搜索产品</span><input type="search" data-pl-q placeholder="型号、产品名或项目号" autocomplete="off"></label>
   <label>项目<select data-pl-filter="project"><option value="">全部项目</option>{% for project in projects %}<option value="{{ project|e }}">{{ project|e }}</option>{% endfor %}{% if unassigned %}<option value="-">未归入项目</option>{% endif %}</select></label>

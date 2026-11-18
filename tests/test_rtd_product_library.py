@@ -219,8 +219,9 @@ class TemplateTests(unittest.TestCase):
         self.assertEqual([child.name for child in head.find_all(recursive=False)], ["header", "nav"])
         self.assertEqual(head.select_one(".pt-tabs a.is-on").get_text(), "产品矩阵")
         card = page.select_one(".pl-card")
-        self.assertEqual([(a.contents[0], a.select_one(".pl-count").get_text()) for a in card.select(".pl-tab")],
-                         [("便携储能", "2"), ("配件", "1")])
+        # A space separates the name from its count, so the tab's accessible name reads "便携储能 2".
+        self.assertEqual([a.get_text() for a in card.select(".pl-tab")], ["便携储能 2", "配件 1"])
+        self.assertEqual([a.select_one(".pl-count").get_text() for a in card.select(".pl-tab")], ["2", "1"])
         self.assertIsNotNone(card.select_one(".pl-card-head [data-pl-filters]"))
         self.assertIsNotNone(card.select_one("#matrix .pl-grid"))
         self.assertEqual(page.select_one(".pl-grid")["style"], "--pl-cols:1")

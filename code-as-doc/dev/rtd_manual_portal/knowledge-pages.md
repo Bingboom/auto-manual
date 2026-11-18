@@ -13,7 +13,7 @@ formerly 知识库首页). It is for product colleagues, not for maintainers (op
   right: 收录机型, 正式说明书 and 覆盖语种 (`tools/rtd/asset_pages.py` `front_summary`; 暂无 when a figure cannot
   be read).
 - **资产** (`#now`): six cards, one per page of the section (产品信息, 说明书资料库, 语料库, 产品知识, 视觉媒体,
-  市场与政策), each with an icon, an arrow, its name, one sentence, one figure and a count badge (`front_cards`).
+  市场与政策), each with an icon (no arrow; the whole card is the link), its name, one sentence, one figure and a count badge (`front_cards`).
   The figure's date is only the badge's tooltip; nothing dated is printed. 产品信息 shows only when the matrix is
   built. No status chips or ledger references; see [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
 - **分享** (`#doors`): with the bundled beginner-facing AI sharing package, AI 使用知识分享 (a link to
@@ -394,8 +394,8 @@ entries now link directly to the workbench statistics tab; the retired
 
 ## Product matrix page
 
-`/products/matrix.html` is **产品矩阵** (named 产品矩阵 from 2026-11-17 until the operator's
-rename of 2026-11-18, 「产品矩阵 这几个字 改成 产品矩阵」; step 13 of the 2026-11 redesign, REV-53; the
+`/products/matrix.html` is **产品矩阵** (named 产品库 from 2026-11-17 until the operator's
+rename of 2026-11-18, 「产品库 这几个字 改成 产品矩阵」; step 13 of the 2026-11 redesign, REV-53; the
 operator approved the design on 2026-11-17). It is the 产品信息 entry of the private
 sidebar (see [asset-layers.md](asset-layers.md#front-pages)); the former 属性字典
 address forwards here, and the public manual library never links to it.

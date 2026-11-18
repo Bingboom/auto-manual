@@ -6,13 +6,13 @@
 .pl-card {background:var(--surface);border:1px solid var(--app-line);border-radius:var(--radius-lg);box-shadow:var(--shadow-raised);
   overflow:hidden}
 .pl-card-head {display:none}
-.pl-js .pl-card-head {display:flex;flex-direction:column;gap:14px;padding:18px 24px;background:#f8fafc;border-bottom:1px solid var(--app-line)}
+.pl-js .pl-card-head {display:flex;flex-direction:column;gap:14px;padding:18px 24px;background:var(--surface-sunken);border-bottom:1px solid var(--app-line)}
 .pl-tabs {display:flex;flex-wrap:wrap;gap:6px}
 .pl-tab {display:inline-flex;align-items:baseline;gap:6px;padding:6px 14px;border-radius:var(--radius-md);font-size:14px;
   line-height:20px;color:var(--app-text2,var(--app-muted));text-decoration:none}
 .pl-tab:hover {background:var(--app-tile);color:var(--app-ink)}
-.pl-tab.is-on {background:var(--app-ink);color:#fff;font-weight:600}
-.pl-count {font-size:13px;font-weight:500;color:var(--app-faint);font-variant-numeric:tabular-nums}
+.pl-tab.is-on {background:var(--app-ink);color:var(--surface);font-weight:600}
+.pl-count {font-size:13px;font-weight:500;color:var(--app-muted);font-variant-numeric:tabular-nums}
 .pl-tab.is-on .pl-count {color:rgba(255,255,255,.75)}
 .pl-tab:focus-visible {outline:2px solid var(--brand);outline-offset:1px}
 .pl-filters {display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
@@ -37,7 +37,7 @@
 .pl-series {width:96px;box-sizing:border-box;font-weight:600;color:var(--app-ink)}
 .pl-grid tbody .pl-series {font-size:14px}
 .pl-chip {display:inline-flex;flex-wrap:wrap;align-items:baseline;margin:0 6px 6px 0;padding:4px 8px;
-  border-radius:var(--radius-md);border:1px solid var(--app-line);background:#f8fafc;font-size:12.5px;line-height:18px}
+  border-radius:var(--radius-md);border:1px solid var(--app-line);background:var(--surface-sunken);font-size:12.5px;line-height:18px}
 .pl-code {white-space:nowrap}
 .pl-chip a {font-weight:600;color:var(--app-ink);text-decoration:none}
 .pl-chip a:hover {color:var(--brand);text-decoration:underline}

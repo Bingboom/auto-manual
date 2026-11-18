@@ -91,6 +91,30 @@ class SiteShellTests(unittest.TestCase):
             self.assertIsNone(page.select_one('.app-tool[aria-label="Agent 能力"]'))
         self.assertEqual(shell("search", "搜索说明书正文").select_one(".app-search-go")["aria-current"], "page")
 
+    def test_only_the_portal_shell_hides_its_crumb_and_review_drafts_keep_theirs(self):
+        # The visually hidden crumb is scoped to site_topbar's row; the review-draft site loads the same sheet but
+        # its crumb (with a link back to the overview) stays visible.
+        self.assertIn("is-shell", shell("manuals", "说明书资料库").select_one(".app-topbar")["class"])
+        css = re.sub(r"/\*.*?\*/", "", (ASSETS / "_static" / "site-shell.css").read_text(encoding="utf-8"), flags=re.S)
+        hiding = [rule.split("{")[0].strip() for rule in re.findall(r"[^{}]+\{[^{}]*clip:rect[^{}]*\}", css)]
+        crumb_rules = [selector for selector in hiding if ".app-crumb" in selector]
+        self.assertEqual(crumb_rules, [".app-topbar.is-shell .app-crumb"])
+        review = (ASSETS / "review_drafts_layout.html").read_text(encoding="utf-8")
+        self.assertIn('<div class="app-topbar">', review)
+        self.assertNotIn("is-shell", review)
+        # A browser without :has() must keep the focus rings: the :has() selector is a rule of its own.
+        for rule in re.findall(r"[^{}]+\{[^{}]*\}", css):
+            selectors = rule.split("{")[0]
+            if ":has(" in selectors and "focus-visible" in selectors:
+                self.assertNotIn(",", selectors.strip())
+
+    def test_the_top_bar_search_landmark_is_named_and_slash_spares_a_folded_field(self):
+        page = shell("search", "搜索说明书正文")
+        self.assertEqual(page.select_one('.app-header form[role="search"]')["aria-label"], "顶栏搜索")
+        script = (ASSETS / "_site_shell.html").read_text(encoding="utf-8")
+        visible, prevent = script.index("getClientRects().length) return"), script.index("event.preventDefault();")
+        self.assertLess(visible, prevent)
+
     def test_the_public_shell_keeps_the_manuals_only(self):
         page = shell("manuals", "说明书资料库", internal=False)
         self.assertIsNone(page.select_one(".app-tabs"))

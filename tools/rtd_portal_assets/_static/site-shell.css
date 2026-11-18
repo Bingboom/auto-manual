@@ -19,6 +19,7 @@
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px; --space-8:32px; --space-12:48px;
   --radius-sm:4px; --radius-md:8px; --radius-lg:12px; --radius-full:999px;
   --surface:#ffffff;
+  --surface-sunken:#f8fafc;
   --shadow-raised:0 1px 2px rgba(29,31,35,.04),0 8px 24px rgba(29,31,35,.05);
   --status-available:#1f7a52; --status-available-bg:#e6f4ec;
   --status-validated:#245f9e; --status-validated-bg:#e7eff9;
@@ -41,7 +42,8 @@ body.app.kb {--brand:#a64e24;--brand-strong:#a64e24;--brand-soft:#f8e6dc;--brand
   --orange:var(--brand);--ink:var(--app-ink);--muted:var(--app-muted);--line:var(--app-line);--bg:var(--app-bg)}
 
 /* Top bar (2026-11-17 layout, restyled to the operator's reference of 2026-11-18): brand, the four main sections as
-   plain text, and the search field. Fixed, full width, white with a hairline. */
+   plain text, and the search field. Fixed, full width, white with a hairline. The shell writes white as #fff, not
+   var(--surface): portal.css (说明书资料库 root) redefines --surface as its grey ground. */
 .app-header {position:fixed;inset:0 0 auto 0;z-index:45;height:var(--app-topbar);box-sizing:border-box;display:flex;
   align-items:center;gap:36px;padding:0 24px 0 28px;background:#fff;border-bottom:1px solid var(--app-line)}
 .app-brand {flex:none;display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700;line-height:1.2;
@@ -69,7 +71,7 @@ body.app.kb {--brand:#a64e24;--brand-strong:#a64e24;--brand-soft:#f8e6dc;--brand
 .app-search-field .ic {flex:none}
 .app-search-field input {flex:1;min-width:0;height:100%;padding:0;border:0;background:none;font:inherit;font-size:14px;
   color:var(--app-ink);outline:none}
-.app-search-field input::placeholder {color:var(--app-faint)}
+.app-search-field input::placeholder {color:var(--app-muted)}
 .app-search-field input::-webkit-search-cancel-button {display:none}
 .app-search-field:focus-within {border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px var(--brand-soft)}
 .app-search-field kbd {flex:none;display:grid;place-items:center;min-width:20px;height:22px;padding:0 4px;box-sizing:border-box;
@@ -93,23 +95,28 @@ body.app.kb {--brand:#a64e24;--brand-strong:#a64e24;--brand-soft:#f8e6dc;--brand
   font-size:15px;font-weight:500;color:var(--app-text2,#50545c);text-decoration:none;transition:background .15s,color .15s}
 .app-nav-link .ic {flex:none;color:var(--app-muted)}
 .app-nav-link:hover {background:var(--app-bg);color:var(--app-ink)}
-.app-nav-link.active {background:var(--brand-soft);color:var(--brand);font-weight:600}
+/* Ink text keeps 4.5:1 on both palettes' --brand-soft (the orange brand on it is 2.9:1); the icon carries the accent. */
+.app-nav-link.active {background:var(--brand-soft);color:var(--app-ink);font-weight:600}
 .app-nav-link.active .ic {color:var(--brand)}
 .app-nav-link em {margin-left:auto;font-style:normal;font-size:11px;font-weight:700;line-height:18px;min-width:18px;text-align:center;border-radius:5px;background:var(--app-bg);color:var(--app-muted)}
 .app-scrim {display:none}
 
-/* Content: below the top bar, beside the left list. The crumb row keeps a page's own tools (区域); the crumb itself
-   is for screen readers only, since the top bar and the left list already mark where the reader is. */
+/* Content: below the top bar, beside the left list. The crumb row keeps a page's own tools (区域). In the portal
+   shell (`site_topbar`, .app-topbar.is-shell) the crumb is for screen readers only, since the top bar and the left
+   list already mark where the reader is; other pages that load this sheet (the review-draft site) keep it visible. */
 .app-content {margin-left:var(--app-sidebar);padding-top:var(--app-topbar);min-width:0}
 .app-topbar {display:flex;align-items:center;gap:16px;min-height:44px;padding:14px 32px 0}
-.app-crumb {position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.app-crumb {font-size:13px;color:var(--app-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-topbar.is-shell .app-crumb {position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .app-crumb span {margin:0 6px;color:#c6c9cf}
 .app-crumb b {font-weight:500;color:var(--app-muted)}
 .app-topbar-right {margin-left:auto;display:flex;align-items:center;gap:16px}
 /* With nothing but the hidden crumb, the row keeps only a small gap above the page. */
-.app-topbar:has(> .app-topbar-right:empty) {min-height:0;padding-top:12px}
-.app-header a:focus-visible,.app-header button:focus-visible,.app-search-field:has(input:focus-visible),.app-sidebar a:focus-visible,.app-topbar a:focus-visible,
+.app-topbar.is-shell:has(> .app-topbar-right:empty) {min-height:0;padding-top:12px}
+.app-header a:focus-visible,.app-header button:focus-visible,.app-sidebar a:focus-visible,.app-topbar a:focus-visible,
 .app-topbar button:focus-visible,.app-topbar select:focus-visible {outline:3px solid var(--brand);outline-offset:2px}
+/* Its own rule: a browser without :has() drops only this one, not the focus rings above. */
+.app-search-field:has(input:focus-visible) {outline:3px solid var(--brand);outline-offset:2px}
 
 /* Shared page header: one title style for every page. */
 .page-head h1 {font-size:30px;font-weight:700;line-height:1.3;margin:0}
