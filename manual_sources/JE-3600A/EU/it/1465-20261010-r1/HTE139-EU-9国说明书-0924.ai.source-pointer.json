@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "HTE139-EU-9国说明书-0924.ai",
+  "sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "size_bytes": 58910144,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28b6y2too3B",
+    "field_name": "source_file",
+    "file_token": "LgBIbykB3ozF6txygHAcUw9EnQb"
+  },
+  "local_relpath": "HTE139-EU-9国说明书-0924.ai",
+  "source_key": "source/manual_je3600a_eu_0924_ai",
+  "notes": "Phase 3B-2 externalized JE-3600A EU 9-language Illustrator master (it package)."
+}

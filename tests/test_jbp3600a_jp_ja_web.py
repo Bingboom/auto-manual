@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from contextlib import redirect_stdout
-import hashlib
 import importlib.util
 import io
 import json
@@ -20,6 +19,10 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import (
+    load_pointer_file,
+    reviewed_inputs_match_with_pointers,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'data/manual_sources/JBP-3600A/JP/ja/git-20261014-56860f2f'
@@ -122,12 +125,9 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
         self.assertEqual(manifest['target']['internal_code'], 'HTP0113600A')
         original = manifest['original_source']
         self.assertEqual(original['sha256'], SOURCE_SHA)
-        digest = hashlib.sha256()
-        for part in original['archive_parts']:
-            data = (PACKAGE / part['path']).read_bytes()
-            self.assertLessEqual(len(data), 32 * 1024 * 1024)
-            digest.update(data)
-        self.assertEqual(digest.hexdigest(), SOURCE_SHA)
+        pointer = load_pointer_file(PACKAGE / rebuild_module.POINTER_ARCHIVE)
+        self.assertEqual((pointer.size_bytes, pointer.sha256), (original['size_bytes'], SOURCE_SHA))
+        self.assertEqual(rebuild_module.archived_pdf_sha256(original), SOURCE_SHA)
         self.assertEqual(read(PACKAGE / 'source/ja/content.json')['source_sha256'], SOURCE_SHA)
         self.assertEqual(manifest['included_pages']['ja']['panels'], list(range(3, 13)))
         self.assertEqual(len(manifest['panel_grid']['origins']), 12)
@@ -143,9 +143,16 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
                                               for key in ('model', 'region', 'technical_version')})
         self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
         # Everything but the frozen web/ outputs and the acceptance itself.
-        self.assertEqual(approval['reviewed_inputs'],
-                         [row for row in manifest['inputs']
-                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        reviewed = [row for row in manifest['inputs']
+                    if not row['path'].startswith('web/') and row['path'] != 'source/approval.json']
+        self.assertTrue(reviewed_inputs_match_with_pointers(
+            PACKAGE,
+            approval['reviewed_inputs'],
+            reviewed,
+            original_sha256=SOURCE_SHA,
+            raw_archive_paths=[part['path'] for part in manifest['original_source']['archive_parts']],
+            adapter_paths=('rebuild.py',),
+        ))
         self.assertEqual((approval['operator_quote'], approval['merge_authorization']),
                          ('合入了，上线授权你合入', 'MA-303'))
         metadata = read(PACKAGE / 'web/ja' / PathSegments.MANUAL_IR_JSON)['metadata']
@@ -190,6 +197,9 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
                 self.assertIn(selection['purpose'].split('/')[0], EXCLUDED, selection['bbox'])
 
     def test_intake_reproduces_the_frozen_source(self):
+        if not (PACKAGE / 'source/pdf-archive/part-001.bin').is_file():
+            self.assertEqual(load_pointer_file(PACKAGE / rebuild_module.POINTER_ARCHIVE).sha256, SOURCE_SHA)
+            self.skipTest('authoritative PDF archive is externalized via .source-pointer.json; fetch before replaying PDF intake')
         if not pymupdf_pinned():
             self.skipTest('geometry is validated for PyMuPDF 1.28.0 / MuPDF 1.29.0 (requirements.lock)')
         source = self.fixture()
@@ -251,9 +261,15 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
     def test_a_changed_pdf_is_rejected_before_output(self):
         source = self.fixture()
         part = source / 'source/pdf-archive/part-001.bin'
-        data = bytearray(part.read_bytes())
-        data[-2] ^= 1
-        part.write_bytes(bytes(data))
+        if part.is_file():
+            data = bytearray(part.read_bytes())
+            data[-2] ^= 1
+            part.write_bytes(bytes(data))
+        else:
+            pointer_file = source / rebuild_module.POINTER_ARCHIVE
+            payload = read(pointer_file)
+            payload['sha256'] = ('0' if payload['sha256'][0] != '0' else '1') + payload['sha256'][1:]
+            write(pointer_file, payload)
         with mock.patch.object(rebuild_module, 'SOURCE_ROOT', source):
             with self.assertRaisesRegex(ValueError, 'authoritative PDF identity changed'):
                 rebuild(self.root / 'output')
@@ -337,6 +353,9 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
         self.assertEqual([d['slot'] for d in decisions], [r['slot'] for r in records])
 
     def test_extracted_artwork_reproduces(self):
+        if not (PACKAGE / 'source/pdf-archive/part-001.bin').is_file():
+            self.assertEqual(load_pointer_file(PACKAGE / rebuild_module.POINTER_ARCHIVE).sha256, SOURCE_SHA)
+            self.skipTest('authoritative PDF archive is externalized via .source-pointer.json; fetch before replaying PDF rendering')
         if not pymupdf_pinned():
             self.skipTest('rendering is validated for PyMuPDF 1.28.0 / MuPDF 1.29.0 (requirements.lock)')
         extract = load('jbp3600a_jp_ja_extract', PACKAGE / 'source/extract_assets.py')

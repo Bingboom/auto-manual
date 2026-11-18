@@ -434,8 +434,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 7779,
-      "sha256": "63b5d12f679dad62c38e3e7d99fd042ce1577eb8629633263fbde4614baffeb5"
+      "size": 8263,
+      "sha256": "49e0e20b81b9ee6cede6486e15196d888241923d0125d12ac634cfa322b30f02"
     },
     {
       "path": "source/approval.json",
@@ -473,19 +473,9 @@
       "sha256": "d45f2eb1522236be05fd94aa5ec5fdc47f3fec4c73ec9f93c7e51110091463fe"
     },
     {
-      "path": "source/pdf-archive/part-001.bin",
-      "size": 33554432,
-      "sha256": "d54689f81fc66ac17bdeba137e445fd805a147bcb5dc454f1b8f7565d24b227d"
-    },
-    {
-      "path": "source/pdf-archive/part-002.bin",
-      "size": 33554432,
-      "sha256": "9fc6597365e48459c554ff5edd9ab6e260b496f9ed63bee4f1f5472cf8b9440f"
-    },
-    {
-      "path": "source/pdf-archive/part-003.bin",
-      "size": 27377913,
-      "sha256": "bda1844b17ba495f18a70b7d0ccb325e28e33d247bc1bdd8ad1c4e41816f739a"
+      "path": "source/pdf-archive/JA-TS02A_US_en_JAK-UM-V1.0.pdf.source-pointer.json",
+      "size": 651,
+      "sha256": "710c52908fb38d394e73eb96c430665fdf5ad27bcf2ff28a9bf43059e256b761"
     },
     {
       "path": "source/presentation.css",

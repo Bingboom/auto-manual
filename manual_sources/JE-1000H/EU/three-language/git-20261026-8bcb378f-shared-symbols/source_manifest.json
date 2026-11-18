@@ -35,9 +35,9 @@
       "sha256": "d6022f2fb30de823404cf6bdddfad1d0307f22ed554bf5f6f7b26e74a439a097"
     },
     {
-      "path": "source/JE-1000H_修正版.ai",
-      "size": 74756288,
-      "sha256": "ffbad263b763f60b34df14beabc5afaaf68b9bb8c9b64332f29ce2bc93281fa4"
+      "path": "source/JE-1000H_修正版.ai.source-pointer.json",
+      "size": 602,
+      "sha256": "fcb872deada340e9bc42eb667896fd7567ade6f4f64a0fbf9ea8d40505e06a83"
     },
     {
       "path": "web/nl/_static/web_manual.css",

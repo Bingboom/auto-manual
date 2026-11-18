@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "source.ai",
+  "sha256": "58e84bd618d17b37e67a32a18f987c750756019bfd2e53a8a07b835dc7244694",
+  "size_bytes": 3428889,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI56y4",
+    "field_name": "source_file",
+    "file_token": "XUvybLBOoobt0Zxt33kczK0an5E"
+  },
+  "local_relpath": "source.ai",
+  "source_key": "source/manual_jaac_whe100_eu_en_candidate",
+  "notes": "Phase 3B-2 externalized JAAC-WHE-100-EUA1 EU en Illustrator design master."
+}

@@ -10,6 +10,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
+from tools.web.external_source_store import resolve_source_identity
 from tools.web.frozen_ai_web import replay_package
 from tools.web.shared_symbol_assets import require_shared_symbol_binding
 
@@ -61,7 +62,7 @@ class FourLanguagePackageTests(unittest.TestCase):
         manifest = read(PACKAGE / 'source_manifest.json')
         source = manifest['original_source']
         self.assertEqual(source['filename'], 'source/JE-1000F_修正版.ai')
-        self.assertEqual(file_sha256(PACKAGE / source['filename']), source['sha256'])
+        self.assertEqual(resolve_source_identity(PACKAGE / source['filename'])[1], source['sha256'])
         self.assertEqual(manifest['superseded_original_source']['sha256'][:8], 'c38415f5')
         for language in LANGUAGES:
             with self.subTest(language=language):

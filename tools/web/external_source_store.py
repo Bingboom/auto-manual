@@ -333,6 +333,121 @@ def write_pointer_file(path: Path, pointer: ExternalSourcePointer) -> Path:
     return path
 
 
+def pointer_path_for(raw_path: Path) -> Path:
+    """Return the sidecar ``<filename>.source-pointer.json`` path for ``raw_path``."""
+    return raw_path.with_name(raw_path.name + POINTER_SUFFIX)
+
+
+def resolve_source_identity(raw_path: Path) -> tuple[int, str]:
+    """Return ``(size_bytes, sha256)`` from local ``raw_path`` or its validated pointer."""
+    if raw_path.is_symlink():
+        raise ValueError(f"{raw_path}: source file must not be a symlink")
+    if raw_path.is_file():
+        return sha256_file(raw_path)
+    pointer_path = pointer_path_for(raw_path)
+    if pointer_path.is_symlink() or not pointer_path.is_file():
+        raise ValueError(f"{raw_path}: neither raw source nor {pointer_path.name} exists")
+    pointer = load_pointer_file(pointer_path)
+    return pointer.size_bytes, pointer.sha256
+
+
+def resolve_archived_pdf_sha256(
+    base: Path,
+    original: Mapping[str, Any],
+    *,
+    pointer_relpath: str | None = None,
+) -> str:
+    """Return the SHA-256 of materialized ``archive_parts`` / source file or its pointer."""
+    parts = original.get("archive_parts")
+    if isinstance(parts, list) and parts:
+        part_paths = [base / str(part["path"]) for part in parts]
+        if all(not p.is_symlink() and p.is_file() for p in part_paths):
+            digest = hashlib.sha256()
+            for part_path in part_paths:
+                digest.update(part_path.read_bytes())
+            return digest.hexdigest()
+        if pointer_relpath is not None:
+            pointer_path = base / pointer_relpath
+            if not pointer_path.is_symlink() and pointer_path.is_file():
+                return load_pointer_file(pointer_path).sha256
+        fallback_rel = original.get("path") or original.get("filename")
+        if isinstance(fallback_rel, str) and fallback_rel:
+            fallback_ptr = pointer_path_for(base / fallback_rel)
+            if not fallback_ptr.is_symlink() and fallback_ptr.is_file():
+                return load_pointer_file(fallback_ptr).sha256
+        raise ValueError("archived source parts and external source pointer are missing")
+    rel = str(original.get("path") or original["filename"])
+    _, digest_hex = resolve_source_identity(base / rel)
+    return digest_hex
+
+
+def _validate_pointer_archive_parity(
+    package_root: Path,
+    matched_raw: list[Mapping[str, Any]],
+    pointer_rows: list[Mapping[str, Any]],
+    original_sha256: str,
+) -> bool:
+    if not matched_raw:
+        return not pointer_rows
+    if len(pointer_rows) != 1:
+        return False
+    pointer_file = (package_root / str(pointer_rows[0].get("path") or "")).resolve()
+    if not pointer_file.is_relative_to(package_root.resolve()) or not pointer_file.is_file():
+        return False
+    try:
+        pointer = load_pointer_file(pointer_file)
+    except ValueError:
+        return False
+    expected_size = sum(int(row.get("size") or 0) for row in matched_raw)
+    return pointer.sha256 == original_sha256 and pointer.size_bytes == expected_size
+
+
+def _row_path(row: Mapping[str, Any]) -> str:
+    return str(row.get("path") or "")
+
+
+def _filter_rows_excluding(
+    rows: Iterable[Mapping[str, Any]],
+    excluded_paths: frozenset[str],
+) -> list[Mapping[str, Any]]:
+    return [row for row in rows if _row_path(row) not in excluded_paths]
+
+
+def reviewed_inputs_match_with_pointers(
+    package_root: Path,
+    approval_rows: Any,
+    manifest_rows: list[dict[str, Any]],
+    *,
+    original_sha256: str,
+    raw_archive_paths: Iterable[str] = (),
+    adapter_paths: Iterable[str] = (),
+) -> bool:
+    """Verify ``approval['reviewed_inputs']`` covers ``manifest['inputs']`` across pointer externalization."""
+    if not isinstance(approval_rows, list):
+        return False
+    if approval_rows == manifest_rows:
+        return True
+    if not all(isinstance(row, Mapping) for row in approval_rows):
+        return False
+    raw_set = frozenset(raw_archive_paths)
+    adapter_set = frozenset(adapter_paths)
+    matched_raw = [row for row in approval_rows if _row_path(row) in raw_set]
+    if len(matched_raw) != len(raw_set):
+        return False
+    pointer_rows = [row for row in manifest_rows if _row_path(row).endswith(POINTER_SUFFIX)]
+    if not _validate_pointer_archive_parity(package_root, matched_raw, pointer_rows, original_sha256):
+        return False
+    approval_paths = {_row_path(row) for row in approval_rows}
+    manifest_paths = {_row_path(row) for row in manifest_rows}
+    if not adapter_set.issubset(approval_paths & manifest_paths):
+        return False
+    pointer_paths = frozenset(_row_path(row) for row in pointer_rows)
+    return _filter_rows_excluding(approval_rows, raw_set | adapter_set) == _filter_rows_excluding(
+        manifest_rows,
+        pointer_paths | adapter_set,
+    )
+
+
 def _scan_pointer_files(repo_root: Path) -> tuple[list[ExternalSourcePointer], list[str]]:
     pointers: list[ExternalSourcePointer] = []
     errors: list[str] = []

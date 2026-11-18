@@ -96,6 +96,21 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-001.bin": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
+        },
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-002.bin": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
+        },
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-003.bin": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
         }
       }
     },
@@ -294,6 +309,11 @@
           "handling": "keep-frozen",
           "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
           "since": "2026-11-12"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3888,7 +3908,13 @@
     "manual_sources/JE-300E/US/en/git-20261112-04bd8b90-color-models-release": {
       "approval": "MA-436 explicit operator model-cell amendment; original PDF/assets unchanged",
       "registered": "2026-11-12",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
+        }
+      }
     },
     "manual_sources/JE-3600A/EU/de/git-20261004-47a346dc": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -5135,13 +5161,24 @@
           "handling": "keep-frozen",
           "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
           "since": "2026-11-12"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
         }
       }
     },
     "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512-release": {
       "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
       "registered": "2026-11-12",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
+        }
+      }
     },
     "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491": {
       "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
@@ -5151,13 +5188,24 @@
           "handling": "keep-frozen",
           "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
           "since": "2026-11-12"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
         }
       }
     },
     "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491-release": {
       "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
       "registered": "2026-11-12",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
+        }
+      }
     },
     "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web": {
       "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
@@ -5498,6 +5546,19 @@
       "packages": 3,
       "handling": "keep-frozen",
       "reason": "MA-433: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-18",
+      "files": [
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-001.bin",
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-002.bin",
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-003.bin",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 7,
+      "handling": "keep-frozen",
+      "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
       "minutes": 0
     }
   ]

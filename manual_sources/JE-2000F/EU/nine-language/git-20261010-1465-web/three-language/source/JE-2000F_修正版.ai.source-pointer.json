@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JE-2000F_修正版.ai",
+  "sha256": "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7",
+  "size_bytes": 47406030,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28b6xE3xk71",
+    "field_name": "source_file",
+    "file_token": "G5ZdbOHC0osXVWxpDjncAl3Hnwh"
+  },
+  "local_relpath": "source/JE-2000F_修正版.ai",
+  "source_key": "source/manual_je2000f_eu_revised_ai",
+  "notes": "Phase 3B-2 externalized JE-2000F EU batch-1465 revised Illustrator master."
+}

@@ -24,6 +24,7 @@ from tools.skeleton_resolve import (
     resolve_plan,
 )
 from tools.web.document_ir import render_document_fragments
+from tools.web.external_source_store import resolve_source_identity
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -167,7 +168,7 @@ class JaCa3saEuEnTargetTests(unittest.TestCase):
         recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
         manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
         source_hash = "88f1fa0dd86fd8e7457b50942be52e2a558acecaf5f9bc70edc9f7dbecd311ab"
-        self.assertEqual(source_hash, hashlib.sha256(GIT_SOURCE.read_bytes()).hexdigest())
+        self.assertEqual(source_hash, resolve_source_identity(GIT_SOURCE)[1])
         self.assertEqual(source_hash, recipe["source"]["expected_sha256"])
         self.assertEqual(source_hash, manifest["source_pdf_sha256"])
         self.assertEqual([8], manifest["excluded_duplicate_pages"])
@@ -200,7 +201,7 @@ class JaCa3saEuEnTargetTests(unittest.TestCase):
         self.assertEqual("4-7", payload["authority"]["source_pdf_english_physical_pages"])
         self.assertFalse(payload["online_dependencies"]["dingtalk_read_required_for_reproduction"])
         self.assertFalse(payload["online_dependencies"]["artwork_source_current_location_outside_git"])
-        self.assertEqual(payload["git_source"]["size_bytes"], GIT_SOURCE.stat().st_size)
+        self.assertEqual(payload["git_source"]["size_bytes"], resolve_source_identity(GIT_SOURCE)[0])
         for path_key, hash_key in (
             ("config", "config_sha256"),
             ("page_manifest", "page_manifest_sha256"),

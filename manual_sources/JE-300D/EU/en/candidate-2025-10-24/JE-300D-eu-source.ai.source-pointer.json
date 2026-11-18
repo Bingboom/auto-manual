@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JE-300D-eu-source.ai",
+  "sha256": "53209e53bb5ca5bcfa08c8eeeedd9c7ee6cc2c0cd226e6c7c776bb68421f78bc",
+  "size_bytes": 4713724,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI6fP0",
+    "field_name": "source_file",
+    "file_token": "Cl2wbT4droqvmxxrlCccFXgenEd"
+  },
+  "local_relpath": "JE-300D-eu-source.ai",
+  "source_key": "source/manual_je300d_eu_uk_20251024_candidate",
+  "notes": "Phase 3B-2 externalized JE-300D EU en candidate Illustrator design master."
+}
