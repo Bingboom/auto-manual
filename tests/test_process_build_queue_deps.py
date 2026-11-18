@@ -58,6 +58,16 @@ class TestBuildQueueDefaultBoundaries(unittest.TestCase):
         fetch.assert_called_once_with(base_token="app-test", table_id="tbl-test", view_id=None)
         self.assertEqual("[build-queue] No pending build tasks found.\n", output.getvalue())
 
+    def test_release_writers_keep_facade_root_unless_deps_inject_one(self) -> None:
+        writer = mock.Mock()
+        bind = process_build_queue_services._with_release_repo_root
+        self.assertIs(writer, bind(None, writer))
+        self.assertIs(writer, bind(default_queue_deps(process_build_queue), writer))
+        root = Path("/tmp/injected-root")
+        bound = bind(replace(default_queue_deps(process_build_queue), release_repo_root=root), writer)
+        bound(config_path=Path("config.yaml"))
+        writer.assert_called_once_with(config_path=Path("config.yaml"), repo_root=root)
+
 
 class TestBuildQueueInjectedBoundaries(unittest.TestCase):
     def test_default_dependencies_resolve_current_boundary_names(self) -> None:

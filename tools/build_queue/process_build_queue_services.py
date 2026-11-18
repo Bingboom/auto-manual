@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 from functools import partial
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from tools.build_queue.process_build_queue_deps import FacadeOverrides, QueueDeps, nested_overrides, queue_dep
 from tools.build_queue.build_execution import (
@@ -579,6 +579,13 @@ def _bootstrap_queue_session(module: Any, *, deps: QueueDeps | None = None, **kw
     )
 
 
+def _with_release_repo_root(deps: QueueDeps | None, writer: Callable[..., Any]) -> Callable[..., Any]:
+    """Bind ``deps.release_repo_root`` to a release-record writer; unset keeps the writer as is."""
+    if deps is None or deps.release_repo_root is None:
+        return writer
+    return partial(writer, repo_root=deps.release_repo_root)
+
+
 def process_build_queue(
     module: Any,
     *,
@@ -691,9 +698,9 @@ def process_build_queue(
         import_markdown_to_cloud_doc=queue_dep(deps, "import_markdown_to_cloud_doc", module, "import_markdown_to_cloud_doc"),
         finalize_cloud_doc=queue_dep(deps, "finalize_cloud_doc", module, "finalize_cloud_doc"),
         build_success_fields=module.build_success_fields,
-        publish_release_latest_dir_for_target=module._publish_release_latest_dir_for_target,
-        write_publish_release_metadata=module.write_publish_release_metadata,
-        write_web_publish_metadata=module.write_web_publish_metadata,
+        publish_release_latest_dir_for_target=_with_release_repo_root(deps, module._publish_release_latest_dir_for_target),
+        write_publish_release_metadata=_with_release_repo_root(deps, module.write_publish_release_metadata),
+        write_web_publish_metadata=_with_release_repo_root(deps, module.write_web_publish_metadata),
         build_failure_writeback_fields=module.build_failure_writeback_fields,
         best_effort_queue_workflow_action=module.best_effort_queue_workflow_action,
         resolve_queue_workflow_action=module.resolve_queue_workflow_action,

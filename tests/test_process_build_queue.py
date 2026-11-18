@@ -12,6 +12,7 @@ from tests.queue_build_fixture import bound_repo_root, build_document_for_task
 from tests.test_helpers import temp_test_root
 from tools.build_queue import process_build_queue, process_build_queue_main, process_build_queue_services
 from tools.build_queue.process_build_queue_deps import FacadeOverrides, QueueDeps, default_queue_deps
+from tools.utils.path_utils import releases_of
 
 _IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
 
@@ -64,6 +65,17 @@ def _write_release_traceability(
     manifests_dir.mkdir(parents=True, exist_ok=True)
     (manifests_dir / "20260731T000000Z.json").write_text("{}\n", encoding="utf-8")
     (manifests_dir / "20260731T000000Z.csv").write_text("model\n", encoding="utf-8")
+
+
+def _tree_snapshot(root: Path) -> dict[str, bytes]:
+    """Every file under ``root`` with its bytes; empty when ``root`` does not exist."""
+    if not root.exists():
+        return {}
+    return {
+        path.relative_to(root).as_posix(): path.read_bytes()
+        for path in sorted(root.rglob("*"))
+        if path.is_file()
+    }
 
 
 def _apply_queue_upsert(
@@ -1920,8 +1932,13 @@ class TestProcessBuildQueue(unittest.TestCase):
             }
         ]
         captured_upserts: list[dict[str, object]] = []
+        # The Publish row writes release metadata; it must land under the injected
+        # root, never in the real repo's release records (AGENTS.md §6).
+        real_release_root = releases_of(process_build_queue.ROOT) / "JE-1000F" / "JP" / "ja"
+        real_release_records_before = _tree_snapshot(real_release_root)
         with tempfile.TemporaryDirectory() as td:
             generated_path = Path(td) / "docs" / "_build" / "JE-1000F" / "JP" / "word" / "manual_je1000f_jp.docx"
+            temp_release_root = releases_of(Path(td)) / "JE-1000F" / "JP" / "ja"
             build_document_mock = mock.Mock(return_value=generated_path)
             sync_mock = mock.Mock()
 
@@ -1953,9 +1970,16 @@ class TestProcessBuildQueue(unittest.TestCase):
                         parent_wiki_token="wiki_parent",
                     )),
                     move_drive_file_to_wiki=mock.MagicMock(side_effect=RuntimeError("permission | Permission denied [99991679]")),
+                    release_repo_root=Path(td),
                 ),
             )
+            temp_release_records = _tree_snapshot(temp_release_root)
 
+        self.assertEqual(
+            ["latest/publish_meta.json", "versions/1.0/publish_meta.json"],
+            sorted(temp_release_records),
+        )
+        self.assertEqual(real_release_records_before, _tree_snapshot(real_release_root))
         self.assertEqual(0, exit_code)
         self.assertEqual(2, len(captured_upserts))
         success_payload = captured_upserts[1]["record"]
