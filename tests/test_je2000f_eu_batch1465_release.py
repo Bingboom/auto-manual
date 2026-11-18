@@ -8,6 +8,7 @@ import tempfile
 import unittest
 
 from tools.manual_ir.hashing import file_sha256
+from tools.web.external_source_store import resolve_source_identity
 from tools.web.frozen_ai_web import replay_package
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,7 +56,7 @@ class Batch1465ReleaseTests(unittest.TestCase):
         from tools.web.symbol_asset_admission import require_symbol_asset_admission
         manifest = read(PACKAGE / 'source_manifest.json')
         self.assertEqual(manifest['original_source']['filename'], 'source/JE-2000F_修正版.ai')
-        self.assertEqual(file_sha256(PACKAGE / manifest['original_source']['filename']),
+        self.assertEqual(resolve_source_identity(PACKAGE / manifest['original_source']['filename'])[1],
                          manifest['original_source']['sha256'])
         for language in LANGUAGES:
             with self.subTest(language=language):

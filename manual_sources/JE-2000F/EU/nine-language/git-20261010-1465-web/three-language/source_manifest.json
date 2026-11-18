@@ -50,9 +50,9 @@
       "sha256": "601f9af335ca7672ae364257839672ed8bf5112e3a3f7064ed9fda3ffaab85c1"
     },
     {
-      "path": "source/JE-2000F_修正版.ai",
-      "size": 47406030,
-      "sha256": "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7"
+      "path": "source/JE-2000F_修正版.ai.source-pointer.json",
+      "size": 602,
+      "sha256": "27e84a618d1a8ca47ed74b7c1dbbf8e5b9b1602427db75fe0face43d8fa4a2ce"
     },
     {
       "path": "verification.json",

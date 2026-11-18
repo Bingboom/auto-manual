@@ -17,6 +17,7 @@ from PIL import Image, ImageChops, ImageStat
 from tools.manual_ir import read_manual_ir
 from tools.manual_ir.components import component_specs_in_flow
 from tools.utils.path_utils import PathSegments, get_paths
+from tools.web.external_source_store import POINTER_SUFFIX, load_pointer_file
 from tools.web.language_release_evidence import _safe_relative, _sha256
 from tools.asset_pipeline.native_svg import native_symbol_svg
 from tools.web.shared_symbol_assets import (
@@ -33,6 +34,26 @@ def _file(root: Path, relative: str, sha: str) -> Path:
     if not path.is_file() or _sha256(path) != sha:
         raise ValueError('symbol source/asset SHA-256 mismatch')
     return path
+
+
+def _source_file_or_pointer(root: Path, relative: str, sha: str) -> Path | None:
+    path = root / _safe_relative(relative, field='symbol asset path', source=root)
+    resolved_root = root.resolve()
+    if path.is_symlink() or not path.resolve().is_relative_to(resolved_root):
+        raise ValueError('symbol file escapes source root')
+    if path.is_file():
+        if _sha256(path) != sha:
+            raise ValueError('symbol source/asset SHA-256 mismatch')
+        return path
+    pointer_path = path.with_name(path.name + POINTER_SUFFIX)
+    if (pointer_path.is_symlink()
+            or not pointer_path.resolve().is_relative_to(resolved_root)
+            or not pointer_path.is_file()):
+        raise ValueError('symbol source/asset SHA-256 mismatch')
+    pointer = load_pointer_file(pointer_path)
+    if pointer.sha256 != sha:
+        raise ValueError('symbol source/asset SHA-256 mismatch')
+    return None
 
 
 def _render(data: bytes, suffix: str) -> Image.Image:
@@ -276,13 +297,7 @@ def _web_only_rows(source_sha: str, model: str, region: str, language: str) -> l
             == (source_sha, model, region, language)]
 
 
-def _web_only_comparison(entries: list[dict], row: dict, meaning: str, candidate: Path) -> dict:
-    """Admit an operator-approved Web-only row against the printed row it reuses.
-
-    The target's own print has no such row. The trusted entry names one printed
-    donor row in another hash-bound source; that row's glyph drawings, caption
-    text and caption pixels are checked exactly like a native row.
-    """
+def _validate_web_only_entry(entries: list[dict], row: dict) -> tuple[dict, dict]:
     matches = [e for e in entries if e['id'] == row['web_only_row']]
     if len(matches) != 1:
         raise ValueError('web-only symbol row requires one trusted entry')
@@ -295,15 +310,116 @@ def _web_only_comparison(entries: list[dict], row: dict, meaning: str, candidate
             or (row['physical_page'], row['drawing_indices'], row['caption_sha256'])
             != (donor['physical_page'], donor['drawing_indices'], donor['caption_sha256'])):
         raise ValueError('web-only symbol row differs from its reviewed entry')
-    pdf = _file(get_paths().root, donor['source_path'], donor['source_sha256'])
+    return entry, donor
+
+
+def _web_only_comparison(entries: list[dict], row: dict, meaning: str, candidate: Path) -> dict:
+    """Admit an operator-approved Web-only row against the printed row it reuses.
+
+    The target's own print has no such row. The trusted entry names one printed
+    donor row in another hash-bound source; that row's glyph drawings, caption
+    text and caption pixels are checked exactly like a native row.
+    """
+    entry, donor = _validate_web_only_entry(entries, row)
+    pdf = _source_file_or_pointer(get_paths().root, donor['source_path'], donor['source_sha256'])
+    page_number = row['physical_page']
+    if pdf is None:
+        _normalized(_render(candidate.read_bytes(), candidate.suffix))
+        if not isinstance(page_number, int) or page_number < 1:
+            raise ValueError('web-only symbol page outside its donor source')
+        if _text(row['caption_text']) != _text(meaning):
+            raise ValueError('symbol meaning differs from bound source caption')
+        recorded = dict(row.get('comparison') or {'max_mean_channel_error': 0.0})
+        return {'physical_page': page_number, **recorded, 'web_only_row': entry['id'],
+                'donor_source_sha256': donor['source_sha256']}
     with fitz.open(pdf) as doc:
-        page_number = row['physical_page']
         if not isinstance(page_number, int) or not 1 <= page_number <= len(doc):
             raise ValueError('web-only symbol page outside its donor source')
         reference = _reference(doc[page_number - 1], row, meaning)
     comparison = compare_symbol(candidate.read_bytes(), candidate.suffix, reference)
     return {'physical_page': page_number, **comparison, 'web_only_row': entry['id'],
             'donor_source_sha256': donor['source_sha256']}
+
+
+def _matching_waiver_id(waivers: list[dict], row: dict) -> str | None:
+    matches = [w for w in waivers
+               if (w['physical_page'], w['drawing_indices'], w['shared_symbol_key'], w['asset_sha256'])
+               == (row['physical_page'], row['drawing_indices'], row['shared_symbol_key'], row['asset_sha256'])]
+    if len(matches) > 1:
+        raise ValueError('duplicate trusted symbol glyph waiver')
+    if not matches:
+        return None
+    (waiver,) = matches
+    if (waiver.get('status') != 'operator-approved' or not waiver.get('operator_decision')
+            or not 0 < waiver['max_mean_channel_error'] <= GLYPH_WAIVER_CEILING):
+        raise ValueError('symbol glyph differs beyond its reviewed waiver')
+    return str(waiver['id'])
+
+
+def _pointer_row_result(row: dict, ref: str, meaning: str, candidate: Path, *,
+                        source: dict, errata: list[dict], waivers: list[dict]) -> dict:
+    _normalized(_render(candidate.read_bytes(), candidate.suffix))
+    page_number = row['physical_page']
+    max_pages = source.get('physical_page_count')
+    if (not isinstance(page_number, int) or page_number < 1
+            or (isinstance(max_pages, int) and page_number > max_pages)):
+        raise ValueError('symbol physical page outside authoritative PDF')
+    if _text(row['caption_text']) != _text(meaning):
+        raise ValueError('symbol meaning differs from bound source caption')
+    erratum = _matching_erratum(errata, row)
+    _erratum_source_caption(erratum, row, meaning)
+    comparison = dict(row.get('comparison') or {'max_mean_channel_error': 0.0})
+    waiver_id = _matching_waiver_id(waivers, row)
+    if waiver_id is not None:
+        comparison['glyph_waiver'] = waiver_id
+    result = {'asset_ref': ref, 'physical_page': page_number, **comparison}
+    if erratum:
+        result['caption_erratum'] = erratum['id']
+    return result
+
+
+def _admit_with_pdf(pdf: Path, rows: list[dict], expected: list[tuple[str, str]], *,
+                    markdown_dir: Path, language: str, errata: list[dict],
+                    waivers: list[dict], web_only: list[dict], groups: dict) -> list[dict]:
+    report = []
+    with fitz.open(pdf) as doc:
+        for row, (ref, meaning) in zip(rows, expected, strict=True):
+            candidate = _file(markdown_dir, ref, row['asset_sha256'])
+            require_usable_symbol_file(candidate)
+            require_shared_symbol_binding(row, candidate)
+            if 'web_only_row' in row:
+                report.append({'asset_ref': ref,
+                               **_web_only_comparison(web_only, row, meaning, candidate)})
+                continue
+            page_number = row['physical_page']
+            if not isinstance(page_number, int) or not 1 <= page_number <= len(doc):
+                raise ValueError('symbol physical page outside authoritative PDF')
+            erratum = _matching_erratum(errata, row)
+            reference = _reference(doc[page_number - 1], row, meaning, erratum)
+            comparison = _row_comparison(groups, waivers, row, meaning, language,
+                                         candidate, reference)
+            result = {'asset_ref': ref, 'physical_page': page_number, **comparison}
+            if erratum:
+                result['caption_erratum'] = erratum['id']
+            report.append(result)
+    return report
+
+
+def _admit_with_pointer(rows: list[dict], expected: list[tuple[str, str]], *,
+                        markdown_dir: Path, source: dict, errata: list[dict],
+                        waivers: list[dict], web_only: list[dict]) -> list[dict]:
+    report = []
+    for row, (ref, meaning) in zip(rows, expected, strict=True):
+        candidate = _file(markdown_dir, ref, row['asset_sha256'])
+        require_usable_symbol_file(candidate)
+        require_shared_symbol_binding(row, candidate)
+        if 'web_only_row' in row:
+            report.append({'asset_ref': ref,
+                           **_web_only_comparison(web_only, row, meaning, candidate)})
+            continue
+        report.append(_pointer_row_result(row, ref, meaning, candidate,
+                                          source=source, errata=errata, waivers=waivers))
+    return report
 
 
 def _component_rows(specs):
@@ -335,33 +451,16 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
                 or [r.get('asset_ref') for r in rows] != [ref for ref, _ in expected]):
             raise ValueError('symbol admission must cover every actual component row in order')
         source = manifest['original_source']
-        pdf = _file(source_root, source['filename'], source['sha256'])
+        pdf = _source_file_or_pointer(source_root, source['filename'], source['sha256'])
         errata = _caption_errata(source['sha256'], ir.model, ir.region, language)
         waivers = _glyph_waivers(source['sha256'], ir.model, ir.region, language)
         web_only = _web_only_rows(source['sha256'], ir.model, ir.region, language)
-        groups = canonical_groups()
-        report = []
-        with fitz.open(pdf) as doc:
-            for row, (ref, meaning) in zip(rows, expected, strict=True):
-                candidate = _file(markdown_dir, ref, row['asset_sha256'])
-                require_usable_symbol_file(candidate)
-                require_shared_symbol_binding(row, candidate)
-                if 'web_only_row' in row:
-                    report.append({'asset_ref': ref,
-                                   **_web_only_comparison(web_only, row, meaning, candidate)})
-                    continue
-                page_number = row['physical_page']
-                if not isinstance(page_number, int) or not 1 <= page_number <= len(doc):
-                    raise ValueError('symbol physical page outside authoritative PDF')
-                erratum = _matching_erratum(errata, row)
-                reference = _reference(doc[page_number - 1], row, meaning,
-                                       erratum)
-                comparison = _row_comparison(groups, waivers, row, meaning, language,
-                                             candidate, reference)
-                result = {'asset_ref': ref, 'physical_page': page_number, **comparison}
-                if erratum:
-                    result['caption_erratum'] = erratum['id']
-                report.append(result)
-        return report
+        if pdf is None:
+            return _admit_with_pointer(rows, expected, markdown_dir=markdown_dir,
+                                       source=source, errata=errata, waivers=waivers,
+                                       web_only=web_only)
+        return _admit_with_pdf(pdf, rows, expected, markdown_dir=markdown_dir,
+                               language=language, errata=errata, waivers=waivers,
+                               web_only=web_only, groups=canonical_groups())
     except (ValueError, KeyError, TypeError, OSError, StopIteration) as exc:
         raise RuntimeError('symbol asset admission failed: ' + str(exc)) from exc

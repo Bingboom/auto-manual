@@ -237,7 +237,14 @@ class RawBinaryRatchetTests(unittest.TestCase):
     def test_real_repository_ratchet_passes(self) -> None:
         res = store.check_repository(store.REPO_ROOT, printer=lambda _: None)
         self.assertEqual(res.exit_code, 0)
-        self.assertGreaterEqual(res.pointer_count, 5)
+        self.assertGreaterEqual(res.pointer_count, 20)
+        baseline = store.load_ratchet_baseline(store.ratchet_baseline_of(store.REPO_ROOT))
+        self.assertIsNotNone(baseline)
+        assert baseline is not None
+        self.assertEqual(
+            [p for p in baseline if Path(p).suffix.lower() in {".ai", ".bin"}],
+            [],
+        )
 
 
 class FetchAndCliWorkflowTests(unittest.TestCase):
@@ -419,6 +426,66 @@ class PackageInventoryPointerIntegrationTests(unittest.TestCase):
             self.assertIn(
                 "External source pointers: 2 across 1 packages",
                 format_inventory_text(report),
+            )
+
+
+class PointerFallbackHelpersTests(unittest.TestCase):
+    def test_resolve_source_identity_and_acceptance_parity(self) -> None:
+        raw_bytes = b"part-one-" + b"part-two"
+        raw_sha = hashlib.sha256(raw_bytes).hexdigest()
+        with tempfile.TemporaryDirectory() as tmp:
+            pkg = Path(tmp)
+            ptr = store.validate_pointer_payload(
+                _valid_pointer_dict(file_name="archive.pdf", content=raw_bytes)
+            )
+            ptr_rel = f"source/archive.pdf{store.POINTER_SUFFIX}"
+            ptr_path = store.write_pointer_file(pkg / ptr_rel, ptr)
+            self.assertEqual(
+                store.resolve_source_identity(pkg / "source/archive.pdf"),
+                (len(raw_bytes), raw_sha),
+            )
+            original = {
+                "sha256": raw_sha,
+                "archive_parts": [
+                    {"path": "source/part-001.bin", "size": 9},
+                    {"path": "source/part-002.bin", "size": 8},
+                ],
+            }
+            self.assertEqual(
+                store.resolve_archived_pdf_sha256(pkg, original, pointer_relpath=ptr_rel),
+                raw_sha,
+            )
+            ptr_size, ptr_sha = store.sha256_file(ptr_path)
+            approval_rows = [
+                {"path": "README.md", "size": 5, "sha256": "a" * 64},
+                {"path": "rebuild.py", "size": 10, "sha256": "b" * 64},
+                {"path": "source/part-001.bin", "size": 9, "sha256": "c" * 64},
+                {"path": "source/part-002.bin", "size": 8, "sha256": "d" * 64},
+            ]
+            manifest_rows = [
+                {"path": "README.md", "size": 5, "sha256": "a" * 64},
+                {"path": "rebuild.py", "size": 12, "sha256": "e" * 64},
+                {"path": ptr_rel, "size": ptr_size, "sha256": ptr_sha},
+            ]
+            self.assertTrue(
+                store.reviewed_inputs_match_with_pointers(
+                    pkg,
+                    approval_rows,
+                    manifest_rows,
+                    original_sha256=raw_sha,
+                    raw_archive_paths=("source/part-001.bin", "source/part-002.bin"),
+                    adapter_paths=("rebuild.py",),
+                )
+            )
+            self.assertFalse(
+                store.reviewed_inputs_match_with_pointers(
+                    pkg,
+                    approval_rows[1:],
+                    manifest_rows,
+                    original_sha256=raw_sha,
+                    raw_archive_paths=("source/part-001.bin", "source/part-002.bin"),
+                    adapter_paths=("rebuild.py",),
+                )
             )
 
 

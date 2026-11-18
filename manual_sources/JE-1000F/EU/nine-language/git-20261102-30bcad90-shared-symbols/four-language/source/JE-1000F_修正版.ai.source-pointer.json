@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JE-1000F_修正版.ai",
+  "sha256": "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6",
+  "size_bytes": 67718360,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28b6wEQxRrW",
+    "field_name": "source_file",
+    "file_token": "WYxjbAdB5oiz7oxNXikc73vJnUc"
+  },
+  "local_relpath": "source/JE-1000F_修正版.ai",
+  "source_key": "source/manual_je1000f_eu_revised_ai",
+  "notes": "Phase 3B-2 externalized JE-1000F EU batch-1465 revised Illustrator master."
+}

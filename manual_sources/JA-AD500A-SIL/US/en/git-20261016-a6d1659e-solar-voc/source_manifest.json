@@ -136,8 +136,8 @@
     },
     {
       "path": "render.py",
-      "size": 7668,
-      "sha256": "c8e685562bf57783ebf33fecde7ea749c6a1d8147716d39ea3413e01debc8df2"
+      "size": 8021,
+      "sha256": "f1bec3b4366039ca0230701775b9dc8a11cdb53f683181ecfa997b0449dbf285"
     },
     {
       "path": "source/approval.json",
@@ -155,9 +155,9 @@
       "sha256": "8f69ef4723c4158f88f5588e44c10f580ac009003ff881972bb61f3a17f09880"
     },
     {
-      "path": "source/original.ai",
-      "size": 5210211,
-      "sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da"
+      "path": "source/original.ai.source-pointer.json",
+      "size": 578,
+      "sha256": "cbe91ca4e309cf6524b515b2cdaab91e9e1dbbd642e23d00d539354bde29b52a"
     },
     {
       "path": "source/overview_textless_recipe.json",
@@ -218,7 +218,7 @@
   "derived_from": {
     "package": "git-20261006-a6d1659e-reviewed",
     "authorization": "MA-259",
-    "manifest_sha256": "d24e3a11daf168221d9061eada6a0ba475cdd3be8ee8846508b67eb7d1529eba"
+    "manifest_sha256": "34769b2f777b06363ce3d2d7fb1cb763b081c80f4e85ea443ef184f652cd6372"
   },
   "text_corrections": [
     {

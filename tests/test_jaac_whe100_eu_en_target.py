@@ -24,6 +24,7 @@ from tools.skeleton_resolve import (
     resolve_plan,
 )
 from tools.web.document_ir import render_document_fragments
+from tools.web.external_source_store import resolve_source_identity
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -175,7 +176,7 @@ class JaacWhe100EuEnTargetTests(unittest.TestCase):
         payload = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
         self.assertEqual(
             "58e84bd618d17b37e67a32a18f987c750756019bfd2e53a8a07b835dc7244694",
-            sha256(SOURCE),
+            resolve_source_identity(SOURCE)[1],
         )
         self.assertFalse(payload["authority"]["published_pdf_link_present"])
         self.assertEqual("QKRfBknCr9", payload["authority"]["dingtalk_record"])
@@ -230,6 +231,13 @@ class JaacWhe100EuEnTargetTests(unittest.TestCase):
             )
             self.assertEqual(output["expected_sha256"], resolved.declared_hash)
             self.assertEqual(output["expected_sha256"], sha256(ROOT / resolved.path))
+
+        if not SOURCE.is_file():
+            self.assertEqual(
+                (3428889, recipe["source"]["expected_sha256"]),
+                resolve_source_identity(SOURCE),
+            )
+            return
 
         with tempfile.TemporaryDirectory() as td:
             output_root = Path(td) / "intake"

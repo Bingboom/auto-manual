@@ -396,9 +396,9 @@
       "sha256": "2a8b12ecbac580576e3d4ae8803c19a5e81e3e2c729f8c0c60c0716feca36c5e"
     },
     {
-      "path": "source/JE-1000F_修正版.ai",
-      "size": 67718360,
-      "sha256": "30bcad90ac8c130874db95c76666fb5c905cacc1b59073bd8f9d2db8d714eaf6"
+      "path": "source/JE-1000F_修正版.ai.source-pointer.json",
+      "size": 602,
+      "sha256": "fe8ccab69bef169a086eba1cc3a03f8a25a348dae1696938802802412399af94"
     },
     {
       "path": "source/approved_errata.json",

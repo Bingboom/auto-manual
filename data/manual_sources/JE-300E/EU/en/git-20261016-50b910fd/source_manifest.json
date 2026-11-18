@@ -1509,9 +1509,9 @@
   ],
   "inputs": [
     {
-      "path": "55060100007 HTE147300A-EU-JAK-A0 说明书 RoHS REACH_修正.ai",
-      "size": 22672820,
-      "sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+      "path": "55060100007 HTE147300A-EU-JAK-A0 说明书 RoHS REACH_修正.ai.source-pointer.json",
+      "size": 673,
+      "sha256": "1e9607e73a2980f4cc6354ab469afabbea69a9a3e655df1dd93044118bb95071"
     },
     {
       "path": "README.md",
@@ -1765,8 +1765,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 8222,
-      "sha256": "8d0aa3d65f07fdfd54f58c0547b3267a280a36fbbc9c4600956450c889430236"
+      "size": 8632,
+      "sha256": "80d229bb9983fd6ff316f18e09964f03a39a8e5bad18e5ab77db9467ae405d6c"
     },
     {
       "path": "source/approval.json",

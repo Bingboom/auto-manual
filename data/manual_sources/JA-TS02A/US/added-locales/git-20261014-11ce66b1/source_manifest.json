@@ -1707,8 +1707,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 8116,
-      "sha256": "92d410874e1046af24ab56f3a8fc3406b93093159b09c33e1c865e6723eab001"
+      "size": 8580,
+      "sha256": "87d28214890b69e691de7e92de3ac5c18ee610b2654b65d101b0f161ec8e4fb0"
     },
     {
       "path": "source/approval.json",

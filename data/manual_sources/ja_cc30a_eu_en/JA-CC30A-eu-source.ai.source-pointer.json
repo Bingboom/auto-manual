@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JA-CC30A-eu-source.ai",
+  "sha256": "0eb2b7ba99e9b5b941f147f3b3b60f89229b007af77fc80e7dc9451d7aaa50d3",
+  "size_bytes": 11285290,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI4DwJ",
+    "field_name": "source_file",
+    "file_token": "L1POblJ7jowMQ0xGpCYck8nRnsb"
+  },
+  "local_relpath": "JA-CC30A-eu-source.ai",
+  "source_key": "source/manual_ja_cc30a_eu_en_ai_38-0001-000673",
+  "notes": "Phase 3B-2 externalized JA-CC30A EU en Illustrator design master."
+}

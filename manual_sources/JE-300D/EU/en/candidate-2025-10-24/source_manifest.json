@@ -40,9 +40,9 @@
       "sha256": "bc673157e024a1bcf3790352de22f94252925b13ca8b14c42cb3559991c951fd"
     },
     {
-      "path": "JE-300D-eu-source.ai",
-      "size": 4713724,
-      "sha256": "53209e53bb5ca5bcfa08c8eeeedd9c7ee6cc2c0cd226e6c7c776bb68421f78bc"
+      "path": "JE-300D-eu-source.ai.source-pointer.json",
+      "size": 602,
+      "sha256": "edaa0e82f314c5205df46d4ca74e350c1dd0e3225ee1031d6fd7684d892b8486"
     },
     {
       "path": "scope-snapshot.json",

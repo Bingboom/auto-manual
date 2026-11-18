@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from contextlib import redirect_stdout
-import hashlib
 import importlib.util
 import io
 import json
@@ -20,6 +19,10 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import (
+    load_pointer_file,
+    reviewed_inputs_match_with_pointers,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'data/manual_sources/JA-TS02A/US/added-locales/git-20261014-11ce66b1'
@@ -127,11 +130,11 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         self.assertEqual(manifest['publication_status'], 'operator-approved-git-only-release')
         original = manifest['original_source']
         self.assertEqual(original['sha256'], SOURCE_SHA)
-        digest = hashlib.sha256()
         for part in original['archive_parts']:
             self.assertTrue(part['path'].startswith(ENGLISH.relative_to(ROOT).as_posix() + '/source/pdf-archive/'))
-            digest.update((ROOT / part['path']).read_bytes())
-        self.assertEqual(digest.hexdigest(), SOURCE_SHA)
+        pointer = load_pointer_file(ROOT / rebuild_module.ENGLISH_POINTER)
+        self.assertEqual((pointer.size_bytes, pointer.sha256), (original['size_bytes'], SOURCE_SHA))
+        self.assertEqual(rebuild_module.archived_pdf_sha256(original), SOURCE_SHA)
         pinned = {row['path'] for row in manifest['repo_inputs']}
         self.assertLessEqual({part['path'] for part in original['archive_parts']}, pinned)
         self.assertFalse([p for p in PACKAGE.rglob('*') if p.suffix.lower() in {'.pdf', '.bin'}])
@@ -155,9 +158,15 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         self.assertEqual(approval['languages'], list(LANGUAGES))
         self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
         # Everything but the frozen web/ outputs and the acceptance itself.
-        self.assertEqual(approval['reviewed_inputs'],
-                         [row for row in manifest['inputs']
-                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        reviewed = [row for row in manifest['inputs']
+                    if not row['path'].startswith('web/') and row['path'] != 'source/approval.json']
+        self.assertTrue(reviewed_inputs_match_with_pointers(
+            PACKAGE,
+            approval['reviewed_inputs'],
+            reviewed,
+            original_sha256=SOURCE_SHA,
+            adapter_paths=('rebuild.py',),
+        ))
         # The shared-style revision (D2, #1550); the 2026-10-14 acceptance (MA-307) bound the earlier inputs.
         self.assertEqual((approval['operator_quote'], approval['merge_authorization']), ('上线', 'MA-314'))
         for language in LANGUAGES:
@@ -178,6 +187,7 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         row.update(size=path.stat().st_size, sha256=file_sha256(path))
         # This negative fixture targets acceptance, not historical shared-input drift.
         # Rebind only its temporary manifest; frozen production inputs stay unchanged.
+        manifest['repo_inputs'] = [d for d in manifest['repo_inputs'] if (ROOT / d['path']).is_file()]
         for dependency in manifest['repo_inputs']:
             current = ROOT / dependency['path']
             dependency.update(size=current.stat().st_size, sha256=file_sha256(current))
@@ -211,10 +221,26 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         if tuple(pymupdf.version[:2]) != ('1.28.0', '1.29.0'):
             self.skipTest('word geometry is validated for PyMuPDF 1.28.0 / MuPDF 1.29.0 (requirements.lock)')
         source = self.fixture()
+        original = read(PACKAGE / 'source_manifest.json')['original_source']
+        repo_override = ROOT
+        if not all((ROOT / part['path']).is_file() for part in original['archive_parts']):
+            repo_pdf = ROOT / original['repository_pdf']['path']
+            if not repo_pdf.is_file():
+                self.skipTest('authoritative PDF archive is externalized via .source-pointer.json')
+            repo_override = self.root / 'repo_archive'
+            pdf_bytes = repo_pdf.read_bytes()
+            offset = 0
+            for part in original['archive_parts']:
+                target_part = repo_override / part['path']
+                target_part.parent.mkdir(parents=True, exist_ok=True)
+                size = int(part['size'])
+                target_part.write_bytes(pdf_bytes[offset:offset + size])
+                offset += size
         saved_path, saved_native = list(sys.path), sys.modules.get('native')
         try:
             native = load('native', PACKAGE / 'source/native.py')
             native.SOURCE = source
+            native.REPO = repo_override
             sys.modules['native'] = native  # intake.py imports its sibling by this name
             intake = load('ja_ts02a_us_fr_es_intake', PACKAGE / 'source/intake.py')
             with redirect_stdout(io.StringIO()):
@@ -266,7 +292,13 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         from tools.web.symbol_asset_admission import compare_symbol
 
         original = read(PACKAGE / 'source_manifest.json')['original_source']
-        data = b''.join((ROOT / part['path']).read_bytes() for part in original['archive_parts'])
+        if all((ROOT / part['path']).is_file() for part in original['archive_parts']):
+            data = b''.join((ROOT / part['path']).read_bytes() for part in original['archive_parts'])
+        else:
+            repo_pdf = ROOT / original['repository_pdf']['path']
+            if not repo_pdf.is_file():
+                self.skipTest('authoritative PDF archive is externalized via .source-pointer.json')
+            data = repo_pdf.read_bytes()
         rows = read(PACKAGE / 'source/symbols.json')
         self.assertEqual(sorted({(r['language'], r['key']) for r in rows}),
                          sorted((lang, key) for lang in LANGUAGES for key in [

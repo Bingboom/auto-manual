@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JA-TS02A_US_en_JAK-UM-V1.0.pdf",
+  "sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+  "size_bytes": 94486777,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28b6zq7uo9U",
+    "field_name": "source_file",
+    "file_token": "LcSXb1OqBo404HxVTt1cQBVxn3g"
+  },
+  "local_relpath": "source/pdf-archive/JA-TS02A_US_en_JAK-UM-V1.0.pdf",
+  "source_key": "source/manual_ja_ts02a_us_en_v1_pdf",
+  "notes": "Phase 3B-2 externalized JA-TS02A US V1.0 master PDF replacing split part-001..003.bin chunks."
+}
