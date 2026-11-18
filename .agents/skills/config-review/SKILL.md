@@ -1,6 +1,14 @@
 ---
 name: config-review
 description: Review this repository's Codex and Claude agent scaffolding for drift, bloat, missing safety rules, and broken skill discovery. Use when changing AGENTS.md, CLAUDE.md, .agents/skills, .claude, .codexignore, hooks, permissions, plugin/MCP setup, or when asked to audit the agent configuration surface.
+metadata:
+  owner: "仓库维护人"
+  status: "active"
+  entry: "审查 Codex 或 Claude 的仓库配置、发现入口与技能路由"
+  tools: "Git、技能 quick_validate、tools.rtd.system_tooling"
+  validation: "缺少维护角色的技能应在 tests/test_rtd_system_tooling.py 报错"
+  reviewed: "2026-11-17"
+  retire_when: "仓库不再分发 Agent 配置"
 ---
 
 # Config Review
@@ -21,6 +29,7 @@ Review the repository's agent configuration surface without reading generated ou
 - Root `AGENTS.md` is the shared policy map, not a procedure dump.
 - Nested `AGENTS.md` files provide local ownership, entrypoints, and targeted validation commands; nested `CLAUDE.md` files remain Claude-only navigation overlays.
 - Reusable procedures live in skills, not in every navigation file.
+- Check lifecycle ownership, status, review date, tool and validation case against current production routing in both skill trees. Run `python -m unittest tests.test_rtd_system_tooling`.
 - Every Codex skill has valid frontmatter with `name` and `description`.
 - Skill names are lowercase hyphen-case and each skill with a UI binding has `agents/openai.yaml` whose prompt names `$skill-name`.
 - `.codexignore` excludes generated output, caches, and temporary artifacts without hiding durable review/source surfaces.

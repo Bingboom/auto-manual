@@ -1,6 +1,14 @@
 ---
 name: pdf-annotate-qc
 description: Render QC findings as highlight + note annotations on a built manual PDF, producing a read-only *_annotated.pdf sidecar for PDF-facing reviewers. Use when someone asks to "标注 PDF"、"在 PDF 上高亮问题"、review/audit a shipped PDF, or deliver content_lint results in PDF form. The shipped PDF is never modified, and fixes route through the existing docx/cloud-doc backport path — never edit the PDF itself. NOT for docx highlighting (use docx-highlight-changes) or for making content corrections.
+metadata:
+  owner: "资料审核维护人"
+  status: "on-request"
+  entry: "按审核意见交付有高亮及批注的 PDF 副本"
+  tools: "tools/pdf_annotate.py"
+  validation: "用 tests/test_pdf_annotate.py 核对定位及找不到原文时的处理"
+  reviewed: "2026-11-17"
+  retire_when: "审阅方停用 PDF 侧批件"
 ---
 
 # PDF Annotate QC

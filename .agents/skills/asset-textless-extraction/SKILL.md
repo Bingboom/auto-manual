@@ -1,6 +1,14 @@
 ---
 name: asset-textless-extraction
 description: Extract text-free (无字化) illustration assets from an .ai/PDF master via the committed asset pipeline (data/asset_recipes + tools/asset_intake.py) — choosing the right transform operator (redact_text vs remove_if_touched vs drop_leader_strokes vs leave-alone), tuning safely in a scratchpad, verifying at 12x zoom, getting operator confirmation with PIL side-by-side pairs, and closing with the three-place hash sync + registry enrollment. Use whenever a burned-text illustration must become language-neutral (CN/JP/KR line swaps, master榨取 rounds, 底图白块/削口 repair). NOT for template/IDML re-pointing (integration swap is its own PR) and NOT for registering non-extracted assets (plain registry row work).
+metadata:
+  owner: "视觉资产维护人"
+  status: "active"
+  entry: "已有资产无法复用时，从批准的 AI 或 PDF 提取无字插图"
+  tools: "tools/asset_intake.py、资产配方"
+  validation: "用 tests/test_asset_intake.py 检查处理链，再比对原图与输出的面板边缘"
+  reviewed: "2026-11-17"
+  retire_when: "素材接入工具取代现有配方及其人工验图流程"
 ---
 
 # Asset Textless Extraction (无字化)

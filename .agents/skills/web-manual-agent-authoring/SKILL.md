@@ -1,11 +1,19 @@
 ---
 name: web-manual-agent-authoring
-description: Author and batch-build governed Web manuals directly from visual assets (asset_registry.csv), shared semantic components (ComponentSpec + web_*.css), and approved multilingual corpus (TM-B + sibling ManualIR v2). Trigger phrases include Agent 开发说明书, 新建 Web 说明书, 开发网页说明书, 批量 Web 手册开发, 基于内容资产开发说明书, author a Web manual, build a new manual_sources Web package.
+description: "Prepare a governed Web package from an approved source using visual assets, shared ComponentSpec and approved TM-B. New manual drafting starts in Hello-Docs-Review."
+metadata:
+  owner: "Web 发布维护人"
+  status: "active"
+  entry: "将有权威来源的批准原稿制作成 Web 源包"
+  tools: "scripts/authoring_preflight.py、ManualIR v2、ComponentSpec"
+  validation: "运行 tests/test_web_manual_agent_authoring_skill.py 核对预检，再按原稿核对桌面和移动预览"
+  reviewed: "2026-11-17"
+  retire_when: "Web 源包、共享组件或封存契约被替换"
 ---
 
 # Web Manual Agent Authoring
 
-Primary mainline workflow for **Agent-authored batch Web manuals** built directly on governed content assets:
+Prepare a Web package from an approved source using shared components, verified assets and approved corpus. New writing starts in the private review workbench. The [positioning contract §5.1](../../../code-as-doc/architecture/Hello_Docs_Positioning.md#51-网页说明书的三条路线) records the approved-draft handoff status. Source-package preparation uses these assets:
 
 - **Visual Assets**: `04_资产*` exports governed in [`data/asset_registry.csv`](../../../data/asset_registry.csv) (`✅成品` preferred).
 - **Shared Presentation**: registered [`ComponentSpec`](../../../docs/renderers/contracts/component_registry.yaml) contracts and shared stylesheets under `docs/renderers/contracts/web_*.css`.

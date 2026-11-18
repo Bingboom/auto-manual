@@ -25,6 +25,7 @@ Review the Claude Code configuration surface for drift, bloat, and missing safet
 - `.claude/settings.json` has project-safe `permissions.deny` entries for generated output, caches, runtime folders, and credentials.
 - `.claude/settings.json` does not include local absolute paths, secrets, or personal allow rules.
 - Hooks are inactive unless they have a narrow event, matcher, tested script, and clear owner.
+- Check the governing skill lifecycle contract and confirm both agents discover the same task scope. Run `python -m unittest tests.test_rtd_system_tooling`.
 - Project skills have concise frontmatter descriptions and do not grant broad tools unnecessarily.
 - `.agents/skills/` changes are treated as local Codex skill changes, not Claude Code project skills.
 - Instructions that compensated for old model limitations are removed or softened after major model releases.

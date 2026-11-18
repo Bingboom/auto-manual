@@ -1,6 +1,14 @@
 ---
 name: bilingual-tm-maintenance
 description: "Maintain live Feishu/Lark Translation_Memory from bilingual source/target copy: update existing English-linked rows first, create missing pairs when requested, append the target-language maintenance log, audit the bilingual alignment, and append the target-language audit log. Use for requests like 给双语文案录入记忆库, 维护对应语言log, 校对双语, or 写校验log字段."
+metadata:
+  owner: "语料维护人"
+  status: "on-request"
+  entry: "明确要求将已核对的双语句对写入 TM-B 并记录审核"
+  tools: "lark-cli、TM-B 的 Translation_Memory"
+  validation: "按 record_id 回读目标译文及维护、审核日志，核对原句"
+  reviewed: "2026-11-17"
+  retire_when: "规范写库或句对审核契约迁移"
 ---
 
 # Bilingual TM Maintenance

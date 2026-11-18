@@ -1,6 +1,14 @@
 ---
 name: manual-rewrite-with-tm
-description: "Rewrite or translate Markdown / plain-text manual content with translation-memory-first behavior. Use when the user asks to translate or rewrite markdown documentation by memory rules such as: prefer translation-memory matches, keep unmatched source text in place marked with ==...==, unify terminology, preserve markdown structure, or reuse a matched sentence pattern while replacing only parameters like wattage, voltage, model names, temperatures, units, ports, or counts. NOT for .docx / Feishu cloud-doc pre-translation — that carrier needs real colour highlights, which Markdown cannot express; use lark-tm-translation-preprocess instead."
+description: "Use on request when the deliverable is Markdown or plain text with preserved structure and TM wording. For a live Feishu or Illustrator edit, look up TM-B and work in the requested original."
+metadata:
+  owner: "语料维护人"
+  status: "on-request"
+  entry: "交付物明确为保留结构的 Markdown 或纯文本译稿"
+  tools: "bitable-translation-memory、query_live_translation_memory.py"
+  validation: "改写含表格、链接及未命中句的样稿，核对结构、译文及标记"
+  reviewed: "2026-11-17"
+  retire_when: "不再需要保留 Markdown 结构的交付件"
 ---
 
 # Manual Rewrite With TM
@@ -15,7 +23,7 @@ Preserve document structure, keep markdown stable, and apply deterministic rewri
 
 Use `bitable-translation-memory` for one-shot sentence translation, terminology lookup, or prompt-ready live TM context.
 
-Use `lark-tm-translation-preprocess` for `.docx` / Feishu cloud-doc pre-translation: it replaces TM matches in the Word file and colour-highlights every replaced span. Since colour annotation is required for reviewer-facing pre-translation, the `.docx` path is the primary pre-translation flow; this skill's `==...==` marker is a plain-text convention for Markdown output only.
+If the requested deliverable is a TM-highlighted Word copy, select `lark-tm-translation-preprocess`. For a live Feishu edit, apply the verified wording directly to the requested blocks.
 
 Use this skill for whole files, long sections, or structured Markdown/manual content where headings, lists, tables, images, and unmatched-source fallback must stay stable.
 
