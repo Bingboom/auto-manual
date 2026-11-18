@@ -51,7 +51,7 @@ class SiteShellTests(unittest.TestCase):
             ("system", "系统建设"): "工作资料 / Agent 能力 / 系统建设",
             ("design-system", "设计规范"): "工作资料 / 设计规范",
             # 产品信息's pages name their tab in the crumb, beneath 产品信息 (the product branches pass these labels).
-            ("product-matrix", "产品库"): "工作资料 / 知识资产 / 产品信息 / 产品库",
+            ("product-matrix", "产品矩阵"): "工作资料 / 知识资产 / 产品信息 / 产品矩阵",
             ("product-matrix", "产品档案"): "工作资料 / 知识资产 / 产品信息 / 产品档案",
             ("product-matrix", "产品对比"): "工作资料 / 知识资产 / 产品信息 / 产品对比",
             ("product-matrix", "参数表"): "工作资料 / 知识资产 / 产品信息 / 参数表",
@@ -77,7 +77,7 @@ class SiteShellTests(unittest.TestCase):
                          [("资产总览", "workspace/index"), ("产品信息", "products/matrix")])
         self.assertEqual([a.span.get_text() for a in links if "active" in a["class"]], ["资产总览"])
         self.assertEqual(links[0]["aria-current"], "page")
-        matrix = shell("product-matrix", "产品库")
+        matrix = shell("product-matrix", "产品矩阵")
         self.assertEqual([a.span.get_text() for a in matrix.select("#app-sidebar a.app-nav-link.active")], ["产品信息"])
 
     def test_the_top_bar_search_is_a_form_that_works_without_script(self):

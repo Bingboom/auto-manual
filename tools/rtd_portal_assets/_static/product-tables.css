@@ -1,6 +1,6 @@
 /* 产品信息 sub-tabs, 参数表 and 产品对比 (step 13). Tokens: site-shell.css; head: front.css. */
 /* The 产品信息 tabs as a segmented control (operator's reference layout, 2026-11-18): a grey track, the current
-   page a white segment. On 产品库, 产品对比 and 参数表 it sits at the right of the title (.pl-head). */
+   page a white segment. On 产品矩阵, 产品对比 and 参数表 it sits at the right of the title (.pl-head). */
 .pt-tabs {display:inline-flex;align-self:flex-start;gap:2px;padding:3px;border:1px solid var(--app-line);border-radius:var(--radius-md);
   background:var(--app-track,#e5eaf0)}
 .pt-tabs a {padding:6px 14px;border-radius:6px;font-size:14px;line-height:20px;color:var(--app-text2,var(--app-muted));

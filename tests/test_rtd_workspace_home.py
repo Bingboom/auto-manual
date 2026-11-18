@@ -85,7 +85,7 @@ class HomeRenderTests(unittest.TestCase):
         self.assertEqual({b.get_text() for b in home.select(".home-front-fig b")}, {"暂无"})
         self.assertEqual([e.get_text() for e in home.select(".home-sum-item .is-pending")], ["暂无", "暂无", "暂无"])
         self.assertIsNone(home.select_one(".home-front-meta"))
-        # 产品库 always builds; without a readable snapshot its context has no product count: the card reads 暂无.
+        # 产品矩阵 always builds; without a readable snapshot its context has no product count: the card reads 暂无.
         unread = render(cards=front_cards({"facts": {}, "built_on": ""}, None, None), system_entry=False)
         self.assertEqual(unread.select_one("#asset-product .home-front-fig b").get_text(), "暂无")
 

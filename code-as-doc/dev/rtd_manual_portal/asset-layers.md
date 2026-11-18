@@ -53,7 +53,7 @@ without JavaScript; "/" focuses it unless the reader is typing elsewhere (`site_
 to its icon, which opens the search page. The former Agent icon opened the same page as the Agent 能力 section and
 was dropped; the section stays. The current left entry is a light accent pill. `资产总览` (`workspace/index.html`) is the first left entry of 知识资产 and opens with a 3-figure summary capsule (收录机型, 正式说明书, 覆盖语种) above a unified 3×2 card grid covering all six 知识资产 pages (`front_summary` and `front_cards` in `tools/rtd/asset_pages.py`), where each card's secondary badge shows concise counts (such as `<n> 个市场 · <m> 语种` for 说明书资料库) and never enumerates market or language codes. The search page is reached from the top bar, not the left list; it sits under 说明书资料库, which it highlights. The breadcrumb (工作资料 / section / page;
 工作资料 / 知识资产 / 说明书资料库 / 搜索说明书正文 for the search page) is kept for screen readers only; the crumb row still
-carries a page's own tools (说明书资料库's 区域). 产品信息's tab pages (产品库, 产品档案, 产品对比, 参数表) are `also`
+carries a page's own tools (说明书资料库's 区域). 产品信息's tab pages (产品矩阵, 产品档案, 产品对比, 参数表) are `also`
 entries `under` 产品信息, so their crumb reads 工作资料 / 知识资产 / 产品信息 / <tab>. An address naming a folded block
 (`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (menu, brand and search, then the
 sections) and the left list opens from the menu button. The pages keep their content. 产品信息 links 产品知识 when the matrix is not built.
@@ -75,7 +75,7 @@ authorization numbers, hashes, snapshot names, 建设中 / 已规划 chips, tabs
 unbuilt parts, or provenance and refresh small print. A figure keeps one date
 (截至 …). `front.css` holds their shared head, figure row and bar list.
 
-- **产品信息** opens on **产品库** (`product_matrix.html`, step 13, REV-53): the
+- **产品信息** opens on **产品矩阵** (`product_matrix.html`, step 13, REV-53): the
   title, `<n> 款产品 · 更新于 <date>`, then the matrix read from the product-information
   snapshot; see [knowledge-pages.md](knowledge-pages.md#product-matrix-page). The
   former 规模, 在哪里维护, 被谁使用, 来源与时间 and 质量与缺口 blocks, the kicker, the

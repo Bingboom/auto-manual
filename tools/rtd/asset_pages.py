@@ -173,7 +173,7 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
                       learning: dict[str, Any] | None, build_date: str, warn, design=None) -> dict:
     """The layer pages' contexts, 知识库首页's cards and the 系统建设 part.
 
-    Since the front cleanup (2026-11-17) 产品信息 (产品库) has no lead; 内容与表现 is not shown (its address
+    Since the front cleanup (2026-11-17) 产品信息 (产品矩阵) has no lead; 内容与表现 is not shown (its address
     forwards to 设计规范); 视觉媒体 is a page for colleagues; 语言 is the 语料库 page; the
     former 属性字典 address forwards to 产品信息.
     """

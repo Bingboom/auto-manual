@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="产品库：按类别、系列和容量查找产品，同一项目的型号合在一起。">
-<title>产品库</title>
+<meta name="description" content="产品矩阵：按类别、系列和容量查找产品，同一项目的型号合在一起。">
+<title>产品矩阵</title>
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/product-library.css', 1) }}">
@@ -13,7 +13,7 @@
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 {% from "_product_tabs.html" import product_tabs, product_stale, product_sync with context %}
-{#- 产品库 (step 13 of the 2026-11 redesign; REV-53; tools/rtd/product_library.py), in the operator's reference layout
+{#- 产品矩阵 (step 13 of the 2026-11 redesign; REV-53; tools/rtd/product_library.py), in the operator's reference layout
     (2026-11-18): the title and one line with the 产品信息 tabs as a segmented control at the right, then one card: a
     header zone with a tab per category (with its product count) and the filters, then the matrix. Rows are 系列,
     columns 容量档 (one 产品 column without tiers); a chip per model, the models of one project merged as A(B), the
@@ -30,13 +30,13 @@
 </span>
 {%- endmacro -%}
 <body class="app kb">
-<a class="skip" href="#matrix">跳到产品库</a>
+<a class="skip" href="#matrix">跳到产品矩阵</a>
 {{ site_sidebar('product-matrix', site_nav) }}
 <div class="app-content">
-{{ site_topbar('知识库', '产品库') }}
+{{ site_topbar('知识库', '产品矩阵') }}
 <main class="fr-page pl-page">
 <div class="pl-head">
-<header class="fr-head"><h1>产品库</h1>{% if built %}<p>{{ count }} 款产品 · 更新于 {{ updated|e }}</p>{% endif %}</header>
+<header class="fr-head"><h1>产品矩阵</h1>{% if built %}<p>{{ count }} 款产品 · 更新于 {{ updated|e }}</p>{% endif %}</header>
 {%- if built %}{{ product_tabs('products/matrix') }}{% endif %}
 </div>
 {{ product_stale(freshness) }}

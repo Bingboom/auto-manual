@@ -1,4 +1,4 @@
-/* 产品库 (step 13; tools/rtd_portal_assets/product_matrix.html). Tokens: site-shell.css; head: front.css. */
+/* 产品矩阵 (step 13; tools/rtd_portal_assets/product_matrix.html). Tokens: site-shell.css; head: front.css. */
 .pl-page {max-width:1240px}
 /* One white card (operator's reference layout, 2026-11-18): a tinted header zone with the category tabs (a dark pill
    for the current one, each with its count) and the filters, then the matrix. Without JavaScript the zone is empty

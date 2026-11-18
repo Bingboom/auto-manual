@@ -363,7 +363,7 @@ def cached_data_context(app):
 
 
 def cached_matrix_context(app):
-    """Build the 产品库 context once per build; the sidebar, the home card and the page share it.
+    """Build the 产品矩阵 context once per build; the sidebar, the home card and the page share it.
 
     Private (combined) role only: it reads the product-information snapshot from the knowledge directory
     (tools/rtd/product_library.py). Without a usable snapshot the page still builds and says so.
@@ -394,7 +394,7 @@ def product_freshness(app):
         try:
             snapshot = load_snapshot(workspace_content(app))
         except SnapshotError:
-            snapshot = None  # 产品库 already warned and says so on its page
+            snapshot = None  # 产品矩阵 already warned and says so on its page
         today = dt.datetime.now(dt.timezone.utc).date()
         configured = str(app.config.rtd_system_workspace_date or "")
         if configured:
@@ -428,7 +428,7 @@ def collect_workspace_pages(app):
     The deliverables page always renders
     (a missing input shows as 无数据); the system page drops out on an authoring
     error. The AI sharing package is an optional entry, so moving or withdrawing
-    it hides only its own links. The product-matrix page (产品库) always builds:
+    it hides only its own links. The product-matrix page (产品矩阵) always builds:
     without a usable snapshot it says so and shows no figures. The former data URL always
     forwards to the workbench statistics tab, even when its inputs are unreadable.
     """
@@ -512,7 +512,7 @@ def collect_workspace_pages(app):
 def product_profile_pages(app, settings: dict, products: list[dict]):
     """产品档案: one page per model of the product-information snapshot (private role only).
 
-    None is built without a usable snapshot or without its decided cells (schema v1.1); 产品库 then says so or links
+    None is built without a usable snapshot or without its decided cells (schema v1.1); 产品矩阵 then says so or links
     each code to the manual library instead, so no link points to a missing page. 功能, 搭配 and the guides come
     from the former matrix context (manifest, capability table, pairings), computed only here now; without a
     publish manifest those sections are simply absent.
@@ -527,13 +527,13 @@ def product_profile_pages(app, settings: dict, products: list[dict]):
     try:
         snapshot = load_snapshot(workspace_content(app))
     except SnapshotError:
-        return  # 产品库 already warned and says so on its page, without the 产品对比 / 参数表 tabs
+        return  # 产品矩阵 already warned and says so on its page, without the 产品对比 / 参数表 tabs
     if snapshot is None:
         return
     nav = site_nav(app)
     fresh = product_freshness(app)  # the same times and warning on every product page
     catalog = getattr(app, "_rtd_product_catalog", None)
-    # 产品库 shows the 产品对比 / 参数表 tabs whenever it has products, so both pages exist then; without cells they
+    # 产品矩阵 shows the 产品对比 / 参数表 tabs whenever it has products, so both pages exist then; without cells they
     # say 产品数据暂时读不到 and show no figures.
     yield product_tables.TABLE_PAGE, {**product_tables.table_view(snapshot, catalog), "site_nav": nav,
                                       "freshness": fresh}, product_tables.TABLE_TEMPLATE

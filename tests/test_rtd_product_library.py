@@ -1,4 +1,4 @@
-"""产品库 (tools/rtd/product_library.py, product_matrix.html): the matrix read from the product-information snapshot.
+"""产品矩阵 (tools/rtd/product_library.py, product_matrix.html): the matrix read from the product-information snapshot.
 
 Every product, model and project here is invented (P-FAKE-*, FAKE-*): project numbers and product values are private
 and never belong in this repository.
@@ -183,7 +183,7 @@ class TemplateTests(unittest.TestCase):
         view = pl.library_view(snapshot(row("FAKE-200B"), row("FAKE-100A", "EU"), row("FAKE-300A", project=None)),
                                CATALOG)
         page = render(view)
-        self.assertEqual(page.select_one(".fr-head h1").get_text(), "产品库")
+        self.assertEqual(page.select_one(".fr-head h1").get_text(), "产品矩阵")
         self.assertEqual(page.select_one(".fr-head p").get_text(), "3 款产品 · 更新于 2026-01-02")
         chips = page.select(".pl-chip")
         self.assertEqual([chip.get_text() for chip in chips], ["FAKE-100A(FAKE-200B)", "FAKE-300A"])
@@ -217,7 +217,7 @@ class TemplateTests(unittest.TestCase):
                                              "last_success": "s"}})
         head = page.select_one(".pl-head")
         self.assertEqual([child.name for child in head.find_all(recursive=False)], ["header", "nav"])
-        self.assertEqual(head.select_one(".pt-tabs a.is-on").get_text(), "产品库")
+        self.assertEqual(head.select_one(".pt-tabs a.is-on").get_text(), "产品矩阵")
         card = page.select_one(".pl-card")
         self.assertEqual([(a.contents[0], a.select_one(".pl-count").get_text()) for a in card.select(".pl-tab")],
                          [("便携储能", "2"), ("配件", "1")])

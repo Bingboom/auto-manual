@@ -422,7 +422,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertNotIn('sd-code', workbench)
         self.assertNotIn("Jackery", data_page)
         self.assertTrue((self.root / "after" / "_static" / "system-data.js").is_file())
-        # Without the product-information snapshot 产品库 still builds and says so plainly, with no figures.
+        # Without the product-information snapshot 产品矩阵 still builds and says so plainly, with no figures.
         library = BeautifulSoup((self.root / "after" / "products" / "matrix.html").read_text(), "html.parser")
         self.assertEqual(library.select_one("#matrix").get_text(), "还没有产品数据。")
         self.assertIsNone(library.select_one(".pl-chip, .fr-head p"))
@@ -475,7 +475,7 @@ class RtdPortalTests(unittest.TestCase):
         share = self.root / "knowledge" / "ai-share"
         share.mkdir(parents=True)
         (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
-        # 产品库 reads the product-information snapshot from the knowledge directory (invented products only).
+        # 产品矩阵 reads the product-information snapshot from the knowledge directory (invented products only).
         (self.root / "knowledge" / "product-matrix").mkdir(parents=True)
         (self.root / "knowledge" / "product-matrix" / "snapshot.json").write_text(json.dumps({
             "schema": "hello-docs-product-matrix-snapshot/v1.1", "read_at": "2026-01-02T00:00:00Z", "cells": [],
@@ -553,11 +553,11 @@ class RtdPortalTests(unittest.TestCase):
 
         library = BeautifulSoup((out / "products/matrix.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual([chip.get_text() for chip in library.select(".pl-chip")], ["FAKE-A(FAKE-B)"])
-        # Each code opens its 产品档案, which leads back to 产品库 and to the project there.
+        # Each code opens its 产品档案, which leads back to 产品矩阵 and to the project there.
         self.assertEqual([a["href"] for a in library.select(".pl-chip a")],
                          ["item/FAKE-A.html", "item/FAKE-B.html"])
         self.assertEqual([(a.get_text(), a["href"]) for a in library.select(".pt-tabs a")],
-                         [("产品库", "#"), ("产品对比", "compare.html"), ("参数表", "table.html")])
+                         [("产品矩阵", "#"), ("产品对比", "compare.html"), ("参数表", "table.html")])
         profile = BeautifulSoup((out / "products/item/FAKE-A.html").read_text(encoding="utf-8"), "html.parser")
         self.assertEqual(profile.select_one(".pf-compare")["href"], "../compare.html?p=FAKE-A")
         self.assertEqual(profile.select_one(".pf-back")["href"], "../matrix.html")
