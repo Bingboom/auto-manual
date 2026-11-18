@@ -1,0 +1,54 @@
+/* 产品演进时间轴 (products/timeline.html). Tokens: site-shell.css; shared card & tabs: product-tables.css. */
+.tl-page {max-width:1360px}
+.tl-app {display:flex;flex-direction:column}
+.tl-app[hidden] {display:none}
+.tl-toolbar {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;
+  padding:14px 20px;background:#fafbfd;border-bottom:1px solid var(--app-line)}
+.tl-axis-row, .tl-options {display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.tl-seg-wrap, .tl-cats {display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.tl-ctl-label {font-size:12.5px;font-weight:500;color:var(--app-muted);margin-right:2px}
+.tl-seg {display:inline-flex;gap:2px;padding:2px;border:1px solid var(--app-line);border-radius:8px;background:#edf0f5}
+.tl-seg button {min-height:28px;padding:0 11px;border:0;border-radius:6px;background:transparent;font:inherit;
+  font-size:12.5px;color:var(--app-text2,var(--app-muted));cursor:pointer;white-space:nowrap}
+.tl-seg button:hover {color:var(--app-ink)}
+.tl-seg button[aria-pressed="true"] {background:var(--surface);color:var(--app-ink);font-weight:600;
+  box-shadow:0 1px 2px rgba(15,23,42,.08)}
+.tl-cats button {min-height:28px;padding:0 11px;border:1px solid var(--app-line);border-radius:999px;
+  background:var(--surface);font:inherit;font-size:12.5px;color:var(--app-ink);cursor:pointer;white-space:nowrap}
+.tl-cats button:hover {border-color:var(--app-faint)}
+.tl-cats button[aria-pressed="true"] {background:var(--app-ink);border-color:var(--app-ink);color:#fff;font-weight:600}
+.tl-options label {display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--app-muted)}
+.tl-options select {min-height:30px;padding:0 9px;border:1px solid var(--app-line);border-radius:8px;
+  background:var(--surface);font:inherit;font-size:12.5px;color:var(--app-ink)}
+.tl-canvas-scroll {overflow-x:auto;background:#f7f8fc}
+.tl-mount {min-width:880px}
+.tl-svg {display:block;font-family:inherit}
+.tl-dot {cursor:pointer;transition:transform .14s ease,opacity .14s ease;transform-box:fill-box;transform-origin:center}
+.tl-dot:hover, .tl-dot.is-active {transform:scale(1.36)}
+.tl-label {cursor:pointer;user-select:none;transition:opacity .14s ease}
+.tl-dim {opacity:.18 !important}
+.tl-empty-state {margin:0;padding:44px 20px;text-align:center;font-size:13.5px;color:var(--app-muted)}
+.tl-foot {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;
+  padding:10px 20px;background:var(--surface);border-top:1px solid var(--app-line);font-size:12px;color:var(--app-muted)}
+.tl-legend {display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
+.tl-legend > span {display:inline-flex;align-items:center;gap:6px}
+.tl-dot-key {width:9px;height:9px;border-radius:999px;display:inline-block;box-sizing:border-box}
+.tl-dot-key.is-solid {background:#4355d6}
+.tl-dot-key.is-hollow {background:#fff;border:2px solid #4355d6}
+.tl-today-key {width:12px;border-top:2px dashed #ad8330;display:inline-block}
+.tl-cross-hint {color:var(--app-ink);font-weight:500}
+.tl-cross-hint[hidden] {display:none}
+.tl-inspector {padding:12px 20px;background:#fcfdff;border-top:1px solid var(--app-line);font-size:12.5px}
+.tl-inspector-hint {margin:0;color:var(--app-muted)}
+.tl-inspector-hint[hidden], .tl-inspector-body[hidden] {display:none}
+.tl-inspector-body {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}
+.tl-ins-main, .tl-ins-markets, .tl-ins-links {display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.tl-ins-name {font-size:14px;font-weight:700;color:var(--app-ink)}
+.tl-ins-code {padding:2px 7px;border-radius:6px;background:#eef2ff;color:#3749c9;font-size:12px;font-weight:600}
+.tl-ins-meta {color:var(--app-muted)}
+.tl-ins-pin {padding:1px 7px;border-radius:6px;border:1px solid #f0d9a8;background:#fbf0da;color:#5c3a00;font-size:11.5px;font-weight:600}
+.tl-mkt-pill {display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:6px;background:#f1f4f9;
+  color:var(--app-ink);font-weight:500;font-size:12px}
+.tl-mkt-pill em {font-style:normal;font-weight:400;color:var(--app-muted);font-variant-numeric:tabular-nums}
+.tl-ins-links a {color:var(--brand);font-weight:600;text-decoration:none;white-space:nowrap}
+.tl-ins-links a:hover {text-decoration:underline}

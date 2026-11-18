@@ -4,7 +4,7 @@
     产品矩阵) the tab is marked aria-current="true", not "page". -#}
 {%- macro product_tabs(active, child=False) -%}
 <nav class="pt-tabs" aria-label="产品信息">
-  {%- for page, label in (('products/matrix', '产品矩阵'), ('products/compare', '产品对比'), ('products/table', '参数表')) %}
+  {%- for page, label in (('products/matrix', '产品矩阵'), ('products/timeline', '演进时间轴'), ('products/compare', '产品对比'), ('products/table', '参数表')) %}
   <a href="{{ pathto(page) }}"{% if page == active %} class="is-on" aria-current="{{ 'true' if child else 'page' }}"{% endif %}>{{ label }}</a>
   {%- endfor %}
 </nav>
