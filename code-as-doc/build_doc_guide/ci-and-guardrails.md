@@ -46,6 +46,7 @@ GitHub validation note:
 - When a new config is added, add its fixture rows through the normal fixture-refresh workflow before lowering the skip ratchet. A config-derived `SKIP` is not counted as coverage.
 - Refresh one target's committed fixture rows with `python -m tools.data.snapshot fixture-refresh --document-key <MODEL_REGION> --source-root data/phase2 --fixture-root tests/fixtures/phase2`; the default is a dry-run, and `--write` applies only that target's rows, copies referenced attachments, and recomputes manifest hashes. Do not replace the entire fixture tree from a live mirror.
 - that workflow now runs `python -m ruff check build.py integrations tools tests scripts` as the minimal static gate before the heavier unit/build jobs
+- the unit suite runs as the `unit-shard` matrix (`python -m tests.run_fast --shard K/N`, each test module in its own process, shards balanced by `tests/unit_timings.json`); the required `unit` check only aggregates it and fails when any shard failed, was cancelled or was skipped. A failed shard's log ends with the failing modules' full output. Runner, local reproduction and manifest refresh: [tests guide](../tests/README.md)
 - that workflow now also runs `npm ci && npm test` in [`../integrations/openclaw/auto-manual-control-layer/`](../../integrations/openclaw/auto-manual-control-layer) so the OpenClaw command bridge stays covered in CI
 - that same workflow now also runs stable smoke paths for `build.py diff-report` and `build.py release-manifest`
 - that same workflow now also runs `python -m tools.check_maintainability_guardrails` so the current hotspot wrappers and validators do not quietly grow back into giant files
@@ -68,7 +69,7 @@ GitHub validation note:
 - `build.py check` scans template and prepared bundle RST files for duplicated list text across normal RST and raw HTML branches; maintainers should treat the RST list as the source wording and keep renderer-specific copies aligned whenever manual prose changes
 - `build.py check` preflights every prepared FCC page through the document and web renderer profiles with the resolved target language. FCC language coverage is derived from manifest entries in tests, so a new FCC locale must add its governed right-column marker and keep the required opening line-block structure before it can pass validation.
 - pull requests run the required merge-gating checks
-- pushes to `main` run the same workflow again after merge
+- pushes to `main` run the same workflow again after merge; each `main` commit gets its own concurrency group and is never cancelled, so every merged commit is fully validated (pull-request runs are still cancelled by a newer push to the same PR)
 - feature branches no longer run a duplicate `push` validation pass in GitHub
 
 Git branch safety note:

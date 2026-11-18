@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+import unittest.mock
 
 from tools.build_queue import listen_build_queue
 from tools.build_queue import listen_build_queue_lark

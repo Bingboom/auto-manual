@@ -72,12 +72,19 @@ Workspace Data Verify——工作流令牌做的合入不会触发 push 工作�
 自动合入不等于线上已更新，仍以 Workspace Data Verify 的结果为准。
 内容 PR 合入或关闭后留下的分支不再复用：下一次刷新从 main 重开该分支，用 `--force-with-lease`
 只替换刚读到的那个提交，以免已 squash 合入的旧提交让新 PR 与 main 冲突（Hello-Docs #242）。
+提交失败时，`workspace_refresh_publish` 仍不输出 git/gh 的原始错误（其中可能有带令牌的地址或记录值），
+只打印并在 `result.json` 记下固定词表里的步骤（`submission_stage`：`read-report`、`clone`、
+`sparse-checkout`、`configure`、`branch-lookup`、`branch-fetch`、`branch-scope-check`、`open-pr-lookup`、
+`branch-switch`、`compare-snapshot`、`commit`、`push`、`head-read`、`pr-create`、`auto-merge`、`verify-dispatch`）、
+异常类名（`error_type`），git/gh 失败另记程序、退出码和由错误文本归类的固定原因码（`error_reason`：
+`workflow-permission`、`auth-failed`、`permission-denied`、`branch-rule`、`rejected-push`、`not-found`、
+`rate-limited`、`network`，其余为 `unclassified`）。新开的失败 issue 同样写入这一行。
 
 | 卡住的阶段 | 操作者补做 |
 | --- | --- |
 | 源表交付写回／读回失败 | 按原生产日志修复对应记录；确认链接可读后运行 Workspace Data Refresh |
 | 导出、分页或校验失败 | 查看 workspace-refresh artifact；确认源表或权限后重新运行 Workspace Data Refresh |
-| 内容 PR 提交失败 | 重跑补刷任务；幂等比较避免重复提交，不重跑生产 |
+| 内容 PR 提交失败 | 按日志里的 `stage …` 与原因码处理（如 `auth-failed`／`permission-denied` 查令牌与仓库设置）；再重跑补刷任务，幂等比较避免重复提交，不重跑生产 |
 | 内容 PR 待审核 | 打开日志中的 PR，按现有审核流程处理 |
 | 网页进度自动合入被拒（`auto-merge`） | PR 仍开着：查明原因后人工合入，或重跑 Workspace Data Refresh |
 | 已自动合入但未启动核验（`verify-dispatch`） | 在 Hello-Docs 手动运行 Workspace Data Verify |

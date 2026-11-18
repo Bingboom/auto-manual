@@ -244,5 +244,50 @@ class FetchSessionCleanupTests(unittest.TestCase):
                 self.assertIs(original_sleep, receipt.sleep)
 
 
+class FetchSessionFailureReplayTests(unittest.TestCase):
+    """A deterministic failure is asked once per run; glitches and rate limits are not cached."""
+
+    def _session_over(self, error):
+        calls = []
+
+        def fake(url):
+            calls.append(url)
+            raise error
+
+        return calls, patch.object(receipt, "_fetch", side_effect=fake)
+
+    def test_redirect_and_permanent_http_errors_are_replayed(self) -> None:
+        for error in (receipt.CrossOriginRedirect("https://other.org/accounts/login/"),
+                      _http_error(404), _http_error(403)):
+            calls, patched = self._session_over(error)
+            session = receipt.FetchSession(min_interval=0)
+            with self.subTest(error=repr(error)), patched:
+                for _ in range(3):
+                    with self.assertRaises(type(error)):
+                        session.fetch(URL)
+                self.assertEqual(1, len(calls))
+                self.assertEqual(2, session.stats()["failure_replays"])
+
+    def test_transient_errors_are_asked_again(self) -> None:
+        for error in (_http_error(502), ConnectionResetError("reset")):
+            calls, patched = self._session_over(error)
+            session = receipt.FetchSession(min_interval=0)
+            with self.subTest(error=repr(error)), patched:
+                for _ in range(2):
+                    with self.assertRaises(type(error)):
+                        session.fetch(URL)
+                self.assertEqual(2, len(calls))
+                self.assertEqual(0, session.failure_replays)
+
+    def test_cache_off_disables_replay_too(self) -> None:
+        calls, patched = self._session_over(_http_error(404))
+        session = receipt.FetchSession(min_interval=0, cache=False)
+        with patched:
+            for _ in range(2):
+                with self.assertRaises(HTTPError):
+                    session.fetch(URL)
+        self.assertEqual(2, len(calls))
+
+
 if __name__ == "__main__":
     unittest.main()

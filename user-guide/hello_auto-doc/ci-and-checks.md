@@ -6,7 +6,7 @@ Add new notes for this topic here, not to the hub.
 GitHub note:
 
 - pull requests are gated by the `Manual Validation` workflow
-- after merge, `main` runs the same validation workflow again
+- after merge, `main` runs the same validation workflow again; that run is never cancelled by a later merge, so every commit on `main` gets a complete result
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
 - `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
 - the shared GitHub-hosted Feishu worker setup now installs `pandoc` from the official release action instead of `apt-get`, and it reuses pip/npm download caches, so remote queue runs are less likely to spend 10+ minutes waiting on slow dependency downloads before the actual build starts
@@ -62,7 +62,7 @@ their `docs/_review/**` editing surface. Code or workflow changes still need an
 auto-manual PR. A missing/malformed data file or publish inventory hash mismatch
 fails the content check; fix the candidate instead of disabling the check.
 
-The private Review RTD site continues its existing Git-based build. Queue dispatch, Workspace refresh, Phase2/TM-B backups, Web Publish and
+The private Review RTD site continues its existing Git-based build. Queue dispatch, Workspace refresh, Phase2/TM-B backups, credential health checks (`cred-health-check.yml`, business-plane `Hello-Docs` only), Web Publish and
 RTD receipts retain their existing execution paths. A green content check is
 not a deployment receipt or visual acceptance. No repository visibility change
 or executor migration is included. Audit and rollback details are in the

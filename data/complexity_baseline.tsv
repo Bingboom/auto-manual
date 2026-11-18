@@ -25,7 +25,7 @@ tools/backport/reports.py	_verify_delta	30
 tools/backport/reports.py	build_review_run_report	28
 tools/backport/reports.py	build_source_table_suggestions_report	30
 tools/bitable_content_backup.py	_sync_select_options	22
-tools/bitable_content_backup.py	main	30
+tools/bitable_content_backup.py	main	25
 tools/bitable_content_backup.py	restore_content	23
 tools/bitable_schema.py	_cmd_promote	22
 tools/bitable_schema.py	apply	31

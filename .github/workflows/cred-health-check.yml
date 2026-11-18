@@ -15,7 +15,11 @@ permissions:
 
 jobs:
   check:
-    if: ${{ github.repository != 'Bingboom/Hello-Docs' || vars.FEISHU_BUILD_QUEUE_PAUSED != 'true' }}
+    # BUSINESS PLANE ONLY: the phase2 + Translation_Memory bases probed here
+    # live on the business plane (two_plane_map §1), whose credentials are
+    # Hello-Docs' secrets; auto-manual's engineering-plane app cannot read them
+    # (#802), same split as phase2-content-backup.
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' && vars.FEISHU_BUILD_QUEUE_PAUSED != 'true' }}
     runs-on: ubuntu-latest
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}

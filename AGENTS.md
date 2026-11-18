@@ -50,10 +50,10 @@ Document boundary (the positioning doc above is required; open the others only w
 ## 4. Validation
 
 - Logic changes: `python3 -m unittest`
-- Build or quality-gate changes: `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US`
-- JP review or publish changes: `python3 build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP`
-- Diff-report changes: `python3 build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US`
-- Release traceability changes: `python3 build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP`
+- Build or quality-gate changes: `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
+- JP review or publish changes: `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
+- Diff-report changes: `python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
+- Release traceability changes: `python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
 
 ## 5. Documentation
 
@@ -171,10 +171,10 @@ The PR cannot be opened until the validation set that matches the change passes 
 | `tools/` boundary, `build.py`, `tools/build/docs.py`, `tools/build_queue/process_build_queue.py` | `python -m tools.check_maintainability_guardrails` |
 | a frozen source package under `manual_sources/` or `data/manual_sources/`, or a shared file one pins | `python -m tools.check_maintainability_guardrails`; register a new package or record drift with `python -m tools.web.frozen_package_registry` |
 | any `code-as-doc/**` or `user-guide/**` docs | `python -m tools.check_doc_link_integrity` |
-| build / quality-gate behaviour | `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US` |
-| JP review or publish behaviour | `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP` |
-| diff-report behaviour | `python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US` |
-| release traceability | `python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP` |
+| build / quality-gate behaviour | `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging` |
+| JP review or publish behaviour | `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging` |
+| diff-report behaviour | `python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging` |
+| release traceability | `python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging` |
 
 If any check fails, do not open the PR. Report which check failed and the last command output to the operator.
 

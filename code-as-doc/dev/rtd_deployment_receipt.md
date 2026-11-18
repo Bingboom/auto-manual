@@ -93,6 +93,12 @@ shares one across calls:
   (64 MiB); larger bodies are fetched but not retained.
 - **One memoized source fingerprint** per frozen tree, instead of re-hashing a
   ~0.5 GiB publish tree per target.
+- **One answer per deterministic failure.** A cross-origin redirect or a
+  permanent HTTP error (anything but a rate limit or a `TRANSIENT_STATUS`) is
+  replayed for the rest of the run instead of re-requested; `stats()` counts
+  them as `failure_replays`. Transport glitches and rate limits are never
+  cached. Without this, a receipt that redirects to a sign-in page was asked
+  once per target and the repeats alone tripped the host's rate limit.
 
 HTTP 429 and 503 (`RATE_LIMIT_STATUS`) raise `DeploymentThrottled` on the first
 attempt — never an immediate in-place retry, which is what turns one rate limit
@@ -112,6 +118,38 @@ must not swallow it as a pass. `tools/verify_web_deployment_targets.py` reports
 it as `throttled` and exits 75 (sysexits `EX_TEMPFAIL`), reserving exit 1 for
 real mismatches; a mismatch anywhere in the catalog outranks throttling in the
 overall verdict.
+
+### Unverifiable is a fourth verdict
+
+The scheduled catalog check (`verify_web_deployment_targets.py`) classifies
+every non-passing target into exactly one of three states, with a category:
+
+| Status | Meaning | Categories |
+| --- | --- | --- |
+| `failed` (shown as MISMATCH) | evidence that the deployment is wrong | `content-differs`, `stale-deployment`, `wrong-site`, `missing-from-deployment`, `not-found`, `redirect` (off-site, not sign-in), `unexpected-response`, `http-<code>`, `other` |
+| `unverifiable` | the page could not be read; nothing was learned | `login-required` (redirect to a `/login` path), `access-denied` (401/403), `transport` (5xx after retries, connection or time-budget errors) |
+| `throttled` | rate-limited before a verdict | `rate-limited` |
+
+Unverifiable and throttled targets are *undecided*. The run status is `failed`
+when any target mismatches (exit 1), otherwise `unverifiable` or `throttled`
+when any target is undecided (exit 75), otherwise `verified` (exit 0). The text
+output starts with one headline and the tally
+(`verified / mismatched / unverifiable / throttled`), then lists mismatches,
+then undecided targets, then passes. A cross-origin redirect is reported with
+its destination (scheme, host and path; the query is dropped). The JSON report
+carries `counts`, `mismatch_categories` and `undecided_categories`;
+`targets_failed` (mismatched) and `targets_throttled` (all undecided targets)
+keep their earlier meaning for readers that derive "verified" from them.
+
+The production site has answered anonymous readers with a sign-in redirect since
+2026-10-19 (see [Workspace data refresh](workspace_data_refresh.md)), so an
+anonymous catalog run is `unverifiable / login-required` for every target: it
+proves nothing about the pages, and re-running does not change that.
+
+The four-way split is opt-in (`separate_unverifiable=True`):
+`verify_targets_against_source` and `verify_targets_live_slug` keep their
+earlier ok / failed / throttled statuses for shared callers such as the
+receipt-link lane, which gates a write on them; they only add `category`.
 
 Frozen source includes self-contained release packages and the assembled Web tree. Its separate storage budget accommodates both copies without changing the served-output or network verification budget. The 96-target catalog after the approved JBP-3600A EU additions occupies 686,644,486 bytes (654.8 MiB) across 6,740 files; original assets stay byte-identical. This exceeded the previous 640 MiB source cap, so that release raised the bounded source allowance to 768 MiB; current budgets are listed below. The RTD portal callbacks must run in the aggregate preflight: plain Sphinx without `tools.rtd.portal` does not exercise this source inventory or receipt emission.
 

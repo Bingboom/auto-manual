@@ -21,6 +21,7 @@ signal to open or update a tracking issue.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import shutil
@@ -30,6 +31,8 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Sequence
+
+from tools.utils.redaction import redact_identifiers
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -83,21 +86,101 @@ def probe_feishu(config: str) -> ProbeResult:
 
 
 def _failure_detail(stderr: str, stdout: str, code: int) -> str:
-    """A diagnosable one-liner from a failed command's output.
+    """A diagnosable, publishable one-liner from a failed command's output.
 
-    The old ``last line`` heuristic returned literally ``}`` whenever the error
-    was a multi-line JSON dump, which made every distinct failure look
-    identical. Prefer the last line that carries an error-ish signal; fall back
-    to the last few non-empty lines joined together.
+    The detail is printed to the job summary of a public repository, so it is
+    built from an allowlist: for lark-cli's JSON error dump only the numeric
+    ``code``, a bounded and scrubbed ``message`` and the logical table name
+    that sync-data prefixes (``[table: …]``); nothing else from the payload
+    (log ids, request ids, troubleshooting URLs) is passed through. Other
+    output falls back to the last error-ish line, scrubbed the same way. The
+    old ``last line`` heuristic returned literally ``}`` for a multi-line JSON
+    dump, and a plain keyword scan returned ``"error": {`` whenever the
+    message itself had no keyword.
     """
+    text = "\n".join(part for part in (stderr, stdout) if part)
+    table = _table_label(text)
+    suffix = f" table={table}" if table else ""
+    lark_error = _lark_error(text)
+    if lark_error is not None:
+        error_code, message = lark_error
+        return f"code={error_code} message={_sanitize(message, _MESSAGE_CAP)}{suffix}"
     lines = [line.strip() for line in (stderr or stdout).splitlines() if line.strip()]
     if not lines:
         return f"exit={code}"
     error_re = re.compile(r"error|failed|denied|permission|exception|traceback|missing", re.IGNORECASE)
     for line in reversed(lines):
         if error_re.search(line) and len(line) > 3:
-            return line[:300]
-    return " | ".join(lines[-3:])[:300]
+            return _sanitize(line, _DETAIL_CAP)
+    return _sanitize(" | ".join(lines[-3:]), _DETAIL_CAP)
+
+
+_DETAIL_CAP = 300
+_MESSAGE_CAP = 160
+_MAX_JSON_STARTS = 200
+_TABLE_LABEL_RE = re.compile(r"\[table: ([A-Za-z0-9_. -]{1,80})\]")
+_CODE_RE = re.compile(r'"code"\s*:\s*"?(-?\d{1,10})"?')
+_MESSAGE_RE = re.compile(r'"(?:message|msg)"\s*:\s*"((?:[^"\\\n]|\\.){0,400})')
+
+
+def _sanitize(text: str, cap: int) -> str:
+    """Single line, no control characters, ids scrubbed, length bounded."""
+    flat = " ".join("".join(ch if ch.isprintable() else " " for ch in text).split())
+    flat = redact_identifiers(flat)
+    return flat if len(flat) <= cap else flat[: cap - 1].rstrip() + "\u2026"
+
+
+def _table_label(text: str) -> str:
+    match = _TABLE_LABEL_RE.search(text)
+    return match.group(1).strip() if match else ""
+
+
+def _as_code(value: object) -> int | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, str) and re.fullmatch(r"-?\d{1,10}", value.strip()):
+        return int(value.strip())
+    return None
+
+
+def _error_from_payload(payload: object) -> tuple[int, str] | None:
+    if not isinstance(payload, dict):
+        return None
+    nested = payload.get("error")
+    for candidate in (nested, payload):
+        if not isinstance(candidate, dict):
+            continue
+        error_code = _as_code(candidate.get("code"))
+        if error_code is not None and error_code != 0:
+            message = candidate.get("message", candidate.get("msg", ""))
+            return error_code, message if isinstance(message, str) else ""
+    return None
+
+
+def _lark_error(text: str) -> tuple[int, str] | None:
+    """``(code, message)`` from the first JSON error object in ``text``, if any."""
+    decoder = json.JSONDecoder()
+    start = text.find("{")
+    for _ in range(_MAX_JSON_STARTS):
+        if start < 0:
+            break
+        try:
+            payload, _end = decoder.raw_decode(text, start)
+        except ValueError:
+            payload = None
+        found = _error_from_payload(payload)
+        if found is not None:
+            return found
+        start = text.find("{", start + 1)
+    # Truncated dump: still report the code when it is unambiguous.
+    code_match = _CODE_RE.search(text)
+    error_code = int(code_match.group(1)) if code_match else 0
+    if error_code == 0:
+        return None
+    message_match = _MESSAGE_RE.search(text)
+    return error_code, message_match.group(1) if message_match else ""
 
 
 def probe_github() -> ProbeResult:
@@ -112,7 +195,8 @@ def probe_github() -> ProbeResult:
         return ProbeResult("GitHub", "failed", "gh auth status timed out")
     if code == 0:
         return ProbeResult("GitHub", "ok", "gh auth status: logged in")
-    return ProbeResult("GitHub", "failed", f"gh auth status failed: {stderr.splitlines()[-1] if stderr else code}")
+    last_line = stderr.splitlines()[-1] if stderr else str(code)
+    return ProbeResult("GitHub", "failed", f"gh auth status failed: {_sanitize(last_line, _DETAIL_CAP)}")
 
 
 def render_table(results: Sequence[ProbeResult]) -> str:

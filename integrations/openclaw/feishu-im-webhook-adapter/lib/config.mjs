@@ -78,6 +78,19 @@ export function missingAdapterConfig(config) {
   return ["appId", "appSecret"].filter((field) => !config[field]);
 }
 
+export const VERIFICATION_TOKEN_ENV_KEYS = Object.freeze(["FEISHU_IM_VERIFICATION_TOKEN", "FEISHU_VERIFICATION_TOKEN"]);
+
+// The public webhook (server.mjs) must authenticate every callback, so it also
+// requires the Feishu verification token. The local long-connection listener
+// receives events through an authenticated lark-cli session and does not use it.
+export function missingWebhookAdapterConfig(config) {
+  const missing = missingAdapterConfig(config);
+  if (!String(config?.verificationToken || "").trim()) {
+    missing.push(`verificationToken (set ${VERIFICATION_TOKEN_ENV_KEYS.join(" or ")})`);
+  }
+  return missing;
+}
+
 export function adapterRootPath() {
   return adapterRoot;
 }

@@ -75,6 +75,13 @@ jobs:
             exit 1
           fi
 
+      - name: Validate dispatch inputs
+        shell: bash
+        env:
+          RECORD_IDS: ${{ inputs.record_ids || '' }}
+        run: |
+          bash scripts/validate_dispatch_inputs.sh record-ids RECORD_IDS
+
       - name: Validate required secrets
         shell: bash
         run: |
@@ -84,6 +91,9 @@ jobs:
 
       - name: Verify deployment and register HTML_link
         shell: bash
+        env:
+          DEPLOY_TIMEOUT_SECONDS: ${{ inputs['deploy-timeout-seconds'] || '' }}
+          RECORD_IDS: ${{ inputs.record_ids || '' }}
         run: |
           cmd=(python -m tools.write_web_publish_receipt_links
             --config configs/config.us.yaml
@@ -91,11 +101,11 @@ jobs:
             --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
             --rps "${AUTO_MANUAL_RTD_VERIFY_RPS}"
             --report-json web_publish_receipt_report.json)
-          if [ -n "${{ inputs['deploy-timeout-seconds'] || '' }}" ]; then
-            cmd+=(--deploy-timeout-seconds "${{ inputs['deploy-timeout-seconds'] }}")
+          if [ -n "${DEPLOY_TIMEOUT_SECONDS}" ]; then
+            cmd+=(--deploy-timeout-seconds "${DEPLOY_TIMEOUT_SECONDS}")
           fi
-          if [ -n "${{ inputs.record_ids || '' }}" ]; then
-            IFS=',' read -ra record_ids <<< "${{ inputs.record_ids }}"
+          if [ -n "${RECORD_IDS}" ]; then
+            IFS=',' read -ra record_ids <<< "${RECORD_IDS}"
             for record_id in "${record_ids[@]}"; do
               trimmed="$(echo "${record_id}" | xargs)"
               if [ -n "${trimmed}" ]; then
