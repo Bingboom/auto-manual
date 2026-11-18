@@ -261,6 +261,7 @@ python -m tools.bitable_schema seed-import --base-token <scratch> \
 结构（4.7 的 schema 镜像）之外，**行内容**由夜间备份工件覆盖：workflow
 `phase2-content-backup.yml`（每日 00:30 UTC + 手动 dispatch）用
 `tools/bitable_content_backup.py export` 把业务 base（21 表）+ TM base（2 表）
++ 发布文档管理 base 里的产品信息矩阵（5 表，工件子目录 `product_matrix/`）
 全量导成 CSV（含公式/lookup 的**值**，留档用）+ `backup_manifest.json`
 （行数 + sha256），存 90 天 Actions artifact——即约 90 个每日恢复点。
 导出失败自动开 `phase2-content-backup` 标签的哨兵 Issue、下次成功自动关。
@@ -278,6 +279,21 @@ secret 在 base API 下无效 → 0 表。**bot 权限本身无问题**（同一
 在产出一份完整的 21 + 2 表工件前，**绿色 run 不能替代 manifest 完整性
 核对**。
 
+**产品信息矩阵（2026-11-18 纳入）**：记录含内部产品事实和项目号，只能留在私有仓库
+Hello-Docs。这一步除作业守卫外自带同样的 `github.repository == 'Bingboom/Hello-Docs'`
+守卫，用 Hello-Docs 已有密钥 `FEISHU_PUBLISHED_DOCS_BASE_TOKEN`（不在
+`validate_required_env` 必需项里：缺它只让矩阵这一步失败、开哨兵 Issue，不影响另两个
+base 的备份），带 `--withhold-error-detail`（导出中任何异常只打印一行失败和异常类型名，
+不打印异常文字、回溯或 CLI 输出）和 `--projected-read`（字段清单显式分页、记录按 50 列一批
+投影读取后合并；字段清单失败或不全、缺列、行单元格数多于列数、满页无 `has_more`、读取期间记录集
+变化、清单声明的字段缺失，都让导出失败，而不是写出看似完整的残缺备份；CLI 省略行尾空单元格造成的
+短行只在行尾补空，按表计入 `short_rows` 并在摘要里报数）。矩阵这一步被跳过
+（不在 Hello-Docs）时，另两步成功仍会关闭哨兵 Issue。矩阵的 restore / verify 只在操作者本机
+运行，输出含记录值，不贴进公开仓库。
+字段与恢复边界见 [产品信息矩阵 base §6.2](../code-as-doc/dev/product_matrix_base.md#62-时点备份)。
+工件只在 Hello-Docs 下载；不要把 `product_matrix/` 的任何内容贴进 auto-manual 的 PR、
+issue 或本页的核验记录（核验记录只写表数和行数）。
+
 **误删/误改恢复步骤**（scratch 验证后再考虑生产路径；恢复目标 token 永远
 显式传参，工具不读环境变量里的生产 token）：
 
@@ -292,6 +308,8 @@ python -m tools.bitable_content_backup restore \
 python -m tools.bitable_content_backup verify \
   --backup <解压目录>/business --base-token <scratch> --identity user
 # 5. 核对通过后，把需要的行从 scratch 手工/按表搬回生产表（或对生产空表重复 3）
+# 产品信息矩阵：同样的命令，目录换成 <解压目录>/product_matrix；矩阵表不回灌，
+# 四表恢复后用 python -m tools.product_matrix_base matrix 重新生成
 ```
 
 **内容恢复演练记录**：
@@ -306,6 +324,7 @@ python -m tools.bitable_content_backup verify \
 | --- | --- | --- | --- |
 | 2026-07-19 | [`29672759849`](https://github.com/Bingboom/auto-manual/actions/runs/29672759849) / `phase2-content-backup-29672759849` | **失败（run 假绿）**：已包含 CSV 的行数和 SHA-256 全通过；business 仅 18 表/850 行，缺 `01_数据入库`、`02_文档构建`、`能力→章节映射规则`；TM 为 0 表，缺 `Translation_Memory`、`Terms`。复核补充：该假绿 run 的 "Close tracking issue on recovery" 步骤实际执行了——假绿不仅不告警，还会关掉已开的哨兵 Issue | 退出码传播已修复（export 步骤显式 `shell: bash`）；根因已实证定位=**面错配**（auto-manual secrets 指旧工程面 base：18/21 表名签名完全吻合，`数据入库表`/`文档构建表` 旧名 + `能力→章节映射规则` 不存在；TM secret 对 base API 无效→0 表；bot 权限本身无问题），守卫已翻转为只在 Hello-Docs（业务面）跑；剩余：在 Hello-Docs dispatch/等夜间跑出**首份完整 21+2 工件**后关闭 K4。演练 Base `演练-K4内容恢复-20260717` 已于 2026-07-20 移入回收站，清空搜索缓存后精确搜索为 0 结果 |
 | 2026-07-20 | [`29715297977`](https://github.com/Bingboom/Hello-Docs/actions/runs/29715297977)（**Hello-Docs**，#684 守卫翻转后首次 dispatch） | **通过**：business **21/21 表 / 1,314 行**、TM **2/2 表 / 888 行**；两份 manifest 的 `missing_tables` 均为空；全部 CSV sha256 与 manifest 一致（下载工件逐一校验，非只看 run 颜色） | K4 关闭。此后为 Hello-Docs 每日 00:30 UTC 例行；月度抽一份工件重复本行的 manifest 校验（命令见上）即可 |
+| 待核验 | 产品信息矩阵纳入后的首个 Hello-Docs run | 待定：`product_matrix/backup_manifest.json` 应为 5/5 表、`missing_tables` 为空，CSV sha256 与 manifest 一致；矩阵表列数与 base 一致 | 核验后把本行改为日期与 run 号，只记表数和行数 |
 
 **底线**：季度演练把 4.7（结构）+ 4.7b（内容）连着跑；备份哨兵 Issue 开着
 或工件 manifest 缺表 = 恢复点在变旧，当天处理。

@@ -11,7 +11,13 @@ restorable from a dated export.
   records and write one CSV per table (ALL columns, computed ones included, for
   audit value) plus a ``backup_manifest.json`` (row counts + sha256 per CSV).
   Runs nightly via ``.github/workflows/phase2-content-backup.yml``; the dated
-  artifact is the restore point.
+  artifact is the restore point. Tables wider than one record list (50 fields)
+  are read in projected slices (``tools/bitable_backup/projection.py``).
+  ``--projected-read`` reads every table through that fail-closed reader and
+  fails when a field the manifest declares is missing; ``--withhold-error-detail``
+  turns any export exception into one line naming only its type, so no CLI
+  output reaches the log. Both are for the product matrix; the business / TM
+  exports use neither and keep their call sequence.
 - ``restore``: recreate rows from a backup into a target base whose table
   structure already exists (``bitable_schema apply`` first — see ops guide
   §4.7). Writes only simple writable fields (formula / lookup / link / attach
@@ -38,6 +44,14 @@ from pathlib import Path
 
 try:
     from tools import bitable_schema as bs
+    from tools.bitable_backup.projection import (
+        field_id_names,
+        field_types,
+        list_fields,
+        needs_projection,
+        read_projected_records,
+        read_wide_records,
+    )
     from tools.bitable_backup.sidecars import (
         TableExportData,
         apply_attachment_verification,
@@ -46,6 +60,14 @@ try:
     )
 except ImportError:  # pragma: no cover - direct execution fallback
     import bitable_schema as bs  # type: ignore[no-redef]
+    from bitable_backup.projection import (  # type: ignore[no-redef]
+        field_id_names,
+        field_types,
+        list_fields,
+        needs_projection,
+        read_projected_records,
+        read_wide_records,
+    )
     from bitable_backup.sidecars import (  # type: ignore[no-redef]
         TableExportData,
         apply_attachment_verification,
@@ -65,13 +87,45 @@ def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, lark_cli: str) -> dict:
-    """Dump every manifest-listed table's rows to ``<out_dir>/<label>/*.csv``."""
+def _read_table(base_token: str, tid: str, lark_cli: str,
+                projected_read: bool) -> tuple[dict, list[dict], list[str], int | None]:
+    """``(field types, rows, record ids, short_rows)`` for one table.
+
+    ``short_rows`` (records padded with trailing empty cells) is None on the
+    historical path, which neither counts nor reports them.
+
+    Default: the historical path (``_field_types`` + ``_read_records``), with
+    projection only for a table wider than 50 fields — the business and TM
+    exports keep their exact call sequence. ``projected_read``: the field list
+    is read with an explicit page size and every table goes through the
+    fail-closed projected reader (``tools/bitable_backup/projection.py``).
+    """
+    if projected_read:
+        fields = list_fields(base_token, tid, lark_cli)
+        ftypes = field_types(fields)
+        rows, rids, short_rows = read_projected_records(base_token, tid, ftypes, field_id_names(fields), lark_cli)
+        return ftypes, rows, rids, short_rows
+    ftypes = bs._field_types(base_token, tid, lark_cli)
+    if needs_projection(ftypes):
+        return read_wide_records(base_token, tid, ftypes, lark_cli)
+    rows, rids = bs._read_records(base_token, tid, lark_cli)
+    return ftypes, rows, rids, None
+
+
+def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, lark_cli: str,
+                   projected_read: bool = False) -> dict:
+    """Dump every manifest-listed table's rows to ``<out_dir>/<label>/*.csv``.
+
+    With ``projected_read`` the report also lists, per table, the manifest's
+    declared fields that the export did not find (``missing_columns``).
+    """
     dest = out_dir / label
     dest.mkdir(parents=True, exist_ok=True)
     report: dict = {"label": label, "generated_at": _utc_now(),
                     "schema_version": manifest.get("schema_version"),
                     "tables": [], "missing_tables": []}
+    if projected_read:
+        report["missing_columns"] = {}
     exported_tables: list[TableExportData] = []
     for entry in manifest.get("tables", []):
         name = entry["name"]
@@ -79,9 +133,12 @@ def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, l
         if not tid:
             report["missing_tables"].append(name)
             continue
-        ftypes = bs._field_types(base_token, tid, lark_cli)
+        ftypes, rows, rids, short_rows = _read_table(base_token, tid, lark_cli, projected_read)
         cols = list(ftypes)
-        rows, rids = bs._read_records(base_token, tid, lark_cli)
+        if projected_read:
+            absent = [f["name"] for f in entry.get("fields", []) if f.get("name") not in ftypes]
+            if absent:
+                report["missing_columns"][name] = absent
         path = dest / _safe_filename(name)
         with path.open("w", encoding="utf-8", newline="") as fh:
             w = csv.writer(fh)
@@ -89,11 +146,14 @@ def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, l
             for row, rid in zip(rows, rids, strict=True):
                 w.writerow([rid, *[bs._serialize_cell(row.get(c), ftypes[c]) for c in cols]])
         exported_tables.append(TableExportData(table_name=name, table_id=tid, ftypes=ftypes, rows=rows, rids=rids))
-        report["tables"].append({
+        table_entry = {
             "name": name, "table_id": tid, "csv": path.name, "rows": len(rows),
             "columns": cols, "field_types": ftypes,
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-        })
+        }
+        if short_rows is not None:  # projected reads only; the historical path's entry stays unchanged
+            table_entry["short_rows"] = short_rows
+        report["tables"].append(table_entry)
     write_backup_sidecars(dest, label, report["generated_at"], exported_tables, report)
     (dest / BACKUP_MANIFEST).write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -248,6 +308,12 @@ def _parser() -> argparse.ArgumentParser:
     e.add_argument("--label", required=True, help="subdirectory label for this base (e.g. business / tm)")
     e.add_argument("--out", required=True, help="output directory (the dated artifact root)")
     e.add_argument("--lark-cli", default="lark-cli")
+    e.add_argument("--withhold-error-detail", action="store_true",
+                   help="on failure print only the error type, never the CLI's output (it can echo record values); "
+                        "use for bases holding confidential records such as the product matrix")
+    e.add_argument("--projected-read", action="store_true",
+                   help="read every table's fields with an explicit page size and its rows in fail-closed 50-field "
+                        "projections, and fail when a field the manifest declares is missing (product matrix)")
 
     r = sub.add_parser("restore", description="Recreate rows from a backup into an (empty-table) target base. Dry-run unless --write --yes.")
     r.add_argument("--backup", required=True, help="backup label dir containing backup_manifest.json")
@@ -270,25 +336,43 @@ def _parser() -> argparse.ArgumentParser:
     return p
 
 
+def _run_export(args: argparse.Namespace) -> int:
+    """``export``: dump the manifest's tables; print only table names and row counts."""
+    import os
+    token = os.environ.get(args.base_token_env, "")
+    if not token:
+        print(f"bitable-content-backup: ${args.base_token_env} is empty", file=sys.stderr)
+        return 2
+    manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
+    try:
+        report = export_content(manifest, token, args.label, Path(args.out), args.lark_cli,
+                                projected_read=args.projected_read)
+    except Exception as exc:  # noqa: BLE001 - CLI boundary: with the flag no exception text may reach the log
+        if not args.withhold_error_detail:
+            raise
+        print(f"EXPORT {args.label}: failed ({type(exc).__name__}; details withheld because the base holds "
+              "confidential records — re-run locally to see them)", file=sys.stderr)
+        return 1
+    total = sum(t["rows"] for t in report["tables"])
+    print(f"EXPORT {args.label}: {len(report['tables'])} table(s), {total} row(s) -> {args.out}/{args.label}")
+    for t in report["tables"]:
+        short = f" ({t['short_rows']} short row(s) padded with trailing empty cells)" if "short_rows" in t else ""
+        print(f"  {t['name']}: {t['rows']} rows{short}")
+    for name in report["missing_tables"]:
+        print(f"  ✗ MISSING on source base: {name}")
+    # field names come from the committed (public) schema manifest, never from records
+    missing_columns = report.get("missing_columns") or {}
+    for name, absent in missing_columns.items():
+        print(f"  ✗ MISSING {len(absent)} declared column(s) in {name}: {', '.join(absent[:5])}{' …' if len(absent) > 5 else ''}")
+    return 1 if (report["missing_tables"] or missing_columns) else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     bs._PROFILE = getattr(args, "profile", None)
     bs._IDENTITY = getattr(args, "identity", None) or "bot"
     if args.command == "export":
-        import os
-        token = os.environ.get(args.base_token_env, "")
-        if not token:
-            print(f"bitable-content-backup: ${args.base_token_env} is empty", file=sys.stderr)
-            return 2
-        manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
-        report = export_content(manifest, token, args.label, Path(args.out), args.lark_cli)
-        total = sum(t["rows"] for t in report["tables"])
-        print(f"EXPORT {args.label}: {len(report['tables'])} table(s), {total} row(s) -> {args.out}/{args.label}")
-        for t in report["tables"]:
-            print(f"  {t['name']}: {t['rows']} rows")
-        for name in report["missing_tables"]:
-            print(f"  ✗ MISSING on source base: {name}")
-        return 1 if report["missing_tables"] else 0
+        return _run_export(args)
     if args.command == "restore":
         write = bool(args.write and args.yes)
         if args.write and not args.yes:
