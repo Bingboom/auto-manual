@@ -85,40 +85,39 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
 - **产品知识** (`product_knowledge.html`): the title, one line, then the topics and
   cases. See [knowledge-pages.md](knowledge-pages.md).
 - **语料库** (`asset_language.html`, `language_view`): the title, one line
-  (已批准的术语和标准句，多语言对照 · 更新于 <date>), three figures (句对, 术语, 语言) and a
-  table per language (语言, 句子 with a bar, 术语). The table lists the languages with pairs or terms, and the
-  语言 figure is the number of rows it lists. Languages are named as the manual
+  (已批准的专业术语与标准句对，多语言对照 · 更新于 <date>), three independent stat cards (标准句对, 专业术语, 覆盖语种) and a
+  table per language (`各语种覆盖`: 语种, 标准句对 with a bar, 专业术语). The table lists the languages with pairs or terms, and the
+  覆盖语种 figure is the number of rows it lists. Languages are named as the manual
   library names them (`settings.json` `language_labels`); a corpus language whose
   translation-memory code differs carries the library's code as `manual` in
   `system_workspace.yaml` (`corpus_view` `counts`, `terms`).
   With a snapshot that carries `approved_by_language` in both blocks (schema
   `hello-docs-tm-corpus/v1.1`, see [system-workspace.md](system-workspace.md#language-assets-block)) the page shows
-  approved entries only (`corpus_view` `approved_only`): the 句对 and 术语 figures are the approved counts, the table
+  approved entries only (`corpus_view` `approved_only`): the 标准句对 and 专业术语 figures are the approved counts, the table
   shows each language's approved pairs and terms and lists only languages with at least one, and the
   其中 … 已批准 lines go; the 知识资产 card shows the same approved pair figure. A `v1` snapshot renders as before
   (all entries, with how many are approved). 系统建设's tiles keep the whole corpus.
   Beside the table (below it on a phone), **Agent 怎样用这份语料库** (`#agent-uses`; operator,
   2026-11-17: 「这种可以用」) lists the three uses the operator works with today: agents edit Feishu cloud docs and
-  Illustrator (`.ai`) files from the corpus, calling the repository's code themselves, with one example ask. The
+  Illustrator (`.ai`) design files from the corpus, calling the repository's tools for lookup, replacement and verification (`自动调用工具核验`), with one `指令示例：` prompt. The
   first draft followed the skill files (Word pre-translation, Markdown rewrite, write-back); the operator said those
   are no longer how the work is done. The skill entries now distinguish these on-request deliverables from direct editing ([REV-54](../manual_revitalization_execution.md#rev-54)).
   Change this wording with the operator, not from the skill files. The counts are pairs, never a
   percentage that could read as manual localization completion. Without a
-  readable snapshot the page says 暂时没有可显示的语料数字. The terminology rules, the
+  readable snapshot the page says 暂无语料统计数据。. The terminology rules, the
   Web-manual language list and the staleness note left the page.
-- **市场与政策** lost its count and review-date pills in the head; its line reads
+- **市场与政策** lost its count and review-date pills and its top-right `产品知识 →` link in the head; its line reads
   `<n> 条资料 · 更新于 <date>`. 产品知识's line reads `<n> 个知识点 · 更新于 <date>`, and its
   page-foot disclaimer is gone.
 
 ## 视觉媒体 (front)
 
-`asset_media.html` (`asset_media.front_view`) is for colleagues: the title, one line (说明书里共用的图标和插图 ·
-更新于 <build date>), a count per type, then the shared icons and illustrations as tiles, filtered by type and
-searched by meaning (`_static/media-front.js`, `tests/media_front_ui.test.mjs`). A tile opens a larger view with
+`asset_media.html` (`asset_media.front_view`) is for colleagues: the title, one line (跨机型复用的标准安规图标与无字化插图 ·
+更新于 <build date>), then one unified card holding the type filter chips (each carrying its count; `<noscript>` shows a one-line type summary without JavaScript) + search (`搜索图标名称或用途（如：警告、接地）`) above the shared icons and illustrations as tiles (`_static/media-front.js`, `tests/media_front_ui.test.mjs`), without a duplicate count box above the filter bar. A tile opens a larger view with
 its type and, for a symbol the published manuals show, 用于 <n> 本说明书. The tiles are the 图标与素材 gallery of
 the 设计规范 page (`design_assets.asset_gallery`) and its published copies under `workspace/design/assets/`;
 a caption is the gallery note up to its first colon. No keys, hashes, paths, statuses or numbered blocks. Without
-the design page the page says 暂时没有可显示的素材. The page's former section anchors (`#scale` … `#gaps`,
+the design page the page says 暂无可显示的视觉素材。. The page's former section anchors (`#scale` … `#gaps`,
 `#registry`, `#symbols`) forward to `workspace/design/index.html#assets-inventory`.
 
 ## The shared anatomy (maintenance pages)

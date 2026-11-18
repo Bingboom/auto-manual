@@ -1019,7 +1019,8 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('class="fr-langs"', language)
             # 语料库 is a front page (2026-11-17): counts of pairs per language, dated once, never a percentage that
             # could read as manual localization completion, and no refresh small print.
-            self.assertIn("组句子，其中", language)
+            self.assertIn("标准句对", language)
+            self.assertIn("组，其中", language)
             table = language.split('class="fr-langs"', 1)[1].split("</table>", 1)[0]
             self.assertNotIn("%</td>", table)
             self.assertNotIn("完成率", language)

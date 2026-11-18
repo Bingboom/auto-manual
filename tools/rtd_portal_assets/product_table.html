@@ -11,24 +11,29 @@
 <script defer src="{{ pathto('_static/product-table.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{% from "_product_tabs.html" import product_tabs, product_freshness with context %}
-{#- 参数表 (step 13; REV-53; tools/rtd/product_tables.py table_view). A front page: the title, then a table per
-    category. Rows are model × market; columns are the parameters that category's products state. Sorting,
-    filters, 按项目分组 and 下载表格 need the script; without it every table shows in full. -#}
+{% from "_product_tabs.html" import product_tabs, product_stale, product_sync with context %}
+{#- 参数表 (step 13; REV-53; tools/rtd/product_tables.py table_view). A front page: the title and one line, then a
+    unified card holding the category pills, 导出 CSV, filters and table. Rows are model × market; columns are the
+    parameters that category's products state. Stale warning sits above the card, sync times under it. Sorting,
+    filters, 按项目分组 and 导出 CSV need the script; without it every table shows in full. -#}
 <body class="app kb">
 {{ site_sidebar('product-table', site_nav) }}
 <div class="app-content">
 {{ site_topbar('知识库', '参数表') }}
 <main class="fr-page pt-page">
 <div class="pl-head">
-<header class="fr-head pt-head"><h1>参数表</h1><button type="button" class="pt-download" data-pt-download hidden>下载表格</button></header>
+<header class="fr-head"><h1>参数表</h1>{% if built %}<p>按产品类别汇总各市场机型的完整规格，支持排序与筛选导出</p>{% endif %}</header>
 {{ product_tabs('products/table') }}
 </div>
-{{ product_freshness(freshness) }}
+{{ product_stale(freshness) }}
 {%- if not built %}
 <p class="fr-empty">{{ problem|e }}</p>
 {%- else %}
-<nav class="pt-cats" aria-label="产品类别" data-pt-cats hidden>{% for category in categories %}<button type="button" data-pt-cat="{{ category.id|e }}">{{ category.title|e }}</button>{% endfor %}</nav>
+<div class="pt-card">
+<div class="pt-top-bar">
+  <nav class="pt-cats" aria-label="产品类别" data-pt-cats hidden>{% for category in categories %}<button type="button" data-pt-cat="{{ category.id|e }}">{{ category.title|e }}</button>{% endfor %}</nav>
+  <button type="button" class="pt-download" data-pt-download hidden>导出 CSV</button>
+</div>
 {%- for category in categories %}
 <section class="pt-panel" data-pt-panel="{{ category.id|e }}" aria-labelledby="{{ category.id|e }}-title">
   <h2 class="pt-panel-title" id="{{ category.id|e }}-title">{{ category.title|e }}</h2>
@@ -47,15 +52,17 @@
     <tbody>
     {%- for row in category.rows %}
       <tr data-project="{{ row.project|e }}" data-market="{{ row.market|e }}" data-series="{{ row.series|e }}">
-        <th scope="row"><a href="{{ pathto(row.page)|e }}">{{ row.name|e }}</a></th><td>{{ row.model|e }}</td><td>{{ row.market_label|e }}</td><td>{{ row.project|e if row.project else '未归入' }}</td>
+        <th scope="row"><a href="{{ pathto(row.page)|e }}">{{ row.name|e }}</a></th><td>{{ row.model|e }}</td><td>{{ row.market_label|e }}</td><td>{% if row.project %}{{ row.project|e }}{% else %}<span class="pt-none">—</span>{% endif %}</td>
         <td data-sort="{{ row.sku_date|replace('不晚于 ', '')|e }}">{% if row.sku_date %}{{ row.sku_date|e }}{% else %}<span class="pt-none">暂无</span>{% endif %}</td>
-        {%- for cell in row.cells %}<td{% if category.columns[loop.index0].numeric %} class="is-num"{% endif %} data-sort="{{ cell.sort|e }}">{% if cell.text %}<span class="pt-text" title="{{ cell.text|e }}">{{ cell.text|e }}</span>{% if cell.conflict %}<span class="pt-badge">各说明书写法不一致</span>{% endif %}{% else %}<span class="pt-none">暂无</span>{% endif %}</td>{% endfor %}
+        {%- for cell in row.cells %}<td{% if category.columns[loop.index0].numeric %} class="is-num"{% endif %} data-sort="{{ cell.sort|e }}">{% if cell.text %}<span class="pt-text" title="{{ cell.text|e }}">{{ cell.text|e }}</span>{% if cell.conflict %}<span class="pt-badge">多源写法差异</span>{% endif %}{% else %}<span class="pt-none">暂无</span>{% endif %}</td>{% endfor %}
       </tr>
     {%- endfor %}
     </tbody>
   </table></div>
 </section>
 {%- endfor %}
+</div>
 {%- endif %}
+{{ product_sync(freshness) }}
 </main>
 </div>{{ site_script() }}</body></html>

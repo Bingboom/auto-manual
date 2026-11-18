@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>市场与政策</title>
-<meta name="description" content="各地区的政策变化，对说明书和产品意味着什么：按主题看，点开一条再看原理、影响和出处。">
+<meta name="description" content="各目标市场的法规变化，对产品与说明书意味着什么：按主题浏览，展开查看背景与机制、产品与说明书影响及官方出处。">
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/market-policy.css', 1) }}">
 <script defer src="{{ pathto('_static/market-policy.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 {#- 市场与政策 (2026-11 layout): a card per theme with a chip per country, then the records grouped by theme, each a
-    <details> row (country, title, timeline, status) that opens to 政策变化 → 原理 → 对产品的影响. No filters: the
-    themes and chips lead to the rows, and every row reads without JavaScript. -#}
+    <details> row (country, title, timeline, status) that opens to 法规变化 → 背景与机制 → 产品与说明书影响. No filters:
+    the themes and chips lead to the rows, and every row reads without JavaScript. -#}
 {%- macro theme_icon(name, size=22) -%}
 <svg class="mp-icon" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
 {%- if name == 'language' -%}<path d="M4 5h9M8.5 3v2M6 5c.6 3 2.6 5.4 5 6.5M11 5c-.6 3-2.8 5.6-6 7"/><path d="M12.5 20l3.5-8 3.5 8M13.8 17h4.4"/>
@@ -28,9 +28,6 @@
 <main class="market">
 <header class="mp-head">
   <div class="mp-head-text"><h1>市场与政策</h1><p>{{ records|length }} 条资料{% if reviewed %} · 更新于 {{ reviewed|e }}{% endif %}</p></div>
-  <div class="mp-head-meta">
-    <a href="{{ pathto('products/knowledge') }}">产品知识 →</a>
-  </div>
 </header>
 {% if records %}
 <section class="mp-overview" aria-label="主题概览">
@@ -43,7 +40,7 @@
     </article>
   {%- endfor %}
   </div>
-  <p class="mp-legend">{% for status in statuses %}<span>{{ dot(status) }}{{ status_labels[status] }}</span>{% endfor %}<span>「已核实」指政策要点已查官方出处；对产品的影响都是分析判断</span></p>
+  <p class="mp-legend">{% for status in statuses %}<span>{{ dot(status) }}{{ status_labels[status] }}</span>{% endfor %}<span>「已核实」表示法规要点已核对官方出处；「产品与说明书影响」为内部研判</span></p>
 </section>
 
 <section id="policy-list" class="mp-list" aria-labelledby="mp-list-title">
@@ -56,9 +53,9 @@
       <summary class="mp-row"><span class="mp-country">{{ record.country|e }}</span><span class="mp-title">{{ record.title|e }}</span><span class="mp-when">{{ record.timeline|e }}</span><span class="mp-status is-{{ record.status|e }}">{{ dot(record.status) }}{{ status_labels[record.status] }}</span><svg class="mp-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
       <div class="mp-body">
         <ol class="mp-steps">
-          <li><h4><b>1</b>{{ '需求变化' if record.status == 'demand' else '政策变化' }}</h4><p>{{ record.change|e }}</p></li>
-          <li><h4><b>2</b>原理</h4><p>{{ record.mechanism|e }}</p></li>
-          <li class="is-impact"><h4><b>3</b>对产品的影响<small>分析判断</small></h4><p>{{ record.impact|e }}</p></li>
+          <li><h4><b>1</b>{{ '需求变化' if record.status == 'demand' else '法规变化' }}</h4><p>{{ record.change|e }}</p></li>
+          <li><h4><b>2</b>背景与机制</h4><p>{{ record.mechanism|e }}</p></li>
+          <li class="is-impact"><h4><b>3</b>产品与说明书影响<small>内部研判</small></h4><p>{{ record.impact|e }}</p></li>
         </ol>
         {%- if record.get('boundary') %}
         <p class="mp-boundary"><strong>适用边界</strong>{{ record.boundary|e }}</p>

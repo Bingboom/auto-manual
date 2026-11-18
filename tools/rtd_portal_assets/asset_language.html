@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>语料库</title><meta name="description" content="语料库：句对、术语和各语言的译文数量。">
+<title>语料库</title><meta name="description" content="语料库：已批准的专业术语与标准句对，以及各语种覆盖数量。">
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{#- 语料库 (step 13, 方案甲): a page for product colleagues, so a title, one line, then the content: sentence pairs and
-    terms with how many are approved, the languages, and each language's pairs and terms, dated once by the export.
+{#- 语料库 (step 13, 方案甲): a page for product colleagues, so a title, one line, then three stat cards (标准句对,
+    专业术语, 覆盖语种) and each language's pairs and terms, dated once by the export.
     Once the snapshot counts approved rows per language (schema v1.1) every figure is approved entries only.
     Context: tools/rtd/asset_layers.py language_view (the corpus view of system_workspace). No sources, refresh notes,
     rules or maintenance links here. The lookup (方案乙) waits for the corpus content to be exported. -#}
@@ -19,18 +19,18 @@
 <div class="app-content">
 {{ site_topbar('知识库', '语料库') }}
 <main class="fr-page">
-<header class="fr-head"><h1>语料库</h1><p>已批准的术语和标准句，多语言对照{% if corpus %} · 更新于 {{ corpus.exported_at|e }}{% endif %}</p></header>
+<header class="fr-head"><h1>语料库</h1><p>已批准的专业术语与标准句对，多语言对照{% if corpus %} · 更新于 {{ corpus.exported_at|e }}{% endif %}</p></header>
 {%- if corpus %}{% set n = corpus.counts %}
-<section class="fr-figs" aria-label="语料库规模">
-  <div><strong>{{ '{:,}'.format(n.pairs) }}</strong><span>组句子{% if not corpus.approved %}，其中 {{ '{:,}'.format(n.pairs_approved) }} 组已批准{% endif %}</span></div>
-  <div><strong>{{ '{:,}'.format(n.terms) }}</strong><span>个术语{% if not corpus.approved %}，其中 {{ '{:,}'.format(n.terms_approved) }} 个已批准{% endif %}</span></div>
-  <div><strong>{{ corpus.listed|length }}</strong><span>种语言</span></div>
+<section class="fr-stat-grid" aria-label="语料库规模">
+  <div class="fr-stat-card"><span class="fr-stat-label">标准句对</span><div class="fr-stat-val"><strong>{{ '{:,}'.format(n.pairs) }}</strong><span>组{% if not corpus.approved %}，其中 {{ '{:,}'.format(n.pairs_approved) }} 组已批准{% endif %}</span></div></div>
+  <div class="fr-stat-card"><span class="fr-stat-label">专业术语</span><div class="fr-stat-val"><strong>{{ '{:,}'.format(n.terms) }}</strong><span>个{% if not corpus.approved %}，其中 {{ '{:,}'.format(n.terms_approved) }} 个已批准{% endif %}</span></div></div>
+  <div class="fr-stat-card"><span class="fr-stat-label">覆盖语种</span><div class="fr-stat-val"><strong>{{ corpus.listed|length }}</strong><span>种语言</span></div></div>
 </section>
 <div class="fr-split">
 <section class="fr-section" aria-labelledby="langs-title">
-  <h2 id="langs-title">各语言</h2>
+  <h2 id="langs-title">各语种覆盖</h2>
   <table class="fr-langs">
-    <thead><tr><th scope="col">语言</th><th scope="col" class="is-num">句子</th><th scope="col"><span class="sr-only">句子数量对比</span></th><th scope="col" class="is-num">术语</th></tr></thead>
+    <thead><tr><th scope="col">语种</th><th scope="col" class="is-num">标准句对</th><th scope="col"><span class="sr-only">标准句对数量对比</span></th><th scope="col" class="is-num">专业术语</th></tr></thead>
     <tbody>
     {%- for row in corpus.listed %}
       <tr><th scope="row">{{ row.label|e }}</th><td class="is-num">{{ row.count_text|e }}</td><td><span class="fr-track" aria-hidden="true"><i style="width:{{ row.percent }}%"></i></span></td><td class="is-num">{{ row.terms_text|e }}</td></tr>
@@ -44,15 +44,15 @@
 <section class="fr-section fr-uses" id="agent-uses" aria-labelledby="uses-title">
   <h2 id="uses-title">Agent 怎样用这份语料库</h2>
   <ol>
-    <li><b>改飞书云文档</b><p>按语料库里已批准的句子和术语，直接改飞书云文档里的文字。</p></li>
-    <li><b>改 AI 格式文件</b><p>按同一份语料，改 Illustrator（.ai）设计文件里的文字。</p></li>
-    <li><b>自己调用代码</b><p>查语料、替换和核对由 Agent 调用仓库里的代码完成，不用手动跑脚本。</p></li>
+    <li><b>改飞书云文档</b><p>按语料库中已批准的标准句对与专业术语，直接改写目标飞书云文档文字。</p></li>
+    <li><b>改 AI 格式设计稿</b><p>按同一套语料规范，直接替换 Illustrator（.ai）设计源文件中的文字。</p></li>
+    <li><b>自动调用工具核验</b><p>查语料、替换和一致性核对均由 Agent 自动调用仓库工具完成，无需手动运行脚本。</p></li>
   </ol>
-  <p class="fr-uses-ask">可以这样说：「按语料库把这篇飞书云文档改成韩语」</p>
+  <p class="fr-uses-ask"><b>指令示例：</b>「按语料库把这篇飞书云文档改成韩语」</p>
 </section>
 </div>
 {%- else %}
-<p class="fr-empty">暂时没有可显示的语料数字。</p>
+<p class="fr-empty">暂无语料统计数据。</p>
 {%- endif %}
 </main>
 </div>{{ site_script() }}</body></html>

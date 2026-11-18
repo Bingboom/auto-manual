@@ -11,16 +11,11 @@
 .market a:focus-visible,.market button:focus-visible,.market summary:focus-visible {outline:3px solid var(--brand);outline-offset:2px}
 .mp-icon {flex:none}
 
-/* Head: title and lead, then the counts, the review date and the sibling page. */
+/* Head: title and one short count/date line. */
 .mp-head {display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
 .mp-head-text {display:flex;flex-direction:column;gap:8px;max-width:700px}
 .mp-head h1 {margin:0;font-size:30px;line-height:38px;font-weight:700}
 .mp-head p {margin:0;font-size:15px;line-height:24px;color:var(--app-text2)}
-.mp-head-meta {display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-.mp-pill {display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:#fff;
-  border:1px solid var(--app-line);font-size:12px;color:var(--app-text2);white-space:nowrap}
-.mp-pill i {width:8px;height:8px;border-radius:50%;background:var(--status-available,#1f6b4a)}
-.mp-head-meta a {margin-left:4px;font-size:13px;font-weight:500}
 
 /* Status dots: 已核实 green, 待核实 amber, 业务需求 blue. */
 .mp-dot {flex:none;display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--app-faint)}

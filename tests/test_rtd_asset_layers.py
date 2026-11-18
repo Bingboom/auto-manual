@@ -105,7 +105,7 @@ class LayerViewTests(unittest.TestCase):
         self.assertIsNone(view["corpus"])
         page = render("asset_language.html", layer=view)
         self.assertEqual(page.select_one(".fr-head h1").get_text(), "语料库")
-        self.assertEqual(page.select_one(".fr-empty").get_text(), "暂时没有可显示的语料数字。")
+        self.assertEqual(page.select_one(".fr-empty").get_text(), "暂无语料统计数据。")
         self.assertIsNone(page.select_one("section.al-block"))
 
     def test_corpus_page_shows_counts_dated_once_and_each_language(self):
@@ -117,17 +117,17 @@ class LayerViewTests(unittest.TestCase):
                            {"label": "Deutsch", "count": 0, "count_text": "0", "percent": 0, "terms": 0,
                             "terms_text": "0"}]}
         page = render("asset_language.html", layer=al.language_view({"corpus": corpus}))
-        self.assertEqual(page.select_one(".fr-head p").get_text(), "已批准的术语和标准句，多语言对照 · 更新于 2026-11-01")
-        self.assertEqual([d.get_text(" ") for d in page.select(".fr-figs div")],
-                         ["1,200 组句子，其中 900 组已批准", "30 个术语，其中 20 个已批准", "1 种语言"])
+        self.assertEqual(page.select_one(".fr-head p").get_text(), "已批准的专业术语与标准句对，多语言对照 · 更新于 2026-11-01")
+        self.assertEqual([d.get_text(" ") for d in page.select(".fr-stat-card")],
+                         ["标准句对 1,200 组，其中 900 组已批准", "专业术语 30 个，其中 20 个已批准", "覆盖语种 1 种语言"])
         rows = page.select(".fr-langs tbody tr")
         self.assertEqual([(r.th.get_text(), r.select("td")[0].get_text(), r.select("td")[2].get_text()) for r in rows],
                          [("English", "5", "3")])
         self.assertNotIn("%", "".join(td.get_text() for td in page.select(".fr-langs td")))
         # How agents use the corpus: the operator's three uses today and one example ask, no skill names.
         uses = page.select_one("#agent-uses")
-        self.assertEqual([li.b.get_text() for li in uses.select("li")], ["改飞书云文档", "改 AI 格式文件", "自己调用代码"])
-        self.assertIn("「按语料库把这篇飞书云文档改成韩语」", uses.get_text())
+        self.assertEqual([li.b.get_text() for li in uses.select("li")], ["改飞书云文档", "改 AI 格式设计稿", "自动调用工具核验"])
+        self.assertIn("指令示例：「按语料库把这篇飞书云文档改成韩语」", uses.get_text())
         self.assertNotIn("Markdown", uses.get_text())
 
     def test_the_language_figure_is_the_number_of_languages_listed(self):
@@ -141,7 +141,7 @@ class LayerViewTests(unittest.TestCase):
         page = render("asset_language.html", layer=al.language_view({"corpus": corpus}))
         rows = page.select(".fr-langs tbody tr")
         self.assertEqual([r.th.get_text() for r in rows], ["English", "Deutsch"])
-        self.assertEqual(page.select(".fr-figs div")[2].get_text(" "), f"{len(rows)} 种语言")
+        self.assertEqual(page.select(".fr-stat-card")[2].get_text(" "), f"覆盖语种 {len(rows)} 种语言")
 
     def test_corpus_page_counts_approved_entries_only_when_the_snapshot_does(self):
         contract = sw.load_contract(ASSETS / sw.CONTRACT_NAME)
@@ -157,10 +157,10 @@ class LayerViewTests(unittest.TestCase):
         self.assertEqual(sw.corpus_problems(snapshot, ["en", "fr", "de"]), [])
         system = {"corpus": sw.corpus_view(contract, snapshot, dt.date(2026, 11, 2), 45)}
         page = render("asset_language.html", layer=al.language_view(system, {"en": "English"}))
-        self.assertEqual(page.select_one(".fr-head p").get_text(), "已批准的术语和标准句，多语言对照 · 更新于 2026-11-01")
-        self.assertEqual([d.get_text(" ") for d in page.select(".fr-figs div")],
-                         ["6 组句子", "3 个术语", "2 种语言"])
-        self.assertNotIn("已批准", page.select_one(".fr-figs").get_text())
+        self.assertEqual(page.select_one(".fr-head p").get_text(), "已批准的专业术语与标准句对，多语言对照 · 更新于 2026-11-01")
+        self.assertEqual([d.get_text(" ") for d in page.select(".fr-stat-card")],
+                         ["标准句对 6 组", "专业术语 3 个", "覆盖语种 2 种语言"])
+        self.assertNotIn("已批准", page.select_one(".fr-stat-grid").get_text())
         rows = page.select(".fr-langs tbody tr")
         # 德语 has pairs and terms, none approved: not listed.
         self.assertEqual([(r.th.get_text(), r.select("td")[0].get_text(), r.select("td")[2].get_text()) for r in rows],
@@ -171,8 +171,8 @@ class LayerViewTests(unittest.TestCase):
               "terms": {k: v for k, v in snapshot["terms"].items() if k != "approved_by_language"}}
         system = {"corpus": sw.corpus_view(contract, v1, dt.date(2026, 11, 2), 45)}
         page = render("asset_language.html", layer=al.language_view(system, {"en": "English"}))
-        self.assertEqual([d.get_text(" ") for d in page.select(".fr-figs div")],
-                         ["10 组句子，其中 6 组已批准", "5 个术语，其中 3 个已批准", "3 种语言"])
+        self.assertEqual([d.get_text(" ") for d in page.select(".fr-stat-card")],
+                         ["标准句对 10 组，其中 6 组已批准", "专业术语 5 个，其中 3 个已批准", "覆盖语种 3 种语言"])
         self.assertEqual([r.th.get_text() for r in page.select(".fr-langs tbody tr")], ["English", "法语", "德语"])
         # 系统建设 keeps the whole corpus either way.
         self.assertEqual([t["value"] for t in system["corpus"]["tiles"]], ["10", "5", "3", "60%"])
@@ -220,8 +220,10 @@ class TemplateTests(unittest.TestCase):
         self.assertEqual([(i["label"], i["editions"], i["background"]) for i in view["items"]],
                          [("警告与注意符号", 3, "#fff"), ("", None, "#fff"), ("电源键", None, "#222")])
         page = render("asset_media.html", media=view)
-        self.assertEqual(page.select_one(".fr-head p").get_text(), "说明书里共用的图标和插图 · 更新于 2026-11-17")
-        self.assertEqual([d.get_text(" ") for d in page.select(".fr-figs div")], ["2 通用符号", "1 按键"])
+        self.assertEqual(page.select_one(".fr-head p").get_text(), "跨机型复用的标准安规图标与无字化插图 · 更新于 2026-11-17")
+        self.assertIsNone(page.select_one(".fr-figs"))
+        self.assertEqual([c.get_text() for c in page.select(".mf-chip")], ["全部 3", "通用符号 2", "按键 1"])
+        self.assertEqual(page.select_one(".mf-noscript").get_text(), "通用符号 2 · 按键 1")
         tiles = page.select(".mf-grid > li")
         self.assertEqual([(t["data-type"], t.img["src"]) for t in tiles],
                          [("symbols", "workspace/design/assets/symbols/a.svg"),
@@ -235,7 +237,7 @@ class TemplateTests(unittest.TestCase):
         self.assertIsNone(page.select_one("section.al-block, .al-eyebrow, .al-chip"))
         self.assertIsNone(am.front_view(None, {}, None, build_date="2026-11-17"))
         empty = render("asset_media.html", media=None)
-        self.assertEqual(empty.select_one(".fr-empty").get_text(), "暂时没有可显示的素材。")
+        self.assertEqual(empty.select_one(".fr-empty").get_text(), "暂无可显示的视觉素材。")
 
 
 if __name__ == "__main__":
