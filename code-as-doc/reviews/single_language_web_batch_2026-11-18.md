@@ -78,7 +78,7 @@ Review disposition: accepted as an exact-source applicability record under the o
 | `solar_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 4 |
 | `car_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 1 |
 | `safety` | Native semantic text; no shared-component minimum |
-| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 5 |
+| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 4; `HB-WARRANTY-YEARS/numeric-badges` × 1 |
 
 ## JE-1000C EU en
 
@@ -101,7 +101,7 @@ Review disposition: accepted as an exact-source applicability record under the o
 | `solar_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 3 |
 | `car_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 1 |
 | `safety` | Native semantic text; no shared-component minimum |
-| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 5 |
+| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 4; `HB-WARRANTY-YEARS/numeric-badges` × 1 |
 | `app_user_manual` | `HB-SPECIAL-APP/inline-control` × 1; `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 3 |
 
 ## JE-1000D EU en
@@ -139,7 +139,7 @@ Review disposition: accepted as an exact-source applicability record under the o
 | `charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 5 |
 | `safety_charging` | Native semantic text; no shared-component minimum |
 | `safety_using` | Native semantic text; no shared-component minimum |
-| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 5 |
+| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 4; `HB-WARRANTY-YEARS/numeric-badges` × 1 |
 
 ## JE-1500B EU en
 
@@ -159,7 +159,7 @@ Review disposition: accepted as an exact-source applicability record under the o
 | `solar_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 6 |
 | `car_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 1 |
 | `safety` | Native semantic text; no shared-component minimum |
-| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 5 |
+| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 4; `HB-WARRANTY-YEARS/numeric-badges` × 1 |
 
 ## JE-2000C EU en
 
@@ -182,7 +182,7 @@ Review disposition: accepted as an exact-source applicability record under the o
 | `solar_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 5 |
 | `car_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 2 |
 | `safety` | Native semantic text; no shared-component minimum |
-| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 5 |
+| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 4; `HB-WARRANTY-YEARS/numeric-badges` × 1 |
 | `app_user_manual` | `HB-SPECIAL-APP/inline-control` × 1; `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 3 |
 
 ## JE-2000D EU en
@@ -204,7 +204,7 @@ Review disposition: accepted as an exact-source applicability record under the o
 | `solar_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 2 |
 | `car_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 1 |
 | `safety` | Native semantic text; no shared-component minimum |
-| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 6 |
+| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 5; `HB-WARRANTY-YEARS/numeric-badges` × 1 |
 | `app_user_manual` | `HB-SPECIAL-APP/inline-control` × 1; `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 3 |
 
 ## JE-240A EU en
@@ -245,7 +245,7 @@ Review disposition: accepted as an exact-source applicability record under the o
 | `solar_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 1 |
 | `car_charging` | `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 1 |
 | `safety` | Native semantic text; no shared-component minimum |
-| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 6; `HB-CALLOUT-STRIP/note` × 1 |
+| `warranty` | `HB-WARRANTY-SECTION/rounded-card` × 5; `HB-WARRANTY-YEARS/numeric-badges` × 1; `HB-CALLOUT-STRIP/note` × 1 |
 | `app_user_manual` | `HB-SPECIAL-APP/download` × 1; `HB-SPECIAL-APP/inline-control` × 1; `HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback` × 3 |
 
 Source issue disposition: retain the warranty’s Explorer 2000 reference with the operator-requested English NOTE, as recorded above. The App instructions follow this source’s own chapter plan.

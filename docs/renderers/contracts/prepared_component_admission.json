@@ -10053,7 +10053,8 @@
             "warranty": {
               "slot": "native/warranty",
               "components": {
-                "HB-WARRANTY-SECTION/rounded-card": 5
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
               },
               "chapter": "warranty"
             }
@@ -10128,7 +10129,8 @@
             "warranty": {
               "slot": "native/warranty",
               "components": {
-                "HB-WARRANTY-SECTION/rounded-card": 5
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
               },
               "chapter": "warranty"
             }
@@ -10203,7 +10205,8 @@
             "warranty": {
               "slot": "native/warranty",
               "components": {
-                "HB-WARRANTY-SECTION/rounded-card": 5
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
               },
               "chapter": "warranty"
             }
@@ -10290,7 +10293,8 @@
             "warranty": {
               "slot": "native/warranty",
               "components": {
-                "HB-WARRANTY-SECTION/rounded-card": 5
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
               },
               "chapter": "warranty"
             },
@@ -10384,7 +10388,8 @@
             "warranty": {
               "slot": "native/warranty",
               "components": {
-                "HB-WARRANTY-SECTION/rounded-card": 5
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
               },
               "chapter": "warranty"
             },
@@ -10472,7 +10477,8 @@
             "warranty": {
               "slot": "native/warranty",
               "components": {
-                "HB-WARRANTY-SECTION/rounded-card": 6
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
               },
               "chapter": "warranty"
             },
@@ -10703,8 +10709,9 @@
             "warranty": {
               "slot": "native/warranty",
               "components": {
-                "HB-WARRANTY-SECTION/rounded-card": 6,
-                "HB-CALLOUT-STRIP/note": 1
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
               },
               "chapter": "warranty"
             },
