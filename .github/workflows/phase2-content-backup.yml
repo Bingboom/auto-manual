@@ -1,7 +1,8 @@
 name: Phase2 Content Backup
 
 # Milestone K4: nightly point-in-time CONTENT export of the Bitable
-# source-of-truth (business base + TM base), retained as a dated artifact.
+# source-of-truth (business base + TM base + the product-information matrix
+# in the 发布文档管理 base), retained as a dated artifact.
 # Structure is covered by the committed schema manifests (bitable_schema/);
 # this covers the rows. Restore procedure: ops guide §4.7 (content-restore).
 #
@@ -40,6 +41,11 @@ jobs:
       FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
       FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
       FEISHU_TRANSLATION_MEMORY_BASE_TOKEN: ${{ secrets.FEISHU_TRANSLATION_MEMORY_BASE_TOKEN }}
+      # 发布文档管理 base (holds the product matrix); same Hello-Docs secret the
+      # Workspace Data Refresh job reads. Deliberately NOT in the
+      # validate_required_env list: a missing token fails only the matrix
+      # export (exit 2, sentinel Issue), never the business / TM backups.
+      FEISHU_PUBLISHED_DOCS_BASE_TOKEN: ${{ secrets.FEISHU_PUBLISHED_DOCS_BASE_TOKEN }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +55,7 @@ jobs:
       - name: Validate required env
         run: bash scripts/validate_required_env.sh phase2-content-backup
 
-      # Both export steps declare `shell: bash` EXPLICITLY: GitHub's default
+      # All export steps declare `shell: bash` EXPLICITLY: GitHub's default
       # run shell is `bash -e {0}` WITHOUT pipefail, so `exporter | tee`
       # reported tee's exit 0 and turned an incomplete backup into a green run
       # (first-nightly incident, 2026-07-19, run 29672759849 — worse, the
@@ -76,6 +82,25 @@ jobs:
             --base-token-env FEISHU_TRANSLATION_MEMORY_BASE_TOKEN \
             --label tm --out backup_out | tee -a "$GITHUB_STEP_SUMMARY"
 
+      # Product-information matrix (产品/属性/来源/事实/矩阵). Its records include
+      # internal product facts and project numbers that must never reach a
+      # public surface (product_matrix_base.md §7): the step repeats the
+      # private-repository guard so it stays off even if the job guard above is
+      # ever flipped again, and --withhold-error-detail keeps CLI output (which
+      # can echo record values) out of the log. The summary gets only table
+      # names and row counts.
+      - name: Export product matrix content
+        id: export_matrix
+        if: ${{ github.repository == 'Bingboom/Hello-Docs' }}
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m tools.bitable_content_backup export \
+            --manifest bitable_schema/product_matrix_base_manifest.json \
+            --base-token-env FEISHU_PUBLISHED_DOCS_BASE_TOKEN \
+            --label product_matrix --out backup_out \
+            --withhold-error-detail | tee -a "$GITHUB_STEP_SUMMARY"
+
       - name: Upload dated backup artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -86,7 +111,7 @@ jobs:
           if-no-files-found: error
 
       - name: Open or update tracking issue on failure
-        if: steps.export_business.outcome == 'failure' || steps.export_tm.outcome == 'failure'
+        if: steps.export_business.outcome == 'failure' || steps.export_tm.outcome == 'failure' || steps.export_matrix.outcome == 'failure'
         uses: actions/github-script@v7
         with:
           script: |
@@ -127,7 +152,7 @@ jobs:
             }
 
       - name: Close tracking issue on recovery
-        if: steps.export_business.outcome == 'success' && steps.export_tm.outcome == 'success'
+        if: steps.export_business.outcome == 'success' && steps.export_tm.outcome == 'success' && steps.export_matrix.outcome == 'success'
         uses: actions/github-script@v7
         with:
           script: |
@@ -157,5 +182,5 @@ jobs:
             }
 
       - name: Fail the run if any export failed
-        if: steps.export_business.outcome == 'failure' || steps.export_tm.outcome == 'failure'
+        if: steps.export_business.outcome == 'failure' || steps.export_tm.outcome == 'failure' || steps.export_matrix.outcome == 'failure'
         run: exit 1

@@ -11,7 +11,10 @@ restorable from a dated export.
   records and write one CSV per table (ALL columns, computed ones included, for
   audit value) plus a ``backup_manifest.json`` (row counts + sha256 per CSV).
   Runs nightly via ``.github/workflows/phase2-content-backup.yml``; the dated
-  artifact is the restore point.
+  artifact is the restore point. Tables wider than one record list (50 fields)
+  are read in projected slices (``tools/bitable_backup/projection.py``).
+  ``--withhold-error-detail`` keeps CLI output out of the log on failure, for
+  bases with confidential records (the product matrix).
 - ``restore``: recreate rows from a backup into a target base whose table
   structure already exists (``bitable_schema apply`` first — see ops guide
   §4.7). Writes only simple writable fields (formula / lookup / link / attach
@@ -38,6 +41,7 @@ from pathlib import Path
 
 try:
     from tools import bitable_schema as bs
+    from tools.bitable_backup.projection import needs_projection, read_wide_records
     from tools.bitable_backup.sidecars import (
         TableExportData,
         apply_attachment_verification,
@@ -46,6 +50,7 @@ try:
     )
 except ImportError:  # pragma: no cover - direct execution fallback
     import bitable_schema as bs  # type: ignore[no-redef]
+    from bitable_backup.projection import needs_projection, read_wide_records  # type: ignore[no-redef]
     from bitable_backup.sidecars import (  # type: ignore[no-redef]
         TableExportData,
         apply_attachment_verification,
@@ -80,8 +85,12 @@ def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, l
             report["missing_tables"].append(name)
             continue
         ftypes = bs._field_types(base_token, tid, lark_cli)
+        if needs_projection(ftypes):
+            # wider than one record list returns: read in 50-field slices
+            ftypes, rows, rids = read_wide_records(base_token, tid, lark_cli)
+        else:
+            rows, rids = bs._read_records(base_token, tid, lark_cli)
         cols = list(ftypes)
-        rows, rids = bs._read_records(base_token, tid, lark_cli)
         path = dest / _safe_filename(name)
         with path.open("w", encoding="utf-8", newline="") as fh:
             w = csv.writer(fh)
@@ -248,6 +257,9 @@ def _parser() -> argparse.ArgumentParser:
     e.add_argument("--label", required=True, help="subdirectory label for this base (e.g. business / tm)")
     e.add_argument("--out", required=True, help="output directory (the dated artifact root)")
     e.add_argument("--lark-cli", default="lark-cli")
+    e.add_argument("--withhold-error-detail", action="store_true",
+                   help="on failure print only the error type, never the CLI's output (it can echo record values); "
+                        "use for bases holding confidential records such as the product matrix")
 
     r = sub.add_parser("restore", description="Recreate rows from a backup into an (empty-table) target base. Dry-run unless --write --yes.")
     r.add_argument("--backup", required=True, help="backup label dir containing backup_manifest.json")
@@ -270,25 +282,39 @@ def _parser() -> argparse.ArgumentParser:
     return p
 
 
+def _run_export(args: argparse.Namespace) -> int:
+    """``export``: dump the manifest's tables; print only table names and row counts."""
+    import os
+    token = os.environ.get(args.base_token_env, "")
+    if not token:
+        print(f"bitable-content-backup: ${args.base_token_env} is empty", file=sys.stderr)
+        return 2
+    manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
+    try:
+        report = export_content(manifest, token, args.label, Path(args.out), args.lark_cli)
+    # lark-cli failures arrive as RuntimeError (ProjectionError included), payload
+    # parsing as ValueError / KeyError / TypeError, a missing CLI as OSError.
+    except (RuntimeError, ValueError, KeyError, TypeError, OSError) as exc:
+        if not args.withhold_error_detail:
+            raise
+        print(f"EXPORT {args.label}: failed ({type(exc).__name__}; details withheld because the base holds "
+              "confidential records — re-run locally to see them)", file=sys.stderr)
+        return 1
+    total = sum(t["rows"] for t in report["tables"])
+    print(f"EXPORT {args.label}: {len(report['tables'])} table(s), {total} row(s) -> {args.out}/{args.label}")
+    for t in report["tables"]:
+        print(f"  {t['name']}: {t['rows']} rows")
+    for name in report["missing_tables"]:
+        print(f"  ✗ MISSING on source base: {name}")
+    return 1 if report["missing_tables"] else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     bs._PROFILE = getattr(args, "profile", None)
     bs._IDENTITY = getattr(args, "identity", None) or "bot"
     if args.command == "export":
-        import os
-        token = os.environ.get(args.base_token_env, "")
-        if not token:
-            print(f"bitable-content-backup: ${args.base_token_env} is empty", file=sys.stderr)
-            return 2
-        manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
-        report = export_content(manifest, token, args.label, Path(args.out), args.lark_cli)
-        total = sum(t["rows"] for t in report["tables"])
-        print(f"EXPORT {args.label}: {len(report['tables'])} table(s), {total} row(s) -> {args.out}/{args.label}")
-        for t in report["tables"]:
-            print(f"  {t['name']}: {t['rows']} rows")
-        for name in report["missing_tables"]:
-            print(f"  ✗ MISSING on source base: {name}")
-        return 1 if report["missing_tables"] else 0
+        return _run_export(args)
     if args.command == "restore":
         write = bool(args.write and args.yes)
         if args.write and not args.yes:

@@ -216,6 +216,25 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
 - 每个产品都有 `project` 字段（没有项目号时为 null）；对到多个项目的产品不会被随便选一个，保持为空，由人在 base 里填。
 - 刷新：base 有改动后在 Hello-Docs 检出上重跑命令，以 Hello-Docs 的内容 PR（只含该目录）提交。
 
+## 6.2 时点备份
+
+五张表的行内容随夜间内容备份 `phase2-content-backup.yml`（每日 00:30 UTC）导出，与业务 base、TM base
+在同一个工件 `phase2-content-backup-<run_id>` 里，子目录 `product_matrix/`，保留 90 天；失败开同一个
+`phase2-content-backup` 哨兵 Issue。核实记录只在 base 里，这份工件是误删误改后唯一的恢复点。
+
+- 只在私有仓库 Hello-Docs 运行和上传：作业和这一步各有一道 `github.repository == 'Bingboom/Hello-Docs'`
+  守卫，公开仓库 auto-manual 里这一步永不执行，工件里也就没有矩阵数据。
+- 凭据：Hello-Docs 已有的密钥 `FEISHU_PUBLISHED_DOCS_BASE_TOKEN`（与工作台数据刷新共用）和业务面 bot
+  的 `FEISHU_APP_ID` / `FEISHU_APP_SECRET`；表名取自 `bitable_schema/product_matrix_base_manifest.json`。
+- 日志和作业摘要只有表名和行数。这一步带 `--withhold-error-detail`：导出失败只打印错误类型，
+  不转出 lark-cli 的输出（它可能回显记录值）；要看细节在本机重跑。
+- 矩阵表一行超过 50 列，导出按 50 列一批投影读取、按记录合并；各批记录集不一致（读取期间有人增删行）时
+  导出失败，不写半行（`tools/bitable_backup/projection.py`）。
+- 恢复按 [闭环运维 4.7b](../../user-guide/closed_loop_ops_guide.md#47b-内容恢复milestone-k4行数据的备份与回灌)，
+  目录用 `<解压目录>/product_matrix`。恢复只写简单字段：产品表的「关联 SKU」（目标表不在备份内）和公式字段
+  不回灌，按原样手工重建。矩阵表由 `matrix` 命令从其余四表重新生成，恢复时先恢复四表、再重跑生成，
+  备份里的矩阵 CSV 只作核对用。
+
 ## 7. 不进 git 的内容
 
 不进 auto-manual（公开仓库）、它的 PR、issue、CI 日志或消息，也不进公开站点：base 里的任何记录值、SKU、项目号、
