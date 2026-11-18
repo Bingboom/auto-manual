@@ -677,10 +677,13 @@ def _approved_problems(key: str, block: dict[str, Any]) -> list[str]:
         return [f"{key}.{CORPUS_APPROVED_KEY} must map language codes to counts"]
     if not set(approved) <= set(by_language):
         return [f"{key}.{CORPUS_APPROVED_KEY} names languages that by_language does not list"]
-    ceiling = by_status.get(CORPUS_APPROVED, 0)
-    if not all(_count(v) and v <= by_language[code] for code, v in approved.items()):
+    # Compare only against bounds that are counts: a malformed by_language or by_status value is reported by
+    # _block_problems, and comparing with it would raise instead of producing a problem line.
+    if not all(_count(v) and (not _count(by_language[code]) or v <= by_language[code])
+               for code, v in approved.items()):
         return [f"{key}.{CORPUS_APPROVED_KEY} counts must be integers between 0 and that language's by_language"]
-    if not _count(ceiling) or any(v > ceiling for v in approved.values()):
+    ceiling = by_status.get(CORPUS_APPROVED, 0)
+    if _count(ceiling) and any(v > ceiling for v in approved.values()):
         return [f"{key}.{CORPUS_APPROVED_KEY} counts must not exceed the approved count in by_status"]
     return []
 

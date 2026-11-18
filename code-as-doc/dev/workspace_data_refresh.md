@@ -85,6 +85,8 @@ Workspace Data Verify——工作流令牌做的合入不会触发 push 工作�
 两张表各加一项 `approved_by_language`（每种语言中状态为 `Approved` 的行数），读取方同时接受
 不带该项的 `v1`。减少保护只比较 `total` 与 `by_language`；`approved_by_language` 下降
 （条目被弃用）不阻断替换，首次从 `v1` 换成 `v1.1` 时内容标识会变化（状态 `changed`）。
+接受 `v1.1` 的读取方必须先部署到镜像，镜像中才能写入 `v1.1` 快照：旧读取方会因该新增项拒绝快照，
+语料块显示为无数据。
 
 ## 存储、确认时间与发布
 

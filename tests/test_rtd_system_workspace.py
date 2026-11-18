@@ -563,6 +563,73 @@ class CorpusSnapshotTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, r"missing columns \['fr'\]"):
             sw.corpus_export(corpus_contract(), base_token="base", run=run_without_fr, today=TODAY)
 
+    def test_v1_1_rejects_boolean_approved_counts(self):
+        for value in (True, False):
+            with self.subTest(value=value):
+                snapshot = approved_snapshot()
+                snapshot["sentence_pairs"]["approved_by_language"]["en"] = value
+                problems = sw.corpus_problems(snapshot, ["en", "fr"])
+                self.assertTrue(any("approved_by_language counts must be integers" in p for p in problems), problems)
+
+    def test_v1_1_block_without_an_approved_status_allows_only_zero(self):
+        snapshot = approved_snapshot()
+        snapshot["terms"]["by_status"] = {"Draft": 2}
+        snapshot["terms"]["approved_by_language"] = {"en": 0, "fr": 0}
+        self.assertEqual(sw.corpus_problems(snapshot, ["en", "fr"]), [])
+        snapshot["terms"]["approved_by_language"]["en"] = 1
+        problems = sw.corpus_problems(snapshot, ["en", "fr"])
+        self.assertTrue(any("must not exceed the approved count in by_status" in p for p in problems), problems)
+
+    def test_v1_1_requires_the_key_in_either_block(self):
+        for block in ("sentence_pairs", "terms"):
+            with self.subTest(block=block):
+                snapshot = approved_snapshot()
+                snapshot[block].pop("approved_by_language")
+                problems = sw.corpus_problems(snapshot, ["en", "fr"])
+                self.assertIn(f"{block}.approved_by_language must map language codes to counts", problems)
+
+    def test_malformed_bounds_produce_problems_instead_of_raising(self):
+        """A bad by_language or by_status value is a problem line, never a TypeError (load_corpus does not catch)."""
+        mutations = {
+            "by_language null": lambda s: s["sentence_pairs"]["by_language"].update(en=None),
+            "by_language text": lambda s: s["sentence_pairs"]["by_language"].update(en="4"),
+            "by_status null": lambda s: s["sentence_pairs"]["by_status"].update(Approved=None),
+            "by_status text": lambda s: s["sentence_pairs"]["by_status"].update(Approved="7"),
+            "by_language list": lambda s: s["terms"].update(by_language=["en", "fr"]),
+            "by_status list": lambda s: s["terms"].update(by_status=[2]),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                snapshot = approved_snapshot()
+                mutate(snapshot)
+                self.assertTrue(sw.corpus_problems(snapshot, ["en", "fr"]))
+
+    def test_load_corpus_reports_a_malformed_v1_1_block_as_no_data(self):
+        snapshot = approved_snapshot()
+        snapshot["sentence_pairs"]["by_language"]["en"] = None
+        with TemporaryDirectory() as tmp:
+            path = sw.snapshot_path(Path(tmp), "corpus.json")
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(snapshot), encoding="utf-8")
+            data, problems = sw.load_corpus(corpus_contract(), Path(tmp), "corpus.json")
+        self.assertIsNone(data)
+        self.assertTrue(any("by_language counts must be integers" in p for p in problems), problems)
+
+    def test_export_matches_the_approved_status_after_trimming_and_by_case(self):
+        """Status text is trimmed; case is kept, so ``approved`` is its own status and not counted as approved."""
+        header = ["en", "fr", "Status"]
+        rows = [["A", "B", "  Approved "], ["C", "D", "approved"], ["E", "", "APPROVED"], ["G", "H", "Approved"]]
+
+        def run(args):
+            return {"code": 0, "data": {"fields": header, "data": rows,
+                                        "record_id_list": [f"rec{i}" for i in range(len(rows))]}}
+
+        snapshot = sw.corpus_export(corpus_contract(), base_token="base", run=run, today=TODAY)
+        pairs = snapshot["sentence_pairs"]
+        self.assertEqual(pairs["by_status"], {"APPROVED": 1, "Approved": 2, "approved": 1})
+        self.assertEqual(pairs["approved_by_language"], {"en": 2, "fr": 2})
+        self.assertEqual(sw.corpus_problems(snapshot, ["en", "fr"]), [])
+
     def test_export_counts_approved_rows_per_language_across_statuses(self):
         header = ["en", "fr", "Status"]
         sentences = [["A", "B", "Approved"], ["C", "", ["Approved"]], ["", "D", "Draft"], ["E", "F", "Deprecated"],

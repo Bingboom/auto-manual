@@ -325,6 +325,9 @@ between 0 and that language's `by_language` count, and none exceeds the block's
 `Approved` count. Readers accept `v1` (without the key, which it must not carry)
 and `v1.1` (with the key in both blocks). This block keeps describing the whole
 corpus either way; only the 语料库 page switches to approved entries.
+Deploy the reader that accepts `v1.1` to the mirror before a `v1.1` snapshot
+is written there: an older reader rejects the new key and the corpus block shows
+no data.
 
 Each export carries the earlier months forward in `history`: one headline per
 month (sentence pairs, terms, approved), oldest first, up to 24 months. The
