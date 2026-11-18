@@ -1,9 +1,10 @@
-{#- The 产品信息 sub-tabs (step 13): 产品库 · 产品对比 · 参数表, on each of those pages and on 产品档案 (which counts as
-    产品库). Plain links: each tab is its own page. On a page below a tab (``child``, 产品档案 under 产品库) the tab is
-    marked aria-current="true", not "page". -#}
+{#- The 产品信息 sub-tabs (step 13): 产品矩阵 · 产品对比 · 参数表, on each of those pages and on 产品档案 (which counts as
+    产品矩阵). Plain links: each tab is its own page, drawn as a segmented control (operator's reference layout,
+    2026-11-18) at the right of the title on 产品矩阵, 产品对比 and 参数表. On a page below a tab (``child``, 产品档案 under
+    产品矩阵) the tab is marked aria-current="true", not "page". -#}
 {%- macro product_tabs(active, child=False) -%}
 <nav class="pt-tabs" aria-label="产品信息">
-  {%- for page, label in (('products/matrix', '产品库'), ('products/compare', '产品对比'), ('products/table', '参数表')) %}
+  {%- for page, label in (('products/matrix', '产品矩阵'), ('products/compare', '产品对比'), ('products/table', '参数表')) %}
   <a href="{{ pathto(page) }}"{% if page == active %} class="is-on" aria-current="{{ 'true' if child else 'page' }}"{% endif %}>{{ label }}</a>
   {%- endfor %}
 </nav>
@@ -11,12 +12,18 @@
 
 {#- The product pages' data freshness (tools/rtd/product_freshness.py): when the base was read, when the snapshot was
     made, when the sync check last confirmed it, and a warning when the data may be out of date. Nothing without a
-    snapshot (``freshness`` is None). -#}
-{%- macro product_freshness(freshness) -%}
-{%- if freshness %}
-{%- if freshness.warnings %}
+    snapshot (``freshness`` is None). 产品矩阵 places the two parts apart (the warning above the matrix, the times
+    under it); the other product pages use ``product_freshness`` for both. -#}
+{%- macro product_stale(freshness) -%}
+{%- if freshness and freshness.warnings %}
 <div class="pt-stale" role="status"><strong>数据可能不是最新</strong><ul>{% for warning in freshness.warnings %}<li>{{ warning|e }}</li>{% endfor %}</ul></div>
 {%- endif %}
+{%- endmacro -%}
+{%- macro product_sync(freshness) -%}
+{%- if freshness %}
 <p class="pt-sync"><span>数据读取于 {{ freshness.read_at|e }}</span><span>快照生成于 {{ freshness.built_at|e }}</span><span>最近同步成功 {{ freshness.last_success|e }}</span></p>
 {%- endif %}
+{%- endmacro -%}
+{%- macro product_freshness(freshness) -%}
+{{ product_stale(freshness) }}{{ product_sync(freshness) }}
 {%- endmacro -%}

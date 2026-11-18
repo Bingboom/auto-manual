@@ -1,5 +1,5 @@
 'use strict';
-// 产品库 (step 13; tools/rtd_portal_assets/product_matrix.html). Without JavaScript every category shows stacked and
+// 产品矩阵 (step 13; tools/rtd_portal_assets/product_matrix.html). Without JavaScript every category shows stacked and
 // the filters stay hidden. With it, the tabs show one category at a time (the hash names it, so links keep working),
 // and 项目 / 市场 highlight the chips that match and dim the rest; nothing is hidden. The pure parts are on
 // globalThis.ProductLibrary for tests/product_library_ui.test.mjs.

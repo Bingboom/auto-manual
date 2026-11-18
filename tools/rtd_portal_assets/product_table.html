@@ -20,8 +20,10 @@
 <div class="app-content">
 {{ site_topbar('知识库', '参数表') }}
 <main class="fr-page pt-page">
-{{ product_tabs('products/table') }}
+<div class="pl-head">
 <header class="fr-head pt-head"><h1>参数表</h1><button type="button" class="pt-download" data-pt-download hidden>下载表格</button></header>
+{{ product_tabs('products/table') }}
+</div>
 {{ product_freshness(freshness) }}
 {%- if not built %}
 <p class="fr-empty">{{ problem|e }}</p>

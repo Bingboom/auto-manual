@@ -1,6 +1,6 @@
-"""How fresh the 产品库 pages' data is, judged at build time without access to the base.
+"""How fresh the 产品矩阵 pages' data is, judged at build time without access to the base.
 
-The product pages (产品库, 产品对比, 参数表, 产品档案) show three times and, when the data may be out of date, a
+The product pages (产品矩阵, 产品对比, 参数表, 产品档案) show three times and, when the data may be out of date, a
 warning. They come from the snapshot's header (``read_at``; ``built_at`` and ``source_modified_at`` since schema
 v1.2) and from ``status.json`` beside it, which the sync check (``tools/product_matrix_base/sync.py``) writes. The
 status counts only while it describes the snapshot on disk (the same ``read_at``): a snapshot replaced without a

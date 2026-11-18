@@ -9,6 +9,10 @@
     content. Every left entry is a page and is marked current on that page; sections of a page are not entries.
     The manual-library root passes internal=false only in the manuals-only (public) site role: there the top bar
     keeps the brand and search only, and the left list holds 说明书 alone. 「工作资料」 is the brand only.
+    Top bar (operator's reference layout, 2026-11-18): the brand mark and wordmark, the sections as plain text (the
+    current one carries an underline on the bar's bottom edge), and a search field that submits to 搜索说明书正文
+    (``q``; "/" focuses it). The current left entry is a light accent pill. The crumb is kept for screen readers
+    only.
     Icons are one line set (24 grid, 1.75 stroke, round caps) drawn in currentColor; `icon()` is shared with the
     pages. A path marked ic-accent is the one detail a page may tint (知识库首页's entry cards do); everywhere else
     it keeps the line colour. -#}
@@ -52,7 +56,7 @@
             {'key': 'asset-language', 'label': '语料库', 'icon': 'languages', 'page': 'assets/language/index'},
             {'key': 'asset-media', 'label': '视觉媒体', 'icon': 'image', 'page': 'assets/media/index'},
             {'key': 'market-policy', 'label': '市场与政策', 'icon': 'globe', 'page': 'market/policy'}],
-   'also': [{'key': 'product-library', 'label': '产品库', 'under': 'product-matrix'},
+   'also': [{'key': 'product-library', 'label': '产品矩阵', 'under': 'product-matrix'},
             {'key': 'product-profile', 'label': '产品档案', 'under': 'product-matrix'},
             {'key': 'product-compare', 'label': '产品对比', 'under': 'product-matrix'},
             {'key': 'product-table', 'label': '参数表', 'under': 'product-matrix'},
@@ -74,7 +78,7 @@
 {%- endfor -%}
 <header class="app-header">
   <button class="app-menu" type="button" aria-label="展开目录" aria-controls="app-sidebar" aria-expanded="false">{{ icon('menu', 20) }}</button>
-  <a class="app-brand" href="{{ pathto('workspace/index') if internal else pathto('index') }}"><i class="app-brand-mark" aria-hidden="true">{{ icon('book', 17) }}</i><b>工作资料</b></a>
+  <a class="app-brand" href="{{ pathto('workspace/index') if internal else pathto('index') }}"><i class="app-brand-mark" aria-hidden="true">{{ icon('book', 17) }}</i><b>工作资料</b><i class="app-brand-dot" aria-hidden="true">.</i></a>
   {% if internal %}<nav class="app-tabs" aria-label="主导航">
     {%- for section in site_sections %}
     {%- set pages = section.list | selectattr('key') | list %}
@@ -86,8 +90,12 @@
     {%- endfor %}
   </nav>{% endif %}
   <div class="app-header-tools">
-    <a class="app-tool{% if active == 'search' %} selected{% endif %}" href="{{ pathto('search') }}" aria-label="搜索说明书正文" title="搜索说明书正文"{% if active == 'search' %} aria-current="page"{% endif %}>{{ icon('search', 19) }}</a>
-    {% if internal and nav.system %}<a class="app-tool" href="{{ pathto('workspace/system/index') }}" aria-label="Agent 能力" title="Agent 能力">{{ icon('agent', 19) }}</a>{% endif %}
+    {#- Without JavaScript the field is a plain GET form; the search page reads ?q=. The former Agent icon opened the
+        same page as the Agent 能力 section, which stays in the top bar. -#}
+    <form class="app-search" role="search" aria-label="顶栏搜索" action="{{ pathto('search') }}" method="get">
+      <label class="app-search-field">{{ icon('search', 16) }}<span class="sr-only">搜索说明书正文</span><input type="search" name="q" placeholder="搜索说明书正文" autocomplete="off" aria-keyshortcuts="/" data-app-search><kbd aria-hidden="true">/</kbd></label>
+      <button class="app-search-go" type="submit" aria-label="搜索说明书正文"{% if active == 'search' %} aria-current="page"{% endif %}>{{ icon('search', 19) }}</button>
+    </form>
   </div>
 </header>
 <aside class="app-sidebar{% if internal and not found.section %} app-nav-unassigned{% endif %}" id="app-sidebar">
@@ -110,13 +118,13 @@
     is kept for its callers. -#}
 {%- set found = namespace(label=none, parent=none) -%}
 {%- for main in site_sections -%}
-  {%- for item in main.list + main.get('also', []) if item.label == crumb or (crumb == '首页' and item.key == 'overview') -%}
+  {%- for item in main.list + main.get('also', []) if item.label == crumb -%}
     {%- set found.label = main.label -%}
     {%- for entry in main.list if item.under and entry.key == item.under %}{% set found.parent = entry.label %}{% endfor -%}
   {%- endfor -%}
 {%- endfor -%}
-<div class="app-topbar">
-  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('首页', '资产总览', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> {% if found.parent %}{{ found.parent }} <span>/</span> {% endif %}<b>{{ crumb }}</b>{% endif %}</div>
+<div class="app-topbar is-shell">
+  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('资产总览', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> {% if found.parent %}{{ found.parent }} <span>/</span> {% endif %}<b>{{ crumb }}</b>{% endif %}</div>
   <div class="app-topbar-right">{{ caller() if caller else '' }}</div>
 </div>
 {%- endmacro -%}
@@ -128,6 +136,16 @@
   menu.addEventListener("click", () => set(!body.classList.contains("app-menu-open")));
   document.querySelector(".app-scrim").addEventListener("click", () => set(false));
   document.querySelectorAll(".app-nav-link").forEach(link => link.addEventListener("click", () => set(false)));
+  /* "/" focuses the top-bar search field unless the reader is typing somewhere already. */
+  const field = document.querySelector("[data-app-search]");
+  document.addEventListener("keydown", event => {
+    if (!field || event.key !== "/" || event.ctrlKey || event.metaKey || event.altKey) return;
+    const target = event.target;
+    if (target.closest && target.closest("input, textarea, select, [contenteditable]")) return;
+    if (!field.getClientRects().length) return;  /* below 640px the field folds away: leave the key alone */
+    event.preventDefault();
+    field.focus();
+  });
 
   /* Page tabs: progressive enhancement over plain anchors; without JS every panel shows. */
   const panels = [...document.querySelectorAll(".tab-panel")];

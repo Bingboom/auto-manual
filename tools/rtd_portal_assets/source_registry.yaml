@@ -89,8 +89,8 @@ domains:
     snapshot_dir: product-matrix
     refresh: python -m tools.product_matrix_base check --out docs/knowledge/product-matrix --write --refresh
     stale_after_days: 7
-    fallback: 产品库、产品对比、参数表与产品档案说明数据暂时读不到，不显示数字
-    used_by: 产品库、产品对比、参数表、产品档案（仅私有站）的数据与同步提示
+    fallback: 产品矩阵、产品对比、参数表与产品档案说明数据暂时读不到，不显示数字
+    used_by: 产品矩阵、产品对比、参数表、产品档案（仅私有站）的数据与同步提示
 
   - id: skeletons
     label: 骨架覆盖

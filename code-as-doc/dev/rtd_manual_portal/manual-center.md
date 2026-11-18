@@ -60,13 +60,14 @@ Every portal page (manual library root, 搜索说明书正文, 知识库首页, 
 产品矩阵) shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. In the manuals-only public role (`RTD_SITE_ROLE=manuals`)
 the manual library root and the search page pass `internal=false` to both shell macros: the top bar keeps the
-brand and the search icon only, the left list contains only 说明书资料库 and 搜索说明书正文, and the breadcrumb
+brand and the search field only, the left list contains only 说明书资料库 and 搜索说明书正文, and the breadcrumb
 row keeps the region selector, with no internal knowledge links or main sections.
 In the combined (private) role the root gets the full internal shell, so a reader
 can return to the knowledge base: the four main sections in the top bar (知识资产, 工作台, Agent 能力, 设计规范;
-layout of 2026-11-17) and the 知识资产 left list, where 说明书资料库 is one entry. Every internal page uses the
+layout of 2026-11-17, restyled to the operator's reference layout of 2026-11-18) and the 知识资产 left list,
+where 说明书资料库 is one entry. Every internal page uses the
 same shell; [asset-layers.md](asset-layers.md#navigation) lists the sections and their left lists. The breadcrumb
-reads 工作资料 / section / page. Every other left entry is a page and carries
+reads 工作资料 / section / page and is kept for screen readers only. Every other left entry is a page and carries
 `aria-current="page"` on that page; 分享资料 is a link on the
 知识库首页 (`workspace/index.html#shares`), not a sidebar entry.
 Optional entries follow the same rules as before: 系统建设, 设计规范 and
@@ -194,7 +195,7 @@ publication, online tables and OSS uploads are outside this change.
 ## 搜索说明书正文 (2026-11-09)
 
 `/search.html` (`tools/rtd_portal_assets/search.html`, `_static/manual-search.js` and `.css`) is a portal page
-in the site shell, with the top bar's search icon marked current (and 搜索说明书正文 current in the public left list). It searches `portal-search-index.js`, the section index
+in the site shell, with the top bar's search button marked current (and 搜索说明书正文 current in the public left list). It searches `portal-search-index.js`, the section index
 above, in the browser; Sphinx still writes `searchindex.js`, which nothing reads now.
 
 - Matching: every query token must match the product words (model, 商品简称, product name), the section title or

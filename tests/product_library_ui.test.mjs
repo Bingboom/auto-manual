@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
 
-// 产品库 (tools/rtd_portal_assets/_static/product-library.js): the filter logic, loaded without a DOM. A chip
+// 产品矩阵 (tools/rtd_portal_assets/_static/product-library.js): the filter logic, loaded without a DOM. A chip
 // carries its model × market rows as a JSON array of [project, market] pairs.
 const script = readFileSync(new URL('../tools/rtd_portal_assets/_static/product-library.js', import.meta.url), 'utf8');
 const sandbox = {};
