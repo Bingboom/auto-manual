@@ -8,6 +8,7 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
+from urllib.error import HTTPError, URLError
 
 from tools.rtd import deployment_receipt as receipt
 from tools import verify_web_deployment_targets as verifier
@@ -234,7 +235,9 @@ class DeploymentVerificationTests(unittest.TestCase):
                 )
         self.assertEqual(1, code)
         text = stdout.getvalue()
-        self.assertIn("FAIL JE-2000E/EU/de", text)
+        self.assertIn("MISMATCH JE-2000E/EU/de", text)
+        self.assertIn("[wrong-site]", text)
+        self.assertIn("TARGET MISMATCH: 1 target(s) disproved (wrong-site 1)", text)
         self.assertIn("OK JE-1000F/US/en", text)
 
     def test_report_with_no_results_is_not_verified(self) -> None:
@@ -368,7 +371,7 @@ class DeploymentVerificationTests(unittest.TestCase):
         text = stdout.getvalue()
         self.assertIn("THROTTLED JE-2000E/EU/de", text)
         self.assertIn("OK JE-1000F/US/en", text)
-        self.assertIn("1 throttled (undecided)", text)
+        self.assertIn("1 verified / 0 mismatched / 0 unverifiable / 1 throttled of 2", text)
         self.assertIn("no target was disproved", text)
 
     def test_report_json_file_carries_the_classification_counts(self) -> None:
@@ -449,6 +452,120 @@ class DeploymentVerificationTests(unittest.TestCase):
         self.assertEqual("markup", json.loads(path.read_text())["asset_scope"])
         self.assertEqual("markup", verifier.parse_args([]).asset_scope)
         self.assertEqual("full", verifier.parse_args(["--asset-scope", "full"]).asset_scope)
+
+    # --- unverifiable vs. mismatched (Hello-Docs runs 47-80: sign-in redirect) ---
+
+    LOGIN = "https://app.readthedocs.com/accounts/login/?next=/en/latest/manual-deployment.json"
+
+    def redirecting_serve(self, *pages: str, to: str | None = None):
+        """Serve normally except for `pages`, which redirect off-site (default: sign-in)."""
+        blocked = set(pages)
+        destination = to or self.LOGIN
+
+        def serve(url: str) -> bytes:
+            if url.removeprefix(BASE_URL + "/") in blocked:
+                raise receipt.CrossOriginRedirect(destination)
+            return self.serve(url)
+
+        return serve
+
+    def test_sign_in_redirect_is_unverifiable_and_asked_once(self) -> None:
+        """The month-long red run: a login-gated receipt read as 49 mismatches + a 429 storm."""
+        calls = []
+        serve = self.redirecting_serve(receipt.RECEIPT)
+
+        def counting(url: str) -> bytes:
+            calls.append(url)
+            return serve(url)
+
+        stdout = io.StringIO()
+        path = Path(self.temp.name) / "login.json"
+        with patch.object(receipt, "_fetch", side_effect=counting):
+            with contextlib.redirect_stdout(stdout):
+                code = verifier.main([
+                    "--publish-root", str(self.publish), "--base-url", BASE_URL,
+                    "--rps", "0", "--report-json", str(path),
+                ])
+        self.assertEqual(verifier.EXIT_UNDECIDED, code)
+        report = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual("unverifiable", report["status"])
+        self.assertEqual(
+            {"verified": 0, "mismatched": 0, "unverifiable": 2, "throttled": 0}, report["counts"]
+        )
+        self.assertEqual({"login-required": 2}, report["undecided_categories"])
+        self.assertTrue(report["headline"].startswith("UNVERIFIABLE: the site redirected"))
+        # Legacy readers compute verified = checked - failed - throttled; it must stay 0.
+        self.assertEqual(0, report["targets_failed"])
+        self.assertEqual(2, report["targets_throttled"])
+        # The redirect is replayed from the session, not re-requested per target.
+        self.assertEqual(1, len(calls))
+        self.assertEqual(2, report["transport"]["failure_replays"])
+        text = stdout.getvalue()
+        self.assertIn("UNVERIFIABLE: the site redirected the anonymous verifier", text)
+        self.assertIn("UNVERIFIABLE JE-1000F/US/en", text)
+        self.assertIn("(to https://app.readthedocs.com/accounts/login/)", text)
+        self.assertNotIn("next=", text)
+        self.assertNotIn("MISMATCH", text)
+
+    def test_a_real_mismatch_outranks_unverifiable_and_is_printed_first(self) -> None:
+        (self.output / PAGE_ONE).write_bytes(
+            b"<html><head></head><body>silently replaced</body></html>"
+        )
+        stdout = io.StringIO()
+        with patch.object(receipt, "_fetch", side_effect=self.redirecting_serve(PAGE_TWO)):
+            with contextlib.redirect_stdout(stdout):
+                code = verifier.main([
+                    "--publish-root", str(self.publish), "--base-url", BASE_URL, "--rps", "0",
+                ])
+        self.assertEqual(verifier.EXIT_FAILED, code)
+        lines = stdout.getvalue().splitlines()
+        self.assertIn("TARGET MISMATCH: 1 target(s) disproved (content-differs 1)", lines[0])
+        self.assertIn("1 mismatched / 1 unverifiable", lines[1])
+        verdicts = [line.split()[1] for line in lines if "/md/" in line]
+        self.assertEqual(["MISMATCH", "UNVERIFIABLE"], verdicts)
+
+    def test_failure_categories(self) -> None:
+        cases = (
+            (receipt.CrossOriginRedirect(self.LOGIN), ("unverifiable", "login-required")),
+            (receipt.CrossOriginRedirect("https://evil.example/page.html"), ("failed", "redirect")),
+            (HTTPError(BASE_URL, 404, "nf", {}, None), ("failed", "not-found")),
+            (HTTPError(BASE_URL, 403, "no", {}, None), ("unverifiable", "access-denied")),
+            (HTTPError(BASE_URL, 502, "bad", {}, None), ("unverifiable", "transport")),
+            (URLError(ConnectionResetError()), ("unverifiable", "transport")),
+            (TimeoutError("Deployment read exceeded its time budget"), ("unverifiable", "transport")),
+            (receipt.DeploymentThrottled("429"), ("throttled", "rate-limited")),
+            (ValueError("Live deployment does not match frozen source"),
+             ("failed", "stale-deployment")),
+            (ValueError("Live deployment bytes differ: x.html"), ("failed", "content-differs")),
+            (ValueError("Live deployment declares RTD project a instead of b: x"),
+             ("failed", "wrong-site")),
+            (ValueError("Deployment receipt lacks selected routes"),
+             ("failed", "missing-from-deployment")),
+            (ValueError("something new"), ("failed", "other")),
+        )
+        for exc, expected in cases:
+            with self.subTest(exc=repr(exc)):
+                self.assertEqual(expected, verifier.classify_failure(exc))
+
+    def test_shared_callers_keep_the_two_way_split_by_default(self) -> None:
+        """The receipt-link lane gates a Bitable write on ok/failed/throttled; unchanged."""
+        with patch.object(receipt, "_fetch", side_effect=self.redirecting_serve(receipt.RECEIPT)):
+            results = verifier.verify_targets_against_source(
+                self.web, base_url=BASE_URL, targets=self.targets,
+                project_slug="ht-doc", session=fast_session(),
+            )
+        self.assertEqual({"failed"}, {entry["status"] for entry in results})
+        self.assertEqual({"login-required"}, {entry["category"] for entry in results})
+
+    def test_live_slug_mode_separates_unreadable_pages_when_asked(self) -> None:
+        with patch.object(receipt, "_fetch", side_effect=self.redirecting_serve(PAGE_ONE)):
+            results = verifier.verify_targets_live_slug(
+                base_url=BASE_URL, targets=self.targets, project_slug="ht-doc",
+                session=fast_session(), separate_unverifiable=True,
+            )
+        by_page = {entry["page"]: entry for entry in results}
+        self.assertEqual("unverifiable", by_page[PAGE_ONE]["status"])
+        self.assertEqual("ok", by_page[PAGE_TWO]["status"])
 
     def test_rps_flag_sets_the_shared_pace_and_rejects_negatives(self) -> None:
         session = verifier._session(verifier.parse_args(["--rps", "4"]))

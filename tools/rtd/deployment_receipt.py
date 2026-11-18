@@ -105,6 +105,8 @@ class FetchSession:
     A cached response is one that was already fetched and hashed in this run,
     so reusing it keeps attribution deterministic — it never converts a
     mismatch into a pass, because the same bytes yield the same verdict.
+    Deterministic failures (a cross-origin redirect, a permanent HTTP error)
+    are replayed the same way; rate limits and transient errors never are.
     """
 
     def __init__(self, *, min_interval: float = DEFAULT_MIN_REQUEST_INTERVAL,
@@ -116,7 +118,9 @@ class FetchSession:
         self.cache_hits = 0
         self.throttle_waits = 0
         self.throttle_seconds = 0.0
+        self.failure_replays = 0
         self._cache: dict[str, bytes] | None = {} if cache else None
+        self._failures: dict[str, Exception] | None = {} if cache else None
         self._cached_bytes = 0
         self._fingerprints: dict[Path, str] = {}
         self._next_allowed = 0.0
@@ -145,11 +149,21 @@ class FetchSession:
         if self._cache is not None and url in self._cache:
             self.cache_hits += 1
             return self._cache[url]
+        if self._failures is not None and url in self._failures:
+            # Same request, same deterministic answer: replay it instead of
+            # asking again (a sign-in redirect re-requested once per target is
+            # what pushed the 226-target catalog into HTTP 429).
+            self.failure_replays += 1
+            raise self._failures[url]
         for attempt in range(MAX_THROTTLE_ATTEMPTS):
             self._pace()
             self.requests += 1
             try:
                 data = _fetch(url)
+            except (CrossOriginRedirect, HTTPError) as exc:
+                if self._failures is not None and _deterministic_failure(exc):
+                    self._failures[url] = exc
+                raise
             except DeploymentThrottled as exc:
                 # Never sooner than our own backoff, never sooner than the
                 # server asked: Retry-After only ever extends the wait.
@@ -174,6 +188,7 @@ class FetchSession:
 
     def stats(self) -> dict[str, float | int]:
         return {"requests": self.requests, "cache_hits": self.cache_hits,
+                "failure_replays": self.failure_replays,
                 "throttle_waits": self.throttle_waits,
                 "throttle_seconds": round(self.throttle_seconds, 3)}
 
@@ -261,6 +276,30 @@ class CrossOriginRedirect(ValueError):
     def __init__(self, target: str) -> None:
         super().__init__("Cross-origin deployment redirect refused")
         self.target = target
+
+    @property
+    def destination(self) -> str:
+        """Where the redirect pointed, without its query or fragment (a sign-in ``next=`` stays out of logs)."""
+        try:
+            moved = urlsplit(self.target)
+        except ValueError:
+            return "an unparsable URL"
+        return f"{moved.scheme}://{moved.netloc}{moved.path}" if moved.netloc else "an unparsable URL"
+
+    @property
+    def login_required(self) -> bool:
+        """The site sent an anonymous reader to its sign-in page: nothing about the deployment was read."""
+        try:
+            return "/login" in urlsplit(self.target).path.lower()
+        except ValueError:
+            return False
+
+
+def _deterministic_failure(exc: Exception) -> bool:
+    """Failures a repeat request in the same run would only reproduce (never rate limits or glitches)."""
+    if isinstance(exc, CrossOriginRedirect):
+        return True
+    return isinstance(exc, HTTPError) and exc.code not in RATE_LIMIT_STATUS | TRANSIENT_STATUS
 
 
 class _Redirect(HTTPRedirectHandler):
