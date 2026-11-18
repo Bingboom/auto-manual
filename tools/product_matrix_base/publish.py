@@ -59,16 +59,21 @@ def submit(root: Path, state: dict | None = None) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
+    from tools.workspace_refresh_publish import describe_failure, failure_fields
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument("--report", type=Path, help="the check's --log; the PR's outcome is added to it")
     args = parser.parse_args(argv)
     report = (sync.read_json(args.report) if args.report else None) or {"kind": sync.KIND}
+    state: dict = {}
     try:
-        outcome = submit(args.root.resolve())
+        outcome = submit(args.root.resolve(), state)
     except (RuntimeError, OSError, ValueError, KeyError, TypeError) as exc:
-        report.update(review={"status": "failed", "error_type": type(exc).__name__})
-        print("Snapshot and status kept in this run; the review submission failed. Retry the workflow.")
+        fields = failure_fields(state.get("stage"), exc)
+        report.update(fields, stage="review-submission", review={"status": "failed", **fields})
+        print("Snapshot and status kept in this run; the review submission failed at "
+              + describe_failure(fields) + ". Retry the workflow.")
         code = 1
     else:
         report["review"] = {"status": "not-needed" if outcome == "no-change" else "awaiting-review", "url": outcome}

@@ -438,6 +438,23 @@ class FailureStageTests(unittest.TestCase):
                          ("review-submission", "clone", "CommandFailed", "auth-failed"))
         self.assert_no_leak(out, log)
 
+    def test_credential_helper_is_persisted_before_sparse_checkout_fetches_private_blobs(self):
+        from tools import workspace_refresh_publish as publisher
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            snap.atomic_json(snap.data_dir(root) / "deliverables-status.json", {"status": "changed"})
+            calls = []
+
+            def execute(args, cwd=None):
+                calls.append(list(args))
+                return "[]" if args[:3] == ["gh", "pr", "list"] else ""
+
+            with patch.object(publisher, "command", side_effect=execute):
+                publisher.submit(root, "deliverables")
+        configure_idx = calls.index(["git", "config", "credential.helper", "!gh auth git-credential"])
+        sparse_idx = calls.index(["git", "sparse-checkout", "set", "docs/knowledge/workspace-data"])
+        self.assertLess(configure_idx, sparse_idx)
+
     def test_record_values_in_an_internal_error_never_reach_the_log(self):
         code, out, log = self.run_main(["git", "switch"], KeyError(self.SECRET))
         self.assertEqual(code, 1)

@@ -26,7 +26,7 @@ AUTO_MERGE_KINDS = frozenset({"web_progress"})
 # A merge made with the workflow token starts no push workflow, so verification is dispatched.
 VERIFY_WORKFLOW = "workspace-data-verify.yml"
 # A failure names only one of these steps; nothing from command output or snapshot data is printed.
-SUBMISSION_STAGES = ("read-report", "clone", "sparse-checkout", "configure", "branch-lookup", "branch-fetch",
+SUBMISSION_STAGES = ("read-report", "clone", "configure", "sparse-checkout", "branch-lookup", "branch-fetch",
                      "branch-scope-check", "open-pr-lookup", "branch-switch", "compare-snapshot", "commit",
                      "push", "head-read", "pr-create", "auto-merge", "verify-dispatch")
 # Fixed reason codes matched against lower-cased stderr, first match wins; stderr itself is never kept.
@@ -199,10 +199,11 @@ def submit_files(root: Path, *, branch: str, directory: Path, allowed: set[Path]
         at("clone")
         command(["git", "-c", "credential.helper=!gh auth git-credential", "clone", "--quiet", "--filter=blob:none",
                  "--sparse", "--single-branch", "https://github.com/" + REPOSITORY + ".git", str(checkout)])
-        at("sparse-checkout")
-        command(["git", "sparse-checkout", "set", sparse], cwd=checkout)
+        # Persist the credential helper before sparse-checkout fetches blobs from the private promisor remote.
         at("configure")
         command(["git", "config", "credential.helper", "!gh auth git-credential"], cwd=checkout)
+        at("sparse-checkout")
+        command(["git", "sparse-checkout", "set", sparse], cwd=checkout)
         at("branch-lookup")
         remote = command(["git", "ls-remote", "--heads", "origin", branch], cwd=checkout)
         permitted = {path.relative_to(root).as_posix() for path in allowed}
