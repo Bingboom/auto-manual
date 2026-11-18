@@ -47,6 +47,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
+from tools import lang_registry  # noqa: E402
 from tools.check.docs_terminology import load_rules, scan_text  # noqa: E402
 
 TM_SENTENCE_TABLE = "tblqtvNbgjDwR4ya"
@@ -62,6 +63,14 @@ LANG_ALIASES = {
     "jp": "jp", "ja": "jp", "fr": "fr", "es": "es", "de": "de", "it": "it",
     "uk": "uk", "pt-BR": "pt-BR", "pt-br": "pt-BR",
 }
+for _spec in lang_registry.LANGUAGE_REGISTRY:
+    if _spec.code == "en":
+        continue
+    _sweep_target = LANG_ALIASES.get(_spec.code, _spec.code)
+    LANG_ALIASES.setdefault(_spec.code, _sweep_target)
+    LANG_ALIASES.setdefault(_spec.tm_column, _sweep_target)
+    for _alias in _spec.aliases:
+        LANG_ALIASES.setdefault(_alias, _sweep_target)
 JUNK_VALUE = re.compile(r"^(test|todo|tbd|xxx|n/?a|-|—)$", re.IGNORECASE)
 _HEADING_UNDERLINE = re.compile(r"([=\-~^\"'#*+])\1{2,}")
 

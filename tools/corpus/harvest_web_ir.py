@@ -39,7 +39,7 @@ def tm_column_for_lang(lang: str) -> str:
         return TM_LANGUAGE_FIELDS[normalized]
     spec = lang_registry.language_spec(normalized)
     if spec is not None:
-        return spec.code
+        return spec.tm_column
     return raw
 
 
