@@ -237,7 +237,7 @@ class RawBinaryRatchetTests(unittest.TestCase):
     def test_real_repository_ratchet_passes(self) -> None:
         res = store.check_repository(store.REPO_ROOT, printer=lambda _: None)
         self.assertEqual(res.exit_code, 0)
-        self.assertGreaterEqual(res.baselined_count, 200)
+        self.assertGreaterEqual(res.pointer_count, 5)
 
 
 class FetchAndCliWorkflowTests(unittest.TestCase):
@@ -323,11 +323,13 @@ class FetchAndCliWorkflowTests(unittest.TestCase):
             calls: list[list[str]] = []
 
             def good_runner(
-                cmd: list[str], **_kwargs: object
+                cmd: list[str], **kwargs: object
             ) -> subprocess.CompletedProcess[str]:
                 calls.append(cmd)
-                target = Path(cmd[cmd.index("--output") + 1])
-                target.write_bytes(expected)
+                out_arg = cmd[cmd.index("--output") + 1]
+                self.assertTrue(out_arg.startswith("./"))
+                cwd = Path(str(kwargs["cwd"]))
+                (cwd / out_arg).write_bytes(expected)
                 return subprocess.CompletedProcess(cmd, 0, stdout="ok", stderr="")
 
             written = store.fetch_pointer_attachment(
@@ -366,10 +368,11 @@ class FetchAndCliWorkflowTests(unittest.TestCase):
             corrupt_target = Path(tmp) / "downloads" / "corrupt.pdf"
 
             def corrupt_runner(
-                cmd: list[str], **_kwargs: object
+                cmd: list[str], **kwargs: object
             ) -> subprocess.CompletedProcess[str]:
-                target = Path(cmd[cmd.index("--output") + 1])
-                target.write_bytes(b"%PDF-1.7 wrong bytes same length!!")
+                out_arg = cmd[cmd.index("--output") + 1]
+                cwd = Path(str(kwargs["cwd"]))
+                (cwd / out_arg).write_bytes(b"%PDF-1.7 wrong bytes same length!!")
                 return subprocess.CompletedProcess(cmd, 0, stdout="ok", stderr="")
 
             with self.assertRaisesRegex(RuntimeError, "sha256 mismatch"):
