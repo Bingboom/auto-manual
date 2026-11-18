@@ -39,6 +39,16 @@ class HomeRenderTests(unittest.TestCase):
             self.assertNotIn(word, text)
         self.assertEqual([a.strong.get_text() for a in home.select("#doors .home-card")], ["说明书资料库", "市场与政策"])
 
+    def test_corpus_card_shows_the_corpus_pages_pair_figure(self):
+        # Without approved rows per language (schema v1) the card keeps the whole-corpus figure; with them the
+        # 语料库 page counts approved pairs only (language_view) and the card shows the same figure.
+        whole = render(cards=front_cards(None, None, CORPUS))
+        self.assertEqual(whole.select_one("#asset-corpus .home-front-fig b").get_text(), "1,372")
+        approved = {**CORPUS, "approved": True, "counts": {"pairs": 971, "terms": 40}}
+        home = render(cards=front_cards(None, None, approved))
+        self.assertEqual(home.select_one("#asset-corpus .home-front-fig b").get_text(), "971")
+        self.assertEqual(home.select_one("#asset-corpus .home-front-line").get_text(), "句对 · 术语 · 复用")
+
     def test_cards_without_a_source_say_none_yet_never_zero(self):
         cards = front_cards(None, None, None)
         self.assertEqual([card["id"] for card in cards], ["knowledge", "corpus"])  # no matrix, no 产品信息 card
