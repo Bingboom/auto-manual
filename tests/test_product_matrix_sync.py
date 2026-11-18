@@ -194,11 +194,40 @@ class PublishTest(unittest.TestCase):
 
             with patch("tools.workspace_refresh_publish.command", side_effect=execute):
                 publish.submit(root)
-        self.assertIn(["git", "sparse-checkout", "set", "docs/knowledge/product-matrix"], calls)
+        configure_idx = calls.index(["git", "config", "credential.helper", "!gh auth git-credential"])
+        sparse_idx = calls.index(["git", "sparse-checkout", "set", "docs/knowledge/product-matrix"])
+        self.assertLess(configure_idx, sparse_idx)
         self.assertIn(["git", "add", "--", "docs/knowledge/product-matrix/status.json"], calls)
         create = next(call for call in calls if call[:3] == ["gh", "pr", "create"])
         self.assertIn(publish.BRANCH, create)
         self.assertFalse(any(call[:3] == ["gh", "pr", "merge"] for call in calls))
+
+    def test_publish_main_records_leak_free_submission_stage_on_failure(self):
+        from tools.workspace_refresh_publish import CommandFailed, recorded_failure
+
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            folder = publish.directory(root)
+            folder.mkdir(parents=True)
+            status, _ = sync.check(failing, None, None, now=READ)
+            snapshot.write_snapshot(folder / "status.json", status)
+            report_path = root / "result.json"
+            snapshot.write_snapshot(report_path, status)
+
+            def execute(args, cwd=None):
+                if args[:2] == ["git", "push"]:
+                    raise CommandFailed("git", 128, "permission-denied")
+                return "[]" if args[:3] == ["gh", "pr", "list"] else ""
+
+            stdout = io.StringIO()
+            with patch("tools.workspace_refresh_publish.command", side_effect=execute), redirect_stdout(stdout):
+                code = publish.main(["--root", str(root), "--report", str(report_path)])
+            saved = json.loads(report_path.read_text(encoding="utf-8"))
+        self.assertEqual(code, 1)
+        self.assertIn("stage push (CommandFailed: git exit 128, reason permission-denied)", stdout.getvalue())
+        self.assertEqual((saved["stage"], saved["submission_stage"], saved["error_reason"]),
+                         ("review-submission", "push", "permission-denied"))
+        self.assertEqual(recorded_failure(saved), "stage push (CommandFailed: git exit 128, reason permission-denied)")
 
 
 if __name__ == "__main__":
