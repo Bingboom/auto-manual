@@ -476,3 +476,75 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
         # Ensure limit passed in cmd was 50
         limit_idx = capped_calls[0].index("--limit")
         self.assertEqual("50", capped_calls[0][limit_idx + 1])
+
+    def test_live_tm_eu_pt_nl_pl_zh_tw_columns_and_manifest_parity(self) -> None:
+        import json
+        from tools import lang_asset_sweep
+        from tools.translation_memory import normalize_language, query_translation_memory_entries
+
+        self.assertEqual(normalize_language("eu-pt"), "pt")
+        self.assertEqual(normalize_language("pt"), "pt")
+        self.assertEqual(normalize_language("nl"), "nl")
+        self.assertEqual(normalize_language("pl"), "pl")
+        self.assertEqual(normalize_language("zh-TW"), "zh-tw")
+        self.assertEqual(lang_asset_sweep.LANG_ALIASES.get("eu-pt"), "pt")
+        self.assertEqual(lang_asset_sweep.LANG_ALIASES.get("nl"), "nl")
+        self.assertEqual(lang_asset_sweep.LANG_ALIASES.get("pl"), "pl")
+
+        fake_table_get = {
+            "ok": True,
+            "data": {
+                "fields": [
+                    {"name": "en", "type": "text"},
+                    {"name": "nl", "type": "text"},
+                    {"name": "pl", "type": "text"},
+                    {"name": "eu-pt", "type": "text"},
+                    {"name": "pt-BR", "type": "text"},
+                    {"name": "zh-TW", "type": "text"},
+                    {"name": "eu-pt维护Log (AI)", "type": "text"},
+                ]
+            },
+        }
+        with mock.patch.object(query_live_translation_memory, "run_lark_json", return_value=fake_table_get):
+            fields = query_live_translation_memory.get_table_language_fields(
+                cli="lark-cli", base_token="base123", table_id="tbl123"
+            )
+        self.assertEqual(["en", "nl", "pl", "eu-pt", "pt-BR", "zh-TW"], fields)
+
+        entries = query_live_translation_memory.build_sentence_pair_entries(
+            [
+                {
+                    "record_id": "rec_eu",
+                    "Status": "Approved",
+                    "en": "Read all instructions before use.",
+                    "nl": "Lees alle instructies voor gebruik.",
+                    "pl": "Przeczytaj wszystkie instrukcje przed użyciem.",
+                    "eu-pt": "Leia todas as instruções antes de usar.",
+                    "zh-TW": "使用前請閱讀所有說明。",
+                }
+            ],
+            language_fields=fields,
+            include_draft=False,
+        )
+        self.assertEqual(1, len(entries))
+        self.assertEqual("Leia todas as instruções antes de usar.", entries[0].translations.get("pt"))
+        self.assertEqual("使用前請閱讀所有說明。", entries[0].translations.get("zh-tw"))
+
+        for ask in ("pt", "eu-pt"):
+            matched = query_translation_memory_entries(
+                entries,
+                query_text="Read all instructions before use.",
+                source_lang="en",
+                target_lang=ask,
+            )
+            self.assertEqual(1, len(matched))
+            self.assertEqual("Leia todas as instruções antes de usar.", matched[0].translations.get("pt"))
+
+        manifest_path = Path(__file__).resolve().parents[1] / "bitable_schema" / "tm_base_manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        tables = {t["name"]: {f["name"] for f in t["fields"]} for t in manifest["tables"]}
+        self.assertEqual({"Translation_Memory", "Terms", "语料核验任务"}, set(tables))
+        for table_name in ("Translation_Memory", "Terms"):
+            self.assertTrue({"en", "nl", "pl", "eu-pt", "pt-BR", "zh-TW", "Status", "Asset_ID"}.issubset(tables[table_name]))
+        self.assertTrue({"nl维护Log (AI)", "pl维护Log (AI)", "eu-pt维护Log (AI)", "zh-TW维护Log (AI)"}.issubset(tables["Translation_Memory"]))
+

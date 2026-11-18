@@ -165,7 +165,8 @@ class TestHarvestWebIrToTm(unittest.TestCase):
         self.assertEqual(tm_column_for_lang("pt-BR"), "pt-BR")
         self.assertEqual(tm_column_for_lang("nl"), "nl")
         self.assertEqual(tm_column_for_lang("pl"), "pl")
-        self.assertEqual(tm_column_for_lang("pt"), "pt")
+        self.assertEqual(tm_column_for_lang("pt"), "eu-pt")
+        self.assertEqual(tm_column_for_lang("zh-tw"), "zh-TW")
         self.assertEqual(tm_column_for_lang("de"), "de")
         self.assertEqual(tm_column_for_lang("fr"), "fr")
         self.assertEqual(tm_column_for_lang("es"), "es")
@@ -288,7 +289,7 @@ class TestHarvestWebIrToTm(unittest.TestCase):
             )
             self.assertEqual(rows_by_en["Read all instructions before use."]["translations"]["nl"], "Lees alle instructies voor gebruik.")
             self.assertEqual(rows_by_en["Read all instructions before use."]["translations"]["pl"], "Przeczytaj wszystkie instrukcje przed użyciem.")
-            self.assertEqual(rows_by_en["Read all instructions before use."]["translations"]["pt"], "Leia todas as instruções antes de usar.")
+            self.assertEqual(rows_by_en["Read all instructions before use."]["translations"]["eu-pt"], "Leia todas as instruções antes de usar.")
             self.assertNotIn("3600Wh", rows_by_en)
             self.assertNotIn("JE-3600A", rows_by_en)
 

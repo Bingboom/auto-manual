@@ -58,6 +58,7 @@ LANGUAGE_ALIASES = {
     "pl": "pl",
     "polish": "pl",
     "portuguese": "pt",
+    "eu-pt": "pt",
     "pt": "pt",
     "pt-pt": "pt",
     "pt-br": "pt-br",
