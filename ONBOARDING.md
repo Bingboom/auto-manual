@@ -60,7 +60,7 @@ docs-as-code 构建流水线正在退出，已在其上运行的目标继续维�
 ```bash
 python build.py doctor                    # 本机环境自检
 python -m unittest                        # 全量测试（改逻辑必跑）
-python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 python build.py sync-data --config configs/config.us.yaml --data-root data/phase2
 python -m tools.flow_dashboard report     # 双面仪表（系统健康 + 产出证明）
 ```

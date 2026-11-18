@@ -45,16 +45,16 @@ Current test coverage includes:
 ### 2.1 EN / US family
 
 ```powershell
-python build.py check --config configs/config.us.yaml --model JE-1000F --region US
+python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 python build.py word --config configs/config.us.yaml --model JE-1000F --region US
 ```
 
 ### 2.2 JP family
 
 ```powershell
-python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
-python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging
 ```
 
 ### 2.3 JP production-IDML smoke
