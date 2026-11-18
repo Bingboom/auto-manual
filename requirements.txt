@@ -26,6 +26,9 @@ numpy>=1.26
 PyMuPDF>=1.24  # QC findings -> annotated-PDF renderer (tools/pdf_annotate.py)
 oss2>=2.19
 
+# HTML parsing (Web packages, review drafts, QC); floor = requirements.lock pin
+beautifulsoup4>=4.15,<5.0
+
 # Notes:
 # - DOCX export via pandoc still requires pandoc installed separately.
 # - Windows Word COM export still requires Microsoft Word installed locally.
