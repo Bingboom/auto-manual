@@ -316,6 +316,19 @@ and writes the snapshot next to the contract. It is read-only. Pass
 `corpus.languages` list fixes the languages counted and their labels; a column
 missing from either table fails the export instead of counting zero.
 
+Each table's block (`sentence_pairs`, `terms`) holds `total`, `by_language` (rows with
+that language filled, every status) and `by_status` (rows per status). Schema
+`hello-docs-tm-corpus/v1.1`, which the export writes, adds only
+`approved_by_language`: per language, the rows whose language is filled and whose
+status is `Approved`. Its codes are a subset of `by_language`'s, each count lies
+between 0 and that language's `by_language` count, and none exceeds the block's
+`Approved` count. Readers accept `v1` (without the key, which it must not carry)
+and `v1.1` (with the key in both blocks). This block keeps describing the whole
+corpus either way; only the 语料库 page switches to approved entries.
+Deploy the reader that accepts `v1.1` to the mirror before a `v1.1` snapshot
+is written there: an older reader rejects the new key and the corpus block shows
+no data.
+
 Each export carries the earlier months forward in `history`: one headline per
 month (sentence pairs, terms, approved), oldest first, up to 24 months. The
 page compares the current figures with the latest of them. A second export in
