@@ -53,13 +53,14 @@ class LoadTests(unittest.TestCase):
                 with self.assertRaisesRegex(pl.SnapshotError, reason):
                     pl.load_snapshot(Path(tmp))
 
-    def test_both_snapshot_versions_are_read(self):
-        # v1.1 (the matrix window's cells) only adds fields, so 产品库 reads it like v1.
+    def test_every_snapshot_version_is_read(self):
+        # v1.1 (the matrix window's cells) and v1.2 (build and latest-record times) only add fields.
         for schema in pl.SCHEMAS:
             with self.subTest(schema), tempfile.TemporaryDirectory() as tmp:
                 self.write(Path(tmp), json.dumps({"schema": schema, "products": [{"model": "FAKE-1", "market": "US"}]}))
                 self.assertEqual(pl.load_snapshot(Path(tmp))["schema"], schema)
-        self.assertEqual(pl.SCHEMAS, ("hello-docs-product-matrix-snapshot/v1", "hello-docs-product-matrix-snapshot/v1.1"))
+        self.assertEqual(pl.SCHEMAS, ("hello-docs-product-matrix-snapshot/v1", "hello-docs-product-matrix-snapshot/v1.1",
+                                      "hello-docs-product-matrix-snapshot/v1.2"))
 
     def test_the_context_says_plainly_when_there_is_no_usable_snapshot(self):
         warnings = []

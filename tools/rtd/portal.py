@@ -380,6 +380,33 @@ def cached_matrix_context(app):
     return cached
 
 
+def product_freshness(app):
+    """The product pages' sync times and stale warning (tools/rtd/product_freshness.py), once per build.
+
+    Private role only: read from the knowledge directory beside the snapshot; None without a usable snapshot.
+    """
+    cached = getattr(app, "_rtd_product_freshness", _UNSET)
+    if cached is _UNSET:
+        from tools.rtd.product_freshness import freshness_context
+        from tools.rtd.product_library import SnapshotError, load_snapshot
+        from tools.rtd.source_registry import load_registry
+
+        try:
+            snapshot = load_snapshot(workspace_content(app))
+        except SnapshotError:
+            snapshot = None  # 产品库 already warned and says so on its page
+        today = dt.datetime.now(dt.timezone.utc).date()
+        configured = str(app.config.rtd_system_workspace_date or "")
+        if configured:
+            try:
+                today = dt.date.fromisoformat(configured)
+            except ValueError:
+                pass  # the workbench pages already warn about a malformed date
+        cached = freshness_context(workspace_content(app), snapshot, today=today, registry=load_registry(ASSETS)[0])
+        app._rtd_product_freshness = cached
+    return cached
+
+
 def site_nav(app) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
     if manuals_only(app):
@@ -475,7 +502,8 @@ def collect_workspace_pages(app):
         "moved_title": "说明书工作台「数据统计」",
     }, "moved_page.html"
     if matrix is not None:
-        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app)}, MATRIX_TEMPLATE
+        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app),
+                            "freshness": product_freshness(app) if matrix.get("built") else None}, MATRIX_TEMPLATE
     yield from product_profile_pages(app, settings, products)
 
 
@@ -501,20 +529,21 @@ def product_profile_pages(app, settings: dict, products: list[dict]):
     if snapshot is None:
         return
     nav = site_nav(app)
+    fresh = product_freshness(app)  # the same times and warning on every product page
     catalog = getattr(app, "_rtd_product_catalog", None)
     # 产品库 shows the 产品对比 / 参数表 tabs whenever it has products, so both pages exist then; without cells they
     # say 产品数据暂时读不到 and show no figures.
-    yield product_tables.TABLE_PAGE, {**product_tables.table_view(snapshot, catalog), "site_nav": nav}, \
-        product_tables.TABLE_TEMPLATE
-    yield product_tables.COMPARE_PAGE, {**product_tables.compare_view(snapshot), "site_nav": nav}, \
-        product_tables.COMPARE_TEMPLATE
+    yield product_tables.TABLE_PAGE, {**product_tables.table_view(snapshot, catalog), "site_nav": nav,
+                                      "freshness": fresh}, product_tables.TABLE_TEMPLATE
+    yield product_tables.COMPARE_PAGE, {**product_tables.compare_view(snapshot), "site_nav": nav,
+                                        "freshness": fresh}, product_tables.COMPARE_TEMPLATE
     if not has_cells(snapshot):
         return
     legacy = product_matrix_page_context(app, ASSETS, settings, products, catalog)
     pages = profile_pages(snapshot, labels=dict(settings.get("language_labels") or {}), extras=matrix_extras(legacy),
                           warn=sphinx_logging.getLogger(__name__).warning)
     for page, context in pages:
-        yield page, {**context, "site_nav": nav}, TEMPLATE
+        yield page, {**context, "site_nav": nav, "freshness": fresh}, TEMPLATE
 
 
 def _build_date(deliverables: dict, system: dict | None) -> str:

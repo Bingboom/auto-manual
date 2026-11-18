@@ -2,6 +2,9 @@ name: Workspace Data Refresh
 on:
   # 网页说明书进度 has no completion receipt (the 网页文档 table is kept by hand), so it
   # refreshes every day at 07:17 Beijing time; the other sources refresh after their batches.
+  # The same schedule runs the product-matrix check as its own job (operator 2026-11-18): it
+  # compares the matrix base with the committed snapshot and, when the base has moved on,
+  # proposes the re-read snapshot in a content PR that waits for review.
   schedule:
     - cron: '17 23 * * *'
   workflow_dispatch:
@@ -9,7 +12,7 @@ on:
       source:
         description: Source to recheck after a completed production or asset batch
         type: choice
-        options: [deliverables, corpus, web_progress]
+        options: [deliverables, corpus, web_progress, product_matrix]
         required: true
 permissions:
   # actions: write lets a self-merged web_progress PR start Workspace Data Verify, which a merge
@@ -23,7 +26,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   refresh:
-    if: ${{ github.repository == 'Bingboom/Hello-Docs' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' && github.ref == 'refs/heads/main' && inputs.source != 'product_matrix' }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
@@ -60,3 +63,46 @@ jobs:
           args=()
           if [ "$JOB_STATUS" = failure ]; then args+=(--failed); fi
           python -m tools.workspace_refresh_notice --kind "$REFRESH_KIND" --report .tmp/workspace-refresh/result.json "${args[@]}"
+  product-matrix:
+    # Its own job, not a workspace-data kind: the snapshot lives in docs/knowledge/product-matrix/,
+    # holds project numbers, and its content PR is never merged automatically.
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || inputs.source == 'product_matrix') }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PUBLISHED_DOCS_BASE_TOKEN: ${{ secrets.FEISHU_PUBLISHED_DOCS_BASE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: ./.github/actions/feishu-common-setup
+      # Exit 0 current or refreshed, 1 behind, 2 failed; the output holds times, hashes and counts only.
+      - name: Check the product matrix against its base
+        id: check
+        continue-on-error: true
+        run: python -m tools.product_matrix_base check --out docs/knowledge/product-matrix --write --refresh --log .tmp/product-matrix/result.json
+      - name: Submit the refreshed snapshot or the sync status for review
+        if: ${{ !cancelled() }}
+        run: python -m tools.product_matrix_base.publish --report .tmp/product-matrix/result.json
+      - name: Preserve check execution evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: product-matrix-check-${{ github.run_attempt }}
+          path: .tmp/product-matrix/
+          retention-days: 30
+      - name: Report a failed or lagging check
+        if: ${{ !cancelled() && steps.check.outcome == 'failure' }}
+        run: |
+          echo '::error::Product matrix check failed or found the snapshot behind its base. The page keeps the last snapshot and warns; see status.json.'
+          exit 1
+      - name: Source failure notice
+        if: ${{ !cancelled() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          args=()
+          if [ "$JOB_STATUS" = failure ]; then args+=(--failed); fi
+          python -m tools.workspace_refresh_notice --kind product_matrix --report .tmp/product-matrix/result.json "${args[@]}"

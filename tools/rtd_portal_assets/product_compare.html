@@ -11,7 +11,7 @@
 <script defer src="{{ pathto('_static/product-compare.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{% from "_product_tabs.html" import product_tabs with context %}
+{% from "_product_tabs.html" import product_tabs, product_freshness with context %}
 {#- 产品对比 (step 13; REV-53; tools/rtd/product_tables.py compare_view). The visitor picks two to four products
     and a market; rows that differ are highlighted and 只看不同的参数 keeps only them. The page carries every
     product's values as escaped JSON (private site only); the choice lives in the URL (?p=…&market=…), so a
@@ -23,6 +23,7 @@
 <main class="fr-page pc-page">
 {{ product_tabs('products/compare') }}
 <header class="fr-head"><h1>产品对比</h1></header>
+{{ product_freshness(freshness) }}
 {%- if not built %}
 <p class="fr-empty">{{ problem|e }}</p>
 {%- else %}

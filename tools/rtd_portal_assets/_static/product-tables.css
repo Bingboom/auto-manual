@@ -69,3 +69,8 @@ th[aria-sort="descending"] .pt-sort::after {content:" ↓"}
 .pt-table thead th:first-child {z-index:3;background:#f8fafc}
 .pt-table tbody tr.pt-group th {position:static}
 .pc-table tbody tr.is-diff th {background:#faf0dc}
+/* Data freshness on every product page (tools/rtd/product_freshness.py): three times, and an amber warning. */
+.pt-sync {margin:0;display:flex;flex-wrap:wrap;gap:2px 16px;font-size:12px;line-height:18px;color:var(--app-muted)}
+.pt-stale {margin:0;padding:10px 14px;border:1px solid #efdcb4;border-radius:var(--radius-md);background:#fdf8ee;
+  font-size:13px;line-height:20px;color:#5c3d0a}
+.pt-stale ul {margin:4px 0 0;padding-left:18px}

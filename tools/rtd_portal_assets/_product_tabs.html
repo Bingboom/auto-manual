@@ -8,3 +8,15 @@
   {%- endfor %}
 </nav>
 {%- endmacro -%}
+
+{#- The product pages' data freshness (tools/rtd/product_freshness.py): when the base was read, when the snapshot was
+    made, when the sync check last confirmed it, and a warning when the data may be out of date. Nothing without a
+    snapshot (``freshness`` is None). -#}
+{%- macro product_freshness(freshness) -%}
+{%- if freshness %}
+{%- if freshness.warnings %}
+<div class="pt-stale" role="status"><strong>数据可能不是最新</strong><ul>{% for warning in freshness.warnings %}<li>{{ warning|e }}</li>{% endfor %}</ul></div>
+{%- endif %}
+<p class="pt-sync"><span>数据读取于 {{ freshness.read_at|e }}</span><span>快照生成于 {{ freshness.built_at|e }}</span><span>最近同步成功 {{ freshness.last_success|e }}</span></p>
+{%- endif %}
+{%- endmacro -%}

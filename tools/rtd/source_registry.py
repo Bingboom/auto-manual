@@ -21,6 +21,7 @@ from typing import Any, Callable
 
 import yaml
 
+from tools.utils.path_utils import PathSegments
 from tools.workspace_snapshot import snapshot_path
 
 REGISTRY_NAME = "source_registry.yaml"
@@ -33,6 +34,7 @@ PAGE_DOMAINS = ("publications", "ledger", "corpus", "deliverables_feishu", "web_
 _ID = re.compile(r"^[a-z][a-z0-9_]*$")
 _SNAPSHOT = re.compile(r"^[A-Za-z0-9_.-]+\.json$")
 _FILE_REF = re.compile(r"^file:(auto-manual|hello-docs):(\S+)$")
+_SNAPSHOT_DIR = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 
 Registry = dict[str, dict[str, Any]]
 
@@ -56,6 +58,24 @@ def file_refs(registry: Registry) -> list[tuple[str, str, str]]:
 def _flag_problems(domain: dict[str, Any], where: str) -> list[str]:
     """A domain's optional flags: on_page (default true) marks a domain no page reads any more."""
     return [] if isinstance(domain.get("on_page", True), bool) else [f"{where}: on_page must be true or false"]
+
+
+def _snapshot_problems(domain: dict[str, Any], where: str) -> list[str]:
+    """A domain's snapshot fields: a snapshot domain names its file, refresh and limit; no other domain does."""
+    if domain.get("read") != "snapshot":
+        if "snapshot" in domain or "refresh" in domain or "snapshot_dir" in domain:
+            return [f"{where}: only snapshot domains name a snapshot, its directory or a refresh command"]
+        return []
+    problems = []
+    if not _SNAPSHOT.fullmatch(str(domain.get("snapshot") or "")):
+        problems.append(f"{where}: snapshot must name a .json file next to the registry")
+    if not str(domain.get("refresh") or "").strip():
+        problems.append(f"{where}: a snapshot needs its refresh command")
+    if domain.get("stale_after_days") is None:
+        problems.append(f"{where}: a snapshot needs stale_after_days")
+    if "snapshot_dir" in domain and not _SNAPSHOT_DIR.fullmatch(str(domain.get("snapshot_dir") or "")):
+        problems.append(f"{where}: snapshot_dir must name one directory under docs/knowledge/")
+    return problems
 
 
 def registry_problems(data: object) -> list[str]:
@@ -91,15 +111,7 @@ def registry_problems(data: object) -> list[str]:
         stale = domain.get("stale_after_days")
         if stale is not None and (isinstance(stale, bool) or not isinstance(stale, int) or stale <= 0):
             problems.append(f"{where}: stale_after_days must be a positive integer")
-        if read == "snapshot":
-            if not _SNAPSHOT.fullmatch(str(domain.get("snapshot") or "")):
-                problems.append(f"{where}: snapshot must name a .json file next to the registry")
-            if not str(domain.get("refresh") or "").strip():
-                problems.append(f"{where}: a snapshot needs its refresh command")
-            if stale is None:
-                problems.append(f"{where}: a snapshot needs stale_after_days")
-        elif "snapshot" in domain or "refresh" in domain:
-            problems.append(f"{where}: only snapshot domains name a snapshot or a refresh command")
+        problems += _snapshot_problems(domain, where)
         problems += _flag_problems(domain, where)
     missing = [domain_id for domain_id in PAGE_DOMAINS if domain_id not in seen]
     if missing:
@@ -119,11 +131,23 @@ def load_registry(assets: Path) -> tuple[Registry | None, list[str]]:
     return {str(domain["id"]): domain for domain in data["domains"]}, []
 
 
+def snapshot_file(assets: Path, domain: dict[str, Any]) -> Path:
+    """A snapshot domain's file: under docs/knowledge/<snapshot_dir>/ when the domain names one (the private
+    product-matrix snapshot, absent outside the Hello-Docs mirror), else the workspace-data / asset location."""
+    if domain.get("snapshot_dir"):
+        root = assets.parent.parent
+        return root / PathSegments.DOCS / PathSegments.KNOWLEDGE / str(domain["snapshot_dir"]) / str(domain["snapshot"])
+    return snapshot_path(assets, str(domain["snapshot"]))
+
+
 def snapshot_date(assets: Path, domain: dict[str, Any]) -> dt.date | None:
-    """A snapshot domain's ``exported_at``, or None when the file cannot say."""
+    """A snapshot domain's ``exported_at`` (``read_at``'s date for a snapshot that records its read time), or None
+    when the file cannot say."""
     try:
-        data = json.loads(snapshot_path(assets, str(domain["snapshot"])).read_text(encoding="utf-8"))
-        return dt.date.fromisoformat(str(data["exported_at"]))
+        data = json.loads(snapshot_file(assets, domain).read_text(encoding="utf-8"))
+        if "exported_at" in data:
+            return dt.date.fromisoformat(str(data["exported_at"]))
+        return dt.date.fromisoformat(str(data["read_at"])[:10])
     except (OSError, ValueError, KeyError, TypeError):
         return None
 

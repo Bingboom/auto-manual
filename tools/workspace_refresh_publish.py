@@ -138,20 +138,13 @@ def pr_body(kind: str) -> str:
             "- 合入不代表线上生效；需 Workspace Data Verify 核验目标提交、快照和页面哈希。\n")
 
 
-def _copy_changed(root: Path, checkout: Path, kind: str, candidates, report: dict) -> list[str]:
+def _copy_changed(root: Path, checkout: Path, candidates: list, skip) -> list[str]:
     """Copy each candidate that differs from the content checkout; return the copied paths."""
     changed = []
     for source, destination in candidates:
         relative = destination.relative_to(root)
         target = checkout / relative
-        payload = json.loads(source.read_text())
-        unchanged = report.get("export_status", report.get("status")) == "unchanged"
-        if not target.exists() and (payload.get("status") == "unchanged" or unchanged):
-            continue
-        if target.exists() and source.name == kind + "-candidate.json":
-            if loss_problems(payload, json.loads(target.read_text())):
-                raise RuntimeError("candidate regresses pending snapshot; review source before retry")
-        if equivalent(source, target):
+        if skip(source, target):
             continue
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, target)
@@ -164,34 +157,62 @@ def submit(root: Path, kind: str, state: dict | None = None) -> str:
 
     ``state["stage"]`` names the step under way, so a failure can be reported without its output.
     """
+    if state is not None:
+        state["stage"] = "read-report"
+    candidates, report = _candidates(root, kind)
+    if not candidates:
+        return "no-change"
+    unchanged = report.get("export_status", report.get("status")) == "unchanged"
+
+    def skip(source: Path, target: Path) -> bool:
+        payload = json.loads(source.read_text())
+        if not target.exists() and (payload.get("status") == "unchanged" or unchanged):
+            return True
+        if target.exists() and source.name == kind + "-candidate.json":
+            if loss_problems(payload, json.loads(target.read_text())):
+                raise RuntimeError("candidate regresses pending snapshot; review source before retry")
+        return equivalent(source, target)
+
+    allowed = {data_dir(root) / name for name in (NAMES[kind], kind + "-status.json")}
+    return submit_files(root, branch="chore/workspace-" + kind, directory=data_dir(root), allowed=allowed,
+                        candidates=candidates, skip=skip, message=f"chore(workspace): refresh {kind} snapshot",
+                        title=f"chore(workspace): refresh {kind} data", body=pr_body(kind), state=state)
+
+
+def submit_files(root: Path, *, branch: str, directory: Path, allowed: set[Path], candidates: list, skip,
+                 message: str, title: str, body: str, state: dict | None = None) -> str:
+    """Copy ``candidates`` (``(source, destination under root)``) onto ``branch`` and open or update its PR.
+
+    Only ``directory`` is checked out and only the ``allowed`` paths may be on the branch (a retry finding any
+    other path stops); ``skip(source, target)`` drops a file whose target on the branch already says the same.
+    ``state["head"]`` receives the commit the branch points at. Product-matrix refreshes reuse it
+    (``tools/product_matrix_base/publish.py``).
+    """
     progress = state if state is not None else {}
 
     def at(stage: str) -> None:
         progress["stage"] = stage
 
-    at("read-report")
-    candidates, report = _candidates(root, kind)
-    if not candidates:
-        return "no-change"
-    branch = "chore/workspace-" + kind
+    sparse = directory.relative_to(root).as_posix()
     with tempfile.TemporaryDirectory(prefix="workspace-content-") as tmp:
         checkout = Path(tmp) / "content"
         at("clone")
-        command(["git", "-c", "credential.helper=!gh auth git-credential", "clone", "--quiet", "--filter=blob:none", "--sparse", "--single-branch", "https://github.com/" + REPOSITORY + ".git", str(checkout)])
+        command(["git", "-c", "credential.helper=!gh auth git-credential", "clone", "--quiet", "--filter=blob:none",
+                 "--sparse", "--single-branch", "https://github.com/" + REPOSITORY + ".git", str(checkout)])
         at("sparse-checkout")
-        command(["git", "sparse-checkout", "set", "docs/knowledge/workspace-data"], cwd=checkout)
+        command(["git", "sparse-checkout", "set", sparse], cwd=checkout)
         at("configure")
         command(["git", "config", "credential.helper", "!gh auth git-credential"], cwd=checkout)
         at("branch-lookup")
         remote = command(["git", "ls-remote", "--heads", "origin", branch], cwd=checkout)
-        allowed = {(data_dir(root) / name).relative_to(root).as_posix() for name in (NAMES[kind], kind + "-status.json")}
+        permitted = {path.relative_to(root).as_posix() for path in allowed}
         pending = []
         if remote:
             at("branch-fetch")
             command(["git", "fetch", "origin", branch], cwd=checkout)
             at("branch-scope-check")
             branch_paths = command(["git", "diff", "--name-only", "origin/main...FETCH_HEAD"], cwd=checkout).splitlines()
-            if set(branch_paths) - allowed:
+            if set(branch_paths) - permitted:
                 raise RuntimeError("content branch contains paths outside this source; review before retry")
             at("open-pr-lookup")
             pending = open_prs(branch)
@@ -200,13 +221,13 @@ def submit(root: Path, kind: str, state: dict | None = None) -> str:
         at("branch-switch")
         command(["git", "switch", "-c", branch, "FETCH_HEAD" if pending else "origin/main"], cwd=checkout)
         at("compare-snapshot")
-        changed = _copy_changed(root, checkout, kind, candidates, report)
+        changed = _copy_changed(root, checkout, candidates, skip)
         if changed:
             at("commit")
             command(["git", "config", "user.name", "github-actions[bot]"], cwd=checkout)
             command(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], cwd=checkout)
             command(["git", "add", "--", *changed], cwd=checkout)
-            command(["git", "commit", "-m", f"chore(workspace): refresh {kind} snapshot"], cwd=checkout)
+            command(["git", "commit", "-m", message], cwd=checkout)
             push = ["git", "push", "origin", "HEAD:refs/heads/" + branch]
             if remote and not pending:
                 # Replace the leftover branch only while it still holds the commit read above.
@@ -220,12 +241,11 @@ def submit(root: Path, kind: str, state: dict | None = None) -> str:
             return pending[0]["url"]
         if not changed:
             return "no-change"
-        body = Path(tmp) / "body.md"
-        body.write_text(pr_body(kind), encoding="utf-8")
+        body_path = Path(tmp) / "body.md"
+        body_path.write_text(body, encoding="utf-8")
         at("pr-create")
         return command(["gh", "pr", "create", "--repo", REPOSITORY, "--base", "main", "--head", branch,
-                        "--title", f"chore(workspace): refresh {kind} data", "--body-file", str(body)])
-
+                        "--title", title, "--body-file", str(body_path)])
 
 def exported(report: dict) -> bool:
     return report.get("export_status", report.get("status")) in ("changed", "unchanged")
