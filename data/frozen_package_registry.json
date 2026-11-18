@@ -294,6 +294,11 @@
           "handling": "keep-frozen",
           "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
           "since": "2026-11-12"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -2384,6 +2389,16 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -2700,6 +2715,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -2766,6 +2786,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3253,6 +3278,16 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3314,6 +3349,16 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3390,6 +3435,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3456,6 +3506,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3522,6 +3577,16 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3598,6 +3663,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3664,6 +3734,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3740,6 +3815,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3816,6 +3896,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -3882,13 +3967,34 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
     "manual_sources/JE-300E/US/en/git-20261112-04bd8b90-color-models-release": {
       "approval": "MA-436 explicit operator model-cell amendment; original PDF/assets unchanged",
       "registered": "2026-11-12",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        }
+      }
     },
     "manual_sources/JE-3600A/EU/de/git-20261004-47a346dc": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -4068,6 +4174,16 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4144,6 +4260,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4215,6 +4336,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4276,6 +4402,16 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4352,6 +4488,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4423,6 +4564,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4484,6 +4630,16 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4565,6 +4721,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4636,6 +4797,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4697,6 +4863,16 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4828,6 +5004,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4920,6 +5101,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -4991,6 +5177,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
@@ -5135,13 +5326,39 @@
           "handling": "keep-frozen",
           "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
           "since": "2026-11-12"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
     "manual_sources/JSG-0304B/JP/ja/git-20261112-fe9f1b56-m000512-release": {
       "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
       "registered": "2026-11-12",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        }
+      }
     },
     "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491": {
       "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
@@ -5151,13 +5368,39 @@
           "handling": "keep-frozen",
           "reason": "MA-432: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
           "since": "2026-11-12"
+        },
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
         }
       }
     },
     "manual_sources/JSG-2404A/JP/ja/git-20261112-e59cc1bc-m000491-release": {
       "approval": "MA-433: operator delegated review, merge and Git-only publication of seven JP/ja manuals; immutable candidates retained",
       "registered": "2026-11-12",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        }
+      }
     },
     "manual_sources/PTB021/JP/ja/git-20261112-c1f0f04e-material-web": {
       "approval": "Operator request 2026-11-12: convert the selected Japanese material manuals with three agents; seven final candidates after excluding material000348. Review conversion only; no release or merge approval.",
@@ -5498,6 +5741,18 @@
       "packages": 3,
       "handling": "keep-frozen",
       "reason": "MA-433: append three source-bound BN-RB15 glyph variants only; existing symbol bytes, canonical groups, captions and admission rules unchanged. Historical packages and original candidates remain frozen.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-18",
+      "files": [
+        "docs/renderers/contracts/prepared_component_admission.json",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "tools/asset_pipeline/native_svg.py"
+      ],
+      "packages": 32,
+      "handling": "keep-frozen",
+      "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
       "minutes": 0
     }
   ]

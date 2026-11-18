@@ -148,7 +148,7 @@ create synthetic queue rows or write `HTML_link`.
    the query corpus and seals the deployment receipt, including the bounded
    frozen-source inventory. A plain Sphinx build without the extension cannot
    validate those production callbacks.
-   The frozen-input inventory is bounded at 1600 MiB: it includes both the
+   The frozen-input inventory is bounded at 1664 MiB: it includes both the
    self-contained source packages and their assembled Web copies. JE-5000A JP
    brings the reviewed library from 1,057,291,744 to 1,093,933,355 bytes,
    exceeding the previous 1 GiB source budget. Served-output and network
@@ -170,8 +170,15 @@ create synthetic queue rows or write `HTML_link`.
    was raised to 1536 MiB at that release; the other limits were unchanged.
    On 2026-11-12, the seven JP additions grow the 210-target source tree from
    1,598,881,965 to 1,613,577,831 bytes in preflight (217 targets), exceeding the
-   previous 1536 MiB cap. Source storage is now bounded at 1600 MiB; served,
+   previous 1536 MiB cap. At that release, source storage was bounded at 1600 MiB; served,
    network, per-file and file-count limits remain unchanged.
+   On 2026-11-18, the operator explicitly authorized 1664 MiB for the remaining
+   28 single-language manuals. The final 254-target source inventory is
+   1,706,070,475 bytes (1627.0356 MiB), with 18,317 source files and a largest
+   file of 5,885,103 bytes, leaving 38,759,989 bytes in the source budget.
+   All 226 prior targets retain their metadata and all 11,650 prior source
+   files unchanged. Served output remains bounded at 768 MiB, with 32 MiB
+   per file, 20,000 source files and 10,000 served/network files.
 
 5. Commit that candidate on the normal Hello-Docs release branch and open the
    usual `docs/publish/**`-only PR. Do not include engineering code, review

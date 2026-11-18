@@ -39,10 +39,11 @@ MAX_TOTAL_BYTES = 768 * 1024 * 1024
 # network budgets; normal catalog growth must not enlarge network traversal.
 # Raised from 1280 MiB on 2026-10-14: the JBP-3600A US/JP release left the
 # publish tree at 1,261.6 MiB, 18.4 MiB below the cap.
-# Seven JP manuals raise the 210-target tree from 1,598,881,965 to
-# 1,613,577,831 bytes (2026-11-12); keep all prior artwork and bound source
-# storage at 1600 MiB. Served/network, per-file and count limits stay fixed.
-MAX_SOURCE_TOTAL_BYTES = 1600 * 1024 * 1024
+# Operator authorized 1664 MiB on 2026-11-18 for 28 new manuals (254 targets).
+# Complete retained source inventory: 1,706,070,475 bytes (1627.0356 MiB),
+# 18,317 files, largest 5,885,103 bytes; all prior packages remain unchanged.
+# Served/network, per-file and count limits stay fixed.
+MAX_SOURCE_TOTAL_BYTES = 1664 * 1024 * 1024
 MAX_SOURCE_FILES = 20000
 MAX_FETCH_ATTEMPTS = 3
 FETCH_BUDGET_SECONDS = 45

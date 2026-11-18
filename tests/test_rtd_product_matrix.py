@@ -225,7 +225,7 @@ class MatrixContextTests(unittest.TestCase):
         categories = self.context()["categories"]
         self.assertEqual([(c["id"], c["title"], c["count"]) for c in categories],
                          [("portable", "便携电源", 1), ("category-2", "家庭备电", 1), ("category-3", "太阳能板", 1),
-                          ("other", "其他", 1)])
+                          ("other", "其它", 1)])
         portable, home, solar, other = categories
         # The columns are the 容量档 a category's products use, in the snapshot's order.
         self.assertEqual((portable["tiered"], portable["columns"]), (True, ["1度以下"]))
@@ -235,7 +235,7 @@ class MatrixContextTests(unittest.TestCase):
         self.assertEqual((home["columns"], [[p["short"] for p in cell] for cell in home["rows"][0]["cells"]]),
                          (["3.6度电"], [["HP3600"]]))
         self.assertEqual((solar["tiered"], solar["columns"]), (False, ["产品"]))
-        self.assertEqual((other["rows"][0]["title"], other["rows"][0]["products"][0]["short"]), ("未分类", "JX-Q"))
+        self.assertEqual((other["rows"][0]["title"], other["rows"][0]["products"][0]["short"]), ("其它", "JX-Q"))
         self.assertEqual(portable["markets"], ["US", "EU", "JP"])
 
     def test_a_product_without_a_tier_goes_to_the_unstated_column(self):
@@ -285,11 +285,13 @@ class MatrixContextTests(unittest.TestCase):
         self.assertIsNone(products["A500"]["detail"]["pairing"])
         self.assertTrue(any("SolarSaga 9" in message for message in context["warnings"]))
 
-    def test_unlisted_models_and_lost_evidence_warn(self):
+    def test_unlisted_models_use_other_but_lost_evidence_still_warns(self):
         config = {**CONFIG, "assign": {"JE-H": {"line": "home", "evidence": "whole-home backup"}}}
         (self.assets / "product_matrix.json").write_text(json.dumps(config), encoding="utf-8")
         warnings = self.context()["warnings"]
-        self.assertTrue(any(message.startswith("JX-Q: the 产品分类 snapshot does not list it") for message in warnings))
+        self.assertFalse(any("产品分类 snapshot does not list it" in message for message in warnings))
+        other = next(c for c in self.context()["categories"] if c["id"] == "other")
+        self.assertEqual(other["title"], "其它")
         self.assertTrue(any("whole-home backup" in message for message in warnings))
         (self.assets / "product_matrix.json").write_text(json.dumps(CONFIG), encoding="utf-8")
         self.assertFalse(any("evidence" in message or "home circuits" in message for message in self.context()["warnings"]))

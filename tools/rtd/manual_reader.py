@@ -3,8 +3,9 @@
 tools/rtd/portal.py decorates each verified manual page; this module builds what
 the frame shows around the manual (manual_reader.html): a top bar with the
 product, market, language and version, a chapter list read from the page's
-rendered sections and headings, the feedback card and a footer. The manual body
-itself is never changed: it stays the only main region
+rendered sections and headings, the feedback card and a footer. Unwrapped native
+tables receive the existing shared scroll container at render time; their source
+markup stays unchanged. The manual stays the only main region
 (``article#furo-main-content``), so the knowledge and search extractors read
 exactly the manual text.
 """
@@ -25,6 +26,80 @@ _GIT_DATE = re.compile(r"git-(\d{4})(\d{2})(\d{2})-")
 _HEADINGS = frozenset({"h1", "h2", "h3", "h4", "h5", "h6"})
 # Heading parts that are not its name: Sphinx's permalink and the source's model label.
 _UNNAMED = frozenset({"headerlink", "hb-heading-model"})
+
+
+# These existing shared containers own horizontal table scrolling in web_manual.css.
+_TABLE_SCROLL_CONTAINERS = frozenset({
+    "table-wrapper", "hb-troubleshooting-composition", "hb-spec-table-composition",
+    "hb-lcd-table-composition", "hb-auto-resume-composition", "hb-key-combination-composition",
+    "hb-lcd-mode-table-panel", "hb-reference-composition",
+})
+_VOID_ELEMENTS = frozenset({
+    "area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta",
+    "param", "source", "track", "wbr",
+})
+
+
+class _NativeTables(HTMLParser):
+    """Locate complete, uncontained native tables without serializing their markup."""
+
+    def __init__(self, body: str) -> None:
+        super().__init__(convert_charrefs=False)
+        self.body = body
+        self.lines = [0, *(match.end() for match in re.finditer("\n", body))]
+        self.open: list[tuple[str, bool, int | None]] = []
+        self.ranges: list[tuple[int, int]] = []
+
+    def _offset(self) -> int:
+        line, column = self.getpos()
+        return self.lines[line - 1] + column
+
+    def handle_starttag(self, tag, attrs):
+        classes = set((dict(attrs).get("class") or "").split())
+        wrap = (tag == "table" and "manual-table" in classes
+                and not any(parent == "table" or scroll for parent, scroll, _ in self.open))
+        if tag not in _VOID_ELEMENTS:
+            self.open.append((tag, bool(classes & _TABLE_SCROLL_CONTAINERS), self._offset() if wrap else None))
+
+    def handle_startendtag(self, tag, attrs):
+        # A self-closing tag does not open an ancestor or form a complete table.
+        pass
+
+    def handle_endtag(self, tag):
+        for index in range(len(self.open) - 1, -1, -1):
+            opened, _, start = self.open[index]
+            if opened == tag:
+                if index != len(self.open) - 1:
+                    self.open = [(name, scroll, None) for name, scroll, _ in self.open]
+                elif tag == "table" and start is not None:
+                    stop = self.body.find(">", self._offset())
+                    if stop >= 0:
+                        self.ranges.append((start, stop + 1))
+                del self.open[index:]
+                return
+        # An unmatched closing tag inside a table invalidates its boundary.
+        self.open = [(name, scroll, None) for name, scroll, _ in self.open]
+
+
+def scroll_native_tables(body: str) -> str:
+    """Give only complete, unwrapped manual-table elements the shared scroll shell.
+
+    Raw slices preserve captions, cell spans, headers, entities and all source text.
+    Existing table/HB scroll containers and nested tables are left alone. Incomplete
+    or mismatched tables get no new markup. This decorates rendered single-language
+    pages only; it never writes a frozen source, IR, stylesheet or asset.
+    """
+    if "manual-table" not in body:
+        return body
+    tables = _NativeTables(body)
+    tables.feed(body)
+    tables.close()
+    parts, end = [], 0
+    for start, stop in sorted(tables.ranges):
+        parts.extend((body[end:start], '<div class="table-wrapper docutils">', body[start:stop], "</div>"))
+        end = stop
+    parts.append(body[end:])
+    return "".join(parts)
 
 
 def version_date(version: str) -> str | None:
@@ -192,4 +267,5 @@ def reader_context(*, product: dict, active: dict, lang_label: str, direction: s
     }
 
 
-__all__ = ["chapters", "frame_text", "load_text", "locale_options", "reader_context", "version_date"]
+__all__ = ["chapters", "frame_text", "load_text", "locale_options", "reader_context", "scroll_native_tables",
+           "version_date"]

@@ -5,6 +5,8 @@ Add new notes for this topic here, not to the hub.
 
 RTD catalog behavior:
 
+缺少产品分类的说明书统一显示在「其它」。后续维护好飞书分类并刷新快照后，目录采用已填写的分类；缺分类本身不阻断发布，数据格式或来源冲突仍需修正。
+
 - RTD builds the frozen `docs/publish/web/` catalog from `Hello-Docs/main`. The generated `publish` branch is only a release candidate; `review/*` is only a build input, and neither branch is merged wholesale. The review/fixture command in [`.readthedocs.yaml`](../../.readthedocs.yaml) is only the bootstrap fallback before the first snapshot.
 - PDF-like fixed figure panels use a separate, approval-gated Web composite chain. In `04_资产定义`, `web_replace_key` names the component. In `04_资产导出物`, upload exactly one image to `export_file`, select the registered output `web_locale` (for example `en`, `fr`, `es`, `de`, `it`, or explicitly `shared`), fill both the file and source-fragment SHA-256 values, then set both the definition and export to `gate_status=approved`, `build_eligible=true`, and `visual_review_required=false`. `artifact_kind` must be `web-composite`.
 - Choose the carrier per component. JE-1000F Product Overview, its five Operation panels and its four Charging panels use `text_policy=localized-full-page`: crop the PDF panel with localized labels intact, including Operation `On` / `Off`, prerequisites and instructions. The LCD screen-mode block does not use a full-table screenshot; it combines the correct UK or continental hardware/display artwork with the shared six-row HTML table. Specifications, troubleshooting, LCD-icon glossary and Warranty stay live HTML components.
@@ -89,3 +91,5 @@ RTD 生成整站时会在本轮构建内复用已校验的目录，避免每生�
 产品知识页先看顶部的能量流动图：点充电转换、电池、逆变、扩容或旁路，列表即只留对应主题的知识；也可在“按主题找”里点主题，或点某条知识的短名直达。例如点“逆变 · 直流转换”，再选择地区与型号，可查看单口与合计功率、启动负载、输出规格、保护和备电路径；具体参数和操作通过对应说明书核对。每条知识下列出当前区域的说明书，较多时点“+N”展开。
 
 讲电路的知识（逆变器、多口合计、UPS）配有典型电气示意，图在正文上方，点击可看原图，用于学习开关桥、滤波、插座并联和切换触点。HomePower 3600 Pro Max 的备电案例在最后，按四个问题排列：120/240V 分相、供电模式限制、ATS/MTS 与主机级联，来源链接指向正式发布的 Read the Docs 说明书；教学图不作为实际安装接线图。
+
+2026-11-18 经操作人授权，新增 28 份单语言说明书后的 254 个发布目标，源码包和汇总副本共 1,706,070,475 字节（1627.0356 MiB），低于 1664 MiB 存储上限。实际托管输出仍为 768 MiB，单文件、文件数和在线遍历限制未调整；完整目录仍须通过含门户扩展的严格构建。

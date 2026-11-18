@@ -20,10 +20,10 @@ from tools.rtd.design_system import (
     PAGE as DESIGN_PAGE, TEMPLATE as DESIGN_TEMPLATE, design_page_context, template_context, write_design_system,
 )
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
-from tools.rtd.manual_reader import frame_text, load_text, locale_options, reader_context
+from tools.rtd.manual_reader import frame_text, load_text, locale_options, reader_context, scroll_native_tables
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_short_names import attach_short_names, load_short_names
-from tools.rtd.product_catalog import classify, load_catalog, short_names as catalog_short_names
+from tools.rtd.product_catalog import UNCLASSIFIED_CATEGORY, classify, load_catalog, short_names as catalog_short_names
 from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE
 from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup, SITE_NAME,
@@ -189,7 +189,7 @@ def classified_catalog(app, products: list[dict]) -> dict | None:
                        "; ".join(problems[:3]))
     missing = classify(products, product_catalog)
     if product_catalog is not None and missing:
-        logger.warning("产品分类 snapshot has no 产品类别/产品系列 for %s; listed under 其他说明书", ", ".join(missing))
+        logger.info("产品分类未登记型号按默认规则归入%s：%s", UNCLASSIFIED_CATEGORY, ", ".join(missing))
     app._rtd_product_catalog = product_catalog
     return product_catalog
 
@@ -234,7 +234,7 @@ def decorate_manual(app, context, *, settings: dict, product: dict, active: dict
     )
     feedback_context = context_text(model=active["model"], region=active["region"], lang=active["lang"],
                                     version=version, page=active["url"])
-    body = without_leading_language_label(context.get("body", ""), lang_label)
+    body = scroll_native_tables(without_leading_language_label(context.get("body", ""), lang_label))
     context["body"] = f'<div lang="{escape(active["lang"], quote=True)}" dir="{direction}">{body}</div>'
     pathto = context["pathto"]
     text = frame_text(load_text(ASSETS), active["lang"])
