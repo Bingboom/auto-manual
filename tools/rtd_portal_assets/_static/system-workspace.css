@@ -392,7 +392,7 @@ body.app.kb.system-workspace main { max-width: 1120px; padding: 40px 48px 72px; 
 .sw-chip.is-available, .sw-chip.is-validated, .sw-chip.is-partial { color: var(--status-available); background: var(--status-available-bg); }
 .sw-chip.is-in_progress { color: var(--status-in-progress); background: var(--status-in-progress-bg); }
 .sw-chip.is-blocked { color: var(--sw-blocked); background: var(--sw-blocked-bg); }
-#focus .sw-lanes { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
+#focus .sw-lanes { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 12px; }
 #focus .sw-lane { gap: 12px; padding: 18px 20px; background: #fff; border-color: var(--app-line); border-radius: 14px; box-shadow: none; transition: box-shadow .15s; }
 #focus .sw-lane:hover { box-shadow: 0 2px 10px #15202b14; }
 #focus .sw-lane > header, .sw-later-row > header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
