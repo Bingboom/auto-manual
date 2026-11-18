@@ -23,43 +23,6 @@
     "language": "ja",
     "printed_version": "V2",
     "filename_revision": "V2.0-2026-06-24",
-    "archive_parts": [
-      {
-        "path": "source/pdf-archive/part-0001.bin",
-        "size": 1000000,
-        "sha256": "df43dcf1e3e8ed997c432852025767500218ab5ee1b79642d3caed52e14375ae"
-      },
-      {
-        "path": "source/pdf-archive/part-0002.bin",
-        "size": 1000000,
-        "sha256": "041dd540180c9ffa741818d7b8d6f0bb59c377fd1e311ed5a8717f685659975c"
-      },
-      {
-        "path": "source/pdf-archive/part-0003.bin",
-        "size": 1000000,
-        "sha256": "61da5ebc9ca5a507f3126b244f6879629e1dd345ce8c5dc13f28279b07f45850"
-      },
-      {
-        "path": "source/pdf-archive/part-0004.bin",
-        "size": 1000000,
-        "sha256": "16dc28d0b89ce67e6c3ba35d21e893d1359f307d281341515ce5afd2b3efebee"
-      },
-      {
-        "path": "source/pdf-archive/part-0005.bin",
-        "size": 1000000,
-        "sha256": "59e2202c66e629c4cdc576d88304ded4c3ab55126e5aff9e929e3db32b75c4c7"
-      },
-      {
-        "path": "source/pdf-archive/part-0006.bin",
-        "size": 1000000,
-        "sha256": "0b41ec2cbbd08a59003d1211eb2440d43ad7006d8eefbc4b442fb68eb25aae35"
-      },
-      {
-        "path": "source/pdf-archive/part-0007.bin",
-        "size": 805723,
-        "sha256": "8c73e88748cd7c61cbd2e606be70b6fbb2945d0c0f202c4256f95dd777061a94"
-      }
-    ],
     "body_pages": [
       3,
       4,
@@ -91,7 +54,8 @@
       "2": "printed contents replaced by Web chapter navigation",
       "27": "blank",
       "28": "back-cover repeats App download information from page 25"
-    }
+    },
+    "source_pointer": "source/Jackery_2000_New_JP_V2.0-2026-06-24.pdf.source-pointer.json"
   },
   "scope": "Git-only Japanese Web candidate; no Feishu/Base/queue/source-table/HTML_link/asset-registry writes",
   "live_bitable_dependency": false,
@@ -707,6 +671,11 @@
       "sha256": "d34f9cca387352f45e83eabaaa2e1a4f8aac5cc9593e8db918a616e992ccf914"
     },
     {
+      "path": "source/Jackery_2000_New_JP_V2.0-2026-06-24.pdf.source-pointer.json",
+      "size": 491,
+      "sha256": "83aaf0b1b374c290f0ccdde03dcb4ce413ef7e7192e48ab32bbba819531580ba"
+    },
+    {
       "path": "source/artwork-decisions.md",
       "size": 25262,
       "sha256": "13893a09c4254c6517bf818c1df7f331f883295c25806145b855274eee9761b1"
@@ -750,46 +719,6 @@
       "path": "source/native-pages.json",
       "size": 1646925,
       "sha256": "cf3a2c5553b7b61ea97d7709e811579f07c96b4eeb9ec940fa07e3095cc8c0ba"
-    },
-    {
-      "path": "source/pdf-archive/.gitattributes",
-      "size": 13,
-      "sha256": "c7c6541111ee53947140bac154f1275c6b1b244c40c045b190662f23226509c9"
-    },
-    {
-      "path": "source/pdf-archive/part-0001.bin",
-      "size": 1000000,
-      "sha256": "df43dcf1e3e8ed997c432852025767500218ab5ee1b79642d3caed52e14375ae"
-    },
-    {
-      "path": "source/pdf-archive/part-0002.bin",
-      "size": 1000000,
-      "sha256": "041dd540180c9ffa741818d7b8d6f0bb59c377fd1e311ed5a8717f685659975c"
-    },
-    {
-      "path": "source/pdf-archive/part-0003.bin",
-      "size": 1000000,
-      "sha256": "61da5ebc9ca5a507f3126b244f6879629e1dd345ce8c5dc13f28279b07f45850"
-    },
-    {
-      "path": "source/pdf-archive/part-0004.bin",
-      "size": 1000000,
-      "sha256": "16dc28d0b89ce67e6c3ba35d21e893d1359f307d281341515ce5afd2b3efebee"
-    },
-    {
-      "path": "source/pdf-archive/part-0005.bin",
-      "size": 1000000,
-      "sha256": "59e2202c66e629c4cdc576d88304ded4c3ab55126e5aff9e929e3db32b75c4c7"
-    },
-    {
-      "path": "source/pdf-archive/part-0006.bin",
-      "size": 1000000,
-      "sha256": "0b41ec2cbbd08a59003d1211eb2440d43ad7006d8eefbc4b442fb68eb25aae35"
-    },
-    {
-      "path": "source/pdf-archive/part-0007.bin",
-      "size": 805723,
-      "sha256": "8c73e88748cd7c61cbd2e606be70b6fbb2945d0c0f202c4256f95dd777061a94"
     },
     {
       "path": "source/pdf-identity.json",

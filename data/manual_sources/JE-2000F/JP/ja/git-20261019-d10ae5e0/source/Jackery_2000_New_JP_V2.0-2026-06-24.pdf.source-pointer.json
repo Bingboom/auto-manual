@@ -1,0 +1,14 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery_2000_New_JP_V2.0-2026-06-24.pdf",
+  "sha256": "d10ae5e04ad48907538f5cf18f3afa964ac261fceb40684b6fc1ee0963003e95",
+  "size_bytes": 6805723,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28b6gNOKGoO",
+    "field_name": "source_file",
+    "file_token": "ZuT8b83Yvohv8QxPAC7c9JfqnNd"
+  },
+  "source_key": "source/manual_je2000f_jp_v2_20260624_superseded"
+}
