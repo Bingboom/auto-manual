@@ -28,9 +28,9 @@
   "validation_boundary": "Operator-confirmed batch 1465 preface copy; EU legal subject Jackery. Later native pages and artwork unchanged. Fresh release evidence, human PR merge and RTD readback remain required.",
   "inputs": [
     {
-      "path": "JE-2000E_修正版_竖版.pdf",
-      "size": 10263002,
-      "sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
+      "path": "JE-2000E_修正版_竖版.pdf.source-pointer.json",
+      "size": 571,
+      "sha256": "c1c8d74046753bcedc9fa251b98c120f7aad395d3e6f4ad261d8cd0d650f1aae"
     },
     {
       "path": "README.md",

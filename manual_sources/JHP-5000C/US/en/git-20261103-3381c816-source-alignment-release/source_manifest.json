@@ -2121,8 +2121,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 8352,
-      "sha256": "2a60e8b2e47cd45fd6f9d14330537d55e61d214185626d6c1a790b61b8664dd9"
+      "size": 8840,
+      "sha256": "92492eff775de22fb5c96f429ec072d5baf2aa1bbf7a6c9c063ed96c92d6dbbc"
     },
     {
       "path": "refresh_manifest.py",
@@ -2210,9 +2210,9 @@
       "sha256": "efc2d9eed9432a227f42901ab432ac403c502108da972915d98cfa5139b4971c"
     },
     {
-      "path": "source/review-reference.pdf",
-      "size": 31826983,
-      "sha256": "3381c816e6bb75bc5e790bcba3faacbb3ad199f1a41cc53c5092368bcd945250"
+      "path": "source/review-reference.pdf.source-pointer.json",
+      "size": 565,
+      "sha256": "c242f4d232955b675f592e370a1dd6ff68cc6335696b1f7e872513eba02f1499"
     },
     {
       "path": "source/structural-art-provenance.json",

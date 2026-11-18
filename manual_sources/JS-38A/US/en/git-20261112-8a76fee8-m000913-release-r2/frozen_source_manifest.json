@@ -150,9 +150,9 @@
       "sha256": "ce95b8ed8d79c2d771e01628be95603dadddf941da07c348fecf4263e5908a6f"
     },
     {
-      "path": "source/original.pdf",
-      "size": 1726768,
-      "sha256": "8a76fee8450bd436eabdaae9caa1df1319a13a5d281b4c9557dbc36c2575b518"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 548,
+      "sha256": "607ec691936b7f0f5f50e9808da3033328dce0ba7a282252a945c6611ec8bae0"
     },
     {
       "path": "source/page_map.json",
@@ -171,8 +171,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 5226,
-      "sha256": "3a88dc134557bbacbb3315535f36fdf13eff99196c248464800b3ed46fead4a9"
+      "size": 5242,
+      "sha256": "d74abc424b201aeaba3bbcc61fc40edfd194fd2bbc9163fcf3cd8ab4bdcdf1b8"
     },
     {
       "path": "web/en/_static/web_manual.css",

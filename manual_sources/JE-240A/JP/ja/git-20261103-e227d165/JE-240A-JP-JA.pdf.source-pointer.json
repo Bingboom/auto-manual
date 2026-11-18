@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-240A-JP-JA.pdf",
+  "sha256": "e227d165efcd389a260bb1b3f1a234c365c81465c01492c7e86d674afd8af2cf",
+  "size_bytes": 3448108,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3Xaxke",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "XD5EbYw0loKXHlxzqtJcWvFjnBd"
+  },
+  "local_relpath": "JE-240A-JP-JA.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

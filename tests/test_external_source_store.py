@@ -489,5 +489,62 @@ class PointerFallbackHelpersTests(unittest.TestCase):
             )
 
 
+class ColdReplayIrMatchesTests(unittest.TestCase):
+    def test_matches_only_when_non_manifest_fields_match_and_manifest_updated(self) -> None:
+        old_manifest = {"inputs": [{"path": "manual.pdf", "size": 10, "sha256": "a" * 64}]}
+        new_manifest = {
+            "inputs": [{"path": "manual.pdf.source-pointer.json", "size": 200, "sha256": "b" * 64}]
+        }
+        frozen_ir = {
+            "schema_version": "manual-ir/v2",
+            "pages": [{"page_id": "overview", "blocks": []}],
+            "metadata": {
+                "title": "Demo",
+                "publication_eligible": True,
+                "frozen_source_manifest": old_manifest,
+            },
+        }
+        replayed_ir = {
+            "schema_version": "manual-ir/v2",
+            "pages": [{"page_id": "overview", "blocks": []}],
+            "metadata": {
+                "title": "Demo",
+                "publication_eligible": True,
+                "frozen_source_manifest": new_manifest,
+            },
+        }
+        self.assertTrue(store.cold_replay_ir_matches(replayed_ir, frozen_ir, new_manifest))
+        self.assertFalse(store.cold_replay_ir_matches(replayed_ir, frozen_ir, old_manifest))
+        tampered_meta = {
+            **replayed_ir,
+            "metadata": {**replayed_ir["metadata"], "publication_eligible": False},
+        }
+        self.assertFalse(store.cold_replay_ir_matches(tampered_meta, frozen_ir, new_manifest))
+        tampered_pages = {**replayed_ir, "pages": []}
+        self.assertFalse(store.cold_replay_ir_matches(tampered_pages, frozen_ir, new_manifest))
+
+    def test_matches_manifest_derived_bundle_sha256_when_opted_in(self) -> None:
+        from tools.manual_ir.hashing import value_sha256
+
+        old_manifest = {"inputs": [{"path": "manual.pdf", "size": 10, "sha256": "a" * 64}]}
+        new_manifest = {"inputs": [{"path": "manual.pdf.source-pointer.json", "size": 200, "sha256": "b" * 64}]}
+        frozen_ir = {
+            "schema_version": "manual-ir/v2",
+            "bundle_sha256": value_sha256(old_manifest),
+            "pages": [],
+            "metadata": {"title": "Demo", "frozen_source_manifest": old_manifest},
+        }
+        replayed_ir = {
+            "schema_version": "manual-ir/v2",
+            "bundle_sha256": value_sha256(new_manifest),
+            "pages": [],
+            "metadata": {"title": "Demo", "frozen_source_manifest": new_manifest},
+        }
+        self.assertFalse(store.cold_replay_ir_matches(replayed_ir, frozen_ir, new_manifest))
+        self.assertTrue(
+            store.cold_replay_ir_matches(replayed_ir, frozen_ir, new_manifest, manifest_bundle_sha256=True)
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -65,9 +65,9 @@
   "repo_inputs": [],
   "inputs": [
     {
-      "path": "JHP-2000A-US-en-V2.pdf",
-      "size": 1465449,
-      "sha256": "5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738"
+      "path": "JHP-2000A-US-en-V2.pdf.source-pointer.json",
+      "size": 561,
+      "sha256": "a7609a06a2373493b8de0407620dfc3a5e65818f9fb68cebbe35b27a8182b1ed"
     },
     {
       "path": "README.md",
@@ -466,8 +466,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6397,
-      "sha256": "67800df0970ad8e377cb989984e569411f30013df139c165b9887839ade8c001"
+      "size": 6845,
+      "sha256": "02d99b1b501dc5a1b69d04ddde188a455b9df26b4441a811c317ae99a8236e04"
     },
     {
       "path": "refresh_manifest.py",
@@ -526,8 +526,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 36716,
-      "sha256": "68884d269fcdc1af735c33ab634ccc3bea40a540df1dbf07b647dd762e0d9313"
+      "size": 36732,
+      "sha256": "b30f456b560a2395245d26a32fd7fda7aff3e60eb5703b38d9a642b37630558c"
     },
     {
       "path": "web/en/_static/source_geometry.css",

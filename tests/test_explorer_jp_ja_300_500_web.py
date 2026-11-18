@@ -6,7 +6,6 @@ candidate status, shared-style admission, shared symbol bytes and cold replay.
 from __future__ import annotations
 
 from contextlib import redirect_stdout
-import hashlib
 import importlib.util
 import io
 import json
@@ -17,6 +16,7 @@ import unittest
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
 from tools.web.prepared_style_audit import require_prepared_style_admission
+from tools.web.external_source_store import POINTER_SUFFIX, resolve_source_identity
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
@@ -65,7 +65,7 @@ class ExplorerJpJaWebTests(unittest.TestCase):
                 self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("JP", ["ja"]))
                 self.assertEqual(manifest["target"]["technical_version"], package.name)
                 original = manifest["original_source"]
-                digest = hashlib.sha256((package / original["filename"]).read_bytes()).hexdigest()
+                digest = resolve_source_identity(package / original["filename"])[1]
                 self.assertEqual(digest, original["sha256"])
                 self.assertTrue(package.name.endswith("-" + digest[:8]))
                 self.assertEqual(read(package / "source/ja/content.json")["source_sha256"], digest)
@@ -75,7 +75,7 @@ class ExplorerJpJaWebTests(unittest.TestCase):
                 self.assertEqual(sorted(row["path"] for row in manifest["inputs"]), files)
                 # Feishu file tokens never enter the package.
                 for path in package.rglob("*"):
-                    if path.is_file() and path.suffix in {".json", ".md", ".py", ".css"}:
+                    if path.is_file() and not path.name.endswith(POINTER_SUFFIX) and path.suffix in {".json", ".md", ".py", ".css"}:
                         text = path.read_text(encoding="utf-8")
                         for marker in ("file_token", "attachmentToken", "bitablePerm"):
                             self.assertNotIn(marker, text, path)

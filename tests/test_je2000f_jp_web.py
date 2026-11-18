@@ -17,6 +17,7 @@ import fitz
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.web.external_source_store import cold_replay_ir_matches, resolve_source_identity
 from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,7 +72,7 @@ class Je2000fJpWebTests(unittest.TestCase):
         self.assertEqual(manifest["feishu_source"]["customer_model"], "JE-2000F-WH")
         self.assertIn("voided", manifest["earlier_candidate"])
         self.assertEqual(manifest["original_source"]["sha256"], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / manifest["original_source"]["filename"]), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / manifest["original_source"]["filename"])[1], SOURCE_SHA)
         self.assertEqual(manifest["feishu_source"]["record_id"], "reczz28SfbsHbLFx")
         self.assertFalse(manifest["feishu_source"]["print_master"]["stored_in_package"])
         self.assertNotIn("supersedes_candidate", manifest)
@@ -101,7 +102,11 @@ class Je2000fJpWebTests(unittest.TestCase):
     def test_transcription_matches_the_pdf_text_layer(self):
         def bag(value: str) -> Counter:
             return Counter(c for c in value if not c.isspace() and c not in "•◦")
-        with fitz.open(PACKAGE / "JE-2000F-JP-JA.pdf") as doc:
+        source_pdf = PACKAGE / "JE-2000F-JP-JA.pdf"
+        self.assertEqual(resolve_source_identity(source_pdf)[1], SOURCE_SHA)
+        if not source_pdf.is_file():
+            self.skipTest("raw source PDF externalized to Feishu pointer")
+        with fitz.open(source_pdf) as doc:
             for page in transcription()["pages"]:
                 ours = Counter()
                 for line in page["lines"]:
@@ -185,8 +190,24 @@ class Je2000fJpWebTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
             rebuild.rebuild(output)
-            for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css"):
+            for name in (MARKDOWN, "_static/source_geometry.css"):
                 self.assertEqual((output / name).read_bytes(), (PACKAGE / "web/ja" / name).read_bytes(), name)
+
+            self.assertTrue(
+
+                cold_replay_ir_matches(
+
+                    read(output / "manual.ir.json"),
+
+                    read(PACKAGE / "web/ja/manual.ir.json"),
+
+                    read(PACKAGE / "source_manifest.json"),
+
+                ),
+
+                "manual.ir.json",
+
+            )
 
     def test_content_is_rebuilt_from_transcription(self):
         builder = load("je2000f_jp_build_content", PACKAGE / "build_content.py")

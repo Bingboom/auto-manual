@@ -246,9 +246,9 @@
       "sha256": "8d1c0af6fd145cb27fb9b91acdce825f088c471afbd86d402477fb7afb5e7697"
     },
     {
-      "path": "source/original.pdf",
-      "size": 2532309,
-      "sha256": "f24215296cf4a3544d48dbbce5df3c6cf489ec829ad4b2a192926d94afaff670"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 537,
+      "sha256": "8b27519ee4e22f8de690a04faeb0db3a2d162da3a06668b9c40e747844bbbc58"
     },
     {
       "path": "source/page_review.json",

@@ -70,9 +70,9 @@
   "repo_inputs": [],
   "inputs": [
     {
-      "path": "JE-100A-US-EN.pdf",
-      "size": 2740985,
-      "sha256": "18058b6bb7e83041fce1798f3baf98a018d079fa5caa6fd8dceec934df02c0b5"
+      "path": "JE-100A-US-EN.pdf.source-pointer.json",
+      "size": 551,
+      "sha256": "44aec69aad37c13620619e89f3dcb39367925ee89f1a10d6c2c0958fa79033c7"
     },
     {
       "path": "README.md",
@@ -196,8 +196,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6356,
-      "sha256": "9ef1b30c6717ae0220c654d4465367e2fd9e61c43c6c9bbdc5d0ce1138313915"
+      "size": 6804,
+      "sha256": "1b611921b3589ff9e3842ce076600f6efde1efb99e85fde1713978d01fcf97c7"
     },
     {
       "path": "refresh_manifest.py",
@@ -246,8 +246,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 12808,
-      "sha256": "f3f329a8b8b8c573e0d1e75276614299ab3db4bb2cdbce3dc1ad4c4c3fc14ac8"
+      "size": 12824,
+      "sha256": "2cef9887293148d984c6601be119ae740a64b2fe4bcbb5020de13f62fd918aea"
     },
     {
       "path": "web/en/_static/source_geometry.css",

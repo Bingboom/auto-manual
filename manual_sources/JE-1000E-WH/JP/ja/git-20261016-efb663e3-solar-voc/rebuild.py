@@ -24,6 +24,7 @@ from tools.component_specs.theme import load_manual_theme, theme_sha256
 from tools.markdown_bundle import _write_myst_sphinx_scaffold
 from tools.web.frozen_ai_web import replay_package
 from tools.web.presentation import load_web_manual_contract
+from tools.web.external_source_store import reviewed_inputs_match_with_pointers  # noqa: E402
 
 
 def read(root: Path, relative: str):
@@ -58,7 +59,13 @@ def acceptance(root: Path, manifest: dict) -> dict | None:
             or approval.get("reviewed_chapters_sha256") != file_sha256(root / "source/chapters.json")
             or approval.get("reviewed_presentation_css_sha256") != file_sha256(root / "source/presentation.css")
             or approval.get("reviewed_component_requirements") != read(root, "source/admission.json")["components"]
-            or approval.get("reviewed_inputs") != reviewed_inputs(manifest)):
+            or not reviewed_inputs_match_with_pointers(
+                root,
+                approval.get("reviewed_inputs"),
+                reviewed_inputs(manifest),
+                original_sha256=manifest["original_source"]["sha256"],
+                raw_archive_paths=(manifest["original_source"]["filename"],),
+            )):
         raise ValueError("operator acceptance does not cover these inputs")
     return approval
 

@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-100A-JP-JA.pdf",
+  "sha256": "2becaa507bbfd8d051888ac85d96a5399f0959224e9e6acb85211599baa06262",
+  "size_bytes": 1745957,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3XauN4",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "ESMDbNN09o5FHtxbm1ycvBlKnMc"
+  },
+  "local_relpath": "JE-100A-JP-JA.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

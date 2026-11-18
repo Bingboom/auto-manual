@@ -303,9 +303,9 @@
   },
   "inputs": [
     {
-      "path": "JHP-1000B-US-en-V2.pdf",
-      "size": 4881012,
-      "sha256": "e546301b5cba7a6774418544a74c689f69712fd0fac6189df016f8020c0d98b1"
+      "path": "JHP-1000B-US-en-V2.pdf.source-pointer.json",
+      "size": 561,
+      "sha256": "5d695647fca3ad6d0cb348622343226ccd2acecb55622dd3e2bb2e343b73032a"
     },
     {
       "path": "README.md",
@@ -1774,8 +1774,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6449,
-      "sha256": "712489fbb65a3c473badaaa232309c11a942d22b6038f5163d2adeacefc6099f"
+      "size": 6897,
+      "sha256": "60f8a840183e893de054e49f13b63dd89cc2a7bce5ccc854edb57c4ab88bcef8"
     },
     {
       "path": "refresh_manifest.py",
@@ -1844,8 +1844,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 32792,
-      "sha256": "562647b10080a30391899aeeba83e227df3670147367326f966cbcc42893ae54"
+      "size": 32808,
+      "sha256": "0cee937e4b848a54be91379ce603ff74bce645825b3ff9ff3b96c47360973101"
     },
     {
       "path": "web/en/_static/source_geometry.css",

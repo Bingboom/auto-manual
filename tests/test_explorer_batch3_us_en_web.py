@@ -6,7 +6,6 @@ candidate status, shared-style admission, shared symbol bytes and cold replay.
 from __future__ import annotations
 
 from contextlib import redirect_stdout
-import hashlib
 import importlib.util
 import io
 import json
@@ -17,6 +16,7 @@ import unittest
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
 from tools.web.prepared_style_audit import require_prepared_style_admission
+from tools.web.external_source_store import resolve_source_identity
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
@@ -65,7 +65,7 @@ class ExplorerBatch3UsEnWebTests(unittest.TestCase):
                 self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("US", ["en"]))
                 self.assertEqual(manifest["target"]["technical_version"], package.name)
                 original = manifest["original_source"]
-                digest = hashlib.sha256((package / original["filename"]).read_bytes()).hexdigest()
+                digest = resolve_source_identity(package / original["filename"])[1]
                 self.assertEqual(digest, original["sha256"])
                 self.assertTrue(package.name.endswith("-" + digest[:8]))
                 self.assertEqual(read(package / "source/en/content.json")["source_sha256"], digest)

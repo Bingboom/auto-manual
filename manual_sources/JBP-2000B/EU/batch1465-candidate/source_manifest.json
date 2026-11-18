@@ -52,9 +52,9 @@
   ],
   "inputs": [
     {
-      "path": "JBP-2000B_修正版_竖版.pdf",
-      "size": 7026011,
-      "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
+      "path": "JBP-2000B_修正版_竖版.pdf.source-pointer.json",
+      "size": 572,
+      "sha256": "8afc879d959edd58002525706fba95725419be65570e28822711077a96bce5aa"
     },
     {
       "path": "README.md",

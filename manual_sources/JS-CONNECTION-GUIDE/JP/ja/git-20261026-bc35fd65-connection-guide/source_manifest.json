@@ -91,8 +91,8 @@
     },
     {
       "path": "render.py",
-      "size": 7634,
-      "sha256": "5e766e4614bfa063107f3e8d7f92d5d84b53d1bcb7f125cef866af9c5ad82802"
+      "size": 7987,
+      "sha256": "7831ee1551bc682344cc98d719ac1d040232d6a52eaeb67dc0d6519682a10da2"
     },
     {
       "path": "source/approval.json",
@@ -105,9 +105,9 @@
       "sha256": "99c3032a7cdc720ae499ada6206b15aa20d024a329c9088bd88e69981662c6a8"
     },
     {
-      "path": "source/original.pdf",
-      "size": 27334114,
-      "sha256": "bc35fd6518769bd26c88fee088cc3a748c0ef680f4419682bede0f62738f8821"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 545,
+      "sha256": "6590e83b09e69cdf3d1b5c2959a0a947c5ffd0fdb2be645b75cb374ce29cc1ba"
     },
     {
       "path": "source/page/01_connection_guide_ja.rst",

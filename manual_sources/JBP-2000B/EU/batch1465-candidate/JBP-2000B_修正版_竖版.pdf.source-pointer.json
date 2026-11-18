@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JBP-2000B_修正版_竖版.pdf",
+  "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3",
+  "size_bytes": 7026011,
+  "feishu": {
+    "table_id": "tblTjXsls8M7j7QT",
+    "record_id": "reczz28MOpJowgHs",
+    "field_name": "pdf（带修正色）",
+    "file_token": "XSFnbi5YGokor5xB3pkcv1zan7f"
+  },
+  "local_relpath": "JBP-2000B_修正版_竖版.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

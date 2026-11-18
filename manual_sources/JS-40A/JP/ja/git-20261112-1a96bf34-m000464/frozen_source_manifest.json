@@ -428,8 +428,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6108,
-      "sha256": "119d21fe11e887cdb81f92638855fc18a18f2942c715c776abfb7227e15582b7"
+      "size": 6205,
+      "sha256": "bc623299c416a7e8ca93830332bfbd85ca74b22c4382ca527db1d5c67862b1a8"
     },
     {
       "path": "refresh_manifest.py",
@@ -482,9 +482,9 @@
       "sha256": "d753e056b0b94db73329bcf70c44a80ef884b23ed984d42a40c2cc0d663fcf66"
     },
     {
-      "path": "source/original.pdf",
-      "size": 1615857,
-      "sha256": "1a96bf348255cc47caf18b3df296ced0ccbc28269b1863c442e9e98d8d631b4c"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 537,
+      "sha256": "ee971cce8073e2200f69fff145eb068f828e160b5ffc8f4c0d3a2abbc0b52cb7"
     },
     {
       "path": "source/page_coverage.json",
@@ -498,8 +498,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 10770,
-      "sha256": "4fb43439d40a7dcf9a0bfc2c7967bfb00546d38fa1fb042dd3ac8ce302040648"
+      "size": 10786,
+      "sha256": "821941a4438c48cdbafa364dbd066719bd96fd5dcbfe70b5e6816fe135d7eb82"
     },
     {
       "path": "web/ja/_static/source_geometry.css",

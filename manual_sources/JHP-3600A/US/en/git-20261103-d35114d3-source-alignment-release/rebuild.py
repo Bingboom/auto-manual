@@ -31,6 +31,7 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.web.frozen_ai_web import replay_package  # noqa: E402
 from tools.web.presentation import load_web_manual_contract  # noqa: E402
+from tools.web.external_source_store import reviewed_inputs_match_with_pointers  # noqa: E402
 
 
 def check_inventory(base: Path, rows: list[dict]) -> None:
@@ -62,7 +63,14 @@ def rebuild(output: Path, language: str) -> None:
                 if not row["path"].startswith("web/") and row["path"] != "source/approval.json"]
     if approved and (approval.get("target") != {key: manifest["target"][key] for key in ("model", "region", "technical_version")}
             or approval.get("original_source_sha256") != manifest["original_source"]["sha256"]
-            or approval.get("reviewed_inputs") != reviewed
+            or not reviewed_inputs_match_with_pointers(
+                SOURCE_ROOT,
+                approval.get("reviewed_inputs"),
+                reviewed,
+                original_sha256=manifest["review_reference"]["sha256"],
+                raw_archive_paths=(manifest["review_reference"]["filename"],),
+                adapter_paths=("rebuild.py",),
+            )
             or not approval.get("operator_quote") or not approval.get("merge_authorization")):
         raise ValueError("operator acceptance does not cover these source inputs")
     # Preserve the complete source pool; freeze only references used by this locale.

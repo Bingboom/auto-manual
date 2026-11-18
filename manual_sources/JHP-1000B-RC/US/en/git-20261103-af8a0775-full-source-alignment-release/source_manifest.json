@@ -305,9 +305,9 @@
   },
   "inputs": [
     {
-      "path": "JHP-1000B-RC-US-en-V2.pdf",
-      "size": 9189510,
-      "sha256": "af8a0775d0ba23a137fe024ae961c8b77f35797e1c8838a943ddbf8d418d9251"
+      "path": "JHP-1000B-RC-US-en-V2.pdf.source-pointer.json",
+      "size": 567,
+      "sha256": "209c9e221d9bbac97462daf7483822d0141abcf70994c21a527e88cc978f0a31"
     },
     {
       "path": "README.md",
@@ -706,8 +706,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6402,
-      "sha256": "875fab173dde422b2282b78d4c38c12641331c956212f65a0a3d66b65aa3cec2"
+      "size": 6850,
+      "sha256": "79c0b827740a20ec751e98a8f5e29b22b0bf1438b5a26880af07db3308d099b5"
     },
     {
       "path": "refresh_manifest.py",

@@ -544,7 +544,7 @@
   "derived_from": {
     "package": "git-20261008-efb663e3-no-cover-reviewed",
     "authorization": "MA-277",
-    "manifest_sha256": "6c39f95653c143ac90e8dfa479ddbb7b53970705e9fa813ba08e1aecafef7121"
+    "manifest_sha256": "badd4c7d55f9317ecce796aafe34fda1d58242bab01c51df94403b54f3ae0cfd"
   },
   "text_corrections": [
     {
@@ -564,9 +564,9 @@
   "pending_source_review": [],
   "inputs": [
     {
-      "path": "Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf",
-      "size": 12367319,
-      "sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be"
+      "path": "Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf.source-pointer.json",
+      "size": 622,
+      "sha256": "f4566c7b292768eb04966ad92032445200ef191bc8e4bfa499fcf79d82e45fba"
     },
     {
       "path": "README.md",
@@ -880,13 +880,13 @@
     },
     {
       "path": "derive_solar_voc.py",
-      "size": 6431,
-      "sha256": "7db368d4fa1459d9483f1be39d1233e51abfa4cd928964a2e7e17884e157598b"
+      "size": 6456,
+      "sha256": "0dfd05bc05d0617942ee0c0e6d6a51c5507464b09ddcef3c5deb82339065fa73"
     },
     {
       "path": "rebuild.py",
-      "size": 10109,
-      "sha256": "2de4c8112d5c5380f75ed4dd2b5f6d2b1cd185b9051d51e28ddba61dd597e1fd"
+      "size": 10460,
+      "sha256": "0eab1b3f3f5279c04f3ec5c9c67b3078e498243d44129b90936695128346169c"
     },
     {
       "path": "source/admission.json",

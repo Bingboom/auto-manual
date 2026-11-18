@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-2000A-US-EN.pdf",
+  "sha256": "a8ec2be735be6483d340f2f35c7bc13a9300bf7d9499f60099ed8d5ef5cf689f",
+  "size_bytes": 5437332,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3XatLs",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "V2xTbILJKoiWlCxoMHYc3HTNnjd"
+  },
+  "local_relpath": "JE-2000A-US-EN.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

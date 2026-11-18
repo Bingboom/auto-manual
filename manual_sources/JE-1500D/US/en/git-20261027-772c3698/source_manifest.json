@@ -699,9 +699,9 @@
   "repo_inputs": [],
   "inputs": [
     {
-      "path": "JE-1500D-US-EN.pdf",
-      "size": 6071419,
-      "sha256": "772c36987b4233c2c243d64cf0a2e9c8a3fd1f37ad87ad739600cbf474977a79"
+      "path": "JE-1500D-US-EN.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "c09bda8bfadf84c5a79ed48a5c80b47a48d2feae55e9eebc3defb1c4ad35450c"
     },
     {
       "path": "README.md",
@@ -1020,8 +1020,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 9554,
-      "sha256": "b3008fe172c4709b5f9b13cb5302e569ca1c870f8cedc681ee5cb7b1038526a6"
+      "size": 10002,
+      "sha256": "521bfe3dbf3ac04319d8e1c52ac6365425b08e2fe58132e6045d0105aefdabaf"
     },
     {
       "path": "refresh_manifest.py",

@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "original.pdf",
+  "sha256": "b2490d619ae90730d310343f0cbdc91700a058a33c5d4184fd91de4b9a10fdca",
+  "size_bytes": 3461871,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3Xb5dJ",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "RO2MblKUPowqECxljbVcxnbKnFd"
+  },
+  "local_relpath": "original.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

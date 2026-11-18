@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-1500B-US-EN.pdf",
+  "sha256": "bb5a455b5c3e03b70ee95d6d6ceb74a9c98b671addc1d30d9637f9bb974a7dbb",
+  "size_bytes": 3868124,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3XatsW",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "MlHubtX6LocmQfxr0KicXhKvnjg"
+  },
+  "local_relpath": "JE-1500B-US-EN.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

@@ -720,9 +720,9 @@
   "transcription_cross_check": "Every line was transcribed from 300 dpi strips and compared word by word and number by number against the render; ambiguous glyphs were re-read on 500-600 dpi clips. The only text layer (physical page 6, ソーラー充電) agrees character for character. Specification and LCD numbers were re-read digit by digit.",
   "inputs": [
     {
-      "path": "JE-3000B-JP-JA.pdf",
-      "size": 4428230,
-      "sha256": "2fd130d6cde89728d43492a90f4616a31c2066d65f13ccdc99fcd702ef11374c"
+      "path": "JE-3000B-JP-JA.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "8e0bcc92fc13425e67fd4fa05fb788253cff78b2457bd4757339152b990f4d16"
     },
     {
       "path": "README.md",
@@ -906,8 +906,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6403,
-      "sha256": "2f9ee1e1423356c40ce1dd5aaef01489c540795e370bc8813660c574dfb7ff91"
+      "size": 6851,
+      "sha256": "7d8b42001680c466f7ffd9b7070a4a434508c8442003972238252f2efa2b60c8"
     },
     {
       "path": "refresh_manifest.py",

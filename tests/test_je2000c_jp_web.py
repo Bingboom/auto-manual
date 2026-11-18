@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.web.external_source_store import cold_replay_ir_matches, resolve_source_identity
 from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,7 +64,7 @@ class Je2000cJpWebTests(unittest.TestCase):
         self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("JP", ["ja"]))
         self.assertEqual(manifest["target"]["technical_version"], PACKAGE.name)
         self.assertEqual(manifest["original_source"]["sha256"], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / manifest["original_source"]["filename"]), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / manifest["original_source"]["filename"])[1], SOURCE_SHA)
         record = manifest["source_record"]
         self.assertEqual(record["record_id"], "reczz28SfbsHdjSC")
         self.assertEqual(record["single_language_manual"]["sha256"], SOURCE_SHA)
@@ -87,6 +88,11 @@ class Je2000cJpWebTests(unittest.TestCase):
                     self.assertIn(path.relative_to(PACKAGE).as_posix(), listed)
 
     def test_transcription_is_rebuilt_from_text_layer(self):
+        source_pdf = PACKAGE / "JE-2000C-JP.pdf"
+        self.assertEqual(resolve_source_identity(source_pdf)[1], SOURCE_SHA)
+        self.assertEqual(read(PACKAGE / "source/transcription.json")["source_sha256"], SOURCE_SHA)
+        if not source_pdf.is_file():
+            self.skipTest("raw source PDF externalized to Feishu pointer")
         builder = load("je2000c_jp_build_transcription", PACKAGE / "build_transcription.py")
         built = json.loads(json.dumps(builder.build(), ensure_ascii=False))
         self.assertEqual(built, read(PACKAGE / "source/transcription.json"))
@@ -154,8 +160,24 @@ class Je2000cJpWebTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
             rebuild.rebuild(output)
-            for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css"):
+            for name in (MARKDOWN, "_static/source_geometry.css"):
                 self.assertEqual((output / name).read_bytes(), (PACKAGE / "web/ja" / name).read_bytes(), name)
+
+            self.assertTrue(
+
+                cold_replay_ir_matches(
+
+                    read(output / "manual.ir.json"),
+
+                    read(PACKAGE / "web/ja/manual.ir.json"),
+
+                    read(PACKAGE / "source_manifest.json"),
+
+                ),
+
+                "manual.ir.json",
+
+            )
 
     def test_content_is_rebuilt_from_transcription(self):
         builder = load("je2000c_jp_build_content", PACKAGE / "build_content.py")

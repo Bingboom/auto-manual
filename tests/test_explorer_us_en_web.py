@@ -17,6 +17,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.web.external_source_store import cold_replay_ir_matches, resolve_source_identity
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {
@@ -100,7 +101,7 @@ class ExplorerUsEnWebTests(unittest.TestCase):
             self.assertEqual(manifest["route"], f"{model}/US/en/md")
             self.assertIs(manifest["legacy_default"], True)
             self.assertEqual(manifest["original_source"]["sha256"], case["sha256"])
-            self.assertEqual(file_sha256(package / manifest["original_source"]["filename"]), case["sha256"])
+            self.assertEqual(resolve_source_identity(package / manifest["original_source"]["filename"])[1], case["sha256"])
             self.assertNotIn("file_token", json.dumps(manifest))
             ir = read(package / "web/en/manual.ir.json")
             if manifest["publication_status"] == "operator-authorized-git-only-release":
@@ -184,8 +185,16 @@ class ExplorerUsEnWebTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as temp:
                 output = Path(temp) / "replay"
                 rebuild.rebuild(output)
-                for name in (case["markdown"], "manual.ir.json", "_static/source_geometry.css"):
+                for name in (case["markdown"], "_static/source_geometry.css"):
                     self.assertEqual((output / name).read_bytes(), (package / "web/en" / name).read_bytes(), name)
+                self.assertTrue(
+                    cold_replay_ir_matches(
+                        read(output / "manual.ir.json"),
+                        read(package / "web/en/manual.ir.json"),
+                        read(package / "source_manifest.json"),
+                    ),
+                    "manual.ir.json",
+                )
 
     def test_changed_source_input_is_rejected(self):
         for model, case, package in self.each():

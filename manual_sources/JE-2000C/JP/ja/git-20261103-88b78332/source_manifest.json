@@ -291,9 +291,9 @@
   ],
   "inputs": [
     {
-      "path": "JE-2000C-JP.pdf",
-      "size": 2331963,
-      "sha256": "88b78332342866ccd994cfa054a8a63a5fe30fa41131de5c7d53f16cd590690b"
+      "path": "JE-2000C-JP.pdf.source-pointer.json",
+      "size": 547,
+      "sha256": "9e8a195e60a4ed0682fe94acc6553b1fbe427640aa1ee492f7ed15461b4fdded"
     },
     {
       "path": "README.md",
@@ -492,8 +492,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6361,
-      "sha256": "22547b01a60ca0c886a54c02c75bf7c957eb917a4790f3b911dd96875aa7e465"
+      "size": 6809,
+      "sha256": "a5d993f618716c75c69fd3cd0b583026d2cc644a19aeb829c4bdba8c37e195a5"
     },
     {
       "path": "refresh_manifest.py",

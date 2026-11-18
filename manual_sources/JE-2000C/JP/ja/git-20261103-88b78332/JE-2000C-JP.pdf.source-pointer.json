@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-2000C-JP.pdf",
+  "sha256": "88b78332342866ccd994cfa054a8a63a5fe30fa41131de5c7d53f16cd590690b",
+  "size_bytes": 2331963,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3XaxJB",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "U0FwbJ9aOojkSnx1Au5cmoaKnwc"
+  },
+  "local_relpath": "JE-2000C-JP.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

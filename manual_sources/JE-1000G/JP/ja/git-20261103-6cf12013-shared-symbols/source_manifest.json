@@ -69,9 +69,9 @@
   "repo_inputs": [],
   "inputs": [
     {
-      "path": "JE-1000G-JP-JA.pdf",
-      "size": 2804108,
-      "sha256": "6cf120136d8366ad37f590610d739e09754ddc38d4c8cd3123d9dca0de132aad"
+      "path": "JE-1000G-JP-JA.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "8f78bbc44fba4f9078ce607fd8394a627a0c7e5c6c42dcd2a6164aee47eaedcf"
     },
     {
       "path": "README.md",
@@ -415,8 +415,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6560,
-      "sha256": "655003f4969e4c6540cfc408676f37c3ab52f24ecc3c1960e19e56b55e656ef4"
+      "size": 7008,
+      "sha256": "ea867ff588edd514b791df21ca13a34c82b99eac89f138ad4fdffe7287ab4e87"
     },
     {
       "path": "refresh_manifest.py",

@@ -17,6 +17,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.web.external_source_store import cold_replay_ir_matches, resolve_source_identity
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JHP-2000A/US/en/git-20261028-5b60448e"
@@ -66,7 +67,7 @@ class Jhp2000aUsWebTests(unittest.TestCase):
         self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("US", ["en"]))
         self.assertEqual(manifest["target"]["technical_version"], PACKAGE.name)
         self.assertEqual(manifest["original_source"]["sha256"], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / manifest["original_source"]["filename"]), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / manifest["original_source"]["filename"])[1], SOURCE_SHA)
         self.assertEqual(manifest["base_record"]["record_id"], "reczz28SlRGJkKmO")
         self.assertFalse(manifest["design_original"]["stored_in_package"])
         self.assertFalse((PACKAGE / manifest["design_original"]["filename"]).exists())
@@ -148,8 +149,24 @@ class Jhp2000aUsWebTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
             rebuild.rebuild(output)
-            for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css"):
+            for name in (MARKDOWN, "_static/source_geometry.css"):
                 self.assertEqual((output / name).read_bytes(), (PACKAGE / "web/en" / name).read_bytes(), name)
+
+            self.assertTrue(
+
+                cold_replay_ir_matches(
+
+                    read(output / "manual.ir.json"),
+
+                    read(PACKAGE / "web/en/manual.ir.json"),
+
+                    read(PACKAGE / "source_manifest.json"),
+
+                ),
+
+                "manual.ir.json",
+
+            )
 
     def test_content_is_rebuilt_from_transcription(self):
         builder = load("jhp2000a_us_build_content", PACKAGE / "build_content.py")

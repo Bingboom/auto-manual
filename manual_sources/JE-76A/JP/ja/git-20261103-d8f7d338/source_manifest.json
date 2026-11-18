@@ -256,9 +256,9 @@
   },
   "inputs": [
     {
-      "path": "JE-76A-JP-JA.pdf",
-      "size": 1421229,
-      "sha256": "d8f7d338fd208af056c0dda9991422227627ab771245e791858e1480978b013c"
+      "path": "JE-76A-JP-JA.pdf.source-pointer.json",
+      "size": 549,
+      "sha256": "5ecf8d881643971818e311a82824d5edbf08e925ede6fc8e948d189660fbd5af"
     },
     {
       "path": "README.md",
@@ -342,8 +342,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6355,
-      "sha256": "bf7ccda105ac2d72104759d4ce0fdccf04519b660367c69947d9dfb724cc5201"
+      "size": 6803,
+      "sha256": "8f489c9c1ea47553443fe43752df999ae5f8bee4ca36f1e8123dc86095a515ba"
     },
     {
       "path": "refresh_manifest.py",
