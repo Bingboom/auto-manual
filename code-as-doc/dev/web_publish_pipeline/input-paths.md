@@ -173,7 +173,7 @@ create synthetic queue rows or write `HTML_link`.
    previous 1536 MiB cap. At that release, source storage was bounded at 1600 MiB; served,
    network, per-file and file-count limits remain unchanged.
    On 2026-11-18, the operator explicitly authorized 1664 MiB for the remaining
-   28 single-language manuals. The final 254-target source inventory is
+   28 single-language manuals. That budget-change preflight recorded a 254-target source inventory of
    1,706,070,475 bytes (1627.0356 MiB), with 18,317 source files and a largest
    file of 5,885,103 bytes, leaving 38,759,989 bytes in the source budget.
    All 226 prior targets retain their metadata and all 11,650 prior source

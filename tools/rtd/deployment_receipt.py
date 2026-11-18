@@ -40,7 +40,7 @@ MAX_TOTAL_BYTES = 768 * 1024 * 1024
 # Raised from 1280 MiB on 2026-10-14: the JBP-3600A US/JP release left the
 # publish tree at 1,261.6 MiB, 18.4 MiB below the cap.
 # Operator authorized 1664 MiB on 2026-11-18 for 28 new manuals (254 targets).
-# Complete retained source inventory: 1,706,070,475 bytes (1627.0356 MiB),
+# Budget-change preflight inventory: 1,706,070,475 bytes (1627.0356 MiB),
 # 18,317 files, largest 5,885,103 bytes; all prior packages remain unchanged.
 # Served/network, per-file and count limits stay fixed.
 MAX_SOURCE_TOTAL_BYTES = 1664 * 1024 * 1024
