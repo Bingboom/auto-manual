@@ -18,8 +18,14 @@ Python process, one worker per CPU (`-j N` to change), heaviest modules first. I
 prints one line per module, the slowest modules (`--durations N`, `0` for all),
 and the full output of every failed module, and exits non-zero on any failure,
 error, import error, crash, or a module that ran no tests (unless the manifest
-declares it under `zero_test_modules`). `--list` shows a selection without
-running it. The fast tier skips modules whose recorded time is 5 seconds or more.
+declares it under `zero_test_modules`). A module that raises `unittest.SkipTest`
+on import counts as one skipped test, as under discovery. Each module has a
+15-minute limit (`MODULE_TIMEOUT_SECONDS`): past it, the module and every process
+it started are killed and it fails as `timed out after 900 s` with the tail of
+its output, so a hang is named instead of running into the CI job timeout.
+`--write-timings` writes nothing unless every module passed. `--list` shows a
+selection without running it. The fast tier skips modules recorded at 5 seconds
+or more; a module not yet in the manifest always runs.
 
 The CI `unit` check (`Manual Validation`) is the aggregate of the `unit-shard`
 matrix: each shard runs `python -m tests.run_fast --shard K/N`, and `unit` fails
@@ -39,6 +45,11 @@ Each module runs in isolation, so a module must import what it uses (for
 example `import unittest.mock`) and must not rely on another module having run
 first. A failure that appears only under `run_fast` but not `python -m unittest`
 is such a hidden order dependency in the test module.
+
+CI no longer runs the single-process `python -m unittest` mode. Order dependence
+that only shows up when every module shares one process (one module's leftover
+state breaking or masking another's tests) is therefore not gated; run
+`python -m unittest` yourself when a change touches shared global state.
 
 Current test coverage includes:
 

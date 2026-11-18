@@ -14,7 +14,9 @@ spread over worker processes (one per CPU by default), heaviest first::
 Shards are assigned deterministically from ``tests/unit_timings.json`` (recorded
 per-module seconds; an unknown module weighs ``default_seconds``), so every
 module lands in exactly one shard. The fast tier skips modules whose recorded
-time is at least ``SLOW_SECONDS``. A module that runs zero tests is an error
+time is at least ``SLOW_SECONDS`` (a module not yet recorded always runs). A
+module that runs longer than ``MODULE_TIMEOUT_SECONDS`` is killed with its
+process group and reported as timed out. A module that runs zero tests is an error
 unless the manifest lists it under ``zero_test_modules``.
 """
 
@@ -23,10 +25,12 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import signal
 import subprocess
 import sys
 import tempfile
 import time
+import traceback
 import unittest
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
@@ -36,6 +40,10 @@ TESTS_DIR = Path(__file__).resolve().parent
 ROOT = TESTS_DIR.parent
 TIMINGS_PATH = TESTS_DIR / "unit_timings.json"
 SLOW_SECONDS = 5.0
+# Per-module wall-clock limit: far above the slowest module under CI load
+# (about 5.5 min) and below the CI job timeout (25 min), so a hang is named.
+MODULE_TIMEOUT_SECONDS = 15 * 60
+TIMEOUT_TAIL_LINES = 200
 REFRESH_COMMAND = "python -m tests.run_fast --all --write-timings"
 
 
@@ -47,6 +55,11 @@ class Timings:
 
     def weight(self, module: str) -> float:
         return self.modules.get(module, self.default_seconds)
+
+    def is_slow(self, module: str) -> bool:
+        """Recorded at SLOW_SECONDS or more; a module not yet recorded is never slow."""
+
+        return self.modules.get(module, 0.0) >= SLOW_SECONDS
 
 
 def load_timings(path: Path = TIMINGS_PATH) -> Timings:
@@ -129,32 +142,89 @@ def judge(result: ModuleResult, zero_test_modules: frozenset[str]) -> str:
     return ""
 
 
-def run_module(module: str, zero_test_modules: frozenset[str], python: str = sys.executable) -> ModuleResult:
+def _kill_group(proc: subprocess.Popen[bytes]) -> None:
+    """Kill the module's process group: the worker and anything it left running."""
+
+    try:
+        if hasattr(os, "killpg"):
+            os.killpg(proc.pid, signal.SIGKILL)
+        elif proc.poll() is None:
+            proc.kill()
+    except (ProcessLookupError, PermissionError):
+        pass
+
+
+def _run_worker(module: str, python: str, timeout: float) -> ModuleResult:
     env = dict(os.environ, AUTO_MANUAL_ENV_PREFLIGHT="0", PYTHONDONTWRITEBYTECODE="1")
     with tempfile.TemporaryDirectory(prefix="run-fast-") as tmp:
         result_file = Path(tmp) / "result.json"
+        log_file = Path(tmp) / "output.log"
         started = time.monotonic()
-        proc = subprocess.run(
-            [python, "-m", "tests.run_fast", "--worker", module, "--result-file", str(result_file)],
-            cwd=ROOT,
-            env=env,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            check=False,
-        )
+        timed_out = False
+        # Output goes to a file, not a pipe, so a leftover grandchild holding the
+        # stream cannot block the runner; a new session lets a kill reach it.
+        with log_file.open("wb") as log:
+            proc = subprocess.Popen(
+                [python, "-m", "tests.run_fast", "--worker", module, "--result-file", str(result_file)],
+                cwd=ROOT,
+                env=env,
+                stdin=subprocess.DEVNULL,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                start_new_session=True,
+            )
+            try:
+                proc.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                timed_out = True
+            _kill_group(proc)
+            proc.wait()
         seconds = time.monotonic() - started
+        output = log_file.read_text(encoding="utf-8", errors="replace")
         counts = json.loads(result_file.read_text(encoding="utf-8")) if result_file.exists() else {}
-    result = ModuleResult(module, seconds, proc.returncode, proc.stdout, counts)
-    result.problem = judge(result, zero_test_modules)
+    result = ModuleResult(module, seconds, proc.returncode, output, counts)
+    if timed_out:
+        tail = "\n".join(output.splitlines()[-TIMEOUT_TAIL_LINES:])
+        result.output = f"(last {TIMEOUT_TAIL_LINES} lines of output)\n{tail}"
+        result.problem = f"timed out after {timeout:.0f} s"
     return result
+
+
+def run_module(
+    module: str,
+    zero_test_modules: frozenset[str],
+    python: str = sys.executable,
+    timeout: float = MODULE_TIMEOUT_SECONDS,
+) -> ModuleResult:
+    """Run one module in a child process; never raises, so the report always prints."""
+
+    try:
+        result = _run_worker(module, python, timeout)
+    except Exception as exc:  # the runner itself failed: report it against the module
+        return ModuleResult(module, 0.0, -1, traceback.format_exc(), problem=f"runner error: {exc!r}")
+    if not result.problem:
+        result.problem = judge(result, zero_test_modules)
+    return result
+
+
+def _skipped_module_suite(module: str, exc: unittest.SkipTest) -> unittest.TestSuite:
+    """One skipped test for a module that raises SkipTest on import, as discovery records it."""
+
+    def skipped(self: unittest.TestCase) -> None:
+        raise exc
+
+    case_class = type("ModuleSkipped", (unittest.TestCase,), {module: skipped})
+    return unittest.TestSuite([case_class(module)])
 
 
 def worker(module: str, result_file: Path) -> int:
     """Run one module in this process the way ``python -m unittest <module>`` would."""
 
     sys.argv = [sys.argv[0]]  # tests see no runner arguments, as under `python -m unittest`
-    suite = unittest.defaultTestLoader.loadTestsFromName(module)
+    try:
+        suite = unittest.defaultTestLoader.loadTestsFromName(module)
+    except unittest.SkipTest as exc:
+        suite = _skipped_module_suite(module, exc)
     expected = suite.countTestCases()
     outcome = unittest.TextTestRunner(stream=sys.stderr, verbosity=1).run(suite)
     counts = {
@@ -170,7 +240,11 @@ def worker(module: str, result_file: Path) -> int:
     return 0 if outcome.wasSuccessful() else 1
 
 
-def write_timings(results: list[ModuleResult], path: Path = TIMINGS_PATH) -> None:
+def write_timings(results: list[ModuleResult], path: Path = TIMINGS_PATH) -> bool:
+    """Rewrite the manifest from a fully green run; return False (and write nothing) otherwise."""
+
+    if not results or any(not r.ok for r in results):
+        return False
     current = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     current["refresh_command"] = REFRESH_COMMAND
     current["measured"] = {
@@ -182,6 +256,7 @@ def write_timings(results: list[ModuleResult], path: Path = TIMINGS_PATH) -> Non
     current.setdefault("zero_test_modules", [])
     current["modules"] = {r.module: round(r.seconds, 1) for r in sorted(results, key=lambda r: r.module)}
     path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return True
 
 
 def select_modules(args: argparse.Namespace, timings: Timings) -> tuple[list[str], str]:
@@ -193,7 +268,7 @@ def select_modules(args: argparse.Namespace, timings: Timings) -> tuple[list[str
         return plan_shards(modules, total, timings)[index - 1], f"shard {index}/{total}"
     if args.all:
         return modules, "all modules"
-    kept = [name for name in modules if timings.weight(name) < SLOW_SECONDS]
+    kept = [name for name in modules if not timings.is_slow(name)]
     return kept, f"fast tier, {len(modules) - len(kept)} slow module(s) skipped (--all to include)"
 
 
@@ -265,8 +340,8 @@ def main(argv: list[str] | None = None) -> int:
             print_progress(len(results), len(modules), results[-1])
     status = report(results, label, workers, time.monotonic() - started, args.durations)
     if args.write_timings:
-        write_timings(results)
-        print(f"[run-fast] wrote {TIMINGS_PATH.relative_to(ROOT)}")
+        written = write_timings(results)
+        print(f"[run-fast] {'wrote' if written else 'did NOT write (run was not green)'} {TIMINGS_PATH.relative_to(ROOT)}")
     return status
 
 
