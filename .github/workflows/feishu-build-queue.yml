@@ -94,6 +94,14 @@ jobs:
           ref: ${{ inputs.texlive_smoke_only && github.ref || github.event.repository.default_branch }}
           fetch-depth: 2
 
+      - name: Validate dispatch inputs
+        shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
+          QUEUE_RECORD_IDS: ${{ inputs.queue_record_ids || '' }}
+        run: |
+          bash scripts/validate_dispatch_inputs.sh record-id QUEUE_RECORD_ID record-ids QUEUE_RECORD_IDS
+
       - name: Validate required secrets
         shell: bash
         run: |
@@ -101,22 +109,31 @@ jobs:
 
       - name: Print trigger context
         shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
+          QUEUE_RECORD_IDS: ${{ inputs.queue_record_ids || '' }}
+          TRIGGER_SOURCE: ${{ inputs.trigger_source || '' }}
+          OPENCLAW_DISPATCH_NONCE: ${{ inputs.openclaw_dispatch_nonce || '' }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           echo "event_name=${GITHUB_EVENT_NAME}"
           echo "ref=${GITHUB_REF}"
-          echo "default_branch=${{ github.event.repository.default_branch }}"
-          echo "trigger_source=${{ inputs.trigger_source || '' }}"
-          echo "queue_record_id=${{ inputs.queue_record_id || '' }}"
-          echo "queue_record_ids=${{ inputs.queue_record_ids || '' }}"
-          echo "openclaw_dispatch_nonce=${{ inputs.openclaw_dispatch_nonce || '' }}"
+          echo "default_branch=${DEFAULT_BRANCH}"
+          echo "trigger_source=${TRIGGER_SOURCE}"
+          echo "queue_record_id=${QUEUE_RECORD_ID}"
+          echo "queue_record_ids=${QUEUE_RECORD_IDS}"
+          echo "openclaw_dispatch_nonce=${OPENCLAW_DISPATCH_NONCE}"
           echo "artifact_sink_provider=${AUTO_MANUAL_ARTIFACT_SINK_PROVIDER:-lark_drive}"
           echo "artifact_mirror_provider=${AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER:-none}"
 
       - name: Validate dispatch ref
         shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          TEXLIVE_SMOKE_ONLY: ${{ inputs.texlive_smoke_only }}
         run: |
-          if [ "${{ inputs.texlive_smoke_only }}" != "true" ] && [ "${GITHUB_REF}" != "refs/heads/${{ github.event.repository.default_branch }}" ]; then
-            echo "::error::Dispatch feishu-build-queue.yml on ${{ github.event.repository.default_branch }}. The actual Publish source is resolved from Document_link.Git_ref when present."
+          if [ "${TEXLIVE_SMOKE_ONLY}" != "true" ] && [ "${GITHUB_REF}" != "refs/heads/${DEFAULT_BRANCH}" ]; then
+            echo "::error::Dispatch feishu-build-queue.yml on ${DEFAULT_BRANCH}. The actual Publish source is resolved from Document_link.Git_ref when present."
             exit 1
           fi
 
@@ -185,13 +202,16 @@ jobs:
       - name: Process Feishu build queue
         if: ${{ !inputs.texlive_smoke_only }}
         shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
+          QUEUE_RECORD_IDS: ${{ inputs.queue_record_ids || '' }}
         run: |
           cmd=(python build.py process-build-queue --config configs/config.us.yaml --data-root data/phase2 --workflow-action publish)
-          if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
-            cmd+=(--record-id "${{ inputs.queue_record_id }}")
+          if [ -n "${QUEUE_RECORD_ID}" ]; then
+            cmd+=(--record-id "${QUEUE_RECORD_ID}")
           fi
-          if [ -n "${{ inputs.queue_record_ids || '' }}" ]; then
-            cmd+=(--record-ids "${{ inputs.queue_record_ids }}")
+          if [ -n "${QUEUE_RECORD_IDS}" ]; then
+            cmd+=(--record-ids "${QUEUE_RECORD_IDS}")
           fi
           "${cmd[@]}"
 
@@ -229,15 +249,20 @@ jobs:
       - name: Write OpenClaw run metadata
         if: always()
         shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
+          QUEUE_RECORD_IDS: ${{ inputs.queue_record_ids || '' }}
+          TRIGGER_SOURCE: ${{ inputs.trigger_source || '' }}
+          OPENCLAW_DISPATCH_NONCE: ${{ inputs.openclaw_dispatch_nonce || '' }}
         run: |
           python integrations/openclaw/scripts/write_workflow_run_metadata.py \
             --output .tmp/openclaw/feishu-build-queue-run.json \
             --workflow-name "Feishu Build Queue" \
             --workflow-file ".github/workflows/feishu-build-queue.yml" \
-            --queue-record-id "${{ inputs.queue_record_id || '' }}" \
-            --queue-record-ids "${{ inputs.queue_record_ids || '' }}" \
-            --trigger-source "${{ inputs.trigger_source || '' }}" \
-            --openclaw-dispatch-nonce "${{ inputs.openclaw_dispatch_nonce || '' }}" \
+            --queue-record-id "${QUEUE_RECORD_ID}" \
+            --queue-record-ids "${QUEUE_RECORD_IDS}" \
+            --trigger-source "${TRIGGER_SOURCE}" \
+            --openclaw-dispatch-nonce "${OPENCLAW_DISPATCH_NONCE}" \
             --artifact-name feishu-build-queue-output \
             --artifact-name openclaw-run-metadata
 
