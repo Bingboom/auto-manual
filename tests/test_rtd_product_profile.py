@@ -188,12 +188,12 @@ class TemplateTests(unittest.TestCase):
         sources = page.find(id=button["data-sources"])
         self.assertTrue(sources.has_attr("hidden"))
         self.assertEqual([p.get_text() for p in sources.select(".pf-src")[0].select("p")],
-                         ["来自《Fake Station 1 说明书》 · 美规 · English", "SPECIFICATIONS > GENERAL"])
+                         ["原文摘自《Fake Station 1 说明书》 · 美规 · English", "SPECIFICATIONS > GENERAL"])
         self.assertEqual(sources.select(".pf-src")[1].select("p")[1].get_text(), "版本日期 2026-01-02 · SPECIFICATIONS")
         self.assertEqual(sources.select_one("a")["href"], "FAKE-1/US/en/md/manual_us")
         weight = [div for div in us.select(".pf-group dl > div") if div.dt.get_text() == "重量"][0]
         self.assertEqual(weight.dd.get_text(), "暂无")
-        self.assertEqual([b.get_text() for b in page.select(".pf-badge")], ["各说明书写法不一致"])
+        self.assertEqual([b.get_text() for b in page.select(".pf-badge")], ["多源写法差异"])
         self.assertTrue(page.select_one("[data-pf-source]").has_attr("hidden"))
         self.assertEqual(len(page.select("#differences td.is-odd")), 0)  # two markets: nothing marked
         text = page.select_one("main").get_text(" ")
@@ -205,7 +205,7 @@ class TemplateTests(unittest.TestCase):
         derived = {**SNAPSHOT, "values": [{**VALUES[0], "printed": "3 × AC", "derived": True}, *VALUES[1:]]}
         page = render(pages(derived)["products/item/FAKE-1"])
         card = page.find(id=page.select_one('[data-market-panel="US"] .pf-val')["data-sources"]).select(".pf-src")
-        self.assertEqual(card[0].p.get_text(), "由《Fake Station 1 说明书》的多处内容整理 · 美规 · English")
+        self.assertEqual(card[0].p.get_text(), "综合整理自《Fake Station 1 说明书》 · 美规 · English")
         self.assertIsNone(card[0].blockquote)
         self.assertEqual(card[1].blockquote.get_text(), "Capacity: 1002Wh")  # an older value without the field
         self.assertNotIn("派生", page.get_text())
@@ -252,7 +252,7 @@ class TemplateTests(unittest.TestCase):
     def test_a_single_market_product_has_no_switch_and_no_difference_table(self):
         page = render(pages()["products/item/FAKE-2"])
         self.assertIsNone(page.select_one("[data-pf-switch], #differences, #features, #pairing"))
-        self.assertEqual(page.select_one(".fr-empty").get_text(), "暂无参数。")
+        self.assertEqual(page.select_one(".fr-empty").get_text(), "暂无可显示的规格参数。")
         self.assertIsNone(page.select_one("[data-market-date-label]"))  # one market: no label to show
         self.assertTrue(page.select_one(".fr-head p").get_text().endswith("SKU 创建时间 暂无"))
 

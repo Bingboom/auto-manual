@@ -15,11 +15,11 @@ the positioning document cited beside it.
 
 - **阶段门** (`#gates`, `stepper_view`): the unfolded gates G1–G3 in order, each with
   its count, bar and ledger tally. The first gate not yet done is 当前 and filled
-  with the accent; the next one reads 「G1 验收后开始」. A 接下来 line counts the
+  with the accent; the next one reads 「G1 验收后启动」. A 接下来 line counts the
   current gate's open ledger rows (「完成 G1 最后一项」, 「完成 G1 剩余 2 项」), then
   验收 the gate and starts the next; the folded gates (IDML, G4) follow on the same
   line. The rows themselves stay in the ledger and the lane cards.
-- **「当前工作」** (`#tab-progress`, kept): the focus note, **正在做** (`#now-next`, kept
+- **「当前工作」** (`#tab-progress`, kept): the focus note, **当前推进** (`#now-next`, kept
   for links): `focus.doing` in `system_workspace.yaml` (知识库首页 no longer
   repeats it since 2026-11-17). Each item is the operator's plain words (a bold lead and one line, such as
   「网页化：印刷版说明书持续转成网页版」) with the in-progress mark and a link to the
@@ -50,8 +50,8 @@ the positioning document cited beside it.
   - 工作入口 (`manual_workbench.html`, moved from 说明书工作台): no node's panel
     is open until a node is chosen, and choosing it again closes it.
   - The system architecture (`#tab-architecture`), as a section titled 系统架构.
-  - 语言资产 (`#language-assets`, `#tab-corpus`) beside 工程规模 (`#codebase`): since
-    step 12 a pointer to the 语言 asset page, which now shows 句对, 术语, 句对已批准
+  - 语言资产 (`#language-assets`, `#tab-corpus`) above 工程规模 (`#codebase`): a
+    full-width compact bar pointing to 语料库, which now shows 标准句对, 专业术语, 已批准句对
     and every language's pairs ([asset-layers.md](asset-layers.md)). The page still
     reads the corpus snapshot for its sources, the focus metric and the 语言 page.
   - 技能与钩子 (`#tab-tooling`): first whether every skill is registered and every

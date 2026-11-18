@@ -6,7 +6,7 @@
 {%- set codes = statistics.language_codes -%}
 {%- set regions = {} -%}{% for r in web_regions or [] %}{% set _ = regions.update({r.code: r.label}) %}{% endfor %}
 <div class="sd-head">
-  <div class="dl-section-title"><h2 id="statistics-title">数据统计</h2><p>已发布网页说明书的分布，以及能力表和素材登记表的现状。逐个型号看上面的覆盖矩阵。</p></div>
+  <div class="dl-section-title"><h2 id="statistics-title">数据统计</h2><p>已发布网页说明书的区域/语种分布、机型能力覆盖率与共用素材登记概况。</p></div>
   {%- if statistics.published is not none %}<span class="sd-meta">发布清单{% if statistics.built_on %} {{ statistics.built_on[5:]|e }}{% endif %} · <b>{{ statistics.summary.variants }}</b> 个语言版本 · <b>{{ statistics.summary.models }}</b> 个机型</span>{% endif %}
 </div>
 {%- if statistics.published is none %}

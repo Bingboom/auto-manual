@@ -17,20 +17,20 @@
   {%- set cov = p.coverage %}
   <section class="wp-coverage" id="web-progress-coverage" aria-labelledby="wp-coverage-title">
     <div class="wp-cov-main">
-      <p class="wp-cov-label" id="wp-coverage-title">覆盖 · 当前主线</p>
+      <p class="wp-cov-label" id="wp-coverage-title">覆盖进度 · 当前主线</p>
       {%- if cov and cov.total %}
       <p class="wp-cov-big"><strong>{{ cov.online }}</strong><span>/ {{ cov.total }} 本（型号 × 市场）已上线网页说明书{% if p.snapshot_date %} · 快照 {{ p.snapshot_date[5:]|e }}{% endif %}</span></p>
       <div class="wp-cov-bar" role="img" aria-label="已上线 {{ cov.online }}，审核中 {{ cov.review }}，待转 {{ cov.gap }}"><i class="is-full" style="width: {{ (100 * cov.online / cov.total)|round(1) }}%"></i><i class="is-review" style="width: {{ (100 * cov.review / cov.total)|round(1) }}%"></i></div>
       <p class="wp-cov-legend"><span><i class="is-full"></i>已上线 {{ cov.online }} · {{ cov.percent }}%</span><span><i class="is-review"></i>审核中 {{ cov.review }}</span><span><i class="is-gap"></i>待转 {{ cov.gap }}</span></p>
-      <a class="wp-cov-link" href="#web-progress-matrix">按型号、按市场看缺哪几本 →</a>
+      <a class="wp-cov-link" href="#web-progress-matrix">查看各机型覆盖矩阵 →</a>
       {%- else %}
       <p class="wp-cov-big"><strong class="is-pending">待统计</strong><span>没有网页进度快照，算不出分母{{ wp_stale(p.stale) }}</span></p>
       {%- endif %}
     </div>
     <div class="wp-cov-den">
-      <p class="wp-cov-label">分母怎么算</p>
-      {%- if cov and cov.total %}<p class="wp-cov-eq"><b>{{ cov.models }}</b><span>个已有网页说明书的型号</span><b>{{ cov.total }}</b><span>本：这些型号已上线、审核中或待转（有在用 SKU）的市场版本</span></p>{% endif %}
-      <p>还没有任何网页说明书的型号不在分母里，也不列出。新型号做出第一本后，它的市场才计入，所以分母会变大，比例可能下降。</p>
+      <p class="wp-cov-label">统计口径</p>
+      {%- if cov and cov.total %}<p class="wp-cov-eq"><b>{{ cov.models }}</b><span>个已启动网页化的机型</span><b>{{ cov.total }}</b><span>本在售市场版本</span></p>{% endif %}
+      <p>仅计入已至少上线 1 本网页说明书的机型及其在售市场版本（含已上线、审核中与在售待转）；尚未启动网页化的机型不计入分母。</p>
     </div>
   </section>
   <div class="kpi-row wp-kpis" aria-label="网页说明书进度">
@@ -82,7 +82,7 @@
     </article>
     <article class="wp-card" id="web-progress-markets" aria-labelledby="wp-markets-title">
       <h3 id="wp-markets-title">各市场进度</h3>
-      <p class="wp-note">已上线的市场版本语言是否齐全；审核中是审核稿表里还没上线的版本；待转是已转型号在这个市场有在用 SKU、但还没有网页版。</p>
+      <p class="wp-note">按市场汇总已上线（语言齐全 / 未齐）、审核中与在售待转版本数量。</p>
       <ul class="wp-legend" aria-hidden="true"><li><i class="is-full"></i>语言齐全</li><li><i class="is-partial"></i>语言未齐</li>{% if p.reviews %}<li><i class="is-review"></i>审核中</li>{% endif %}{% if p.snapshot %}<li><i class="is-gap"></i>待转</li>{% endif %}</ul>
       <div class="wp-bars">
         {%- for m in p.market_rows|sort(attribute='online', reverse=True) %}
