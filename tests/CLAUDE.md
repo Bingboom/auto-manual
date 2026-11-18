@@ -22,7 +22,7 @@
 
 - One module: `python3 -m unittest tests.test_<name>`
 - Several modules: `python3 -m unittest tests.test_config_loader tests.test_validate_config`
-- Full suite: `python3 -m unittest`
-- Local fast tier: `python3 -m tests.run_fast` (or `make test-fast`) runs every module except `tests/slow_modules.txt` in parallel processes (`-j N`, `--all` adds the slow modules). It is for iteration only; CI and pre-PR validation stay `python3 -m unittest`.
+- Full suite as CI runs it: `python3 -m tests.run_fast --all` (every module in its own process, in parallel); one CI shard: `python3 -m tests.run_fast --shard K/N`. The CI `unit` check runs `--shard K/N` per shard. Single-process `python3 -m unittest` still works locally but is no longer gated by CI, so order dependence that only shows in one shared process is not caught there.
+- Local fast tier: `python3 -m tests.run_fast` (or `make test-fast`) skips modules recorded at 5 s or more in `tests/unit_timings.json` and always runs modules the manifest does not know yet (`-j N`; `--all` adds the slow modules). Refresh the manifest with `python3 -m tests.run_fast --all --write-timings`; details in `code-as-doc/tests/README.md`.
 - Node UI tests, when a portal script or a `*.test.mjs` file changes: `node --test tests/*.test.mjs`
 - Lint when tests or Python implementation changed: `python3 -m ruff check build.py integrations tools tests scripts`
