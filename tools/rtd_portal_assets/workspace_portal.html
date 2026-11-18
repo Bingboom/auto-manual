@@ -4,46 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="知识资产：产品信息矩阵、产品知识、语料库，说明书资料库与市场与政策。">
+  <meta name="description" content="知识资产：产品信息、说明书资料库、语料库、产品知识、视觉媒体与市场与政策。">
   <title>知识资产</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script, icon with context %}
-{#- 知识资产 (the 知识库首页; layout of 2026-11-17: the first page of the 知识资产 section): for product colleagues. The title and one line, the three asset cards
-    (产品信息, 产品知识, 语料库; tools/rtd/asset_pages.py front_cards), then the entrances to 说明书资料库 and 市场与政策.
-    Management text (主线, 正在做, 定位与价值 statuses, 最近更新) is not on this page; 系统建设 keeps the main line. -#}
-{#- An asset card: name, one line, one figure with its date (暂无 when the figure cannot be read). -#}
+{#- 知识资产 (the first page of the 知识资产 section): for product colleagues.
+    Header with one concise line and a 3-figure summary capsule, then one unified 3x2 grid of tactile cards
+    covering all six entries in 知识资产 (产品信息, 说明书资料库, 语料库, 产品知识, 视觉媒体, 市场与政策), with count-only
+    metadata that never enumerates market or language codes. Management text stays on 系统建设. -#}
+{%- macro summary_item(item) -%}
+<div class="home-sum-item" id="sum-{{ item.id|e }}">
+  <span>{{ item.label|e }}</span>
+  <strong>{% if item.value is none %}<em class="is-pending">暂无</em>{% else %}{{ item.value|e }}<small>{{ item.unit|e }}</small>{% endif %}</strong>
+</div>
+{%- endmacro -%}
 {%- macro asset_card(card) -%}
 <a class="home-asset home-front-card" id="asset-{{ card.id|e }}" href="{{ pathto(card.page) }}">
-  <span class="home-asset-head"><span class="home-asset-icon">{{ icon(card.icon, 16) }}</span><strong>{{ card.title|e }}</strong></span>
+  <span class="home-front-top">
+    <span class="home-front-tile">{{ icon(card.icon, 19) }}</span>
+    <span class="home-front-arrow" aria-hidden="true">{{ icon('arrow', 16) }}</span>
+  </span>
+  <strong class="home-front-title">{{ card.title|e }}</strong>
   <span class="home-front-line">{{ card.line|e }}</span>
-  <span class="home-front-fig">{% if card.value is none %}<b class="is-pending">暂无</b>{% else %}<b>{{ card.value|e }}</b><small>{{ card.unit|e }}</small>{% endif %}{% if card.date %}<time datetime="{{ card.date|e }}">截至 {{ card.date|e }}</time>{% endif %}</span>
+  <span class="home-front-foot">
+    <span class="home-front-fig">{% if card.value is none %}<b class="is-pending">暂无</b>{% else %}<b>{{ card.value|e }}</b><small>{{ card.unit|e }}</small>{% endif %}</span>
+    {%- if card.meta %}<span class="home-front-meta"{% if card.date %} title="截至 {{ card.date|e }}"{% endif %}>{{ card.meta|e }}</span>
+    {%- elif card.date %}<time class="home-front-meta" datetime="{{ card.date|e }}">截至 {{ card.date|e }}</time>{% endif -%}
+  </span>
 </a>
 {%- endmacro -%}
 <body class="app kb">
 {{ site_sidebar('overview', {'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
-  {{ site_topbar('知识库', '首页') }}
+  {{ site_topbar('知识库', '资产总览') }}
 
   <main id="home">
     <section class="intro page-head">
-      <div>
+      <div class="home-intro-copy">
         <h1>知识资产</h1>
         <p class="home-line">让产品信息和生产资料持续积累、关联和复用。</p>
       </div>
+      {% if summary %}<div class="home-summary" aria-label="规模概览">
+        {% for item in summary %}{{ summary_item(item) }}{% endfor %}
+      </div>{% endif %}
     </section>
 
-    {#- 资产: what product colleagues read (front cleanup, 2026-11-17): name, one line, one figure with its date. #}
     {% if cards %}<section id="now" class="home-front" aria-label="资产">
       <div class="home-front-grid">{% for card in cards %}{{ asset_card(card) }}{% endfor %}</div>
     </section>{% endif %}
 
-    <section id="doors" class="home-front-doors" aria-label="说明书与参考">
-      <a class="home-card" href="{{ pathto('index') }}"><span class="home-tile">{{ icon('book', 22) }}</span><span class="home-card-text"><strong>说明书资料库</strong><small>按型号、市场和语言查找</small></span>{{ icon('chevron', 16) }}</a>
-      <a class="home-card" href="{{ pathto('market/policy') }}"><span class="home-tile">{{ icon('globe', 22) }}</span><span class="home-card-text"><strong>市场与政策</strong><small>各地区的市场与政策</small></span>{{ icon('chevron', 16) }}</a>
-      {% if share_entry %}<a class="home-card" id="shares" href="{{ share_entry|e }}"><span class="home-tile">{{ icon('share', 22) }}</span><span class="home-card-text"><strong>AI 使用知识分享</strong><small>分享资料</small></span>{{ icon('chevron', 16) }}</a>{% endif %}
-    </section>
+    {% if share_entry %}<section id="doors" class="home-share-row" aria-label="延伸分享">
+      <a class="share-card" id="shares" href="{{ share_entry|e }}">
+        <span class="home-tile">{{ icon('share', 18) }}</span>
+        <span class="home-card-text"><strong>AI 使用知识分享</strong><small>分享资料</small></span>
+        {{ icon('chevron', 16) }}
+      </a>
+    </section>{% endif %}
   </main>
 </div>
 

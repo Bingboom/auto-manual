@@ -31,7 +31,7 @@ The private shell (`_site_shell.html`, layout of 2026-11-17, operator: 顶部四
 
 | Top bar | Left list | First page |
 | --- | --- | --- |
-| 知识资产 | 产品信息, 产品知识, 说明书资料库, 语料库, 视觉媒体, 市场与政策 | 知识资产 (`workspace/index.html`) |
+| 知识资产 | 资产总览, 产品信息, 产品知识, 说明书资料库, 语料库, 视觉媒体, 市场与政策 | 知识资产 (`workspace/index.html`) |
 | 工作台 | 说明书工作台 | 说明书工作台 |
 | Agent 能力 | 系统建设 (its tools, skills and agent operations) | 系统建设 |
 | 设计规范 | 设计规范 | 设计规范 |
@@ -46,8 +46,7 @@ site keeps its own palette. A page's section is declared once, in the `site_sect
 `app-nav-unassigned`, which the tests reject.
 
 The top bar also carries the brand, a search icon (搜索说明书正文, current on the search page) and an Agent icon
-(系统建设). 知识资产's first page and the search page are reached from the top bar, not the left list; the search
-page sits under 说明书资料库, which it highlights. The breadcrumb reads 工作资料 / section / page (工作资料 /
+(系统建设). `资产总览` (`workspace/index.html`) is the first left entry of 知识资产 and opens with a 3-figure summary capsule (收录机型, 正式说明书, 覆盖语种) above a unified 3×2 card grid covering all six 知识资产 pages (`front_summary` and `front_cards` in `tools/rtd/asset_pages.py`), where each card's secondary badge shows concise counts (such as `<n> 个市场 · <m> 语种` for 说明书资料库) and never enumerates market or language codes. The search page is reached from the top bar, not the left list; it sits under 说明书资料库, which it highlights. The breadcrumb reads 工作资料 / section / page (工作资料 /
 知识资产 / 说明书资料库 / 搜索说明书正文 for the search page). 产品信息's tab pages (产品库, 产品档案, 产品对比, 参数表) are `also`
 entries `under` 产品信息, so their crumb reads 工作资料 / 知识资产 / 产品信息 / <tab>. An address naming a folded block
 (`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (brand and tools, then the
