@@ -414,7 +414,7 @@ address forwards here, and the public manual library never links to it.
   `knowledge/product-matrix` reaches its output. Tests use invented products and
   projects (`P-FAKE-*`).
 - **Freshness.** Every product page (产品库, 产品对比, 参数表, 产品档案) shows, under
-  its header, `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; a v1.1 snapshot
+  its header (on 产品库, under the matrix card, with the warning box above the card), `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; a v1.1 snapshot
   has no build time and shows `未记录（旧版快照）`), and an amber `数据可能不是最新`
   box when the snapshot is past the registry's `product_matrix.stale_after_days`
   without a successful check, when the last check found the base ahead or failed, or
@@ -423,19 +423,22 @@ address forwards here, and the public manual library never links to it.
   `product-matrix/status.json` (written by the sync check, contract §6.1 of
   [product_matrix_base.md](../product_matrix_base.md)); the build never reads the base.
   The status counts only while it describes the snapshot on disk (same `read_at`). The
-  shared `product_freshness` macro lives in `_product_tabs.html`. The status file is as
+  shared `product_freshness` macro (and its two parts `product_stale` and `product_sync`) lives in `_product_tabs.html`. The status file is as
   private as the snapshot: the public-role test also plants one and fails if any of it
   reaches the output.
-- **Layout.** The title 产品库 and one line, `<n> 款产品 · 更新于 <date>` (models, and
-  the snapshot's read date). A tab per category, in the 产品分类 snapshot's order
-  (others after it, then 其他 for products without a category). Each tab is a table:
+- **Layout** (the operator's reference layout of 2026-11-18). The title 产品库 and one line, `<n> 款产品 · 更新于 <date>`
+  (models, and the snapshot's read date), with the 产品库 · 产品对比 · 参数表 tabs as a segmented control at the
+  right (above the title on a phone). Then one white card: a tinted header zone holds a tab per category with its
+  model count (the current one a dark pill), in the 产品分类 snapshot's order (others after it, then 其他 for
+  products without a category), and the filters; below it the matrix. Each tab is a table:
   rows are 系列 (a 未分类 row for products without one), columns the 容量档 present (a
   容量未注明 column when a product lacks one), or a single 产品 column for a category
   without tiers.
 - **Chips.** Each cell holds the model codes as chips. Models of one project in one
   cell are one chip, `A(B)`: the first written outside the brackets, the others
   inside (`A(B、C)` with more), each code its own link, in code order: the
-  alphabetically first code goes outside (`FAKE-A(FAKE-B)`).
+  alphabetically first code goes outside (`FAKE-A(FAKE-B)`); the bracketed codes are grey. A column keeps a
+  113px minimum (series column 96px), as before the restyle, so as many tiers show at a given width.
   The SKU 创建时间 does not order chips. A model without a project is a chip of its own.
   Models of one project in different cells are not merged across cells, since a cell's
   place is its series and tier; the 项目 filter highlights all of them. Each
@@ -451,8 +454,8 @@ address forwards here, and the public manual library never links to it.
   containing a space or `|` stays one value): a chip with a row that satisfies every set
   filter is highlighted and the rest are dimmed, never hidden; a pill names the active filters
   with 清除. The tabs switch categories and keep the open one in the hash
-  (`#cat-c1`). Without JavaScript every category shows stacked and the filters stay
-  hidden. Node tests: `tests/product_library_ui.test.mjs`.
+  (`#cat-c1`). Without JavaScript every category shows stacked under its own title inside the card and the
+  header zone (tabs and filters) stays hidden. Node tests: `tests/product_library_ui.test.mjs`.
 - **Failure.** Without the snapshot, or with no product in it, the page says
   还没有产品数据。; with an unreadable or wrong-schema one it says
   产品数据暂时读不到，请稍后再看。 with a Sphinx warning. A warning never fails the
@@ -544,7 +547,8 @@ compares by its `number` (else its text), and a test condition is its own column
 (`额定功率（STC）`). They are built whenever 产品库 has a snapshot, so its tabs never point to
 a missing page; a snapshot without cells makes both say 产品数据暂时读不到，请稍后再看。 with no
 figures, and one without products 还没有产品数据。. The
-product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 (`_product_tabs.html`; a
+product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 as a segmented control (`_product_tabs.html`; at the
+right of the title on 产品库, 产品对比 and 参数表, above the header on 产品档案; a
 产品档案 counts as 产品库, whose tab it marks `aria-current="true"` rather than `"page"`,
 since the page sits below that tab).
 

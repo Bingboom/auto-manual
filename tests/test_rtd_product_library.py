@@ -207,5 +207,32 @@ class TemplateTests(unittest.TestCase):
             self.assertNotIn(word, text)
 
 
+    def test_reference_layout_head_card_and_counts(self):
+        # Reference layout (2026-11-18): the 产品信息 tabs beside the title, one card holding the category tabs (each
+        # with its product count), the filters and the matrix; a merged chip greys its bracketed codes; no ↗.
+        view = pl.library_view({**snapshot(row("FAKE-200B"), row("FAKE-100A", "EU"),
+                                           row("FAKE-9C", category="配件", series="线材", tier="")), "cells": []},
+                               CATALOG)
+        page = render({**view, "freshness": {"warnings": ["FAKE-WARN"], "read_at": "r", "built_at": "b",
+                                             "last_success": "s"}})
+        head = page.select_one(".pl-head")
+        self.assertEqual([child.name for child in head.find_all(recursive=False)], ["header", "nav"])
+        self.assertEqual(head.select_one(".pt-tabs a.is-on").get_text(), "产品库")
+        card = page.select_one(".pl-card")
+        self.assertEqual([(a.contents[0], a.select_one(".pl-count").get_text()) for a in card.select(".pl-tab")],
+                         [("便携储能", "2"), ("配件", "1")])
+        self.assertIsNotNone(card.select_one(".pl-card-head [data-pl-filters]"))
+        self.assertIsNotNone(card.select_one("#matrix .pl-grid"))
+        self.assertEqual(page.select_one(".pl-grid")["style"], "--pl-cols:1")
+        self.assertEqual([code.a.get_text() for code in page.select(".pl-code.is-derived")], ["FAKE-200B"])
+        self.assertNotIn("↗", page.select_one("main").get_text())
+        # The stale warning sits above the card, the sync times under it; both stay.
+        main = page.select_one("main")
+        order = [node for node in main.find_all(recursive=False) if node.get("class")]
+        classes = [node["class"][0] for node in order]
+        self.assertLess(classes.index("pt-stale"), classes.index("pl-card"))
+        self.assertLess(classes.index("pl-card"), classes.index("pt-sync"))
+
+
 if __name__ == "__main__":
     unittest.main()
