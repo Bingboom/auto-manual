@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import unicodedata
 from decimal import Decimal
 from collections import defaultdict
 from typing import Any
@@ -66,13 +67,20 @@ def display_text(value: Any, numeric: bool, unit: str) -> str | None:
     return split_derived(str(value))[0]
 
 
+def compare_key(text: Any) -> str | None:
+    """The form two printed values are compared in: NFKC (₄ = 4, full width = half width), no spaces, lower case.
+    Pages compare cells by it; they still show `display` as printed."""
+    value = re.sub(r"\s+", "", unicodedata.normalize("NFKC", _text(text))).lower()
+    return value or None  # null for an empty or whitespace-only display
+
+
 def _same_value(fact: dict[str, Any]) -> tuple[Any, str]:
     """A fact's value for comparison: the number as a number (100 equals 100.0), and the text."""
     try:
         number = _number(fact.get("数值"))
     except (TypeError, ValueError):
         number = _text(fact.get("数值"))
-    return (number, _text(fact.get("文本值")))
+    return (number, compare_key(fact.get("文本值")) or "")
 
 
 def _one(facts: list[dict[str, Any]], attribute: dict[str, Any], by_source: dict[str, dict[str, Any]],
@@ -83,7 +91,8 @@ def _one(facts: list[dict[str, Any]], attribute: dict[str, Any], by_source: dict
     numeric = _text(attribute.get("值类型")) in NUMERIC
     display = _cell(best, numeric, unit)
     reason = skip_reason(best, unit) if numeric else ""
-    return {"display": display_text(display, numeric, unit),
+    shown = display_text(display, numeric, unit)
+    return {"display": shown, "compare": compare_key(shown),
             "number": None if skip_reason(best, unit) else _number(best.get("数值")),
             "text": _text(best.get("文本值")) or None, "unit": unit,
             "printed": split_derived(best.get("原文"))[0], "derived": split_derived(best.get("原文"))[1],
@@ -159,5 +168,5 @@ def check_references(document: dict[str, Any]) -> None:
                         f"cell values, {repeated} repeated candidates, {sourceless} cells whose source has no row")
 
 
-__all__ = ["DERIVED", "SnapshotReferenceError", "TEST_CONDITION", "split_derived", "build_cells", "cell_condition", "check_references", "display_text",
+__all__ = ["DERIVED", "compare_key", "SnapshotReferenceError", "TEST_CONDITION", "split_derived", "build_cells", "cell_condition", "check_references", "display_text",
            "reference_rows", "value_id"]

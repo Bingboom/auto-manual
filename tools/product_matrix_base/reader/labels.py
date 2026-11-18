@@ -89,7 +89,8 @@ RULES: list[tuple[str, str]] = [
     ("load_circuit", r"^(load circuit|circuit de charge|circuito de carga)$"),
     ("max_load", r"^maximum load$"),
     ("ac_voltage_nominal", r"ac voltage \(nominal\)|tension ca \(nominale\)|voltage ac \(nominal\)|tensión ca \(nominal\)|voltaje ca \(nominal\)|^定格電圧$"),
-    ("ac_bypass_input_output", r"(bypass|パススルー).*(入力/出力|input/output)|パススルー充電 ac入力/出力|bypass mode ac input/output|bypass mode ac input/output"),
+    # One row for bypass input and output is the bypass output (operator, 2026-11-18: merged into ac_output_bypass).
+    ("ac_output_bypass", r"(bypass|パススルー).*(入力/出力|input/output)|パススルー充電 ac入力/出力|bypass mode ac input/output|bypass mode ac input/output"),
     ("ac_input_bypass", r"(bypass|derivación|dérivation).*" + IN_W + r"|" + IN_W + r".*(bypass|derivación)|^mode bypass entrée ca$"),
     ("ac_output_bypass", r"(bypass|derivación|dérivation|obejściowym|байпас|パススルー|旁路|바이패스|bypassmodus|bypass-modus)"),
     ("ac_input", r"charge mode ac input|mode de charge entrée ca|entrada de ca en modo de carga"),
