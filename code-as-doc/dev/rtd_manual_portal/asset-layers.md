@@ -56,7 +56,7 @@ was dropped; the section stays. The current left entry is a light accent pill wi
 carries a page's own tools (说明书资料库's 区域). 产品信息's tab pages (产品矩阵, 产品档案, 产品对比, 参数表) are `also`
 entries `under` 产品信息, so their crumb reads 工作资料 / 知识资产 / 产品信息 / <tab>. An address naming a folded block
 (`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (menu, brand and search, then the
-sections) and the left list opens from the menu button. The pages keep their content. 产品信息 links 产品知识 when the matrix is not built.
+sections) and the left list opens from the menu button. The pages keep their content. 产品信息 links 产品知识 when the matrix is not built. Every portal page's `_static/*.css` and `_static/*.js` links carry a 12-char SHA-256 `?v=` query string (`portal.version_portal_static` over `deliverables.asset_versions`), so a cached older `site-shell.css` never unstyles newly deployed shell markup.
 
 Old addresses keep working:
 

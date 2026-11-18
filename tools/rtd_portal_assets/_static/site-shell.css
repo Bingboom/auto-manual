@@ -46,10 +46,10 @@ body.app.kb {--brand:#a64e24;--brand-strong:#a64e24;--brand-soft:#f8e6dc;--brand
    var(--surface): portal.css (说明书资料库 root) redefines --surface as its grey ground. */
 .app-header {position:fixed;inset:0 0 auto 0;z-index:45;height:var(--app-topbar);box-sizing:border-box;display:flex;
   align-items:center;gap:36px;padding:0 24px 0 28px;background:#fff;border-bottom:1px solid var(--app-line)}
-.app-brand {flex:none;display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700;line-height:1.2;
+.app-brand {flex:none;display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;line-height:1.2;
   letter-spacing:.02em;color:var(--app-ink);text-decoration:none}
 .app-brand b {font-weight:inherit}
-.app-brand-dot {margin-left:-12px;font-style:normal;color:var(--brand)}
+.app-brand-dot {margin-left:1px;font-style:normal;color:var(--brand)}
 .app-brand-mark {flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:9px;
   background:var(--app-ink);color:#fff}
 .app-brand-mark .ic-accent {stroke:currentColor}
@@ -63,20 +63,25 @@ body.app.kb {--brand:#a64e24;--brand-strong:#a64e24;--brand-soft:#f8e6dc;--brand
 .app-tabs a.selected::after {content:"";position:absolute;left:-2px;right:-2px;bottom:0;height:3px;border-radius:2px 2px 0 0;
   background:var(--brand)}
 .app-header-tools {margin-left:auto;display:flex;align-items:center;gap:4px;min-width:0}
-/* Search: a light field with a "/" key hint; on a phone it folds to its icon, which opens the search page. */
+/* Search: a clean capsule with a "/" key hint; on a phone it folds to its icon, which opens the search page. */
 .app-search {display:flex;align-items:center;margin:0;min-width:0}
-.app-search-field {display:flex;align-items:center;gap:8px;width:258px;max-width:100%;height:38px;box-sizing:border-box;
-  padding:0 8px 0 12px;border:1px solid var(--app-line);border-radius:var(--radius-md);background:var(--app-bg);
-  color:var(--app-muted);cursor:text}
-.app-search-field .ic {flex:none}
-.app-search-field input {flex:1;min-width:0;height:100%;padding:0;border:0;background:none;font:inherit;font-size:14px;
-  color:var(--app-ink);outline:none}
-.app-search-field input::placeholder {color:var(--app-muted)}
-.app-search-field input::-webkit-search-cancel-button {display:none}
+.app-search .ic-accent {display:none}
+.app-search-field {display:flex;align-items:center;gap:8px;width:240px;max-width:100%;height:36px;box-sizing:border-box;
+  padding:0 8px 0 12px;border:1px solid var(--app-line);border-radius:9px;background:var(--app-bg);
+  color:var(--app-faint);cursor:text;transition:border-color .15s,background .15s,box-shadow .15s}
+.app-search-field:hover {border-color:#cfd5de;background:#f8fafc}
+.app-search-field .ic {flex:none;color:var(--app-faint)}
+.app-search-field input {-webkit-appearance:none;appearance:none;flex:1;min-width:0;height:100%;margin:0;padding:0;border:0;
+  border-radius:0;background:transparent;box-shadow:none;font:inherit;font-size:13.5px;color:var(--app-ink);outline:none}
+.app-search-field input::placeholder {color:var(--app-faint)}
+.app-search-field input::-webkit-search-decoration,
+.app-search-field input::-webkit-search-cancel-button {display:none;-webkit-appearance:none}
 .app-search-field:focus-within {border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px var(--brand-soft)}
-.app-search-field kbd {flex:none;display:grid;place-items:center;min-width:20px;height:22px;padding:0 4px;box-sizing:border-box;
-  border:1px solid var(--app-line);border-radius:5px;background:#fff;font:inherit;font-size:12px;line-height:1;color:var(--app-muted)}
-.app-search-field:focus-within kbd {visibility:hidden}
+.app-search-field:focus-within .ic {color:var(--brand)}
+.app-search-field kbd {flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;
+  padding:0 5px;box-sizing:border-box;border:1px solid var(--app-line);border-radius:5px;background:#fff;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1;color:var(--app-faint)}
+.app-search-field:focus-within kbd {opacity:0;pointer-events:none}
 .app-search-go {display:none}
 .app-tool,.app-menu,.app-search-go {place-items:center;width:36px;height:36px;border:0;border-radius:var(--radius-md);
   background:none;color:var(--app-ink);cursor:pointer;text-decoration:none}
