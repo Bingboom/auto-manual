@@ -55,8 +55,11 @@ class UnitShardAggregateTests(unittest.TestCase):
         shard = self.jobs["unit-shard"]
         self.assertFalse(shard["strategy"]["fail-fast"])
         self.assertGreaterEqual(len(shard["strategy"]["matrix"]["shard"]), 2)
-        run = str(shard["steps"][-1]["run"])
-        self.assertEqual("python -m tests.run_fast --shard ${{ matrix.shard }}/${{ strategy.job-total }}", run)
+        step = shard["steps"][-1]
+        # Expression values reach the shell through env:, never expanded inside run:.
+        self.assertEqual({"UNIT_SHARD": "${{ matrix.shard }}", "UNIT_SHARD_TOTAL": "${{ strategy.job-total }}"}, step["env"])
+        self.assertEqual('python -m tests.run_fast --shard "${UNIT_SHARD}/${UNIT_SHARD_TOTAL}"', step["run"])
+        self.assertNotIn("${{", step["run"])
 
     def test_unit_runs_even_after_a_shard_failure_and_requires_success(self) -> None:
         unit = self.jobs["unit"]

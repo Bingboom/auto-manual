@@ -178,7 +178,10 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.lock
       - name: Run unit test shard
-        run: python -m tests.run_fast --shard ${{ matrix.shard }}/${{ strategy.job-total }}
+        env:
+          UNIT_SHARD: ${{ matrix.shard }}
+          UNIT_SHARD_TOTAL: ${{ strategy.job-total }}
+        run: python -m tests.run_fast --shard "${UNIT_SHARD}/${UNIT_SHARD_TOTAL}"
 
   # Required status check. It must fail (not be skipped) when any shard failed,
   # was cancelled or was skipped, because GitHub treats a skipped required
