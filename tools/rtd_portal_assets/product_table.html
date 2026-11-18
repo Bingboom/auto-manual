@@ -11,7 +11,7 @@
 <script defer src="{{ pathto('_static/product-table.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{% from "_product_tabs.html" import product_tabs with context %}
+{% from "_product_tabs.html" import product_tabs, product_freshness with context %}
 {#- 参数表 (step 13; REV-53; tools/rtd/product_tables.py table_view). A front page: the title, then a table per
     category. Rows are model × market; columns are the parameters that category's products state. Sorting,
     filters, 按项目分组 and 下载表格 need the script; without it every table shows in full. -#}
@@ -22,6 +22,7 @@
 <main class="fr-page pt-page">
 {{ product_tabs('products/table') }}
 <header class="fr-head pt-head"><h1>参数表</h1><button type="button" class="pt-download" data-pt-download hidden>下载表格</button></header>
+{{ product_freshness(freshness) }}
 {%- if not built %}
 <p class="fr-empty">{{ problem|e }}</p>
 {%- else %}

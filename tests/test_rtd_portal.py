@@ -149,6 +149,11 @@ class RtdPortalTests(unittest.TestCase):
                        "printed": "FAKE-SECRET-PRINTED", "source": "s1", "value": "v1", "verified": False,
                        "sources_disagree": False, "conflict": False, "candidates": ["v1"], "empty_reason": None}]}))
         (matrix / "README.md").write_text("P-FAKE-SECRET-README")
+        # Its sync status (times, hashes, the lag reason) is private with it.
+        (matrix / "status.json").write_text(json.dumps({
+            "schema": "hello-docs-product-matrix-status/v1", "kind": "product_matrix", "status": "behind",
+            "checked_at": "2026-01-03T00:00:00Z", "last_success": "2026-01-02T00:00:00Z",
+            "snapshot": {"read_at": "2026-01-02T00:00:00Z"}, "lag": {"behind": True, "reason": "FAKE-SECRET-LAG"}}))
         with (root / "conf.py").open("a") as conf:
             conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
             conf.write(f"rtd_knowledge_dir = {str(self.root / 'knowledge')!r}\n")
@@ -168,7 +173,8 @@ class RtdPortalTests(unittest.TestCase):
             self.assertNotIn("product-matrix", path.relative_to(out).as_posix())
             if path.is_file():
                 text = path.read_bytes().decode("utf-8", errors="ignore")
-                for marker in ("FAKE-SECRET", "hello-docs-product-matrix-snapshot", "product-matrix/snapshot"):
+                for marker in ("FAKE-SECRET", "hello-docs-product-matrix-snapshot", "product-matrix/snapshot",
+                               "hello-docs-product-matrix-status", "数据读取于", "最近同步成功"):
                     self.assertNotIn(marker, text, path.relative_to(out).as_posix())
         self.assertFalse((out / "products").exists())
         self.assertIn("说明书资料库", (out / "index.html").read_text())
@@ -551,6 +557,13 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual(profile.select_one(".pf-back")["href"], "../matrix.html")
         self.assertEqual(profile.select_one(".fr-head p a")["href"], "../matrix.html?project=P-FAKE-1")
         self.assertEqual(library.select_one(".fr-head p").get_text(), "2 款产品 · 更新于 2026-01-02")
+        # Every product page shows when the data was read and made, and warns that a v1.1 snapshot of 2026-01-02
+        # has not been confirmed against the base since (no status.json here).
+        for page in ("products/matrix.html", "products/table.html", "products/compare.html", "products/item/FAKE-A.html"):
+            soup = BeautifulSoup((out / page).read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual([span.get_text() for span in soup.select(".pt-sync span")],
+                             ["数据读取于 2026-01-02 08:00", "快照生成于 未记录（旧版快照）", "最近同步成功 无记录"], page)
+            self.assertIn("没有确认与飞书一致", soup.select_one(".pt-stale").get_text(), page)
         # The operator's value statement (asset_layers.yaml product_value) is shown on no page (2026-11-17).
         import yaml
         from tools.rtd.asset_layer_data import DATA_NAME

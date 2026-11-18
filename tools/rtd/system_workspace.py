@@ -67,6 +67,7 @@ from tools.rtd.source_registry import (  # noqa: E402
     file_refs,
     load_registry,
     snapshot_date,
+    snapshot_file,
     sources_view,
     stale_reason,
 )
@@ -599,20 +600,29 @@ def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date,
     if snapshot is not None:
         findings += [Finding("warning", "corpus", reason) for reason in
                      corpus_view(contract, snapshot, today, int(corpus_domain["stale_after_days"]))["stale"]]
-    for domain_id, domain in registry.items():
-        if domain["read"] != "snapshot" or domain_id == "corpus":
-            continue  # the corpus snapshot is checked in depth above
-        exported = snapshot_date(assets, domain)
-        reason = (f"cannot read the exported_at of {domain['snapshot']}" if exported is None
-                  else stale_reason(domain, exported, today))
-        if reason:
-            findings.append(Finding("warning", f"{REGISTRY_NAME}: {domain_id}", reason))
+    findings += _snapshot_findings(registry, assets, today)
     lanes = (contract.get("focus") or {}).get("lanes") or []
     if any("skeletons" in (lane.get("metrics") or []) for lane in lanes) and skeleton_facts(root) is None:
         findings.append(Finding("warning", "focus", "no readable skeleton blueprints; the skeleton metric shows 无数据"))
     if "tooling" in contract:
         findings += [Finding(*finding) for finding in
                      tooling_findings(contract["tooling"], skill_facts(root), hook_facts(root))]
+    return findings
+
+
+def _snapshot_findings(registry: Registry, assets: Path, today: dt.date) -> list[Finding]:
+    """A warning per registered snapshot that is unreadable or past its limit (the corpus is checked in depth)."""
+    findings = []
+    for domain_id, domain in registry.items():
+        if domain["read"] != "snapshot" or domain_id == "corpus":
+            continue
+        if domain.get("snapshot_dir") and not snapshot_file(assets, domain).exists():
+            continue  # a private snapshot (docs/knowledge/<dir>/) exists only in the Hello-Docs mirror
+        exported = snapshot_date(assets, domain)
+        reason = (f"cannot read the exported_at of {domain['snapshot']}" if exported is None
+                  else stale_reason(domain, exported, today))
+        if reason:
+            findings.append(Finding("warning", f"{REGISTRY_NAME}: {domain_id}", reason))
     return findings
 
 

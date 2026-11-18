@@ -37,8 +37,25 @@ class RegistryRulesTests(unittest.TestCase):
     def test_shipped_snapshots_sit_next_to_the_registry(self):
         registry, _ = reg.load_registry(rtd_portal.ASSETS)
         for domain in registry.values():
-            if domain["read"] == "snapshot":
+            # A snapshot_dir snapshot (the private product matrix) exists only in the Hello-Docs mirror.
+            if domain["read"] == "snapshot" and (not domain.get("snapshot_dir")
+                                                 or reg.snapshot_file(rtd_portal.ASSETS, domain).exists()):
                 self.assertIsNotNone(reg.snapshot_date(rtd_portal.ASSETS, domain), domain["id"])
+
+    def test_the_product_matrix_snapshot_lives_in_its_knowledge_directory_and_dates_by_read_time(self):
+        registry, _ = reg.load_registry(rtd_portal.ASSETS)
+        domain = registry["product_matrix"]
+        self.assertEqual((domain["snapshot_dir"], domain["snapshot"]), ("product-matrix", "snapshot.json"))
+        self.assertIn("tools.product_matrix_base check", domain["refresh"])
+        with TemporaryDirectory() as temp:
+            assets = Path(temp) / "tools" / "rtd_portal_assets"
+            assets.mkdir(parents=True)
+            path = reg.snapshot_file(assets, domain)
+            self.assertEqual(path, Path(temp) / "docs" / "knowledge" / "product-matrix" / "snapshot.json")
+            self.assertIsNone(reg.snapshot_date(assets, domain))
+            path.parent.mkdir(parents=True)
+            path.write_text(json.dumps({"read_at": "2026-11-16T02:00:00Z"}), encoding="utf-8")
+            self.assertEqual(reg.snapshot_date(assets, domain), dt.date(2026, 11, 16))
 
     def test_each_rule_is_enforced(self):
         def domain_of(data, domain_id):
@@ -59,6 +76,9 @@ class RegistryRulesTests(unittest.TestCase):
             "authority must be text": lambda d: domain_of(d, "tooling").update(authority=["", "file:auto-manual:x"]),
             "not registered": lambda d: d.update(domains=[x for x in d["domains"] if x["id"] != "skeletons"]),
             "on_page must be true or false": lambda d: domain_of(d, "corpus").update(on_page="no"),
+            "snapshot_dir must name one directory": lambda d: domain_of(d, "product_matrix").update(snapshot_dir="../x"),
+            "only snapshot domains name a snapshot, its directory": lambda d: domain_of(d, "ledger").update(
+                snapshot_dir="x"),
         }
         for fragment, mutate in cases.items():
             with self.subTest(fragment):
