@@ -41,8 +41,24 @@
 <div><h1 class="pk-title">产品知识</h1><p>{{ topics|length }} 个知识点{% if latest_added %} · 更新于 {{ latest_added|e }}{% endif %}</p></div>
 </header>
 
-<section class="pk-panel pk-energy" aria-labelledby="energy-title">
-<div class="pk-section-head"><h2 id="energy-title">先看懂能量怎样流动</h2><span>点任一环节只看相关知识 · 功能示意，具体电路以型号设计为准</span></div>
+{%- if topics %}
+<details class="pk-panel pk-guide">
+<summary class="pk-guide-summary">
+  <span class="pk-guide-chain">
+    <strong>能量链路导读</strong>
+    <span class="pk-guide-muted">市电 / 光伏 / 车充 →</span>
+    <span class="pk-guide-step">充电转换 MPPT ({{ tag_counts.charging|default(0) }})</span>
+    <span class="pk-guide-muted">→</span>
+    <span class="pk-guide-step is-core">电池 + BMS ({{ tag_counts.battery|default(0) }})</span>
+    <span class="pk-guide-muted">→</span>
+    <span class="pk-guide-step">逆变与直流输出 ({{ tag_counts.inverter|default(0) }})</span>
+    <span class="pk-guide-muted">· 旁路备电切换 ({{ tag_counts.backup|default(0) }})</span>
+  </span>
+  <span class="pk-guide-toggle"><span class="is-closed">展开框图</span><span class="is-open">收起框图</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+</summary>
+<div class="pk-guide-body">
+<section class="pk-energy" aria-labelledby="energy-title">
+<div class="pk-section-head"><h2 id="energy-title">能量流动框图</h2><span>点任一环节只看相关知识 · 功能示意，具体电路以型号设计为准</span></div>
 <div class="pk-flow" aria-label="市电、太阳能或汽车补能，经充电转换向电池储能，再经逆变或直流转换为设备供电">
 <div class="pk-ends pk-src"><span class="pk-ends-label">来源</span><span class="pk-end">{{ icon('grid') }}市电</span><span class="pk-end">{{ icon('charging') }}太阳能</span><span class="pk-end">{{ icon('car') }}汽车</span></div>
 {{ arrow('pk-a1 pk-edge') }}
@@ -60,7 +76,7 @@
 </section>
 
 <section class="pk-themes" aria-labelledby="themes-title">
-<div class="pk-section-head"><h2 id="themes-title">按主题找</h2><span>一条知识可以属于多个主题</span></div>
+<div class="pk-section-head"><h2 id="themes-title">按主题快速定位</h2><span>一条知识可以属于多个主题</span></div>
 <div class="pk-map">
 {%- for theme in themes %}
 <div class="pk-theme">
@@ -70,9 +86,12 @@
 {%- endfor %}
 </div>
 </section>
+</div>
+</details>
+{%- endif %}
 
 <section class="pk-filters filter-section" aria-label="选择学习范围">
-<div class="pk-selectors selectors"><label>区域<select id="learning-region">{% for region, binding in portal.regions.items() %}<option value="{{ binding|e }}"{% if region == portal.default_region %} selected{% endif %}>{{ region|e }}</option>{% endfor %}<option value="all">全部区域</option></select></label><label class="pk-product">围绕产品学习<select id="learning-product"><option value="all">全部已发布产品</option>{% for product in learning_products %}<option value="{{ product.model|e }}" data-region="{{ product.region|e }}">{{ product.name|e }} · {{ product.model|e }} · {{ product.edition|e }}</option>{% endfor %}</select></label><p id="learning-count" role="status" aria-live="polite">{{ topics|length }} 项知识</p></div>
+<div class="pk-selectors selectors"><label>区域<select id="learning-region">{% for region, binding in portal.regions.items() %}<option value="{{ binding|e }}"{% if region == portal.default_region %} selected{% endif %}>{{ region|e }}</option>{% endfor %}<option value="all">全部区域</option></select></label><label class="pk-product">按机型筛选<select id="learning-product"><option value="all">全部已发布产品</option>{% for product in learning_products %}<option value="{{ product.model|e }}" data-region="{{ product.region|e }}">{{ product.name|e }} · {{ product.model|e }} · {{ product.edition|e }}</option>{% endfor %}</select></label><p id="learning-count" role="status" aria-live="polite">{{ topics|length }} 项知识</p></div>
 <div class="pk-chips topic-filters" role="group" aria-label="知识标签"><button type="button" class="selected" data-tag="all" aria-pressed="true">全部<span>{{ topics|length }}</span></button>{% for theme in themes %}<button type="button" data-tag="{{ theme.id|e }}" aria-pressed="false">{{ theme.title|e }}<span>{{ theme.topics|length }}</span></button>{% endfor %}</div>
 </section>
 
@@ -90,7 +109,7 @@
 <div class="pk-card-top"><span class="pk-num">{{ '%02d'|format(loop.index) }}</span>{% for tag in tags if tag.id in topic.tags %}<span class="pk-tag">{{ tag.title|e }}</span>{% endfor %}</div>
 <h2>{{ topic.title|e }}</h2>
 <p class="answer">{{ topic.answer|e }}</p>
-<div class="pk-two"><div class="application"><h3>{{ icon('product') }}放到实际产品里看</h3><p>{{ topic.application|e }}</p></div><div class="boundary"><h3>{{ icon('caution') }}别混淆</h3><p>{{ topic.boundary|e }}</p></div></div>
+<div class="pk-two"><div class="application"><h3>{{ icon('product') }}实际机型应用</h3><p>{{ topic.application|e }}</p></div><div class="boundary"><h3>{{ icon('caution') }}边界与易混点</h3><p>{{ topic.boundary|e }}</p></div></div>
 <div class="pk-refs references"><div class="pk-ref-list"><span class="pk-ref-label">相关说明书 · <span class="reference-count">{{ topic.references|length }}</span> 本</span>{% for ref in topic.references %}<a class="pk-ref" data-region="{{ ref.region|e }}" data-model="{{ ref.model|e }}" href="{{ pathto(ref.url[:-5]) }}" title="{{ ref.model|e }} · {{ ref.region|e }} · {{ ref.language|e }}">{{ ref.name|e }}<small>{{ ref.region|e }}</small></a>{% endfor %}<button type="button" class="pk-more" hidden></button></div>
 <p class="read-hint">阅读位置：{{ topic.read|e }}</p></div>
 </div>

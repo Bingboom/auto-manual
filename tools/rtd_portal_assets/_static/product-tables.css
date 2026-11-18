@@ -16,30 +16,38 @@
   .pl-head > .pt-tabs {align-self:flex-start;order:-1}
 }
 .pt-page, .pc-page {max-width:1320px}
-.pt-head {flex-direction:row;align-items:center;justify-content:space-between;max-width:none}
-.pt-download {min-height:38px;padding:0 16px;border:0;border-radius:10px;background:var(--brand);color:#fff;font:inherit;
-  font-size:14px;font-weight:600;cursor:pointer}
+.pt-card, .pc-card {background:var(--surface);border:1px solid var(--app-line);border-radius:14px;overflow:hidden;
+  box-shadow:0 1px 2px rgba(20,28,38,.04),0 6px 16px rgba(20,28,38,.02)}
+.pt-top-bar {display:none;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;
+  padding:14px 20px;background:#fafbfd;border-bottom:1px solid var(--app-line)}
+.pt-js .pt-top-bar {display:flex}
+.pt-download {min-height:36px;padding:0 14px;border:0;border-radius:9px;background:var(--brand);color:#fff;font:inherit;
+  font-size:13px;font-weight:600;cursor:pointer;margin-left:auto}
 .pt-download:hover {background:#7e3313}
 .pt-download[hidden] {display:none}
-.pt-cats {display:flex;flex-wrap:wrap;gap:8px}
+.pt-cats {display:flex;flex-wrap:wrap;gap:6px}
 .pt-cats[hidden] {display:none}
-.pt-cats button {min-height:34px;padding:0 14px;border:1px solid var(--app-line);border-radius:999px;background:var(--surface);
-  font:inherit;font-size:14px;color:var(--app-ink);cursor:pointer}
-.pt-cats button[aria-pressed="true"] {background:var(--app-ink);border-color:var(--app-ink);color:#fff}
-.pt-panel {display:flex;flex-direction:column;gap:12px}
-.pt-panel-title {margin:0;font-size:var(--text-lg)}
+.pt-cats button {min-height:32px;padding:0 13px;border:1px solid var(--app-line);border-radius:999px;background:var(--surface);
+  font:inherit;font-size:13px;font-weight:500;color:var(--app-ink);cursor:pointer}
+.pt-cats button[aria-pressed="true"] {background:var(--app-ink);border-color:var(--app-ink);color:#fff;font-weight:600}
+.pt-panel {display:flex;flex-direction:column;gap:0}
+.pt-panel[hidden] {display:none}
+.pt-panel-title {margin:0;padding:16px 20px 8px;font-size:var(--text-lg)}
 .pt-js .pt-panel-title {position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.pt-filters, .pc-options, .pc-add {display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.pt-filters, .pc-options, .pc-add {display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.pt-filters {padding:12px 20px;background:#fafbfd;border-bottom:1px solid var(--app-line)}
 .pt-filters[hidden] {display:none}
-.pt-filters label, .pc-options label, .pc-add label {display:flex;align-items:center;gap:8px;font-size:14px;color:var(--app-muted)}
-.pt-filters select, .pc-options select, .pc-add input {min-height:36px;padding:0 10px;border:1px solid #c9d2dd;border-radius:9px;
-  background:var(--surface);font:inherit;font-size:14px;color:var(--app-ink)}
-.pc-add input {min-width:240px}
-.pc-add button {min-height:36px;padding:0 14px;border:1px dashed #a9b3bf;border-radius:9px;background:transparent;font:inherit;
-  font-size:14px;cursor:pointer}
-.pt-check {gap:6px !important;color:var(--app-ink) !important}
+.pt-filters label, .pc-options label, .pc-add label {display:flex;align-items:center;gap:8px;font-size:13px;color:var(--app-muted)}
+.pt-filters select, .pc-options select, .pc-add input {min-height:36px;padding:0 10px;border:1px solid var(--app-line);border-radius:9px;
+  background:var(--surface);font:inherit;font-size:13px;color:var(--app-ink)}
+.pc-add input {min-width:210px}
+.pc-add button {min-height:36px;padding:0 14px;border:1px solid var(--app-line);border-radius:9px;background:var(--surface);font:inherit;
+  font-size:13px;font-weight:500;color:var(--app-ink);cursor:pointer}
+.pc-add button:hover {border-color:var(--app-faint)}
+.pt-check {gap:6px !important;color:var(--app-ink) !important;font-weight:500}
 .pt-check input {accent-color:var(--brand)}
 .pt-scroll {overflow-x:auto;background:var(--surface);border:1px solid var(--app-line);border-radius:14px}
+.pt-card .pt-scroll, .pc-card .pt-scroll {border:0;border-radius:0}
 .pt-table {width:100%;border-collapse:collapse;font-size:13px}
 .pt-table th, .pt-table td {padding:8px 10px;border-top:1px solid #eef1f5;text-align:left;vertical-align:top;white-space:nowrap}
 .pt-table td {white-space:normal;min-width:72px}
@@ -58,11 +66,15 @@ th[aria-sort="descending"] .pt-sort::after {content:" ↓"}
 .pt-none {color:var(--app-faint)}
 .pt-badge {display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;border:1px solid #f0d9a8;background:#fbf0da;
   color:#5c3a00;font-size:11px;font-weight:600;white-space:nowrap}
-.pc-app {display:flex;flex-direction:column;gap:14px}
+.pc-app {display:flex;flex-direction:column;gap:0}
 .pc-app[hidden] {display:none}
+.pc-toolbar {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;
+  padding:16px 20px;background:#fafbfd;border-bottom:1px solid var(--app-line)}
+.pc-pick-row {display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .pc-picked {display:flex;flex-wrap:wrap;gap:8px}
-.pc-chip {display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 6px 0 14px;border:1px solid var(--app-line);
-  border-radius:10px;background:var(--surface);font-size:14px}
+.pc-empty {margin:0;padding:28px 20px}
+.pc-chip {display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 6px 0 12px;border:1px solid var(--app-line);
+  border-radius:9px;background:var(--surface);font-size:13px;font-weight:500}
 .pc-chip button {width:30px;height:30px;border:0;border-radius:8px;background:transparent;font-size:16px;color:var(--app-muted);
   cursor:pointer}
 .pc-table thead th .pc-model, .pc-table thead th .pc-absent {display:block;font-weight:400}

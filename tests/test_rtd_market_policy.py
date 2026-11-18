@@ -221,16 +221,20 @@ class MarketThemeTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in rows], ["pt", "eu", "nl"])
         self.assertFalse(any(row.has_attr("open") for row in rows))
         self.assertEqual([row.select_one(".mp-status").get_text() for row in rows], ["已核实", "业务需求", "已核实"])
+        self.assertEqual([h.get_text() for h in rows[0].select(".mp-steps h4")],
+                         ["1法规变化", "2背景与机制", "3产品与说明书影响内部研判"])
         self.assertEqual(rows[1].select_one(".mp-steps h4").get_text(), "1需求变化")
         self.assertEqual(rows[0].select_one(".mp-boundary").get_text(), "适用边界不能用于巴西")
         self.assertIsNone(rows[2].select_one(".mp-boundary"))
         self.assertEqual(rows[0].select_one(".mp-know")["href"], "products/knowledge#watts")
         self.assertEqual(rows[0].select_one(".mp-source")["href"], "https://example.org/policy")
         self.assertEqual([span.get_text() for span in page.select(".mp-legend > span")][:2], ["已核实", "业务需求"])
+        self.assertIn("「已核实」表示法规要点已核对官方出处；「产品与说明书影响」为内部研判",
+                      page.select_one(".mp-legend").get_text())
         self.assertTrue(page.select_one("#mp-expand").has_attr("hidden"))
         self.assertIsNone(page.select_one("#policy-filters"))
-        # A front page: no count or review-date pills in the head (front cleanup, 2026-11-17).
-        self.assertIsNone(page.select_one(".mp-head .mp-pill"))
+        # A front page: no count/date pills or redundant sibling link in the head.
+        self.assertIsNone(page.select_one(".mp-head .mp-pill, .mp-head-meta"))
 
     def test_without_a_snapshot_the_page_says_nothing_is_recorded_yet(self):
         with TemporaryDirectory() as folder:

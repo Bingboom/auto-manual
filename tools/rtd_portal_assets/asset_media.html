@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>视觉媒体</title><meta name="description" content="视觉媒体：说明书里共用的图标和插图。">
+<title>视觉媒体</title><meta name="description" content="视觉媒体：跨机型复用的标准安规图标与无字化插图。">
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/media-front.css', 1) }}">
 <script defer src="{{ pathto('_static/media-front.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{#- 视觉媒体 (front page, 2026-11-17): for colleagues. A title, one line, the counts by type, then the shared icons
-    and illustrations to browse (filter by type, search by meaning); a tile opens a larger view and how many manuals
-    show it. Context: tools/rtd/asset_media.py front_view; the images are the copies the 设计规范 page publishes.
+{#- 视觉媒体 (front page, 2026-11-17): for colleagues. A title, one line, then a unified card with type chips (each
+    showing its count) + search and the shared icons/illustrations to browse; a tile opens a larger view and how many
+    manuals show it. Context: tools/rtd/asset_media.py front_view; the images are the copies the 设计规范 page publishes.
     No keys, hashes, paths, statuses or block numbers here: those sit at the foot of 设计规范 › 图标与素材
     (_media_inventory.html), and the old section anchors of this page forward there. -#}
 {%- set v = media -%}
@@ -21,13 +21,10 @@
 <div class="app-content">
 {{ site_topbar('知识库', '视觉媒体') }}
 <main class="fr-page mf-page">
-<header class="fr-head"><h1>视觉媒体</h1><p>说明书里共用的图标和插图{% if v %} · 更新于 {{ v.updated|e }}{% endif %}</p></header>
+<header class="fr-head"><h1>视觉媒体</h1><p>跨机型复用的标准安规图标与无字化插图{% if v %} · 更新于 {{ v.updated|e }}{% endif %}</p></header>
 {%- if v %}
-<section class="fr-figs" aria-label="按类型的数量">
-  {%- for type in v.types %}
-  <div><strong>{{ type.count }}</strong><span>{{ type.title|e }}</span></div>
-  {%- endfor %}
-</section>
+<div class="mf-card">
+<noscript><p class="mf-noscript">{% for type in v.types %}{% if not loop.first %} · {% endif %}{{ type.title|e }} {{ type.count }}{% endfor %}</p></noscript>
 <div class="mf-filters" data-mf-filters hidden>
   <div class="mf-chips" role="group" aria-label="按类型筛选">
     <button type="button" class="mf-chip" data-mf-type="" aria-pressed="true">全部 <b>{{ v.count }}</b></button>
@@ -35,7 +32,7 @@
     <button type="button" class="mf-chip" data-mf-type="{{ type.id|e }}" aria-pressed="false">{{ type.title|e }} <b>{{ type.count }}</b></button>
     {%- endfor %}
   </div>
-  <label class="mf-search"><span class="sr-only">按名称或用途搜索</span><input type="search" data-mf-q placeholder="名称或用途，如“警告”" autocomplete="off"></label>
+  <label class="mf-search"><span class="sr-only">按名称或用途搜索</span><input type="search" data-mf-q placeholder="搜索图标名称或用途（如：警告、接地）" autocomplete="off"></label>
 </div>
 <ul class="mf-grid" id="gallery">
   {%- for item in v['items'] %}
@@ -48,6 +45,7 @@
   {%- endfor %}
 </ul>
 <p class="fr-empty" data-mf-empty hidden>没有符合条件的素材。</p>
+</div>
 <dialog class="mf-dialog" data-mf-dialog aria-labelledby="mf-dialog-title">
   <div class="mf-dialog-art"><img alt="" data-mf-dialog-img></div>
   <h2 id="mf-dialog-title" data-mf-dialog-title></h2>
@@ -55,7 +53,7 @@
   <form method="dialog"><button type="submit">关闭</button></form>
 </dialog>
 {%- else %}
-<p class="fr-empty">暂时没有可显示的素材。</p>
+<p class="fr-empty">暂无可显示的视觉素材。</p>
 {%- endif %}
 </main>
 </div>{{ site_script() }}</body></html>

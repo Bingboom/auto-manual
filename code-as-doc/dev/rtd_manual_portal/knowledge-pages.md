@@ -413,8 +413,7 @@ address forwards here, and the public manual library never links to it.
   public-role build in `tests/test_rtd_portal.py` fails if any file or text of
   `knowledge/product-matrix` reaches its output. Tests use invented products and
   projects (`P-FAKE-*`).
-- **Freshness.** Every product page (产品矩阵, 产品对比, 参数表, 产品档案) shows, under
-  its header (on 产品矩阵, under the matrix card, with the warning box above the card), `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; a v1.1 snapshot
+- **Freshness.** Every product page (产品矩阵, 产品对比, 参数表, 产品档案) shows `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; on 产品矩阵, 产品对比 and 参数表 quietly under the main card, on 产品档案 under its header; a v1.1 snapshot
   has no build time and shows `未记录（旧版快照）`), and an amber `数据可能不是最新`
   box when the snapshot is past the registry's `product_matrix.stale_after_days`
   without a successful check, when the last check found the base ahead or failed, or
@@ -554,19 +553,19 @@ since the page sits below that tab).
 
 - **参数表** (`/products/table.html`, `product_table.html`, `_static/product-table.js`;
   the operator's 产品矩阵 frame, named 参数表 so it is not confused with the 产品矩阵 page): one table
-  per category, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
-  市场, 项目 (未归入 when none), SKU 创建时间 (each row's own market; 暂无 when that market has
+  per category inside a unified card, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
+  市场, 项目 (`—` when none, exported as empty in CSV), SKU 创建时间 (each row's own market; 暂无 when that market has
   none), then the (parameter, condition) columns that
-  category's products state, in page order. A column is a figure column when its
+  category's products state, in page order (`多源写法差异` marks cells where sources disagree). A column is a figure column when its
   parameter's value type is 数值 or 整数 (`parameters[].value_type`,
   [contract §4.1](../product_matrix_base.md#41-矩阵表的生成)); every other type is a text
   column showing `display`. A figure column's head names its unit and its cells show the
   bare number (the cell's `number` as a plain decimal at any magnitude, never `1e-05`, no
   trailing .0), so the downloaded CSV holds plain numbers; a cell without a number shows
   its `display` in full. 产品档案 and 产品对比 show `display` as it is. With JavaScript:
-  category pills, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
+  category pills and 导出 CSV in the card's top bar, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
   project last), sorting by any column (in a number column: numbers, then cells holding
-  only text, then 暂无, in either direction) and 下载表格: the visible rows of the open
+  only text, then 暂无, in either direction) and 导出 CSV: the visible rows of the open
   table as `参数表-<类别>.csv`, UTF-8 with a BOM so spreadsheet programs read the Chinese
   text. A cell that a spreadsheet could read as a formula gets a leading apostrophe, so
   Excel and WPS show it as text and run nothing: one starting with `=`, `@`, a tab or CR;
@@ -578,9 +577,9 @@ since the page sits below that tab).
   fixed while the table scrolls sideways. Long texts show four lines with the whole text as a
   tooltip; the CSV keeps the whole text. Without JavaScript every table shows in full.
 - **产品对比** (`/products/compare.html`, `product_compare.html`,
-  `_static/product-compare.js`): two to four products side by side in one market. The
+  `_static/product-compare.js`): two to four products side by side in one market (`选择 2–4 款机型，在同一市场口径下逐项比对规格`). The
   visitor adds products by code or name (a unique match), removes them with ×, picks the
-  market and can keep only 只看不同的参数. The choice stays in the URL
+  market and can keep only 仅显示差异项 (`请选择至少两款产品开始比对。` before two are picked). The choice stays in the URL
   (`?p=A,B&market=US`), so a comparison can be shared. As on 产品档案, a row differs only
   when at least two products sold in that market state a value and those values
   differ; a missing value shows 暂无 and takes no part. A product's column head is its
@@ -670,13 +669,13 @@ python -m tools.rtd.product_catalog check
 
 通用知识不构成某型号内部电路、芯片或跨产品兼容性的认定，也不把教程中的算例当作产品实测。标签和型号过滤只控制阅读范围；技术值、操作和兼容条件仍以对应地区说明书为准。未启用 JavaScript 时全部知识条目与来源链接可读。工程面的模板、交互和课程词条与业务面的 `docs/knowledge/**` 个人分享文章分别维护。
 
-页首（2026-11-17 前台精简）只有标题“产品知识”和一句话，不再有资产层的页首、标签页与页脚。页面（2026-11 改版）先给两张图，再给词条卡：“先看懂能量怎样流动”把来源 → 充电转换 → 电池 → 逆变/直流转换 → 设备画成一行，扩容挂在电池下，旁路走在下方，每个环节标出对应主题的条数，点击即按该主题筛选并跳到列表；“按主题找”每个主题一张卡，列出其下词条的短名（标题全角冒号前的部分），点短名直达词条，词条被筛选隐藏时先清除主题与型号，仍不可见再清除区域。手机宽度下主题卡只留标题与条数。词条卡把示意与原理、产品应用、易混淆点和来源放在一起：一般示意由 `diagram_nodes` 生成 HTML 步骤链；`_knowledge_diagram.html` 里手绘的 SVG 示意占更宽的图列；写了 `circuit` 的词条（须是 `_static` 中已有的 `circuit-*.svg`，否则构建报错）把电路图放在正文上方，按标注可读的尺寸显示，可点开原图。每卡列出当前区域的说明书，超过 8 本时其余收进“+N”；区域选“全部”时说明书名后标出区域。示意图不代表某型号内部电路。
+页首（2026-11-17 前台精简）只有标题“产品知识”和一句话，不再有资产层的页首、标签页与页脚。页面顶部设有一条默认收起的单行可展开导读条“能量链路导读”（收起时用单行展示“市电 / 光伏 / 车充 → 充电转换 MPPT → 电池 + BMS → 逆变与直流输出 · 旁路备电切换”及对应条数，让首屏直接露出筛选栏与第 01 条知识卡；展开后呈现完整“能量流动框图”与“按主题快速定位”两张导读图，点击任一环节或主题即筛选并跳到列表，点词条短名直达词条，词条被筛选隐藏时先清除主题与型号，仍不可见再清除区域）。手机宽度下主题卡只留标题与条数。筛选栏支持区域与“按机型筛选”；词条卡把示意与原理、实际机型应用、边界与易混点和来源放在一起：一般示意由 `diagram_nodes` 生成 HTML 步骤链；`_knowledge_diagram.html` 里手绘的 SVG 示意占更宽的图列；写了 `circuit` 的词条（须是 `_static` 中已有的 `circuit-*.svg`，否则构建报错）把电路图放在正文上方，按标注可读的尺寸显示，可点开原图。每卡列出当前区域的说明书，超过 8 本时其余收进“+N”；区域选“全部”时说明书名后标出区域。示意图不代表某型号内部电路。
 
 AC 教学电路图（H 桥与 LC 滤波、插座并联、联锁切换）只用于逆变器、多口合计与 UPS 三条讲电路的词条。低压升压、隔离、体二极管与接地等未展开，不能当成实际产品原理图。实际产品案例（当前为 JHP-3600C US 的备电案例）在词条之后，由 `cases.json` 逐题给出标题、电路图（`circuit`：文件、替代文字与图注）或说明书关键数值（`stats`）及正文段落；来源链接与知识条目一样从冻结发布目录取得，目录中没有案例所引型号与区域的说明书时整段不显示；分相、旁路、ATS/MTS 与级联条件按说明书描述。尚未发布的说明书（例如审核稿阶段的日规）内容在其发布后再写入案例。
 
 ## 市场与政策
 
-`/market/policy.html` 与产品知识并列，记录“政策变化 → 原理解释 → 产品影响”。页首只有标题、一句话和去产品知识的链接（2026-11-17 起不再显示资料条数与政策核对日期）。页面（2026-11 改版）先放每个主题一张卡（主题名、条数、一句说明，以及每个国家一个标签，标签上的圆点标出核实状态，点标签直达该国第一条），下面一行说明状态圆点；再按主题分组，每条记录收成一行（国家、标题、时间、状态），点开才显示三段（第一段对业务需求写“需求变化”）、适用边界，以及适用范围、时间、相关产品知识与出处。页面不再设筛选；“全部展开”需要 JavaScript，链接到某条记录（`#记录 id`）时该条自动展开。主题划分写在 `tools/rtd_portal_assets/market_policy_themes.yaml`（`hello-docs-market-themes/v1`）：快照只带标签，记录归入第一个列出其任一标签的主题；没有主题认领的记录显示在“其他”并给出 Sphinx 警告，此时把它的标签加进该文件；`cross_region`（跨地区）不计入“国家和地区”数。该文件格式有误时构建失败。每条记录显示适用地区和时间；“政策要点已核实”只表示政策事实已查官方出处，产品影响单独标注为分析判断。官方出处以简短参考链接呈现；页面不展示原始资料截图、整理流程或核对过程说明，未经核实的信息仍保留状态标识。
+`/market/policy.html` 与产品知识并列，记录“法规变化 → 背景与机制 → 产品与说明书影响”。页首只有标题和一句话（不再放右上角“产品知识 →”冗余跳转或资料条数、核对日期胶囊）。页面（2026-11 改版）先放每个主题一张卡（主题名、条数、一句说明，以及每个国家一个标签，标签上的圆点标出核实状态，点标签直达该国第一条），下面一行说明状态圆点（“「已核实」表示法规要点已核对官方出处；「产品与说明书影响」为内部研判”）；再按主题分组，每条记录收成一行（国家、标题、时间、状态），点开才显示三段（第一段对业务需求写“需求变化”，其余写“法规变化”；第二段“背景与机制”；第三段“产品与说明书影响 · 内部研判”）、适用边界，以及适用范围、时间、相关产品知识与出处。页面不再设筛选；“全部展开”需要 JavaScript，链接到某条记录（`#记录 id`）时该条自动展开。主题划分写在 `tools/rtd_portal_assets/market_policy_themes.yaml`（`hello-docs-market-themes/v1`）：快照只带标签，记录归入第一个列出其任一标签的主题；没有主题认领的记录显示在“其他”并给出 Sphinx 警告，此时把它的标签加进该文件；`cross_region`（跨地区）不计入“国家和地区”数。该文件格式有误时构建失败。每条记录显示适用地区和时间；“已核实”只表示法规要点已核对官方出处，产品与说明书影响单独标注为内部研判。官方出处以简短参考链接呈现；页面不展示原始资料截图、整理流程或核对过程说明，未经核实的信息仍保留状态标识。
 
 工程面的 `tools/rtd/market_policy.py` 读取业务内容目录下的 `market-policy/records.json`（`schema_version: 1`）。默认业务目录为 Hello-Docs 的 `docs/knowledge/`，本地预览可用 `rtd_knowledge_dir` 指向临时目录。该快照及原始截图不放入 auto-manual；当前未接入飞书多维表，也不在线读取飞书。
 
