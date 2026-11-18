@@ -133,8 +133,8 @@ class LibraryTemplateTests(unittest.TestCase):
         self.assertIsNone(page.select_one("#cat-other .group-head"))
         self.assertIsNone(page.select_one(".needs, .categories, button[data-category]"))
 
-    def test_the_source_note_is_internal_and_needs_the_snapshot(self):
-        self.assertIn("产品分类快照", self.render(products(), CATALOG).select_one(".catalog-source").get_text())
+    def test_catalog_omits_maintainer_source_note_and_falls_back_without_snapshot(self):
+        self.assertIsNone(self.render(products(), CATALOG).select_one(".catalog-source"))
         self.assertIsNone(self.render(products(), CATALOG, internal=False).select_one(".catalog-source"))
         page = self.render([product("JE-500A")], None)
         self.assertIsNone(page.select_one(".catalog-source"))

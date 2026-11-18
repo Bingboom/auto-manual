@@ -32,7 +32,7 @@ GROUPS = (("电池", "电池"), ("输出", "输出"), ("输入", "充电与输�
 # Shown in the page head, or never shown (the product's own name and code; a launch date is not what the base
 # records: the head carries the SKU 创建时间 instead).
 HIDDEN_PARAMETERS = {"product_name", "model_number", "launch_date"}
-CONFLICT = "各说明书写法不一致"
+CONFLICT = "多源写法差异"
 # SKU 创建时间: the earliest creation time of the SKUs of the product's project in PLM (Beijing time). It is no launch
 # date. Older products loaded in bulk carry only an upper bound. Shown as year-month only.
 SKU_DATE, SKU_DATE_UPPER_BOUND = "first_sku_created", "first_sku_created_upper_bound"

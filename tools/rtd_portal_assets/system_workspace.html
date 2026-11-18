@@ -8,10 +8,10 @@
   <title>系统建设</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
-  <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}?v={{ workspace_revision.revision|e }}">
-  <link rel="stylesheet" href="{{ pathto('_static/manual-workbench.css', 1) }}?v={{ workspace_revision.revision|e }}">
-  <script defer src="{{ pathto('_static/manual-workbench.js', 1) }}?v={{ workspace_revision.revision|e }}"></script>
-  <script defer src="{{ pathto('_static/machine-surface-stats.js', 1) }}?v={{ workspace_revision.revision|e }}"></script>
+  <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/manual-workbench.css', 1) }}">
+  <script defer src="{{ pathto('_static/manual-workbench.js', 1) }}"></script>
+  <script defer src="{{ pathto('_static/machine-surface-stats.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script, icon with context %}
 <body class="app kb system-workspace">
@@ -159,7 +159,7 @@
     {%- if stepper %}
     <section class="sw-stepper" id="gates" aria-labelledby="gates-title">
       <div class="sw-stepper-head">
-        <div><h2 id="gates-title">阶段门</h2><span>前一道门验收后才进入下一道</span></div>
+        <div><h2 id="gates-title">阶段门</h2><span>按阶段门依次验收推进</span></div>
         <a href="{{ ledger_url|e }}" target="_blank" rel="noopener">执行台账 <span aria-hidden="true">↗</span></a>
       </div>
       <ol class="sw-steps">
@@ -169,7 +169,7 @@
           <div class="sw-step-title"><strong>{{ gate.label|e }}</strong>
             {%- if gate.id == stepper.current %}<em class="sw-step-chip">当前</em>
             {%- elif gate.state == 'done' %}<em class="sw-step-chip is-done">已验收</em>
-            {%- elif gate.id == stepper.next_gate %}<small>{{ stepper.current|e }} 验收后开始</small>{% endif %}</div>
+            {%- elif gate.id == stepper.next_gate %}<small>{{ stepper.current|e }} 验收后启动</small>{% endif %}</div>
           <span class="sw-step-count"><b>{{ gate.done }}</b> / {{ gate.total }}</span>
           {{ progress_bar(gate) }}
           <small class="sw-step-tally">{{ gate.tally|e }}</small>
@@ -205,7 +205,7 @@
 
     {%- if focus and focus.doing %}
     <section class="sw-section sw-recent" id="now-next" aria-labelledby="now-next-title">
-      <h2 id="now-next-title">正在做</h2>
+      <h2 id="now-next-title">当前推进</h2>
       <ul class="sw-now">
         {%- for item in focus.doing %}
         <li>{{ status_mark('in_progress') }}<span class="sw-doing"><strong>{{ item.lead|e }}</strong>：{{ item.text|e }}</span><a class="sw-doing-lane" href="#lane-{{ item.lane|e }}">{{ item.lane_name|e }}</a></li>
@@ -265,9 +265,9 @@
       <div class="section-header"><div>
         <h2>能力地图</h2>
         {%- if asset_map %}
-        <p>四类资产按优先级排，下面一行是生产能力；共 {{ capability_total }} 项能力，每项状态都附证据。资产卡的状态只取台账登记行，没有登记行的不标。</p>
+        <p>四类资产按优先级排，下面一行是生产交付能力；共 {{ capability_total }} 项能力，每项状态都附证据。资产卡的状态只取台账登记行，没有登记行的不标。</p>
         {%- else %}
-        <p>{{ cards|length }} 个能力域、{{ capability_total }} 项能力。每项状态都附证据；点「各项说明与依据」看每项在做什么、凭什么。</p>
+        <p>{{ cards|length }} 个能力域、{{ capability_total }} 项能力。展开「各项说明与依据」查看能力边界与核验记录。</p>
         {%- endif %}
       </div>{{ counts_line(capability_counts) }}</div>
       {%- if capability_stale %}
@@ -280,7 +280,7 @@
 {{ layer_card(layer, asset_map.layers[layer.id], asset_chips[layer.id], asset_map.layers[layer.id].anchors) }}
         {%- endfor %}
       </div>
-      <h3 class="sw-map-group">生产 · 把资产变成交付物</h3>
+      <h3 class="sw-map-group">生产交付能力</h3>
       <div class="sw-cards">
         {%- for card in asset_map.production %}
 {{ capability_card(card) }}
@@ -323,7 +323,7 @@
     <section class="sw-section" id="flow">
       <div class="section-header"><div>
         <h2>生产链路</h2>
-        <p>单项能力跑通不等于整条链路连通；“人工”表示这一步仍要人来触发或搬运。每段的说明与依据在展开里。</p>
+        <p>标注各环节衔接方式与就绪状态；「人工」代表仍需人工触发或交接，展开可查看依据。</p>
       </div><span class="sw-counts">{{ flow|length }} 段 · 自动 <b>{{ flow_modes.automated }}</b> · 人工 <b>{{ flow_modes.manual }}</b>{% for row in flow_counts if row.status != 'available' %} · {{ row.status_label|e }} <b>{{ row.count }}</b>{% endfor %}{% if flow_stale %} · 待复核 <b>{{ flow_stale }}</b>{% endif %}</span></div>
       <div class="sw-flow">
         {%- for group in flow_groups %}
@@ -356,10 +356,9 @@
     <div class="sw-assets">
     {%- if corpus_enabled %}
     <div class="sw-subpanel" id="tab-corpus">
-    <section class="sw-section sw-box" id="language-assets">
-      <h2>语言资产<small>已移到资产页</small></h2>
-      <p class="sw-moved">句对和术语的数字在 <a href="{{ pathto('assets/language/index') }}">语料库</a> 页{% if corpus %}，最近一次语料导出 {{ corpus.exported_at|e }}{% endif %}。</p>
-      <p><a class="sw-moved-link" href="{{ pathto('assets/language/index') }}">打开语料库 →</a></p>
+    <section class="sw-section sw-box sw-lang-bar" id="language-assets">
+      <h2>语言资产<small>已并入语料库</small></h2>
+      <p class="sw-moved">标准句对与专业术语规模见 <a href="{{ pathto('assets/language/index') }}">语料库 →</a>{% if corpus %}（更新于 {{ corpus.exported_at|e }}）{% endif %}</p>
     </section>
     </div>
     {%- endif %}
@@ -553,7 +552,7 @@
   </main>
 </div>
 
-<script src="{{ pathto('_static/system-workspace.js', 1) }}?v={{ workspace_revision.revision|e }}" defer></script>
+<script src="{{ pathto('_static/system-workspace.js', 1) }}" defer></script>
 {{ site_script() }}
 </body>
 </html>
