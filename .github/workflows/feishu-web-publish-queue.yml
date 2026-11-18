@@ -81,15 +81,25 @@ jobs:
 
       - name: Validate execution plane
         shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           if [ "${GITHUB_REPOSITORY}" != "Bingboom/Hello-Docs" ]; then
             echo "::error::Web Publish runs only on the Hello-Docs business-plane mirror."
             exit 1
           fi
-          if [ "${GITHUB_REF}" != "refs/heads/${{ github.event.repository.default_branch }}" ]; then
+          if [ "${GITHUB_REF}" != "refs/heads/${DEFAULT_BRANCH}" ]; then
             echo "::error::Dispatch feishu-web-publish-queue.yml on the Hello-Docs default branch. Document_link.Git_ref selects the reviewed content."
             exit 1
           fi
+
+      - name: Validate dispatch inputs
+        shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
+          QUEUE_RECORD_IDS: ${{ inputs.queue_record_ids || '' }}
+        run: |
+          bash scripts/validate_dispatch_inputs.sh record-id QUEUE_RECORD_ID record-ids QUEUE_RECORD_IDS
 
       - name: Validate required secrets
         shell: bash
@@ -98,27 +108,36 @@ jobs:
 
       - name: Print trigger context
         shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
+          QUEUE_RECORD_IDS: ${{ inputs.queue_record_ids || '' }}
+          TRIGGER_SOURCE: ${{ inputs.trigger_source || '' }}
+          OPENCLAW_DISPATCH_NONCE: ${{ inputs.openclaw_dispatch_nonce || '' }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           echo "event_name=${GITHUB_EVENT_NAME}"
           echo "ref=${GITHUB_REF}"
-          echo "default_branch=${{ github.event.repository.default_branch }}"
-          echo "trigger_source=${{ inputs.trigger_source || '' }}"
-          echo "queue_record_id=${{ inputs.queue_record_id || '' }}"
-          echo "queue_record_ids=${{ inputs.queue_record_ids || '' }}"
-          echo "openclaw_dispatch_nonce=${{ inputs.openclaw_dispatch_nonce || '' }}"
+          echo "default_branch=${DEFAULT_BRANCH}"
+          echo "trigger_source=${TRIGGER_SOURCE}"
+          echo "queue_record_id=${QUEUE_RECORD_ID}"
+          echo "queue_record_ids=${QUEUE_RECORD_IDS}"
+          echo "openclaw_dispatch_nonce=${OPENCLAW_DISPATCH_NONCE}"
           echo "publish_branch=publish"
 
       - uses: ./.github/actions/feishu-common-setup
 
       - name: Process Feishu Web Publish queue
         shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
+          QUEUE_RECORD_IDS: ${{ inputs.queue_record_ids || '' }}
         run: |
           cmd=(python build.py process-build-queue --config configs/config.us.yaml --data-root data/phase2 --workflow-action web-publish)
-          if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
-            cmd+=(--record-id "${{ inputs.queue_record_id }}")
+          if [ -n "${QUEUE_RECORD_ID}" ]; then
+            cmd+=(--record-id "${QUEUE_RECORD_ID}")
           fi
-          if [ -n "${{ inputs.queue_record_ids || '' }}" ]; then
-            cmd+=(--record-ids "${{ inputs.queue_record_ids }}")
+          if [ -n "${QUEUE_RECORD_IDS}" ]; then
+            cmd+=(--record-ids "${QUEUE_RECORD_IDS}")
           fi
           "${cmd[@]}"
 
@@ -272,6 +291,8 @@ jobs:
       # RTD deployment verifies. A failed deployment is never registered.
       - name: Record pending HTML_link registration
         shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
         run: |
           cmd=(
             python -m tools.write_web_publish_html_link
@@ -279,23 +300,28 @@ jobs:
             --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
             --pending
           )
-          if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
-            cmd+=(--record-id "${{ inputs.queue_record_id }}")
+          if [ -n "${QUEUE_RECORD_ID}" ]; then
+            cmd+=(--record-id "${QUEUE_RECORD_ID}")
           fi
           "${cmd[@]}"
 
       - name: Write OpenClaw run metadata
         if: always()
         shell: bash
+        env:
+          QUEUE_RECORD_ID: ${{ inputs.queue_record_id || '' }}
+          QUEUE_RECORD_IDS: ${{ inputs.queue_record_ids || '' }}
+          TRIGGER_SOURCE: ${{ inputs.trigger_source || '' }}
+          OPENCLAW_DISPATCH_NONCE: ${{ inputs.openclaw_dispatch_nonce || '' }}
         run: |
           python integrations/openclaw/scripts/write_workflow_run_metadata.py \
             --output .tmp/openclaw/feishu-web-publish-queue-run.json \
             --workflow-name "Feishu Web Publish Queue" \
             --workflow-file ".github/workflows/feishu-web-publish-queue.yml" \
-            --queue-record-id "${{ inputs.queue_record_id || '' }}" \
-            --queue-record-ids "${{ inputs.queue_record_ids || '' }}" \
-            --trigger-source "${{ inputs.trigger_source || '' }}" \
-            --openclaw-dispatch-nonce "${{ inputs.openclaw_dispatch_nonce || '' }}" \
+            --queue-record-id "${QUEUE_RECORD_ID}" \
+            --queue-record-ids "${QUEUE_RECORD_IDS}" \
+            --trigger-source "${TRIGGER_SOURCE}" \
+            --openclaw-dispatch-nonce "${OPENCLAW_DISPATCH_NONCE}" \
             --artifact-name feishu-web-publish-queue-output \
             --artifact-name openclaw-run-metadata
 

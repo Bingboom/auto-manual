@@ -88,6 +88,8 @@ jobs:
       - name: Verify deployment targets
         id: verify
         shell: bash
+        env:
+          VERIFY_LIMIT: ${{ inputs.limit || '' }}
         run: |
           cmd=(python -m tools.verify_web_deployment_targets
             --publish-root docs/publish
@@ -95,8 +97,8 @@ jobs:
             --rps "${AUTO_MANUAL_RTD_VERIFY_RPS}"
             --asset-scope "${AUTO_MANUAL_RTD_VERIFY_SCOPE}"
             --report-json verify_web_deployment_report.json)
-          if [ -n "${{ inputs.limit || '' }}" ]; then
-            cmd+=(--limit "${{ inputs.limit }}")
+          if [ -n "${VERIFY_LIMIT}" ]; then
+            cmd+=(--limit "${VERIFY_LIMIT}")
           fi
           set +e
           "${cmd[@]}" | tee verify_web_deployment_out.txt
