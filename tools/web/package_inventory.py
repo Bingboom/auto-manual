@@ -9,6 +9,7 @@ import re
 from typing import Any
 
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import count_package_external_sources
 from tools.web.frozen_package_registry import (
     SOURCE_MANIFEST_JSON,
     frozen_source_roots_of,
@@ -188,6 +189,7 @@ def classify_package(
     ]
     approved = any((package_dir / rel).is_file() for rel in APPROVAL_REL_PATHS)
     large_bytes, large_count = _measure_large_binaries(package_dir)
+    external_count = count_package_external_sources(package_dir, manifest)
     return {
         "path": package_dir.relative_to(repo_root).as_posix(),
         "root_kind": root_kind,
@@ -200,6 +202,8 @@ def classify_package(
         "approved": approved,
         "large_binary_bytes": large_bytes,
         "large_binary_count": large_count,
+        "external_source_count": external_count,
+        "has_external_source_pointers": external_count > 0,
         "manifest_error": manifest_error,
     }
 
@@ -268,6 +272,12 @@ def collect_inventory(repo_root: Path) -> dict[str, Any]:
         "unpackaged_large_binary_bytes": unpackaged_bytes,
         "unpackaged_large_binary_count": unpackaged_count,
         "total_root_large_binary_bytes": pkg_binary_bytes + unpackaged_bytes,
+        "external_source_pointer_count": sum(
+            int(p["external_source_count"]) for p in packages
+        ),
+        "external_source_package_count": sum(
+            1 for p in packages if p["has_external_source_pointers"]
+        ),
         "packages": packages,
     }
 
@@ -285,6 +295,8 @@ def format_inventory_text(report: Mapping[str, Any]) -> str:
         f"Dual-root collisions: {len(report['dual_root_collisions'])}",
         f"Large binaries (>1 MiB .pdf/.ai): {report['large_binary_count']} files, "
         f"{report['large_binary_bytes']} bytes ({report['large_binary_mib']} MiB)",
+        f"External source pointers: {report['external_source_pointer_count']} across "
+        f"{report['external_source_package_count']} packages",
     ]
     for item in report["dual_root_collisions"]:
         lines.append(
