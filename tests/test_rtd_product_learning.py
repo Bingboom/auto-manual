@@ -205,6 +205,11 @@ class KnowledgeMapTests(LearningFixtures, unittest.TestCase):
         self.assertEqual(self.context["latest_added"], max(t["added"] for t in topics if t.get("added")))
 
     def test_the_maps_lead_to_cards_and_set_themes(self):
+        self.assertIn('<details class="pk-panel pk-guide">', self.page)
+        self.assertIn("<strong>能量链路导读</strong>", self.page)
+        self.assertIn("按机型筛选", self.page)
+        self.assertIn("实际机型应用", self.page)
+        self.assertIn("边界与易混点", self.page)
         cards = set(re.findall(r'<article class="pk-card knowledge-item[^"]*" id="([a-z0-9-]+)"', self.page))
         self.assertEqual(cards, {topic["id"] for topic in self.context["topics"]})
         self.assertTrue(set(re.findall(r'data-topic-link="([a-z0-9-]+)"', self.page)) <= cards)
