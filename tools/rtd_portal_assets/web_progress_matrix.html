@@ -12,13 +12,13 @@
 <section class="sw-section wp" id="web-progress-matrix" aria-labelledby="wp-matrix-title">
   <div class="wp-mhead">
     <div class="dl-section-title"><h2 id="wp-matrix-title">覆盖矩阵</h2>
-      <p>每个已转型号在各市场的网页说明书：数字是已有语言 / 该市场语言种数，蓝色是审核中的版本，「待转」是有在用 SKU 但还没有网页版。点一行看它的各语言版本。</p></div>
-    <span class="wp-mmeta"><b>{{ p.rows|length }}</b> 个型号 · <b>{{ ns.open }}</b> 个还有待办</span>
+      <p>展示各已转型号在目标市场的语种覆盖度与审核进度，点击任意行展开语种版本明细。</p></div>
+    <span class="wp-mmeta"><b>{{ p.rows|length }}</b> 个型号 · <b>{{ ns.open }}</b> 个含待办</span>
   </div>
   <div class="wp-tools">
     <div class="wp-chips" role="group" aria-label="按类别筛选"><button type="button" class="wp-cat" data-cat="" aria-pressed="true">全部<b>{{ p.rows|length }}</b></button>{% for c in p.categories %}<button type="button" class="wp-cat" data-cat="{{ c.label|e }}" aria-pressed="false">{{ c.label|e }}<b>{{ c.count }}</b></button>{% endfor %}</div>
     <label class="wp-find"><span class="wb-sr-only">按型号或简称查找</span><input id="wp-find" type="search" placeholder="型号或简称" autocomplete="off"></label>
-    <label class="wp-check"><input type="checkbox" id="wp-gaps"> 只看还有待办</label>
+    <label class="wp-check"><input type="checkbox" id="wp-gaps"> 仅看未齐 / 待办</label>
     <span class="wp-mlegend" aria-hidden="true"><span><i class="wp-chip is-full">3/3</i>齐全</span><span><i class="wp-chip is-partial">1/3</i>部分</span><span><i class="wp-chip is-review">v0.8</i>审核中</span><span><i class="wp-chip is-gap">待转</i>未转</span></span>
   </div>
   {%- if not p.rows %}

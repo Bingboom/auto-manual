@@ -116,8 +116,8 @@ snapshot, dated). Then the **常用入口** strip: the structured production dat
 (产品与规格, 文案与变量, 翻译与术语, 插图资产) and the Git-native manual sources
 (冻结发布源, 评审稿, 来源声明), from `_work_links.html`. Three tabs follow: **进度**
 (网页说明书进度, open by default), **交付物** (the coverage matrix and
-[数据统计](#数据统计)) and **生产证据** (named 资产与证据 until step 12: a pointer row to
-the four asset pages, which took over the asset cards, then the evidence table and
+[数据统计](#数据统计)) and **生产证据** (named 资产与证据 until step 12: a hidden
+legacy-anchor pointer `#reuse` to the four asset pages, then the evidence table and
 快照与校验, see [生产与复用证据](../workspace_production_evidence.md)); see
 [Page layout](manual-center.md#page-layout).
 
@@ -170,7 +170,7 @@ first). A row opens its language versions underneath: per market, each language 
 its display code (en-US …) and short version (a Git package's date, `1027`), linked
 to its page, with its 网页文档 row in Feishu; then its review versions and the
 markets still 待转. This replaces the former 语言版本明细 table. Category chips, a
-model or 简称 search and 只看还有待办 filter the rows; without a filter each group
+model or 简称 search and 仅看未齐 / 待办 filter the rows; without a filter each group
 shows its first five rows until 显示全部 (`web-progress.js`; without JavaScript
 every row shows and no detail opens). Product names come from the manual center.
 
@@ -498,45 +498,45 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   creation time from PLM, not a launch date, so 上市时间 is never shown. The project is
   the first one found across the model's markets; in the snapshot of 2026-11-17 no model
   has different projects in different markets, so it does not follow the switch.
-- **Market switch:** one market at a time (美规, 欧规, 日规, 国内, …). Without
-  JavaScript every market shows in turn.
+- **Market switch:** one market at a time (美规, 欧规, 日规, 国内, …), sharing a
+  horizontal bar (`.pf-bar`) with `加入对比`. Without JavaScript every market shows in turn.
 - **Parameters** in plain groups with Chinese names (`GROUPS`: 电池, 输出, 充电与输入,
   接口与扩展, 尺寸与重量, 使用环境, 安全与认证, 其他, 保修), each with the rows any market
   of the model has, in the base's order; a market without one shows 暂无. The name,
   model and launch-date parameters are not repeated.
 - **Sources on click** (`_static/product-profile.js`): a value is a button. Clicking
-  it shows `<参数> · 出处`, the value, and every value that took part, the chosen one
-  first: `来自《<产品名> 说明书》 · 美规 · 英语`, the edition date only when the snapshot has
+  it shows `<参数> · 参数原文溯源`, the value, and every value that took part, the chosen one
+  first: `原文摘自《<产品名> 说明书》 · 美规 · English`, the edition date only when the snapshot has
   one (never 未知), the manual's section, the printed sentence and `打开说明书 →`. A
   position's trailing page anchor (` #native-specifications`, or a position that is only
   `#native-specifications`) is not shown; it is added to `打开说明书 →`, which then jumps
   to that section. An anchor id starts with an ASCII letter, so `Table #2` or a non-ASCII
   `#…` stays text. A value marked `derived` (put together
   from several lines of one manual) is not quoted: its card reads
-  `由《<产品名> 说明书》的多处内容整理 · 美规 · 英语`, the same separators as the quoted line; a snapshot without the
+  `综合整理自《<产品名> 说明书》 · 美规 · English`, the same separators as the quoted line; a snapshot without the
   field reads as not derived. A parameter without a Chinese name is left out with a
   build warning, never shown by its key. The page
   renders each list, escaped, in a hidden block; the script copies those nodes into
   the card (a sheet at the bottom on phones). Language names are the manual library's
   own (`settings.json` `language_labels`: English, 日本語, …), so the site writes a
   language one way everywhere.
-  各说明书写法不一致 marks a cell whose values disagree (`sources_disagree`); no other
+  多源写法差异 marks a cell whose values disagree (`sources_disagree`); no other
   verification mark is shown (operator, 2026-11-17), and `conflict` has no page form yet.
-- **各市场差异:** only the rows whose values differ between the model's markets,
+- **跨市场规格差异:** only the rows whose values differ between the model's markets,
   numbers compared rounded (1 and 1.0 agree). With three or more markets holding a
   value, a figure unlike every other market's is marked; with two, neither is (the row
   being listed already says they differ). Texts are listed but not marked, since manuals
   in different languages always differ in wording.
-- **说明书:** per market, the model's Web manuals by language (the snapshot's
+- **关联说明书:** per market, the model's Web manuals by language (the snapshot's
   sources), then its 快速指南 and the 通用指南 that list it.
-- **功能 and 搭配** (carried over from the former matrix page, 2026-11-17, so nothing a
-  colleague used disappears): 功能 from the capability table (`部分市场` with the
-  markets in the tooltip), 搭配 from `product_matrix.json` pairings the manuals still
+- **支持特性 and 兼容搭配** (carried over from the former matrix page, 2026-11-17, so nothing a
+  colleague used disappears): 支持特性 from the capability table (`部分市场` with the
+  markets in the tooltip), 兼容搭配 from `product_matrix.json` pairings the manuals still
   name, both ways, linking a product only when it has a page here. They need the
   publish manifest; without it they are absent.
 - Tests: `tests/test_rtd_product_profile.py`, `tests/product_profile_ui.test.mjs`, and
   the real-Sphinx sidebar build in `tests/test_rtd_portal.py`.
-- The head also has 加入对比, which opens [产品对比](#产品对比与参数表) with this model.
+- The sync timestamp (`product_sync`) sits quietly at the foot of `<main>`; stale warnings remain at the top.
 
 ### 产品对比与参数表
 
@@ -546,8 +546,8 @@ compares by its `number` (else its text), and a test condition is its own column
 (`额定功率（STC）`). They are built whenever 产品矩阵 has a snapshot, so its tabs never point to
 a missing page; a snapshot without cells makes both say 产品数据暂时读不到，请稍后再看。 with no
 figures, and one without products 还没有产品数据。. The
-product pages carry the sub-tabs 产品矩阵 · 产品对比 · 参数表 as a segmented control (`_product_tabs.html`; at the
-right of the title on 产品矩阵, 产品对比 and 参数表, above the header on 产品档案; a
+product pages carry the sub-tabs 产品矩阵 · 产品对比 · 参数表 as a segmented control (`_product_tabs.html`) at the
+right of `.pl-head` on 产品矩阵, 产品对比, 参数表 and 产品档案 (a
 产品档案 counts as 产品矩阵, whose tab it marks `aria-current="true"` rather than `"page"`,
 since the page sits below that tab).
 

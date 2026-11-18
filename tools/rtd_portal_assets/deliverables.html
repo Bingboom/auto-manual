@@ -33,7 +33,7 @@
     <section class="wb-hero page-head">
       <div>
         <h1>说明书工作台</h1>
-        <p>网页说明书的生产：做到哪了、交了什么、凭什么算交付。资产清单在四个资产页。</p>
+        <p>跟踪网页说明书的覆盖进度、已上线版本矩阵与生产核验记录。</p>
       </div>
       <div class="wb-fresh" aria-label="数据快照">
         {%- for item in freshness %}
@@ -46,12 +46,12 @@
     {% include 'workbench_summary.html' %}
 
     <nav class="wb-entries" aria-label="常用入口">
-      <span class="wb-entries-label">维护生产资料</span>
+      <span class="wb-entries-label">源数据维护</span>
       <span class="wb-entries-links">{% for label, url in links.materials %}<a href="{{ url|e }}" target="_blank" rel="noopener">{{ label|e }}<span aria-hidden="true">↗</span></a>{% endfor %}</span>
       <span class="wb-entries-sep" aria-hidden="true"></span>
-      <span class="wb-entries-label">说明书源</span>
+      <span class="wb-entries-label">仓库源码</span>
       <span class="wb-entries-links">{% for label, url in links.manual_sources %}<a href="{{ url|e }}" target="_blank" rel="noopener">{{ label|e }}<span aria-hidden="true">↗</span></a>{% endfor %}</span>
-      <span class="wb-entries-note">飞书需登录{% if system_entry %} · <a href="{{ pathto('workspace/system/index') }}#work-map">全部工作入口</a>{% endif %}</span>
+      {%- if system_entry %}<span class="wb-entries-note"><a href="{{ pathto('workspace/system/index') }}#work-map">全部工作入口</a></span>{% endif %}
     </nav>
 
     <nav class="page-tabs" role="tablist" aria-label="工作台分类">

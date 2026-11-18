@@ -23,10 +23,10 @@ it, and `_static/web-progress.js` draws the timeline and filters the matrix.
 
 ### Coverage
 
-Since step 12 (operator decision 3, 2026-11-16) 进度 opens with **覆盖 · 当前主线**
+Since step 12 (operator decision 3, 2026-11-16) 进度 opens with **覆盖进度 · 当前主线**
 (`#web-progress-coverage`, `web_progress.coverage`): online editions (model ×
 market) against every edition the models with a Web manual need, as a bar with
-已上线, 审核中 and 待转, and a column 分母怎么算. The denominator is, for each model
+已上线, 审核中 and 待转, and a column 统计口径. The denominator is, for each model
 that already has a Web manual, its market cells that are online, in review or 待转
 (a market with active SKUs). Models without any Web manual are not counted and not
 listed: the snapshot keeps their candidate list off this public repository (see
@@ -70,7 +70,7 @@ never a share of the online ones. The four counts below it (审核中, 待转, �
   JE and JHP are 电源主机, JBP is 扩容电池, JS is 太阳能板, and anything else is
   配件. 上线进度's 已上线型号 line counts the same categories. A row shows the
   model and its 商品简称. Category chips, a search by model or 简称 and a
-  checkbox (只看还有待办: rows with 待转, 审核中 or 语言未齐) filter the rows;
+  checkbox (仅看未齐 / 待办: rows with 待转, 审核中 or 语言未齐) filter the rows;
   without a filter each category shows its first five rows until 显示全部.
 - **语言版本.** A matrix row opens the model's language versions underneath, per
   market: each language as its display code (en-US …) and short version (a Git
