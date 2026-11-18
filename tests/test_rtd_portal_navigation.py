@@ -42,7 +42,7 @@ class LibraryViewTests(unittest.TestCase):
         self.assertTrue(view["classified"])
         self.assertEqual([(c["id"], c["title"], c["icon"]) for c in view["categories"]],
                          [("portable", "便携储能", "portable"), ("home", "家庭备电", "home"),
-                          ("category-3", "新类别", "other"), ("other", "其他说明书", "other")])
+                          ("category-3", "新类别", "other"), ("other", "其它", "other")])
         portable = view["categories"][0]
         self.assertEqual([(s["id"], s["title"]) for s in portable["series"]], [("portable-1", "标准"), ("portable-2", "Plus")])
         # Natural model order inside a series: JE-100C before JE-1000F.
@@ -120,7 +120,7 @@ class LibraryTemplateTests(unittest.TestCase):
         chips = page.select(".cat-chips .cat-chip")
         self.assertEqual([(a["href"], a.get_text(strip=True)) for a in chips],
                          [("#cat-portable", "便携储能"), ("#cat-home", "家庭备电"), ("#cat-category-3", "新类别"),
-                          ("#cat-other", "其他说明书")])
+                          ("#cat-other", "其它")])
         portable = page.select_one("section.family#cat-portable")
         self.assertEqual(portable["data-models"], "3")
         self.assertEqual([h.get_text() for h in portable.select(".group-head h3")], ["标准", "Plus"])

@@ -647,6 +647,12 @@ python -m tools.rtd.product_catalog check
   keep the previous snapshot. Only 型号, 商品简称, 产品类别, 产品系列, 超链接, 文档类型
   and 适用产品 are read; the 项目号 only joins the tables inside Feishu and, like a
   SKU, never reaches the snapshot, which sits in a public repository.
+- Published models missing from the classification snapshot use the operator-selected
+  「其它」 category and series in the manual library and product matrix. This is a
+  display default, not a fabricated Feishu project or classification row; source
+  classifications take precedence when a later snapshot includes them. Missing
+  classification alone is not a build warning; malformed snapshots and conflicting
+  source values still fail validation.
 - Classifying a model, or renaming a series, is a 项目号 table edit (operator
   confirmation and a read-back, per the lark-cli Bitable rules) followed by a
   refresh PR. The 2026-11-06 snapshot came from the operator-approved fill of

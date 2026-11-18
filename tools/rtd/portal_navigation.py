@@ -9,7 +9,7 @@ name gets ``category-<n>`` and a plain icon). A 通用指南 belongs to no one
 product, so the 通用指南 follow the categories in a group of their own; a 快速指南
 has no card, since it is its product's second document. Each product a guide
 lists in 适用产品 links to it (``classify``). A published
-model the snapshot does not list lands in a visible 其他说明书 group, never
+model the snapshot does not list lands in a visible 其它 group, never
 disappears. Without a usable snapshot the page falls back to the product types
 in ``categories``.
 """
@@ -17,8 +17,10 @@ from __future__ import annotations
 
 import re
 
+from tools.rtd.product_catalog import UNCLASSIFIED_CATEGORY
+
 GUIDES = {"id": "guide", "title": "通用指南", "icon": "guide"}
-OTHER = {"id": "other", "title": "其他说明书", "icon": "other"}
+OTHER = {"id": "other", "title": UNCLASSIFIED_CATEGORY, "icon": "other"}
 _ID = re.compile(r"[a-z][a-z0-9-]*")
 _NUMBER = re.compile(r"\d+")
 

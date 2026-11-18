@@ -33,14 +33,14 @@ class SearchPageContextTests(unittest.TestCase):
         self.assertEqual(context["categories"], [
             {"id": "portable", "title": "便携电源", "icon": "portable"},
             {"id": "category-2", "title": "家庭备电", "icon": "other"},
-            {"id": "other", "title": "其他说明书", "icon": "other"},
+            {"id": "other", "title": "其它", "icon": "other"},
         ])
         config = context["config"]
         self.assertEqual(config["models"], {
             "JE-1000F": {"category": "portable", "series": "标准"}, "JE-1000H": {"category": "portable", "series": "Plus"},
             "JHP-3000D": {"category": "category-2", "series": "HomePower"}, "JA-NEW": {"category": "other", "series": ""},
         })
-        self.assertEqual(config["categories"], {"portable": "便携电源", "category-2": "家庭备电", "other": "其他说明书"})
+        self.assertEqual(config["categories"], {"portable": "便携电源", "category-2": "家庭备电", "other": "其它"})
         # Languages keep the settings order (it picks the edition a manual shows) and carry the display codes.
         self.assertEqual(config["languages"], [["en", "en-US"], ["fr", "fr-FR"], ["ja", "ja-JP"]])
         self.assertEqual(context["languages"][2], {"code": "ja", "display": "ja-JP", "label": "日本語"})

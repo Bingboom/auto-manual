@@ -7,10 +7,22 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
+from bs4 import BeautifulSoup
+
 # The feedback tests' fixture builds a verified page; import the module so its tests do not run twice here.
 from tests import test_rtd_feedback
-from tools.rtd.manual_reader import chapters, frame_text, load_text, locale_options, reader_context, version_date
+from tools.rtd.manual_reader import (
+    chapters, frame_text, load_text, locale_options, reader_context, scroll_native_tables, version_date,
+)
 from tools.rtd.portal import ASSETS
+
+NATIVE_TABLE = """<table class="manual-table" id="native-wide">
+<caption>Limits &amp; modes</caption>
+<colgroup><col span="3"></colgroup>
+<thead><tr><th id="condition" scope="col">Condition</th><th id="range" scope="colgroup" colspan="2">Range</th></tr></thead>
+<tbody><tr><th id="warm" scope="rowgroup" rowspan="2">Hot &amp; cold</th><td headers="warm range" colspan="2">A&nbsp;&lt;B</td></tr>
+<tr><td headers="warm range" colspan="2">C&#160;&gt;D</td></tr></tbody>
+</table>"""
 
 MANUAL = """# SAFETY
 
@@ -30,6 +42,9 @@ Connect the panels.
 
 The values.
 """
+
+
+MANUAL += "\n```{raw} html\n" + NATIVE_TABLE + "\n```\n"
 
 
 def section(anchor: str, rank: int, name: str, inner: str = "<p>Text.</p>") -> str:
@@ -53,6 +68,52 @@ class Sections(HTMLParser):
             self.mains += 1
         if tag == "section" and values.get("id"):
             self.ids.append(values["id"])
+
+
+class NativeTableTests(unittest.TestCase):
+    def test_native_table_markup_and_surrounding_text_stay_exact(self):
+        before = '<p>太陽 &amp; &#160; text</p>\r\n<!-- keep -->' + NATIVE_TABLE + '\n<p>After.</p>'
+        expected = before.replace(NATIVE_TABLE, '<div class="table-wrapper docutils">' + NATIVE_TABLE + '</div>')
+        self.assertEqual(scroll_native_tables(before), expected)
+
+    def test_existing_shared_scroll_containers_are_untouched(self):
+        for shell in ('table-wrapper docutils', 'hb-troubleshooting-composition', 'hb-spec-table-composition',
+                      'hb-lcd-table-composition', 'hb-auto-resume-composition', 'hb-key-combination-composition',
+                      'hb-lcd-mode-table-panel', 'hb-reference-composition'):
+            with self.subTest(shell=shell):
+                before = f'<div class="{shell}">{NATIVE_TABLE}</div>'
+                self.assertEqual(scroll_native_tables(before), before)
+        # A generic HB ancestor does not prove this table already scrolls.
+        before = '<div class="hb-callout">' + NATIVE_TABLE + '</div>'
+        self.assertIn('<div class="table-wrapper docutils">' + NATIVE_TABLE, scroll_native_tables(before))
+
+    def test_adjacent_tables_are_wrapped_once_and_idempotently(self):
+        before = NATIVE_TABLE + NATIVE_TABLE.replace('native-wide', 'second-wide')
+        after = scroll_native_tables(before)
+        self.assertEqual(after.count('<div class="table-wrapper docutils">'), 2)
+        self.assertEqual(scroll_native_tables(after), after)
+        self.assertEqual(after.replace('<div class="table-wrapper docutils">', '').replace('</div>', ''), before)
+
+    def test_nested_tables_keep_one_outer_scroll_container(self):
+        nested = '<table class="manual-table"><tr><td>Nested &amp; intact</td></tr></table>'
+        before = NATIVE_TABLE.replace('A&nbsp;&lt;B', nested)
+        self.assertEqual(scroll_native_tables(before), '<div class="table-wrapper docutils">' + before + '</div>')
+        contained = '<table><tr><td>' + NATIVE_TABLE + '</td></tr></table>'
+        self.assertEqual(scroll_native_tables(contained), contained)
+
+    def test_incomplete_or_mismatched_tables_are_left_as_received(self):
+        for before in (NATIVE_TABLE.removesuffix('</table>'),
+                       '<table class="manual-table"><tr><td>Broken</table>',
+                       '<table class="manual-table"><tr><td>Broken</span></td></tr></table>',
+                       '<table class="manual-table"/>'):
+            with self.subTest(before=before):
+                self.assertEqual(scroll_native_tables(before), before)
+
+    def test_other_elements_and_table_text_are_not_rewritten(self):
+        before = ('<table class="hb-spec-table"><tr><td>A</td></tr></table>'
+                  '<!-- <table class="manual-table">not a table</table> -->'
+                  '<script>const example = \'<table class="manual-table">not markup</table>\';</script>')
+        self.assertEqual(scroll_native_tables(before), before)
 
 
 class ChapterTests(unittest.TestCase):
@@ -171,7 +232,11 @@ class ReaderPageTests(unittest.TestCase):
             source, _ = test_rtd_feedback.RtdFeedbackTests._fixture(
                 root, channels=[{"label": "Email support", "url": "mailto:hello@example.test"}],
                 include_legacy=True, markdown=MANUAL)
+        legacy_source = source / "JE-TEST/EU/md/manual_legacy.md"
+        legacy_source.write_text(legacy_source.read_text() + "\n```{raw} html\n" + NATIVE_TABLE + "\n```\n")
+        originals = {path: path.read_bytes() for path in (source / "JE-TEST/EU/fr/md/manual.md", legacy_source)}
         output = test_rtd_feedback.RtdFeedbackTests._build(source, root / "html")
+        assert all(path.read_bytes() == body for path, body in originals.items()), "rendering changed source Markdown"
         cls.page = (output / "JE-TEST/EU/fr/md/manual.html").read_text(encoding="utf-8")
         cls.legacy = (output / "JE-TEST/EU/md/manual_legacy.html").read_text(encoding="utf-8")
 
@@ -232,6 +297,18 @@ class ReaderPageTests(unittest.TestCase):
         self.assertGreater(page.index('<aside class="manual-feedback"'), page.index("</article>"))
         self.assertIn('<details class="manual-feedback-details"><summary>Afficher les informations</summary>', page)
         self.assertIn('href="mailto:hello@example.test"', page)
+
+    def test_native_table_has_one_shared_scroll_shell_and_unchanged_table_markup(self):
+        self.assertIn(NATIVE_TABLE, self.page)
+        soup = BeautifulSoup(self.page, "html.parser")
+        table = soup.select_one("#native-wide")
+        self.assertEqual(table.parent.get("class"), ["table-wrapper", "docutils"])
+        self.assertEqual(len(table.find_parents(class_="table-wrapper")), 1)
+        self.assertEqual(table.caption.get_text(), "Limits & modes")
+        self.assertEqual(table.select_one("th[rowspan]")["rowspan"], "2")
+        self.assertEqual(table.select_one("td[headers]")["headers"], ["warm", "range"])
+        self.assertIn(NATIVE_TABLE, self.legacy)
+        self.assertNotIn('<div class="table-wrapper docutils">' + NATIVE_TABLE, self.legacy)
 
     def test_a_legacy_page_keeps_the_theme(self):
         self.assertNotIn("mr-top", self.legacy)

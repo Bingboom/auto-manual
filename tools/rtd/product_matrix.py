@@ -21,8 +21,8 @@ The page has a tab per 产品类别 with a grid of 产品系列 × the 容量档
 a 容量档; a 容量未注明 column for a product without one beside products with one) and, per product, a detail that opens under its 系列 row: every model with its 商品简称, figures and a
 link per market, the capability switches, the partner products in both directions, and the 通用指南 whose 适用产品
 lists one of its models, and its own 快速指南 (a guide is no product and has no card of its own). A pairing shows only
-while its text still appears in the manual it cites; anything dropped, and any published model the snapshot does
-not list (shown under 其他), is a Sphinx warning, as is a 容量档 the manual's stated capacity does not fit. ``lines``, ``accessories`` and ``assign`` stay for the 产品知识
+while its text still appears in the manual it cites; anything dropped, is a Sphinx warning, as is a 容量档 the manual's stated capacity does not fit. Published models absent from
+the classification snapshot use the operator-selected 其它 category and series without a warning. ``lines``, ``accessories`` and ``assign`` stay for the 产品知识
 page (``positioning_groups``), and an ``evidence`` assignment whose quote has left its manual still warns here.
 Without a readable manifest or a usable snapshot, or with a malformed config or capability table, the page and its
 sidebar entry are skipped.
@@ -38,6 +38,7 @@ from collections.abc import Iterable
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+from tools.rtd.product_catalog import UNCLASSIFIED_CATEGORY
 from tools.rtd.production_evidence import read_publications
 from tools.rtd.system_data import CAPABILITIES_CSV, LANGUAGES_CSV, read_targets
 from tools.utils.path_utils import Paths, PathSegments, repo_root
@@ -45,8 +46,8 @@ from tools.utils.path_utils import Paths, PathSegments, repo_root
 PAGE = "products/matrix"
 TEMPLATE = "product_matrix.html"
 CONFIG = "product_matrix.json"
-OTHER = "其他"
-UNSORTED = "未分类"
+OTHER = UNCLASSIFIED_CATEGORY
+UNSORTED = UNCLASSIFIED_CATEGORY
 UNSTATED = "容量未注明"
 # Where a quoted manual sentence starts or ends: sentence ends and Markdown headings.
 _SENTENCE_MARKS = (". ", "。", "! ", "? ", "# ")
@@ -415,7 +416,6 @@ def _rows_by_product(models: dict[str, dict[str, Any]], catalog: dict[str, Any],
     for model, row in models.items():
         entry = entries.get(model)
         if entry is None:
-            warnings.append(f"{model}: the 产品分类 snapshot does not list it; shown under {OTHER}")
             entry = {"category": OTHER, "series": UNSORTED, "short": model}
         base, edition = _edition(entry["short"], marks)
         grouped[base].append({**row, "short": entry["short"], "edition": edition, "category": entry["category"],

@@ -2674,6 +2674,54 @@
         ],
         "decision": "PR #1712 release review: existing shared candidates fail fixed 2% comparison for this exact printed JVC glyph. Keep native paths, transforms and real transparent outer margins; no redraw, no changed canonical group or admission rule. Full source binding is in the release package source/symbol-bindings.json."
       }
+    },
+    {
+      "key": "protective-ground/circle-jats05a-native-f11037ba",
+      "path": "native-v1/protective-ground-circle-jats05a-f11037ba.svg",
+      "sha256": "09fd8ebd72b333fca815548d116746b3d4d8f96e7652a7e3ecf9e45c1758d50e",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "controlled-local-source/JA-TS05A-INSTALL/US/en/source/original.pdf",
+        "source_sha256": "f11037ba531ce334a630227ec4e5554248aa56967d600f1f7cbf1b70ca034e53",
+        "physical_page": 1,
+        "drawing_indices": [
+          5441,
+          5442,
+          5443,
+          5444,
+          5445
+        ],
+        "glyph_bbox": [
+          3033,
+          1857,
+          3059,
+          1881
+        ],
+        "decision": "2026-11-18 current chat: authorized source-bound protective-ground enrollment. Original vector authority remains unchanged/local-only. Existing native_symbol_svg yields five original paths; restricted SVGO4.0.0 removes unreachable definitions only, retaining clip_7, every selected path/ancestor attribute and exactly identical12x RGBA pixels. No redraw or change to existing canonical choices, decisions, caption lists, glyph bytes or admission rules; the protective-ground group remains proposed only. Full caption/native derivation proof retained with the controlled installation source package."
+      }
+    },
+    {
+      "key": "warning/native-jats05a-f11037ba",
+      "path": "native-v1/warning-triangle-jats05a-f11037ba.svg",
+      "sha256": "d5068b08ba9ab33ccb06254e19e242bbffb432e9d463fa25bf475f5aa98d6957",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "controlled-local-source/JA-TS05A-INSTALL/US/en/source/original.pdf",
+        "source_sha256": "f11037ba531ce334a630227ec4e5554248aa56967d600f1f7cbf1b70ca034e53",
+        "physical_page": 1,
+        "drawing_indices": [
+          1632,
+          1633,
+          1634
+        ],
+        "glyph_bbox": [
+          3031,
+          1883,
+          3059,
+          1908
+        ],
+        "decision": "2026-11-18 current chat: authorized exact ATS native danger variant after existing canonical differed0.020251651 beyond fixed0.02 tolerance. Existing canonical choices, decisions, caption lists and glyph bytes remain unchanged; this new native asset is recorded only as a warning legacy variant. Preserve all three original selected paths and ancestors; SVGO4.0.0 only removes unreachable defs, keeping clip_7 and clip_8.12x RGBA pixels are exactly identical to complete original-native reference; full controlled source/caption evidence retained with installation package."
+      }
     }
   ],
   "withdrawn": [
@@ -3141,7 +3189,8 @@
         "general_warning/je2000e-eu-pt-batch1465-native",
         "general_warning/je2000e-eu-nl-batch1465-native",
         "native/je1500d-jp-6ddeef54-01",
-        "warning/outline-triangle-dark-hte162"
+        "warning/outline-triangle-dark-hte162",
+        "warning/native-jats05a-f11037ba"
       ],
       "captions": {
         "de": [
@@ -3566,6 +3615,15 @@
       "legacy_variants": [],
       "captions": {},
       "decision": "SCG-20261104"
+    },
+    {
+      "id": "protective-ground",
+      "meaning": "保护接地",
+      "status": "proposed",
+      "canonical": "protective-ground/circle-jats05a-native-f11037ba",
+      "legacy_variants": [],
+      "captions": {},
+      "decision": null
     }
   ]
 }

@@ -11,7 +11,7 @@ SVG = '{http://www.w3.org/2000/svg}'
 
 
 def _axis_path_tokens(tokens: list[str]) -> list[str]:
-    """Compare H/V closures as L endpoints without modifying original paths."""
+    """Compare explicit segments and H/V endpoints without modifying paths."""
     arity = {'M': 2, 'L': 2, 'H': 1, 'V': 1, 'C': 6, 'S': 4,
              'Q': 4, 'T': 2, 'A': 7}
     result: list[str] = []
@@ -29,8 +29,6 @@ def _axis_path_tokens(tokens: list[str]) -> list[str]:
             if command not in arity:
                 # MuPDF emits absolute commands; unknown syntax stays fail-closed.
                 return tokens
-            if command not in {'H', 'V'}:
-                result.append(command)
         count = arity[command]
         values = tokens[index:index + count]
         if len(values) != count or any(v.isalpha() for v in values):
@@ -42,6 +40,9 @@ def _axis_path_tokens(tokens: list[str]) -> list[str]:
             y = float(values[0])
             result.extend(['L', repr(x), repr(y)])
         else:
+            # Repeat an implicit command in the comparison key. Otherwise a
+            # Z expanded to L differs from the same endpoint under an omitted L.
+            result.append(command)
             x, y = map(float, values[-2:])
             # One spelling per coordinate (``-.078`` == ``-0.078``) so that
             # H/V endpoints and copied closure endpoints compare by value.
@@ -55,7 +56,7 @@ def _axis_path_tokens(tokens: list[str]) -> list[str]:
 
 def _path_key(path: ET.Element) -> tuple[str, ...]:
     tokens = re.findall(r'[A-Za-z]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?',
-                        path.get('d', '').rstrip('Zz '))
+                        path.get('d', ''))
     tokens = _axis_path_tokens(tokens)
     # Compound paths can close each subpath explicitly for the stroke, while
     # the fill already returns to its starting point. Compare those no-op
@@ -74,13 +75,6 @@ def _path_key(path: ET.Element) -> tuple[str, ...]:
                 del tokens[end - 1]
             else:
                 tokens[end - 1:end] = ['L', *tokens[start + 1:start + 3]]
-    # MuPDF sometimes closes a stroke explicitly and the fill implicitly.
-    command = next((t for t in reversed(tokens) if t.isalpha()), '')
-    if (len(tokens) > 5 and tokens[0] == 'M' and command in {'M', 'L'}
-            and tokens[-2:] == tokens[1:3]):
-        tokens = tokens[:-2]
-        if tokens[-1] == 'L':
-            tokens.pop()
     return tuple(tokens)
 
 

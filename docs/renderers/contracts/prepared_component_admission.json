@@ -10000,6 +10000,732 @@
           }
         }
       }
+    },
+    "dc3deaa0ae9354f22561f5012d0393cd062d323db55d1a34de903e464f0590be": {
+      "source": "38-0001-000543_英语单语言说明书.pdf",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-100a-eu-en",
+      "targets": {
+        "JE-100A/EU/en": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1
+              }
+            },
+            "package_list": {
+              "slot": "native/package_list",
+              "components": {
+                "HB-SPECIAL-INBOX/responsive-card-grid": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 5
+              }
+            },
+            "safety_charging": {
+              "slot": "native/safety_charging",
+              "components": {}
+            },
+            "safety_using": {
+              "slot": "native/safety_using",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            }
+          }
+        }
+      }
+    },
+    "fb1999ca77c8f33b9f4289f85516f016f3423b34009565da58576d45cdf1d30b": {
+      "source": "38-0001-000059_英语单语言说明书.pdf",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-1500b-eu-en",
+      "targets": {
+        "JE-1500B/EU/en": {
+          "pages": {
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "package_list": {
+              "slot": "native/package_list",
+              "components": {
+                "HB-SPECIAL-INBOX/responsive-card-grid": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+                "HB-TABLE-REFERENCE/lcd-actions": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 2
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {}
+            },
+            "charging_wall": {
+              "slot": "native/charging_wall",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "solar_charging": {
+              "slot": "native/solar_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 6
+              }
+            },
+            "car_charging": {
+              "slot": "native/car_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            }
+          }
+        }
+      }
+    },
+    "3d3811235b31549a715692644c0494be3d512ab42384b460fbc4c8346a03566d": {
+      "source": "38-0001-000106_英语单语言说明书.pdf",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-1000b-eu-en",
+      "targets": {
+        "JE-1000B/EU/en": {
+          "pages": {
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "package_list": {
+              "slot": "native/package_list",
+              "components": {
+                "HB-SPECIAL-INBOX/responsive-card-grid": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+                "HB-TABLE-REFERENCE/lcd-actions": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 2
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {}
+            },
+            "charging_wall": {
+              "slot": "native/charging_wall",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "solar_charging": {
+              "slot": "native/solar_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+              }
+            },
+            "car_charging": {
+              "slot": "native/car_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            }
+          }
+        }
+      }
+    },
+    "01e7d65a118edfa03ed891225f774f43d87109019a8dbc37bc206a6ba6f1e7a8": {
+      "source": "38-0001-000370_英语单语言说明书.pdf",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-1000c-eu-en",
+      "targets": {
+        "JE-1000C/EU/en": {
+          "pages": {
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "package_list": {
+              "slot": "native/package_list",
+              "components": {
+                "HB-SPECIAL-INBOX/responsive-card-grid": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+                "HB-TABLE-REFERENCE/lcd-actions": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 2
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {}
+            },
+            "eps": {
+              "slot": "native/eps",
+              "components": {}
+            },
+            "battery_pack": {
+              "slot": "native/battery_pack",
+              "components": {}
+            },
+            "app_connection": {
+              "slot": "native/app_connection",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {}
+            },
+            "charging_wall": {
+              "slot": "native/charging_wall",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "solar_charging": {
+              "slot": "native/solar_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+              }
+            },
+            "car_charging": {
+              "slot": "native/car_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_user_manual": {
+              "slot": "native/app_user_manual",
+              "components": {
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "62883ec1eddc0adeadeb0db2dc3d520898cae233c4be32ca1364db650ace396e": {
+      "source": "38-0001-000660_英语单语言说明书.pdf",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-2000c-eu-en",
+      "targets": {
+        "JE-2000C/EU/en": {
+          "pages": {
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "package_list": {
+              "slot": "native/package_list",
+              "components": {
+                "HB-SPECIAL-INBOX/responsive-card-grid": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+                "HB-TABLE-REFERENCE/lcd-actions": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 2
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {}
+            },
+            "eps": {
+              "slot": "native/eps",
+              "components": {}
+            },
+            "battery_pack": {
+              "slot": "native/battery_pack",
+              "components": {}
+            },
+            "app_connection": {
+              "slot": "native/app_connection",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {}
+            },
+            "charging_wall": {
+              "slot": "native/charging_wall",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "solar_charging": {
+              "slot": "native/solar_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 5
+              }
+            },
+            "car_charging": {
+              "slot": "native/car_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_user_manual": {
+              "slot": "native/app_user_manual",
+              "components": {
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "c03fa2906129cd5ad0f162e0291775d5a1a974b68c42d249e9f78e7738e81aec": {
+      "source": "38-0001-000621_英语单语言说明书.pdf",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-2000d-eu-en",
+      "targets": {
+        "JE-2000D/EU/en": {
+          "pages": {
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "package_list": {
+              "slot": "native/package_list",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+                "HB-TABLE-REFERENCE/lcd-actions": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 2
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "app_connection": {
+              "slot": "native/app_connection",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {}
+            },
+            "charging_wall": {
+              "slot": "native/charging_wall",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "solar_charging": {
+              "slot": "native/solar_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "car_charging": {
+              "slot": "native/car_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_user_manual": {
+              "slot": "native/app_user_manual",
+              "components": {
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "0c081c942603b64336c3ed7da6640aef7b897cb91da65e82c90431ed8c4a3dde": {
+      "source": "JE-1000D EU exact supplied English PDF",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-1000d-eu-en",
+      "targets": {
+        "JE-1000D/EU/en": {
+          "pages": {
+            "technical_specifications": {
+              "slot": "native/technical_specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "package_list": {
+              "slot": "native/package_list",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+                "HB-TABLE-REFERENCE/lcd-actions": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 2
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "app_connection": {
+              "slot": "native/app_connection",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+              }
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              }
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "0ee40b752bbe1a8d5c4826b658e896c72dcc55511c790abb36f7f6ba65e95e22": {
+      "source": "JE-240A EU exact supplied English PDF",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-240a-eu-en",
+      "targets": {
+        "JE-240A/EU/en": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-SPECIAL-INBOX/responsive-card-grid": 1
+              }
+            },
+            "gear": {
+              "slot": "native/gear",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+                "HB-TABLE-REFERENCE/lcd-actions": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 2
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {}
+            },
+            "app_connection": {
+              "slot": "native/app_connection",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+              }
+            },
+            "safety_precautions": {
+              "slot": "native/safety_precautions",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 4,
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              }
+            },
+            "app_manual": {
+              "slot": "native/app_manual",
+              "components": {
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "dd37870b3953283aef6d8860f755bd095720f0257ea3f3738b8f3ff44ceaf68d": {
+      "source": "38-0001-000819_英语单语言说明书.pdf",
+      "review_record": "code-as-doc/reviews/single_language_web_batch_2026-11-18.md#je-3000b-eu-en",
+      "targets": {
+        "JE-3000B/EU/en": {
+          "pages": {
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "package_list": {
+              "slot": "native/package_list",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+                "HB-TABLE-REFERENCE/lcd-actions": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 3
+              }
+            },
+            "basic_operations": {
+              "slot": "native/basic_operations",
+              "components": {
+                "HB-TABLE-REFERENCE/lcd-actions": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {}
+            },
+            "app_connection": {
+              "slot": "native/app_connection",
+              "components": {}
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {}
+            },
+            "charging_wall": {
+              "slot": "native/charging_wall",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "solar_charging": {
+              "slot": "native/solar_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "car_charging": {
+              "slot": "native/car_charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {}
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_user_manual": {
+              "slot": "native/app_user_manual",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

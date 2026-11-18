@@ -261,6 +261,13 @@ public manuals project shows it too.
   The knowledge and search extractors therefore read the manual text alone.
   The feedback card and the footer sit outside it, so the card's text no longer
   reaches the search index.
+- **Wide native tables**: only verified single-language reader pages receive the
+  existing `table-wrapper docutils` scrolling shell around complete, unwrapped
+  `table.manual-table` elements. The renderer inserts the shell at original string
+  offsets; captions, headers, entities and cell spans remain byte-for-byte intact.
+  Existing shared scrolling compositions, nested tables and incomplete or malformed
+  tables are not wrapped again. Legacy pages keep their existing rendering, and
+  frozen Markdown, IR, CSS and assets are never edited by this display step.
 - **Removed**: Furo's sidebar, page-source button, theme switch (the page stays
   light) and footer.
 - **Words**: the frame speaks the manual's language. Its words (top bar,
