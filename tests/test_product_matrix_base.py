@@ -527,8 +527,9 @@ class MatrixBase(FakeBase):
             self.schema[table].append(json.loads(args[args.index("--json") + 1]))
             return {"ok": True, "data": {}}
         if command == "+field-delete":
-            name = args[args.index("--field-id") + 1]
-            self.schema[table] = [f for f in self.schema[table] if f["name"] != name]
+            field = args[args.index("--field-id") + 1]
+            self.deleted = [*getattr(self, "deleted", []), field]
+            self.schema[table] = [f for f in self.schema[table] if field not in (f["name"], f.get("id"))]
             return {"ok": True, "data": {}}
         if command == "+record-upsert":
             record = args[args.index("--record-id") + 1]
@@ -613,6 +614,14 @@ class MatrixWriteTest(unittest.TestCase):
         base.rows["矩阵"].append({"产品键": "X", "c79": "v", "_id": "rec0"})
         rows = read_rows(base, "矩阵", ["产品键"] + [f"c{i}" for i in range(80)])
         self.assertEqual((len(rows), rows[0]["产品键"], rows[0]["c79"]), (1, "X", "v"))
+
+    def test_a_dropped_column_is_deleted_by_its_id(self):
+        base = MatrixBase()
+        base.schema["矩阵"].append({"name": "旁路 AC 输入/输出", "type": "text", "id": "fldSLASH"})
+        planned = matrix.plan(base, {"ids": {name: name for name in base.schema}},
+                              matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        self.assertEqual(matrix.drop_columns(base, planned, ["旁路 AC 输入/输出"]), ["旁路 AC 输入/输出"])
+        self.assertEqual(base.deleted, ["fldSLASH"])  # a slash in a name would break the request path
 
     def test_columns_holding_values_are_never_dropped(self):
         base = MatrixBase()

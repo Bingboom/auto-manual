@@ -319,9 +319,10 @@ def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list
     filled = sorted({name for row in rows for name in names if row.get(name) not in (None, "", [])})
     if filled:
         raise LoadError(f"{MATRIX} columns to drop still hold values: {filled}")
-    for name in names:
-        _check(run(["+field-delete", "--table-id", planned["table_id"], "--field-id", name, "--yes"]),
-               f"{MATRIX} drop {name}")
+    have = fields(run, planned["table_id"])
+    for name in names:  # by field id: a name such as 「旁路 AC 输入/输出」 breaks the request path
+        _check(run(["+field-delete", "--table-id", planned["table_id"], "--field-id", have[name].get("id") or name,
+                    "--yes"]), f"{MATRIX} drop {name}")
     return list(names)
 
 
