@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from tools import lang_registry
 from tools.build_paths import load_config
 from tools.data.snapshot import resolve_data_snapshot_paths, resolve_phase2_export_root
 from tools.utils.spec_master_row_helpers import multi_value_tokens
@@ -34,6 +35,14 @@ LANGUAGE_ALIASES = {
     "zh-hant": "zh-tw",
     "traditional chinese": "zh-tw",
 }
+for _spec in lang_registry.LANGUAGE_REGISTRY:
+    _canonical = _spec.code.lower()
+    LANGUAGE_ALIASES.setdefault(_canonical, _canonical)
+    LANGUAGE_ALIASES.setdefault(_spec.tm_column.lower(), _canonical)
+    LANGUAGE_ALIASES.setdefault(_spec.display_name.lower(), _canonical)
+    for _alias in _spec.aliases:
+        LANGUAGE_ALIASES.setdefault(_alias.lower(), _canonical)
+        LANGUAGE_ALIASES.setdefault(_alias.lower().replace("_", "-"), _canonical)
 
 TABLE_ALIASES = {
     "footnotes": "spec-footnotes",
