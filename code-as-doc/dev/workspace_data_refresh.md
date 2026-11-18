@@ -81,7 +81,10 @@ Workspace Data Verify——工作流令牌做的合入不会触发 push 工作�
 来源绑定采用 `workspace_refresh_sources.json` 中的身份哈希，基于双平面地图的
 业务构建表与唯一 TM-B；不记录凭据。只读导出仍复用 `rtd_deliverables.export_snapshot`
 和 `rtd_system_workspace.corpus_export`。语料仅保存汇总、状态计数和源内容哈希；
-同条数文本修订也会改变内容标识，不公开语料正文。
+同条数文本修订也会改变内容标识，不公开语料正文。语料导出写 `hello-docs-tm-corpus/v1.1`，
+两张表各加一项 `approved_by_language`（每种语言中状态为 `Approved` 的行数），读取方同时接受
+不带该项的 `v1`。减少保护只比较 `total` 与 `by_language`；`approved_by_language` 下降
+（条目被弃用）不阻断替换，首次从 `v1` 换成 `v1.1` 时内容标识会变化（状态 `changed`）。
 
 ## 存储、确认时间与发布
 

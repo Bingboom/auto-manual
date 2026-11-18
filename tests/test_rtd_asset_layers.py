@@ -1,6 +1,7 @@
 """四类资产 pages (tools/rtd/asset_layers.py, tools/rtd/asset_media.py): views read only what exists, and say so."""
 from __future__ import annotations
 
+import datetime as dt
 import json
 import tempfile
 import unittest
@@ -141,6 +142,40 @@ class LayerViewTests(unittest.TestCase):
         rows = page.select(".fr-langs tbody tr")
         self.assertEqual([r.th.get_text() for r in rows], ["English", "Deutsch"])
         self.assertEqual(page.select(".fr-figs div")[2].get_text(" "), f"{len(rows)} 种语言")
+
+    def test_corpus_page_counts_approved_entries_only_when_the_snapshot_does(self):
+        contract = sw.load_contract(ASSETS / sw.CONTRACT_NAME)
+        contract["corpus"] = {"languages": [{"code": "en", "label": "英语"}, {"code": "fr", "label": "法语"},
+                                            {"code": "de", "label": "德语"}]}
+        snapshot = {"schema": sw.CORPUS_SCHEMA, "exported_at": "2026-11-01",
+                    "sentence_pairs": {"total": 10, "by_language": {"en": 9, "fr": 4, "de": 3},
+                                       "by_status": {"Approved": 6, "Draft": 4},
+                                       "approved_by_language": {"en": 6, "fr": 2, "de": 0}},
+                    "terms": {"total": 5, "by_language": {"en": 5, "fr": 1, "de": 2},
+                              "by_status": {"Approved": 3, "Deprecated": 2},
+                              "approved_by_language": {"en": 3, "fr": 1, "de": 0}}}
+        self.assertEqual(sw.corpus_problems(snapshot, ["en", "fr", "de"]), [])
+        system = {"corpus": sw.corpus_view(contract, snapshot, dt.date(2026, 11, 2), 45)}
+        page = render("asset_language.html", layer=al.language_view(system, {"en": "English"}))
+        self.assertEqual(page.select_one(".fr-head p").get_text(), "已批准的术语和标准句，多语言对照 · 更新于 2026-11-01")
+        self.assertEqual([d.get_text(" ") for d in page.select(".fr-figs div")],
+                         ["6 组句子", "3 个术语", "2 种语言"])
+        self.assertNotIn("已批准", page.select_one(".fr-figs").get_text())
+        rows = page.select(".fr-langs tbody tr")
+        # 德语 has pairs and terms, none approved: not listed.
+        self.assertEqual([(r.th.get_text(), r.select("td")[0].get_text(), r.select("td")[2].get_text()) for r in rows],
+                         [("English", "6", "3"), ("法语", "2", "1")])
+        # Without the key the same figures read as before: all entries, with how many are approved.
+        v1 = {**snapshot, "schema": sw.CORPUS_SCHEMA_V1,
+              "sentence_pairs": {k: v for k, v in snapshot["sentence_pairs"].items() if k != "approved_by_language"},
+              "terms": {k: v for k, v in snapshot["terms"].items() if k != "approved_by_language"}}
+        system = {"corpus": sw.corpus_view(contract, v1, dt.date(2026, 11, 2), 45)}
+        page = render("asset_language.html", layer=al.language_view(system, {"en": "English"}))
+        self.assertEqual([d.get_text(" ") for d in page.select(".fr-figs div")],
+                         ["10 组句子，其中 6 组已批准", "5 个术语，其中 3 个已批准", "3 种语言"])
+        self.assertEqual([r.th.get_text() for r in page.select(".fr-langs tbody tr")], ["English", "法语", "德语"])
+        # 系统建设 keeps the whole corpus either way.
+        self.assertEqual([t["value"] for t in system["corpus"]["tiles"]], ["10", "5", "3", "60%"])
 
     def test_corpus_languages_are_named_as_the_manual_library_names_them(self):
         corpus = {"rows": [{"code": "en", "label": "英语"}, {"code": "jp", "manual": "ja", "label": "日语"},
