@@ -403,7 +403,7 @@ address forwards here, and the public manual library never links to it.
 - **Source.** `tools/rtd/product_library.py` reads the product-information
   snapshot, `product-matrix/snapshot.json` under the knowledge directory
   (`rtd_knowledge_dir`, by default Hello-Docs `docs/knowledge/`; schema
-  `hello-docs-product-matrix-snapshot/v1`). The matrix window exports it read-only from the
+  `hello-docs-product-matrix-snapshot/v1`, `v1.1` or `v1.2`). The matrix window exports it read-only from the
   产品信息矩阵 base ([product_matrix_base.md](../product_matrix_base.md)). A product row
   there is one model in one market, with its 产品类别, 产品系列, 容量档 and project.
   Every count and date on the page comes from that file; nothing is hard-coded.
@@ -413,6 +413,19 @@ address forwards here, and the public manual library never links to it.
   public-role build in `tests/test_rtd_portal.py` fails if any file or text of
   `knowledge/product-matrix` reaches its output. Tests use invented products and
   projects (`P-FAKE-*`).
+- **Freshness.** Every product page (产品库, 产品对比, 参数表, 产品档案) shows, under
+  its header, `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; a v1.1 snapshot
+  has no build time and shows `未记录（旧版快照）`), and an amber `数据可能不是最新`
+  box when the snapshot is past the registry's `product_matrix.stale_after_days`
+  without a successful check, when the last check found the base ahead or failed, or
+  when the base's latest fact record time is newer than the snapshot's.
+  `tools/rtd/product_freshness.py` decides this at build time from the snapshot and
+  `product-matrix/status.json` (written by the sync check, contract §6.1 of
+  [product_matrix_base.md](../product_matrix_base.md)); the build never reads the base.
+  The status counts only while it describes the snapshot on disk (same `read_at`). The
+  shared `product_freshness` macro lives in `_product_tabs.html`. The status file is as
+  private as the snapshot: the public-role test also plants one and fails if any of it
+  reaches the output.
 - **Layout.** The title 产品库 and one line, `<n> 款产品 · 更新于 <date>` (models, and
   the snapshot's read date). A tab per category, in the 产品分类 snapshot's order
   (others after it, then 其他 for products without a category). Each tab is a table:

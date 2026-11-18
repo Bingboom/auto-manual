@@ -56,6 +56,13 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
 `FEISHU_PUBLISHED_DOCS_REVIEW_TABLE_ID`（同一 Base 的「审核稿」表）和 `FEISHU_PUBLISHED_DOCS_URL`
 （Base 的飞书地址，用于回链），并完整拉取提交历史（`fetch-depth: 0`、`filter: blob:none`）来给语言版本定首次上线日期。
 其余来源仍不定时轮询。规则见 [网页说明书进度](rtd_manual_portal/web-progress.md#refreshing)。
+
+产品信息矩阵（操作者 2026-11-18）不是工作台快照，而是同一工作流里独立的 `product-matrix` job：随同一定时
+（或手动选 `product_matrix`）运行 `python -m tools.product_matrix_base check --write --refresh`，比较矩阵 base 与已提交的
+`docs/knowledge/product-matrix/snapshot.json`，落后就重读快照，并把快照和 `status.json` 提到
+`chore/product-matrix-refresh` 的内容 PR（`tools/product_matrix_base/publish.py` 复用本页的
+`workspace_refresh_publish.submit_files`；不自动合入）。只需 `FEISHU_PUBLISHED_DOCS_BASE_TOKEN`；失败时沿用同一
+issue 机制（`Workspace data update: product_matrix`）。字段与判定见 [产品信息矩阵 base §6.1](product_matrix_base.md#61-私有站点用的快照)。
 导出失败保留旧值并提交可审核的失败状态；同一事件仅一个 GitHub issue，不重复评论。
 已有内容 PR 会被复用。交付和语料的内容 PR 不自动合入，审核人员检查来源、减少保护和执行记录后合入。
 网页说明书进度例外：本次导出成功（`changed` 或 `unchanged`）时，`workspace_refresh_publish` 用

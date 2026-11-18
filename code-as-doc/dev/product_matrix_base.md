@@ -169,7 +169,8 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
 
 - 命令：`python -m tools.product_matrix_base snapshot [--out <Hello-Docs 检出>/docs/knowledge/product-matrix] [--write]`。
   只读 base；默认只打印计数，加 `--write` 才写出 `snapshot.json`（不叫 `product_matrix.json`，以免和门户的同名配置文件混淆）。
-- 内容（`hello-docs-product-matrix-snapshot/v1.1`，v1 之上只增加 `values[].id` 与 `cells`；每个列表按键排序，两次快照可直接 diff）：
+- 内容（`hello-docs-product-matrix-snapshot/v1.2`：v1.1 在 v1 之上增加 `values[].id` 与 `cells`，v1.2 只在头部增加
+  `built_at` 与 `source_modified_at`；每个列表按键排序，两次快照可直接 diff）：
   - `products`：产品键、型号、市场、品牌、商品简称与各语言名称、类别、系列、容量档、项目号、上市日期等；
   - `parameters`：属性键（只作关联用）、中英文名、分组、值类型、规范单位、定义、适用类别、排序；
   - `sources`：不透明的来源 id（来源键的哈希）、来源类型、型号、市场、语言、版本日期、页面路径（链到已发布说明书）；
@@ -206,7 +207,10 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
   - `component_values`：组件的值，单列，不并入主产品；
   - 勾了「不收录」或已从产品表删除的产品不进快照，它们的值不进 `values` / `component_values`；
     `sources` 不含这些产品的来源（被收录产品的来源即使暂无值也保留）；
-  - 头部：读 base 的时间、各表计数、快照 schema。
+  - 头部：`read_at`（读 base 的时间）、`built_at`（v1.2 起，快照生成完毕的时间）、`source_modified_at`（v1.2 起，
+    读到的事实里最晚的「记录时间」，UTC；没有则为 null）、各表计数、快照 schema。`source_modified_at` 不是飞书的
+    记录修改时间：`lark-cli base +record-list` 不返回修改时间，所以人改已有行的字段不会推动它；快照是否落后
+    以内容比较为准（下一条），它只说明最新一条事实有多新。尚未对真实 base 验证它的取值。
   不含飞书 record id、table id、token、网址，也不含来源版本标签（含流水线构建号）：来源只用不透明 id 和页面路径。
 - 写入位置由代码把关，两个条件同时满足才写：检出的 `origin` 远端指向 Hello-Docs 仓库（读不到远端就拒绝），
   且根 README 等于 `mirrors/Hello-Docs/README.md`（与维护性守卫识别镜像的方法相同；`origin` 指向 auto-manual 的检出
@@ -214,7 +218,30 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
   写入先写同目录临时文件再改名。命令打印的摘要只有计数；读写带项目号的表失败时，只报操作和 lark-cli 错误码，
   不转出 CLI 的原始输出。
 - 每个产品都有 `project` 字段（没有项目号时为 null）；对到多个项目的产品不会被随便选一个，保持为空，由人在 base 里填。
-- 刷新：base 有改动后在 Hello-Docs 检出上重跑命令，以 Hello-Docs 的内容 PR（只含该目录）提交。
+- 同步检查（操作者 2026-11-18：快照跟着生产走，不靠人改展示数字）：
+  `python -m tools.product_matrix_base check --out docs/knowledge/product-matrix [--write [--refresh]] [--now <ISO>] [--log <文件>]`
+  （[`sync.py`](../../tools/product_matrix_base/sync.py)）。按 `snapshot` 的读法读一遍 base，把内容摘要
+  （`snapshot.content_digest`：schema 与全部列表，不含三个时间）与已提交的 `snapshot.json` 比较，结论写进同目录的
+  `status.json`（`hello-docs-product-matrix-status/v1`，沿用 `workspace-refresh/v1` 的字段习惯）：
+  - `status`：`current`（一致）、`behind`（base 已变或快照 schema 更旧；`lag.reason` 写原因，只有时间与计数）、
+    `refreshed`（带 `--refresh` 时直接写出这次读到的快照）、`failed`（读不到 base；只记 `error_type`，不记 CLI 原文）；
+  - `checked_at`、`last_success`（最近一次确认快照与 base 一致的时间；失败或落后都不改它）、`snapshot`（已提交快照的
+    schema、`read_at`、`built_at`、`source_modified_at`、内容摘要）、`source`（这次读到的 base 的 `source_modified_at`
+    与内容摘要）、`lag`（`behind` 与 `reason`）、`execution`、`resume`。
+  默认只打印结论；`--write` 写 `status.json`，`--refresh` 还写快照。退出码 0 一致或已刷新、1 落后、2 失败。
+  写入位置与 `snapshot` 相同的把关；`--log` 是运行证据（只有时间、摘要与计数）。人负责的字段（核实、裁定、说明、
+  推迟原因）只在 base 里由人改，检查不写 base。
+- 独立触发：`Workspace Data Refresh` 工作流的 `product-matrix` job（只在 Hello-Docs 的 main 上，随每日定时或手动选
+  `product_matrix`），跑 `check --write --refresh`，再由 [`publish.py`](../../tools/product_matrix_base/publish.py)
+  把刷新后的快照和/或 `status.json` 提到 `chore/product-matrix-refresh` 的内容 PR（只含本目录，必须审核后合入，不自动合并）。
+  同一结论的重复确认不单独提交，直到已提交的确认满 3 天；失败或落后时 job 失败并开（或沿用）一个 issue
+  「Workspace data update: product_matrix」，恢复后自动关闭。它不是已退役的定时队列，不受 `LEGACY_TEMPLATE_QUEUE_ENABLED` 控制。
+- 页面提示：产品库、产品对比、参数表、产品档案显示「数据读取于 · 快照生成于 · 最近同步成功」，并在以下情况显示
+  「数据可能不是最新」（[`product_freshness.py`](../../tools/rtd/product_freshness.py)，构建时不访问 base）：最近确认
+  （`read_at` 与适用于该快照的 `last_success` 中较晚者）超过登记表 `product_matrix.stale_after_days`；检查结论为
+  `behind`；base 的 `source_modified_at` 晚于快照的；最近一次检查失败。v1.1 快照没有 `built_at`，显示「未记录（旧版快照）」。
+- 手动刷新仍可用：base 有改动后在 Hello-Docs 检出上运行 `check --write --refresh`（或 `snapshot --write`），以只含该目录的
+  内容 PR 提交。
 
 ## 7. 不进 git 的内容
 
