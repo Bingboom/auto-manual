@@ -6,11 +6,15 @@
              [--write --yes] [--correct]
     projects [--write --yes]          # fill 产品.项目号（仅飞书） from 网页文档 (counts only)
     matrix   [--write --yes] [--drop-unused] [--manifest <manifest>]
+    snapshot [--out <Hello-Docs>/docs/knowledge/product-matrix] [--write]
+    check    --out <Hello-Docs>/docs/knowledge/product-matrix [--write [--refresh]] [--now <ISO time>] [--log <file>]
 
 With a base, ``stage`` is a dry run that lists per table the rows to create, the rows already there, and the
 existing rows whose values the current reading prints differently. ``--write --yes`` creates the absent rows;
 ``--correct`` (with ``--write --yes``) also corrects those differing 事实 rows in place, only while they are still
-候选. Every file this command writes must lie outside any git work tree. Contract:
+候选. Every file this command writes must lie outside any git work tree, except the snapshot and its status.json
+(``snapshot``, ``check``), which go only to docs/knowledge/ of the Hello-Docs mirror, and ``check --log``, the run's
+copy of that status (times, hashes and counts, no product data). Contract:
 ``code-as-doc/dev/product_matrix_base.md``.
 """
 from __future__ import annotations
@@ -332,6 +336,62 @@ def _snapshot(args: argparse.Namespace) -> int:
     return 0
 
 
+def _no_base(_args: list[str]) -> dict[str, Any]:
+    raise LoadError("no base given")
+
+
+def _when(text: str) -> datetime:
+    """--now: an ISO time (UTC when it names no offset), so a check can be replayed at a fixed moment."""
+    from tools.product_matrix_base.sync import parse_time
+
+    moment = parse_time(text)
+    if moment is None:
+        raise argparse.ArgumentTypeError(f"not an ISO time: {text!r}")
+    return moment
+
+
+def _check(args: argparse.Namespace) -> int:
+    """Compare the base with the committed snapshot; record the verdict in status.json (and, with --refresh, the
+    snapshot the check read when the base has moved on). Exit 0 current or refreshed, 1 behind, 2 failed."""
+    from tools.product_matrix_base import snapshot, sync
+
+    if args.refresh and not args.write:
+        print("ERROR   --refresh writes the snapshot: add --write")
+        return 2
+    try:
+        target = snapshot.safe_destination(args.out)
+    except snapshot.SnapshotError as exc:
+        print(f"ERROR   {exc}")
+        return 2
+    status_path = target.with_name(sync.STATUS_FILE)
+    base = args.base_token or os.environ.get(BASE_ENV)
+    if not base:
+        print("ERROR   no base given")
+    run = lark_runner(base, profile=args.profile, identity=args.identity, lark_cli=args.lark_cli) if base else _no_base
+    status, fresh = sync.check(run, sync.read_json(target), sync.read_json(status_path),
+                               now=args.now or datetime.now(timezone.utc), refresh=args.refresh,
+                               execution=sync.execution_url())
+    # Counts and times only: the reason never names a product, a project or a key.
+    print(f"检查: {status['status']} · {status['lag']['reason']} · 最近同步成功 {status['last_success'] or '无记录'}")
+    if args.write:
+        try:
+            if fresh is not None:
+                snapshot.write_snapshot(target, fresh)
+                print(f"快照: {snapshot.summary(fresh)}")
+            snapshot.write_snapshot(status_path, status)
+        except snapshot.SnapshotError as exc:
+            print(f"ERROR   {exc}")
+            return 2
+        print(f"wrote {sync.STATUS_FILE}" + (f" and {target.name}" if fresh is not None else "")
+              + " under the Hello-Docs knowledge directory")
+    else:
+        print("dry run: nothing written")
+    if args.log:
+        args.log.parent.mkdir(parents=True, exist_ok=True)
+        args.log.write_text(json.dumps(status, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return {"current": 0, "refreshed": 0, "behind": 1}.get(status["status"], 2)
+
+
 def _update_manifest(path: Path, matrix_fields: list[dict[str, str]]) -> None:
     manifest = json.loads(path.read_text(encoding="utf-8"))
     for table in manifest["tables"]:
@@ -388,6 +448,19 @@ def main(argv: list[str] | None = None) -> int:
     sn.add_argument("--explain-references", action="store_true",
                     help="when the reference check fails, print the fact and source keys behind it (local use only)")
     sn.set_defaults(func=_snapshot)
+    ck = sub.add_parser("check", help="compare the base with the committed snapshot and record status.json")
+    ck.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
+    ck.add_argument("--profile")
+    ck.add_argument("--identity", default="bot", choices=["bot", "user"])
+    ck.add_argument("--lark-cli", default="lark-cli")
+    ck.add_argument("--out", type=Path, required=True,
+                    help="the snapshot's directory under docs/knowledge/ of a Hello-Docs mirror checkout")
+    ck.add_argument("--write", action="store_true", help="write status.json (else print the verdict only)")
+    ck.add_argument("--refresh", action="store_true", help="with --write: when the base has moved on, also write "
+                                                           "the snapshot this check read")
+    ck.add_argument("--now", type=_when, help="the check's time, ISO (tests and replays; default: the clock)")
+    ck.add_argument("--log", type=Path, help="also write the status here (the workflow's run evidence)")
+    ck.set_defaults(func=_check)
     mx = sub.add_parser("matrix", help="generate the 矩阵 table from the facts in the base")
     mx.add_argument("--base-token", help=f"the matrix base (default: ${BASE_ENV})")
     mx.add_argument("--profile")

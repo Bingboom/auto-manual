@@ -865,7 +865,10 @@ class SnapshotTest(unittest.TestCase):
         self.assertEqual(snapshot.encode(snapshot.build_snapshot(self.base(), now=datetime(2026, 11, 17, tzinfo=timezone.utc))), snapshot.encode(document))
         self.assertNotIn("P-FAKE", snapshot.summary(document))
         # v1.1: every value has an opaque id; one cell per product × parameter, chosen as the matrix chooses.
-        self.assertEqual(document["schema"], "hello-docs-product-matrix-snapshot/v1.1")
+        # v1.2: the build time, and the latest 事实.记录时间 (none in this base) beside the read time.
+        self.assertEqual(document["schema"], "hello-docs-product-matrix-snapshot/v1.2")
+        self.assertEqual((document["read_at"], document["built_at"], document["source_modified_at"]),
+                         ("2026-11-17T00:00:00Z", "2026-11-17T00:00:00Z", None))
         self.assertTrue(all(len(v["id"]) == 12 and v["id"] not in ("k1", "k2") for v in document["values"]))
         cell = document["cells"][0]
         self.assertEqual((cell["product"], cell["parameter"], cell["condition"]), ("JE-A/US", "capacity_wh", None))

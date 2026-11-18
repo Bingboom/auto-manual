@@ -22,8 +22,9 @@ from typing import Any, Iterable
 
 SNAPSHOT = Path("product-matrix") / "snapshot.json"
 SCHEMA = "hello-docs-product-matrix-snapshot/v1"
-# v1.1 only adds fields (value ids and the decided cells); both read the same.
-SCHEMAS = (SCHEMA, "hello-docs-product-matrix-snapshot/v1.1")
+# v1.1 adds value ids and the decided cells, v1.2 the build and latest-record times (tools/rtd/product_freshness.py);
+# each only adds fields, so all three read the same.
+SCHEMAS = (SCHEMA, "hello-docs-product-matrix-snapshot/v1.1", "hello-docs-product-matrix-snapshot/v1.2")
 OTHER_CATEGORY = "其他"
 UNSORTED_SERIES = "未分类"
 UNSTATED_TIER = "容量未注明"

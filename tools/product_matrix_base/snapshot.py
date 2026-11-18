@@ -2,7 +2,7 @@
 
 ``build_snapshot(run)`` reads the 产品, 属性, 来源 and 事实 tables and returns one deterministic document: products,
 parameters, sources, main-product values and component values, each sorted by its key, plus a header (when the base
-was read, row counts, the snapshot schema). It carries no Feishu record ids, table ids, tokens or URLs, and no raw
+was read, when the snapshot was built, the latest fact record time the base holds, row counts, the snapshot schema). It carries no Feishu record ids, table ids, tokens or URLs, and no raw
 edition labels (they hold pipeline build codes): a source is identified by an opaque id and linked by its page path.
 
 The snapshot holds project numbers, which may go to the private Hello-Docs mirror and the private site but never to
@@ -24,7 +24,11 @@ from tools.product_matrix_base.stage import (
     require_exclude_field, table_ids,
 )
 
-SCHEMA = "hello-docs-product-matrix-snapshot/v1.1"  # v1.1 adds values[].id and cells (additions only)
+# v1.1 adds values[].id and cells; v1.2 adds built_at and source_modified_at (additions only).
+SCHEMA = "hello-docs-product-matrix-snapshot/v1.2"
+# The header's times: when the base was read, when the document was finished, the latest 事实.记录时间 it holds.
+# ``content_digest`` leaves them out, so two reads of an unchanged base compare equal.
+TIMES = ("read_at", "built_at", "source_modified_at")
 FILE_NAME = "snapshot.json"
 PRIVATE_MIRROR = "Hello-Docs"
 KNOWLEDGE = Path("docs") / "knowledge"
@@ -159,8 +163,32 @@ def _kept(run: Runner, ids: dict[str, str]) -> tuple[list[dict[str, Any]], list[
     return products, facts, [_source(r) for r in raw], raw
 
 
+def _stamp(moment: datetime) -> str:
+    return moment.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _latest_record(facts: list[dict[str, Any]]) -> str | None:
+    """The latest 事实.记录时间 among the facts read, as UTC; None when no fact carries one.
+
+    lark-cli's record list returns no record modification time, so this is the base's own record time: a fact the
+    loader adds moves it, a person editing a field of an existing row does not. Lag is decided by comparing content
+    (``tools/product_matrix_base/sync.py``); this time only says how recent the newest fact is.
+    """
+    seconds = [s for s in (_instant(row.get("记录时间")) for row in facts) if s is not None]
+    return _stamp(datetime.fromtimestamp(max(seconds), timezone.utc)) if seconds else None
+
+
+def content_digest(document: dict[str, Any]) -> str:
+    """The snapshot's content (schema and lists, not its times) as a SHA-256: equal for two reads of one base."""
+    return hashlib.sha256(encode({k: v for k, v in document.items() if k not in TIMES})).hexdigest()
+
+
 def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
-    """The snapshot document, every list sorted by its key so successive snapshots diff cleanly."""
+    """The snapshot document, every list sorted by its key so successive snapshots diff cleanly.
+
+    ``now`` fixes both the read and the build time (tests); otherwise each is the clock when it happens.
+    """
+    read_at = now or datetime.now(timezone.utc)
     ids = table_ids(run)
     missing = [name for name in ("产品", "属性", "来源", "事实") if name not in ids]
     if missing:
@@ -178,7 +206,8 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
     order = (lambda v: (v["product"], v["parameter"], v["condition"] or "", v["source"]))
     document = {
         "schema": SCHEMA,
-        "read_at": (now or datetime.now(timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "read_at": _stamp(read_at),
+        "source_modified_at": _latest_record(facts),
         "counts": {"products": len(products), "parameters": len(parameters), "sources": len(sources),
                    "values": len(main), "component_values": len(components), "cells": len(cells),
                    "products_with_project": sum(1 for p in products if p["project"]),
@@ -199,6 +228,7 @@ def build_snapshot(run: Runner, now: datetime | None = None) -> dict[str, Any]:
     except SnapshotReferenceError as exc:
         exc.rows = reference_rows(facts, raw_sources, {cell["value"] for cell in cells})
         raise
+    document["built_at"] = _stamp(now or datetime.now(timezone.utc))
     return document
 
 
@@ -255,5 +285,5 @@ def summary(document: dict[str, Any]) -> str:
             f"来源 {counts['sources']}，主产品值 {counts['values']}，组件值 {counts['component_values']}")
 
 
-__all__ = ["FILE_NAME", "SCHEMA", "SnapshotError", "build_snapshot", "encode", "safe_destination", "source_id",
-           "summary", "write_snapshot"]
+__all__ = ["FILE_NAME", "SCHEMA", "TIMES", "SnapshotError", "build_snapshot", "content_digest", "encode",
+           "safe_destination", "source_id", "summary", "write_snapshot"]
