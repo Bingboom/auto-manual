@@ -42,7 +42,7 @@ jobs:
     steps:
       # web_progress dates each language version from the publish manifest's history, so it
       # needs every commit; blob:none keeps that clone to commits and trees, fetching blobs on use.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: ${{ (inputs.source || 'web_progress') == 'web_progress' && '0' || '1' }}
