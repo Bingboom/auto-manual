@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery HomePower 5000 Plus.pdf",
+  "sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
+  "size_bytes": 35312740,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI3vEx",
+    "field_name": "source_file",
+    "file_token": "VSsWbQgCgoVPU6xcTazczj7Nnzh"
+  },
+  "local_relpath": "Jackery HomePower 5000 Plus.pdf",
+  "source_key": "source/manual_jhp5000c_us_native",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

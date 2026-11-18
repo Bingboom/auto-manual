@@ -28,6 +28,10 @@ from tools.web.frozen_ai_web import replay_package
 from tools.web.prepared_style_audit import require_prepared_document_styles
 from tools.web.presentation import load_web_manual_contract
 from tools.web.symbol_asset_admission import require_symbol_asset_admission
+from tools.web.external_source_store import (
+    resolve_source_identity,
+    reviewed_inputs_match_with_pointers,
+)
 
 
 def assemble(output: Path) -> dict:
@@ -43,7 +47,7 @@ def assemble(output: Path) -> dict:
         if file_sha256(REPO / entry['path']) != entry['sha256']:
             raise ValueError('shared input drift: ' + entry['path'])
     source = json.loads((PACKAGE / 'source/document.json').read_text())
-    if file_sha256(PACKAGE / manifest['original_source']['filename']) != source['source_sha256']:
+    if resolve_source_identity(PACKAGE / manifest['original_source']['filename'])[1] != source['source_sha256']:
         raise ValueError('original PDF identity changed')
     approved = manifest['publication_status'] == 'operator-authorized-git-only-release'
     approval = json.loads((PACKAGE / 'source/approval.json').read_text()) if approved else None
@@ -52,7 +56,14 @@ def assemble(output: Path) -> dict:
         reviewed = [r for r in manifest['inputs']
                     if (not r['path'].startswith('web/') or r['path'].startswith('web/ja/assets/'))
                     and r['path'] != 'source/approval.json']
-        if (approval['source_sha256'] != source['source_sha256'] or approval['verified_inputs'] != reviewed
+        if (approval['source_sha256'] != source['source_sha256'] or not reviewed_inputs_match_with_pointers(
+            PACKAGE,
+            approval['verified_inputs'],
+            reviewed,
+            original_sha256=source['source_sha256'],
+            raw_archive_paths=(manifest['original_source']['filename'],),
+            adapter_paths=('rebuild.py',),
+        )
                 or approval['target'] != manifest['target'] or not approval['operator_quote']):
             raise ValueError('release authority does not cover these source inputs')
     if output.exists():

@@ -15,6 +15,7 @@ from tests.historical_web_inputs import historical_shared_inputs
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
+from tools.web.external_source_store import cold_replay_ir_matches, resolve_source_identity
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 from tests.historical_app_styles import pre_rowspan_divider_styles
 
@@ -68,7 +69,7 @@ class JACK01ABKQuickGuideWebTest(unittest.TestCase):
         self.assertEqual(manifest['original_source']['sha256'], SOURCE_SHA)
         self.assertEqual(manifest['identity']['material_code'], 'HTO862A-JP-JAK')
         self.assertEqual(manifest['route']['route'], 'JA-CK01A-BK-QG/JP/ja/md')
-        self.assertEqual(file_sha256(PACKAGE / 'source/original.pdf'), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / 'source/original.pdf')[1], SOURCE_SHA)
         self.assertIsNone(manifest['printed_manual_version'])
         self.assertFalse(manifest['live_bitable_dependency'])
         if manifest['publication_status'] == render_module.CANDIDATE:
@@ -172,10 +173,19 @@ class JACK01ABKQuickGuideWebTest(unittest.TestCase):
         source = self.fixture()
         out = self.root / 'out'
         report = render_module.render(source, out)
-        files = {str(p.relative_to(out)): file_sha256(p) for p in out.rglob('*') if p.is_file()}
+        files = {str(p.relative_to(out)): file_sha256(p) for p in out.rglob('*')
+                 if p.is_file() and p.relative_to(out).as_posix() != 'manual.ir.json'}
         frozen = PACKAGE / 'web/ja'
-        self.assertEqual(files, {str(p.relative_to(frozen)): file_sha256(p) for p in frozen.rglob('*') if p.is_file()})
+        self.assertEqual(files, {str(p.relative_to(frozen)): file_sha256(p) for p in frozen.rglob('*')
+                                 if p.is_file() and p.relative_to(frozen).as_posix() != 'manual.ir.json'})
         manifest = read(PACKAGE / 'source_manifest.json')
+        self.assertTrue(
+            cold_replay_ir_matches(
+                read(out / 'manual.ir.json'),
+                read(frozen / 'manual.ir.json'),
+                manifest,
+            )
+        )
         self.assertEqual(report['publication_eligible'], manifest['publication_eligible'])
 
 

@@ -270,9 +270,9 @@
   },
   "inputs": [
     {
-      "path": "JE-1000D-JP-V2.pdf",
-      "size": 3861611,
-      "sha256": "00c43a89bd07babbea3a82b6bfbbc4a1c7b52f7a72cb8030b0dbfb349de601a4"
+      "path": "JE-1000D-JP-V2.pdf.source-pointer.json",
+      "size": 587,
+      "sha256": "4607d528f0ef5e6c2703f7faa70ce67883f862b3c4e5957ef5352ba39b800721"
     },
     {
       "path": "README.md",
@@ -491,8 +491,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6359,
-      "sha256": "ecc0218b62341503b06f1f2e4b72b2e15e7b11c052a55383ecea7f197faa9c9b"
+      "size": 6775,
+      "sha256": "67708924bbaeead85f749af0aabd1d42f31c2be38385f4a5e44a599d8d675f88"
     },
     {
       "path": "refresh_manifest.py",
@@ -541,8 +541,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 22623,
-      "sha256": "1eb44a6d2e915c33222e8783082e36d5202aa9d7fdefa0b8dc3cc7438c1ca32d"
+      "size": 22639,
+      "sha256": "e1c27f772c565fd2fbf3a671dbb9f7e28158f9e6bd6eb5f839dd0d9f37a4c7f5"
     },
     {
       "path": "web/ja/_static/source_geometry.css",

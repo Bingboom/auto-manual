@@ -2075,9 +2075,9 @@
   ],
   "inputs": [
     {
-      "path": "Jackery HomePower 5000 Plus.pdf",
-      "size": 35312740,
-      "sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a"
+      "path": "Jackery HomePower 5000 Plus.pdf.source-pointer.json",
+      "size": 606,
+      "sha256": "ec786644768688974de608ecec0bc330639316cec64bceba5aec6f79475a7b87"
     },
     {
       "path": "README.md",
@@ -2491,8 +2491,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6201,
-      "sha256": "efc11d33bad104fc8f3b17cdd97937199ab60d3d09806ad226692676730eac29"
+      "size": 6486,
+      "sha256": "59db72a8db07c825bb7506f061037031dca6546d6fa344eb5d7ab377c6bb265a"
     },
     {
       "path": "source/asset_decisions.json",

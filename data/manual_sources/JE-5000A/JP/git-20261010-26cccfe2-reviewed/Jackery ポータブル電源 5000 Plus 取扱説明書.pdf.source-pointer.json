@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery ポータブル電源 5000 Plus 取扱説明書.pdf",
+  "sha256": "26cccfe203b43a346743a0db7bf1757bb8f9c1e10aa716fe5aa5dbe1b58a48f8",
+  "size_bytes": 11774270,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBhrIg8kr",
+    "field_name": "source_file",
+    "file_token": "ZSUVbhAFEoPXbZxOCrXca7pxnEh"
+  },
+  "local_relpath": "Jackery ポータブル電源 5000 Plus 取扱説明書.pdf",
+  "source_key": "source/manual_je5000a_jp_ja_26cccfe2_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

@@ -146,8 +146,8 @@
     },
     {
       "path": "render.py",
-      "size": 7533,
-      "sha256": "b769eb76a1a88dd4d1e5e4cd2037404b79b436a021a33a1338ce3c8cb20b45f5"
+      "size": 7886,
+      "sha256": "0b789818fe5444ed2f12203d6245f4f7b35bbf8ec4a1010ba84273daac66340f"
     },
     {
       "path": "source/approval.json",
@@ -170,9 +170,9 @@
       "sha256": "6628ad196c0206fc5165ce498827bb61c5f4c8d27636251fcc25c5237ed698f5"
     },
     {
-      "path": "source/original.pdf",
-      "size": 1263748,
-      "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 608,
+      "sha256": "56fb7d67e3502b91d1c88f7b34a450ac5105bc972d7ebd0a39eb2337f87cb1c5"
     },
     {
       "path": "source/page/00_preface_ja.rst",
@@ -252,7 +252,7 @@
   "derived_from": {
     "package": "git-20261009-ac3a1f82-web-layout",
     "authorization": "operator review and merge of #1467 (AGENTS.md §8.6); base approval MA-272",
-    "manifest_sha256": "f6c7c1174acd557ff981324ae54d6ccbb0fa4c1ad4fda302123958ff24ff5a75"
+    "manifest_sha256": "54ff07f93543e7ce6540763815f1cbf6aa5da8398ca977fdfc455d307ac7531b"
   },
   "web_exclusions": [
     {

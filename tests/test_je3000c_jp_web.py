@@ -7,6 +7,7 @@ import shutil
 import tempfile
 import unittest
 
+from tools.web.external_source_store import resolve_source_identity
 from tools.web.frozen_ai_web import replay_package
 from tools.web.frozen_source_evidence import seal_frozen_web_evidence
 from tools.web.language_release_evidence import _file_inventory, require_publishable_manual_ir
@@ -34,8 +35,10 @@ class Je3000cJpWebTests(unittest.TestCase):
         self.assertEqual(manifest["inputs"], actual)
         self.assertEqual(manifest["publication_status"], "operator-approved-git-only-release")
         self.assertEqual(manifest["target"]["technical_version"], self.package.name)
-        self.assertEqual((self.package / "source/original.pdf").read_bytes(),
-                         (DRAFT / "source/original.pdf").read_bytes())
+        self.assertEqual(
+            resolve_source_identity(self.package / "source/original.pdf"),
+            resolve_source_identity(DRAFT / "source/original.pdf"),
+        )
 
     def test_release_is_publishable_and_approved(self):
         require_publishable_manual_ir(self.package / "web/ja")

@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JS-100I_JP_ja_cc8b3421.pdf",
+  "sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f",
+  "size_bytes": 3403400,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBoVKAesz",
+    "field_name": "source_file",
+    "file_token": "C8DdbVYq3o5uSjxcxv1cWZThnNA"
+  },
+  "local_relpath": "source/original.pdf",
+  "source_key": "source/manual_js100i_jp_ja_cc8b3421_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

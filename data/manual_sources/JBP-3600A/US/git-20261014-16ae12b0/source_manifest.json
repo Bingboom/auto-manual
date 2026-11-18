@@ -2330,9 +2330,9 @@
   ],
   "inputs": [
     {
-      "path": "Jackery Battery Pack 3600 User Manual.pdf",
-      "size": 7257682,
-      "sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+      "path": "Jackery Battery Pack 3600 User Manual.pdf.source-pointer.json",
+      "size": 640,
+      "sha256": "9eb1f3a8cab2d496ebff7ae00c05bdca9d991a19374ee2785e14762b7eaf8f04"
     },
     {
       "path": "README.md",
@@ -2611,8 +2611,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 7826,
-      "sha256": "44479d90cfba97a676706a6eec5cef1e355758a2f1d2e60c28cbf17806950c40"
+      "size": 8244,
+      "sha256": "fd3c1dbc96501b5f055b059f1724c908945e071b241be541e37b6858fbc2a679"
     },
     {
       "path": "source/approval.json",

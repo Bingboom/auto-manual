@@ -19,6 +19,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import resolve_source_identity, reviewed_inputs_match_with_pointers
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0'
@@ -133,8 +134,9 @@ class JbpUsWebTests(unittest.TestCase):
                                               'technical_version': PACKAGE.name, 'printed_manual_version': None})
         original = manifest['original_source']
         self.assertEqual((original['filename'], original['sha256']), (PDF, SOURCE_SHA))
-        self.assertEqual(file_sha256(PACKAGE / PDF), SOURCE_SHA)
-        self.assertLessEqual((PACKAGE / PDF).stat().st_size, 32 * 1024 * 1024)
+        pdf_size, pdf_sha = resolve_source_identity(PACKAGE / PDF)
+        self.assertEqual(pdf_sha, SOURCE_SHA)
+        self.assertLessEqual(pdf_size, 32 * 1024 * 1024)
         self.assertEqual(manifest['web_roots'], {lang: 'web/' + lang for lang in LANGUAGES})
         for lang in LANGUAGES:
             pages = list(range(4 + OFFSET[lang], 12 + OFFSET[lang]))
@@ -152,9 +154,18 @@ class JbpUsWebTests(unittest.TestCase):
         self.assertEqual(approval['languages'], list(LANGUAGES))
         self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
         # Everything but the frozen web/ outputs and the acceptance itself.
-        self.assertEqual(approval['reviewed_inputs'],
-                         [row for row in manifest['inputs']
-                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        reviewed = [row for row in manifest['inputs']
+                    if not row['path'].startswith('web/') and row['path'] != 'source/approval.json']
+        self.assertTrue(
+            reviewed_inputs_match_with_pointers(
+                PACKAGE,
+                approval['reviewed_inputs'],
+                reviewed,
+                original_sha256=SOURCE_SHA,
+                raw_archive_paths=(PDF,),
+                adapter_paths=('rebuild.py',),
+            )
+        )
         self.assertEqual((approval['operator_quote'], approval['merge_authorization']),
                          ('合入了，上线授权你合入', 'MA-303'))
         for lang in LANGUAGES:
@@ -211,6 +222,9 @@ class JbpUsWebTests(unittest.TestCase):
         if tuple(pymupdf.version[:2]) != ('1.28.0', '1.29.0'):
             self.skipTest('word geometry is validated for PyMuPDF 1.28.0 / MuPDF 1.29.0 (requirements.lock)')
         source = self.fixture()
+        self.assertEqual(resolve_source_identity(source / PDF)[1], SOURCE_SHA)
+        if not (source / PDF).is_file():
+            self.skipTest('raw source PDF externalized to Feishu pointer; requires local fetch for PyMuPDF intake check')
         saved_path, saved_native = list(sys.path), sys.modules.get('native')
         try:
             native = load('native', PACKAGE / 'source/native.py')
@@ -262,18 +276,20 @@ class JbpUsWebTests(unittest.TestCase):
                 require_publishable_manual_ir(web)
 
     def test_changed_inputs_are_rejected_before_output(self):
-        for relative in ['source/fr/content.json', 'assets/es-clearance.png', 'source/presentation.css', PDF]:
+        for relative in ['source/fr/content.json', 'assets/es-clearance.png', 'source/presentation.css', f'{PDF}.source-pointer.json']:
             with self.subTest(relative=relative):
                 source = self.fixture()
-                path = source / relative
-                data = path.read_bytes()
-                path.unlink()
-                path.write_bytes(data + b' ')
-                with mock.patch.object(rebuild_module, 'SOURCE_ROOT', source):
-                    with self.assertRaises(ValueError):
-                        rebuild(self.root / 'output', 'fr')
-                self.assertFalse((self.root / 'output').exists())
-                shutil.rmtree(source)
+                try:
+                    path = source / relative
+                    data = path.read_bytes()
+                    path.unlink()
+                    path.write_bytes(data + b' ')
+                    with mock.patch.object(rebuild_module, 'SOURCE_ROOT', source):
+                        with self.assertRaises(ValueError):
+                            rebuild(self.root / 'output', 'fr')
+                    self.assertFalse((self.root / 'output').exists())
+                finally:
+                    shutil.rmtree(source, ignore_errors=True)
 
     def test_chapters_follow_the_print(self):
         for lang in LANGUAGES:

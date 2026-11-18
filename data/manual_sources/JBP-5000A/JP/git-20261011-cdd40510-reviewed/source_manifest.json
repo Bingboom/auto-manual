@@ -1060,9 +1060,9 @@
   ],
   "inputs": [
     {
-      "path": "Jackery Battery Pack 5000 Plus 取扱説明書.pdf",
-      "sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
-      "size": 7896389
+      "path": "Jackery Battery Pack 5000 Plus 取扱説明書.pdf.source-pointer.json",
+      "size": 652,
+      "sha256": "f6aac370e1244a6b61b266fb15cb09d25c60e96acc198e8abc123d0336b8a988"
     },
     {
       "path": "README.md",
@@ -1166,8 +1166,8 @@
     },
     {
       "path": "rebuild.py",
-      "sha256": "0b02dc7ce9ed13ec12e6d450faa5a3ead4bd4d15e00afa8214e21cdb7848cf93",
-      "size": 7371
+      "size": 8045,
+      "sha256": "382059a0862374c285a9a9ca1b77f3b2efbd8223883cdcc30f9fd54b269097c3"
     },
     {
       "path": "refresh_manifest.py",

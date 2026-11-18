@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "电小二户外电源 3600 Plus.pdf",
+  "sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+  "size_bytes": 10308437,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBh2OpgTh",
+    "field_name": "source_file",
+    "file_token": "CVRFbLFtaoLiJoxNAkacs0LUnwg"
+  },
+  "local_relpath": "电小二户外电源 3600 Plus.pdf",
+  "source_key": "source/manual_je3600a_cn_zh_caa5370a_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

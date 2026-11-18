@@ -24,9 +24,9 @@
   },
   "inputs": [
     {
-      "path": "Jackery ポータブル電源 3600 Plus 取扱説明書.pdf",
-      "size": 11867626,
-      "sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6"
+      "path": "Jackery ポータブル電源 3600 Plus 取扱説明書.pdf.source-pointer.json",
+      "size": 670,
+      "sha256": "f409c6199fa3d5ed1aac1baa0e8111974bdd25230d314873831f9f76a70813d2"
     },
     {
       "path": "README.md",
@@ -430,8 +430,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 7473,
-      "sha256": "536a16d349dfa0d42fbb5094db63cf325bb6627f5f9093dc9b12892e97c410ae"
+      "size": 8147,
+      "sha256": "e0dedb6eeb0db490704ccda60a3fa78e3092da9dee307dd04497a0624b9f6c80"
     },
     {
       "path": "source/approval.json",

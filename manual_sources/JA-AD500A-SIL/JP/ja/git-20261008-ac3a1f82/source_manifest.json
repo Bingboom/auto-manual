@@ -165,9 +165,9 @@
       "sha256": "6628ad196c0206fc5165ce498827bb61c5f4c8d27636251fcc25c5237ed698f5"
     },
     {
-      "path": "source/original.pdf",
-      "size": 1263748,
-      "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 608,
+      "sha256": "56fb7d67e3502b91d1c88f7b34a450ac5105bc972d7ebd0a39eb2337f87cb1c5"
     },
     {
       "path": "source/page/00_preface_ja.rst",

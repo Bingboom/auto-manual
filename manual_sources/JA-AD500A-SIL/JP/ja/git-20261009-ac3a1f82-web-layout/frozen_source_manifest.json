@@ -201,8 +201,8 @@
     },
     {
       "path": "render.py",
-      "size": 7539,
-      "sha256": "4369939d628677b1efd3b94bc338e38d4df769a404fc4fa7b10f3a4240e7c459"
+      "size": 7892,
+      "sha256": "0d365710fea2401e68c4e93f7523bf3d2649bf52697399bf5611545c8256e093"
     },
     {
       "path": "source/approval.json",
@@ -225,9 +225,9 @@
       "sha256": "6628ad196c0206fc5165ce498827bb61c5f4c8d27636251fcc25c5237ed698f5"
     },
     {
-      "path": "source/original.pdf",
-      "size": 1263748,
-      "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 608,
+      "sha256": "56fb7d67e3502b91d1c88f7b34a450ac5105bc972d7ebd0a39eb2337f87cb1c5"
     },
     {
       "path": "source/page/00_preface_ja.rst",
@@ -271,8 +271,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 9957,
-      "sha256": "f6c7c1174acd557ff981324ae54d6ccbb0fa4c1ad4fda302123958ff24ff5a75"
+      "size": 9973,
+      "sha256": "54ff07f93543e7ce6540763815f1cbf6aa5da8398ca977fdfc455d307ac7531b"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -377,7 +377,7 @@
   "derived_from": {
     "package": "git-20261008-ac3a1f82-reviewed",
     "authorization": "MA-272",
-    "manifest_sha256": "0babde2c5e53f01e3511bcc40c0ce6d7603f61351fd627f062e6e89408fb7291"
+    "manifest_sha256": "1adcdba6ffa445a93842684e5aad08eedc14e283f5b5118ebdaeca762292c798"
   },
   "web_exclusions": [
     {

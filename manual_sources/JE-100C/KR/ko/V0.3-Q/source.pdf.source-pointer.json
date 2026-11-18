@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JE-100C_KR_ko_3fdf64e8.pdf",
+  "sha256": "3fdf64e8769f53b8f85c6cb1444ce368fb4e721e94ca2195a2a7ef69fcf26cd9",
+  "size_bytes": 7598595,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI2nhZ",
+    "field_name": "source_file",
+    "file_token": "BQdybVTp2oGIbFxHvficrJKrnBc"
+  },
+  "local_relpath": "source.pdf",
+  "source_key": "source/unregistered-3fdf64e8769f",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

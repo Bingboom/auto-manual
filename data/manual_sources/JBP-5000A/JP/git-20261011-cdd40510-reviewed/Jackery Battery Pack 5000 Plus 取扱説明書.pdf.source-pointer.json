@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery Battery Pack 5000 Plus 取扱説明書.pdf",
+  "sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
+  "size_bytes": 7896389,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBfsj5TO5",
+    "field_name": "source_file",
+    "file_token": "Qs19buP8xoLxdsxUTTVcpRIdnre"
+  },
+  "local_relpath": "Jackery Battery Pack 5000 Plus 取扱説明書.pdf",
+  "source_key": "source/manual_jbp5000a_jp_ja_cdd40510_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

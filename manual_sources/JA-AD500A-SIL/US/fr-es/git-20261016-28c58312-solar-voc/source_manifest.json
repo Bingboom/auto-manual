@@ -190,8 +190,8 @@
     },
     {
       "path": "render.py",
-      "size": 7781,
-      "sha256": "15e87cd7edbbcc267a3a20076997f7efef3534205499d63e994e0af70793e0ea"
+      "size": 8134,
+      "sha256": "01c0680ea5c636140febfba4965b75ad07318dcfda36b7849019166e24e7ad20"
     },
     {
       "path": "source/approval.json",
@@ -209,9 +209,9 @@
       "sha256": "b1bae9a035d05389ba9cb42b85f62079ea152c803895e4b3ba7e7a8ba6054b19"
     },
     {
-      "path": "source/original.pdf",
-      "size": 3410276,
-      "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 614,
+      "sha256": "bd402c88ed0ddd8384ce0d3a30fdc6d5dccd8f59b34feac68b15156c0cec2a88"
     },
     {
       "path": "source/page/box_contents_es.rst",
@@ -295,7 +295,7 @@
   "derived_from": {
     "package": "git-20261007-28c58312-reviewed",
     "authorization": "MA-262",
-    "manifest_sha256": "6874e191f6102d52bdf99f113443ec236215e073ecf0816934b33c6a7c8faef4"
+    "manifest_sha256": "5e6828cf39f8e969d78278542d7b1e6b41db8dbece89208d9a86c77aeef9e2e2"
   },
   "text_corrections": [
     {

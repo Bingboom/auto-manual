@@ -185,8 +185,19 @@ class JapaneseSolarVocEditionTests(unittest.TestCase):
             self.skipTest('Pandoc unavailable')
         source = self.fixture(AD500A_PACKAGE)
         report = ad500a_render.render(source, self.root / 'out')
-        self.assertEqual(tree(self.root / 'out'), tree(AD500A_PACKAGE / 'web/ja'))
-        self.assertEqual(report['publication_eligible'], read(AD500A_PACKAGE / 'source_manifest.json')['publication_eligible'])
+        out_files = {k: v for k, v in tree(self.root / 'out').items() if k != 'manual.ir.json'}
+        web_files = {k: v for k, v in tree(AD500A_PACKAGE / 'web/ja').items() if k != 'manual.ir.json'}
+        self.assertEqual(out_files, web_files)
+        manifest = read(AD500A_PACKAGE / 'source_manifest.json')
+        self.assertTrue(
+            cold_replay_ir_matches(
+                read(self.root / 'out/manual.ir.json'),
+                read(AD500A_PACKAGE / 'web/ja/manual.ir.json'),
+                manifest,
+            ),
+            'manual.ir.json',
+        )
+        self.assertEqual(report['publication_eligible'], manifest['publication_eligible'])
 
     @pre_four_control_styles
     def test_h1_cold_replay_matches_committed_web(self):

@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JE-3000C_KR_ko_78316033.pdf",
+  "sha256": "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
+  "size_bytes": 5509421,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBo8WKPPO",
+    "field_name": "source_file",
+    "file_token": "V5uBbAu8GoVrfzxYSrLcWkvJnMe"
+  },
+  "local_relpath": "source/original.pdf",
+  "source_key": "source/manual_je3000c_kr_ko_78316033_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

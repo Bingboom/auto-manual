@@ -1349,9 +1349,9 @@
   ],
   "inputs": [
     {
-      "path": "Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
-      "size": 12514476,
-      "sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0"
+      "path": "Jackery Explorer 1500 Ultra 說明書-20260923.pdf.source-pointer.json",
+      "size": 655,
+      "sha256": "521a17ea62b1952ea37d8abc9d469014ac594716ad5b69d7222fa3346b6b8a7e"
     },
     {
       "path": "README.md",
@@ -1635,8 +1635,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 7760,
-      "sha256": "a8bc1bd8926777ad3b84b9d2c383b348e73d4926a38e6bb892c70d66aa936418"
+      "size": 8434,
+      "sha256": "6ba6cbe90b0dc66703736e73c3611865f286cbd1d849d01bfe7724c7d5e01b06"
     },
     {
       "path": "source/approval.json",

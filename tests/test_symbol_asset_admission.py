@@ -508,7 +508,15 @@ class SymbolAdmissionTests(unittest.TestCase):
     def test_original_pdf_group_opacity_is_preserved(self):
         # Real source has group opacity that get_drawings() omits. Replaying
         # only flattened shapes would darken the triangle's inner fill.
-        with fitz.open(next(PACKAGE.glob('*.pdf'))) as doc:
+        from tools.web.external_source_store import resolve_source_identity
+
+        manifest = json.loads((PACKAGE / 'source_manifest.json').read_text())
+        pdf = PACKAGE / manifest['original_source']['filename']
+        _, resolved_sha = resolve_source_identity(pdf)
+        self.assertEqual(resolved_sha, manifest['original_source']['sha256'])
+        if not pdf.is_file():
+            self.skipTest('raw source PDF externalized to Feishu pointer; requires local fetch for PyMuPDF opacity check')
+        with fitz.open(pdf) as doc:
             row = json.loads((PACKAGE / 'source/symbol_asset_admission.json').read_text())['locales']['en'][0]
             svg = native_symbol_svg(doc[4], row['drawing_indices'], row['glyph_bbox'])
         alpha = _render(svg, '.svg').getchannel('A')

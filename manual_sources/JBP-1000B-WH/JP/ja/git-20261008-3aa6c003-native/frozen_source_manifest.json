@@ -33,9 +33,9 @@
   "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
-      "path": "Jackery Battery Pack取扱説明書V2.0-2026-07-29.pdf",
-      "size": 8482089,
-      "sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c"
+      "path": "Jackery Battery Pack取扱説明書V2.0-2026-07-29.pdf.source-pointer.json",
+      "size": 649,
+      "sha256": "59c79bf32f1bb3c00aca0167bc92d45d4455052eeaa903052585cc9fc7b7cf0f"
     },
     {
       "path": "README.md",

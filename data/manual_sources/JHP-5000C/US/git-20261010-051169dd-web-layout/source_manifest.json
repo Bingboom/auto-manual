@@ -2086,9 +2086,9 @@
   "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
-      "path": "Jackery HomePower 5000 Plus.pdf",
-      "size": 35312740,
-      "sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a"
+      "path": "Jackery HomePower 5000 Plus.pdf.source-pointer.json",
+      "size": 606,
+      "sha256": "ec786644768688974de608ecec0bc330639316cec64bceba5aec6f79475a7b87"
     },
     {
       "path": "README.md",
@@ -2692,8 +2692,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 8036,
-      "sha256": "6571eaac73e05980cba6197b474186e778452dfeccacbde89a5365f41f1befc9"
+      "size": 8710,
+      "sha256": "66b8f50279e7bd38749305f6cfbdaaa823de7e1a9308239f3dc133565f1d1fd3"
     },
     {
       "path": "source/approval.json",

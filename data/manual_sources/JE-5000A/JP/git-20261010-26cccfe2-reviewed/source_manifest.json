@@ -1217,9 +1217,9 @@
   ],
   "inputs": [
     {
-      "path": "Jackery ポータブル電源 5000 Plus 取扱説明書.pdf",
-      "sha256": "26cccfe203b43a346743a0db7bf1757bb8f9c1e10aa716fe5aa5dbe1b58a48f8",
-      "size": 11774270
+      "path": "Jackery ポータブル電源 5000 Plus 取扱説明書.pdf.source-pointer.json",
+      "size": 670,
+      "sha256": "db17dbf4d19c1e7233c3238ddc62f773745a152767973ab4d71b691eb4ad0eb7"
     },
     {
       "path": "README.md",
@@ -1553,8 +1553,8 @@
     },
     {
       "path": "rebuild.py",
-      "sha256": "0ebe98ec970b177601b6fcdf9f7298179d2b95fe3998ed7edb37cc8b4379bc0b",
-      "size": 7397
+      "size": 8098,
+      "sha256": "13da6bd4bb8b5f85a526e6e53abfd1c6cb7e951a1a330ebafa235dd35fcabea0"
     },
     {
       "path": "refresh_manifest.py",

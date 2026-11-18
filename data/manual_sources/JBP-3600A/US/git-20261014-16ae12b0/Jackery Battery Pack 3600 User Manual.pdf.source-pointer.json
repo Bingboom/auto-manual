@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery Battery Pack 3600 User Manual.pdf",
+  "sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c",
+  "size_bytes": 7257682,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBfV9FnT3",
+    "field_name": "source_file",
+    "file_token": "MiDdbUasfoDCILxEVYLc5zOxnSe"
+  },
+  "local_relpath": "Jackery Battery Pack 3600 User Manual.pdf",
+  "source_key": "source/manual_jbp3600a_us_en_fr_es_16ae12b0_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

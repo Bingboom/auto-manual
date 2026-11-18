@@ -489,8 +489,8 @@
     },
     {
       "path": "render.py",
-      "size": 7829,
-      "sha256": "ecfd5fd17b0664a1a83c0ba3ab7bfe882287449c293dcddf6397d766e8690f64"
+      "size": 8182,
+      "sha256": "28965b538571408c4b663faa24fb3b9e4fd0afbae7903ddcec59e5c46667ac57"
     },
     {
       "path": "source/approval.json",
@@ -523,9 +523,9 @@
       "sha256": "a6e92217f925c02d392bab284f6e834a97be0462f4bba2e05ed3ecf086b80600"
     },
     {
-      "path": "source/original.pdf",
-      "size": 3403400,
-      "sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 595,
+      "sha256": "2431c7ca2dd1705adcf35931b36891c1e50fdad90fca9a307243e61594f4d9db"
     },
     {
       "path": "source/page/00_preface_ja.rst",
@@ -574,8 +574,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 20562,
-      "sha256": "758fb63f459b303cd5126e452760eaedb26b43145c7edab4bdc1ae262bc75747"
+      "size": 20578,
+      "sha256": "8e5fe252ff863e349cf41ac3fa5cbb17efdc43f0718deeacc9aef384cd309f9e"
     },
     {
       "path": "web/ja/_static/source.css",

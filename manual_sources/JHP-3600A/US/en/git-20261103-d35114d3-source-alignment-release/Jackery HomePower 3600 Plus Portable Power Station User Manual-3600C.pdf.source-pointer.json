@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery HomePower 3600 Plus Portable Power Station User Manual-3600C.pdf",
+  "sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+  "size_bytes": 31639310,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBiag3JjG",
+    "field_name": "source_file",
+    "file_token": "FMdNbtWIhoBfR6xLHXZctwqXnth"
+  },
+  "local_relpath": "Jackery HomePower 3600 Plus Portable Power Station User Manual-3600C.pdf",
+  "source_key": "source/manual_jhp3600a_us_en_fr_es_541ca8a5_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

@@ -2,9 +2,9 @@
   "schema_version": "auto-manual-frozen-web-source/v1",
   "inputs": [
     {
-      "path": "Jackery Battery Pack-1.pdf",
-      "size": 4488603,
-      "sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137"
+      "path": "Jackery Battery Pack-1.pdf.source-pointer.json",
+      "size": 598,
+      "sha256": "fb790027f1fee9ea4347ea20e27035b44ff958794e0d39910f4500882c649f31"
     },
     {
       "path": "README.md",
@@ -263,8 +263,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6184,
-      "sha256": "5f77fd33216c3fdb481c5c9096fff87a442db03bfdbb2c5620a4ecf8f0c23966"
+      "size": 6469,
+      "sha256": "68379d0a0c7e953e2d588b9e97852df0b79e031757c6e86be00e40033c129fd5"
     },
     {
       "path": "source/asset_decisions.json",

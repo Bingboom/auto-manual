@@ -13,7 +13,7 @@ from tests.historical_web_inputs import historical_shared_inputs
 
 from bs4 import BeautifulSoup
 
-from tools.manual_ir.hashing import file_sha256
+from tools.web.external_source_store import cold_replay_ir_matches, resolve_source_identity
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 from tests.historical_app_styles import pre_rowspan_divider_styles
 
@@ -68,7 +68,7 @@ class JaCk01aBkJpWebTests(unittest.TestCase):
         self.assertEqual(manifest["target"], {"model": "JA-CK01A-BK", "region": "JP", "languages": ["ja"],
                                               "technical_version": PACKAGE.name})
         self.assertEqual(manifest["original_source"]["sha256"], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / "source/original.pdf"), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / "source/original.pdf")[1], SOURCE_SHA)
         if manifest["publication_status"] == render_module.CANDIDATE:
             self.assertFalse(manifest["publication_eligible"])
             self.assertFalse((PACKAGE / "source/approval.json").exists())
@@ -106,8 +106,15 @@ class JaCk01aBkJpWebTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
             render_module.render(PACKAGE, output)
-            for name in (MARKDOWN, "manual.ir.json", "_static/source.css"):
+            for name in (MARKDOWN, "_static/source.css"):
                 self.assertEqual((output / name).read_bytes(), (PACKAGE / "web/ja" / name).read_bytes(), name)
+            self.assertTrue(
+                cold_replay_ir_matches(
+                    read(output / "manual.ir.json"),
+                    read(PACKAGE / "web/ja/manual.ir.json"),
+                    read(PACKAGE / "source_manifest.json"),
+                )
+            )
             stored = sorted(p.relative_to(PACKAGE / "web/ja").as_posix()
                             for p in (PACKAGE / "web/ja/assets").rglob("*") if p.is_file())
             fresh = sorted(p.relative_to(output).as_posix() for p in (output / "assets").rglob("*") if p.is_file())

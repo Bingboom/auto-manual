@@ -24,9 +24,9 @@
   },
   "inputs": [
     {
-      "path": "Jackery HomePower 3600 Plus Portable Power Station User Manual-3600C.pdf",
-      "size": 31639310,
-      "sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e"
+      "path": "Jackery HomePower 3600 Plus Portable Power Station User Manual-3600C.pdf.source-pointer.json",
+      "size": 703,
+      "sha256": "701bb3d2d1cca2364679b1b234f819be00e825053a1e7bce94a525a1a754d265"
     },
     {
       "path": "README.md",
@@ -1460,8 +1460,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 7975,
-      "sha256": "3e98771c80bc1a973f2e4abb60f0f3b8d09c432de0650a434565ab80334ec239"
+      "size": 8290,
+      "sha256": "61362e56cd16ef9dd848666ec7f57511a831aea03e91a7dad0dc257ff360ddd4"
     },
     {
       "path": "refresh_manifest.py",

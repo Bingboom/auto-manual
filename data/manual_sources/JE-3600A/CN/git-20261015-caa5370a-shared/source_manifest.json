@@ -1352,8 +1352,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 8091,
-      "sha256": "d0271d136994a82512d9e8a320fcba25dc88e08911d84d9912a45b4adc035a9e"
+      "size": 8765,
+      "sha256": "b426d21b5c6aca51dc814860e5e9578c5c9d2585f69e0e57709ab0a534be5ed3"
     },
     {
       "path": "source/presentation.css",
@@ -1686,9 +1686,9 @@
       "sha256": "93888c3faee7c1b99a0ac3ba0f6e50f2c09738a8d7253f3f52239774856aa32d"
     },
     {
-      "path": "电小二户外电源 3600 Plus.pdf",
-      "size": 10308437,
-      "sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb"
+      "path": "电小二户外电源 3600 Plus.pdf.source-pointer.json",
+      "size": 622,
+      "sha256": "d15f94117ce111bc498f58653e46be881f90ec8da62c82f8abfa422f761b6147"
     }
   ]
 }

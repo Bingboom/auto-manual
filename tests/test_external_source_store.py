@@ -237,10 +237,12 @@ class RawBinaryRatchetTests(unittest.TestCase):
     def test_real_repository_ratchet_passes(self) -> None:
         res = store.check_repository(store.REPO_ROOT, printer=lambda _: None)
         self.assertEqual(res.exit_code, 0)
-        self.assertGreaterEqual(res.pointer_count, 20)
+        self.assertEqual(res.baselined_count, 3)
+        self.assertGreaterEqual(res.pointer_count, 190)
         baseline = store.load_ratchet_baseline(store.ratchet_baseline_of(store.REPO_ROOT))
         self.assertIsNotNone(baseline)
         assert baseline is not None
+        self.assertEqual(len(baseline), 3)
         self.assertEqual(
             [p for p in baseline if Path(p).suffix.lower() in {".ai", ".bin"}],
             [],
@@ -484,6 +486,81 @@ class PointerFallbackHelpersTests(unittest.TestCase):
                     manifest_rows,
                     original_sha256=raw_sha,
                     raw_archive_paths=("source/part-001.bin", "source/part-002.bin"),
+                    adapter_paths=("rebuild.py",),
+                )
+            )
+
+    def test_reviewed_inputs_match_with_multiple_extra_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            pkg = Path(tmp)
+            (pkg / "source").mkdir()
+            ref_bytes = b"review-ref-pdf"
+            orig_bytes = b"original-manual-pdf"
+            ref_sha = hashlib.sha256(ref_bytes).hexdigest()
+            orig_sha = hashlib.sha256(orig_bytes).hexdigest()
+            ref_ptr = pkg / f"source/review-reference.pdf{store.POINTER_SUFFIX}"
+            orig_ptr = pkg / f"manual.pdf{store.POINTER_SUFFIX}"
+            store.write_pointer_file(
+                ref_ptr,
+                store.validate_pointer_payload(
+                    _valid_pointer_dict(file_name="review-reference.pdf", content=ref_bytes)
+                ),
+            )
+            store.write_pointer_file(
+                orig_ptr,
+                store.validate_pointer_payload(
+                    _valid_pointer_dict(file_name="manual.pdf", content=orig_bytes)
+                ),
+            )
+            approval_rows = [
+                {"path": "README.md", "size": 5, "sha256": "a" * 64},
+                {"path": "rebuild.py", "size": 10, "sha256": "b" * 64},
+                {"path": "manual.pdf", "size": len(orig_bytes), "sha256": orig_sha},
+                {"path": "source/review-reference.pdf", "size": len(ref_bytes), "sha256": ref_sha},
+            ]
+            manifest_rows = [
+                {"path": "README.md", "size": 5, "sha256": "a" * 64},
+                {"path": "rebuild.py", "size": 12, "sha256": "c" * 64},
+                {
+                    "path": f"manual.pdf{store.POINTER_SUFFIX}",
+                    "size": orig_ptr.stat().st_size,
+                    "sha256": "1" * 64,
+                },
+                {
+                    "path": f"source/review-reference.pdf{store.POINTER_SUFFIX}",
+                    "size": ref_ptr.stat().st_size,
+                    "sha256": "2" * 64,
+                },
+            ]
+            self.assertTrue(
+                store.reviewed_inputs_match_with_pointers(
+                    pkg,
+                    approval_rows,
+                    manifest_rows,
+                    original_sha256=ref_sha,
+                    raw_archive_paths=("source/review-reference.pdf",),
+                    adapter_paths=("rebuild.py",),
+                    extra_sources={"manual.pdf": orig_sha},
+                )
+            )
+            self.assertFalse(
+                store.reviewed_inputs_match_with_pointers(
+                    pkg,
+                    approval_rows,
+                    manifest_rows,
+                    original_sha256=ref_sha,
+                    raw_archive_paths=("source/review-reference.pdf",),
+                    adapter_paths=("rebuild.py",),
+                    extra_sources={"manual.pdf": "0" * 64},
+                )
+            )
+            self.assertFalse(
+                store.reviewed_inputs_match_with_pointers(
+                    pkg,
+                    approval_rows,
+                    manifest_rows,
+                    original_sha256=ref_sha,
+                    raw_archive_paths=("source/review-reference.pdf",),
                     adapter_paths=("rebuild.py",),
                 )
             )

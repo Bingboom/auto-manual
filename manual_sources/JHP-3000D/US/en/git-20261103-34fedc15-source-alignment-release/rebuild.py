@@ -52,7 +52,12 @@ def rebuild(output: Path, language: str) -> None:
         raise ValueError("use an unused output directory")
     source = json.loads((SOURCE_ROOT / f"source/{language}/content.json").read_text())
     pdfs = list(SOURCE_ROOT.glob("*.pdf"))
-    if len(pdfs) != 1 or file_sha256(pdfs[0]) != source["source_sha256"]:
+    if not pdfs:
+        pdfs = [
+            p.with_name(p.name.removesuffix(".source-pointer.json"))
+            for p in sorted(SOURCE_ROOT.glob("*.pdf.source-pointer.json"))
+        ]
+    if len(pdfs) != 1 or resolve_source_identity(pdfs[0])[1] != source["source_sha256"]:
         raise ValueError("base extraction PDF identity changed")
     manifest_path = SOURCE_ROOT / "source_manifest.json"
     manifest = json.loads(manifest_path.read_text())
@@ -79,6 +84,7 @@ def rebuild(output: Path, language: str) -> None:
                     original_sha256=manifest["review_reference"]["sha256"],
                     raw_archive_paths=(manifest["review_reference"]["filename"],),
                     adapter_paths=("rebuild.py",),
+                    extra_sources={manifest["original_source"]["filename"]: manifest["original_source"]["sha256"]},
                 )
                 or not approval.get("operator_quote") or not approval.get("merge_authorization")):
             raise ValueError("operator acceptance does not cover these source inputs")

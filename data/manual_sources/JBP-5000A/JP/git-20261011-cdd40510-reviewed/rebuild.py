@@ -30,6 +30,10 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.web.frozen_ai_web import replay_package  # noqa: E402
 from tools.web.presentation import load_web_manual_contract  # noqa: E402
+from tools.web.external_source_store import (  # noqa: E402
+    resolve_source_identity,
+    reviewed_inputs_match_with_pointers,
+)
 
 
 def check_inventory(base: Path, rows: list[dict]) -> None:
@@ -46,7 +50,12 @@ def rebuild(output: Path, language: str) -> None:
         raise ValueError("use an unused output directory")
     source = json.loads((SOURCE_ROOT / f"source/{language}/content.json").read_text())
     pdfs = list(SOURCE_ROOT.glob("*.pdf"))
-    if len(pdfs) != 1 or file_sha256(pdfs[0]) != source["source_sha256"]:
+    if not pdfs:
+        pdfs = [
+            p.with_name(p.name.removesuffix(".source-pointer.json"))
+            for p in sorted(SOURCE_ROOT.glob("*.pdf.source-pointer.json"))
+        ]
+    if len(pdfs) != 1 or resolve_source_identity(pdfs[0])[1] != source["source_sha256"]:
         raise ValueError("authoritative PDF identity changed")
     manifest_path = SOURCE_ROOT / "source_manifest.json"
     manifest = json.loads(manifest_path.read_text())
@@ -60,7 +69,14 @@ def rebuild(output: Path, language: str) -> None:
                     if not row["path"].startswith("web/") and row["path"] != "source/approval.json"]
         if (approval.get("target") != {key: manifest["target"][key] for key in ("model", "region", "technical_version")}
                 or approval.get("original_source_sha256") != manifest["original_source"]["sha256"]
-                or approval.get("reviewed_inputs") != reviewed
+                or not reviewed_inputs_match_with_pointers(
+                    SOURCE_ROOT,
+                    approval.get("reviewed_inputs"),
+                    reviewed,
+                    original_sha256=manifest["original_source"]["sha256"],
+                    raw_archive_paths=(manifest["original_source"]["filename"],),
+                    adapter_paths=("rebuild.py",),
+                )
                 or approval.get("reviewed_source_commit") != "26a5a4e41f727c4281a230044267e61ba2190dc3"
                 or approval.get("merge_authorization") != "MA-286"
                 or approval.get("operator_quote") != "提交发布上线"):

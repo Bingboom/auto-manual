@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+  "sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
+  "size_bytes": 12514476,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBgbzA0P6",
+    "field_name": "source_file",
+    "file_token": "ZIfBblWMvomOljxnmjAcjxeUnkc"
+  },
+  "local_relpath": "Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+  "source_key": "source/manual_je1500c_tw_zh_tw_477dfbd7_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}
