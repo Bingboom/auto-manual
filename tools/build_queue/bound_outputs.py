@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from functools import partial
 from pathlib import Path
 from typing import Any
 
@@ -47,8 +48,9 @@ def set_repo_root_provider(provider: Any) -> None:
     _repo_root_provider = provider
 
 
-def _repo_root() -> Path:
-    return Path(_repo_root_provider())
+def _repo_root(override: Path | None = None) -> Path:
+    """The host repo root: ``override`` when a caller injects one, else the provider's."""
+    return Path(override) if override is not None else Path(_repo_root_provider())
 
 
 def resolve_docs_dir_for_config(config_path: Path, cfg: dict[str, Any] | None = None) -> Path:
@@ -152,13 +154,15 @@ def versioned_md_output_path(md_output_path: Path, *, version: str, doc_phase: s
     )
 
 
-def repo_relative(path: Path) -> str:
-    return _repo_relative_impl(path, repo_root=_repo_root())
+def repo_relative(path: Path, *, repo_root: Path | None = None) -> str:
+    return _repo_relative_impl(path, repo_root=_repo_root(repo_root))
 
 
-def publish_release_root_for_target(*, config_path: Path, model: str, region: str, lang: str | None = None) -> Path:
+def publish_release_root_for_target(
+    *, config_path: Path, model: str, region: str, lang: str | None = None, repo_root: Path | None = None
+) -> Path:
     return _publish_release_root_for_target_impl(
-        repo_root=_repo_root(),
+        repo_root=_repo_root(repo_root),
         config_path=config_path,
         model=model,
         region=region,
@@ -168,9 +172,11 @@ def publish_release_root_for_target(*, config_path: Path, model: str, region: st
     )
 
 
-def publish_release_version_dir_for_target(*, config_path: Path, model: str, region: str, version: str, lang: str | None = None) -> Path:
+def publish_release_version_dir_for_target(
+    *, config_path: Path, model: str, region: str, version: str, lang: str | None = None, repo_root: Path | None = None
+) -> Path:
     return _publish_release_version_dir_for_target_impl(
-        repo_root=_repo_root(),
+        repo_root=_repo_root(repo_root),
         config_path=config_path,
         model=model,
         region=region,
@@ -181,9 +187,11 @@ def publish_release_version_dir_for_target(*, config_path: Path, model: str, reg
     )
 
 
-def publish_release_latest_dir_for_target(*, config_path: Path, model: str, region: str, lang: str | None = None) -> Path:
+def publish_release_latest_dir_for_target(
+    *, config_path: Path, model: str, region: str, lang: str | None = None, repo_root: Path | None = None
+) -> Path:
     return _publish_release_latest_dir_for_target_impl(
-        repo_root=_repo_root(),
+        repo_root=_repo_root(repo_root),
         config_path=config_path,
         model=model,
         region=region,
@@ -313,7 +321,14 @@ def write_publish_release_metadata(
     html_dir: Path | None,
     document_link_url: str,
     queue_record_ids: tuple[str, ...] = (),
+    repo_root: Path | None = None,
 ) -> Path:
+    """Write ``publish_meta.json`` under the release records of ``repo_root``.
+
+    ``repo_root`` defaults to the provider's root (the facade ``ROOT`` in production);
+    a caller that runs against another root passes it so the records land there.
+    """
+    root = _repo_root(repo_root)
     cfg = load_config(config_path)
     release_tag = release_tag_for_target(
         model=model,
@@ -337,10 +352,10 @@ def write_publish_release_metadata(
         document_link_url=document_link_url,
         queue_record_ids=queue_record_ids,
         release_tag=release_tag,
-        publish_release_version_dir_for_target=publish_release_version_dir_for_target,
-        publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
+        publish_release_version_dir_for_target=partial(publish_release_version_dir_for_target, repo_root=root),
+        publish_release_latest_dir_for_target=partial(publish_release_latest_dir_for_target, repo_root=root),
         release_lang_for_config=release_lang_for_config,
-        repo_relative=repo_relative,
+        repo_relative=partial(repo_relative, repo_root=root),
     )
 
 
@@ -357,7 +372,10 @@ def write_web_publish_metadata(
     queue_record_ids: tuple[str, ...] = (),
     target_lang: str | None = None,
     language_projection_evidence_path: Path | None = None,
+    repo_root: Path | None = None,
 ) -> Path:
+    """Write Web Publish metadata under the release records of ``repo_root`` (see above)."""
+    root = _repo_root(repo_root)
     return _write_web_publish_metadata_impl(
         config_path=config_path,
         model=model,
@@ -370,8 +388,8 @@ def write_web_publish_metadata(
         queue_record_ids=queue_record_ids,
         target_lang=target_lang,
         language_projection_evidence_path=language_projection_evidence_path,
-        publish_release_version_dir_for_target=publish_release_version_dir_for_target,
-        publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
+        publish_release_version_dir_for_target=partial(publish_release_version_dir_for_target, repo_root=root),
+        publish_release_latest_dir_for_target=partial(publish_release_latest_dir_for_target, repo_root=root),
         release_lang_for_config=release_lang_for_config,
-        repo_relative=repo_relative,
+        repo_relative=partial(repo_relative, repo_root=root),
     )

@@ -41,6 +41,10 @@ class QueueDeps:
     # The group processor's clock: returns an aware UTC ``datetime`` for the
     # started-at stamp, claim expiry and built-at time.
     clock: Callable[[], datetime] | None = None
+    # The host repo root whose release records (``reports/releases`` through
+    # ``path_utils.releases_of``) receive the run's Publish / Web Publish metadata.
+    # ``None`` keeps the facade's ``ROOT``; a test sets it to its temporary root.
+    release_repo_root: Path | None = None
 
 
 NESTED_FIELDS = ("resolve_wiki_destination", "upload_word_to_drive", "move_drive_file_to_wiki")

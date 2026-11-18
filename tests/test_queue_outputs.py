@@ -6,7 +6,9 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest import mock
 
+from tools.build_queue import bound_outputs as queue_bound_outputs
 from tools.build_queue import outputs as queue_outputs
+from tools.utils.path_utils import release_latest_of, release_versions_of, releases_of
 
 
 class QueueOutputsTests(unittest.TestCase):
@@ -297,6 +299,40 @@ class QueueOutputsTests(unittest.TestCase):
             self.assertTrue((staged.parent / "assets" / "demo.png").exists())
             self.assertTrue((staged.parent / "conf.py").exists())
             self.assertIn("manual_0.2", (staged.parent / "index.md").read_text(encoding="utf-8"))
+
+    def test_publish_release_metadata_should_write_under_injected_repo_root(self) -> None:
+        provider_root = queue_bound_outputs._repo_root()
+        config_path = provider_root / "configs" / "config.ja.yaml"
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            word = root / "docs" / "_build" / "MODEL" / "JP" / "ja" / "word" / "manual.docx"
+            with mock.patch.object(
+                queue_bound_outputs,
+                "_repo_root_provider",
+                lambda: (_ for _ in ()).throw(AssertionError("provider root must not be read")),
+            ):
+                latest_meta = queue_bound_outputs.write_publish_release_metadata(
+                    config_path=config_path,
+                    model="MODEL",
+                    region="JP",
+                    version="1.0",
+                    git_ref="main",
+                    built_at=datetime(2026, 11, 18, tzinfo=timezone.utc),
+                    word_output_path=word,
+                    pdf_output_path=word.with_suffix(".pdf"),
+                    html_dir=None,
+                    document_link_url="",
+                    repo_root=root,
+                )
+
+            release_root = releases_of(root) / "MODEL" / "JP" / "ja"
+            self.assertEqual(release_latest_of(release_root) / "publish_meta.json", latest_meta)
+            self.assertTrue((release_versions_of(release_root) / "1.0" / "publish_meta.json").is_file())
+            self.assertIn(
+                '"word_output_path": "docs/_build/MODEL/JP/ja/word/manual.docx"',
+                latest_meta.read_text(encoding="utf-8"),
+            )
+        self.assertFalse((releases_of(provider_root) / "MODEL").exists())
 
 
 if __name__ == "__main__":
