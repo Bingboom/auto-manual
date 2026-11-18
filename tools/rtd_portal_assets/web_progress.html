@@ -34,16 +34,16 @@
     </div>
   </section>
   <div class="kpi-row wp-kpis" aria-label="网页说明书进度">
-    <div class="kpi"><span>审核中</span><strong>{% if p.kpis.reviews is none %}—{% else %}{{ p.kpis.reviews }}<small>本</small>{% endif %}</strong><em>{% if p.kpis.reviews %}待研发确认 {{ p.kpis.open }} 项{% if p.kpis.latest %} · 最近更新 {{ p.kpis.latest[5:]|e }}{% endif %}{% else %}飞书审核稿表{% endif %}</em></div>
-    <div class="kpi"><span>待转</span><strong>{% if p.kpis.gaps is none %}—{% else %}{{ p.kpis.gaps }}<small>本</small>{% endif %}</strong><em>已转型号在有在用 SKU 的市场里还没有网页版</em></div>
-    <div class="kpi"><span>语言未齐</span><strong>{{ p.kpis.partial }}<small>本</small></strong><em>少于该市场已上线的语言种数</em></div>
+    <div class="kpi"><span>审核中</span><strong>{% if p.kpis.reviews is none %}—{% else %}{{ p.kpis.reviews }}<small>本</small>{% endif %}</strong><em>{% if p.kpis.reviews %}待研发确认 {{ p.kpis.open }} 项{% if p.kpis.latest %} · 最近更新 {{ p.kpis.latest[5:]|e }}{% endif %}{% else %}当前无在审版本{% endif %}</em></div>
+    <div class="kpi"><span>待转</span><strong>{% if p.kpis.gaps is none %}—{% else %}{{ p.kpis.gaps }}<small>本</small>{% endif %}</strong><em>在售市场尚未上线网页版</em></div>
+    <div class="kpi"><span>语言未齐</span><strong>{{ p.kpis.partial }}<small>本</small></strong><em>少于目标市场已上线语种数</em></div>
     <div class="kpi"><span>内容已核对</span><strong>{% if p.kpis.checked is none %}—{% else %}{{ p.kpis.checked }}<small>/ {{ p.kpis.routes }}</small>{% endif %}</strong>
-      <div class="kpi-bar" aria-hidden="true"><i style="width: {{ ((100 * p.kpis.checked / p.kpis.routes) if (p.kpis.checked and p.kpis.routes) else 0)|round(1) }}%"></i></div><em>飞书网页文档表「内容是否核对」</em></div>
+      <div class="kpi-bar" aria-hidden="true"><i style="width: {{ ((100 * p.kpis.checked / p.kpis.routes) if (p.kpis.checked and p.kpis.routes) else 0)|round(1) }}%"></i></div><em>已完成人工核对的语种版本</em></div>
   </div>
 
   {%- if p.reviews %}
   <div class="wp-reviews" id="web-progress-reviews">
-    <div class="wp-reviews-head"><h3>审核中<span>{{ p.reviews|length }} 本 · 待研发确认 {{ p.kpis.open }} 项 · 审核稿在私有审核站，需登录；上线后进入「交付物」的覆盖矩阵</span></h3>{{ wp_feishu(p.feishu.reviews, '在飞书打开') }}</div>
+    <div class="wp-reviews-head"><h3>审核中<span>{{ p.reviews|length }} 本 · 待研发确认 {{ p.kpis.open }} 项 · 正式发布后自动并入覆盖矩阵</span></h3>{{ wp_feishu(p.feishu.reviews, '在飞书打开') }}</div>
     <div class="dl-table-wrap" role="region" aria-label="审核中的说明书，可横向滚动" tabindex="0">
       <table class="wp-review-table">
         <caption class="wb-sr-only">审核中的说明书：版本、更新日期、状态与待研发确认</caption>
@@ -71,7 +71,7 @@
   <div class="wp-cards">
     <article class="wp-card" id="web-progress-trend" aria-labelledby="wp-trend-title">
       <h3 id="wp-trend-title">上线进度</h3>
-      <p class="wp-note">每个语言版本按它第一次进入发布清单的日期累计，改过名的旧路由按最早的名字算。</p>
+      <p class="wp-note">按各语种版本首次发布的日期累计统计。</p>
       <p class="wp-totals"><span><b>{{ p.kpis.routes }}</b>个语言版本</span><span><b>{{ p.kpis.editions }}</b>本</span><span><b>{{ p.kpis.models }}</b>个型号</span></p>
       {%- if p.timeline %}
       <div class="wp-trend" data-wp-trend><script type="application/json">{{ p.timeline|tojson }}</script></div>
