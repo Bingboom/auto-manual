@@ -24,14 +24,12 @@
 <a class="home-asset home-front-card" id="asset-{{ card.id|e }}" href="{{ pathto(card.page) }}">
   <span class="home-front-top">
     <span class="home-front-tile">{{ icon(card.icon, 19) }}</span>
-    <span class="home-front-arrow" aria-hidden="true">{{ icon('arrow', 16) }}</span>
   </span>
   <strong class="home-front-title">{{ card.title|e }}</strong>
   <span class="home-front-line">{{ card.line|e }}</span>
   <span class="home-front-foot">
-    <span class="home-front-fig">{% if card.value is none %}<b class="is-pending">暂无</b>{% else %}<b>{{ card.value|e }}</b><small>{{ card.unit|e }}</small>{% endif %}</span>
-    {%- if card.meta %}<span class="home-front-meta"{% if card.date %} title="截至 {{ card.date|e }}"{% endif %}>{{ card.meta|e }}</span>
-    {%- elif card.date %}<time class="home-front-meta" datetime="{{ card.date|e }}">截至 {{ card.date|e }}</time>{% endif -%}
+    <span class="home-front-fig"{% if card.date and not card.meta %} title="截至 {{ card.date|e }}"{% endif %}>{% if card.value is none %}<b class="is-pending">暂无</b>{% else %}<b>{{ card.value|e }}</b><small>{{ card.unit|e }}</small>{% endif %}</span>
+    {%- if card.meta %}<span class="home-front-meta"{% if card.date %} title="截至 {{ card.date|e }}"{% endif %}>{{ card.meta|e }}</span>{% endif -%}
   </span>
 </a>
 {%- endmacro -%}

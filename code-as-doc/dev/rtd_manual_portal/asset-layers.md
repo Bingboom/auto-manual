@@ -217,7 +217,7 @@ layers that is not a figure:
   model count), 正式说明书 (published Web manuals, model × market) and 覆盖语种 (the publish manifest's language
   count from `deliverables.publication_languages`, the same figure 说明书工作台 shows as 发布语言; no fallback to the
   corpus; 暂无 when the manifest is unreadable or a target names no language). Then six cards (`#now`;
-  `asset_pages.front_cards`), each with an icon, an arrow, its name, one sentence naming only what its page holds
+  `asset_pages.front_cards`), each with an icon (no arrow: 「首页卡片的箭头也去掉」, 2026-11-18), its name, one sentence naming only what its page holds
   (语料库 says 已批准 only when its figure counts approved pairs), one figure (暂无 when unreadable) and a count
   badge; the figure's date is only the badge's tooltip. The cards of a row share their row tracks (CSS subgrid), so
   dividers and figures line up when a badge wraps. With a share package, 分享资料 (`#shares`) follows. No status

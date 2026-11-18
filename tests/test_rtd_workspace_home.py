@@ -96,7 +96,8 @@ class HomeRenderTests(unittest.TestCase):
         self.assertEqual(len(cards), 6)
         for card in cards:
             self.assertIsNotNone(card.select_one(".home-front-tile svg.ic"))
-            self.assertIsNotNone(card.select_one(".home-front-arrow svg.ic"))
+        # The owner dropped the arrow (2026-11-18, 「首页卡片的箭头也去掉」): the whole card is the link.
+        self.assertIsNone(home.select_one(".home-front-arrow"))
         sidebar = home.select("#app-sidebar a.app-nav-link")
         self.assertEqual([a.span.get_text() for a in sidebar],
                          ["资产总览", "产品信息", "产品知识", "说明书资料库", "语料库", "视觉媒体", "市场与政策"])
@@ -149,6 +150,23 @@ class HomeRenderTests(unittest.TestCase):
         policy = next(c for c in cards if c["id"] == "policy")
         self.assertEqual((policy["value"], policy["meta"]), (None, ""))
         self.assertEqual(render(cards=cards).select_one("#asset-policy .home-front-fig b").get_text(), "暂无")
+        # With a date but no badge the date is only the figure's tooltip, never printed.
+        card = render(cards=cards).select_one("#asset-policy")
+        self.assertNotIn("截至", card.get_text())
+        self.assertEqual(card.select_one(".home-front-fig")["title"], "截至 2026-11-01")
+
+    def test_the_workbench_hides_its_language_line_when_the_count_is_unknown(self):
+        template = Environment(loader=FileSystemLoader(ASSETS)).get_template("workbench_summary.html")
+        overview = [{"id": "manuals", "value": 3, "display": "3"}, {"id": "variants", "value": 5, "display": "5"}]
+
+        def summary(targets):
+            html = template.render(production={"overview": overview}, progress={"available": False},
+                                   books_by_region=[], languages=publication_languages(targets))
+            return BeautifulSoup(html, "html.parser").get_text()
+
+        self.assertIn("2 种发布语言", summary([{"lang": "en"}, {"lang": "fr"}]))
+        for unknown in ([{"lang": "en"}, {"lang": ""}], None):
+            self.assertNotIn("种发布语言", summary(unknown))
 
     def test_card_lines_name_only_what_their_pages_hold(self):
         lines = {c["id"]: c["line"] for c in front_cards(None, None, None)}
