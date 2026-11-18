@@ -13,6 +13,7 @@ from tests.historical_web_inputs import historical_shared_inputs, temporary_deri
 
 from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
+from tools.web.external_source_store import resolve_source_identity, reviewed_inputs_match_with_pointers
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -98,7 +99,8 @@ class SolarVocEditionTests(unittest.TestCase):
                 base = read(reviewed / 'source_manifest.json')
                 self.assertEqual(manifest['target']['technical_version'], package.name)
                 self.assertEqual(manifest['original_source'], base['original_source'])
-                self.assertEqual(file_sha256(package / edition['source']), base['original_source']['sha256'])
+                self.assertEqual(resolve_source_identity(package / edition['source'])[1],
+                                 base['original_source']['sha256'])
                 self.assertEqual(manifest['derived_from'], {
                     'package': reviewed.name, 'authorization': edition['authorization'],
                     'manifest_sha256': file_sha256(reviewed / 'source_manifest.json')})
@@ -114,9 +116,16 @@ class SolarVocEditionTests(unittest.TestCase):
                     self.assertTrue(manifest['publication_eligible'])
                     self.assertTrue(approval['operator_quote'])
                     self.assertEqual(approval['target'], edition['render'].TARGET)
-                    self.assertEqual(approval['reviewed_inputs'], [
+                    reviewed_rows = [
                         r for r in manifest['inputs']
-                        if r['path'].startswith(('source/', 'assets/')) and r['path'] != 'source/approval.json'])
+                        if r['path'].startswith(('source/', 'assets/')) and r['path'] != 'source/approval.json']
+                    self.assertTrue(reviewed_inputs_match_with_pointers(
+                        package,
+                        approval['reviewed_inputs'],
+                        reviewed_rows,
+                        original_sha256=manifest['original_source']['sha256'],
+                        raw_archive_paths=(edition['source'],),
+                    ))
 
     def test_derivation_is_reproducible(self):
         for key, edition in EDITIONS.items():
@@ -180,10 +189,20 @@ class SolarVocEditionTests(unittest.TestCase):
                     report = render_language(edition, source, lang, out)
                     frozen = edition['package'] / f'web/{lang}'
                     self.assertEqual(
-                        {str(p.relative_to(out)): file_sha256(p) for p in out.rglob('*') if p.is_file()},
-                        {str(p.relative_to(frozen)): file_sha256(p) for p in frozen.rglob('*') if p.is_file()})
+                        {str(p.relative_to(out)): file_sha256(p)
+                         for p in out.rglob('*') if p.is_file() and p.name != 'manual.ir.json'},
+                        {str(p.relative_to(frozen)): file_sha256(p)
+                         for p in frozen.rglob('*') if p.is_file() and p.name != 'manual.ir.json'})
+                    out_ir, frozen_ir = read(out / 'manual.ir.json'), read(frozen / 'manual.ir.json')
+                    self.assertEqual(
+                        {k: v for k, v in out_ir.items() if k != 'metadata'},
+                        {k: v for k, v in frozen_ir.items() if k != 'metadata'})
+                    self.assertEqual(
+                        {k: v for k, v in out_ir['metadata'].items() if k != 'frozen_source_manifest'},
+                        {k: v for k, v in frozen_ir['metadata'].items() if k != 'frozen_source_manifest'})
+                    self.assertEqual(out_ir['metadata']['frozen_source_manifest'], manifest)
                     self.assertEqual(report['publication_eligible'], manifest['publication_eligible'])
-                    self.assertEqual(read(out / 'manual.ir.json')['metadata']['publication_eligible'],
+                    self.assertEqual(out_ir['metadata']['publication_eligible'],
                                      manifest['publication_eligible'])
 
     def test_changed_or_unlisted_inputs_are_rejected_before_output(self):

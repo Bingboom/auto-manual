@@ -388,8 +388,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 7847,
-      "sha256": "ea96adfdf26c492675d7f3a50ca2a1b64c5c41cdec718bc97c0c0ed97e109431"
+      "size": 8325,
+      "sha256": "6d3909dea3bdb337506b18850ef35e3e10cde05c32b1b475714998150301f4c4"
     },
     {
       "path": "source/approval.json",
@@ -427,9 +427,9 @@
       "sha256": "29c690dd259acf02d5f0079d6e486ae93a4a7141ba897f35a1b402073b1f5ece"
     },
     {
-      "path": "source/pdf-archive/part-001.bin",
-      "size": 8785016,
-      "sha256": "56860f2f24a11f4a1ccc7fa8392299b6400b3aa36b669451c376fd310eb9160e"
+      "path": "source/pdf-archive/JBP-3600A_JP_ja_V0.1.pdf.source-pointer.json",
+      "size": 635,
+      "sha256": "ec5e8c7aebc8d60bfeb6799c91862229fd960a00b666df1e1218631ca0a10dee"
     },
     {
       "path": "source/presentation.css",

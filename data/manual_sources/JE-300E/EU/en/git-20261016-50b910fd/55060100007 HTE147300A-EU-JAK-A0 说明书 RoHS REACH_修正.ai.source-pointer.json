@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "55060100007 HTE147300A-EU-JAK-A0 说明书 RoHS REACH_修正.ai",
+  "sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800",
+  "size_bytes": 22672820,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28b6yv7ChYp",
+    "field_name": "source_file",
+    "file_token": "J1EQby73coO32YxzmT2ckyNZnhh"
+  },
+  "local_relpath": "55060100007 HTE147300A-EU-JAK-A0 说明书 RoHS REACH_修正.ai",
+  "source_key": "source/manual_je300e_eu_en_revised_ai",
+  "notes": "Phase 3B-2 externalized JE-300E EU en revised Illustrator booklet."
+}

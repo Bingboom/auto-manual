@@ -250,7 +250,38 @@ def decorate_manual(app, context, *, settings: dict, product: dict, active: dict
     app.add_css_file("manual-reader.css")
 
 
+def cached_asset_versions(app) -> dict[str, str]:
+    """Short content hash per portal CSS/JS under ASSETS/_static, computed once per build."""
+    cached = getattr(app, "_rtd_asset_versions", _UNSET)
+    if cached is _UNSET:
+        from tools.rtd.deliverables import asset_versions
+
+        cached = asset_versions(ASSETS)
+        app._rtd_asset_versions = cached
+    return cached
+
+
+def version_portal_static(app, context: dict) -> None:
+    """Append ?v=<sha256[:12]> to portal _static/*.css and _static/*.js links so cached sheets never unstyle new HTML."""
+    pathto = context.get("pathto")
+    if not callable(pathto):
+        return
+    versions = cached_asset_versions(app)
+
+    def versioned(uri: str, *args, **kwargs) -> str:
+        resolved = pathto(uri, *args, **kwargs)
+        if isinstance(uri, str) and uri.startswith("_static/") and "?" not in resolved:
+            token = versions.get(uri.removeprefix("_static/"))
+            if token:
+                return f"{resolved}?v={token}"
+        return resolved
+
+    context["pathto"] = versioned
+
+
 def page_context(app, pagename, templatename, context, doctree):
+    if doctree is None or pagename in (app.config.root_doc, "search"):
+        version_portal_static(app, context)
     settings, products = portal_data(app)
     feedback_channels = normalize_channels(settings.get("feedback_channels", []))
     beacon_token = normalize_beacon_token(settings.get("analytics_beacon_token", ""))

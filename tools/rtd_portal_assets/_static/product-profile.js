@@ -5,7 +5,7 @@
 // and this script copies those nodes into the card; nothing is built from strings. The pure part is on
 // globalThis.ProductProfile for tests/product_profile_ui.test.mjs.
 (() => {
-  const sourceTitle = label => `${label || '数值'} · 出处`;
+  const sourceTitle = label => `${label || '数值'} · 参数原文溯源`;
   // The head's SKU 创建时间 is the chosen market's own: show that market's date, hide the others. Without JavaScript
   // the head lists every market's date with its market; the labels go once the switch runs.
   const showDates = (dates, code) => dates.forEach(date => { date.hidden = date.dataset.marketDate !== code; });

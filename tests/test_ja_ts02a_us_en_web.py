@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from contextlib import redirect_stdout
-import hashlib
 import importlib.util
 import io
 import json
@@ -21,6 +20,10 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import (
+    load_pointer_file,
+    reviewed_inputs_match_with_pointers,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1'
@@ -131,12 +134,9 @@ class JaTs02aUsEnWebTests(unittest.TestCase):
                                               'printed_manual_version': 'JAK-UM-V1.0'})
         original = manifest['original_source']
         self.assertEqual(original['sha256'], SOURCE_SHA)
-        digest = hashlib.sha256()
-        for part in original['archive_parts']:
-            data = (PACKAGE / part['path']).read_bytes()
-            self.assertLessEqual(len(data), 32 * 1024 * 1024)
-            digest.update(data)
-        self.assertEqual(digest.hexdigest(), SOURCE_SHA)
+        pointer = load_pointer_file(PACKAGE / rebuild_module.POINTER_ARCHIVE)
+        self.assertEqual((pointer.size_bytes, pointer.sha256), (original['size_bytes'], SOURCE_SHA))
+        self.assertEqual(rebuild_module.archived_pdf_sha256(original), SOURCE_SHA)
         self.assertEqual(read(PACKAGE / 'source/en/content.json')['source_sha256'], SOURCE_SHA)
         self.assertEqual(manifest['included_pages']['en']['physical_pages'], list(range(3, 25)))
         self.assertEqual(manifest['web_roots'], {'en': 'web/en'})
@@ -153,9 +153,16 @@ class JaTs02aUsEnWebTests(unittest.TestCase):
                                               for key in ('model', 'region', 'technical_version')})
         self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
         # Everything but the frozen web/ outputs and the acceptance itself.
-        self.assertEqual(approval['reviewed_inputs'],
-                         [row for row in manifest['inputs']
-                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        reviewed = [row for row in manifest['inputs']
+                    if not row['path'].startswith('web/') and row['path'] != 'source/approval.json']
+        self.assertTrue(reviewed_inputs_match_with_pointers(
+            PACKAGE,
+            approval['reviewed_inputs'],
+            reviewed,
+            original_sha256=SOURCE_SHA,
+            raw_archive_paths=[part['path'] for part in manifest['original_source']['archive_parts']],
+            adapter_paths=('rebuild.py',),
+        ))
         self.assertEqual({key: approval[key] for key in ACCEPTANCE}, ACCEPTANCE)
         metadata = read(PACKAGE / 'web/en' / PathSegments.MANUAL_IR_JSON)['metadata']
         self.assertIs(metadata['publication_eligible'], True)
@@ -203,6 +210,17 @@ class JaTs02aUsEnWebTests(unittest.TestCase):
         if tuple(pymupdf.version[:2]) != ('1.28.0', '1.29.0'):
             self.skipTest('word geometry is validated for PyMuPDF 1.28.0 / MuPDF 1.29.0 (requirements.lock)')
         source = self.fixture()
+        original = read(PACKAGE / 'source_manifest.json')['original_source']
+        if not all((source / part['path']).is_file() for part in original['archive_parts']):
+            repo_pdf = ROOT / original['repository_pdf']['path']
+            if not repo_pdf.is_file():
+                self.skipTest('authoritative PDF archive is externalized via .source-pointer.json')
+            pdf_bytes = repo_pdf.read_bytes()
+            offset = 0
+            for part in original['archive_parts']:
+                size = int(part['size'])
+                (source / part['path']).write_bytes(pdf_bytes[offset:offset + size])
+                offset += size
         saved_path, saved_native = list(sys.path), sys.modules.get('native')
         try:
             native = load('native', PACKAGE / 'source/native.py')

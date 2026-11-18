@@ -96,6 +96,21 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-001.bin": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
+        },
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-002.bin": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
+        },
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-003.bin": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
         }
       }
     },
@@ -298,6 +313,11 @@
         "tools/asset_pipeline/native_svg.py": {
           "handling": "keep-frozen",
           "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
           "since": "2026-11-18"
         }
       }
@@ -3993,6 +4013,11 @@
           "handling": "keep-frozen",
           "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
           "since": "2026-11-18"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
         }
       }
     },
@@ -5336,6 +5361,11 @@
           "handling": "keep-frozen",
           "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
           "since": "2026-11-18"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
         }
       }
     },
@@ -5356,6 +5386,11 @@
         "tools/asset_pipeline/native_svg.py": {
           "handling": "keep-frozen",
           "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
           "since": "2026-11-18"
         }
       }
@@ -5378,6 +5413,11 @@
           "handling": "keep-frozen",
           "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
           "since": "2026-11-18"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+          "since": "2026-11-18"
         }
       }
     },
@@ -5398,6 +5438,11 @@
         "tools/asset_pipeline/native_svg.py": {
           "handling": "keep-frozen",
           "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+          "since": "2026-11-18"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
           "since": "2026-11-18"
         }
       }
@@ -5753,6 +5798,19 @@
       "packages": 32,
       "handling": "keep-frozen",
       "reason": "Operator-authorized 2026-11-18 single-language Web batch: append nine exact-source EU admission profiles and two reviewed source-bound native symbol variants; existing profile/catalog semantics remain unchanged. Native SVG comparison-key normalization preserves original path and ancestor attributes and exact rendered output; historical frozen source packages, pins and release bytes remain immutable.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-18",
+      "files": [
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-001.bin",
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-002.bin",
+        "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/source/pdf-archive/part-003.bin",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 7,
+      "handling": "keep-frozen",
+      "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
       "minutes": 0
     }
   ]

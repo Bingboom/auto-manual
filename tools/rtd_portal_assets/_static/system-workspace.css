@@ -647,3 +647,15 @@ body.app.kb.system-workspace .sw-stale { border: 0; border-radius: 999px; paddin
 .sw-path-boundary { margin: 12px 0 0; padding: 10px 14px; border: 1px dashed #c9d2dd; border-radius: 10px; font-size: 13px; color: #474e4e; }
 .sw-path-boundary b { margin-right: 8px; }
 .sw-cards.sw-layer-cards { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* Quiet update status when no refresh action is available; compact language-assets redirect bar. */
+.sw-update:not(:has(#sw-refresh:not([hidden]))) #sw-update-status {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.sw-assets > #tab-corpus { grid-column: 1 / -1; }
+.sw-box.sw-lang-bar {
+  flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 8px 16px; padding: 12px 18px;
+}
+.sw-box.sw-lang-bar > h2 { gap: 8px; }
+.sw-box.sw-lang-bar .sw-moved { font-size: 13px; color: var(--app-muted); }

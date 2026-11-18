@@ -25,6 +25,7 @@ from tools.manual_ir.components import component_specs_in_flow  # noqa: E402
 from tools.manual_ir.document import validate_document  # noqa: E402
 from tools.manual_ir.hashing import value_sha256  # noqa: E402
 from tools.markdown_bundle import _rewrite_local_file_uris_to_relative, export_markdown_from_bundle  # noqa: E402
+from tools.web.external_source_store import reviewed_inputs_match_with_pointers  # noqa: E402
 from tools.web.frozen_ai_web import replay_package  # noqa: E402
 
 APPROVED = "operator-approved-git-only-release"
@@ -71,7 +72,13 @@ def acceptance(source: Path, manifest: dict) -> dict | None:
     if (not approval.get("operator_quote")
             or approval["original_source_sha256"] != manifest["original_source"]["sha256"]
             or approval["target"] != TARGET
-            or approval["reviewed_inputs"] != reviewed):
+            or not reviewed_inputs_match_with_pointers(
+                source,
+                approval.get("reviewed_inputs"),
+                reviewed,
+                original_sha256=manifest["original_source"]["sha256"],
+                raw_archive_paths=(manifest["original_source"]["path"],),
+            )):
         raise ValueError("operator acceptance does not cover these inputs")
     return approval
 

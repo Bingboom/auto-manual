@@ -908,7 +908,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             # The 2026-11 layout: the 阶段门 stepper above three tabs, the sections in this order.
             # Step 9: 生产链路, the architecture as a plain section, 语言资产 beside 工程规模, then 技能与钩子.
-            headings = ("阶段门", "正在做", "当前主线", "同期 · 持续支撑", "后置 · 按需", "能力地图", "生产链路",
+            headings = ("阶段门", "当前推进", "当前主线", "同期 · 持续支撑", "后置 · 按需", "能力地图", "生产链路",
                         "工作入口", "系统架构", "语言资产", "工程规模", "技能与钩子", "数据来源", "系统演变")
             found = [re.search(rf"<h2[^>]*>{re.escape(h)}(</h2>|<small>)", page) for h in headings]
             self.assertEqual([bool(m) for m in found], [True] * len(headings))

@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "original.ai",
+  "sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da",
+  "size_bytes": 5210211,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28b6zShC3A4",
+    "field_name": "source_file",
+    "file_token": "LHsHbAKnRodHfJxNUwYcHofdnog"
+  },
+  "local_relpath": "source/original.ai",
+  "source_key": "source/manual_ja_ad500a_sil_us_en_ai",
+  "notes": "Phase 3B-2 externalized JA-AD500A-SIL US en Illustrator design master."
+}

@@ -37,7 +37,7 @@
     "structured_copy": "docs/templates/page_charger/powered_protection_accessory/en",
     "structured_copy_snapshot_sha256": "3c81145a3013f9f0c5d7e2feb7b69a9879d911a1fc454886cd0444eae2ecf55a",
     "data_root": "data/manual_sources/ja_cc30a_eu_en",
-    "snapshot_sha256": "0a51b495193e713db370a6428df48fade85a9cec0d42c0af552dcda384119376",
+    "snapshot_sha256": "b160cadb9a224652b39ccef9bceeaa6dab5e1e9c94bdb34a74de1e1073e281f5",
     "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the eight frozen source files"
   },
   "files": [
@@ -46,8 +46,8 @@
       "sha256": "956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"
     },
     {
-      "path": "JA-CC30A-eu-source.ai",
-      "sha256": "0eb2b7ba99e9b5b941f147f3b3b60f89229b007af77fc80e7dc9451d7aaa50d3"
+      "path": "JA-CC30A-eu-source.ai.source-pointer.json",
+      "sha256": "0f708297166e887c34f526c26dabd2e32c4b416d4361ddd1218ed2871f837f9f"
     },
     {
       "path": "Localized_Copy.csv",

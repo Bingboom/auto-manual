@@ -23,6 +23,7 @@ from tools.skeleton_resolve import (
     resolve_plan,
 )
 from tools.web.document_ir import render_document_fragments
+from tools.web.external_source_store import resolve_source_identity
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -139,7 +140,7 @@ class JaCc30aEuEnTargetTests(unittest.TestCase):
         self.assertEqual("Li32wwM6MY", payload["authority"]["record_id"])
         self.assertEqual(
             "0eb2b7ba99e9b5b941f147f3b3b60f89229b007af77fc80e7dc9451d7aaa50d3",
-            hashlib.sha256((FIXTURE / "JA-CC30A-eu-source.ai").read_bytes()).hexdigest(),
+            resolve_source_identity(FIXTURE / "JA-CC30A-eu-source.ai")[1],
         )
         for entry in payload["files"]:
             self.assertEqual(

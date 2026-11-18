@@ -82,7 +82,7 @@ The 系统建设 and 说明书工作台 pages share the page tabs (`.page-tabs` 
 panels, so without JavaScript every panel shows; any in-page link or URL hash that
 points inside a panel opens that panel, and any collapsed section around it.
 系统建设 opens with the 阶段门 stepper (G1–G3 with the current gate filled, then a
-接下来 line and the folded gates) above three tabs: 当前工作 (正在做 and the focus lanes), 能力与架构 (capability map, production flow, 工作入口, architecture,
+接下来 line and the folded gates) above three tabs: 当前工作 (当前推进 and the focus lanes), 能力与架构 (capability map, production flow, 工作入口, architecture,
 language assets, skills and engineering scale) and 来源与演变 (data sources, then
 the system's evolution). The former tab ids (`#tab-architecture`, `#tab-corpus`,
 `#tab-tooling`, `#tab-evolution`) stay on their sections. 说明书工作台 opens with
@@ -122,8 +122,7 @@ Inside the shell the root page has these bounded zones on one container width
    count), each a responsive card grid. A category without a manual in the
    region keeps a grey heading and says 「<region> 暂无说明书 · 其他区域 N 款」;
    while a search or the language filter narrows the list, empty categories
-   and series hide instead. In the private role a closing line names the
-   source (the 网页文档 table, the same grouping as 产品矩阵).
+   and series hide instead.
 5. **网页说明书的定位与价值** (white band, after the catalog so the first screen stays search):
    reader-facing copy in both roles (since the front cleanup of 2026-11-17 the private
    role no longer shows status tags or links into 知识库首页). See [网页说明书的定位与价值](web-manual-value.md).

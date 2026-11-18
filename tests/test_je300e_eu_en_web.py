@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from contextlib import redirect_stdout
-import hashlib
 import importlib.util
 import io
 import json
@@ -21,6 +20,11 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import (
+    pointer_path_for,
+    resolve_source_identity,
+    reviewed_inputs_match_with_pointers,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd'
@@ -114,7 +118,9 @@ class Je300eEuEnWebTests(unittest.TestCase):
         """A source copy without the frozen web/ outputs, rebound to that tree."""
         dest = self.root / 'source'
         shutil.copytree(PACKAGE, dest, ignore=shutil.ignore_patterns('web', '__pycache__', '*.ai'))
-        link_or_copy(str(PACKAGE / SOURCE_FILE), str(dest / SOURCE_FILE))
+        raw_source = PACKAGE / SOURCE_FILE
+        if raw_source.is_file():
+            link_or_copy(str(raw_source), str(dest / SOURCE_FILE))
         manifest = read(dest / 'source_manifest.json')
         manifest['inputs'] = [row for row in manifest['inputs'] if not row['path'].startswith('web/')]
         # Isolate negative fixtures from the App stylesheet registration change.
@@ -134,13 +140,14 @@ class Je300eEuEnWebTests(unittest.TestCase):
         self.assertTrue(PACKAGE.name.endswith('-' + SOURCE_SHA[:8]))
         original = manifest['original_source']
         self.assertEqual((original['filename'], original['sha256']), (SOURCE_FILE, SOURCE_SHA))
-        data = (PACKAGE / SOURCE_FILE).read_bytes()
-        self.assertLessEqual(len(data), 32 * 1024 * 1024)
-        self.assertEqual(hashlib.sha256(data).hexdigest(), SOURCE_SHA)
+        size_bytes, digest = resolve_source_identity(PACKAGE / SOURCE_FILE)
+        self.assertLessEqual(size_bytes, 32 * 1024 * 1024)
+        self.assertEqual(digest, SOURCE_SHA)
         # An added-locales package pins this repository path instead of copying the booklet.
         part, = original['archive_parts']
         self.assertEqual((ROOT / part['path']).resolve(), (PACKAGE / SOURCE_FILE).resolve())
         self.assertEqual(part['sha256'], SOURCE_SHA)
+        self.assertTrue(pointer_path_for(PACKAGE / SOURCE_FILE).is_file() or (PACKAGE / SOURCE_FILE).is_file())
         self.assertEqual(read(PACKAGE / 'source/en/content.json')['source_sha256'], SOURCE_SHA)
         self.assertEqual(manifest['included_pages']['en']['physical_pages'], PAGES)
         self.assertEqual(manifest['web_roots'], {'en': 'web/en'})
@@ -156,9 +163,16 @@ class Je300eEuEnWebTests(unittest.TestCase):
         self.assertEqual(approval['languages'], ['en'])
         self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
         # Everything but the frozen web/ outputs and the acceptance itself.
-        self.assertEqual(approval['reviewed_inputs'],
-                         [row for row in manifest['inputs']
-                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        reviewed = [row for row in manifest['inputs']
+                    if not row['path'].startswith('web/') and row['path'] != 'source/approval.json']
+        self.assertTrue(reviewed_inputs_match_with_pointers(
+            PACKAGE,
+            approval['reviewed_inputs'],
+            reviewed,
+            original_sha256=SOURCE_SHA,
+            raw_archive_paths=(SOURCE_FILE,),
+            adapter_paths=('rebuild.py',),
+        ))
         self.assertEqual((approval['operator_quote'], approval['merge_authorization']), ('做完直接发布', 'MA-313'))
         metadata = read(PACKAGE / 'web/en' / PathSegments.MANUAL_IR_JSON)['metadata']
         self.assertIs(metadata['publication_eligible'], True)
@@ -181,6 +195,9 @@ class Je300eEuEnWebTests(unittest.TestCase):
                                         'shared-inbox-live-ordinal'})
 
     def test_intake_reproduces_the_frozen_source(self):
+        if not (PACKAGE / SOURCE_FILE).is_file():
+            self.assertEqual(resolve_source_identity(PACKAGE / SOURCE_FILE)[1], SOURCE_SHA)
+            self.skipTest('authoritative .ai is externalized via .source-pointer.json; fetch before replaying PDF intake')
         try:
             import pymupdf
         except ImportError:  # pragma: no cover - repository dependency
@@ -235,6 +252,7 @@ class Je300eEuEnWebTests(unittest.TestCase):
         row.update(size=path.stat().st_size, sha256=file_sha256(path))
         # This negative fixture targets acceptance, not historical shared-input drift.
         # Rebind only its temporary manifest; frozen production inputs stay unchanged.
+        manifest['repo_inputs'] = [d for d in manifest['repo_inputs'] if (ROOT / d['path']).is_file()]
         for dependency in manifest['repo_inputs']:
             current = ROOT / dependency['path']
             dependency.update(size=current.stat().st_size, sha256=file_sha256(current))

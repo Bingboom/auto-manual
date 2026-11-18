@@ -19,7 +19,7 @@
   <span class="pe-links"><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">构建与发布运行 ↗</a><a href="https://xcn57j1urbe6.feishu.cn/wiki/BLYEwfMMFiS7wsk9MuvcOvdVnje?table=tblbnRHjpJeCVTtj" target="_blank" rel="noopener">待处理任务 ↗</a>{% if system_entry %}<a href="{{ pathto('workspace/system/index') }}#now-next">阶段验收 →</a>{% endif %}</span></aside>
 {%- endif %}
 
-<section class="pe-moved" id="reuse" aria-label="可复用资产已移到资产页">
+<section class="pe-moved" id="reuse" hidden aria-label="可复用资产已移到资产页">
   <b>可复用资产已移到资产页：</b>
   <a id="library-styles" href="{{ pathto('workspace/design/index') }}"><span id="library-templates"></span>组件与样式 → 设计规范</a>
   <a href="{{ pathto('assets/media/index') }}">素材、符号 → 视觉媒体</a>
@@ -27,21 +27,21 @@
 </section>
 
 <section class="sw-section pe-section" id="production-evidence-table" aria-labelledby="pe-evidence-title">
-  <div class="pe-head"><div class="dl-section-title"><h2 id="pe-evidence-title">生产证据</h2><p>哪些问题现在已经能用记录回答，哪些还缺记录。缺记录的写 Not tracked yet，不填 0；读取失败写 Unavailable。</p></div>
+  <div class="pe-head"><div class="dl-section-title"><h2 id="pe-evidence-title">生产证据</h2><p>按客观构建与运行记录核验各生产维度现状。缺记录标注 Not tracked yet（不填 0），读取失败标注 Unavailable。</p></div>
     <a class="pe-guide" href="{{ production.guide|e }}" target="_blank" rel="noopener">需要补充的记录与计划 ↗</a></div>
   <div class="pe-rows">
     {%- set manuals = overview.get('manuals') %}{% set variants = overview.get('variants') %}
     {%- if manuals and manuals.value is not none %}
-    {%- call row('production-overview', '做了哪些说明书？', '生产规模', 'ok', '已记录', manuals.display ~ ' 本网页说明书 · ' ~ variants.display ~ ' 个语言版本，数字见页首，来自发布清单；只表示当前存量，不是本周新增。') %}
+    {%- call row('production-overview', '已发布规模核验', '生产规模', 'ok', '已记录', manuals.display ~ ' 本网页说明书 · ' ~ variants.display ~ ' 个语言版本，数字见页首，来自发布清单；只表示当前存量，不是本周新增。') %}
       {%- for key in ('manuals', 'variants', 'published') if overview.get(key) %}<div class="pe-metric"><b>{{ overview[key].label|e }} · {{ overview[key].display|e }}</b>{{ metric_details(overview[key]) }}</div>{% endfor %}
       <p>统计于 {{ production.as_of|e }} UTC。一本说明书是一个型号在一个区域的版本，多个版本、重复构建不重复计数。飞书云文档的交付（Word、印刷包）不再统计。</p>
     {%- endcall %}
     {%- else %}
-    {%- call row('production-overview', '做了哪些说明书？', '生产规模', 'unavailable', 'Unavailable', '发布清单当前不可读，不能确认网页说明书的规模。') %}<p>来源读取失败时不显示 0。</p>{% endcall %}
+    {%- call row('production-overview', '已发布规模核验', '生产规模', 'unavailable', 'Unavailable', '发布清单当前不可读，不能确认网页说明书的规模。') %}<p>来源读取失败时不显示 0。</p>{% endcall %}
     {%- endif %}
 
     {%- if refs.value is not none %}
-    {%- call row('component-usage', '共用组件用进了哪些说明书？', '资产消费', 'config', '已确认配置引用', '产品总览组件绑定了 ' ~ refs.display ~ ' 个型号/区域；只覆盖这一个组件，是否进入每次交付的成品还缺产物记录。') %}
+    {%- call row('component-usage', '共享组件引用覆盖', '资产消费', 'config', '已确认配置引用', '产品总览组件绑定了 ' ~ refs.display ~ ' 个型号/区域；只覆盖这一个组件，是否进入每次交付的成品还缺产物记录。') %}
       <div class="pe-targets">{% for r in production.references %}<span><b>{{ r.model|e }}</b> · {{ regions|selectattr('code', 'equalto', r.region)|map(attribute='label')|first|default(r.region)|e }}</span>{% endfor %}</div>
       <div class="pe-table-wrap" role="region" aria-label="资产配置引用关系，可横向滚动" tabindex="0"><table class="pe-table"><thead><tr><th>共享资产</th><th>生产目标</th><th>实例 ID</th><th>证据层级</th></tr></thead><tbody>
       {% for r in production.references %}<tr><td><code>{{ r.component|e }}</code></td><td>{{ r.model|e }} / {{ r.region|e }}</td><td><code>{{ r.instances|e }}</code></td><td>配置引用</td></tr>{% endfor %}
@@ -50,26 +50,26 @@
       <p>这是一类资产的引用覆盖，不代表全部资产的实际消费。翻译记忆最终采用、规格字段消费、跨语言复用：Not tracked yet；不能由登记量或候选命中推断。</p>
     {%- endcall %}
     {%- else %}
-    {%- call row('component-usage', '共用组件用进了哪些说明书？', '资产消费', 'unavailable', 'Unavailable', '组件引用关系暂时无法读取；这里不会把读取失败显示成 0。') %}{{ metric_details(refs) }}{% endcall %}
+    {%- call row('component-usage', '共享组件引用覆盖', '资产消费', 'unavailable', 'Unavailable', '组件引用关系暂时无法读取；这里不会把读取失败显示成 0。') %}{{ metric_details(refs) }}{% endcall %}
     {%- endif %}
 
-    {%- call row('production-effort', '完成一份交付，要新增和人工处理多少内容？', '生产投入', 'none', 'Not tracked yet', '缺逐交付的新增内容、人工处理和返工记录；没有可比样本，不显示节省工时或比例。') %}
+    {%- call row('production-effort', '单次交付人工与新增投入', '生产投入', 'none', 'Not tracked yet', '缺逐交付的新增内容、人工处理和返工记录；没有可比样本，不显示节省工时或比例。') %}
       <div class="pe-inputs"><div><b>新增内容</b><p>新写或改写了哪些段落？复用了哪些已有内容？</p></div><div><b>人工处理</b><p>哪些步骤需要人接手？处理了多少项？</p></div><div><b>返工</b><p>评审后修改了哪些内容？哪些问题再次出现？</p></div></div>
       <p>新增内容、既有内容覆盖、人工介入和返工指标状态：Not tracked yet。范围：当前冻结输入，截至 {{ production.as_of|e }} UTC。文本段落、结构化字段、图片与组件不能合成一个复用百分比；Agent 执行次数和同一目标的重复构建也不能代表效率提升。</p>
     {%- endcall %}
 
-    {%- call row('backflow', '上次的修订，帮到了后来的哪本说明书？', '回流再利用', 'none', 'Not tracked yet', '缺「修订 → 回流到哪项共用内容 → 后来哪本说明书再次采用」的连续记录。') %}
+    {%- call row('backflow', '修订回流与跨册复用', '回流再利用', 'none', 'Not tracked yet', '缺「修订 → 回流到哪项共用内容 → 后来哪本说明书再次采用」的连续记录。') %}
       <ol class="pe-chain"><li><span>修订</span><b>当时改了什么？</b><small>评审意见或修订记录</small></li><li><span>回流</span><b>更新了哪项共用内容？</b><small>对应资产及修订版本</small></li><li><span>再次采用</span><b>后来哪本说明书用了它？</b><small>后续交付和使用证据</small></li></ol>
       <ul class="pe-status-list">{% for label in production.backflow %}<li><span>{{ label|e }}</span><b>Not tracked yet</b></li>{% endfor %}</ul>
       <p>每条链须具备修订 ID、资产 ID 与版本、后续消费记录、Manual / Variant、时间与证据入口；工程台账的完成状态不能证明它们属于同一条生产链。</p>
     {%- endcall %}
 
-    {%- call row('activity', '最近 7 / 30 天实际发生了什么？', '周期活动', 'none', 'Not tracked yet', '缺去重的构建、发布事件账本；发布清单和快照没有完整历史，不用文件时间推算。') %}
+    {%- call row('activity', '近 7 / 30 天构建发布活动', '周期活动', 'none', 'Not tracked yet', '缺去重的构建、发布事件账本；发布清单和快照没有完整历史，不用文件时间推算。') %}
       {%- for window in production.windows %}<div class="pe-window"><b>最近 {{ window.days }} 天 · {{ window.start|e }} 至 {{ window.end|e }} UTC（结束日不含）</b><ul class="pe-status-list">{% for label in window.metrics %}<li><span>{{ label|e }}</span><b>Not tracked yet</b></li>{% endfor %}</ul></div>{% endfor %}
       <p>{{ production.history_reason|e }}</p>
     {%- endcall %}
 
-    {%- call row('agent-results', 'Agent 任务完成了多少，多少需要人接手？', '任务结果', 'none', 'Not tracked yet', '缺任务 ID、执行 attempt、终态和人工介入记录；不计算自动完成率。') %}
+    {%- call row('agent-results', 'Agent 任务终态与人工接手', '任务结果', 'none', 'Not tracked yet', '缺任务 ID、执行 attempt、终态和人工介入记录；不计算自动完成率。') %}
       <ul class="pe-status-list">{% for label in production.agents %}<li><span>{{ label|e }}</span><b>Not tracked yet</b></li>{% endfor %}</ul>
       <p>范围：上述 7 / 30 天 UTC 窗口。取消、失败、进行中与重试无法可靠分离，自动完成率与人工交接率不计算。</p>
     {%- endcall %}
