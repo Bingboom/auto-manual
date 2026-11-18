@@ -138,7 +138,7 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
   旁路输入与输出合写一行的标签（如 Bypass Mode AC Input/Output）归入 `ac_output_bypass`；原 `ac_bypass_input_output`
   已停用（操作者 2026-11-18 决定合并；多维表里的相应事实随之改挂到 `ac_output_bypass`，写入经操作者确认并读回）。`ac_output_port` 与 `ac_output_total` 是两个不同的数
   （每组插座的额定值 / 整机持续输出），中文名改为「AC 每组输出」「AC 整机持续输出」；跨型号比较看 `ac_rated_w`，它与 `ac_surge_w` 的排序移到这两项之前（12.1、12.2），
-  按字典顺序排列的页面与矩阵列随之先列额定和峰值。
+  按字典顺序排列的页面与清单里的矩阵字段随之先列额定和峰值；飞书里已有的矩阵列不会因此移动（生成器只补缺列）。
 - 事实：每个型号 × 市场取一个主语言版本（英文，否则市场主语言，见 `reader/market_languages.json`，
   否则行数最多的版本），同一属性的多行合成一个值；其他语言版本只做比对，结论写进备注，不合并。
   日规「サイズ＆重量」一行同时读尺寸和重量。说明书里随附或另售组件的表（电池包、转换开关、太阳能板）
@@ -198,7 +198,8 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
       另给布尔 `derived`；页面不显示「派生」字样，需要时在来源说明里交代。多维表里的原文不改。
     - `compare`：页面比较两格是否相同时用的写法（NFKC 规范化、去空格、小写：LiFePO₄ 与 LiFePO4、全角与半角括号、
       多一个空格都视为相同）；页面显示仍用 `display`，即说明书原样的写法。格子内的 `sources_disagree` 也按这个写法比较文本。
-      多维表里的原文不改（操作者 2026-11-18）。
+      多维表里的原文不改（操作者 2026-11-18）。`display` 为 null（或只有空白）时 `compare` 为 null；读较早的快照、
+      字段缺失时，读者按同样规则由 `display` 计算。破折号与波浪号这类不同字符不在 NFKC 之内，仍算不同。
     - 两个 `sources_disagree` 含义不同：`values[]` 上的按（产品、参数）跨所有条件算；`cells[]` 上的只看这一格参与的值，
       数值按数字比较（100 与 100.0 相同）。页面用 cells 上的。
     - 与矩阵的一处差别：矩阵按（产品、参数）只取一格；快照给 STC、NOCT、BNPI 各开一格（条件名前后不是字母即可，

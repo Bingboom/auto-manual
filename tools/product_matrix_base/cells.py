@@ -70,8 +70,8 @@ def display_text(value: Any, numeric: bool, unit: str) -> str | None:
 def compare_key(text: Any) -> str | None:
     """The form two printed values are compared in: NFKC (₄ = 4, full width = half width), no spaces, lower case.
     Pages compare cells by it; they still show `display` as printed."""
-    value = _text(text)
-    return re.sub(r"\s+", "", unicodedata.normalize("NFKC", value)).lower() if value else None
+    value = re.sub(r"\s+", "", unicodedata.normalize("NFKC", _text(text))).lower()
+    return value or None  # null for an empty or whitespace-only display
 
 
 def _same_value(fact: dict[str, Any]) -> tuple[Any, str]:

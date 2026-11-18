@@ -251,7 +251,8 @@ class FakeBase:
         if command == "+table-list":
             return {"ok": True, "data": {"tables": [{"name": n, "id": n} for n in self.schema]}}
         if command == "+field-list":
-            fields = [{**f, "options": [{"name": o} for o in f.get("options", [])]} for f in self.schema[table]]
+            fields = [{**f, "id": f.get("id", f"fld:{f['name']}"), "options": [{"name": o} for o in f.get("options", [])]}
+                      for f in self.schema[table]]
             return {"ok": True, "data": {"fields": fields}}
         if command == "+record-list":
             names = [args[i + 1] for i, a in enumerate(args) if a == "--field-id"]
@@ -437,6 +438,8 @@ class CellsTest(unittest.TestCase):
         self.assertEqual({cells.compare_key(t) for t in ("LiFePO₄", "LiFePO4", "lifepo4")}, {"lifepo4"})
         self.assertEqual(cells.compare_key("100V-120V~ 50Hz（最大15A）"), cells.compare_key("100V-120V ~ 50Hz(最大15A)"))
         self.assertIsNone(cells.compare_key(""))
+        self.assertIsNone(cells.compare_key("  "))
+        self.assertNotEqual(cells.compare_key("100-120V"), cells.compare_key("100-240V"))  # different values stay apart
         facts = [{"事实键": "a", "产品键": "P/US", "属性键": "ac_input", "来源键": "web/a", "文本值": "LiFePO₄"},
                  {"事实键": "b", "产品键": "P/US", "属性键": "ac_input", "来源键": "sheet/a", "文本值": "LiFePO4"}]
         [cell] = self.build(facts)
@@ -529,7 +532,7 @@ class MatrixBase(FakeBase):
         if command == "+field-delete":
             field = args[args.index("--field-id") + 1]
             self.deleted = [*getattr(self, "deleted", []), field]
-            self.schema[table] = [f for f in self.schema[table] if field not in (f["name"], f.get("id"))]
+            self.schema[table] = [f for f in self.schema[table] if field not in (f.get("id"), f"fld:{f['name']}")]
             return {"ok": True, "data": {}}
         if command == "+record-upsert":
             record = args[args.index("--record-id") + 1]
@@ -622,6 +625,19 @@ class MatrixWriteTest(unittest.TestCase):
                               matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
         self.assertEqual(matrix.drop_columns(base, planned, ["旁路 AC 输入/输出"]), ["旁路 AC 输入/输出"])
         self.assertEqual(base.deleted, ["fldSLASH"])  # a slash in a name would break the request path
+
+        def without_ids(args):  # a field list that carries no ids: never fall back to deleting by name
+            answer = base(args)
+            if args[0] == "+field-list":
+                answer = {**answer, "data": {"fields": [{k: v for k, v in f.items() if k != "id"}
+                                                        for f in answer["data"]["fields"]]}}
+            return answer
+
+        base.schema["矩阵"].append({"name": "旧列", "type": "text"})
+        planned = matrix.plan(base, {"ids": {name: name for name in base.schema}},
+                              matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        with self.assertRaises(LoadError):
+            matrix.drop_columns(without_ids, planned, ["旧列"])
 
     def test_columns_holding_values_are_never_dropped(self):
         base = MatrixBase()
