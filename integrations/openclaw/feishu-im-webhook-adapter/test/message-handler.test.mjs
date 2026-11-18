@@ -102,6 +102,48 @@ test("handleHttpRequest rejects invalid token", async () => {
   assert.equal(result.statusCode, 403);
 });
 
+test("handleHttpRequest rejects every callback when no verification token is configured", async () => {
+  for (const verificationToken of [undefined, ""]) {
+    const handler = createMessageHandler({
+      config: {
+        verificationToken,
+        requireMention: true,
+        publishConfirmTtlSeconds: 600,
+      },
+      stateStore: createMemoryStateStore(),
+      repoControl: {},
+      feishuClient: {},
+      logger: silentLogger,
+    });
+
+    const challenge = await handler.handleHttpRequest(JSON.stringify({ type: "url_verification", challenge: "abc" }));
+    assert.equal(challenge.statusCode, 403);
+    assert.equal(challenge.body.challenge, undefined);
+
+    const message = await handler.handleHttpRequest(basePayload("查 JE-1000F_US_0.3"));
+    assert.equal(message.statusCode, 403);
+    assert.equal(message.backgroundTask, undefined);
+  }
+});
+
+test("handleHttpRequest accepts a message event carrying the correct token", async () => {
+  const handler = createMessageHandler({
+    config: {
+      verificationToken: "verify_token",
+      requireMention: true,
+      publishConfirmTtlSeconds: 600,
+    },
+    stateStore: createMemoryStateStore(),
+    repoControl: {},
+    feishuClient: {},
+    logger: silentLogger,
+  });
+
+  const result = await handler.handleHttpRequest(basePayload("查 JE-1000F_US_0.3"));
+  assert.equal(result.statusCode, 200);
+  assert.equal(typeof result.backgroundTask, "function");
+});
+
 test("handleHttpRequest returns challenge for encrypted url verification", async () => {
   const handler = createMessageHandler({
     config: {

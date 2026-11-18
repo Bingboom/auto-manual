@@ -11,12 +11,24 @@ export function parseEventPayload(rawBody) {
   return parseJson(rawBody);
 }
 
+function tokenDigest(value) {
+  return crypto.createHash("sha256").update(value, "utf8").digest();
+}
+
+// Fails closed: a missing expected token never validates, so an unconfigured
+// webhook rejects every callback. Both sides are hashed to a fixed length
+// before a constant-time comparison, so neither content nor length leaks
+// through timing.
 export function validateVerificationToken(payload, expectedToken) {
-  if (!expectedToken) {
-    return true;
+  const expected = String(expectedToken || "").trim();
+  if (!expected) {
+    return false;
   }
   const actual = String(payload?.token || payload?.header?.token || "").trim();
-  return actual === expectedToken;
+  if (!actual) {
+    return false;
+  }
+  return crypto.timingSafeEqual(tokenDigest(actual), tokenDigest(expected));
 }
 
 export function isUrlVerification(payload) {

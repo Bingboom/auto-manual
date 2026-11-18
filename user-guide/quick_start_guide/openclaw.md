@@ -24,6 +24,7 @@
    - 它仍然只处理这套文档控制层支持的动作、状态和只读发布文档管理查询，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`、`查 JE-2000F 的说明书链接`、`获取说明书总览信息`
    - 云文档 backport **不是**飞书 IM / BlockClaw 的能力（LLM 对目标分支的判断不够确定）；已接受修订的回写请在 Claude Code / Codex / 终端里跑 `python -m tools.backport.cloud_doc run-review-branch ...`（见 AGENTS.md §3）
    - 如果你要的是公网 callback / 多实例 / 长期托管，再改用下面的 webhook adapter
+   - 启动前必须设置 `FEISHU_IM_VERIFICATION_TOKEN`（或 `FEISHU_VERIFICATION_TOKEN`，取飞书应用事件订阅里的 Verification Token）；未设置时 adapter 拒绝启动
    - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`
    - 如果部署在长期运行的 ECS 上，改用 [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/`](../../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/) 里的 wrapper 和 `systemd` unit 模板，不要长期靠手工 `nohup`
    - 把 Feishu 事件订阅指向这个 adapter 的 callback URL

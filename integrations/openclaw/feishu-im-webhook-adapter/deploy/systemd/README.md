@@ -51,6 +51,12 @@ export AUTO_MANUAL_PYTHON=/opt/auto-manual/.venv/bin/python
 export FEISHU_PHASE2_IDENTITY=bot
 ```
 
+`FEISHU_IM_VERIFICATION_TOKEN` (or `FEISHU_VERIFICATION_TOKEN`) is required:
+copy the Verification Token from the Feishu app's event subscription settings.
+Without it the adapter exits at startup with `Missing adapter config:
+verificationToken (...)`, and systemd keeps restarting it until the value is
+set.
+
 Only enable `FEISHU_IM_ENABLE_MESSAGE_REACTIONS=true` after the Feishu app has
 message reaction permission. With reactions enabled, the adapter sends the
 default `Get` reaction as soon as it accepts an incoming message.

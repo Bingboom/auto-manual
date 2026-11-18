@@ -2,16 +2,17 @@
 
 import http from "node:http";
 
-import { loadAdapterConfig, missingAdapterConfig } from "./lib/config.mjs";
+import { loadAdapterConfig, missingWebhookAdapterConfig } from "./lib/config.mjs";
 import { createFeishuClient } from "./lib/feishu-client.mjs";
 import { createMessageHandler } from "./lib/message-handler.mjs";
 import { createRepoControl } from "./lib/repo-control.mjs";
 import { createStateStore } from "./lib/state-store.mjs";
 
 const config = loadAdapterConfig();
-const missing = missingAdapterConfig(config);
+const missing = missingWebhookAdapterConfig(config);
 if (missing.length) {
   console.error(`Missing adapter config: ${missing.join(", ")}`);
+  console.error("[feishu-im-webhook-adapter] refusing to start: the webhook requires every listed value");
   process.exit(1);
 }
 
