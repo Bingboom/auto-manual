@@ -451,7 +451,7 @@ def collect_workspace_pages(app):
     if not learning["content_missing"] and learning["uncovered_models"]:
         sphinx_logging.getLogger(__name__).warning(
             "Product knowledge has no topic for these placed models: %s", ", ".join(learning["uncovered_models"]))
-    from tools.rtd.asset_pages import asset_layer_pages
+    from tools.rtd.asset_pages import asset_layer_pages, front_cards, front_summary
 
     layers = asset_layer_pages(
         srcdir=Path(app.srcdir), assets=ASSETS, settings=settings, products=products, system=system, matrix=matrix,
@@ -473,15 +473,17 @@ def collect_workspace_pages(app):
         sphinx_logging.getLogger(__name__).warning(
             "Market policy record %s links to unknown product knowledge topic #%s", record, anchor)
     yield MARKET_PAGE, {**market, "site_nav": site_nav(app)}, MARKET_TEMPLATE
-    # 知识库首页 since the front cleanup (2026-11-17): the three asset cards and the entrances; its one line is the
-    # value file's tagline. 主线, 正在做, 定位与价值 and 最近更新 stay off it (系统建设 keeps the main line).
+    # 知识资产 overview: header summary capsule + unified six-card directory for every entry in 知识资产.
+    # 主线, 正在做, 定位与价值 and 最近更新 stay off it (系统建设 keeps the main line).
     yield "workspace/index", {
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,
         "deliverables_entry": True,
         "design_entry": design is not None,
         "matrix_entry": matrix is not None,
-        "cards": layers["cards"],
+        "summary": front_summary(matrix, products, layers["corpus"]),
+        "cards": front_cards(matrix, learning, layers["corpus"], products=products,
+                             media_front=layers["media_front"], market=market),
         "value": value_page_context(load_value(ASSETS)),
     }, "workspace_portal.html"
     if system is not None:

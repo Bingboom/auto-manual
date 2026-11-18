@@ -509,8 +509,8 @@ class RtdPortalTests(unittest.TestCase):
                     groups[-1][1].append(node.span.get_text())
             return [group for group in groups if group != ("", [])]
 
-        # Layout of 2026-11-17: four main sections in the top bar; the left list holds the current section only.
-        knowledge = [("知识资产", ["产品信息", "产品知识", "说明书资料库", "语料库", "视觉媒体", "市场与政策"])]
+        # Layout of 2026-11-17+: four main sections in the top bar; 知识资产 starts with 资产总览.
+        knowledge = [("知识资产", ["资产总览", "产品信息", "产品知识", "说明书资料库", "语料库", "视觉媒体", "市场与政策"])]
         workbench = [("工作台", ["说明书工作台"])]
         design = [("设计规范", ["设计规范"])]
         sections = {"index.html": knowledge, "search.html": knowledge, "workspace/index.html": knowledge,
@@ -597,9 +597,9 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual(content.select_one("#moved-target")["href"], "../../workspace/design/index.html#overview")
         site = "https://site.invalid/"
         home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
-        self.assertEqual([c.strong.text for c in home.select("#now .home-front-card")], ["产品信息矩阵", "产品知识", "语料库"])
-        self.assertEqual([c.strong.text for c in home.select("#doors .home-card")],
-                         ["说明书资料库", "市场与政策", "AI 使用知识分享"])
+        self.assertEqual([c.select_one(".home-front-title").text for c in home.select("#now .home-front-card")],
+                         ["产品信息", "说明书资料库", "语料库", "产品知识", "视觉媒体", "市场与政策"])
+        self.assertEqual([c.strong.text for c in home.select("#doors .share-card")], ["AI 使用知识分享"])
         # The private library's band reads like the public one: no statuses, no links into the home page.
         band = BeautifulSoup((out / "index.html").read_text(encoding="utf-8"), "html.parser").select_one("section.value")
         self.assertEqual(band.select("a, .value-status"), [])
@@ -614,9 +614,9 @@ class RtdPortalTests(unittest.TestCase):
             to_self = [link.get_text() for link in links
                        if urlsplit(urljoin(site + page, link["href"])).path == "/" + page]
             current = [link.get_text() for link in links if link.get("aria-current") == "page"]
-            # 知识资产's first page, the search page and product subpages are reached without their own left row.
+            # The search page and product subpages are reached without their own left row; 资产总览 has its own row.
             under_product = page.startswith("products/item/") or page in ("products/table.html", "products/compare.html")
-            also = page in ("workspace/index.html", "search.html") or under_product
+            also = page == "search.html" or under_product
             self.assertEqual(len(to_self), 0 if also else 1, (page, to_self))
             self.assertEqual(current, to_self, page)
             if under_product:
