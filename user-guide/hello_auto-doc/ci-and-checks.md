@@ -62,7 +62,7 @@ their `docs/_review/**` editing surface. Code or workflow changes still need an
 auto-manual PR. A missing/malformed data file or publish inventory hash mismatch
 fails the content check; fix the candidate instead of disabling the check.
 
-The private Review RTD site continues its existing Git-based build. Queue dispatch, Workspace refresh, Phase2/TM-B backups, Web Publish and
+The private Review RTD site continues its existing Git-based build. Queue dispatch, Workspace refresh, Phase2/TM-B backups, credential health checks (`cred-health-check.yml`, business-plane `Hello-Docs` only), Web Publish and
 RTD receipts retain their existing execution paths. A green content check is
 not a deployment receipt or visual acceptance. No repository visibility change
 or executor migration is included. Audit and rollback details are in the
