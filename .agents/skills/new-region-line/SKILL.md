@@ -1,13 +1,19 @@
 ---
 name: new-region-line
-description: "Stand up a NEW region / compliance manual line end-to-end (e.g. 新建韩规/欧规/日规安规产线, add a KR line, onboard a new market, 新增一个区域/语言产线, or 新建安规产线要补什么配置和料). Covers config, manifests, templates, code registration for a new output language, Feishu source-table data entry, sync, validation, and the operator-input checklist. Use when creating a line that does not exist yet. NOT for editing an existing line's data (that is normal spec ingest / rewrite / backport)."
+description: "Retired. Historical reference for regional parameter-build lines. Route new manual and new market writing to the Hello-Docs-Review workbench."
+metadata:
+  owner: "模板维护人"
+  status: "retired"
+  entry: "只查历史区域参数建线的配置与验收记录，新区域说明书在工作台起草"
+  tools: "references/setup-map.md、已有 manifest"
+  validation: "给出新语言说明书请求，应进入工作台且不创建配置或源表记录"
+  reviewed: "2026-11-17"
+  retire_when: "已随新说明书退出参数建线而退役，历史目标停止维护后可归档"
 ---
 
 # New Region / Compliance Manual Line
 
-Bring up a brand-new market line — a `(Model, Region, Language)` target — so
-`build.py check` passes and the manual can build. This is the generalized
-playbook proven on the **KR (韩规) JE-1000F ko** line.
+Historical reference for existing template-built lines. New regional manuals start in Hello-Docs-Review under the [writing contract](../../../code-as-doc/architecture/Hello_Docs_Positioning.md#51-网页说明书的三条路线). The setup below records how the KR JE-1000F ko build was assembled.
 
 A line spans **four surfaces**, and skipping any one leaves the build broken:
 
@@ -23,11 +29,7 @@ table IDs, `lark-cli` recipes, and command sequence. Keep it open while you work
 
 ## ⚠️ Land repo changes in `auto-manual`, NOT the `Hello-Docs` mirror
 
-`Bingboom/Hello-Docs` is a **one-way, destructive mirror** of `Bingboom/auto-manual`:
-`.github/workflows/sync-hello-docs.yml` runs on every push to **auto-manual/main** and
-`rsync -a --delete`s auto-manual's tree onto Hello-Docs/main. **Any repo change
-committed only in Hello-Docs is wiped on the next sync** — a PR into Hello-Docs is
-the wrong target.
+Engineering changes flow from auto-manual to both mirrors through `sync-hello-docs.yml`. The workflow preserves mirror-owned directories according to its keep-paths rules.
 
 So for surfaces 1 & 2 (config/manifest/templates/code/`data/phase2/page_registry.csv`):
 - Make the changes in **`auto-manual`** and PR into **`auto-manual/main`**; the mirror
@@ -42,15 +44,9 @@ So for surfaces 1 & 2 (config/manifest/templates/code/`data/phase2/page_registry
 Surfaces 3 & 4 (Feishu source tables + operator inputs) are **shared** and unaffected
 by which git repo — they live in Feishu, not the tree.
 
-## When to use
+## Reading the historical recipe
 
-- The `(Model, Region)` or output language does **not** exist yet in the repo.
-- Trigger phrases: "新建韩规/欧规产线", "add a new region line", "onboard a new
-  market/language", "新建安规产线需要补什么配置/什么料".
-
-Do **not** use for: editing an existing line's spec values (that is plain spec
-ingest via the 入库表), translating/rewriting copy (`manual-rewrite-with-tm`),
-or back-porting reviewed docs (`manual-revision-backport`).
+Use the following sections to identify the dependencies of an existing line. For a revised specification on such a line, see `spec-sheet-structured-intake`. For a new region, select the supported workbench drafting mode or agree the reference and review scope with the operator.
 
 ## Inputs the operator MUST supply (什么料)
 

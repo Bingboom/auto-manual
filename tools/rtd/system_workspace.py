@@ -606,7 +606,7 @@ def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date,
         findings.append(Finding("warning", "focus", "no readable skeleton blueprints; the skeleton metric shows 无数据"))
     if "tooling" in contract:
         findings += [Finding(*finding) for finding in
-                     tooling_findings(contract["tooling"], skill_facts(root), hook_facts(root))]
+                     tooling_findings(contract["tooling"], skill_facts(root), hook_facts(root), today=today)]
     return findings
 
 

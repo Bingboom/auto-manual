@@ -21,6 +21,7 @@ import json
 import re
 import subprocess
 from collections.abc import Iterable
+from datetime import date
 from pathlib import Path, PurePosixPath
 from typing import Any
 
@@ -35,6 +36,9 @@ from tools.utils.path_utils import (
 )
 
 REGISTRIES = {"Codex": PathSegments.AGENTS_MD, "Claude": ".claude/skills/README.md"}
+SKILL_STATUSES = {"active": "在用", "on-request": "按需使用", "maintenance": "仅维护存量", "retired": "已退役"}
+LIFECYCLE_FIELDS = ("owner", "status", "entry", "tools", "validation", "reviewed", "retire_when")
+SKILL_REVIEW_DAYS = 90
 _SKILL_NAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 _CLAUDE_HOOK = re.compile(r"\.claude/hooks/([\w.-]+\.py)")
 _PRE_PUSH_STEP = re.compile(r'^\s*(?P<exec>exec\s+)?"\$\{python_cmd\}"\s+"\$\{repo_root\}/(?P<script>[\w./-]+\.py)"')
@@ -87,6 +91,22 @@ def _purpose(script: Path) -> str:
     return doc.strip().splitlines()[0] if doc.strip() else ""
 
 
+def _skill_lifecycle(metadata: object) -> tuple[dict[str, str], list[str]]:
+    """Read the governing SKILL.md record once, including for a Claude-only skill."""
+    fields = metadata if isinstance(metadata, dict) else {}
+    record = {key: fields[key].strip() for key in LIFECYCLE_FIELDS if isinstance(fields.get(key), str)}
+    problems = [f"missing lifecycle field {key}" for key in LIFECYCLE_FIELDS if not record.get(key)]
+    if record.get("status") and record["status"] not in SKILL_STATUSES:
+        problems.append(f"unknown lifecycle status {record['status']!r}")
+    if reviewed := record.get("reviewed"):
+        try:
+            if date.fromisoformat(reviewed).isoformat() != reviewed:
+                raise ValueError
+        except ValueError:
+            problems.append("reviewed must be a valid YYYY-MM-DD date")
+    return record, problems
+
+
 def skill_facts(root: Path) -> list[dict[str, Any]]:
     """One entry per skill directory name, merging its Codex and Claude copies."""
     registry = {"Codex": _read(root / PathSegments.AGENTS_MD),
@@ -98,6 +118,11 @@ def skill_facts(root: Path) -> list[dict[str, Any]]:
             meta = _frontmatter(_read(path))
             entry = skills.setdefault(cell, {"id": cell, "description": "", "agents": [],
                                              "unregistered": [], "problems": []})
+            if not entry["agents"]:
+                entry["lifecycle"], problems = _skill_lifecycle(meta.get("metadata"))
+                entry["problems"].extend(problems)
+            elif isinstance(meta.get("metadata"), dict) and set(LIFECYCLE_FIELDS).intersection(meta["metadata"]):
+                entry["problems"].append("keep shared lifecycle fields in the Codex entry")
             entry["agents"].append(agent)
             description = str(meta.get("description") or "").strip()
             entry["description"] = entry["description"] or description
@@ -160,7 +185,7 @@ def tooling_problems(config: object, lane_ids: set[str]) -> list[str]:
 
 
 def tooling_findings(config: dict[str, Any], skills: list[dict[str, Any]],
-                     hooks: list[dict[str, Any]]) -> list[tuple[str, str, str]]:
+                     hooks: list[dict[str, Any]], *, today: date) -> list[tuple[str, str, str]]:
     """``(severity, where, message)`` for ``check``: unknown mapped skills are errors, the rest warnings."""
     known = {skill["id"] for skill in skills}
     out: list[tuple[str, str, str]] = []
@@ -173,6 +198,13 @@ def tooling_findings(config: dict[str, Any], skills: list[dict[str, Any]],
             out.append(("warning", f"skill {skill['id']}", f"{agent} copy is not registered in {REGISTRIES[agent]}"))
         for problem in skill["problems"]:
             out.append(("warning", f"skill {skill['id']}", problem))
+        record = skill.get("lifecycle", {})
+        if not skill["problems"] and record.get("reviewed"):
+            age = (today - date.fromisoformat(record["reviewed"])).days
+            if age > SKILL_REVIEW_DAYS:
+                out.append(("warning", f"skill {skill['id']}", f"{record['owner']}：上次复核 {record['reviewed']}，已过 {SKILL_REVIEW_DAYS} 天"))
+            elif age < 0:
+                out.append(("warning", f"skill {skill['id']}", f"复核日期 {record['reviewed']} 晚于检查日期"))
     for hook in hooks:
         if not hook["exists"]:
             out.append(("warning", f"hook {hook['script']}", "script is missing"))
@@ -187,7 +219,9 @@ def tooling_view(config: dict[str, Any], skills: list[dict[str, Any]], hooks: li
     by_id = {skill["id"]: skill for skill in skills}
 
     def row(skill: dict[str, Any]) -> dict[str, Any]:
+        lifecycle = skill.get("lifecycle", {})
         return {"id": skill["id"], "description": skill["description"], "agents": skill["agents"],
+                "entry": lifecycle.get("entry", ""), "status_label": SKILL_STATUSES.get(lifecycle.get("status"), "待复核"),
                 "summary": _first_sentence(skill["description"]),
                 "unregistered": skill["unregistered"], "problems": skill["problems"]}
 

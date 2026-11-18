@@ -1,6 +1,14 @@
 ---
 name: hardcore-task-execution
 description: Execute large or high-risk repository work as small, observable, reversible phases with a discovery report, safety net, mechanical edits, and a cheap-to-expensive verification ladder. Use for full-repo reviews with fixes, refactors, migrations, format changes, release artifacts, or any task where silent regressions are expensive.
+metadata:
+  owner: "仓库维护人"
+  status: "active"
+  entry: "将高风险仓库变更分阶段验证"
+  tools: "Git、项目测试及门禁"
+  validation: "选一个重构样例，检查修改前的基线、可回退的提交和验证结果"
+  reviewed: "2026-11-17"
+  retire_when: "仓库改用覆盖相同阶段和验收要求的工程流程"
 ---
 
 # Hardcore Task Execution

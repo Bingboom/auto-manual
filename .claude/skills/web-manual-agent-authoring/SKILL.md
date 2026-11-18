@@ -1,6 +1,6 @@
 ---
 name: web-manual-agent-authoring
-description: Author and batch-build governed Web manuals directly from visual assets (asset_registry.csv), shared semantic components (ComponentSpec + web_*.css), and approved multilingual corpus (TM-B + sibling ManualIR v2). Trigger phrases include Agent 开发说明书, 新建 Web 说明书, 开发网页说明书, 批量 Web 手册开发, 基于内容资产开发说明书, author a Web manual, build a new manual_sources Web package.
+description: "Prepare a governed Web package from an approved source using visual assets, shared ComponentSpec and approved TM-B. New manual drafting starts in Hello-Docs-Review."
 argument-hint: "[model] [region] [language]"
 ---
 

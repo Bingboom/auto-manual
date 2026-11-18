@@ -1,4 +1,4 @@
 interface:
   display_name: "Manual Rewrite With TM"
-  short_description: "Rewrite Markdown manuals with TM-first rules"
-  default_prompt: "Use $manual-rewrite-with-tm to rewrite or translate this Markdown manual with translation-memory-first behavior, preserve structure, reuse safe sentence patterns, and keep unmatched source text highlighted with ==...==."
+  short_description: "交付物明确为保留结构的 Markdown 或纯文本译稿"
+  default_prompt: "Use $manual-rewrite-with-tm only for this scope. Use on request when the deliverable is Markdown or plain text with preserved structure and TM wording. For a live Feishu or Illustrator edit, look up TM-B and work in the requested original."

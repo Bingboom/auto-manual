@@ -1,6 +1,14 @@
 ---
 name: docx-highlight-changes
 description: Highlight specific text spans inside a Word .docx with a colour of your choice — to show a reviewer exactly what changed. Use after you correct/edit a manual and want every edit marked, or to flag terms, unresolved placeholders, or untranslated source. It colours ONLY the exact target text (splits runs, works across run boundaries, can colour a single character such as one accent), in any colour, via background shading or the Word highlighter pen. Trigger on "highlight the changes I made", "mark these fixes in green/yellow", "高亮我改的地方", "把修改的地方标出来", "让我选颜色高亮", "用绿色/黄色标出来", even when the user doesn't name the file type — as long as a .docx is in play.
+metadata:
+  owner: "资料审核维护人"
+  status: "on-request"
+  entry: "交付需要标出指定改动的 Word 副本"
+  tools: "scripts/highlight_changes.py、lxml"
+  validation: "在跨 run 的文本中标记一个词，重开文件核对仅该词着色"
+  reviewed: "2026-11-17"
+  retire_when: "审核流程停用带颜色的 Word 交付"
 ---
 
 # Highlight changes in a .docx

@@ -76,28 +76,28 @@ Document boundary (the positioning doc above is required; open the others only w
 - For Codex scaffolding, use [`.agents/skills/config-review/SKILL.md`](.agents/skills/config-review/SKILL.md) when changing root or nested `AGENTS.md`, `.agents/skills`, `.codexignore`, permissions, plugin/MCP setup, or model-release configuration.
 - For Claude Code scaffolding, keep using [`.claude/skills/config-review/SKILL.md`](.claude/skills/config-review/SKILL.md) when changing root or nested `CLAUDE.md`, `.claude/settings.json`, Claude hooks/skills, permissions, plugin/MCP setup, or model-release configuration. Do not replace or redirect the Claude skill through the Codex copy.
 
-One line per skill below; full descriptions, trigger phrases, and scope notes live in [`.agents/skills/README.md`](.agents/skills/README.md). Read a skill's `SKILL.md` before running it.
+Check the [skill lifecycle contract](.agents/skills/README.md#lifecycle) before choosing a route. One line per skill below; full descriptions, trigger phrases, and scope notes live in [`.agents/skills/README.md`](.agents/skills/README.md). Read a skill's `SKILL.md` before running it.
 
 - [`hardcore-task-execution`](.agents/skills/hardcore-task-execution/SKILL.md): large or high-risk work (full-repo reviews with fixes, refactors, migrations, format changes, release artifacts) as small, observable, reversible phases; the full Claude Code version lives in `.claude/skills/hardcore-task-execution/`.
-- [`markdown-rst-template-intake`](.agents/skills/markdown-rst-template-intake/SKILL.md): map external Markdown manuals into reusable RST templates and recipes.
-- [`spec-sheet-structured-intake`](.agents/skills/spec-sheet-structured-intake/SKILL.md): onboard a new model/region from a product spec sheet (产品规格书) into both phase2 source tables, with a completeness gate and human confirmation.
-- [`bitable-translation-memory`](.agents/skills/bitable-translation-memory/SKILL.md): one-shot sentence translation, terminology lookup, live sentence-pair retrieval.
+- [`markdown-rst-template-intake`](.agents/skills/markdown-rst-template-intake/SKILL.md): Maintain a shared RST family used by an existing build target when the operator requests a template change.
+- [`spec-sheet-structured-intake`](.agents/skills/spec-sheet-structured-intake/SKILL.md): Stage a revised specification for an existing parameter-build target. Keep the sibling completeness check and operator approval before writing phase2 tables.
+- [`bitable-translation-memory`](.agents/skills/bitable-translation-memory/SKILL.md): Look up terms and sentence pairs in TM-B for the current document, Illustrator file or repository task.
 - [`lark-cli-bitable-ops`](.agents/skills/lark-cli-bitable-ops/SKILL.md): read it **BEFORE any direct `lark-cli` read/write of a live Feishu Bitable**; every write is followed by a GET read-back reporting record_id + field.
 - [`product-manual-catalog`](.agents/skills/product-manual-catalog/SKILL.md): read-only lookup of shipped manuals (link/version/region/type) in the `发布文档管理` Base.
-- [`manual-rewrite-with-tm`](.agents/skills/manual-rewrite-with-tm/SKILL.md): structure-preserving Markdown / plain-text rewrite that reuses TM phrasing (unmatched text marked `==...==`).
+- [`manual-rewrite-with-tm`](.agents/skills/manual-rewrite-with-tm/SKILL.md): Use for requested Markdown or plain-text output with preserved structure and visible unmatched spans.
 - [`bilingual-tm-maintenance`](.agents/skills/bilingual-tm-maintenance/SKILL.md): write bilingual copy to live `Translation_Memory`, then maintenance logs and bilingual audit.
-- [`lark-tm-translation-preprocess`](.agents/skills/lark-tm-translation-preprocess/SKILL.md): primary TM pre-translation of a Feishu cloud doc / `.docx`, colour-highlighting every replaced span.
-- [`manual-revision-backport`](.agents/skills/manual-revision-backport/SKILL.md): back-port a reviewer's tracked-changes `.docx` (`…修订.docx`) into source and verify zero residuals.
-- [`cloud-doc-backport-ops`](.agents/skills/cloud-doc-backport-ops/SKILL.md): run a review cloud-doc backport round end to end (「执行回写」+ URL) around the §3 `cloud_doc_backport.py` command.
+- [`lark-tm-translation-preprocess`](.agents/skills/lark-tm-translation-preprocess/SKILL.md): Use only for a requested TM-highlighted Word copy. A request to edit a Feishu document stays in that document.
+- [`manual-revision-backport`](.agents/skills/manual-revision-backport/SKILL.md): Recover tracked changes from an existing template-line Word review into its approved source.
+- [`cloud-doc-backport-ops`](.agents/skills/cloud-doc-backport-ops/SKILL.md): Recover edits from an existing template-line review cloud document into its review branch, starting with a dry-run.
 - [`docx-highlight-changes`](.agents/skills/docx-highlight-changes/SKILL.md): colour-highlight exact text spans in a built `.docx` so a reviewer sees every change.
 - [`pdf-annotate-qc`](.agents/skills/pdf-annotate-qc/SKILL.md): render QC findings as annotations on a built-PDF sidecar; the shipped PDF is never modified and fixes go through source paths.
 - [`asset-textless-extraction`](.agents/skills/asset-textless-extraction/SKILL.md): extract text-free (无字化) illustration assets from an `.ai`/PDF master; template/IDML re-pointing stays a separate PR.
-- [`new-region-line`](.agents/skills/new-region-line/SKILL.md): stand up a brand-new `(Model, Region, Language)` manual line end to end.
-- [`local-publish-queue-run`](.agents/skills/local-publish-queue-run/SKILL.md): run the build-queue publish locally as the CI bot when Actions cannot run or a publish needs local repair.
-- [`hello-docs-pipeline-dispatch-triage`](.agents/skills/hello-docs-pipeline-dispatch-triage/SKILL.md): dispatch and triage the Hello-Docs mirror pipeline; code changes NEVER PR the mirror's main — only `backport/...` → `review/*` data-plane PRs belong there.
+- [`new-region-line`](.agents/skills/new-region-line/SKILL.md): Retired for new work. Consult the historical setup map to understand an existing template line. Start new regional manuals in the private review workbench.
+- [`local-publish-queue-run`](.agents/skills/local-publish-queue-run/SKILL.md): Use only for explicitly authorized emergency replay or diagnosis of an existing template queue target. A disabled workflow is not permission to consume a row locally.
+- [`hello-docs-pipeline-dispatch-triage`](.agents/skills/hello-docs-pipeline-dispatch-triage/SKILL.md): Inspect historical Hello-Docs queue runs. Dispatch or retry only for an explicitly authorized emergency replay of an existing target after checking the retirement controls.
 - [`manual-review-draft`](.agents/skills/manual-review-draft/SKILL.md): writes off-pipeline manual review drafts (审核稿), currently in US→US English reuse and US→JP Japanese-corpus reuse modes; inherit reference structure and wording, fill target-spec parameters, keep suggestions in review notes; Claude entry in `.claude/skills/manual-review-draft/`.
-- [`web-manual-agent-authoring`](.agents/skills/web-manual-agent-authoring/SKILL.md): author batch Web manuals in `manual-ir/v2` from `asset_registry.csv`, `ComponentSpec` + `web_*.css`, and TM-B/sibling corpus; Claude entry in `.claude/skills/web-manual-agent-authoring/`.
-- For TM-guided translation jobs, route by carrier: `.docx` / Feishu cloud doc pre-translation → `lark-tm-translation-preprocess`; Markdown / plain-text rewrite → `bitable-translation-memory` for lookup, then `manual-rewrite-with-tm` for the structure-preserving rewrite flow.
+- [`web-manual-agent-authoring`](.agents/skills/web-manual-agent-authoring/SKILL.md): Prepare a Web package from an approved source using shared components, verified assets and approved corpus. New writing starts in the private review workbench.
+- For corpus-assisted edits, look up terms and sentences in TM-B, then edit the requested Feishu document or Illustrator source with the available document or design tools. Read back the changed blocks or reopen the edited artwork. For repository tasks, use the owning tool and its verification case. Select Markdown rewrite or highlighted Word preprocessing only when that output is requested.
 
 ## 8. Multi-Window Parallel Development
 

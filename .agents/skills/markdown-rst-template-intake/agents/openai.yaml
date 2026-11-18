@@ -1,4 +1,4 @@
 interface:
   display_name: "Markdown RST Template Intake"
-  short_description: "Map Markdown manuals into repo RST templates"
-  default_prompt: "Use $markdown-rst-template-intake to map this Markdown manual into the repo's RST template family, preserve placeholders, update the correct recipes, and validate the build."
+  short_description: "维护既有 RST 模板家族时将明确指定的 Markdown 片段映射到模板"
+  default_prompt: "Use $markdown-rst-template-intake only for this scope. Maintenance only. Map explicitly requested Markdown changes into a shared RST template family still used by an existing build target."

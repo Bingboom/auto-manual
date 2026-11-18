@@ -1,4 +1,7 @@
 interface:
   display_name: "New Region / Compliance Manual Line"
-  short_description: "Stand up a brand-new (Model, Region, Language) manual line end-to-end"
-  default_prompt: "Use $new-region-line to onboard a new market or output language end to end: collect operator inputs, add config/manifests/templates and code registration, gate Feishu source-table intake, sync, and validate before a PR."
+  short_description: "只查历史区域参数建线的配置与验收记录"
+  default_prompt: "Use $new-region-line only for this scope. Retired. Historical reference for regional parameter-build lines. Route new manual and new market writing to the Hello-Docs-Review workbench."
+
+policy:
+  allow_implicit_invocation: false
