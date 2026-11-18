@@ -38,6 +38,29 @@ test("validateVerificationToken supports top-level and header token", () => {
   assert.equal(validateVerificationToken({ token: "bad" }, "tok"), false);
 });
 
+test("validateVerificationToken fails closed when no expected token is configured", () => {
+  for (const expected of [undefined, null, "", "   "]) {
+    assert.equal(validateVerificationToken({ token: "anything" }, expected), false);
+    assert.equal(validateVerificationToken({}, expected), false);
+    assert.equal(validateVerificationToken({ token: "" }, expected), false);
+  }
+});
+
+test("validateVerificationToken rejects wrong, missing, and different-length tokens", () => {
+  assert.equal(validateVerificationToken({ token: "tok2" }, "tok"), false);
+  assert.equal(validateVerificationToken({ token: "to" }, "tok"), false);
+  assert.equal(validateVerificationToken({ header: { token: "TOK" } }, "tok"), false);
+  assert.equal(validateVerificationToken({}, "tok"), false);
+  assert.equal(validateVerificationToken({ token: "" }, "tok"), false);
+});
+
+test("validateVerificationToken accepts the correct token on a url verification payload", () => {
+  const payload = { type: "url_verification", challenge: "abc", token: "tok" };
+  assert.equal(isUrlVerification(payload), true);
+  assert.equal(validateVerificationToken(payload, "tok"), true);
+  assert.equal(validateVerificationToken({ ...payload, token: "bad" }, "tok"), false);
+});
+
 test("isUrlVerification detects challenge payloads", () => {
   assert.equal(isUrlVerification({ type: "url_verification", challenge: "abc" }), true);
   assert.equal(isUrlVerification({ type: "event_callback" }), false);

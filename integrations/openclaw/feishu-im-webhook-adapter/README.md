@@ -39,10 +39,15 @@ Current limitations:
 - `FEISHU_APP_SECRET`
 - `AUTO_MANUAL_REPO_ROOT`
 - `AUTO_MANUAL_CONTROL_CONFIG`
+- `FEISHU_IM_VERIFICATION_TOKEN` or `FEISHU_VERIFICATION_TOKEN`: required for
+  webhook mode (`server.mjs`). Use the Verification Token from the Feishu app's
+  event subscription settings. Without it the webhook refuses to start and
+  names the missing variable; every callback, including the URL-verification
+  challenge, must carry the matching token or it is rejected with HTTP 403. The
+  local long-connection mode (`local-listener.mjs`) does not use it.
 
 Optional:
 
-- `FEISHU_IM_VERIFICATION_TOKEN` or `FEISHU_VERIFICATION_TOKEN`
 - `FEISHU_IM_ENCRYPT_KEY` or `FEISHU_ENCRYPT_KEY`
 - `FEISHU_IM_WEBHOOK_HOST`
 - `FEISHU_IM_WEBHOOK_PORT`
