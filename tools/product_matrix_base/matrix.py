@@ -307,8 +307,8 @@ def _read_back(run: Runner, planned: dict[str, Any], created: list[dict[str, Any
 def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list[str]:
     """Delete the named matrix columns, only when the generator no longer produces them and every row is empty.
 
-    Columns are dropped only by name, never by sweep: a column a person added in Feishu, or one the read cannot
-    project, is not the generator's to remove.
+    Columns are named by the caller, never swept: a column a person added in Feishu, or one the read cannot project,
+    is not the generator's to remove. The delete itself goes by field id (a name with a slash breaks the request).
     """
     if not names:
         return []
@@ -319,8 +319,13 @@ def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list
     filled = sorted({name for row in rows for name in names if row.get(name) not in (None, "", [])})
     if filled:
         raise LoadError(f"{MATRIX} columns to drop still hold values: {filled}")
-    for name in names:
-        _check(run(["+field-delete", "--table-id", planned["table_id"], "--field-id", name, "--yes"]),
+    have = fields(run, planned["table_id"])
+    ids = {name: (have.get(name) or {}).get("id") or (have.get(name) or {}).get("field_id") for name in names}
+    missing = sorted(name for name, field_id in ids.items() if not field_id)
+    if missing:
+        raise LoadError(f"{MATRIX} columns to drop have no field id: {missing}")
+    for name in names:  # by field id: a name such as 「旁路 AC 输入/输出」 breaks the request path
+        _check(run(["+field-delete", "--table-id", planned["table_id"], "--field-id", ids[name], "--yes"]),
                f"{MATRIX} drop {name}")
     return list(names)
 

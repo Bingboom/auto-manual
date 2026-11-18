@@ -168,6 +168,9 @@ class ReadingTest(unittest.TestCase):
         self.assertEqual(map_label("USB-C", "INPUT PORTS", "spec_section")[0], "usb_c_input")
         self.assertEqual(map_label("USB-C", "OUTPUT PORTS", "spec_section")[0], "usb_c_output")
         self.assertEqual(map_label("USB-C", "GENERAL", "spec_section")[0], UNMAPPED)
+        # One row for bypass input and output is the bypass output (merged 2026-11-18).
+        self.assertEqual(map_label("Bypass Mode AC Input/Output", "", "spec_section")[0], "ac_output_bypass")
+        self.assertEqual(map_label("AC Output in Bypass Mode", "", "spec_section")[0], "ac_output_bypass")
         self.assertEqual(map_label("Poids", "", "spec_section")[0], "weight_kg")
         weight = parse_value("weight_kg", "Environ 7,1 kg")
         self.assertEqual((weight["value_metric"], weight["qualifier"]), ("7.1", "Environ"))
@@ -248,7 +251,8 @@ class FakeBase:
         if command == "+table-list":
             return {"ok": True, "data": {"tables": [{"name": n, "id": n} for n in self.schema]}}
         if command == "+field-list":
-            fields = [{**f, "options": [{"name": o} for o in f.get("options", [])]} for f in self.schema[table]]
+            fields = [{**f, "id": f.get("id", f"fld:{f['name']}"), "options": [{"name": o} for o in f.get("options", [])]}
+                      for f in self.schema[table]]
             return {"ok": True, "data": {"fields": fields}}
         if command == "+record-list":
             names = [args[i + 1] for i, a in enumerate(args) if a == "--field-id"]
@@ -430,6 +434,17 @@ class CellsTest(unittest.TestCase):
         [cell] = self.build(facts)
         self.assertEqual((cell["display"], cell["printed"], cell["derived"]), ("100~120V", "100~120V", True))
 
+    def test_printed_variants_share_one_compare_key(self):
+        self.assertEqual({cells.compare_key(t) for t in ("LiFePO₄", "LiFePO4", "lifepo4")}, {"lifepo4"})
+        self.assertEqual(cells.compare_key("100V-120V~ 50Hz（最大15A）"), cells.compare_key("100V-120V ~ 50Hz(最大15A)"))
+        self.assertIsNone(cells.compare_key(""))
+        self.assertIsNone(cells.compare_key("  "))
+        self.assertNotEqual(cells.compare_key("100-120V"), cells.compare_key("100-240V"))  # different values stay apart
+        facts = [{"事实键": "a", "产品键": "P/US", "属性键": "ac_input", "来源键": "web/a", "文本值": "LiFePO₄"},
+                 {"事实键": "b", "产品键": "P/US", "属性键": "ac_input", "来源键": "sheet/a", "文本值": "LiFePO4"}]
+        [cell] = self.build(facts)
+        self.assertEqual((cell["display"], cell["compare"], cell["sources_disagree"]), ("LiFePO₄", "lifepo4", False))
+
     def test_condition_names_match_without_word_boundaries(self):
         self.assertEqual([cells.cell_condition(c) for c in ("STC条件", "NOCT: 800W/m²", "BNPI", "BNPIX", "to 70% capacity",
                                                             "stc")],
@@ -515,8 +530,9 @@ class MatrixBase(FakeBase):
             self.schema[table].append(json.loads(args[args.index("--json") + 1]))
             return {"ok": True, "data": {}}
         if command == "+field-delete":
-            name = args[args.index("--field-id") + 1]
-            self.schema[table] = [f for f in self.schema[table] if f["name"] != name]
+            field = args[args.index("--field-id") + 1]
+            self.deleted = [*getattr(self, "deleted", []), field]
+            self.schema[table] = [f for f in self.schema[table] if field not in (f.get("id"), f"fld:{f['name']}")]
             return {"ok": True, "data": {}}
         if command == "+record-upsert":
             record = args[args.index("--record-id") + 1]
@@ -601,6 +617,27 @@ class MatrixWriteTest(unittest.TestCase):
         base.rows["矩阵"].append({"产品键": "X", "c79": "v", "_id": "rec0"})
         rows = read_rows(base, "矩阵", ["产品键"] + [f"c{i}" for i in range(80)])
         self.assertEqual((len(rows), rows[0]["产品键"], rows[0]["c79"]), (1, "X", "v"))
+
+    def test_a_dropped_column_is_deleted_by_its_id(self):
+        base = MatrixBase()
+        base.schema["矩阵"].append({"name": "旁路 AC 输入/输出", "type": "text", "id": "fldSLASH"})
+        planned = matrix.plan(base, {"ids": {name: name for name in base.schema}},
+                              matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        self.assertEqual(matrix.drop_columns(base, planned, ["旁路 AC 输入/输出"]), ["旁路 AC 输入/输出"])
+        self.assertEqual(base.deleted, ["fldSLASH"])  # a slash in a name would break the request path
+
+        def without_ids(args):  # a field list that carries no ids: never fall back to deleting by name
+            answer = base(args)
+            if args[0] == "+field-list":
+                answer = {**answer, "data": {"fields": [{k: v for k, v in f.items() if k != "id"}
+                                                        for f in answer["data"]["fields"]]}}
+            return answer
+
+        base.schema["矩阵"].append({"name": "旧列", "type": "text"})
+        planned = matrix.plan(base, {"ids": {name: name for name in base.schema}},
+                              matrix.build(PRODUCTS, ATTRIBUTES, FACTS, SOURCES))
+        with self.assertRaises(LoadError):
+            matrix.drop_columns(without_ids, planned, ["旧列"])
 
     def test_columns_holding_values_are_never_dropped(self):
         base = MatrixBase()

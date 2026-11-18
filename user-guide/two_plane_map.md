@@ -76,6 +76,10 @@ Updated: 2026-11-16
 | --- | --- | --- |
 | Translation_Memory | `tblqtvNbgjDwR4ya` | 总表 `veweqW2fQv` |
 | Terms | `tblzerRpOEuDIkKA` | `vewChPXyP9` |
+| 语料核验任务 | `tblwzyUCyqhiZnQ7` | 表格 `vewvoJekuz` |
+
+结构清单冻结在 [`bitable_schema/tm_base_manifest.json`](../bitable_schema/tm_base_manifest.json)
+（含 `nl`、`pl`、`eu-pt`、`zh-TW` 多语列与维护/校验日志；欧规手册语言 `pt` 对应 `TM-B` 的 `eu-pt` 列，与 `pt-BR` 分列）。
 
 **③ 发布文档管理（成品说明书目录，`product-manual-catalog` 技能读这里）** — base
 `WGVwb2HctauRi7sEiKqcIzTRn1c`，wiki 节点 `QKNGwHFwPiY7J7kZ0bzcximKnyb`：

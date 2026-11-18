@@ -189,7 +189,7 @@ PARSERS = {
     "operating_altitude": lambda t: parse_first(t, r"m(?!a)", "m"),
 }
 POWER_KEYS = {"ac_output_port", "ac_output_total", "ac_output_bypass", "ac_parallel_output", "ac_input", "ac_input_bypass",
-              "ac_bypass_input_output", "dc_input", "dc8020_input", "car_input", "solar_input", "solar_input_high_voltage",
+              "dc_input", "dc8020_input", "car_input", "solar_input", "solar_input_high_voltage",
               "solar_input_low_voltage", "usb_c_output", "usb_c_input", "usb_a_output", "usb_output_total",
               "usb_combined_output", "dc12_car_output", "dc_output", "total_output", "output_w", "input_rating",
               "output_rating", "expansion_port_dc", "expansion_port_ac", "ups", "heating_module_input",

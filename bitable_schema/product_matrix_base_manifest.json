@@ -522,6 +522,10 @@
           "type": "text"
         },
         {
+          "name": "SKU 最早创建时间",
+          "type": "datetime"
+        },
+        {
           "name": "产品名称",
           "type": "text"
         },
@@ -570,19 +574,15 @@
           "type": "number"
         },
         {
-          "name": "AC 输出口（W）",
+          "name": "AC 每组输出（W）",
           "type": "number"
         },
         {
-          "name": "AC 总输出（W）",
+          "name": "AC 整机持续输出（W）",
           "type": "number"
         },
         {
           "name": "旁路 AC 输出",
-          "type": "text"
-        },
-        {
-          "name": "旁路 AC 输入/输出",
           "type": "text"
         },
         {
