@@ -150,7 +150,7 @@
           const td = el('td');
           if (cell.text) {
             td.append(document.createTextNode(cell.text));
-            if (cell.conflict) td.append(el('span', '各说明书写法不一致', 'pt-badge'));
+            if (cell.conflict) td.append(el('span', '多源写法差异', 'pt-badge'));
           } else {
             td.append(el('span', '暂无', 'pt-none'));
           }

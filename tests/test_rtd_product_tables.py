@@ -86,11 +86,12 @@ class TableTests(unittest.TestCase):
         rows = portable.select("tbody tr")
         self.assertEqual(rows[0]["data-project"], "P-FAKE-1")
         self.assertEqual(rows[0].th.a["href"], "products/item/FAKE-B")
-        self.assertEqual(rows[2].select("td")[2].get_text(), "未归入")
+        self.assertEqual(rows[2].select("td")[2].get_text(), "—")
         # SKU 创建时间 is each market's own: FAKE-B's JP row has none, so it reads 暂无 (never the US date).
         self.assertEqual([row.select("td")[3].get_text() for row in rows], ["2021-05", "暂无", "暂无"])
         self.assertEqual(rows[0].select("td")[3]["data-sort"], "2021-05")
-        self.assertEqual(portable.select_one(".pt-badge").get_text(), "各说明书写法不一致")
+        self.assertEqual(portable.select_one(".pt-badge").get_text(), "多源写法差异")
+        self.assertEqual(page.select_one("[data-pt-download]").get_text(), "导出 CSV")
         self.assertTrue(page.select_one("[data-pt-download]").has_attr("hidden"))
         text = page.select_one("main").get_text()
         for word in ("capacity_wh", "snapshot", "未核实", "候选", "无数值"):

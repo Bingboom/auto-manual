@@ -11,41 +11,46 @@
 <script defer src="{{ pathto('_static/product-compare.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{% from "_product_tabs.html" import product_tabs, product_freshness with context %}
+{% from "_product_tabs.html" import product_tabs, product_stale, product_sync with context %}
 {#- 产品对比 (step 13; REV-53; tools/rtd/product_tables.py compare_view). The visitor picks two to four products
-    and a market; rows that differ are highlighted and 只看不同的参数 keeps only them. The page carries every
+    and a market; rows that differ are highlighted and 仅显示差异项 keeps only them. The page carries every
     product's values as escaped JSON (private site only); the choice lives in the URL (?p=…&market=…), so a
-    comparison can be shared. Needs JavaScript; without it the page says so. -#}
+    comparison can be shared. Stale warning sits above the card, sync times under it. Needs JavaScript; without it the page says so. -#}
 <body class="app kb">
 {{ site_sidebar('product-compare', site_nav) }}
 <div class="app-content">
 {{ site_topbar('知识库', '产品对比') }}
 <main class="fr-page pc-page">
 <div class="pl-head">
-<header class="fr-head"><h1>产品对比</h1></header>
+<header class="fr-head"><h1>产品对比</h1>{% if built %}<p>选择 2–{{ limit }} 款机型，在同一市场口径下逐项比对规格</p>{% endif %}</header>
 {{ product_tabs('products/compare') }}
 </div>
-{{ product_freshness(freshness) }}
+{{ product_stale(freshness) }}
 {%- if not built %}
 <p class="fr-empty">{{ problem|e }}</p>
 {%- else %}
 <noscript><p class="fr-empty">产品对比需要启用 JavaScript。</p></noscript>
-<div class="pc-app" data-pc hidden data-item-base="{{ pathto('products/item/__MODEL__')|e }}">
-  <div class="pc-picked" data-pc-picked></div>
-  <div class="pc-add">
-    <label for="pc-pick">添加产品（最多 {{ limit }} 个）</label>
-    <input id="pc-pick" list="pc-models" placeholder="输入型号或产品名" autocomplete="off" data-pc-input>
-    <datalist id="pc-models">{% for product in data.products %}<option value="{{ product.model|e }}">{{ product.name|e }}</option>{% endfor %}</datalist>
-    <button type="button" data-pc-add>添加</button>
+<div class="pc-app pc-card" data-pc hidden data-item-base="{{ pathto('products/item/__MODEL__')|e }}">
+  <div class="pc-toolbar">
+    <div class="pc-pick-row">
+      <div class="pc-picked" data-pc-picked></div>
+      <div class="pc-add">
+        <label class="sr-only" for="pc-pick">添加机型（最多 {{ limit }} 款）</label>
+        <input id="pc-pick" list="pc-models" placeholder="添加机型（最多 {{ limit }} 款）…" autocomplete="off" data-pc-input>
+        <datalist id="pc-models">{% for product in data.products %}<option value="{{ product.model|e }}">{{ product.name|e }}</option>{% endfor %}</datalist>
+        <button type="button" data-pc-add>添加</button>
+      </div>
+    </div>
+    <div class="pc-options">
+      <label>市场<select data-pc-market>{% for market in markets %}<option value="{{ market.code|e }}">{{ market.label|e }}</option>{% endfor %}</select></label>
+      <label class="pt-check"><input type="checkbox" data-pc-diff>仅显示差异项</label>
+    </div>
   </div>
-  <div class="pc-options">
-    <label>市场<select data-pc-market>{% for market in markets %}<option value="{{ market.code|e }}">{{ market.label|e }}</option>{% endfor %}</select></label>
-    <label class="pt-check"><input type="checkbox" data-pc-diff>只看不同的参数</label>
-  </div>
-  <p class="fr-empty" data-pc-empty>选两个以上的产品开始对比。</p>
-  <div class="pt-scroll" data-pc-wrap hidden><table class="pt-table pc-table" data-pc-table></table></div>
+  <p class="fr-empty pc-empty" data-pc-empty>请选择至少两款产品开始比对。</p>
+  <div class="pt-scroll pc-scroll" data-pc-wrap hidden><table class="pt-table pc-table" data-pc-table></table></div>
 </div>
 <script type="application/json" id="pc-data">{{ data|tojson }}</script>
 {%- endif %}
+{{ product_sync(freshness) }}
 </main>
 </div>{{ site_script() }}</body></html>

@@ -413,8 +413,7 @@ address forwards here, and the public manual library never links to it.
   public-role build in `tests/test_rtd_portal.py` fails if any file or text of
   `knowledge/product-matrix` reaches its output. Tests use invented products and
   projects (`P-FAKE-*`).
-- **Freshness.** Every product page (产品矩阵, 产品对比, 参数表, 产品档案) shows, under
-  its header (on 产品矩阵, under the matrix card, with the warning box above the card), `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; a v1.1 snapshot
+- **Freshness.** Every product page (产品矩阵, 产品对比, 参数表, 产品档案) shows `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; on 产品矩阵, 产品对比 and 参数表 quietly under the main card, on 产品档案 under its header; a v1.1 snapshot
   has no build time and shows `未记录（旧版快照）`), and an amber `数据可能不是最新`
   box when the snapshot is past the registry's `product_matrix.stale_after_days`
   without a successful check, when the last check found the base ahead or failed, or
@@ -554,19 +553,19 @@ since the page sits below that tab).
 
 - **参数表** (`/products/table.html`, `product_table.html`, `_static/product-table.js`;
   the operator's 产品矩阵 frame, named 参数表 so it is not confused with the 产品矩阵 page): one table
-  per category, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
-  市场, 项目 (未归入 when none), SKU 创建时间 (each row's own market; 暂无 when that market has
+  per category inside a unified card, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
+  市场, 项目 (`—` when none, exported as empty in CSV), SKU 创建时间 (each row's own market; 暂无 when that market has
   none), then the (parameter, condition) columns that
-  category's products state, in page order. A column is a figure column when its
+  category's products state, in page order (`多源写法差异` marks cells where sources disagree). A column is a figure column when its
   parameter's value type is 数值 or 整数 (`parameters[].value_type`,
   [contract §4.1](../product_matrix_base.md#41-矩阵表的生成)); every other type is a text
   column showing `display`. A figure column's head names its unit and its cells show the
   bare number (the cell's `number` as a plain decimal at any magnitude, never `1e-05`, no
   trailing .0), so the downloaded CSV holds plain numbers; a cell without a number shows
   its `display` in full. 产品档案 and 产品对比 show `display` as it is. With JavaScript:
-  category pills, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
+  category pills and 导出 CSV in the card's top bar, 项目 / 市场 / 系列 filters, 按项目分组 (on by default; rows without a
   project last), sorting by any column (in a number column: numbers, then cells holding
-  only text, then 暂无, in either direction) and 下载表格: the visible rows of the open
+  only text, then 暂无, in either direction) and 导出 CSV: the visible rows of the open
   table as `参数表-<类别>.csv`, UTF-8 with a BOM so spreadsheet programs read the Chinese
   text. A cell that a spreadsheet could read as a formula gets a leading apostrophe, so
   Excel and WPS show it as text and run nothing: one starting with `=`, `@`, a tab or CR;
@@ -578,9 +577,9 @@ since the page sits below that tab).
   fixed while the table scrolls sideways. Long texts show four lines with the whole text as a
   tooltip; the CSV keeps the whole text. Without JavaScript every table shows in full.
 - **产品对比** (`/products/compare.html`, `product_compare.html`,
-  `_static/product-compare.js`): two to four products side by side in one market. The
+  `_static/product-compare.js`): two to four products side by side in one market (`选择 2–4 款机型，在同一市场口径下逐项比对规格`). The
   visitor adds products by code or name (a unique match), removes them with ×, picks the
-  market and can keep only 只看不同的参数. The choice stays in the URL
+  market and can keep only 仅显示差异项 (`请选择至少两款产品开始比对。` before two are picked). The choice stays in the URL
   (`?p=A,B&market=US`), so a comparison can be shared. As on 产品档案, a row differs only
   when at least two products sold in that market state a value and those values
   differ; a missing value shows 暂无 and takes no part. A product's column head is its
