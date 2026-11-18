@@ -6,7 +6,7 @@ Add new notes for this topic here, not to the hub.
 GitHub note:
 
 - pull requests are gated by the `Manual Validation` workflow
-- after merge, `main` runs the same validation workflow again
+- after merge, `main` runs the same validation workflow again; that run is never cancelled by a later merge, so every commit on `main` gets a complete result
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
 - `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
 - the shared GitHub-hosted Feishu worker setup now installs `pandoc` from the official release action instead of `apt-get`, and it reuses pip/npm download caches, so remote queue runs are less likely to spend 10+ minutes waiting on slow dependency downloads before the actual build starts
