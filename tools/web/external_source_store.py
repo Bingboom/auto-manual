@@ -668,7 +668,7 @@ def build_lark_download_command(
     pointer: ExternalSourcePointer,
     *,
     base_token: str,
-    output_path: Path,
+    output_path: Path | str,
     lark_bin: str = "lark-cli",
     identity: str = "bot",
     profile: str | None = None,
@@ -710,30 +710,38 @@ def fetch_pointer_attachment(
     runner: Callable[..., subprocess.CompletedProcess[str]] = subprocess.run,
 ) -> Path:
     """Download ``pointer`` via ``lark-cli`` into a temp file, verify SHA-256, and atomically replace."""
-    if output_path.is_file() and not force:
-        ok, message = verify_local_file(pointer, output_path)
+    resolved_output = output_path.resolve()
+    if resolved_output.is_file() and not force:
+        ok, message = verify_local_file(pointer, resolved_output)
         if ok:
             return output_path
         raise RuntimeError(f"refusing to overwrite modified file without --force ({message})")
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    resolved_output.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp_name = tempfile.mkstemp(
-        prefix=f".{output_path.name}.",
+        prefix=f".{resolved_output.name}.",
         suffix=".part",
-        dir=str(output_path.parent),
+        dir=str(resolved_output.parent),
     )
     os.close(fd)
     tmp_path = Path(tmp_name)
     try:
+        # lark-cli 1.0.69 requires a cwd-relative --output path (rejects /var/folders/...).
         cmd = build_lark_download_command(
             pointer,
             base_token=base_token,
-            output_path=tmp_path,
+            output_path=f"./{tmp_path.name}",
             lark_bin=lark_bin,
             identity=identity,
             profile=profile,
         )
-        proc = runner(cmd, capture_output=True, text=True, check=False)
+        proc = runner(
+            cmd,
+            cwd=str(resolved_output.parent),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
         if proc.returncode != 0:
             detail = (proc.stderr or proc.stdout or "").strip()
             raise RuntimeError(
@@ -742,7 +750,7 @@ def fetch_pointer_attachment(
         ok, message = verify_local_file(pointer, tmp_path)
         if not ok:
             raise RuntimeError(f"downloaded attachment failed integrity check: {message}")
-        os.replace(tmp_path, output_path)
+        os.replace(tmp_path, resolved_output)
     except (OSError, subprocess.SubprocessError, RuntimeError):
         tmp_path.unlink(missing_ok=True)
         raise

@@ -1,0 +1,14 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "16-0102-000422 说明书HTE1511000A-US-JAK RoHS REACH.ai",
+  "sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "size_bytes": 10061981,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI4hzr",
+    "field_name": "source_file",
+    "file_token": "XvZRbqZ96oF8kVx41Goc2V5Xn6d"
+  },
+  "source_key": "source/fridgeguard_us_16-0102-000422"
+}

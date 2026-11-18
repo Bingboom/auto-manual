@@ -19,9 +19,9 @@
   "live_bitable_dependency": false,
   "files": [
     {
-      "path": "16-0102-000422 说明书HTE1511000A-US-JAK RoHS REACH.ai",
-      "size": 10061981,
-      "sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27"
+      "path": "16-0102-000422 说明书HTE1511000A-US-JAK RoHS REACH.ai.source-pointer.json",
+      "size": 498,
+      "sha256": "123679202df0c91dc0a9988c5d1f8712bc595334a46f186af3f9930a59f1169d"
     },
     {
       "path": "phase2/.gitattributes",

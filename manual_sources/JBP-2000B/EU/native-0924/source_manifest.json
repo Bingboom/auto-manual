@@ -1160,9 +1160,9 @@
   },
   "inputs": [
     {
-      "path": "HTP017-EU-9国说明书-0924.ai",
-      "size": 28648316,
-      "sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3"
+      "path": "HTP017-EU-9国说明书-0924.ai.source-pointer.json",
+      "size": 470,
+      "sha256": "53bf59d6aa68c6e67b9251c2dc93039bf9ea914f5fe1f7afb405210736c9f952"
     },
     {
       "path": "README.md",
