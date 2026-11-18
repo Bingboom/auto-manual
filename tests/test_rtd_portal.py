@@ -458,8 +458,15 @@ class RtdPortalTests(unittest.TestCase):
                          "工作资料 / 知识资产 / 说明书资料库 / 搜索说明书正文")
         self.assertIsNotNone(search.select_one('#ms-query[name="q"][type="search"]'))
         self.assertIsNotNone(search.select_one("#search-results"))
+        from tools.rtd.deliverables import asset_versions
+        versions = asset_versions(rtd_portal.ASSETS)
         self.assertEqual([s["src"] for s in search.select("script[src]")][:2],
-                         ["_static/portal-search-index.js", "_static/manual-search.js"])
+                         ["_static/portal-search-index.js", f"_static/manual-search.js?v={versions['manual-search.js']}"])
+        for rel in ("index.html", "search.html", "workspace/index.html", "products/matrix.html", "products/knowledge.html"):
+            built_soup = BeautifulSoup((self.root / "after" / rel).read_text(), "html.parser")
+            shell_hrefs = [t["href"] for t in built_soup.select("head link[rel=stylesheet]") if "site-shell.css" in t["href"]]
+            self.assertEqual(len(shell_hrefs), 1, rel)
+            self.assertTrue(shell_hrefs[0].endswith(f"site-shell.css?v={versions['site-shell.css']}"), (rel, shell_hrefs))
         config = json.loads(search.select_one("#ms-config").string)
         self.assertEqual(config["languages"][0], ["en", "en-US"])
         self.assertTrue(set(config["models"]) and all(item["category"] for item in config["models"].values()))
