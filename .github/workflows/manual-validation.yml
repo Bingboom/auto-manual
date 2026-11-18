@@ -154,9 +154,20 @@ jobs:
       - name: Run Node UI tests
         run: node --test tests/*.test.mjs
 
-  unit:
+  # The unit suite runs as parallel shards: each test module in its own process,
+  # modules balanced across shards by tests/unit_timings.json. Reproduce one
+  # shard locally with `python -m tests.run_fast --shard K/N`, all of them with
+  # `python -m tests.run_fast --all`. Changing the shard count needs only the
+  # matrix list below.
+  unit-shard:
     if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    name: unit-shard (${{ matrix.shard }})
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -166,8 +177,26 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.lock
-      - name: Run unit tests
-        run: python -m unittest
+      - name: Run unit test shard
+        run: python -m tests.run_fast --shard ${{ matrix.shard }}/${{ strategy.job-total }}
+
+  # Required status check. It must fail (not be skipped) when any shard failed,
+  # was cancelled or was skipped, because GitHub treats a skipped required
+  # check as passing.
+  unit:
+    if: ${{ always() && github.repository == 'Bingboom/auto-manual' }}
+    needs: unit-shard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every unit shard to succeed
+        env:
+          SHARDS_RESULT: ${{ needs.unit-shard.result }}
+        run: |
+          echo "unit-shard result: $SHARDS_RESULT"
+          if [ "$SHARDS_RESULT" != "success" ]; then
+            echo "::error title=unit::one or more unit shards did not succeed ($SHARDS_RESULT); open the failing unit-shard job"
+            exit 1
+          fi
 
   queue-contract:
     if: ${{ github.repository == 'Bingboom/auto-manual' }}
