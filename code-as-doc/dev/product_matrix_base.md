@@ -135,6 +135,9 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
   同级分组标题、规格类名（`spec-table`、`native-spec`）和 `spec-row` 列表识别；规格节以外的充电时间、保修、
   装箱清单等规格类表也读。每一行原样保留标签、值、列名、章节路径与锚点；标签按各语言规则映射到属性，
   没有端口方向的标签只在小标题写明输入或输出时才映射；没有规则认领的行照样保留，列入 `unmapped`。
+  旁路输入与输出合写一行的标签（如 Bypass Mode AC Input/Output）归入 `ac_output_bypass`；原 `ac_bypass_input_output`
+  已停用（操作者 2026-11-18 决定合并；多维表里的相应事实随之改挂到 `ac_output_bypass`，写入经操作者确认并读回）。`ac_output_port` 与 `ac_output_total` 是两个不同的数
+  （每组插座的额定值 / 整机持续输出），中文名改为「AC 每组输出」「AC 整机持续输出」；跨型号比较看 `ac_rated_w`。
 - 事实：每个型号 × 市场取一个主语言版本（英文，否则市场主语言，见 `reader/market_languages.json`，
   否则行数最多的版本），同一属性的多行合成一个值；其他语言版本只做比对，结论写进备注，不合并。
   日规「サイズ＆重量」一行同时读尺寸和重量。说明书里随附或另售组件的表（电池包、转换开关、太阳能板）
@@ -192,6 +195,9 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
     - 派生值（装载时由同一说明书的几行合成，原文带「派生:」标记）：`values`、`component_values` 与 `cells` 的 `printed`（以及 `values`、`component_values` 的 `position`）
       去掉这个标记，`cells` 的 `display` 也不带它（纯范围文本的派生行显示原文时同样去掉），
       另给布尔 `derived`；页面不显示「派生」字样，需要时在来源说明里交代。多维表里的原文不改。
+    - `compare`：页面比较两格是否相同时用的写法（NFKC 规范化、去空格、小写：LiFePO₄ 与 LiFePO4、全角与半角括号、
+      多一个空格都视为相同）；页面显示仍用 `display`，即说明书原样的写法。格子内的 `sources_disagree` 也按这个写法比较文本。
+      多维表里的原文不改（操作者 2026-11-18）。
     - 两个 `sources_disagree` 含义不同：`values[]` 上的按（产品、参数）跨所有条件算；`cells[]` 上的只看这一格参与的值，
       数值按数字比较（100 与 100.0 相同）。页面用 cells 上的。
     - 与矩阵的一处差别：矩阵按（产品、参数）只取一格；快照给 STC、NOCT、BNPI 各开一格（条件名前后不是字母即可，

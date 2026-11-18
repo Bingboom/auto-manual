@@ -168,6 +168,9 @@ class ReadingTest(unittest.TestCase):
         self.assertEqual(map_label("USB-C", "INPUT PORTS", "spec_section")[0], "usb_c_input")
         self.assertEqual(map_label("USB-C", "OUTPUT PORTS", "spec_section")[0], "usb_c_output")
         self.assertEqual(map_label("USB-C", "GENERAL", "spec_section")[0], UNMAPPED)
+        # One row for bypass input and output is the bypass output (merged 2026-11-18).
+        self.assertEqual(map_label("Bypass Mode AC Input/Output", "", "spec_section")[0], "ac_output_bypass")
+        self.assertEqual(map_label("AC Output in Bypass Mode", "", "spec_section")[0], "ac_output_bypass")
         self.assertEqual(map_label("Poids", "", "spec_section")[0], "weight_kg")
         weight = parse_value("weight_kg", "Environ 7,1 kg")
         self.assertEqual((weight["value_metric"], weight["qualifier"]), ("7.1", "Environ"))
@@ -429,6 +432,15 @@ class CellsTest(unittest.TestCase):
                   "原文": "派生: 100~120V"}]
         [cell] = self.build(facts)
         self.assertEqual((cell["display"], cell["printed"], cell["derived"]), ("100~120V", "100~120V", True))
+
+    def test_printed_variants_share_one_compare_key(self):
+        self.assertEqual({cells.compare_key(t) for t in ("LiFePO₄", "LiFePO4", "lifepo4")}, {"lifepo4"})
+        self.assertEqual(cells.compare_key("100V-120V~ 50Hz（最大15A）"), cells.compare_key("100V-120V ~ 50Hz(最大15A)"))
+        self.assertIsNone(cells.compare_key(""))
+        facts = [{"事实键": "a", "产品键": "P/US", "属性键": "ac_input", "来源键": "web/a", "文本值": "LiFePO₄"},
+                 {"事实键": "b", "产品键": "P/US", "属性键": "ac_input", "来源键": "sheet/a", "文本值": "LiFePO4"}]
+        [cell] = self.build(facts)
+        self.assertEqual((cell["display"], cell["compare"], cell["sources_disagree"]), ("LiFePO₄", "lifepo4", False))
 
     def test_condition_names_match_without_word_boundaries(self):
         self.assertEqual([cells.cell_condition(c) for c in ("STC条件", "NOCT: 800W/m²", "BNPI", "BNPIX", "to 70% capacity",

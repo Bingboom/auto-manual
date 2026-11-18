@@ -189,7 +189,7 @@
   },
   {
    "属性键": "ac_output_port",
-   "中文名": "AC 输出口",
+   "中文名": "AC 每组输出",
    "英文名": "AC output port(s)",
    "分组": "输出",
    "值类型": "数值",
@@ -205,7 +205,7 @@
   },
   {
    "属性键": "ac_output_total",
-   "中文名": "AC 总输出",
+   "中文名": "AC 整机持续输出",
    "英文名": "AC total output",
    "分组": "输出",
    "值类型": "数值",
@@ -242,13 +242,13 @@
    "分组": "输出",
    "值类型": "范围",
    "规范单位": "W",
-   "定义": "Single row covering bypass input and output.",
+   "定义": "Merged into ac_output_bypass (operator, 2026-11-18); kept as a retired key.",
    "适用类别": [
     "便携储能",
     "家庭备电"
    ],
    "说明书通常写": true,
-   "状态": "启用",
+   "状态": "停用",
    "排序": 16
   },
   {
