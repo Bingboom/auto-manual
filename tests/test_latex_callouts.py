@@ -32,6 +32,7 @@ class LatexCalloutTests(unittest.TestCase):
             [
                 sys.executable,
                 "-I",
+                "-B",  # -I ignores PYTHONDONTWRITEBYTECODE; keep __pycache__ out of the tree
                 "-c",
                 (
                     "import sys; "
