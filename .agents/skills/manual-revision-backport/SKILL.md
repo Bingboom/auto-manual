@@ -1,6 +1,14 @@
 ---
 name: manual-revision-backport
-description: Back-port a human reviewer's tracked-changes revision of a BUILT manual (.docx) into this repo's source of truth — the RST templates AND the Feishu phase2 source tables. Use whenever someone hands you a revised "…修订.docx" / reviewed Word manual (e.g. `JE-2000F-EU-fr-修订.docx`, several languages) and wants those edits reflected in the repo so the next build matches. This is reverse-sync of reviewer edits from an exported manual back into source — NOT new Markdown intake (use markdown-rst-template-intake) and NOT free translation/rewrite (use bitable-translation-memory / manual-rewrite-with-tm). Trigger even when the user only says "改回模版" / "把修订同步回去" / "update the template from this revised doc".
+description: "Maintenance only. Back-port tracked changes from a built Word manual on an existing template line. Identify the source of each change and verify residuals within the approved scope."
+metadata:
+  owner: "评审回写维护人"
+  status: "maintenance"
+  entry: "把既有构建稿的 Word 修订按批准范围回写"
+  tools: "scripts/extract_docx_changes.py、scripts/scan_residuals.py"
+  validation: "提取一个跟踪修订，核对源位置，再扫描旧文残留"
+  reviewed: "2026-11-17"
+  retire_when: "存量构建稿退出 Word 修订回写"
 ---
 
 # Manual Revision Back-port

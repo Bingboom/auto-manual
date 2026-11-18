@@ -1,6 +1,14 @@
 ---
 name: lark-cli-bitable-ops
 description: The single source of truth for reading/writing Feishu Bitable (多维表格) with lark-cli in this repo — command shapes, field-type traps, attachment uploads, the most-used base/table coordinates, and the mandatory write-readback discipline. Load it BEFORE any direct lark-cli base read/write (spec intake, backport source-table writes, TM maintenance, asset registry, build-table rows). Other skills reference this one instead of restating payload shapes. NOT a business workflow — intake/backport/TM flows live in their own skills.
+metadata:
+  owner: "飞书数据维护人"
+  status: "active"
+  entry: "读多维表或执行已授权的记录更新"
+  tools: "lark-cli base、字段定义及 record_id"
+  validation: "在测试记录上回读所改字段，附件需有 file_token"
+  reviewed: "2026-11-17"
+  retire_when: "仓库更换多维表客户端或写入回读协议"
 ---
 
 # lark-cli Bitable Ops

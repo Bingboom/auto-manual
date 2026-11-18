@@ -1,6 +1,14 @@
 ---
 name: cloud-doc-backport-ops
-description: Run a review cloud-doc backport ROUND end to end — the round-level SOP wrapping tools/backport/cloud_doc.py. Use whenever the operator hands a Feishu review cloud-doc (wiki/docx URL) and wants its reviewer edits reflected back into the repo/review branch/source tables — trigger phrases 「执行回写」+URL, "backport this doc", 「云文档回写」, or a build-table InReview sweep. Owns the preflight (snapshot/lang/baseline), run-review-branch dry-run→write→push, per-delta routing (review page vs source-table F6 via apply-source-table vs template PR vs debt), the MANDATORY post-apply checks (deletion sweep, symmetric-term pairs, per-write readback), final rediff-to-zero, and baseline re-snapshot. NOT for .docx tracked-changes revisions (use manual-revision-backport) and NOT spec-sheet onboarding (use spec-sheet-structured-intake).
+description: "Maintenance only. Run a requested backport from an existing Feishu review cloud document into its review branch. Use tools.backport.cloud_doc for target resolution and dry-run."
+metadata:
+  owner: "评审回写维护人"
+  status: "maintenance"
+  entry: "把已有构建评审云文档的人工修订回写对应 review 分支"
+  tools: "tools.backport.cloud_doc run-review-branch"
+  validation: "对已知评审稿空跑，核对目标分支、页面与逐项差异"
+  reviewed: "2026-11-17"
+  retire_when: "最后一条使用评审分支的稿线退出"
 ---
 
 # Cloud-Doc Backport Ops (round-level SOP)
@@ -70,7 +78,7 @@ route decisions and F6 approvals as you reach them.
 
 - `.docx` tracked-changes revision file → **manual-revision-backport** (it
   shares the post-apply checklist in this skill's `references/`).
-- New model/region spec onboarding → **spec-sheet-structured-intake**.
+- Revised spec on an existing parameter-build target → **spec-sheet-structured-intake**. New model or region writing starts in Hello-Docs-Review.
 - Data-driven refresh of an in-review target without reviewer edits →
   `sync-review` (AGENTS.md §3), not a backport round.
 - Multi-doc sweep trigger: build table (document_link) InReview rows are the

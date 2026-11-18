@@ -1,7 +1,15 @@
 ---
-description: Diagnose and fix page-number / table-of-contents defects (wrong TOC references, stale duplicate labels, mis-numbered footers, per-language numbering schemes) in a multi-language Adobe Illustrator manual (.ai, PDF-compatible, one artboard per page), and re-export a clean portrait PDF. Use when the user hands you a .ai/.indd-style manual file — typically outside this repo, e.g. on the Desktop — and asks to check or renumber page numbers, fix the TOC, or export a "竖版/portrait" PDF from it.
-when_to_use: Trigger phrases include "改页码", "目录页码不对", "封面第一页/封底最后一页", "导出竖版pdf", or any request to audit/fix page numbering, TOC entries, or footer numbers in a design-team .ai manual. Also use proactively if asked to "look at" or "check" such a file for correctness before a print/release handoff.
+description: Diagnose and fix page-number / table-of-contents defects (wrong TOC references, stale duplicate labels, mis-numbered footers, per-language numbering schemes) in a multi-language Adobe Illustrator manual (.ai, PDF-compatible, one artboard per page), and re-export a clean portrait PDF. Use when the user hands you a PDF-compatible .ai manual file — typically outside this repo, e.g. on the Desktop — and asks to check or renumber page numbers, fix the TOC, or export a "竖版/portrait" PDF from it.
+when_to_use: Trigger phrases include "改页码", "目录页码不对", "封面第一页/封底最后一页", "导出竖版pdf", or any request to audit/fix page numbering, TOC entries, or footer numbers in a design-team .ai manual. For a corpus-based wording edit, use the requested Illustrator text-editing tool and verify the artwork. This procedure covers page numbers, TOC references and export orientation.
 argument-hint: "[path to the .ai file, optionally the specific TOC/footer issue reported]"
+metadata:
+  owner: "排版维护人"
+  status: "active"
+  entry: "核对或修复 PDF 兼容的 Illustrator 原稿页码、目录及竖版输出"
+  tools: "Illustrator、JXA、PyMuPDF"
+  validation: "用副本核对目录引用与对应画板，重开导出 PDF 检查页序及方向"
+  reviewed: "2026-11-17"
+  retire_when: "设计组停用此类原稿或页码改由其他排版工具维护"
 ---
 
 # AI Manual Page-Number Fix
