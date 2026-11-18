@@ -45,14 +45,14 @@
     section's home is 知识资产's own page; another section opens on its first available list page. -#}
 {%- set site_sections = [
   {'id': 'knowledge', 'label': '知识资产', 'home': 'workspace/index',
-   'list': [{'key': 'product-matrix', 'label': '产品信息', 'icon': 'product', 'page': 'products/matrix', 'needs': 'matrix'},
+   'list': [{'key': 'overview', 'label': '资产总览', 'icon': 'matrix', 'page': 'workspace/index'},
+            {'key': 'product-matrix', 'label': '产品信息', 'icon': 'product', 'page': 'products/matrix', 'needs': 'matrix'},
             {'key': 'product-knowledge', 'label': '产品知识', 'icon': 'chapters', 'page': 'products/knowledge'},
             {'key': 'manuals', 'label': '说明书资料库', 'icon': 'book', 'page': 'index'},
             {'key': 'asset-language', 'label': '语料库', 'icon': 'languages', 'page': 'assets/language/index'},
             {'key': 'asset-media', 'label': '视觉媒体', 'icon': 'image', 'page': 'assets/media/index'},
             {'key': 'market-policy', 'label': '市场与政策', 'icon': 'globe', 'page': 'market/policy'}],
-   'also': [{'key': 'overview', 'label': '首页'},
-            {'key': 'product-library', 'label': '产品库', 'under': 'product-matrix'},
+   'also': [{'key': 'product-library', 'label': '产品库', 'under': 'product-matrix'},
             {'key': 'product-profile', 'label': '产品档案', 'under': 'product-matrix'},
             {'key': 'product-compare', 'label': '产品对比', 'under': 'product-matrix'},
             {'key': 'product-table', 'label': '参数表', 'under': 'product-matrix'},
@@ -110,13 +110,13 @@
     is kept for its callers. -#}
 {%- set found = namespace(label=none, parent=none) -%}
 {%- for main in site_sections -%}
-  {%- for item in main.list + main.get('also', []) if item.label == crumb -%}
+  {%- for item in main.list + main.get('also', []) if item.label == crumb or (crumb == '首页' and item.key == 'overview') -%}
     {%- set found.label = main.label -%}
     {%- for entry in main.list if item.under and entry.key == item.under %}{% set found.parent = entry.label %}{% endfor -%}
   {%- endfor -%}
 {%- endfor -%}
 <div class="app-topbar">
-  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('首页', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> {% if found.parent %}{{ found.parent }} <span>/</span> {% endif %}<b>{{ crumb }}</b>{% endif %}</div>
+  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('首页', '资产总览', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> {% if found.parent %}{{ found.parent }} <span>/</span> {% endif %}<b>{{ crumb }}</b>{% endif %}</div>
   <div class="app-topbar-right">{{ caller() if caller else '' }}</div>
 </div>
 {%- endmacro -%}
