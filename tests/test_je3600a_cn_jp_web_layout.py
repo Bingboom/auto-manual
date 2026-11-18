@@ -20,6 +20,7 @@ from bs4 import BeautifulSoup
 from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import resolve_source_identity, reviewed_inputs_match_with_pointers
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'data/manual_sources/JE-3600A'
@@ -164,7 +165,7 @@ class WebLayoutEditionTests(unittest.TestCase):
                     'path': edition['approved'].relative_to(ROOT).as_posix(),
                     'derivation': 'derive_web_layout.py'})
                 self.assertEqual(manifest['original_source']['sha256'], edition['source_sha'])
-                self.assertEqual(file_sha256(package / edition['pdf']), edition['source_sha'])
+                self.assertEqual(resolve_source_identity(package / edition['pdf'])[1], edition['source_sha'])
                 self.assertEqual(manifest['web_roots'], {language: f'web/{language}'})
                 files = sorted(path for path in inventory(package) if path != 'source_manifest.json')
                 self.assertEqual(sorted(row['path'] for row in manifest['inputs']), files)
@@ -181,9 +182,20 @@ class WebLayoutEditionTests(unittest.TestCase):
                 self.assertEqual(approval['reviewed_source_commit'], '16368b7')
                 self.assertEqual(approval['target'], {key: manifest['target'][key]
                                                       for key in ('model', 'region', 'technical_version')})
-                self.assertEqual(approval['reviewed_inputs'], [
+                reviewed = [
                     row for row in manifest['inputs']
-                    if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+                    if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'
+                ]
+                self.assertTrue(
+                    reviewed_inputs_match_with_pointers(
+                        package,
+                        approval['reviewed_inputs'],
+                        reviewed,
+                        original_sha256=edition['source_sha'],
+                        raw_archive_paths=(edition['pdf'],),
+                        adapter_paths=('rebuild.py',),
+                    )
+                )
 
     def test_editions_share_one_derivation(self):
         for relative in SHARED_FILES:
@@ -352,6 +364,9 @@ class WebLayoutEditionTests(unittest.TestCase):
             with self.subTest(region=region):
                 self.require_pinned_shared_inputs(region)
                 package = edition['package']
+                self.assertEqual(resolve_source_identity(package / edition['pdf'])[1], edition['source_sha'])
+                if not (package / edition['pdf']).is_file():
+                    self.skipTest('raw source PDF externalized to Feishu pointer; requires local fetch for PyMuPDF layout derivation')
                 derive_module = load(f'je3600a_{region.lower()}_layout_derive', package / 'derive_web_layout.py')
                 source = self.root / region / 'derived'
                 shutil.copytree(package, source, ignore=shutil.ignore_patterns('web', '__pycache__'))

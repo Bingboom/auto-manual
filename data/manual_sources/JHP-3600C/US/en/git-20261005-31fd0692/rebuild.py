@@ -31,6 +31,7 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.web.frozen_ai_web import replay_package  # noqa: E402
 from tools.web.presentation import load_web_manual_contract  # noqa: E402
+from tools.web.external_source_store import resolve_source_identity  # noqa: E402
 
 
 def check_inventory(base: Path, rows: list[dict]) -> None:
@@ -47,7 +48,12 @@ def rebuild(output: Path) -> None:
         raise ValueError("use an unused output directory")
     source = json.loads((SOURCE_ROOT / "source/content.json").read_text())
     pdfs = list(SOURCE_ROOT.glob("*.pdf"))
-    if len(pdfs) != 1 or file_sha256(pdfs[0]) != source["source_sha256"]:
+    if not pdfs:
+        pdfs = [
+            p.with_name(p.name.removesuffix(".source-pointer.json"))
+            for p in sorted(SOURCE_ROOT.glob("*.pdf.source-pointer.json"))
+        ]
+    if len(pdfs) != 1 or resolve_source_identity(pdfs[0])[1] != source["source_sha256"]:
         raise ValueError("authoritative PDF identity changed")
     manifest_path = SOURCE_ROOT / "source_manifest.json"
     manifest = json.loads(manifest_path.read_text())

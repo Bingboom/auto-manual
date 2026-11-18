@@ -368,7 +368,11 @@ def _pointer_row_result(row: dict, ref: str, meaning: str, candidate: Path, *,
         raise ValueError('symbol meaning differs from bound source caption')
     erratum = _matching_erratum(errata, row)
     _erratum_source_caption(erratum, row, meaning)
-    comparison = dict(row.get('comparison') or {'max_mean_channel_error': 0.0})
+    comparison = dict(row.get('comparison') or {})
+    for key in ('max_mean_channel_error', 'canonical_group', 'canonical_decision'):
+        if key in row and key not in comparison:
+            comparison[key] = row[key]
+    comparison.setdefault('max_mean_channel_error', 0.0)
     waiver_id = _matching_waiver_id(waivers, row)
     if waiver_id is not None:
         comparison['glyph_waiver'] = waiver_id

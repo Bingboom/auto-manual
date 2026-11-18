@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JBP-1000B-WH_JP_ja_V2.0-2026-07-29.pdf",
+  "sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+  "size_bytes": 8482089,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBm12cRQ9",
+    "field_name": "source_file",
+    "file_token": "LvMfbjTsdoBoZGxEOnUcrgJ5nym"
+  },
+  "local_relpath": "Jackery Battery Pack取扱説明書V2.0-2026-07-29.pdf",
+  "source_key": "source/manual_jbp1000b_wh_jp_ja_3aa6c003_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

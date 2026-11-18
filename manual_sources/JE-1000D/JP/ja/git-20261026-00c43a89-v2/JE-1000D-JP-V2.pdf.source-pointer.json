@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JE-1000D-JP-V2.pdf",
+  "sha256": "00c43a89bd07babbea3a82b6bfbbc4a1c7b52f7a72cb8030b0dbfb349de601a4",
+  "size_bytes": 3861611,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBmOWYLwC",
+    "field_name": "source_file",
+    "file_token": "KKvWbAeQboMa3Axp5jmcTyEnnvc"
+  },
+  "local_relpath": "JE-1000D-JP-V2.pdf",
+  "source_key": "source/manual_je1000d_jp_ja_00c43a89_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

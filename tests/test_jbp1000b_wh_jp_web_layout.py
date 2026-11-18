@@ -243,9 +243,18 @@ class WebLayoutEditionTests(unittest.TestCase):
             self.skipTest('asset recipe is validated for PyMuPDF 1.28.0 / MuPDF 1.29.0 (requirements.lock)')
         from tools.asset_pipeline.extract import extract_artifacts
         from tools.asset_pipeline.recipe import load_recipe
+        from tools.web.external_source_store import resolve_source_identity
 
+        pdfs = list(PACKAGE.glob('*.pdf')) or [
+            p.with_name(p.name.removesuffix('.source-pointer.json'))
+            for p in sorted(PACKAGE.glob('*.pdf.source-pointer.json'))
+        ]
+        self.assertEqual(len(pdfs), 1)
+        self.assertEqual(resolve_source_identity(pdfs[0])[1], SOURCE_SHA)
+        if not pdfs[0].is_file():
+            self.skipTest('raw source PDF externalized to Feishu pointer; requires local fetch for PyMuPDF extraction check')
         out = self.root / 'render'
-        extract_artifacts(next(PACKAGE.glob('*.pdf')), load_recipe(PACKAGE / 'source/asset_recipe.json'), out)
+        extract_artifacts(pdfs[0], load_recipe(PACKAGE / 'source/asset_recipe.json'), out)
         rendered = {p.name: p.read_bytes() for p in (out / 'assets').iterdir()}
         figures = read(PACKAGE / 'source/figures.json')
         self.assertEqual(set(rendered), {next((PACKAGE / 'source/assets').glob(f"{f['slug']}.*")).name for f in figures})

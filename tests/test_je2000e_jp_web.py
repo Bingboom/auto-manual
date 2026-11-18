@@ -14,6 +14,7 @@ from tests.historical_web_inputs import historical_shared_inputs
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
+from tools.web.external_source_store import resolve_source_identity
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 from unittest import mock
 from tools.web import stylesheets
@@ -54,7 +55,7 @@ class Je2000eJpWebTests(unittest.TestCase):
         self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("JP", ["ja"]))
         self.assertEqual(manifest["target"]["technical_version"], PACKAGE.name)
         self.assertEqual(manifest["original_source"]["sha256"], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / manifest["original_source"]["filename"]), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / manifest["original_source"]["filename"])[1], SOURCE_SHA)
         self.assertEqual(read(PACKAGE / "source/document.json")["source_sha256"], SOURCE_SHA)
         record = manifest["source_record"]
         self.assertEqual((record["record_id"], record["子物料编码"], record["项目号"], record["sku"]),

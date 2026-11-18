@@ -1545,9 +1545,9 @@
   "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
-      "path": "Jackery HomePower 3000 User Manual.pdf",
-      "size": 3047241,
-      "sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27"
+      "path": "Jackery HomePower 3000 User Manual.pdf.source-pointer.json",
+      "size": 619,
+      "sha256": "0247279b3f644a97cd50b4e43974e2c03d25dcf8b4279013a2d773c550fefcdb"
     },
     {
       "path": "README.md",
@@ -3251,8 +3251,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 9028,
-      "sha256": "96b51e1cbd37e5bbd26a546cf0abcff73baeed9710d34cf2c4b30f6304ebcba6"
+      "size": 9347,
+      "sha256": "436f071202a67238cb4ca6ba37568443ea106bf3d8f4f92369c4ed227513805e"
     },
     {
       "path": "refresh_manifest.py",
@@ -3351,8 +3351,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 73684,
-      "sha256": "6953c96f48102b930a5fcfc9bd79267c6aa79bb406960716228c2d6168e03b45"
+      "size": 73700,
+      "sha256": "a77c6e1aa2b9873dbbc7848dbc5bd3316e1c92705c1421c5d4320cf5ac1b1cb3"
     },
     {
       "path": "validate_layout.py",

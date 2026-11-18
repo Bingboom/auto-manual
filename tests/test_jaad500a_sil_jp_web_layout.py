@@ -17,6 +17,11 @@ from bs4 import BeautifulSoup
 
 from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
+from tools.web.external_source_store import (
+    cold_replay_ir_matches,
+    resolve_source_identity,
+    reviewed_inputs_match_with_pointers,
+)
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,7 +80,7 @@ class WebLayoutEditionTests(unittest.TestCase):
     def test_identity_and_candidate_status(self):
         manifest = read(PACKAGE / 'source_manifest.json')
         self.assertEqual(manifest['original_source']['sha256'], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / 'source/original.pdf'), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / 'source/original.pdf')[1], SOURCE_SHA)
         self.assertEqual(manifest['target']['technical_version'], PACKAGE.name)
         self.assertEqual(manifest['derived_from']['package'], REVIEWED.name)
         self.assertEqual(manifest['derived_from']['manifest_sha256'], file_sha256(REVIEWED / 'source_manifest.json'))
@@ -88,11 +93,24 @@ class WebLayoutEditionTests(unittest.TestCase):
             self.assertEqual(manifest['publication_status'], render_module.APPROVED)
             self.assertTrue(manifest['publication_eligible'])
             self.assertEqual(approval['target'], {'model': 'JA-AD500A-SIL', 'region': 'JP', 'language': 'ja'})
-            self.assertEqual(approval['reviewed_inputs'], [
+            reviewed = [
                 r for r in manifest['inputs']
-                if r['path'].startswith(('source/', 'assets/')) and r['path'] != 'source/approval.json'])
+                if r['path'].startswith(('source/', 'assets/')) and r['path'] != 'source/approval.json'
+            ]
+            self.assertTrue(
+                reviewed_inputs_match_with_pointers(
+                    PACKAGE,
+                    approval['reviewed_inputs'],
+                    reviewed,
+                    original_sha256=SOURCE_SHA,
+                    raw_archive_paths=('source/original.pdf',),
+                )
+            )
 
     def test_derivation_is_reproducible(self):
+        self.assertEqual(resolve_source_identity(REVIEWED / 'source/original.pdf')[1], SOURCE_SHA)
+        if not (REVIEWED / 'source/original.pdf').is_file():
+            self.skipTest('raw source PDF externalized to Feishu pointer; requires local fetch for PyMuPDF art derivation')
         before = {p.relative_to(PACKAGE): file_sha256(p) for p in PACKAGE.rglob('*')
                   if p.is_file() and '__pycache__' not in p.parts}
         with temporary_derivation(derive_module) as destination:
@@ -124,9 +142,20 @@ class WebLayoutEditionTests(unittest.TestCase):
         files = {str(p.relative_to(a)): file_sha256(p) for p in a.rglob('*') if p.is_file()}
         self.assertEqual(files, {str(p.relative_to(b)): file_sha256(p) for p in b.rglob('*') if p.is_file()})
         frozen = PACKAGE / 'web/ja'
-        self.assertEqual(files, {str(p.relative_to(frozen)): file_sha256(p) for p in frozen.rglob('*') if p.is_file()})
-        metadata = read(a / 'manual.ir.json')['metadata']
+        self.assertEqual(
+            {k: v for k, v in files.items() if k != 'manual.ir.json'},
+            {str(p.relative_to(frozen)): file_sha256(p) for p in frozen.rglob('*')
+             if p.is_file() and p.relative_to(frozen).as_posix() != 'manual.ir.json'},
+        )
         manifest = read(PACKAGE / 'source_manifest.json')
+        self.assertTrue(
+            cold_replay_ir_matches(
+                read(a / 'manual.ir.json'),
+                read(frozen / 'manual.ir.json'),
+                manifest,
+            )
+        )
+        metadata = read(a / 'manual.ir.json')['metadata']
         self.assertEqual(report['publication_eligible'], manifest['publication_eligible'])
         self.assertEqual(metadata['publication_eligible'], manifest['publication_eligible'])
         self.assertEqual(metadata['source_stylesheet']['sha256'], file_sha256(PACKAGE / 'source/presentation.css'))

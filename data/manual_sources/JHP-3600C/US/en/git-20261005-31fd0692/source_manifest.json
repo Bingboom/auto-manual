@@ -53,7 +53,7 @@
       33,
       34
     ],
-    "body_printed_pages": "01\u201331",
+    "body_printed_pages": "01–31",
     "cover_contact_metadata": [
       1,
       97
@@ -69,8 +69,8 @@
   "normalizations": [
     "Whitespace and PDF ligatures expanded; safety subitems retained as nested lists.",
     "Positioned trademark marks restored after USB Type-C and USB-C.",
-    "LiFePO4 baseline digit represented as subscript \u2084.",
-    "Printed p28 literal 1440W4 is retained as 1440W\u2074, unlike circled \u2463 on printed p23.",
+    "LiFePO4 baseline digit represented as subscript ₄.",
+    "Printed p28 literal 1440W4 is retained as 1440W⁴, unlike circled ④ on printed p23.",
     "Specification submodes separated into native lines; four source footnotes remain separate paragraphs.",
     "Source-local specification carriers retain the shared h2 hook with explicit aria-level 3/4 and exclude component headings from chapter TOC.",
     "Vector + in App step 2.1 transcribed from source visual.",
@@ -93,7 +93,7 @@
     {
       "physical_page": 31,
       "text": "1440W4",
-      "disposition": "retain plain superscript 4; source p26 uses circled \u2463"
+      "disposition": "retain plain superscript 4; source p26 uses circled ④"
     },
     {
       "physical_page": 30,
@@ -108,9 +108,9 @@
   },
   "inputs": [
     {
-      "path": "Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf",
-      "size": 49278434,
-      "sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7"
+      "path": "Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf.source-pointer.json",
+      "size": 681,
+      "sha256": "41f28402d5e55395b5397fb5b14f6e017c3866e744dd9af1d469bafa007f87d3"
     },
     {
       "path": "__pycache__/audit_source.cpython-312.pyc",
@@ -124,8 +124,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6139,
-      "sha256": "0a8f01ccda001498b71aff025cb17e512bee91a4c73a25378a205be20cc54701"
+      "size": 6424,
+      "sha256": "9d04023b8a15e35103426a97b85a540c9fe268ad41f12b619b125a17f5cf4645"
     },
     {
       "path": "source/ac_framefree.pdf",

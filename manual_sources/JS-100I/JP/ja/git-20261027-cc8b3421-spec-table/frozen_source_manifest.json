@@ -484,8 +484,8 @@
     },
     {
       "path": "render.py",
-      "size": 7829,
-      "sha256": "ecfd5fd17b0664a1a83c0ba3ab7bfe882287449c293dcddf6397d766e8690f64"
+      "size": 8182,
+      "sha256": "28965b538571408c4b663faa24fb3b9e4fd0afbae7903ddcec59e5c46667ac57"
     },
     {
       "path": "source/approval.json",
@@ -518,9 +518,9 @@
       "sha256": "a6e92217f925c02d392bab284f6e834a97be0462f4bba2e05ed3ecf086b80600"
     },
     {
-      "path": "source/original.pdf",
-      "size": 3403400,
-      "sha256": "cc8b3421221bf11b03f2ddd0ce86519605189fbe0721a7d8a536520d75513e6f"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 595,
+      "sha256": "2431c7ca2dd1705adcf35931b36891c1e50fdad90fca9a307243e61594f4d9db"
     },
     {
       "path": "source/page/00_preface_ja.rst",
@@ -569,8 +569,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 21531,
-      "sha256": "c5dcd616d81c33d1c99cb29f63412068506187768f15ac7be352a54ace4f9fb7"
+      "size": 21547,
+      "sha256": "4166f9f17e80c319242da714262aae256fe743226bf33f52101337191aec58f1"
     },
     {
       "path": "web/ja/_static/source.css",
@@ -732,7 +732,7 @@
   "derived_from": {
     "package": "git-20261026-cc8b3421",
     "authorization": "operator 2026-10-27 「全部照录，版式都接受，上线提交发布，保留疑点后续纠正」; base release merged as #1611",
-    "manifest_sha256": "758fb63f459b303cd5126e452760eaedb26b43145c7edab4bdc1ae262bc75747"
+    "manifest_sha256": "8e5fe252ff863e349cf41ac3fa5cbb17efdc43f0718deeacc9aef384cd309f9e"
   },
   "layout_corrections": [
     {

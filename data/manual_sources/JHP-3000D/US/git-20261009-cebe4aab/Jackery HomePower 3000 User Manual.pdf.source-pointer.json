@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery HomePower 3000 User Manual.pdf",
+  "sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27",
+  "size_bytes": 3047241,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI59hn",
+    "field_name": "source_file",
+    "file_token": "Qcb1bCxRLofk3Cx7C87cK4s7nmc"
+  },
+  "local_relpath": "Jackery HomePower 3000 User Manual.pdf",
+  "source_key": "source/manual_jhp3000d_us_native",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

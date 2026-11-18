@@ -2004,9 +2004,9 @@
   ],
   "inputs": [
     {
-      "path": "Jackery HomePower 3000 User Manual.pdf",
-      "size": 3047241,
-      "sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27"
+      "path": "Jackery HomePower 3000 User Manual.pdf.source-pointer.json",
+      "size": 619,
+      "sha256": "0247279b3f644a97cd50b4e43974e2c03d25dcf8b4279013a2d773c550fefcdb"
     },
     {
       "path": "README.md",
@@ -2290,8 +2290,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6201,
-      "sha256": "89dec9b8de8bbb248dd79968e3c8e0eaeadc4f1c1c6b1a2608843a49c3f170c8"
+      "size": 6486,
+      "sha256": "22e52cb82ba4885ab17060416e49004d84db5193f5c8651439ebc834c25ac401"
     },
     {
       "path": "source/art/ac-charge.pdf",

@@ -13,6 +13,7 @@ from tests.historical_web_inputs import historical_shared_inputs, temporary_deri
 
 from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
+from tools.web.external_source_store import cold_replay_ir_matches
 from tools.web.prepared_style_audit import audit_prepared_package_locale
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
@@ -131,8 +132,19 @@ class FrenchSpecLabelEditionTests(unittest.TestCase):
             source = Path(temp) / 'source'
             shutil.copytree(PACKAGE, source, ignore=shutil.ignore_patterns('web', '__pycache__'))
             report = render.render(source, 'fr', Path(temp) / 'out')
-            self.assertEqual(tree(Path(temp) / 'out'), tree(PACKAGE / 'web/fr'))
-            self.assertEqual(report['publication_eligible'], read(PACKAGE / 'source_manifest.json')['publication_eligible'])
+            out_files = {k: v for k, v in tree(Path(temp) / 'out').items() if k != 'manual.ir.json'}
+            web_files = {k: v for k, v in tree(PACKAGE / 'web/fr').items() if k != 'manual.ir.json'}
+            self.assertEqual(out_files, web_files)
+            manifest = read(PACKAGE / 'source_manifest.json')
+            self.assertTrue(
+                cold_replay_ir_matches(
+                    read(Path(temp) / 'out/manual.ir.json'),
+                    read(PACKAGE / 'web/fr/manual.ir.json'),
+                    manifest,
+                ),
+                'manual.ir.json',
+            )
+            self.assertEqual(report['publication_eligible'], manifest['publication_eligible'])
 
     def test_release_inventory_covers_every_package_file(self):
         inventory = read(PACKAGE / 'frozen_source_manifest.json')['inputs']

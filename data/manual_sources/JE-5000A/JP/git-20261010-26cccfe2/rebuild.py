@@ -30,6 +30,7 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.web.frozen_ai_web import replay_package  # noqa: E402
 from tools.web.presentation import load_web_manual_contract  # noqa: E402
+from tools.web.external_source_store import resolve_source_identity  # noqa: E402
 
 
 def check_inventory(base: Path, rows: list[dict]) -> None:
@@ -46,7 +47,12 @@ def rebuild(output: Path, language: str) -> None:
         raise ValueError("use an unused output directory")
     source = json.loads((SOURCE_ROOT / f"source/{language}/content.json").read_text())
     pdfs = list(SOURCE_ROOT.glob("*.pdf"))
-    if len(pdfs) != 1 or file_sha256(pdfs[0]) != source["source_sha256"]:
+    if not pdfs:
+        pdfs = [
+            p.with_name(p.name.removesuffix(".source-pointer.json"))
+            for p in sorted(SOURCE_ROOT.glob("*.pdf.source-pointer.json"))
+        ]
+    if len(pdfs) != 1 or resolve_source_identity(pdfs[0])[1] != source["source_sha256"]:
         raise ValueError("authoritative PDF identity changed")
     manifest_path = SOURCE_ROOT / "source_manifest.json"
     manifest = json.loads(manifest_path.read_text())
@@ -83,7 +89,7 @@ def rebuild(output: Path, language: str) -> None:
         "pending_source_review": ["Native JP candidate awaiting operator review"],
         "declared_languages": [source["language"]],
         "source_authority": {
-            "filename": pdfs[0].name, "sha256": source["source_sha256"],
+            "filename": manifest["original_source"]["filename"], "sha256": source["source_sha256"],
             "physical_pages": list(range(3, 24)),
             "excluded_print_pages": [1, 2, 24],
             "publication_eligible": False,

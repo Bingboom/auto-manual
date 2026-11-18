@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery ポータブル電源 3600 Plus 取扱説明書.pdf",
+  "sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6",
+  "size_bytes": 11867626,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBhRt2NU4",
+    "field_name": "source_file",
+    "file_token": "LypjbUQNDoEb8Jx5hysccuPJnYg"
+  },
+  "local_relpath": "Jackery ポータブル電源 3600 Plus 取扱説明書.pdf",
+  "source_key": "source/manual_je3600a_jp_ja_fd06cd04_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

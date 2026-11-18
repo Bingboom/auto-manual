@@ -741,6 +741,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "data/manual_sources/JE-1000E-SIL/US/native/git-20261002-537939d0/Jackery FridgeGuard User Manual V2.0-2026-07-29.pdf": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3C-2 external source pointer migration for remaining 49 manual PDFs",
+          "since": "2026-11-18"
         }
       }
     },
@@ -777,6 +782,11 @@
           "handling": "keep-frozen",
           "reason": "Screenshot-directed JHP-2000A/US and JS-100I/EU/en layout repairs: existing snapshots and approvals remain immutable; new source-layout metadata and shared adapters apply to fresh builds only.",
           "since": "2026-11-10"
+        },
+        "data/manual_sources/JE-1000E-SIL/US/native/git-20261002-537939d0/Jackery FridgeGuard User Manual V2.0-2026-07-29.pdf": {
+          "handling": "keep-frozen",
+          "reason": "Phase 3C-2 external source pointer migration for remaining 49 manual PDFs",
+          "since": "2026-11-18"
         }
       }
     },
@@ -5811,6 +5821,16 @@
       "packages": 7,
       "handling": "keep-frozen",
       "reason": "Phase 3B-2 external source pointer fallback in symbol_asset_admission and JA-TS02A raw archive externalization",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-18",
+      "files": [
+        "data/manual_sources/JE-1000E-SIL/US/native/git-20261002-537939d0/Jackery FridgeGuard User Manual V2.0-2026-07-29.pdf"
+      ],
+      "packages": 2,
+      "handling": "keep-frozen",
+      "reason": "Phase 3C-2 external source pointer migration for remaining 49 manual PDFs",
       "minutes": 0
     }
   ]

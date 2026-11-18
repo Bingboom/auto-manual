@@ -194,8 +194,8 @@
     },
     {
       "path": "render.py",
-      "size": 7837,
-      "sha256": "494c367201b38bb933e95be394e53e26b50f0680259b65c0fe7d62cd210df768"
+      "size": 8190,
+      "sha256": "c9f0e2b07e437ef305a3a10f358d8c1880b4e2525058d85185bb0b02bfe8ed26"
     },
     {
       "path": "source/approval.json",
@@ -223,9 +223,9 @@
       "sha256": "6e80b21b26e3e1c2dfea2f38f0117b03860584db8912915d3276937ab5693856"
     },
     {
-      "path": "source/original.pdf",
-      "size": 1343633,
-      "sha256": "3ea84ec63b20a4e65c4d2f5d34a45ce715133b6b6f29a424bd95393d131cd113"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 604,
+      "sha256": "c66c1c6f0ed38b7586a2498d986bbecd0801406e71f28383b0389a5b186d3f7e"
     },
     {
       "path": "source/page/00_preface_ja.rst",

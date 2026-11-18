@@ -73,9 +73,9 @@
       "sha256": "6789adbc93e22bb1b870861d7c951f0e70c19dca6b12be675afa2c3e8f869c6d"
     },
     {
-      "path": "source/original.pdf",
-      "size": 7464584,
-      "sha256": "b16b82c6c6b2ac86bf4dd438cd597e7d0be66344a9da3e2b7ea9c2d561d61a7b"
+      "path": "source/original.pdf.source-pointer.json",
+      "size": 597,
+      "sha256": "25d71cd55deac9d44eacdb47058eed5c2c4d20006901e66793c8201dbce0d00c"
     },
     {
       "path": "source/outlined-text-recoveries.json",

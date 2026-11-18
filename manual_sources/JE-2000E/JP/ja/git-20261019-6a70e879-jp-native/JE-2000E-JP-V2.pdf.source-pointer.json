@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JE-2000E-JP-V2.pdf",
+  "sha256": "f1829cd35ffe05079fe4b04f6c62fef3ca6adfd64270c47d64f7b2203af9780a",
+  "size_bytes": 2387105,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBnQojowe",
+    "field_name": "source_file",
+    "file_token": "GhQ9bEhMhoU9L8xx9nBcWgQ2n4d"
+  },
+  "local_relpath": "JE-2000E-JP-V2.pdf",
+  "source_key": "source/manual_je2000e_jp_ja_f1829cd3_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

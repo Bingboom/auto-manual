@@ -27,6 +27,7 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold
 from tools.web.frozen_ai_web import replay_package
 from tools.web.prepared_style_audit import require_prepared_document_styles
 from tools.web.presentation import load_web_manual_contract
+from tools.web.external_source_store import resolve_source_identity
 
 
 def assemble(output: Path) -> dict:
@@ -42,7 +43,7 @@ def assemble(output: Path) -> dict:
         if file_sha256(REPO / entry['path']) != entry['sha256']:
             raise ValueError('shared input drift: ' + entry['path'])
     source = json.loads((PACKAGE / 'source/document.json').read_text())
-    if file_sha256(PACKAGE / 'source/original.pdf') != source['source_sha256']:
+    if resolve_source_identity(PACKAGE / 'source/original.pdf')[1] != source['source_sha256']:
         raise ValueError('original PDF identity changed')
     if output.exists():
         raise ValueError('output must be a new directory')

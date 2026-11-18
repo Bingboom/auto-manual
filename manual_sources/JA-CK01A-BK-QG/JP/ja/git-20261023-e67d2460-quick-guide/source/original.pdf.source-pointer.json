@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JA-CK01A-BK-QG_JP_ja_e67d2460.pdf",
+  "sha256": "e67d2460eff018f0f8cae0be53e404604d1d3bff620d3c69c8cd8396ccce3d7a",
+  "size_bytes": 25531876,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBlA1QwLi",
+    "field_name": "source_file",
+    "file_token": "UD0UbzXvpoos23xeMkCcx0oInHh"
+  },
+  "local_relpath": "source/original.pdf",
+  "source_key": "source/manual_ja_ck01a_bk_qg_jp_ja_e67d2460_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

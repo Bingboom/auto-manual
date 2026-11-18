@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery Battery Pack-1.pdf",
+  "sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+  "size_bytes": 4488603,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI5E27",
+    "field_name": "source_file",
+    "file_token": "Hxvhb43QOotkNVxQuuqcHLlDnRe"
+  },
+  "local_relpath": "Jackery Battery Pack-1.pdf",
+  "source_key": "manual/jbp1000b-sil/us/git-20261008",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

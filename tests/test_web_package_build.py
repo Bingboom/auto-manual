@@ -288,7 +288,11 @@ class InventoryTests(unittest.TestCase):
         self.assertGreaterEqual(report["total_packages"], 200)
         self.assertGreater(report["by_root"]["manual_sources"], 0)
         self.assertGreater(report["by_root"]["data/manual_sources"], 0)
-        self.assertGreater(report["large_binary_bytes"], 0)
+        self.assertEqual(report["large_binary_bytes"], 0)
+        self.assertEqual(report["large_binary_count"], 0)
+        self.assertEqual(report["unpackaged_large_binary_bytes"], 0)
+        self.assertEqual(report["total_root_large_binary_bytes"], 0)
+        self.assertGreaterEqual(report["external_source_pointer_count"], 189)
         self.assertIsInstance(report["dual_root_collisions"], list)
 
 

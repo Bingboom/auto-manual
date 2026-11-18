@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JA-AD500A-SIL_JP_ja_ac3a1f82.pdf",
+  "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777",
+  "size_bytes": 1263748,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBkTPD7l6",
+    "field_name": "source_file",
+    "file_token": "E3K1bfEKToMOctxMJbOci5WunBb"
+  },
+  "local_relpath": "source/original.pdf",
+  "source_key": "source/manual_ja_ad500a_sil_jp_ja_ac3a1f82_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

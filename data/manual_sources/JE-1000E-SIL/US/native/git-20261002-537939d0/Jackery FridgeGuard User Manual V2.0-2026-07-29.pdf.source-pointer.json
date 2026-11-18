@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery FridgeGuard User Manual V2.0-2026-07-29.pdf",
+  "sha256": "537939d0d62b0cf0d3f91b432f8114e566aeb69b1267d2468410ee4d3f8b0fb1",
+  "size_bytes": 5015569,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI6GVy",
+    "field_name": "source_file",
+    "file_token": "P2lMbVfz4od42txCV1kcJETYnuf"
+  },
+  "local_relpath": "Jackery FridgeGuard User Manual V2.0-2026-07-29.pdf",
+  "source_key": "source/fridgeguard_us_v2_20260729",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

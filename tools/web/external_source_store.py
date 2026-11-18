@@ -446,6 +446,47 @@ def _filter_rows_excluding(
     return [row for row in rows if _row_path(row) not in excluded_paths]
 
 
+def _validate_extra_pointer_sources(
+    package_root: Path,
+    approval_rows: list[Mapping[str, Any]],
+    all_pointer_rows: list[Mapping[str, Any]],
+    extra_sources: Mapping[str, str],
+) -> bool:
+    for extra_raw, extra_sha in extra_sources.items():
+        matched_extra = [row for row in approval_rows if _row_path(row) == extra_raw]
+        extra_ptr_path = f"{extra_raw}{POINTER_SUFFIX}"
+        extra_ptr_rows = [row for row in all_pointer_rows if _row_path(row) == extra_ptr_path]
+        if len(matched_extra) != 1 or not _validate_pointer_archive_parity(
+            package_root, matched_extra, extra_ptr_rows, extra_sha
+        ):
+            return False
+    return True
+
+
+def _validate_all_pointer_sources(
+    package_root: Path,
+    approval_rows: list[Mapping[str, Any]],
+    all_pointer_rows: list[Mapping[str, Any]],
+    raw_set: frozenset[str],
+    original_sha256: str,
+    extra_map: Mapping[str, str],
+) -> bool:
+    matched_raw = [row for row in approval_rows if _row_path(row) in raw_set]
+    if len(matched_raw) != len(raw_set):
+        return False
+    extra_pointer_set = frozenset(f"{path}{POINTER_SUFFIX}" for path in extra_map)
+    primary_pointer_rows = [
+        row for row in all_pointer_rows if _row_path(row) not in extra_pointer_set
+    ]
+    if not _validate_pointer_archive_parity(
+        package_root, matched_raw, primary_pointer_rows, original_sha256
+    ):
+        return False
+    return not extra_map or _validate_extra_pointer_sources(
+        package_root, approval_rows, all_pointer_rows, extra_map
+    )
+
+
 def reviewed_inputs_match_with_pointers(
     package_root: Path,
     approval_rows: Any,
@@ -454,30 +495,32 @@ def reviewed_inputs_match_with_pointers(
     original_sha256: str,
     raw_archive_paths: Iterable[str] = (),
     adapter_paths: Iterable[str] = (),
+    extra_sources: Mapping[str, str] | None = None,
 ) -> bool:
     """Verify ``approval['reviewed_inputs']`` covers ``manifest['inputs']`` across pointer externalization."""
-    if not isinstance(approval_rows, list):
+    if not isinstance(approval_rows, list) or not all(
+        isinstance(row, Mapping) for row in approval_rows
+    ):
         return False
     if approval_rows == manifest_rows:
         return True
-    if not all(isinstance(row, Mapping) for row in approval_rows):
-        return False
+    extra_map = dict(extra_sources or {})
+    extra_raw_set = frozenset(extra_map)
     raw_set = frozenset(raw_archive_paths)
     adapter_set = frozenset(adapter_paths)
-    matched_raw = [row for row in approval_rows if _row_path(row) in raw_set]
-    if len(matched_raw) != len(raw_set):
-        return False
-    pointer_rows = [row for row in manifest_rows if _row_path(row).endswith(POINTER_SUFFIX)]
-    if not _validate_pointer_archive_parity(package_root, matched_raw, pointer_rows, original_sha256):
+    all_pointer_rows = [row for row in manifest_rows if _row_path(row).endswith(POINTER_SUFFIX)]
+    if raw_set & extra_raw_set or not _validate_all_pointer_sources(
+        package_root, approval_rows, all_pointer_rows, raw_set, original_sha256, extra_map
+    ):
         return False
     approval_paths = {_row_path(row) for row in approval_rows}
     manifest_paths = {_row_path(row) for row in manifest_rows}
     if not adapter_set.issubset(approval_paths & manifest_paths):
         return False
-    pointer_paths = frozenset(_row_path(row) for row in pointer_rows)
-    return _filter_rows_excluding(approval_rows, raw_set | adapter_set) == _filter_rows_excluding(
-        manifest_rows,
-        pointer_paths | adapter_set,
+    all_pointer_paths = frozenset(_row_path(row) for row in all_pointer_rows)
+    return (
+        _filter_rows_excluding(approval_rows, raw_set | extra_raw_set | adapter_set)
+        == _filter_rows_excluding(manifest_rows, all_pointer_paths | adapter_set)
     )
 
 

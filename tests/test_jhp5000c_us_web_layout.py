@@ -19,6 +19,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import resolve_source_identity, reviewed_inputs_match_with_pointers
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / 'data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout'
@@ -192,7 +193,7 @@ class WebLayoutEditionTests(unittest.TestCase):
                                                     'path': APPROVED.relative_to(ROOT).as_posix(),
                                                     'derivation': 'derive_web_layout.py'})
         self.assertEqual(manifest['original_source']['sha256'], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / PDF), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / PDF)[1], SOURCE_SHA)
         self.assertEqual(manifest['web_roots'], {language: f'web/{language}' for language in LANGUAGES})
         self.assertNotIn('publication_authorization', manifest)  # MA-279 covers the approved edition only
         files = sorted(path for path in inventory(PACKAGE) if path != 'source_manifest.json')
@@ -208,9 +209,20 @@ class WebLayoutEditionTests(unittest.TestCase):
             return
         approval = read(PACKAGE / 'source/approval.json')
         self.assertEqual(approval['operator_quote'], '上线提交发布')
-        self.assertEqual(approval['reviewed_inputs'], [
+        reviewed = [
             row for row in manifest['inputs']
-            if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+            if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'
+        ]
+        self.assertTrue(
+            reviewed_inputs_match_with_pointers(
+                PACKAGE,
+                approval['reviewed_inputs'],
+                reviewed,
+                original_sha256=SOURCE_SHA,
+                raw_archive_paths=(PDF,),
+                adapter_paths=('rebuild.py',),
+            )
+        )
 
     def test_frozen_web_is_the_cold_replay(self):
         self.require_pinned_shared_inputs()
@@ -369,6 +381,9 @@ class WebLayoutEditionTests(unittest.TestCase):
         if tuple(pymupdf.version[:2]) != ('1.28.0', '1.29.0'):
             self.skipTest('native art is validated for PyMuPDF 1.28.0 / MuPDF 1.29.0 (requirements.lock)')
         self.require_pinned_shared_inputs()
+        self.assertEqual(resolve_source_identity(PACKAGE / PDF)[1], SOURCE_SHA)
+        if not (PACKAGE / PDF).is_file():
+            self.skipTest('raw source PDF externalized to Feishu pointer; requires local fetch for PyMuPDF layout derivation')
         derive_module = load('jhp5000c_us_layout_derive', PACKAGE / 'derive_web_layout.py')
         source = self.root / 'derived'
         shutil.copytree(PACKAGE, source, ignore=shutil.ignore_patterns('web', '__pycache__'))

@@ -26,9 +26,9 @@
   },
   "inputs": [
     {
-      "path": "Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf",
-      "size": 49278434,
-      "sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7"
+      "path": "Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf.source-pointer.json",
+      "size": 681,
+      "sha256": "41f28402d5e55395b5397fb5b14f6e017c3866e744dd9af1d469bafa007f87d3"
     },
     {
       "path": "README.md",
@@ -37,8 +37,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6319,
-      "sha256": "94e0f9182d8e36799a5087efcf4fd4ca84739b403e306cab28297d526c1bc37c"
+      "size": 6416,
+      "sha256": "19cc0e4e0f2ac3dcbe039acb1451d45f2b8887348e8999d7d9bd01fbfa22f668"
     },
     {
       "path": "source/es/asset_decisions.json",
@@ -2213,8 +2213,9 @@
       "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
     },
     {
-      "path": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf",
-      "sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7"
+      "path": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf.source-pointer.json",
+      "size": 681,
+      "sha256": "41f28402d5e55395b5397fb5b14f6e017c3866e744dd9af1d469bafa007f87d3"
     },
     {
       "path": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/source/content.json",

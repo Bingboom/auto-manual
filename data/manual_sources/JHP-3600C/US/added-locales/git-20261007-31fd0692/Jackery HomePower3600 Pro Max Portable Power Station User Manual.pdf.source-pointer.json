@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf",
+  "sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+  "size_bytes": 49278434,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28MQkVI3QIe",
+    "field_name": "source_file",
+    "file_token": "UHNbbtnLMoO3KFx6XfJcaly7nqd"
+  },
+  "local_relpath": "Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf",
+  "source_key": "source/manual_jhp3600c_us_symbols",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}

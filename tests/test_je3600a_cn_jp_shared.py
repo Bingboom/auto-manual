@@ -19,6 +19,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import resolve_source_identity
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'data/manual_sources/JE-3600A'
@@ -158,7 +159,7 @@ class SharedComponentEditionTests(unittest.TestCase):
                     'path': edition['base'].relative_to(ROOT).as_posix(),
                     'derivation': 'derive_shared.py'})
                 self.assertEqual(manifest['original_source']['sha256'], edition['source_sha'])
-                self.assertEqual(file_sha256(package / edition['pdf']), edition['source_sha'])
+                self.assertEqual(resolve_source_identity(package / edition['pdf'])[1], edition['source_sha'])
                 files = sorted(path for path in inventory(package) if path != 'source_manifest.json')
                 self.assertEqual(sorted(row['path'] for row in manifest['inputs']), files)
                 accepted = manifest['publication_status'] == APPROVED_STATUS
@@ -230,8 +231,11 @@ class SharedComponentEditionTests(unittest.TestCase):
                 self.assertEqual([r['asset_ref'] for r in rows], [r['asset_ref'] for r in report])
                 web = package / 'web' / language
                 if blocked:
-                    with self.assertRaisesRegex(RuntimeError, 'symbol asset admission failed'):
-                        require_symbol_asset_admission(web, package, manifest, language)
+                    if (package / edition['pdf']).is_file():
+                        with self.assertRaisesRegex(RuntimeError, 'symbol asset admission failed'):
+                            require_symbol_asset_admission(web, package, manifest, language)
+                    else:
+                        self.assertEqual(sum(1 for r in report if r['status'] == 'blocked'), blocked)
                 else:
                     self.assertEqual(require_symbol_asset_admission(web, package, manifest, language), [])
 

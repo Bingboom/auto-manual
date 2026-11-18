@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "JE-1500D-JP-V2.pdf",
+  "sha256": "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
+  "size_bytes": 3074635,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bBn50QVNO",
+    "field_name": "source_file",
+    "file_token": "OAP7bz4G9oZq1OxSr6YcJVgrnmg"
+  },
+  "local_relpath": "JE-1500D-JP-V2.pdf",
+  "source_key": "source/manual_je1500d_jp_ja_6ddeef54_pdf",
+  "notes": "Phase 3C-2 externalized manual source PDF archived in asset_sources."
+}
