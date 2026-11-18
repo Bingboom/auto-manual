@@ -1,6 +1,14 @@
 ---
 name: manual-review-draft
 description: "输出说明书审核稿：制作或继续修改基于参考说明书和目标规格书的流水线外审核稿，目前支持 US→US 英文复用和 US→JP 日文语料复用。继承参考结构、原文、插图和共享样式，仅按目标规格及明确决定替换必要内容；建议和疑问进入审核意见。用于美规/日规审核稿、参考稿复用、规格回填和内容对照，以及继续修改 Hello-Docs-Review 私有仓库中的审核稿；不用于流水线 Start Review 或云文档回写。"
+metadata:
+  owner: "资料开发维护人"
+  status: "active"
+  entry: "在 Hello-Docs-Review 起草或续改审核稿，按已支持的 US→US 或 US→JP 模式复用参考资料"
+  tools: "模式参考、目标规格书、scripts/render_check.cjs"
+  validation: "对照目标规格与原稿，核对改动、未决项并预览审核稿"
+  reviewed: "2026-11-17"
+  retire_when: "工作台起草入口或支持模式的验收契约被替换"
 ---
 
 # Manual Review Draft — 说明书审核稿

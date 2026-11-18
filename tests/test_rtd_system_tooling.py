@@ -3,7 +3,10 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+from datetime import date, timedelta
 from pathlib import Path
+
+import yaml
 
 from tools.rtd import system_tooling as tooling
 from tools.utils.path_utils import repo_root
@@ -17,7 +20,20 @@ def write(root: Path, rel: str, text: str) -> None:
 
 def skill(name: str | None, description: str) -> str:
     head = f"name: {name}\n" if name else ""
-    return f"---\n{head}description: {description}\n---\n\n# Skill\n"
+    return f"""---
+{head}description: {description}
+metadata:
+  owner: Test maintainer
+  status: on-request
+  entry: Deliver a marked copy
+  tools: Word
+  validation: Reopen the copy and compare the marked span
+  reviewed: '2026-11-17'
+  retire_when: The reviewer stops accepting marked copies
+---
+
+# Skill
+"""
 
 
 class SkillFactsTests(unittest.TestCase):
@@ -28,7 +44,7 @@ class SkillFactsTests(unittest.TestCase):
         write(self.root, "AGENTS.md", "- Use [`.agents/skills/alpha/SKILL.md`](.agents/skills/alpha/SKILL.md).\n")
         write(self.root, ".claude/skills/README.md", "- `alpha`: the Claude copy.\n")
         write(self.root, ".agents/skills/alpha/SKILL.md", skill("alpha", "Alpha runs the thing, e.g. a build. Then more."))
-        write(self.root, ".claude/skills/alpha/SKILL.md", skill(None, "Claude alpha."))
+        write(self.root, ".claude/skills/alpha/SKILL.md", "---\ndescription: Claude alpha.\n---\n")
         write(self.root, ".agents/skills/beta/SKILL.md", skill("beta", "Beta."))
         write(self.root, ".agents/skills/gamma/SKILL.md", skill(None, "Gamma lacks a name."))
         write(self.root, ".claude/skills/delta/SKILL.md", skill("other", "Delta's name contradicts its directory."))
@@ -56,11 +72,33 @@ class SkillFactsTests(unittest.TestCase):
         self.assertEqual([(g["title"], [r["id"] for r in g["rows"]]) for g in view["groups"]],
                          [("网页化", ["alpha"]), ("IR", []), ("其他技能", ["Bad_Name", "beta", "delta", "gamma"])])
         self.assertEqual(view["groups"][0]["rows"][0]["summary"], "Alpha runs the thing, e.g. a build.")
+        self.assertEqual(view["groups"][0]["rows"][0]["status_label"], "按需使用")
         # The section opens with these counts (2026-11 design, step 9).
         self.assertEqual((view["skills"], view["agents"]), (5, "Codex 4 · Claude 2"))
         # Only alpha is listed in AGENTS.md, and delta's Claude copy is not in the README.
         self.assertEqual(sorted(s["id"] for s in skills if s["unregistered"]), ["Bad_Name", "beta", "delta", "gamma"])
         self.assertEqual(view["unregistered"], 4)
+
+    def test_shared_record_and_claude_only_record(self) -> None:
+        shared = self.root / ".agents/skills/alpha/SKILL.md"
+        shared.write_text(shared.read_text().replace("  owner: Test maintainer\n", "")
+                          .replace("on-request", "obsolete").replace("2026-11-17", "2026-02-30"))
+        facts = {s["id"]: s for s in tooling.skill_facts(self.root)}
+        problems = " ".join(facts["alpha"]["problems"])
+        for field in ("owner", "status", "reviewed"):
+            self.assertIn(field, problems)
+        self.assertEqual(facts["delta"]["lifecycle"]["owner"], "Test maintainer")
+        write(self.root, ".claude/skills/alpha/SKILL.md", skill(None, "Claude alpha."))
+        facts = {s["id"]: s for s in tooling.skill_facts(self.root)}
+        self.assertIn("keep shared lifecycle fields in the Codex entry", facts["alpha"]["problems"])
+
+    def test_renewal_is_due_after_90_days(self) -> None:
+        facts = [s for s in tooling.skill_facts(self.root) if s["id"] == "alpha"]
+        reviewed = date(2026, 11, 17)
+        self.assertEqual(tooling.tooling_findings({}, facts, [], today=reviewed + timedelta(days=90)), [])
+        overdue, = tooling.tooling_findings({}, facts, [], today=reviewed + timedelta(days=91))
+        self.assertEqual(overdue[:2], ("warning", "skill alpha"))
+        self.assertIn("Test maintainer", overdue[2])
 
 
 class HookFactsTests(unittest.TestCase):
@@ -97,7 +135,7 @@ class HookFactsTests(unittest.TestCase):
         skills = [{"id": "alpha", "description": "d", "agents": ["Codex"], "unregistered": ["Codex"],
                    "problems": ["Codex copy has no frontmatter description"]}]
         found = tooling.tooling_findings({"skill_lanes": {"web": ["alpha", "missing"]}}, skills,
-                                         tooling.hook_facts(self.root))
+                                         tooling.hook_facts(self.root), today=date(2026, 11, 17))
         self.assertEqual(found, [
             ("error", "tooling.skill_lanes.web", "no skill named 'missing' in the tree"),
             ("warning", "skill alpha", "Codex copy is not registered in AGENTS.md"),
@@ -184,11 +222,28 @@ class CodebaseTests(unittest.TestCase):
 
 
 class ShippedToolingTests(unittest.TestCase):
+    def test_drafting_and_retired_build_routes(self) -> None:
+        root = repo_root()
+        skills = {s["id"]: s["lifecycle"] for s in tooling.skill_facts(root)}
+        self.assertEqual(skills["manual-review-draft"]["status"], "active")
+        self.assertEqual(skills["new-region-line"]["status"], "retired")
+        for name in ("hello-docs-pipeline-dispatch-triage", "local-publish-queue-run"):
+            self.assertEqual(skills[name]["status"], "maintenance")
+        for name in ("lark-tm-translation-preprocess", "manual-rewrite-with-tm"):
+            self.assertEqual(skills[name]["status"], "on-request")
+        binding = root / ".agents/skills/new-region-line/agents/openai.yaml"
+        self.assertIs(yaml.safe_load(binding.read_text())["policy"]["allow_implicit_invocation"], False)
+
     def test_the_tree_has_readable_skills_and_hooks(self) -> None:
         root = repo_root()
         skills = tooling.skill_facts(root)
         self.assertGreaterEqual(len(skills), 18)
         self.assertEqual([s["id"] for s in skills if s["problems"]], [])
+        self.assertEqual([s["id"] for s in skills if s["unregistered"]], [])
+        index = (root / ".agents/skills/README.md").read_text()
+        for entry in skills:
+            if "Codex" in entry["agents"]:
+                self.assertIn(f"({entry['id']}/SKILL.md)", index)
         hooks = {(h["layer"], Path(h["script"]).name): h for h in tooling.hook_facts(root)}
         self.assertIn(("Claude Code", "derived_surface_guard.py"), hooks)
         self.assertTrue(hooks[("git", "git_branch_guard.py")]["blocking"])

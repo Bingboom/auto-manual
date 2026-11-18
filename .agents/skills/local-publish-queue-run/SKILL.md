@@ -1,16 +1,19 @@
 ---
 name: local-publish-queue-run
-description: Run the Feishu build-queue publish locally on this Mac as the CI bot, end to end — env assembly, local git-plane alignment, queue-row operations (Git_ref, re-triggering consumed rows), the CI-identical invocation, the three-part verification, IDML handoff-zip delivery, and second-host (K7) acceptance semantics. Use when CI cannot run (org Actions quota, runner outage), when a publish needs local diagnosis/repair iteration, when re-running an already-consumed queue row, or when preparing/validating the second-host handoff. NOT the normal path — the queue's home is the Hello-Docs mirror CI; code fixes always land in auto-manual (mirror rule).
+description: "Maintenance only. Diagnose a retired template queue publish locally, or replay one existing target with explicit emergency authorization. An Actions outage alone does not authorize a local run."
+metadata:
+  owner: "发布维护人"
+  status: "maintenance"
+  entry: "单独授权后复现存量模板队列的本地发布故障"
+  tools: "build.py process-build-queue、references/run-recipe.md"
+  validation: "用隔离行和 dry-run 核对目标与动作，再按授权范围验收"
+  reviewed: "2026-11-17"
+  retire_when: "存量队列不再需要本地复现或应急重放"
 ---
 
 # Local Publish Queue Run
 
-The build queue's home is the Hello-Docs (business-plane) mirror CI. This
-skill is the **local fallback and verification lane**: the same orchestrator,
-run on this Mac with the bot identity, byte-for-byte the CI invocation. It
-exists because the whole recipe (env set, queue-row semantics, verification
-trio) previously lived only in operator recall — an 11-attempt publish night
-proved that is too expensive.
+Use only for explicitly authorized emergency replay or diagnosis of an existing template queue target. A disabled workflow is not permission to consume a row locally. The [queue retirement contract](../../../code-as-doc/build_doc_guide/queues.md) governs the scope of a replay.
 
 Two-plane discipline still applies: this lane *runs* builds locally; any code
 fix it uncovers is a normal auto-manual branch/PR (never a push to the
@@ -55,5 +58,4 @@ Details, exact env names, and the failure-triage index live in
   (`listen_build_queue.ps1`, `process_build_queue*.ps1`) — this skill is the
   interactive one-shot lane, not the resident service.
 - Backporting reviewer edits found in the built doc → `cloud-doc-backport-ops`.
-- Direct Bitable row surgery shapes → `lark-cli-bitable-ops` (once merged; the
-  queue-row recipes here are self-contained).
+- Direct Bitable row surgery shapes → `lark-cli-bitable-ops`.

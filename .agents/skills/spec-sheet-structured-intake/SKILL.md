@@ -1,11 +1,21 @@
 ---
 name: spec-sheet-structured-intake
-description: Turn a product spec sheet (产品规格书, PDF/Markdown) into reviewable structured rows and ingest them into the Feishu phase2 source tables (规格参数明细 specs + 页面占位参数 placeholders), per region/language. Use for the repeated structured-intake lane when onboarding a model/region (e.g. JE-2000E KR), and for a revised spec that must be diffed against an existing target. Extract via rules, gate against a sibling, generate one staging batch, get human confirmation, then clone-create or diff-update both source tables followed by sync-data + build. Forward/entry counterpart of cloud-doc backport (the return path). NOT for routine reviewed-wording edits, translation memory, or single-value tweaks.
+description: "Maintenance only. Compare a revised spec against an existing parameter-build target, prepare a staged phase2 change and obtain confirmation before writing."
+metadata:
+  owner: "模板数据维护人"
+  status: "maintenance"
+  entry: "为仍在参数构建的存量目标核对规格变更并准备经确认的入库批次"
+  tools: "tools/data/source_intake.py、lark-cli"
+  validation: "用 tests/test_source_intake_completeness.py 核对缺字段的批次被拦截"
+  reviewed: "2026-11-17"
+  retire_when: "存量目标停止消费 phase2 规格与占位表"
 ---
 
 # Spec Sheet → Structured Data Intake
 
-The closed loop that fills the build's structured source from a 产品规格书:
+Stage a revised specification for an existing parameter-build target. Keep the sibling completeness check and operator approval before writing phase2 tables. Historical clone examples below document the existing rows. New manuals start in the private review workbench.
+
+The structured-source maintenance flow is
 
 ```
 规格书(PDF/MD) → 规则抽取(region-aware) → 完整性前置门(对照姊妹机) → 人审确认
@@ -181,7 +191,7 @@ an intentional stop, not a prompt to repair dozens of rows by hand.
 
 ## Ingest by cloning (the CREATE path)
 
-`source_intake.py apply` only **updates** existing rows. To create a NEW model/region, **clone the
+`source_intake.py apply` only **updates** existing rows. Historical onboarding used a clone. For reference, operators would **clone the
 sibling's formal rows** (which already carry the correct structure + links), flip the document link,
 and substitute values:
 

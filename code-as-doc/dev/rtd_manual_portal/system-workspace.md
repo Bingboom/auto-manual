@@ -338,7 +338,7 @@ none of it is hand-listed.
 - **Skills**: one name per skill directory, merging the Codex copy
   (`.agents/skills/<name>/SKILL.md`) and the Claude Code copy
   (`.claude/skills/<name>/SKILL.md`); a Claude copy is tagged Claude. The
-  frontmatter `description` is the tooltip. The block opens with its conclusions
+  governing frontmatter supplies the visible lifecycle state and the task shown in the tooltip. Its [seven fields and review cadence](../../../.agents/skills/README.md#lifecycle) are shared by both agents. The block opens with its conclusions
   (step 9): every skill registered, every hook tested, or how many are not.
   - A Codex copy needs frontmatter `name` equal to its directory.
   - A Claude copy may omit `name`, because Claude Code uses the directory name.
@@ -359,7 +359,7 @@ none of it is hand-listed.
     page says so.
 
 `check` warns about unregistered copies, frontmatter gaps, missing hook scripts
-and hooks without tests. A lane mapping that names a missing skill is an error.
+and hooks without tests. After 90 days it flags the skill and its responsible role for review. A lane mapping that names a missing skill is an error.
 
 ### Engineering scale
 

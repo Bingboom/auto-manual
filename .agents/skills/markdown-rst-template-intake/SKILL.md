@@ -1,11 +1,19 @@
 ---
 name: markdown-rst-template-intake
-description: Convert external Markdown manuals or Markdown-based instructions into this repo's reusable RST template layer. Use when Codex needs to map `.md` manual content into `docs/templates/page_*/*.rst`, preserve or introduce page-value placeholders, update `docs/templates/recipes/*/*.yaml` for placeholder-backed pages, or route spec and symbols content into `data/phase2` before review starts.
+description: "Maintenance only. Map explicitly requested Markdown changes into a shared RST template family still used by an existing build target."
+metadata:
+  owner: "模板维护人"
+  status: "maintenance"
+  entry: "维护既有 RST 模板家族时将明确指定的 Markdown 片段映射到模板"
+  tools: "scripts/template_surface.py、现有家族的 manifest"
+  validation: "对照改动前后模板占位符及目标家族的构建检查"
+  reviewed: "2026-11-17"
+  retire_when: "最后一个依赖该模板家族的目标退出"
 ---
 
 # Markdown RST Template Intake
 
-Use this skill for first-time Markdown manual intake and shared template-family updates.
+Maintain a shared RST family used by an existing build target when the operator requests a template change.
 Do not use it for routine post-review wording edits inside `docs/_review/**` unless the user explicitly wants to change the shared seed layer.
 
 ## Default workflow

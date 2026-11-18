@@ -1,11 +1,20 @@
 ---
 name: bitable-translation-memory
-description: Query Feishu/Lark Base phase2 multilingual snapshot content as translation memory for OpenClaw or Codex translation tasks. Use for direct sentence or paragraph translation asks, terminology lookup, and as the lookup layer beneath `manual-rewrite-with-tm` batch rewrite jobs in this repo, including plain requests like "把这句翻成法语" even when the user does not explicitly mention terminology or Translation_Memory.
+description: "Look up terms and sentence pairs in live TM-B for Feishu document edits, Illustrator text, repository tasks or a translation reply. Use the approved wording applicable to the target language and record its source."
+metadata:
+  owner: "语料维护人"
+  status: "active"
+  entry: "为当前飞书文档、Illustrator 稿或仓库任务查已批准的术语与句对"
+  tools: "query_live_translation_memory.py、TM-B 的 Terms 和 Translation_Memory"
+  validation: "同一语言对分别查一个术语和一句原文，核对来源、目标语言及审核状态"
+  reviewed: "2026-11-17"
+  retire_when: "规范语料查询入口或语料源被替换"
 ---
 
 # Bitable Translation Memory
 
-Use this skill when the task is "translate with repo terminology", not generic free translation.
+For corpus-assisted edits, look up terms and sentences in TM-B, then edit the requested Feishu document or Illustrator source with the available document or design tools. For Feishu, the document editor can use `lark-cli docs +fetch` and `docs +update` for the selected blocks, then fetch those blocks again. For Illustrator, reopen the edited artwork and check its text and layout. For repository tasks, use the owning tool and its verification case. Select Markdown rewrite or highlighted Word preprocessing only when that output is requested.
+
 The preferred source is the dedicated Feishu sentence-pair table `Translation_Memory`, and the repo `data/phase2` snapshot is the fallback context layer. For Taiwan Traditional Chinese, use `zh` as the Simplified Chinese source field and `zh-TW` as the target field.
 
 ## Skill boundary in this repo
@@ -21,7 +30,7 @@ The live Base holds two lookup tables. Route by input shape:
 - **Short term / word / glossary entry** (e.g. `handle`, `output port`) -> the `Terms` table. Pass `--scope term`.
 - **Full sentence or paragraph** -> the `Translation_Memory` sentence-pair table. Pass `--scope sentence` (the default).
 
-The script resolves each table **by name** inside whichever Base is active, so mirrored Bases (same table names, different table ids) work without code changes. The active Base is `$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN` when set, otherwise the bundled `--wiki-token` fallback. Pass `--table-id` / `--view-id` only to override the name resolution.
+The script resolves each table **by name** inside whichever Base is active, so mirrored Bases (same table names, different table ids) work without code changes. Set `FEISHU_TRANSLATION_MEMORY_BASE_TOKEN` to TM-B or pass its token with `--base-token`. The helper requires an explicit selector if the environment binding is absent. Use an explicit archival Wiki token only for a historical lookup. Pass `--table-id` / `--view-id` only to override the name resolution.
 
 ## Default workflow
 

@@ -1,15 +1,19 @@
 ---
 name: hello-docs-pipeline-dispatch-triage
-description: Operate the Hello-Docs (business-plane mirror) build pipeline — dispatch Start Review / Draft / Publish / 重播种 runs, monitor them, and triage failures by signature — plus the hard mirror-PR routing rule (code changes NEVER target the mirror's main; they land in auto-manual and auto-sync). Use for requests like 「触发US的重新播种」「你现在 publish JE-1000F_US_1.7」「这个 run 失败了 排查修复」, a pasted Actions run URL, or any dispatch/monitor/retry work on the mirror. NOT the local publish lane (local-publish-queue-run) and NOT plane topology background (user-guide/two_plane_map.md).
+description: "Maintenance only. Inspect a historical Hello-Docs template queue run or an explicitly authorized emergency replay. Use the current release contract for Git-only Web publication."
+metadata:
+  owner: "发布维护人"
+  status: "maintenance"
+  entry: "诊断既有模板队列运行，按单独授权应急重放"
+  tools: "gh run view、历史 Feishu Actions、队列退役契约"
+  validation: "读取一次历史运行，区分平台禁用、任务跳过与真实执行"
+  reviewed: "2026-11-17"
+  retire_when: "历史运行诊断和应急重放均移交或下线"
 ---
 
 # Hello-Docs Pipeline Dispatch & Triage
 
-The business plane runs on the Bingboom/Hello-Docs mirror; every dispatch /
-retry / failure-triage round used to start with the operator re-explaining
-workflow names, queue-table coordinates, and retry semantics. This skill holds
-the operating layer. Topology background is `user-guide/two_plane_map.md`;
-running the queue locally instead is `local-publish-queue-run`.
+Inspect historical Hello-Docs queue runs. Dispatch or retry only for an explicitly authorized emergency replay of an existing target after checking the retirement controls. The [queue retirement contract](../../../code-as-doc/build_doc_guide/queues.md) names the disabled workflows. Confirm the specific replay was authorized, the workflow is enabled for it and `LEGACY_TEMPLATE_QUEUE_ENABLED` is `true` before using the dispatch or retry recipes. Ordinary Git-only Web release and main mirror synchronization have their own workflows.
 
 ## The routing rule (hard, operator-corrected twice)
 
@@ -38,9 +42,9 @@ hello-docs 是镜像」).
 | `feishu-draft-build-queue.yml` | Builds the draft package for queue rows (Workflow_action = Build Draft Package) — the review Word/cloud doc. |
 | `feishu-build-queue.yml` | Publish lane (Workflow_action = Publish): release artifacts, IDML handoff zip, row write-backs. |
 | `feishu-web-publish-queue.yml` | Web Publish lane: builds from the selected review ref, updates the generated `publish` candidate, enforces a `docs/publish/**`-only diff, and opens/updates `publish -> main`. It never merges the review branch. |
-| `feishu-schema-parity.yml` / `phase2-content-backup.yml` / `backport-reminder.yml` | Daily guards: schema parity alarm, nightly source-table backup, un-recovered-review sentinel. |
+| `feishu-schema-parity.yml` / `phase2-content-backup.yml` / `backport-reminder.yml` | Source-table backup remains scheduled. The schema parity and backport reminder workflows are retained for emergency replay. |
 
-Gating var: mirror runs respect `FEISHU_BUILD_QUEUE_PAUSED` (repo var).
+An authorized emergency replay also respects `FEISHU_BUILD_QUEUE_PAUSED` (repo var).
 Queue rows live in the build table (`document_link`, `tblbnRHjpJeCVTtj`,
 business base) — row ops per `lark-cli-bitable-ops`.
 

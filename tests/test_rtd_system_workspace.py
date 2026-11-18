@@ -840,6 +840,8 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('<details class="sw-link">', capabilities)
             # Skills and hooks come from this tree, not from the contract.
             self.assertIn('id="tooling"', page)
+            self.assertIn('new-region-line<em>已退役</em>', page)
+            self.assertIn('lark-tm-translation-preprocess<em>按需使用</em>', page)
             self.assertIn(">hardcore-task-execution<", page)
             self.assertIn("scripts/git_branch_guard.py", page)
             # 工程规模 shares their tab. The REPO build is a git checkout, so its bars are real.
