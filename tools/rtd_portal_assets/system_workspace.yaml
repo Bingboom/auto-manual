@@ -234,7 +234,7 @@ capabilities:
       - id: pretranslation
         label: 文档预翻译
         status: in_progress
-        note: Word 与云文档按记忆库预填并高亮，剩余交人工；真实命中与修正记录尚待验收
+        note: 按需交付高亮 Word 副本时按记忆库预填，剩余交人工。真实命中与修正记录尚待验收
         evidence:
           - "pr:auto-manual#371"
           - "pr:auto-manual#746"
@@ -304,7 +304,7 @@ capabilities:
       - id: structured_data
         label: 结构化产品数据
         status: available
-        note: 规格书经人工确认后入库，构建直接取表内数值
+        note: 存量参数构建目标从表内取值，规格变更经人工确认后入库
         evidence:
           - "pr:auto-manual#496"
           - "file:auto-manual:.agents/skills/spec-sheet-structured-intake/SKILL.md"
@@ -403,7 +403,7 @@ capabilities:
       - id: skills
         label: 技能库
         status: available
-        note: 入库、回写、翻译预处理、发布等操作写成可复用技能，Agent 按技能执行
+        note: Agent 查语料后编辑飞书原文或 Illustrator 稿件，也可调用仓库工具。技能清单标明适用任务及维护状态。
         evidence:
           - "file:auto-manual:.agents/skills"
           - "file:auto-manual:AGENTS.md"
@@ -565,7 +565,7 @@ tooling:
   note: Agent 可调用的技能和自动运行的钩子，构建时从仓库读取；未登记的技能和没有测试的钩子会标出来。
   skill_lanes:
     workbench: [manual-review-draft]
-    web: [hello-docs-pipeline-dispatch-triage, local-publish-queue-run]
+    web: [web-manual-agent-authoring, asset-textless-extraction]
     corpus: [bitable-translation-memory, bilingual-tm-maintenance, lark-tm-translation-preprocess, manual-rewrite-with-tm]
     shared_ir: []
     skeletons: []

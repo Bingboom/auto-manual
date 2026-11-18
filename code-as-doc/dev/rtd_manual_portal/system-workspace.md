@@ -316,6 +316,19 @@ and writes the snapshot next to the contract. It is read-only. Pass
 `corpus.languages` list fixes the languages counted and their labels; a column
 missing from either table fails the export instead of counting zero.
 
+Each table's block (`sentence_pairs`, `terms`) holds `total`, `by_language` (rows with
+that language filled, every status) and `by_status` (rows per status). Schema
+`hello-docs-tm-corpus/v1.1`, which the export writes, adds only
+`approved_by_language`: per language, the rows whose language is filled and whose
+status is `Approved`. Its codes are a subset of `by_language`'s, each count lies
+between 0 and that language's `by_language` count, and none exceeds the block's
+`Approved` count. Readers accept `v1` (without the key, which it must not carry)
+and `v1.1` (with the key in both blocks). This block keeps describing the whole
+corpus either way; only the 语料库 page switches to approved entries.
+Deploy the reader that accepts `v1.1` to the mirror before a `v1.1` snapshot
+is written there: an older reader rejects the new key and the corpus block shows
+no data.
+
 Each export carries the earlier months forward in `history`: one headline per
 month (sentence pairs, terms, approved), oldest first, up to 24 months. The
 page compares the current figures with the latest of them. A second export in
@@ -338,7 +351,7 @@ none of it is hand-listed.
 - **Skills**: one name per skill directory, merging the Codex copy
   (`.agents/skills/<name>/SKILL.md`) and the Claude Code copy
   (`.claude/skills/<name>/SKILL.md`); a Claude copy is tagged Claude. The
-  frontmatter `description` is the tooltip. The block opens with its conclusions
+  governing frontmatter supplies the visible lifecycle state and the task shown in the tooltip. Its [seven fields and review cadence](../../../.agents/skills/README.md#lifecycle) are shared by both agents. The block opens with its conclusions
   (step 9): every skill registered, every hook tested, or how many are not.
   - A Codex copy needs frontmatter `name` equal to its directory.
   - A Claude copy may omit `name`, because Claude Code uses the directory name.
@@ -359,7 +372,7 @@ none of it is hand-listed.
     page says so.
 
 `check` warns about unregistered copies, frontmatter gaps, missing hook scripts
-and hooks without tests. A lane mapping that names a missing skill is an error.
+and hooks without tests. After 90 days it flags the skill and its responsible role for review. A lane mapping that names a missing skill is an error.
 
 ### Engineering scale
 

@@ -86,11 +86,17 @@ unbuilt parts, or provenance and refresh small print. A figure keeps one date
   library names them (`settings.json` `language_labels`); a corpus language whose
   translation-memory code differs carries the library's code as `manual` in
   `system_workspace.yaml` (`corpus_view` `counts`, `terms`).
+  With a snapshot that carries `approved_by_language` in both blocks (schema
+  `hello-docs-tm-corpus/v1.1`, see [system-workspace.md](system-workspace.md#language-assets-block)) the page shows
+  approved entries only (`corpus_view` `approved_only`): the 句对 and 术语 figures are the approved counts, the table
+  shows each language's approved pairs and terms and lists only languages with at least one, and the
+  其中 … 已批准 lines go; the 知识资产 card shows the same approved pair figure. A `v1` snapshot renders as before
+  (all entries, with how many are approved). 系统建设's tiles keep the whole corpus.
   Beside the table (below it on a phone), **Agent 怎样用这份语料库** (`#agent-uses`; operator,
   2026-11-17: 「这种可以用」) lists the three uses the operator works with today: agents edit Feishu cloud docs and
   Illustrator (`.ai`) files from the corpus, calling the repository's code themselves, with one example ask. The
   first draft followed the skill files (Word pre-translation, Markdown rewrite, write-back); the operator said those
-  are no longer how the work is done, so the skills need refreshing ([REV-54](../manual_revitalization_execution.md#rev-54)).
+  are no longer how the work is done. The skill entries now distinguish these on-request deliverables from direct editing ([REV-54](../manual_revitalization_execution.md#rev-54)).
   Change this wording with the operator, not from the skill files. The counts are pairs, never a
   percentage that could read as manual localization completion. Without a
   readable snapshot the page says 暂时没有可显示的语料数字. The terminology rules, the

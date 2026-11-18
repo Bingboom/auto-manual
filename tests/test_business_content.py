@@ -23,9 +23,11 @@ class WorkflowRoutingTests(unittest.TestCase):
         workflow = yaml.safe_load((ROOT / '.github/workflows/manual-validation.yml').read_text())
         jobs = workflow['jobs']
         engineering = set(jobs) - {'secret-scan', 'business-content'}
-        self.assertEqual(len(engineering), 16)
+        self.assertEqual(len(engineering), 17)
+        # `unit` aggregates the unit-shard matrix: always() lets it fail, not skip, on a failed shard.
+        aggregate = {'unit': "${{ always() && github.repository == 'Bingboom/auto-manual' }}"}
         for name in engineering:
-            self.assertEqual(jobs[name]['if'], ENGINEERING, name)
+            self.assertEqual(jobs[name]['if'], aggregate.get(name, ENGINEERING), name)
         self.assertNotIn('if', jobs['secret-scan'])
         self.assertEqual(workflow['permissions'], {'contents': 'read'})
         self.assertEqual(jobs['business-content']['if'],

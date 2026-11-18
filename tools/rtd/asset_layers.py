@@ -72,9 +72,17 @@ def language_view(system: dict[str, Any] | None, labels: dict[str, str] | None =
     does not list keeps the snapshot's label; a row's ``manual`` code (``system_workspace.yaml``) maps
     the translation memory's code to the library's. ``listed`` holds the languages the page lists (those with
     pairs or terms), so the page's language figure is the number of rows it shows.
+
+    When the snapshot carries approved rows per language (``approved_only``, schema v1.1) the page counts approved
+    entries only: the pair and term figures, each language's row and so the languages listed; ``approved`` is
+    then true and the page drops its 其中 … 已批准 lines. 系统建设 keeps the whole-corpus figures.
     """
     corpus = (system or {}).get("corpus")
     if corpus:
+        approved = corpus.get("approved_only")
+        if approved:
+            corpus = {**corpus, "rows": approved["rows"], "approved": True,
+                      "counts": {**(corpus.get("counts") or {}), "pairs": approved["pairs"], "terms": approved["terms"]}}
         rows = [{**row, "label": labels.get(str(row.get("manual") or row.get("code")), row["label"])}
                 for row in corpus.get("rows") or []] if labels else list(corpus.get("rows") or [])
         corpus = {**corpus, "rows": rows, "listed": [row for row in rows if row.get("count") or row.get("terms")]}

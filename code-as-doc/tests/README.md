@@ -1,28 +1,55 @@
 # Tests Guide
 
-Updated: 2026-09-30
+Updated: 2026-11-18
 
 This file describes the current test entrypoints and recommended smoke checks.
 
 ## 1. Run the Full Test Suite
 
 ```powershell
-python -m unittest
+python -m tests.run_fast --all          # every module, in parallel: what CI `unit` runs
+python -m tests.run_fast --shard 2/4    # exactly what CI shard `unit-shard (2)` runs
+python -m tests.run_fast                # local fast tier (or: make test-fast)
+python -m unittest                      # one process, sequential; 30+ minutes
 ```
 
-This single-process run is what CI and pre-PR validation use (about 15 minutes).
-For local iteration there is a parallel fast tier:
+[`tests/run_fast.py`](../../tests/run_fast.py) runs every test module in its own
+Python process, one worker per CPU (`-j N` to change), heaviest modules first. It
+prints one line per module, the slowest modules (`--durations N`, `0` for all),
+and the full output of every failed module, and exits non-zero on any failure,
+error, import error, crash, or a module that ran no tests (unless the manifest
+declares it under `zero_test_modules`). A module that raises `unittest.SkipTest`
+on import counts as one skipped test, as under discovery. Each module has a
+15-minute limit (`MODULE_TIMEOUT_SECONDS`): past it, the module and every process
+it started are killed and it fails as `timed out after 900 s` with the tail of
+its output, so a hang is named instead of running into the CI job timeout.
+`--write-timings` writes nothing unless every module passed. `--list` shows a
+selection without running it. The fast tier skips modules recorded at 5 seconds
+or more; a module not yet in the manifest always runs.
+
+The CI `unit` check (`Manual Validation`) is the aggregate of the `unit-shard`
+matrix: each shard runs `python -m tests.run_fast --shard K/N`, and `unit` fails
+when any shard failed, was cancelled or was skipped. Shards come from the timing
+manifest [`tests/unit_timings.json`](../../tests/unit_timings.json): modules are
+dealt heaviest first to the lightest shard, so every module runs in exactly one
+shard; a module the manifest does not know weighs `default_seconds`.
+`tests/test_run_fast.py` checks the shards against real `unittest` discovery.
+Refresh the manifest after adding or moving heavy tests, on Python 3.12 +
+`requirements.lock`:
 
 ```powershell
-python -m tests.run_fast          # or: make test-fast; about 3 minutes on 4 CPUs
-python -m tests.run_fast --all    # every module, still in parallel
+python -m tests.run_fast --all --write-timings
 ```
 
-It runs each batch of test modules in its own process and skips the modules in
-[`../../tests/slow_modules.txt`](../../tests/slow_modules.txt) (real Sphinx builds,
-IDML golden exports, frozen-AI replays), which lists each one's measured slow-test
-time. Refresh the list from `python -m unittest --durations 400` on Python 3.12 +
-`requirements.lock`; a test fails if it names a module that no longer exists.
+Each module runs in isolation, so a module must import what it uses (for
+example `import unittest.mock`) and must not rely on another module having run
+first. A failure that appears only under `run_fast` but not `python -m unittest`
+is such a hidden order dependency in the test module.
+
+CI no longer runs the single-process `python -m unittest` mode. Order dependence
+that only shows up when every module shares one process (one module's leftover
+state breaking or masking another's tests) is therefore not gated; run
+`python -m unittest` yourself when a change touches shared global state.
 
 Current test coverage includes:
 

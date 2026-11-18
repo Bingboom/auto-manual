@@ -10,6 +10,7 @@
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 {#- 语料库 (step 13, 方案甲): a page for product colleagues, so a title, one line, then the content: sentence pairs and
     terms with how many are approved, the languages, and each language's pairs and terms, dated once by the export.
+    Once the snapshot counts approved rows per language (schema v1.1) every figure is approved entries only.
     Context: tools/rtd/asset_layers.py language_view (the corpus view of system_workspace). No sources, refresh notes,
     rules or maintenance links here. The lookup (方案乙) waits for the corpus content to be exported. -#}
 {%- set g = layer -%}{%- set corpus = g.corpus -%}
@@ -21,8 +22,8 @@
 <header class="fr-head"><h1>语料库</h1><p>已批准的术语和标准句，多语言对照{% if corpus %} · 更新于 {{ corpus.exported_at|e }}{% endif %}</p></header>
 {%- if corpus %}{% set n = corpus.counts %}
 <section class="fr-figs" aria-label="语料库规模">
-  <div><strong>{{ '{:,}'.format(n.pairs) }}</strong><span>组句子，其中 {{ '{:,}'.format(n.pairs_approved) }} 组已批准</span></div>
-  <div><strong>{{ '{:,}'.format(n.terms) }}</strong><span>个术语，其中 {{ '{:,}'.format(n.terms_approved) }} 个已批准</span></div>
+  <div><strong>{{ '{:,}'.format(n.pairs) }}</strong><span>组句子{% if not corpus.approved %}，其中 {{ '{:,}'.format(n.pairs_approved) }} 组已批准{% endif %}</span></div>
+  <div><strong>{{ '{:,}'.format(n.terms) }}</strong><span>个术语{% if not corpus.approved %}，其中 {{ '{:,}'.format(n.terms_approved) }} 个已批准{% endif %}</span></div>
   <div><strong>{{ corpus.listed|length }}</strong><span>种语言</span></div>
 </section>
 <div class="fr-split">

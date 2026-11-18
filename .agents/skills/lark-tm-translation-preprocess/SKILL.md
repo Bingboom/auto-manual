@@ -1,11 +1,19 @@
 ---
 name: lark-tm-translation-preprocess
-description: Preprocess Feishu/Lark DOCX or Wiki manual links with live Translation_Memory sentence pairs, configurable source and target languages, parameter-fuzzy matching, dual-color highlighted replacements (yellow=exact, green=parameter-fuzzy), and upload back beside the source file. Use when a Feishu natural-language/OpenClaw request asks to "预处理", "翻译预处理", "用记忆库处理", "基于源语言结合语料库", "上传到原路径/同路径", or to turn a Lark/Feishu document link into a target-language TM-preprocessed DOCX for language pairs such as en→ko, en→fr, en→es, fr→en, etc.
+description: "Use on request for a separate, highlighted TM-pretranslated Word file. The input may be a DOCX or Feishu link. For edits to a live Feishu document, look up TM-B and edit the requested blocks in place."
+metadata:
+  owner: "语料维护人"
+  status: "on-request"
+  entry: "明确要一份带 TM 命中高亮的 DOCX 副本"
+  tools: "scripts/preprocess_lark_docx_with_tm.py"
+  validation: "用 tests/test_preprocess_lark_docx_with_tm.py 检查重开文件后的译文与高亮"
+  reviewed: "2026-11-17"
+  retire_when: "审核人员停用高亮 Word 预译件"
 ---
 
 # Lark TM Translation Preprocess
 
-Use this skill for the repeatable Feishu/OpenClaw workflow:
+Use only for a requested TM-highlighted Word copy. A request to edit a Feishu document stays in that document. For the requested Word deliverable:
 
 1. Accept a Feishu/Lark Wiki, file, doc, or docx URL.
 2. Download or export the source as `.docx`.
@@ -57,7 +65,7 @@ Preprocessing is one turn of a loop the operator drives:
 
 It shells out to `lark-cli` directly (there is no `lark-drive` / `lark-wiki` / `lark-shared` skill in this repo) and reads the TM Base through the `bitable-translation-memory` helper:
 
-- `lark-cli` (must be on `PATH`): resolves the URL (`drive +inspect`), downloads/exports the source (`drive +download` / `docx +export`), reads the source node (`wiki +node-get`), and uploads the result (`drive +upload`). Reads use `--as bot`. On a permission/scope error, surface it and ask the operator to grant the bot read access to the source node and write access to its parent.
+- `lark-cli` (must be on `PATH`): resolves the URL (`drive +inspect`), downloads/exports the source (`drive +download` / `drive +export`), reads the source node (`wiki +node-get`), and uploads the result (`drive +upload`). Reads use `--as bot`. On a permission/scope error, surface it and ask the operator to grant the bot read access to the source node and write access to its parent.
 - live `Translation_Memory` Base: loaded via the `bitable-translation-memory` helper (`tools/translation_memory.py` + cached live table). See `bitable-translation-memory/SKILL.md` for sentence-pair and terminology rules.
 
 Optional follow-ons (not part of the preprocessing pass):
@@ -182,7 +190,7 @@ If `verified: false`, do **not** upload and do **not** report success — surfac
 These should map to this skill:
 
 - `把这个飞书文档按英韩记忆库预处理，黄色高亮，上传同路径`
-- `这个源语言是英文，目标法语，用语料库匹配翻译，处理完发我链接`
+- `这个源语言是英文，目标法语，用语料库匹配，给我高亮的 Word 副本`
 - `源语言 fr，目标 es，参数可以模糊匹配，上传到原路径`
 - `预处理这个 wiki 文档，只保留目标语言的 IMPORTANTE 开头部分`
 

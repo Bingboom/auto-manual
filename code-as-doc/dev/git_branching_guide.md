@@ -165,7 +165,7 @@ Machine validation means the GitHub `Manual Validation` workflow that must pass 
 
 Use the local validation set that matches the change.
 
-- logic changes: `python -m unittest`
+- logic changes: `python -m tests.run_fast --all` (the CI `unit` check, in parallel; `--shard K/N` reproduces one CI shard; see the [tests guide](../tests/README.md))
 - build or quality-gate changes: `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
 - JP review or publish changes: `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
 - diff-report changes: `python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/staging`
@@ -282,7 +282,7 @@ If you use legacy branch protection, create the equivalent branch protection rul
 - Require status checks to pass before merging: `ON`
 - Require branches to be up to date before merging: `ON`
 - Required status checks:
-  - `Manual Validation / unit (pull_request)`
+  - `Manual Validation / unit (pull_request)` (aggregate of the `unit-shard` matrix; it fails when any shard did not succeed)
   - `Manual Validation / doctor-en (pull_request)`
   - `Manual Validation / check-en (pull_request)`
   - `Manual Validation / check-jp (pull_request)`
