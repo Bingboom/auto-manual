@@ -63,6 +63,11 @@ from tools.data.sync_data_records import (  # noqa: E402
     _write_atomic_text,
     normalize_records,
 )
+from tools.data.sync_table_labels import (  # noqa: E402
+    LarkCliReadError,
+    labelled_lark_failure,
+    table_labels_from_cfg,
+)
 from tools.data.sync_data_runtime import (  # noqa: E402
     SyncRuntimeDeps,
     manifest_payload as _manifest_payload_impl,
@@ -232,9 +237,12 @@ class LarkCliSource:
         identity: str = "user",
         retry_policy: LarkRetryPolicy | None = None,
         sleep: Callable[[float], None] = time.sleep,
+        table_labels: Mapping[str, str] | None = None,
     ) -> None:
         self.cli_bin = cli_bin
         self.identity = identity
+        # table id -> logical name, so a failed read names its binding (never the id).
+        self.table_labels: Mapping[str, str] = table_labels or {}
         self.retry_policy = retry_policy or LarkRetryPolicy()
         if self.retry_policy.max_retries < 0:
             raise ValueError("lark-cli max_retries must be non-negative")
@@ -281,6 +289,20 @@ class LarkCliSource:
         return payload
 
     def _run_base_command(
+        self,
+        *,
+        args: list[str],
+    ) -> dict[str, Any]:
+        try:
+            return self._run_base_command_attempts(args=args)
+        except LarkCliReadError:
+            raise
+        except RuntimeError as exc:
+            # Name the logical table and drop the ids; the original text is not
+            # chained, so no traceback carries it into a log either.
+            raise LarkCliReadError(labelled_lark_failure(args, str(exc), self.table_labels)) from None
+
+    def _run_base_command_attempts(
         self,
         *,
         args: list[str],
@@ -830,7 +852,11 @@ def sync_phase2_snapshot(
             resolve_phase2_manifest_path=resolve_phase2_manifest_path,
             phase2_base_token=_phase2_base_token,
             phase2_identity=_phase2_identity,
-            source_factory=lambda *, cli_bin, identity: LarkCliSource(cli_bin=cli_bin, identity=identity),
+            source_factory=lambda *, cli_bin, identity: LarkCliSource(
+                cli_bin=cli_bin,
+                identity=identity,
+                table_labels=table_labels_from_cfg(cfg, repo_root=ROOT),
+            ),
             resolve_table_binding=resolve_table_binding,
             normalize_records=normalize_records,
             csv_text=_csv_text,
