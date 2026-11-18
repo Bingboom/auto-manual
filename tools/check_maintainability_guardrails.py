@@ -24,7 +24,7 @@ from tools import (
     next_registry_id,
 )
 from tools.utils.path_utils import PathSegments, renderer_contracts_of
-from tools.web import frozen_package_registry
+from tools.web import external_source_store, frozen_package_registry
 
 
 # Thresholds are set ~25-100 lines above the current size of files that have
@@ -485,6 +485,10 @@ def main(argv: list[str] | None = None) -> int:
     frozen_packages = frozen_package_registry.check_repository(args.repo_root.resolve())
     if frozen_packages.exit_code:
         return frozen_packages.exit_code
+
+    raw_binaries = external_source_store.check_repository(args.repo_root.resolve())
+    if raw_binaries.exit_code:
+        return raw_binaries.exit_code
 
     registry_ids = next_registry_id.check_unique(args.repo_root.resolve())
     if registry_ids:
