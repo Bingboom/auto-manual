@@ -33,7 +33,8 @@ def _cell(rid: str, name: str):
 def _wide_lark(state: dict, *, names: list[str] | None = None, rids: list[str] | None = None,
                default_field_page: int = 100, explicit_cap: int | None = None, report: str = "has_more",
                explicit_field_list: dict | None = None, drop_row_after_first_slice: bool = False,
-               ignore_projection: bool = False, short_rows: bool = False, omit_has_more: bool = False,
+               ignore_projection: bool = False, short_rows: bool = False, long_rows: bool = False,
+               omit_has_more: bool = False,
                fail_record_list: Exception | None = None):
     """A canned lark-cli with one table 矩阵.
 
@@ -76,8 +77,10 @@ def _wide_lark(state: dict, *, names: list[str] | None = None, rids: list[str] |
                 page_rids = page_rids[:-1]
             page_rids = page_rids[offset:offset + limit]
             rows = [[_cell(r, n) for n in cols] for r in page_rids]
-            if short_rows:
-                rows = [row[:-1] for row in rows]
+            if short_rows:  # the CLI omits trailing empty cells: recA's last two cells in every slice
+                rows = [row[:-2] if rid == "recA" else row for rid, row in zip(page_rids, rows, strict=True)]
+            if long_rows:
+                rows = [[*row, "extra"] for row in rows]
             data = {"fields": cols, "field_id_list": [f"fld{names.index(n)}" for n in cols],
                     "data": rows, "record_id_list": page_rids}
             if not omit_has_more:
@@ -157,13 +160,30 @@ class WideTableExportTests(unittest.TestCase):
         with self.assertRaises(projection.ProjectionError):
             _export(_wide_lark({}, ignore_projection=True))
 
-    def test_short_rows_fail_instead_of_padding_empty_cells(self):
-        # simulation C
+    def test_short_rows_are_padded_at_the_end_and_counted(self):
+        # simulation C: lark-cli omits trailing empty cells, as bitable_schema._read_records already accepts
+        for projected_read in (False, True):
+            with self.subTest(projected_read=projected_read):
+                report, rows = _export(_wide_lark({}, short_rows=True), projected_read=projected_read)
+                (entry,) = report["tables"]
+                self.assertEqual(entry["short_rows"], 1)  # one record, short in all three slices
+                rec_a = next(r for r in rows if r["_record_id"] == "recA")
+                slice_ends = {NAMES[49], NAMES[48], NAMES[99], NAMES[98], NAMES[119], NAMES[118]}
+                for name in NAMES:
+                    expected = "" if name in slice_ends else _cell("recA", name)
+                    self.assertEqual(rec_a[name], expected, name)
+                self.assertTrue(all(r[n] for r in rows if r["_record_id"] != "recA" for n in NAMES))
+
+    def test_long_rows_fail(self):
         for projected_read in (False, True):
             with self.subTest(projected_read=projected_read), self.assertRaises(projection.ProjectionError) as ctx:
-                _export(_wide_lark({}, short_rows=True), projected_read=projected_read)
+                _export(_wide_lark({}, long_rows=True), projected_read=projected_read)
             self.assertIn("cells", str(ctx.exception))
-            self.assertNotIn("rec", str(ctx.exception).replace("record", ""))
+            self.assertNotIn("extra", str(ctx.exception))
+
+    def test_short_row_count_is_absent_on_the_historical_path(self):
+        report, _ = _export(_wide_lark({}, names=NAMES[:5]), manifest=_manifest(NAMES[:5]))
+        self.assertNotIn("short_rows", report["tables"][0])
 
 
 class FieldListTests(unittest.TestCase):
@@ -275,6 +295,7 @@ class WithheldErrorDetailTests(unittest.TestCase):
                              "--projected-read", "--withhold-error-detail"])
         self.assertEqual(code, 1)
         self.assertIn("MISSING 1 declared column(s) in 矩阵: 已删的列", out.getvalue())
+        self.assertIn("矩阵: 3 rows (0 short row(s) padded with trailing empty cells)", out.getvalue())
         self.assertNotIn("rec", out.getvalue())
 
 

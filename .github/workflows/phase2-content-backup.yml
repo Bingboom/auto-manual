@@ -91,7 +91,8 @@ jobs:
       # values) never reaches the log. --projected-read reads every table with
       # an explicit field-list page and fail-closed 50-field projections, and
       # fails when a field the manifest declares is missing. The summary gets
-      # only table names, row counts and missing manifest field names.
+      # only table names, row counts, short-row counts (rows the CLI returned
+      # without trailing empty cells, padded) and missing manifest field names.
       - name: Export product matrix content
         id: export_matrix
         if: ${{ github.repository == 'Bingboom/Hello-Docs' }}

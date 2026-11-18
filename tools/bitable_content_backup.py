@@ -87,8 +87,12 @@ def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def _read_table(base_token: str, tid: str, lark_cli: str, projected_read: bool) -> tuple[dict, list[dict], list[str]]:
-    """``(field types, rows, record ids)`` for one table.
+def _read_table(base_token: str, tid: str, lark_cli: str,
+                projected_read: bool) -> tuple[dict, list[dict], list[str], int | None]:
+    """``(field types, rows, record ids, short_rows)`` for one table.
+
+    ``short_rows`` (records padded with trailing empty cells) is None on the
+    historical path, which neither counts nor reports them.
 
     Default: the historical path (``_field_types`` + ``_read_records``), with
     projection only for a table wider than 50 fields — the business and TM
@@ -99,13 +103,13 @@ def _read_table(base_token: str, tid: str, lark_cli: str, projected_read: bool) 
     if projected_read:
         fields = list_fields(base_token, tid, lark_cli)
         ftypes = field_types(fields)
-        rows, rids = read_projected_records(base_token, tid, ftypes, field_id_names(fields), lark_cli)
-        return ftypes, rows, rids
+        rows, rids, short_rows = read_projected_records(base_token, tid, ftypes, field_id_names(fields), lark_cli)
+        return ftypes, rows, rids, short_rows
     ftypes = bs._field_types(base_token, tid, lark_cli)
     if needs_projection(ftypes):
         return read_wide_records(base_token, tid, ftypes, lark_cli)
     rows, rids = bs._read_records(base_token, tid, lark_cli)
-    return ftypes, rows, rids
+    return ftypes, rows, rids, None
 
 
 def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, lark_cli: str,
@@ -129,7 +133,7 @@ def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, l
         if not tid:
             report["missing_tables"].append(name)
             continue
-        ftypes, rows, rids = _read_table(base_token, tid, lark_cli, projected_read)
+        ftypes, rows, rids, short_rows = _read_table(base_token, tid, lark_cli, projected_read)
         cols = list(ftypes)
         if projected_read:
             absent = [f["name"] for f in entry.get("fields", []) if f.get("name") not in ftypes]
@@ -142,11 +146,14 @@ def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, l
             for row, rid in zip(rows, rids, strict=True):
                 w.writerow([rid, *[bs._serialize_cell(row.get(c), ftypes[c]) for c in cols]])
         exported_tables.append(TableExportData(table_name=name, table_id=tid, ftypes=ftypes, rows=rows, rids=rids))
-        report["tables"].append({
+        table_entry = {
             "name": name, "table_id": tid, "csv": path.name, "rows": len(rows),
             "columns": cols, "field_types": ftypes,
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-        })
+        }
+        if short_rows is not None:  # projected reads only; the historical path's entry stays unchanged
+            table_entry["short_rows"] = short_rows
+        report["tables"].append(table_entry)
     write_backup_sidecars(dest, label, report["generated_at"], exported_tables, report)
     (dest / BACKUP_MANIFEST).write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -349,7 +356,8 @@ def _run_export(args: argparse.Namespace) -> int:
     total = sum(t["rows"] for t in report["tables"])
     print(f"EXPORT {args.label}: {len(report['tables'])} table(s), {total} row(s) -> {args.out}/{args.label}")
     for t in report["tables"]:
-        print(f"  {t['name']}: {t['rows']} rows")
+        short = f" ({t['short_rows']} short row(s) padded with trailing empty cells)" if "short_rows" in t else ""
+        print(f"  {t['name']}: {t['rows']} rows{short}")
     for name in report["missing_tables"]:
         print(f"  ✗ MISSING on source base: {name}")
     # field names come from the committed (public) schema manifest, never from records

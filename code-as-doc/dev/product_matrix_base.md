@@ -226,15 +226,18 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
   守卫，公开仓库 auto-manual 里这一步永不执行，工件里也就没有矩阵数据。
 - 凭据：Hello-Docs 已有的密钥 `FEISHU_PUBLISHED_DOCS_BASE_TOKEN`（与工作台数据刷新共用）和业务面 bot
   的 `FEISHU_APP_ID` / `FEISHU_APP_SECRET`；表名取自 `bitable_schema/product_matrix_base_manifest.json`。
-- 日志和作业摘要只有表名、行数和缺失的清单字段名（字段名来自已提交的公开清单，不是记录值）。
+- 日志和作业摘要只有表名、行数、补齐的短行数和缺失的清单字段名（字段名来自已提交的公开清单，不是记录值）。
   这一步带 `--withhold-error-detail`：导出过程中出现任何异常（`Exception` 的子类），只打印一行
   「失败 + 异常类型名」，不打印异常文字、回溯或 lark-cli 输出（它可能回显记录值）；要看细节在本机重跑。
 - 这一步带 `--projected-read`：每张表的字段清单都用显式页大小读取，记录按 50 列一批投影读取、按记录合并
   （矩阵表一行超过 50 列），全部按“宁可失败、不出看似完整的残缺备份”处理（`tools/bitable_backup/projection.py`）。
   下列情况导出失败、开哨兵 Issue：字段清单调用失败、为空或比 `total` / `has_more` 显示的少；某批缺投影列；
-  某行单元格数与列数不符；满页却没有 `has_more`；各批记录集不一致（读取期间有人增删行）；
+  某行单元格数多于列数；满页却没有 `has_more`；各批记录集不一致（读取期间有人增删行）；
   清单为该表声明的字段在导出列里找不到（列出缺失字段名）。所以用 `matrix --drop` 删列后，
   要在同一次改动里用 `--manifest` 刷新 `product_matrix_base_manifest.json`，否则次日备份会报缺列。
+- 短行：lark-cli 会省略行尾的空单元格，行可能比投影列少（`bitable_schema._read_records` 与 `stage.py` 也按此处理）。
+  这样的行只在行尾补空单元格，不报错；补齐过的记录数按表写进 `backup_manifest.json` 的 `short_rows`，
+  并打印在摘要行里（只有计数）。稀疏的表有短行属正常；某张表突然全是短行时，先查 CLI 版本或投影是否异常。
 - 恢复按 [闭环运维 4.7b](../../user-guide/closed_loop_ops_guide.md#47b-内容恢复milestone-k4行数据的备份与回灌)，
   目录用 `<解压目录>/product_matrix`。恢复只写简单字段：产品表的「关联 SKU」（目标表不在备份内）和公式字段
   不回灌，按原样手工重建。矩阵表由 `matrix` 命令从其余四表重新生成，恢复时先恢复四表、再重跑生成，
