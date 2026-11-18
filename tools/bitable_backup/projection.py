@@ -1,17 +1,22 @@
 # -*- coding: utf-8 -*-
-"""Read every column of a wide Bitable table for the content backup.
+"""Projected, fail-closed record reads for the content backup.
 
 lark-cli's ``+record-list`` projects at most 50 fields per call, so a table with
 more columns than that (the product matrix's 矩阵 table has one column per
 attribute) must be read in projected slices and merged by record id — the same
-approach ``tools/product_matrix_base/stage.py`` takes. Tables at or under the
-limit keep the plain ``bitable_schema._read_records`` path.
+approach ``tools/product_matrix_base/stage.py`` takes.
 
-The slices are read one after another, so a row added or deleted between two
-slices would leave a half-filled row in the backup. The record-id sets of all
-slices must therefore match; otherwise the export fails (and the nightly
-workflow's sentinel Issue opens) rather than writing an inconsistent restore
-point. Error messages carry only table ids and counts, never cell values.
+Every read here fails rather than writing a backup that looks complete but is
+not: a field list that errored, is empty, or is shorter than its reported
+``total`` / ``has_more``; a slice that misses a projected column; a row whose
+cell count differs from the column count; a full page with no ``has_more``;
+and record-id sets that differ between slices (a row added or deleted while the
+table was read). Error messages carry only table ids and counts, never cell
+values.
+
+``export --projected-read`` (the product-matrix step) reads every table this
+way. Without it the plain ``bitable_schema._read_records`` path stays in use
+and projection only steps in for a table wider than 50 fields.
 """
 
 from __future__ import annotations
@@ -36,13 +41,31 @@ def needs_projection(ftypes: dict[str, str]) -> bool:
 
 
 def list_fields(base_token: str, tid: str, lark_cli: str) -> list[dict[str, Any]]:
-    """Every field of a table (one page of up to 200), refusing a truncated list."""
+    """Every field of a table (one page of up to 200), refusing an errored, empty or truncated list."""
     fl = bs._lark(["base", "+field-list", "--base-token", base_token, "--table-id", tid,
                    "--limit", str(FIELD_LIST_LIMIT), "--format", "json", "--as", "bot"], lark_cli)
+    if fl.get("ok") is False or "_raw" in fl:
+        raise ProjectionError(f"table {tid}: field list failed")
     data = fl.get("data") or {}
-    if data.get("has_more"):
-        raise ProjectionError(f"table {tid} has more than {FIELD_LIST_LIMIT} fields; the backup reads one page only")
-    return [f for f in (data.get("fields") or data.get("items") or []) if isinstance(f, dict)]
+    fields = [f for f in (data.get("fields") or data.get("items") or [])
+              if isinstance(f, dict) and (f.get("field_name") or f.get("name"))]
+    if not fields:
+        raise ProjectionError(f"table {tid}: field list is empty")
+    total = data.get("total")
+    if data.get("has_more") or (isinstance(total, int) and total > len(fields)):
+        raise ProjectionError(f"table {tid}: field list returned {len(fields)} of "
+                              f"{total if isinstance(total, int) else 'more'} fields; the backup reads one page only")
+    return fields
+
+
+def field_types(fields: list[dict[str, Any]]) -> dict[str, str]:
+    """``{field name: lower-case type}`` in field-list order."""
+    return {str(f.get("field_name") or f.get("name")): (f.get("type") or "").lower() for f in fields}
+
+
+def field_id_names(fields: list[dict[str, Any]]) -> dict[str, str]:
+    """``{field id: field name}`` for mapping a record list's ``field_id_list``."""
+    return {str(f.get("field_id") or f.get("id") or ""): str(f.get("field_name") or f.get("name")) for f in fields}
 
 
 def _read_slice(base_token: str, tid: str, names: list[str], id_name: dict[str, str],
@@ -57,13 +80,20 @@ def _read_slice(base_token: str, tid: str, names: list[str], id_name: dict[str, 
             args += ["--offset", str(offset)]
         for name in names:
             args += ["--field-id", name]
-        return bs._lark(args, lark_cli)
+        result = bs._lark(args, lark_cli)
+        if result.get("ok") is False or "_raw" in result:
+            raise ProjectionError(f"table {tid}: record list failed at offset {offset}")
+        return result
 
     def page_items(payload: dict[str, Any]) -> list[Any]:
         return (payload.get("data") or {}).get("data") or []
 
     def page_has_more(payload: dict[str, Any], _offset: int) -> bool:
-        return bool((payload.get("data") or {}).get("has_more"))
+        data = payload.get("data") or {}
+        if "has_more" not in data and len(page_items(payload)) >= PAGE_LIMIT:
+            # a full page without has_more cannot tell "last page" from "more pages"
+            raise ProjectionError(f"table {tid}: a full page of {PAGE_LIMIT} rows came without has_more")
+        return bool(data.get("has_more"))
 
     for payload, raw_rows in iter_lark_pages(fetch_page, items_from_payload=page_items,
                                              has_more_from_payload=page_has_more, limit=PAGE_LIMIT):
@@ -78,26 +108,20 @@ def _read_slice(base_token: str, tid: str, names: list[str], id_name: dict[str, 
         if raw_rows and set(names) - set(cols):
             raise ProjectionError(
                 f"table {tid}: record list returned {len(set(names) & set(cols))} of {len(names)} projected fields")
+        short = sum(1 for row in raw_rows if not isinstance(row, list) or len(row) != len(cols))
+        if short:
+            raise ProjectionError(f"table {tid}: {short} row(s) do not have exactly {len(cols)} cells")
         page_rids = data.get("record_id_list") or []
         if len(page_rids) != len(raw_rows):
             raise ProjectionError(f"table {tid}: {len(raw_rows)} row(s) but {len(page_rids)} record id(s) in one page")
-        rows.extend(dict(zip(cols, row, strict=False)) for row in raw_rows)
+        rows.extend(dict(zip(cols, row, strict=True)) for row in raw_rows)
         rids.extend(page_rids)
     return rows, rids
 
 
-def read_wide_records(base_token: str, tid: str,
-                      lark_cli: str) -> tuple[dict[str, str], list[dict[str, Any]], list[str]]:
-    """``(field types, [row], [record_id])`` with every column, read 50 fields at a time.
-
-    The field list is re-read with an explicit page size so a default page can
-    never silently drop the tail columns of a wide table.
-    """
-    fields = list_fields(base_token, tid, lark_cli)
-    ftypes = {str(f.get("field_name") or f.get("name") or ""): (f.get("type") or "").lower() for f in fields}
-    ftypes.pop("", None)
-    id_name = {str(f.get("field_id") or f.get("id") or ""): str(f.get("field_name") or f.get("name") or "")
-               for f in fields}
+def read_projected_records(base_token: str, tid: str, ftypes: dict[str, str], id_name: dict[str, str],
+                           lark_cli: str) -> tuple[list[dict[str, Any]], list[str]]:
+    """``([row], [record_id])`` with every column in ``ftypes``, read 50 fields at a time and merged by record."""
     names = list(ftypes)
     merged: dict[str, dict[str, Any]] = {}
     order: list[str] = []
@@ -116,4 +140,21 @@ def read_wide_records(base_token: str, tid: str,
                 f"({len(first_ids)} vs {len(ids)} record ids); re-run the export")
         for row, rid in zip(rows, rids, strict=True):
             merged.setdefault(rid, {}).update(row)
-    return ftypes, [merged[rid] for rid in order], order
+    return [merged[rid] for rid in order], order
+
+
+def read_wide_records(base_token: str, tid: str, first_ftypes: dict[str, str],
+                      lark_cli: str) -> tuple[dict[str, str], list[dict[str, Any]], list[str]]:
+    """``(field types, [row], [record_id])`` for a table the default field list showed as wider than 50 fields.
+
+    The field list is re-read with an explicit page size so a short default page
+    cannot drop tail columns; it must still contain every field the first read saw.
+    """
+    fields = list_fields(base_token, tid, lark_cli)
+    ftypes = field_types(fields)
+    lost = [name for name in first_ftypes if name not in ftypes]
+    if lost:
+        raise ProjectionError(f"table {tid}: the explicit field list lacks {len(lost)} of the "
+                              f"{len(first_ftypes)} fields the first read returned")
+    rows, rids = read_projected_records(base_token, tid, ftypes, field_id_names(fields), lark_cli)
+    return ftypes, rows, rids

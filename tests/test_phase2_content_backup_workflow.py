@@ -8,6 +8,8 @@ Hello-Docs repository, and must not echo CLI output into the log.
 """
 from __future__ import annotations
 
+import itertools
+import re
 import unittest
 from pathlib import Path
 
@@ -18,6 +20,22 @@ from tests.test_helpers import step_uses_action
 WORKFLOW = Path(__file__).resolve().parents[1] / ".github" / "workflows" / "phase2-content-backup.yml"
 PRIVATE_GATE = "${{ github.repository == 'Bingboom/Hello-Docs' }}"
 EXPORT_IDS = ("export_business", "export_tm", "export_matrix")
+
+
+_TERM = re.compile(r"^steps\.(\w+)\.outcome (==|!=) '(\w+)'$")
+OUTCOMES = ("success", "failure", "skipped")
+
+
+def _evaluate(condition: str, outcomes: dict[str, str]) -> bool:
+    """Evaluate a pure-`&&` or pure-`||` chain of `steps.<id>.outcome ==/!= '<v>'` terms."""
+    joiner = "&&" if "&&" in condition else "||"
+    results = []
+    for term in condition.split(joiner):
+        match = _TERM.match(term.strip())
+        assert match, f"unsupported condition term: {term!r}"
+        step_id, op, value = match.groups()
+        results.append((outcomes[step_id] == value) == (op == "=="))
+    return all(results) if joiner == "&&" else any(results)
 
 
 def _load() -> dict:
@@ -46,6 +64,7 @@ class Phase2ContentBackupWorkflowTests(unittest.TestCase):
         self.assertIn("--base-token-env FEISHU_PUBLISHED_DOCS_BASE_TOKEN", run)
         self.assertIn("--label product_matrix", run)
         self.assertIn("--withhold-error-detail", run)
+        self.assertIn("--projected-read", run)
         self.assertEqual("${{ secrets.FEISHU_PUBLISHED_DOCS_BASE_TOKEN }}",
                          self.job["env"]["FEISHU_PUBLISHED_DOCS_BASE_TOKEN"])
         self.assertTrue(Path(WORKFLOW.parents[2], "bitable_schema", "product_matrix_base_manifest.json").is_file())
@@ -59,14 +78,28 @@ class Phase2ContentBackupWorkflowTests(unittest.TestCase):
                 self.assertIn("--out backup_out", step["run"])
 
     def test_sentinel_and_final_failure_watch_every_export(self) -> None:
-        failure_steps = [s for s in self.steps if "failure" in str(s.get("if", ""))]
+        failure_steps = [s for s in self.steps if "outcome == 'failure'" in str(s.get("if", ""))]
         recovery = next(s for s in self.steps if s.get("name") == "Close tracking issue on recovery")
         self.assertEqual(2, len(failure_steps))
         for step_id in EXPORT_IDS:
             with self.subTest(step=step_id):
                 for step in failure_steps:
                     self.assertIn(f"steps.{step_id}.outcome == 'failure'", step["if"])
-                self.assertIn(f"steps.{step_id}.outcome == 'success'", recovery["if"])
+                self.assertIn(f"steps.{step_id}.outcome", recovery["if"])
+
+    def test_sentinel_outcome_semantics(self) -> None:
+        """Open on any failure; close when every export that ran succeeded, a skipped matrix step included."""
+        opener = next(s for s in self.steps if s.get("name") == "Open or update tracking issue on failure")
+        closer = next(s for s in self.steps if s.get("name") == "Close tracking issue on recovery")
+        for combo in itertools.product(OUTCOMES, repeat=3):
+            outcomes = dict(zip(EXPORT_IDS, combo, strict=True))
+            with self.subTest(**outcomes):
+                business, tm, matrix = combo
+                any_failed = "failure" in combo
+                self.assertEqual(any_failed, _evaluate(opener["if"], outcomes))
+                expected_close = business == "success" and tm == "success" and matrix in ("success", "skipped")
+                self.assertEqual(expected_close, _evaluate(closer["if"], outcomes))
+                self.assertFalse(any_failed and _evaluate(closer["if"], outcomes))
 
     def test_one_artifact_with_the_restore_window(self) -> None:
         uploads = [s for s in self.steps if step_uses_action(s, "actions/upload-artifact")]

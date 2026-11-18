@@ -283,8 +283,12 @@ secret 在 base API 下无效 → 0 表。**bot 权限本身无问题**（同一
 Hello-Docs。这一步除作业守卫外自带同样的 `github.repository == 'Bingboom/Hello-Docs'`
 守卫，用 Hello-Docs 已有密钥 `FEISHU_PUBLISHED_DOCS_BASE_TOKEN`（不在
 `validate_required_env` 必需项里：缺它只让矩阵这一步失败、开哨兵 Issue，不影响另两个
-base 的备份），带 `--withhold-error-detail`（失败只报错误类型，不转出 CLI 输出）。
-矩阵表超过 50 列，按 50 列一批投影读取后合并；读取期间记录集变化则导出失败。
+base 的备份），带 `--withhold-error-detail`（导出中任何异常只打印一行失败和异常类型名，
+不打印异常文字、回溯或 CLI 输出）和 `--projected-read`（字段清单显式分页、记录按 50 列一批
+投影读取后合并；字段清单失败或不全、缺列、行单元格数不符、满页无 `has_more`、读取期间记录集
+变化、清单声明的字段缺失，都让导出失败，而不是写出看似完整的残缺备份）。矩阵这一步被跳过
+（不在 Hello-Docs）时，另两步成功仍会关闭哨兵 Issue。矩阵的 restore / verify 只在操作者本机
+运行，输出含记录值，不贴进公开仓库。
 字段与恢复边界见 [产品信息矩阵 base §6.2](../code-as-doc/dev/product_matrix_base.md#62-时点备份)。
 工件只在 Hello-Docs 下载；不要把 `product_matrix/` 的任何内容贴进 auto-manual 的 PR、
 issue 或本页的核验记录（核验记录只写表数和行数）。

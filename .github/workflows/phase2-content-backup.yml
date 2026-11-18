@@ -86,9 +86,12 @@ jobs:
       # internal product facts and project numbers that must never reach a
       # public surface (product_matrix_base.md §7): the step repeats the
       # private-repository guard so it stays off even if the job guard above is
-      # ever flipped again, and --withhold-error-detail keeps CLI output (which
-      # can echo record values) out of the log. The summary gets only table
-      # names and row counts.
+      # ever flipped again, and --withhold-error-detail turns any exception
+      # into one line naming its type, so CLI output (which can echo record
+      # values) never reaches the log. --projected-read reads every table with
+      # an explicit field-list page and fail-closed 50-field projections, and
+      # fails when a field the manifest declares is missing. The summary gets
+      # only table names, row counts and missing manifest field names.
       - name: Export product matrix content
         id: export_matrix
         if: ${{ github.repository == 'Bingboom/Hello-Docs' }}
@@ -99,7 +102,7 @@ jobs:
             --manifest bitable_schema/product_matrix_base_manifest.json \
             --base-token-env FEISHU_PUBLISHED_DOCS_BASE_TOKEN \
             --label product_matrix --out backup_out \
-            --withhold-error-detail | tee -a "$GITHUB_STEP_SUMMARY"
+            --projected-read --withhold-error-detail | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Upload dated backup artifact
         if: always()
@@ -152,7 +155,9 @@ jobs:
             }
 
       - name: Close tracking issue on recovery
-        if: steps.export_business.outcome == 'success' && steps.export_tm.outcome == 'success' && steps.export_matrix.outcome == 'success'
+        # The matrix step is guarded separately; `!= 'failure'` lets a skipped
+        # matrix step still close the Issue once the exports that ran succeed.
+        if: steps.export_business.outcome == 'success' && steps.export_tm.outcome == 'success' && steps.export_matrix.outcome != 'failure'
         uses: actions/github-script@v7
         with:
           script: |
