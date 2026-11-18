@@ -180,7 +180,7 @@ class TemplateTests(unittest.TestCase):
         self.assertEqual(after_script, ["2021-03", "暂无"])
         # 产品档案 sits below the 产品矩阵 tab: that tab is current, but not as this page.
         self.assertEqual([(a.get_text(), a.get("aria-current")) for a in page.select(".pt-tabs a")],
-                         [("产品矩阵", "true"), ("产品对比", None), ("参数表", None)])
+                         [("产品矩阵", "true"), ("演进时间轴", None), ("产品对比", None), ("参数表", None)])
         self.assertNotIn("上市时间", page.get_text())
         us = page.select_one('[data-market-panel="US"]')
         button = us.select_one(".pf-val")
