@@ -45,11 +45,17 @@ site keeps its own palette. A page's section is declared once, in the `site_sect
 `under` names the left entry it sits beneath. A key in no section selects no section and gets
 `app-nav-unassigned`, which the tests reject.
 
-The top bar also carries the brand, a search icon (搜索说明书正文, current on the search page) and an Agent icon
-(系统建设). `资产总览` (`workspace/index.html`) is the first left entry of 知识资产 and opens with a 3-figure summary capsule (收录机型, 正式说明书, 覆盖语种) above a unified 3×2 card grid covering all six 知识资产 pages (`front_summary` and `front_cards` in `tools/rtd/asset_pages.py`), where each card's secondary badge shows concise counts (such as `<n> 个市场 · <m> 语种` for 说明书资料库) and never enumerates market or language codes. The search page is reached from the top bar, not the left list; it sits under 说明书资料库, which it highlights. The breadcrumb reads 工作资料 / section / page (工作资料 /
-知识资产 / 说明书资料库 / 搜索说明书正文 for the search page). 产品信息's tab pages (产品库, 产品档案, 产品对比, 参数表) are `also`
+Since the operator's reference layout of 2026-11-18 (「我想调成这种布局」, 「你就看布局 数据按实际的来」, 「小字去掉」) the
+top bar is white with a hairline: the brand (a dark mark with the book glyph, the wordmark and an accent full stop),
+the sections as plain text (the current one darker, with an accent bar on the bar's bottom edge), and a search
+field at the right. The field is a plain GET form to 搜索说明书正文 (`?q=`, which the search page reads), so it works
+without JavaScript; "/" focuses it unless the reader is typing elsewhere (`site_script`), and below 640px it folds
+to its icon, which opens the search page. The former Agent icon opened the same page as the Agent 能力 section and
+was dropped; the section stays. The current left entry is a light accent pill with ink text (4.5:1 on both palettes) and an accent icon. The crumb is hidden only in the portal shell (`.app-topbar.is-shell`); the review-draft site keeps its visible crumb. `资产总览` (`workspace/index.html`) is the first left entry of 知识资产 and opens with a 3-figure summary capsule (收录机型, 正式说明书, 覆盖语种) above a unified 3×2 card grid covering all six 知识资产 pages (`front_summary` and `front_cards` in `tools/rtd/asset_pages.py`), where each card's secondary badge shows concise counts (such as `<n> 个市场 · <m> 语种` for 说明书资料库) and never enumerates market or language codes. The search page is reached from the top bar, not the left list; it sits under 说明书资料库, which it highlights. The breadcrumb (工作资料 / section / page;
+工作资料 / 知识资产 / 说明书资料库 / 搜索说明书正文 for the search page) is kept for screen readers only; the crumb row still
+carries a page's own tools (说明书资料库's 区域). 产品信息's tab pages (产品矩阵, 产品档案, 产品对比, 参数表) are `also`
 entries `under` 产品信息, so their crumb reads 工作资料 / 知识资产 / 产品信息 / <tab>. An address naming a folded block
-(`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (brand and tools, then the
+(`#assets-inventory`) opens it (`_static/design-system.js`). Below 420px wide the four sections keep one row. On a phone the top bar takes two rows (menu, brand and search, then the
 sections) and the left list opens from the menu button. The pages keep their content. 产品信息 links 产品知识 when the matrix is not built.
 
 Old addresses keep working:
@@ -69,7 +75,7 @@ authorization numbers, hashes, snapshot names, 建设中 / 已规划 chips, tabs
 unbuilt parts, or provenance and refresh small print. A figure keeps one date
 (截至 …). `front.css` holds their shared head, figure row and bar list.
 
-- **产品信息** opens on **产品库** (`product_matrix.html`, step 13, REV-53): the
+- **产品信息** opens on **产品矩阵** (`product_matrix.html`, step 13, REV-53): the
   title, `<n> 款产品 · 更新于 <date>`, then the matrix read from the product-information
   snapshot; see [knowledge-pages.md](knowledge-pages.md#product-matrix-page). The
   former 规模, 在哪里维护, 被谁使用, 来源与时间 and 质量与缺口 blocks, the kicker, the
@@ -206,12 +212,16 @@ layers that is not a figure:
 
 ## 知识库首页 and 系统建设
 
-- **知识库首页** (front cleanup, 2026-11-17; the 知识资产 page since the layout of the same day): the title
-  知识资产 and the line 「让产品信息和生产资料持续积累、关联和复用。」, then three asset cards (`#now`; 产品信息矩阵
-  「项目 · 属性 · 时间」, 产品知识「功能 · 限制 · 关系」, 语料库「句对 · 术语 · 复用」; `asset_pages.front_cards`),
-  each with its name, one line and one figure with its date (暂无 when unreadable, for instance without a readable product snapshot),
-  then the entrances to 说明书资料库 and 市场与政策 (`#doors`) and, with a share
-  package, 分享资料 (`#shares`). No status chips or ledger references. The slice-2
+- **资产总览 / 知识库首页** (front cleanup, 2026-11-17; overview of 2026-11-18): the title 知识资产 and the line
+  「让产品信息和生产资料持续积累、关联和复用。」 with the summary capsule (`asset_pages.front_summary`): 收录机型 (产品矩阵's
+  model count), 正式说明书 (published Web manuals, model × market) and 覆盖语种 (the publish manifest's language
+  count from `deliverables.publication_languages`, the same figure 说明书工作台 shows as 发布语言; no fallback to the
+  corpus; 暂无 when the manifest is unreadable or a target names no language). Then six cards (`#now`;
+  `asset_pages.front_cards`), each with an icon (no arrow: 「首页卡片的箭头也去掉」, 2026-11-18), its name, one sentence naming only what its page holds
+  (语料库 says 已批准 only when its figure counts approved pairs), one figure (暂无 when unreadable) and a count
+  badge; the figure's date is only the badge's tooltip. The cards of a row share their row tracks (CSS subgrid), so
+  dividers and figures line up when a badge wraps. With a share package, 分享资料 (`#shares`) follows. No status
+  chips, eyebrows, footnotes or ledger references. The slice-2
   主线, 正在做, 定位与价值 statuses and 最近更新 left the page; 正在做 and 当前主线 stay on
   系统建设. The modules that fed them (`workspace_home.py`, `knowledge_updates.py`) and
   `workspace_home.yaml` were removed on 2026-11-17; `knowledge_updates.yaml` stays as the dated record
@@ -245,6 +255,6 @@ sources, verification and dates (REV-50); time backfill (REV-52).
 in `tests/test_rtd_portal.py` (each page's section, left list and breadcrumb, an
 unplaced page selecting no section, the moved 属性字典 address, the front pages without chips or small print, the six blocks
 in 设计规范's #assets-inventory, the 内容与表现 address forwarding to 设计规范, 视觉媒体 absent from the public build, and that the public build links no internal page);
-`tests/test_rtd_site_shell.py` (placement of every page key, crumbs, optional sections, the public shell);
-`tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
+`tests/test_rtd_site_shell.py` (placement of every page key, crumbs, optional sections, the public shell, 资产总览
+first in 知识资产, the search form); `tests/test_rtd_workspace_home.py` (the home cards); `tests/test_rtd_review_site.py` (the review site's
 top bar).

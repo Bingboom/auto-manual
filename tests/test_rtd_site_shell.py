@@ -44,14 +44,14 @@ class SiteShellTests(unittest.TestCase):
 
     def test_crumbs_name_the_section_of_each_page(self):
         cases = {
-            ("overview", "首页"): "工作资料 / 知识资产",
+            ("overview", "资产总览"): "工作资料 / 知识资产",
             ("product-matrix", "产品信息"): "工作资料 / 知识资产 / 产品信息",
             ("search", "搜索说明书正文"): "工作资料 / 知识资产 / 说明书资料库 / 搜索说明书正文",
             ("deliverables", "说明书工作台"): "工作资料 / 工作台 / 说明书工作台",
             ("system", "系统建设"): "工作资料 / Agent 能力 / 系统建设",
             ("design-system", "设计规范"): "工作资料 / 设计规范",
             # 产品信息's pages name their tab in the crumb, beneath 产品信息 (the product branches pass these labels).
-            ("product-matrix", "产品库"): "工作资料 / 知识资产 / 产品信息 / 产品库",
+            ("product-matrix", "产品矩阵"): "工作资料 / 知识资产 / 产品信息 / 产品矩阵",
             ("product-matrix", "产品档案"): "工作资料 / 知识资产 / 产品信息 / 产品档案",
             ("product-matrix", "产品对比"): "工作资料 / 知识资产 / 产品信息 / 产品对比",
             ("product-matrix", "参数表"): "工作资料 / 知识资产 / 产品信息 / 参数表",
@@ -60,14 +60,60 @@ class SiteShellTests(unittest.TestCase):
             self.assertEqual(crumb_text(shell(key, crumb)), expected, key)
 
     def test_optional_sections_follow_their_pages(self):
-        page = shell("overview", "首页", {"system": False, "deliverables": False, "design": False, "matrix": False})
+        page = shell("overview", "资产总览", {"system": False, "deliverables": False, "design": False, "matrix": False})
         tabs = {a.get_text(): a["href"] for a in page.select(".app-tabs a")}
         # A section whose pages are not built is absent (内容与表现 is not shown, so 设计规范 has its page only).
         self.assertEqual(tabs, {"知识资产": "workspace/index"})
         self.assertIsNone(shell("asset-content", "x").select_one(".app-tabs a.selected"))  # no longer placed
         self.assertIsNone(page.select_one('.app-tool[aria-label="Agent 能力"]'))
-        knowledge = shell("overview", "首页", {**ALL, "matrix": False})
+        knowledge = shell("overview", "资产总览", {**ALL, "matrix": False})
         self.assertNotIn("产品信息", [a.span.get_text() for a in knowledge.select("#app-sidebar a.app-nav-link")])
+
+    def test_the_knowledge_list_opens_with_its_own_page(self):
+        # Reference layout (2026-11-18): 资产总览 is the first entry of 知识资产 and is current on that page only.
+        home = shell("overview", "资产总览")
+        links = home.select("#app-sidebar a.app-nav-link")
+        self.assertEqual([(a.span.get_text(), a["href"]) for a in links][:2],
+                         [("资产总览", "workspace/index"), ("产品信息", "products/matrix")])
+        self.assertEqual([a.span.get_text() for a in links if "active" in a["class"]], ["资产总览"])
+        self.assertEqual(links[0]["aria-current"], "page")
+        matrix = shell("product-matrix", "产品矩阵")
+        self.assertEqual([a.span.get_text() for a in matrix.select("#app-sidebar a.app-nav-link.active")], ["产品信息"])
+
+    def test_the_top_bar_search_is_a_form_that_works_without_script(self):
+        for internal in (True, False):
+            page = shell("manuals", "说明书资料库", internal=internal)
+            form = page.select_one('.app-header form[role="search"]')
+            self.assertEqual((form["action"], form["method"]), ("search", "get"))
+            field = form.select_one("input[type=search]")
+            self.assertEqual((field["name"], field["aria-keyshortcuts"]), ("q", "/"))
+            self.assertEqual(form.select_one(".sr-only").get_text(), "搜索说明书正文")
+            self.assertIsNone(page.select_one('.app-tool[aria-label="Agent 能力"]'))
+        self.assertEqual(shell("search", "搜索说明书正文").select_one(".app-search-go")["aria-current"], "page")
+
+    def test_only_the_portal_shell_hides_its_crumb_and_review_drafts_keep_theirs(self):
+        # The visually hidden crumb is scoped to site_topbar's row; the review-draft site loads the same sheet but
+        # its crumb (with a link back to the overview) stays visible.
+        self.assertIn("is-shell", shell("manuals", "说明书资料库").select_one(".app-topbar")["class"])
+        css = re.sub(r"/\*.*?\*/", "", (ASSETS / "_static" / "site-shell.css").read_text(encoding="utf-8"), flags=re.S)
+        hiding = [rule.split("{")[0].strip() for rule in re.findall(r"[^{}]+\{[^{}]*clip:rect[^{}]*\}", css)]
+        crumb_rules = [selector for selector in hiding if ".app-crumb" in selector]
+        self.assertEqual(crumb_rules, [".app-topbar.is-shell .app-crumb"])
+        review = (ASSETS / "review_drafts_layout.html").read_text(encoding="utf-8")
+        self.assertIn('<div class="app-topbar">', review)
+        self.assertNotIn("is-shell", review)
+        # A browser without :has() must keep the focus rings: the :has() selector is a rule of its own.
+        for rule in re.findall(r"[^{}]+\{[^{}]*\}", css):
+            selectors = rule.split("{")[0]
+            if ":has(" in selectors and "focus-visible" in selectors:
+                self.assertNotIn(",", selectors.strip())
+
+    def test_the_top_bar_search_landmark_is_named_and_slash_spares_a_folded_field(self):
+        page = shell("search", "搜索说明书正文")
+        self.assertEqual(page.select_one('.app-header form[role="search"]')["aria-label"], "顶栏搜索")
+        script = (ASSETS / "_site_shell.html").read_text(encoding="utf-8")
+        visible, prevent = script.index("getClientRects().length) return"), script.index("event.preventDefault();")
+        self.assertLess(visible, prevent)
 
     def test_the_public_shell_keeps_the_manuals_only(self):
         page = shell("manuals", "说明书资料库", internal=False)

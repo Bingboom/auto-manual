@@ -1,4 +1,4 @@
-"""产品库 (step 13 of the 2026-11 redesign; REV-53): the product-information matrix read from the base snapshot.
+"""产品矩阵 (step 13 of the 2026-11 redesign; REV-53): the product-information matrix read from the base snapshot.
 
 The matrix window exports the 产品信息矩阵 base to the private repository as ``product-matrix/snapshot.json``
 under the knowledge directory (schema ``hello-docs-product-matrix-snapshot/v1``). Each product row there is one
@@ -181,7 +181,7 @@ def _categories(models: list[dict[str, Any]], catalog: dict[str, Any] | None) ->
 
 
 def library_view(snapshot: dict[str, Any], product_catalog: dict[str, Any] | None = None) -> dict[str, Any]:
-    """The 产品库 context from a loaded snapshot; categories, series and tiers follow the 产品分类 order."""
+    """The 产品矩阵 context from a loaded snapshot; categories, series and tiers follow the 产品分类 order."""
     rows = [row for row in snapshot.get("products") or [] if isinstance(row, dict)]
     models = list(_models(rows).values())
     markets = _ordered({market for model in models for market in model["markets"]}, MARKET_ORDER)
@@ -212,7 +212,7 @@ def library_context(knowledge_dir: Path, product_catalog: dict[str, Any] | None,
         snapshot = load_snapshot(knowledge_dir)
     except SnapshotError as exc:
         if warn:
-            warn("产品库 snapshot unusable: %s", exc)
+            warn("产品矩阵 snapshot unusable: %s", exc)
         return empty_context("产品数据暂时读不到，请稍后再看。")
     if snapshot is None or not snapshot.get("products"):
         return empty_context("还没有产品数据。")

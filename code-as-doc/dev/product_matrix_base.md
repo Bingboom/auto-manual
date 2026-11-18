@@ -168,7 +168,7 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
 
 ## 6.1 私有站点用的快照
 
-私有站点（登录后才能看）的产品页面——产品库、单品页、对比页、表格视图——从 base 读产品信息，
+私有站点（登录后才能看）的产品页面——产品矩阵、单品页、对比页、表格视图——从 base 读产品信息，
 不再从各本说明书里用正则读。为此 base 的内容以快照形式进入私有仓库 Hello-Docs，私有站点构建时读它。
 
 - 命令：`python -m tools.product_matrix_base snapshot [--out <Hello-Docs 检出>/docs/knowledge/product-matrix] [--write]`。
@@ -244,7 +244,7 @@ python -m tools.product_matrix_base stage ... --write --yes [--correct]
   把刷新后的快照和/或 `status.json` 提到 `chore/product-matrix-refresh` 的内容 PR（只含本目录，必须审核后合入，不自动合并）。
   同一结论的重复确认不单独提交，直到已提交的确认满 3 天；失败或落后时 job 失败并开（或沿用）一个 issue
   「Workspace data update: product_matrix」，恢复后自动关闭。它不是已退役的定时队列，不受 `LEGACY_TEMPLATE_QUEUE_ENABLED` 控制。
-- 页面提示：产品库、产品对比、参数表、产品档案显示「数据读取于 · 快照生成于 · 最近同步成功」，并在以下情况显示
+- 页面提示：产品矩阵、产品对比、参数表、产品档案显示「数据读取于 · 快照生成于 · 最近同步成功」，并在以下情况显示
   「数据可能不是最新」（[`product_freshness.py`](../../tools/rtd/product_freshness.py)，构建时不访问 base）：最近确认
   （`read_at` 与适用于该快照的 `last_success` 中较晚者）超过登记表 `product_matrix.stale_after_days`；检查结论为
   `behind`；base 的 `source_modified_at` 晚于快照的；最近一次检查失败。v1.1 快照没有 `built_at`，显示「未记录（旧版快照）」。

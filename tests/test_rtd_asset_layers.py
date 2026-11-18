@@ -354,7 +354,7 @@ class ProductValueTests(unittest.TestCase):
         self.assertNotIn(value, cards)
         page = render("product_matrix.html", built=False, problem="还没有产品数据。")
         self.assertNotIn(value[:12], page.get_text())
-        self.assertEqual(page.select_one(".fr-head").get_text(), "产品库")
+        self.assertEqual(page.select_one(".fr-head").get_text(), "产品矩阵")
 
 
 class HeadlineTests(unittest.TestCase):

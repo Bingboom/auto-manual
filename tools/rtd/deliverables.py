@@ -373,6 +373,17 @@ def deliverables_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, 
     }
 
 
+def publication_languages(targets: list[dict[str, Any]] | None) -> int | None:
+    """Published languages, one per language code: 说明书工作台's 发布语言 and 资产总览's 覆盖语种 read this one figure.
+
+    None when the publish manifest is unreadable or empty, or when a target names no language: a count that leaves
+    such a target out would be low by construction, so the pages show none rather than a smaller number.
+    """
+    if not targets or any(not str(target.get("lang") or "").strip() for target in targets):
+        return None
+    return len({str(target["lang"]).strip() for target in targets})
+
+
 def _utc_today() -> dt.date:
     return dt.datetime.now(dt.timezone.utc).date()
 
@@ -432,8 +443,8 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
     books = publication_facts(targets or [])["books_by_region"]
     view["books_by_region"] = [f"{labels.get(region, region)} {books[region]}"
                                for region in sorted(books, key=lambda code: (-books[code], code))]
-    # The 语言版本 KPI's sub-line: published languages, one per language code.
-    view["languages"] = len({str(target["lang"]) for target in targets or [] if target.get("lang")})
+    # The 语言版本 KPI's sub-line: published languages, one per language code (资产总览 shows the same figure).
+    view["languages"] = publication_languages(targets)
     from tools.workspace_freshness import SHOWN, freshness
     # The Feishu 交付快照 (Word, print) is no longer counted here, so its date is not shown either.
     view["freshness"] = [row for row in freshness(repo_root(), registry or {}, today) if row["kind"] in SHOWN]

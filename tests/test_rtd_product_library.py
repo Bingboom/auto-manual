@@ -1,4 +1,4 @@
-"""产品库 (tools/rtd/product_library.py, product_matrix.html): the matrix read from the product-information snapshot.
+"""产品矩阵 (tools/rtd/product_library.py, product_matrix.html): the matrix read from the product-information snapshot.
 
 Every product, model and project here is invented (P-FAKE-*, FAKE-*): project numbers and product values are private
 and never belong in this repository.
@@ -183,7 +183,7 @@ class TemplateTests(unittest.TestCase):
         view = pl.library_view(snapshot(row("FAKE-200B"), row("FAKE-100A", "EU"), row("FAKE-300A", project=None)),
                                CATALOG)
         page = render(view)
-        self.assertEqual(page.select_one(".fr-head h1").get_text(), "产品库")
+        self.assertEqual(page.select_one(".fr-head h1").get_text(), "产品矩阵")
         self.assertEqual(page.select_one(".fr-head p").get_text(), "3 款产品 · 更新于 2026-01-02")
         chips = page.select(".pl-chip")
         self.assertEqual([chip.get_text() for chip in chips], ["FAKE-100A(FAKE-200B)", "FAKE-300A"])
@@ -205,6 +205,34 @@ class TemplateTests(unittest.TestCase):
         text = page.select_one("main").get_text()
         for word in ("snapshot", ".json", "REV-", "建设中", "已规划", "构建"):
             self.assertNotIn(word, text)
+
+
+    def test_reference_layout_head_card_and_counts(self):
+        # Reference layout (2026-11-18): the 产品信息 tabs beside the title, one card holding the category tabs (each
+        # with its product count), the filters and the matrix; a merged chip greys its bracketed codes; no ↗.
+        view = pl.library_view({**snapshot(row("FAKE-200B"), row("FAKE-100A", "EU"),
+                                           row("FAKE-9C", category="配件", series="线材", tier="")), "cells": []},
+                               CATALOG)
+        page = render({**view, "freshness": {"warnings": ["FAKE-WARN"], "read_at": "r", "built_at": "b",
+                                             "last_success": "s"}})
+        head = page.select_one(".pl-head")
+        self.assertEqual([child.name for child in head.find_all(recursive=False)], ["header", "nav"])
+        self.assertEqual(head.select_one(".pt-tabs a.is-on").get_text(), "产品矩阵")
+        card = page.select_one(".pl-card")
+        # A space separates the name from its count, so the tab's accessible name reads "便携储能 2".
+        self.assertEqual([a.get_text() for a in card.select(".pl-tab")], ["便携储能 2", "配件 1"])
+        self.assertEqual([a.select_one(".pl-count").get_text() for a in card.select(".pl-tab")], ["2", "1"])
+        self.assertIsNotNone(card.select_one(".pl-card-head [data-pl-filters]"))
+        self.assertIsNotNone(card.select_one("#matrix .pl-grid"))
+        self.assertEqual(page.select_one(".pl-grid")["style"], "--pl-cols:1")
+        self.assertEqual([code.a.get_text() for code in page.select(".pl-code.is-derived")], ["FAKE-200B"])
+        self.assertNotIn("↗", page.select_one("main").get_text())
+        # The stale warning sits above the card, the sync times under it; both stay.
+        main = page.select_one("main")
+        order = [node for node in main.find_all(recursive=False) if node.get("class")]
+        classes = [node["class"][0] for node in order]
+        self.assertLess(classes.index("pt-stale"), classes.index("pl-card"))
+        self.assertLess(classes.index("pl-card"), classes.index("pt-sync"))
 
 
 if __name__ == "__main__":

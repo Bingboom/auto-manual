@@ -21,8 +21,10 @@
 <div class="app-content">
 {{ site_topbar('知识库', '产品对比') }}
 <main class="fr-page pc-page">
-{{ product_tabs('products/compare') }}
+<div class="pl-head">
 <header class="fr-head"><h1>产品对比</h1></header>
+{{ product_tabs('products/compare') }}
+</div>
 {{ product_freshness(freshness) }}
 {%- if not built %}
 <p class="fr-empty">{{ problem|e }}</p>

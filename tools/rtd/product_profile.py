@@ -1,5 +1,5 @@
 """产品档案 (step 13 of the 2026-11 redesign; REV-53): one private page per model, read from the product-information
-snapshot that 产品库 reads (``tools/rtd/product_library.py``).
+snapshot that 产品矩阵 reads (``tools/rtd/product_library.py``).
 
 The page never chooses a value. The snapshot's ``cells`` (schema v1.1) carry, per product, parameter and test
 condition, the value the base's rules picked (rejected and superseded values left out, verified first, then by

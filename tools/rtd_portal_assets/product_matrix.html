@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="产品库：按类别、系列和容量查找产品，同一项目的型号合在一起。">
-<title>产品库</title>
+<meta name="description" content="产品矩阵：按类别、系列和容量查找产品，同一项目的型号合在一起。">
+<title>产品矩阵</title>
 <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/front.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/product-library.css', 1) }}">
@@ -12,44 +12,52 @@
 <script defer src="{{ pathto('_static/product-library.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-{% from "_product_tabs.html" import product_tabs, product_freshness with context %}
-{#- 产品库 (step 13 of the 2026-11 redesign; REV-53; tools/rtd/product_library.py). A front page: the title, one
-    line, then the matrix. A tab per category; rows are 系列, columns 容量档 (one 产品 column without tiers); a chip
-    per model, the models of one project merged as A(B). 项目 and 市场 highlight matching chips and dim the rest.
-    Without JavaScript every category shows and the filters stay hidden. -#}
+{% from "_product_tabs.html" import product_tabs, product_stale, product_sync with context %}
+{#- 产品矩阵 (step 13 of the 2026-11 redesign; REV-53; tools/rtd/product_library.py), in the operator's reference layout
+    (2026-11-18): the title and one line with the 产品信息 tabs as a segmented control at the right, then one card: a
+    header zone with a tab per category (with its product count) and the filters, then the matrix. Rows are 系列,
+    columns 容量档 (one 产品 column without tiers); a chip per model, the models of one project merged as A(B), the
+    bracketed ones in grey. Search, 项目 and 市场 highlight matching
+    chips and dim the rest. The stale warning sits above the card, the sync times under it. Without JavaScript
+    every category shows stacked under its own title and the header zone stays hidden. -#}
 {%- macro chip(item) -%}
 <span class="pl-chip" data-rows="{{ item.rows|tojson|forceescape }}" data-search="{{ item.search|e }}">
   {%- for member in item.models -%}
-  <span class="pl-code">{% if loop.index == 2 %}<span class="pl-paren">(</span>{% elif not loop.first %}<span class="pl-sep">、</span>{% endif -%}
+  <span class="pl-code{% if not loop.first %} is-derived{% endif %}">{% if loop.index == 2 %}<span class="pl-paren">(</span>{% elif not loop.first %}<span class="pl-sep">、</span>{% endif -%}
   <a href="{% if member.page %}{{ pathto('products/item/' ~ member.model)|e }}{% else %}{{ pathto('index')|e }}?q={{ member.model|urlencode }}{% endif %}" title="{{ member.label|e }}">{{ member.model|e }}</a>
   {%- if loop.last and not loop.first %}<span class="pl-paren">)</span>{% endif %}</span>
   {%- endfor -%}
 </span>
 {%- endmacro -%}
 <body class="app kb">
-<a class="skip" href="#matrix">跳到产品库</a>
+<a class="skip" href="#matrix">跳到产品矩阵</a>
 {{ site_sidebar('product-matrix', site_nav) }}
 <div class="app-content">
-{{ site_topbar('知识库', '产品库') }}
+{{ site_topbar('知识库', '产品矩阵') }}
 <main class="fr-page pl-page">
+<div class="pl-head">
+<header class="fr-head"><h1>产品矩阵</h1>{% if built %}<p>{{ count }} 款产品 · 更新于 {{ updated|e }}</p>{% endif %}</header>
 {%- if built %}{{ product_tabs('products/matrix') }}{% endif %}
-<header class="fr-head"><h1>产品库</h1>{% if built %}<p>{{ count }} 款产品 · 更新于 {{ updated|e }}</p>{% endif %}</header>
-{{ product_freshness(freshness) }}
+</div>
+{{ product_stale(freshness) }}
 {%- if not built %}
 <p class="fr-empty" id="matrix">{{ problem|e }}</p>
 {%- else %}
-<nav class="pl-tabs" aria-label="产品类别" hidden>{% for category in categories %}<a class="pl-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }}</a>{% endfor %}</nav>
+<div class="pl-card">
+<div class="pl-card-head">
+<nav class="pl-tabs" aria-label="产品类别" hidden>{% for category in categories %}<a class="pl-tab" href="#cat-{{ category.id|e }}" data-tab="{{ category.id|e }}">{{ category.title|e }} <span class="pl-count">{{ category.count }}</span></a>{% endfor %}</nav>
 <form class="pl-filters" data-pl-filters hidden onsubmit="return false">
   <label class="pl-search"><span class="sr-only">搜索产品</span><input type="search" data-pl-q placeholder="型号、产品名或项目号" autocomplete="off"></label>
   <label>项目<select data-pl-filter="project"><option value="">全部项目</option>{% for project in projects %}<option value="{{ project|e }}">{{ project|e }}</option>{% endfor %}{% if unassigned %}<option value="-">未归入项目</option>{% endif %}</select></label>
   <label>市场<select data-pl-filter="market"><option value="">全部市场</option>{% for market in markets %}<option value="{{ market.code|e }}">{{ market.label|e }}</option>{% endfor %}</select></label>
   <span class="pl-active" data-pl-active hidden><span data-pl-active-text></span><button type="button" data-pl-clear>清除</button></span>
 </form>
+</div>
 <div id="matrix" class="pl-panels">
 {%- for category in categories %}
 <section class="pl-panel" id="cat-{{ category.id|e }}" data-panel="{{ category.id|e }}" aria-labelledby="cat-{{ category.id|e }}-title">
   <h2 class="pl-panel-title" id="cat-{{ category.id|e }}-title">{{ category.title|e }}</h2>
-  <div class="pl-scroll"><table class="pl-grid">
+  <div class="pl-scroll"><table class="pl-grid" style="--pl-cols:{{ category.columns|length }}">
     <thead><tr><th scope="col" class="pl-series">系列</th>{% for column in category.columns %}<th scope="col">{{ column|e }}</th>{% endfor %}</tr></thead>
     <tbody>
     {%- for row in category.rows %}
@@ -60,6 +68,8 @@
 </section>
 {%- endfor %}
 </div>
+</div>
 {%- endif %}
+{{ product_sync(freshness) }}
 </main>
 </div>{{ site_script() }}</body></html>

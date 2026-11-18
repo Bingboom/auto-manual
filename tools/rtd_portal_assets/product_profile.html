@@ -39,7 +39,7 @@
 {{ site_topbar('知识库', '产品档案') }}
 <main class="fr-page pf-page">
 {{ product_tabs('products/matrix', child=True) }}
-<a class="pf-back" href="{{ pathto('products/matrix')|e }}">‹ 产品库</a>
+<a class="pf-back" href="{{ pathto('products/matrix')|e }}">‹ 产品矩阵</a>
 <header class="fr-head pf-head">
   <h1>{{ name|e }}</h1>
   <p><b>{{ model|e }}</b>{% for part in classes %} · {{ part|e }}{% endfor %}{% if project %} · <a href="{{ pathto('products/matrix')|e }}?project={{ project|urlencode }}">{{ project|e }}</a>{% endif %} · <span class="pf-date">SKU 创建时间 {% for date in sku_dates %}<span data-market-date="{{ date.code|e }}">{% if sku_dates|length > 1 %}<span data-market-date-label>{% if not loop.first %}；{% endif %}{{ date.label|e }} </span>{% endif %}{{ date.text|e if date.text else '暂无' }}</span>{% else %}暂无{% endfor %}</span></p>

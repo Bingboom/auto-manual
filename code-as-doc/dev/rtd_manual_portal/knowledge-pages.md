@@ -6,18 +6,17 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 ## Personal workspace entry
 
 The manual library root (说明书资料库) remains independent. The portal extension
-also builds `/workspace/` (知识资产, the first page of the 知识资产 section; formerly
-知识库首页). It is for product colleagues, not for maintainers (operator review
-2026-11-17), and minimal:
+also builds `/workspace/` (知识资产, the first page of the 知识资产 section, listed as 资产总览 in its left list;
+formerly 知识库首页). It is for product colleagues, not for maintainers (operator review 2026-11-17), and minimal:
 
-- The title 知识资产 and one line (让产品信息和生产资料持续积累、关联和复用。).
-- **资产** (`#now`): three cards, 产品信息矩阵, 产品知识 and 语料库, each with its name, a
-  line of keywords and one figure with its date (`tools/rtd/asset_pages.py` `front_cards`;
-  暂无 when the figure cannot be read). 产品信息矩阵 shows only when the matrix is
-  built. No status chips or ledger references; see
-  [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
-- **入口** (`#doors`): 说明书资料库 and 市场与政策, then, with the bundled
-  beginner-facing AI sharing package, AI 使用知识分享 (a link to
+- The title 知识资产 and one line (让产品信息和生产资料持续积累、关联和复用。), with the summary capsule at the
+  right: 收录机型, 正式说明书 and 覆盖语种 (`tools/rtd/asset_pages.py` `front_summary`; 暂无 when a figure cannot
+  be read).
+- **资产** (`#now`): six cards, one per page of the section (产品信息, 说明书资料库, 语料库, 产品知识, 视觉媒体,
+  市场与政策), each with an icon (no arrow; the whole card is the link), its name, one sentence, one figure and a count badge (`front_cards`).
+  The figure's date is only the badge's tooltip; nothing dated is printed. 产品信息 shows only when the matrix is
+  built. No status chips or ledger references; see [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
+- **分享** (`#doors`): with the bundled beginner-facing AI sharing package, AI 使用知识分享 (a link to
   `/ai-share/00_打开分享.html`).
 
 The former 主线, 正在做, 去哪里 groups, 定位与价值 theme cards and 最近更新 list left
@@ -395,7 +394,8 @@ entries now link directly to the workbench statistics tab; the retired
 
 ## Product matrix page
 
-`/products/matrix.html` is **产品库** (step 13 of the 2026-11 redesign, REV-53; the
+`/products/matrix.html` is **产品矩阵** (named 产品库 from 2026-11-17 until the operator's
+rename of 2026-11-18, 「产品库 这几个字 改成 产品矩阵」; step 13 of the 2026-11 redesign, REV-53; the
 operator approved the design on 2026-11-17). It is the 产品信息 entry of the private
 sidebar (see [asset-layers.md](asset-layers.md#front-pages)); the former 属性字典
 address forwards here, and the public manual library never links to it.
@@ -413,8 +413,8 @@ address forwards here, and the public manual library never links to it.
   public-role build in `tests/test_rtd_portal.py` fails if any file or text of
   `knowledge/product-matrix` reaches its output. Tests use invented products and
   projects (`P-FAKE-*`).
-- **Freshness.** Every product page (产品库, 产品对比, 参数表, 产品档案) shows, under
-  its header, `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; a v1.1 snapshot
+- **Freshness.** Every product page (产品矩阵, 产品对比, 参数表, 产品档案) shows, under
+  its header (on 产品矩阵, under the matrix card, with the warning box above the card), `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; a v1.1 snapshot
   has no build time and shows `未记录（旧版快照）`), and an amber `数据可能不是最新`
   box when the snapshot is past the registry's `product_matrix.stale_after_days`
   without a successful check, when the last check found the base ahead or failed, or
@@ -423,19 +423,22 @@ address forwards here, and the public manual library never links to it.
   `product-matrix/status.json` (written by the sync check, contract §6.1 of
   [product_matrix_base.md](../product_matrix_base.md)); the build never reads the base.
   The status counts only while it describes the snapshot on disk (same `read_at`). The
-  shared `product_freshness` macro lives in `_product_tabs.html`. The status file is as
+  shared `product_freshness` macro (and its two parts `product_stale` and `product_sync`) lives in `_product_tabs.html`. The status file is as
   private as the snapshot: the public-role test also plants one and fails if any of it
   reaches the output.
-- **Layout.** The title 产品库 and one line, `<n> 款产品 · 更新于 <date>` (models, and
-  the snapshot's read date). A tab per category, in the 产品分类 snapshot's order
-  (others after it, then 其他 for products without a category). Each tab is a table:
+- **Layout** (the operator's reference layout of 2026-11-18). The title 产品矩阵 and one line, `<n> 款产品 · 更新于 <date>`
+  (models, and the snapshot's read date), with the 产品矩阵 · 产品对比 · 参数表 tabs as a segmented control at the
+  right (above the title on a phone). Then one white card: a tinted header zone holds a tab per category with its
+  model count (the current one a dark pill), in the 产品分类 snapshot's order (others after it, then 其他 for
+  products without a category), and the filters; below it the matrix. Each tab is a table:
   rows are 系列 (a 未分类 row for products without one), columns the 容量档 present (a
   容量未注明 column when a product lacks one), or a single 产品 column for a category
   without tiers.
 - **Chips.** Each cell holds the model codes as chips. Models of one project in one
   cell are one chip, `A(B)`: the first written outside the brackets, the others
   inside (`A(B、C)` with more), each code its own link, in code order: the
-  alphabetically first code goes outside (`FAKE-A(FAKE-B)`).
+  alphabetically first code goes outside (`FAKE-A(FAKE-B)`); the bracketed codes are grey. A column keeps a
+  113px minimum (series column 96px), as before the restyle, so as many tiers show at a given width.
   The SKU 创建时间 does not order chips. A model without a project is a chip of its own.
   Models of one project in different cells are not merged across cells, since a cell's
   place is its series and tier; the 项目 filter highlights all of them. Each
@@ -451,8 +454,8 @@ address forwards here, and the public manual library never links to it.
   containing a space or `|` stays one value): a chip with a row that satisfies every set
   filter is highlighted and the rest are dimmed, never hidden; a pill names the active filters
   with 清除. The tabs switch categories and keep the open one in the hash
-  (`#cat-c1`). Without JavaScript every category shows stacked and the filters stay
-  hidden. Node tests: `tests/product_library_ui.test.mjs`.
+  (`#cat-c1`). Without JavaScript every category shows stacked under its own title inside the card and the
+  header zone (tabs and filters) stays hidden. Node tests: `tests/product_library_ui.test.mjs`.
 - **Failure.** Without the snapshot, or with no product in it, the page says
   还没有产品数据。; with an unreadable or wrong-schema one it says
   产品数据暂时读不到，请稍后再看。 with a Sphinx warning. A warning never fails the
@@ -472,7 +475,7 @@ address forwards here, and the public manual library never links to it.
 (`tools/rtd/product_profile.py`, `product_profile.html`; step 13, REV-53). Private role
 only. Pages are built only from a snapshot that carries the decided **cells** (schema
 v1.1): without a usable snapshot, or without cells, no product page is built and
-产品库 links each code to the manual library instead, so no link points to a missing
+产品矩阵 links each code to the manual library instead, so no link points to a missing
 page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`, never
 `..`) gets no page, with a Sphinx warning.
 
@@ -483,9 +486,9 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
   the chosen one first). A test condition (STC, NOCT, …) is its own row, labelled
   `额定功率（STC）`. A cell whose `display` is empty shows 暂无; `empty_reason` is never
   shown.
-- **Head:** `‹ 产品库`, the name (the name printed in the product's first market in
+- **Head:** `‹ 产品矩阵`, the name (the name printed in the product's first market in
   the usual order, else its short name), then one line: model · category · series ·
-  capacity tier · project (a link to 产品库 filtered by it) · `SKU 创建时间` with year and
+  capacity tier · project (a link to 产品矩阵 filtered by it) · `SKU 创建时间` with year and
   month (`first_sku_created`), `不晚于 <年-月>` when the snapshot marks it an upper bound
   (`first_sku_created_upper_bound`), or `暂无`. The date is per market (契约 §3/§4.1, SKU
   最早创建时间（本市场）): the head shows the market the switch has chosen and follows the
@@ -541,15 +544,16 @@ page. A model code that is not a safe page name (letters, digits, `.`, `-`, `_`,
 Both read the same snapshot (`tools/rtd/product_tables.py`; step 13, REV-53), private role
 only, and, like 产品档案, its decided cells: each shows a cell's `display`, sorts and
 compares by its `number` (else its text), and a test condition is its own column or row
-(`额定功率（STC）`). They are built whenever 产品库 has a snapshot, so its tabs never point to
+(`额定功率（STC）`). They are built whenever 产品矩阵 has a snapshot, so its tabs never point to
 a missing page; a snapshot without cells makes both say 产品数据暂时读不到，请稍后再看。 with no
 figures, and one without products 还没有产品数据。. The
-product pages carry the sub-tabs 产品库 · 产品对比 · 参数表 (`_product_tabs.html`; a
-产品档案 counts as 产品库, whose tab it marks `aria-current="true"` rather than `"page"`,
+product pages carry the sub-tabs 产品矩阵 · 产品对比 · 参数表 as a segmented control (`_product_tabs.html`; at the
+right of the title on 产品矩阵, 产品对比 and 参数表, above the header on 产品档案; a
+产品档案 counts as 产品矩阵, whose tab it marks `aria-current="true"` rather than `"page"`,
 since the page sits below that tab).
 
 - **参数表** (`/products/table.html`, `product_table.html`, `_static/product-table.js`;
-  the operator's 产品矩阵 frame, named 参数表 so it is not confused with 产品库): one table
+  the operator's 产品矩阵 frame, named 参数表 so it is not confused with the 产品矩阵 page): one table
   per category, a row per model × market, columns 产品 (a link to its 产品档案), 型号,
   市场, 项目 (未归入 when none), SKU 创建时间 (each row's own market; 暂无 when that market has
   none), then the (parameter, condition) columns that
