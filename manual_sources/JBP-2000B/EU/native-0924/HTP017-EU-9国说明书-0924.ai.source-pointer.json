@@ -1,0 +1,14 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "HTP017-EU-9国说明书-0924.ai",
+  "sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+  "size_bytes": 28648316,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28b6fqvOB1b",
+    "field_name": "source_file",
+    "file_token": "GwVwb0R6LowxhwxdbTlcQWewnQg"
+  },
+  "source_key": "source/manual_jbp2000b_eu_0924_ai"
+}
