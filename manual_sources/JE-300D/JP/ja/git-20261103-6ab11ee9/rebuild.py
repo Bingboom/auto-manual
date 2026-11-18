@@ -33,6 +33,10 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.web.frozen_ai_web import replay_package  # noqa: E402
 from tools.web.presentation import load_web_manual_contract  # noqa: E402
+from tools.web.external_source_store import (  # noqa: E402
+    resolve_source_identity,
+    reviewed_inputs_match_with_pointers,
+)
 
 
 def check_inventory(base: Path, rows: list[dict]) -> None:
@@ -45,7 +49,7 @@ def check_inventory(base: Path, rows: list[dict]) -> None:
 
 
 def archived_pdf_sha256(original: dict) -> str:
-    return hashlib.sha256((SOURCE_ROOT / original["filename"]).read_bytes()).hexdigest()
+    return resolve_source_identity(SOURCE_ROOT / original["filename"])[1]
 
 
 def rebuild(output: Path, language: str = "ja") -> None:
@@ -73,7 +77,14 @@ def rebuild(output: Path, language: str = "ja") -> None:
                     if not row["path"].startswith("web/") and row["path"] != "source/approval.json"]
         if (approval.get("target") != {key: manifest["target"][key] for key in ("model", "region", "technical_version")}
                 or approval.get("original_source_sha256") != original["sha256"]
-                or approval.get("reviewed_inputs") != reviewed
+                or not reviewed_inputs_match_with_pointers(
+                    SOURCE_ROOT,
+                    approval.get("reviewed_inputs"),
+                    reviewed,
+                    original_sha256=original["sha256"],
+                    raw_archive_paths=(original["filename"],),
+                    adapter_paths=("rebuild.py",),
+                )
                 or not approval.get("operator_quote")):
             raise ValueError("operator acceptance does not cover these source inputs")
     # The page carries only the artwork its copy and the source stylesheet reference.

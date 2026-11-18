@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-2000E_修正版_竖版.pdf",
+  "sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+  "size_bytes": 10263002,
+  "feishu": {
+    "table_id": "tblTjXsls8M7j7QT",
+    "record_id": "reczz28MOs9N8CLh",
+    "field_name": "pdf（带修正色）",
+    "file_token": "R6Udbme5Bol1wpx9hWkcc7Lrndf"
+  },
+  "local_relpath": "JE-2000E_修正版_竖版.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

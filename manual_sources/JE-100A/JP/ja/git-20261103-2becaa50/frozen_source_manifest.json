@@ -478,9 +478,9 @@
   },
   "inputs": [
     {
-      "path": "JE-100A-JP-JA.pdf",
-      "size": 1745957,
-      "sha256": "2becaa507bbfd8d051888ac85d96a5399f0959224e9e6acb85211599baa06262"
+      "path": "JE-100A-JP-JA.pdf.source-pointer.json",
+      "size": 551,
+      "sha256": "15d5a1e9392bedfbed22134658ff0a236a5c12e685e2d9ee8f1f56c2d357850f"
     },
     {
       "path": "README.md",
@@ -629,8 +629,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6357,
-      "sha256": "fbc32eac7d12a8f99efe6b2f2028e4c9a9a69f299d15d13e4c67c6ee639df797"
+      "size": 6805,
+      "sha256": "a02511890e5b21fcf87f5a2bd6a27ae97198d13229a1ea50e0a5d2baca1c3910"
     },
     {
       "path": "refresh_manifest.py",
@@ -679,8 +679,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 22428,
-      "sha256": "bbf2af455e4153de75aa01b5a49005ad039a5235dd8dc13e75bfa4746b5b44b1"
+      "size": 22444,
+      "sha256": "4a24ef2cc604e99b5e0d1bb8a7a74922cadb0dd778304b6e3785422fe76606a5"
     },
     {
       "path": "web/ja/_static/source_geometry.css",

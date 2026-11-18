@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-5000A-US-EN.pdf",
+  "sha256": "804ebe784c84a698800b2c1cc0f4d28ec692057b1600c48fcc3604e27c86f013",
+  "size_bytes": 10853970,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3XbOCM",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "G7gQbX05ioncoqxiTXjc4T4Rn4e"
+  },
+  "local_relpath": "JE-5000A-US-EN.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-3000B-US-EN.pdf",
+  "sha256": "bd8a82962865ae64cd52e9c6ebf9a20d8495652773ba09806d1911cb0f360294",
+  "size_bytes": 4152802,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3Xb6yX",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "GvbobiRbXoQMmexF0NOczBgWn7d"
+  },
+  "local_relpath": "JE-3000B-US-EN.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

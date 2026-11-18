@@ -475,9 +475,9 @@
   "artwork_inventory": "source/discovery.md, source/asset_decisions.json",
   "inputs": [
     {
-      "path": "JE-2000D-JP-JA.pdf",
-      "size": 3664234,
-      "sha256": "62605f215fe45b9ab600b44be336e217d854292e14921833b0d26e51a665709f"
+      "path": "JE-2000D-JP-JA.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "f97b06afd414059c086a605766586dbe1a71449756e72fafce81188278f51665"
     },
     {
       "path": "README.md",
@@ -696,8 +696,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6491,
-      "sha256": "ae32e4694ad03c7baa6353babe46da42d54944ceb63300aa7cd4523d626e5ae7"
+      "size": 6939,
+      "sha256": "1a61b81b5e633a5d3c1984516aa183dd85819614e7943a5ff3c4e32d38edb668"
     },
     {
       "path": "refresh_manifest.py",
@@ -746,8 +746,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 34208,
-      "sha256": "ce2e12c989b55e7724d719cd458d4784969f0f668610be90771b022d3354bfa6"
+      "size": 34224,
+      "sha256": "6ce126f6c95462ee8b570daf00092c9b6a14d215d4617c070a9b86b3b9d9468c"
     },
     {
       "path": "web/ja/_static/source_geometry.css",

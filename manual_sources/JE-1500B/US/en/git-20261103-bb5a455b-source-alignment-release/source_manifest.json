@@ -72,9 +72,9 @@
   },
   "inputs": [
     {
-      "path": "JE-1500B-US-EN.pdf",
-      "size": 3868124,
-      "sha256": "bb5a455b5c3e03b70ee95d6d6ceb74a9c98b671addc1d30d9637f9bb974a7dbb"
+      "path": "JE-1500B-US-EN.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "c19b1b6f916d088643da7bc857ea127abb05d74f7f00a62290c045aa8eefba05"
     },
     {
       "path": "README.md",
@@ -213,8 +213,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6383,
-      "sha256": "b042913bfcb3e3d828f982dc5c30c663146eee0598fa4fb97fea5fac6685f659"
+      "size": 6831,
+      "sha256": "7e88ff7c8f0025a169cc5bbd2cd12e1ab9d1fa2cbf579eec0828e62a5f574dad"
     },
     {
       "path": "refresh_manifest.py",

@@ -66,9 +66,9 @@
   "repo_inputs": [],
   "inputs": [
     {
-      "path": "JE-2000C-US-EN.pdf",
-      "size": 2769777,
-      "sha256": "c357f54dfed27d11d72a2a4893e485450a49c1b562e21f0f272708857f1510ab"
+      "path": "JE-2000C-US-EN.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "47abf35c2095078b2a35e80936ea7e9689fecf7345ee2466898a3e6349f670e5"
     },
     {
       "path": "README.md",
@@ -347,8 +347,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6365,
-      "sha256": "0ba03a763c6e13b1ad4462f2eedc2cf7616f1c6a1013538f2e02ee1bf23a9a0d"
+      "size": 6813,
+      "sha256": "1f19a78642b693df73a462e8a85a17bb7a28626bd5e36cffc58f68595a49f3b0"
     },
     {
       "path": "refresh_manifest.py",
@@ -407,8 +407,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 18248,
-      "sha256": "41a63489a0d6d2f4e67d6380ec932560a4d24a3ffa37b0eac8d3d959e64d01e9"
+      "size": 18264,
+      "sha256": "42094e524162a746fe8a679b03d5aa2da65825581f50eedf4ae7721def237a3a"
     },
     {
       "path": "web/en/_static/source_geometry.css",

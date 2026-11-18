@@ -17,6 +17,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.web.external_source_store import POINTER_SUFFIX, cold_replay_ir_matches, resolve_source_identity
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "manual_sources/JE-1500D/US/en/git-20261027-772c3698"
@@ -66,7 +67,7 @@ class Je1500dUsWebTests(unittest.TestCase):
         self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("US", ["en"]))
         self.assertEqual(manifest["target"]["technical_version"], PACKAGE.name)
         self.assertEqual(manifest["original_source"]["sha256"], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / manifest["original_source"]["filename"]), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / manifest["original_source"]["filename"])[1], SOURCE_SHA)
         self.assertEqual(manifest["feishu_record"]["record_id"], "reczz28SPRx9ntZO")
         self.assertEqual(manifest["feishu_record"]["物料号文本"], "38-0001-000943")
         ir = read(PACKAGE / "web/en/manual.ir.json")
@@ -81,7 +82,7 @@ class Je1500dUsWebTests(unittest.TestCase):
 
     def test_no_feishu_tokens_are_recorded(self):
         for path in PACKAGE.rglob("*"):
-            if path.suffix in {".json", ".md", ".py"} and "web" not in path.relative_to(PACKAGE).parts:
+            if not path.name.endswith(POINTER_SUFFIX) and path.suffix in {".json", ".md", ".py"} and "web" not in path.relative_to(PACKAGE).parts:
                 text = path.read_text(encoding="utf-8")
                 for marker in ("obj_token", "file_token", "feishu.cn/file", "feishu.cn/wiki"):
                     self.assertNotIn(marker, text, path)
@@ -169,8 +170,24 @@ class Je1500dUsWebTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
             rebuild.rebuild(output)
-            for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css", "conf.py"):
+            for name in (MARKDOWN, "_static/source_geometry.css", "conf.py"):
                 self.assertEqual((output / name).read_bytes(), (PACKAGE / "web/en" / name).read_bytes(), name)
+
+            self.assertTrue(
+
+                cold_replay_ir_matches(
+
+                    read(output / "manual.ir.json"),
+
+                    read(PACKAGE / "web/en/manual.ir.json"),
+
+                    read(PACKAGE / "source_manifest.json"),
+
+                ),
+
+                "manual.ir.json",
+
+            )
 
     def test_content_is_rebuilt_from_transcription(self):
         builder = load("je1500d_us_build_content", PACKAGE / "build_content.py")

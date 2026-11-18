@@ -37,7 +37,7 @@ STATUS = APPROVED
 LANGUAGE = 'ja'
 PDF = 'Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf'
 # Copied byte-for-byte; the base edition's scripts, docs, approval, validation and web are not.
-COPIED = (PDF, 'artwork', 'asset_provenance.json', 'source')
+COPIED = (f'{PDF}.source-pointer.json', 'artwork', 'asset_provenance.json', 'source')
 # Native PDF block whose print lines the correction rewords (physical page, block index).
 CORRECTED_NATIVE_BLOCKS = [(20, 5)]
 

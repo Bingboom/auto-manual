@@ -379,9 +379,9 @@
   "artwork_inventory": "source/discovery.md, source/asset_decisions.json",
   "inputs": [
     {
-      "path": "JE-2000D-US-EN.pdf",
-      "size": 2088846,
-      "sha256": "3d50ef6490217a0893119567ef0d276f40b23d45e52e51560e97f724b6ca8c77"
+      "path": "JE-2000D-US-EN.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "a444883ecece5a2e82dd4d917cff45ee7e0cbfd05a671f516a153755ddf33964"
     },
     {
       "path": "README.md",
@@ -530,8 +530,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6473,
-      "sha256": "67ce9d0f060533e331e6d4e63ac45e589abab33f0cabef8af8ada359d5686dbe"
+      "size": 6921,
+      "sha256": "011beb4a34e57396573a2c0b5850c0d0234420cdd58f680113eb3fd1d497437c"
     },
     {
       "path": "refresh_manifest.py",

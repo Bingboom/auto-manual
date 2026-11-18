@@ -40,6 +40,10 @@ from tools.web.shared_symbol_assets import require_shared_symbol_binding, requir
 from tools.web.symbol_asset_admission import (  # noqa: E402
     SCHEMA, _component_rows, _reference, compare_symbol, require_symbol_asset_admission,
 )
+from tools.web.external_source_store import (  # noqa: E402
+    resolve_source_identity,
+    reviewed_inputs_match_with_pointers,
+)
 
 LANGUAGE = 'en'
 CATALOG = REPO_ROOT / 'docs/renderers/web/assets/shared/symbols/manifest.json'
@@ -96,7 +100,7 @@ def rebuild(output: Path) -> None:
             if not path.is_relative_to(base) or not path.is_file() or file_sha256(path) != row['sha256']:
                 raise ValueError('input missing or changed: ' + row['path'])
     source = json.loads((SOURCE_ROOT / 'source/en/content.json').read_text())
-    if file_sha256(SOURCE_ROOT / manifest['original_source']['filename']) != source['source_sha256']:
+    if resolve_source_identity(SOURCE_ROOT / manifest['original_source']['filename'])[1] != source['source_sha256']:
         raise ValueError('authoritative PDF identity changed')
     approved = manifest['publication_status'] == 'operator-authorized-git-only-release'
     approval = json.loads((SOURCE_ROOT / 'source/approval.json').read_text()) if approved else None
@@ -104,7 +108,14 @@ def rebuild(output: Path) -> None:
         if manifest.get('staged_shared_symbols'):
             raise ValueError('staged symbols must enter the shared catalog before release')
         reviewed = [r for r in manifest['inputs'] if not r['path'].startswith('web/') and r['path'] != 'source/approval.json']
-        if (approval['source_sha256'] != source['source_sha256'] or approval['verified_inputs'] != reviewed
+        if (approval['source_sha256'] != source['source_sha256'] or not reviewed_inputs_match_with_pointers(
+                SOURCE_ROOT,
+                approval.get('verified_inputs'),
+                reviewed,
+                original_sha256=source['source_sha256'],
+                raw_archive_paths=(manifest['original_source']['filename'],),
+                adapter_paths=('rebuild.py',),
+            )
                 or approval['target'] != manifest['target'] or not approval['operator_quote']):
             raise ValueError('release authority does not cover these source inputs')
     shutil.copytree(SOURCE_ROOT / 'assets', output / 'assets')

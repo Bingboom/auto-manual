@@ -381,6 +381,39 @@ def resolve_archived_pdf_sha256(
     return digest_hex
 
 
+def cold_replay_ir_matches(
+    replayed_ir: Mapping[str, Any],
+    frozen_ir: Mapping[str, Any],
+    expected_manifest: Mapping[str, Any],
+    *,
+    manifest_bundle_sha256: bool = False,
+) -> bool:
+    """Return True when replayed Manual IR matches frozen IR except updated source manifest metadata."""
+    from tools.manual_ir.hashing import value_sha256
+
+    replayed_meta = replayed_ir.get("metadata")
+    frozen_meta = frozen_ir.get("metadata")
+    if not isinstance(replayed_meta, Mapping) or not isinstance(frozen_meta, Mapping):
+        return False
+    skip_top = {"metadata", "bundle_sha256"} if manifest_bundle_sha256 else {"metadata"}
+    if {k: v for k, v in replayed_ir.items() if k not in skip_top} != {
+        k: v for k, v in frozen_ir.items() if k not in skip_top
+    }:
+        return False
+    if {k: v for k, v in replayed_meta.items() if k != "frozen_source_manifest"} != {
+        k: v for k, v in frozen_meta.items() if k != "frozen_source_manifest"
+    }:
+        return False
+    if replayed_meta.get("frozen_source_manifest") != expected_manifest:
+        return False
+    if not manifest_bundle_sha256:
+        return True
+    return (
+        replayed_ir.get("bundle_sha256") == value_sha256(expected_manifest)
+        and frozen_ir.get("bundle_sha256") == value_sha256(frozen_meta.get("frozen_source_manifest"))
+    )
+
+
 def _validate_pointer_archive_parity(
     package_root: Path,
     matched_raw: list[Mapping[str, Any]],

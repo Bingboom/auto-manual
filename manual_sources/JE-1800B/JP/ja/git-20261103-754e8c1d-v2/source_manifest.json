@@ -527,9 +527,9 @@
   },
   "inputs": [
     {
-      "path": "JE-1800B-JP-V2.pdf",
-      "size": 2461187,
-      "sha256": "754e8c1d076b7d5fd9d84ac76ce9447dccec4a9351c7b7d756a3225255b4da52"
+      "path": "JE-1800B-JP-V2.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "bb3809c50806c3d341945692c9aebad8a16c43aa7745bf3ecd8262673f3a21bd"
     },
     {
       "path": "README.md",
@@ -883,8 +883,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6353,
-      "sha256": "122a5e44f9ecccb8c7eede723a03156756c59d664c215768311afbfe50f586ad"
+      "size": 6801,
+      "sha256": "38309b195b38492d66e1be4e8c7fa33122648857c4b38113bd0e492ee9e47fb3"
     },
     {
       "path": "refresh_manifest.py",

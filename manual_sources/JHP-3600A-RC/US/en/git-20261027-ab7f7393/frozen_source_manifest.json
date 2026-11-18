@@ -440,9 +440,9 @@
   },
   "inputs": [
     {
-      "path": "JHP-3600A-RC-US-EN.pdf",
-      "size": 4894475,
-      "sha256": "ab7f7393ed6fd1e08656f19a48bdc7fce8f827ee9be629f8aebfd95b7d5cf857"
+      "path": "JHP-3600A-RC-US-EN.pdf.source-pointer.json",
+      "size": 561,
+      "sha256": "36cf922c0b757b8bc8274845b796017bab5006740cfa5feeee3e37e2c14d5085"
     },
     {
       "path": "README.md",
@@ -821,8 +821,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6369,
-      "sha256": "cef0d176b712b6e937b435beafb9afe60d77c1dc3ebb0483d38b5c881b9f8b43"
+      "size": 6817,
+      "sha256": "2d8e35ff76a5c17917dbfc37d2f409f36c937f7f9be9deb3cede65b8c31ae498"
     },
     {
       "path": "refresh_manifest.py",
@@ -871,8 +871,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 32004,
-      "sha256": "c25b26563471b68662ef783cac642cafc4b00402c2a0a9a019f4b936d4d73dce"
+      "size": 32020,
+      "sha256": "6bf0202f3460becf26208cf45e96b1bc94b885edf8fdcc02cee462faee96b0d5"
     },
     {
       "path": "web/en/_static/source_geometry.css",

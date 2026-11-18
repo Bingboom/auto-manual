@@ -25,6 +25,7 @@ from tools.markdown_bundle import _write_myst_sphinx_scaffold  # noqa: E402
 from tools.web.frozen_ai_web import replay_package  # noqa: E402
 from tools.web.presentation import load_web_manual_contract  # noqa: E402
 from tools.web.prepared_style_audit import require_prepared_document_styles  # noqa: E402
+from tools.web.external_source_store import resolve_source_identity  # noqa: E402
 
 
 def rebuild(output):
@@ -42,7 +43,7 @@ def rebuild(output):
                 raise ValueError("input missing or changed: " + row["path"])
     source = json.loads((PACKAGE / "source/content.json").read_text())
     if (
-        file_sha256(PACKAGE / manifest["original_source"]["path"])
+        resolve_source_identity(PACKAGE / manifest["original_source"]["path"])[1]
         != source["source_sha256"]
     ):
         raise ValueError("authoritative PDF changed")

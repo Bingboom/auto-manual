@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.web.external_source_store import cold_replay_ir_matches, resolve_source_identity
 from tests.historical_app_styles import pre_rowspan_divider_styles
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,7 +63,7 @@ class Je1000gJpWebTests(unittest.TestCase):
         self.assertEqual((manifest["target"]["region"], manifest["target"]["languages"]), ("JP", ["ja"]))
         self.assertEqual(manifest["target"]["technical_version"], PACKAGE.name)
         self.assertEqual(manifest["original_source"]["sha256"], SOURCE_SHA)
-        self.assertEqual(file_sha256(PACKAGE / manifest["original_source"]["filename"]), SOURCE_SHA)
+        self.assertEqual(resolve_source_identity(PACKAGE / manifest["original_source"]["filename"])[1], SOURCE_SHA)
         self.assertEqual(manifest["base_record"]["record_id"], "reczz28SfbsHbQU5")
         self.assertFalse(manifest["design_original"]["stored_in_package"])
         ir = read(PACKAGE / "web/ja/manual.ir.json")
@@ -147,8 +148,24 @@ class Je1000gJpWebTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             output = Path(temp) / "replay"
             rebuild.rebuild(output)
-            for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css"):
+            for name in (MARKDOWN, "_static/source_geometry.css"):
                 self.assertEqual((output / name).read_bytes(), (PACKAGE / "web/ja" / name).read_bytes(), name)
+
+            self.assertTrue(
+
+                cold_replay_ir_matches(
+
+                    read(output / "manual.ir.json"),
+
+                    read(PACKAGE / "web/ja/manual.ir.json"),
+
+                    read(PACKAGE / "source_manifest.json"),
+
+                ),
+
+                "manual.ir.json",
+
+            )
 
     def test_content_is_rebuilt_from_transcription(self):
         builder = load("je1000g_jp_build_content", PACKAGE / "build_content.py")

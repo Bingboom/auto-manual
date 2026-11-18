@@ -16,6 +16,7 @@ from unittest import mock
 from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.web.external_source_store import cold_replay_ir_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 AD500A = ROOT / 'manual_sources/JA-AD500A-SIL/JP/ja'
@@ -190,7 +191,20 @@ class JapaneseSolarVocEditionTests(unittest.TestCase):
     @pre_four_control_styles
     def test_h1_cold_replay_matches_committed_web(self):
         rebuild_h1(H1_PACKAGE, self.root / 'out')
-        self.assertEqual(tree(self.root / 'out'), tree(H1_PACKAGE / 'web/ja'))
+        out_tree = {k: v for k, v in tree(self.root / 'out').items() if k != 'manual.ir.json'}
+        frozen_tree = {k: v for k, v in tree(H1_PACKAGE / 'web/ja').items() if k != 'manual.ir.json'}
+        self.assertEqual(out_tree, frozen_tree)
+        h1_manifest = read(H1_PACKAGE / 'source_manifest.json')
+        expected_fsm = {**h1_manifest, 'inputs': [r for r in h1_manifest['inputs'] if not r['path'].startswith('web/')]}
+        self.assertTrue(
+            cold_replay_ir_matches(
+                read(self.root / 'out/manual.ir.json'),
+                read(H1_PACKAGE / 'web/ja/manual.ir.json'),
+                expected_fsm,
+                manifest_bundle_sha256=True,
+            ),
+            'manual.ir.json',
+        )
         metadata = read(self.root / 'out/manual.ir.json')['metadata']
         manifest = read(H1_PACKAGE / 'source_manifest.json')
         self.assertEqual(metadata['publication_eligible'], manifest['publication_eligible'])

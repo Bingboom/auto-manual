@@ -1,9 +1,10 @@
 """Source facts and identity boundaries for the four US accessory candidates."""
 
-import hashlib
 import json
 from pathlib import Path
 import unittest
+
+from tools.web.external_source_store import resolve_source_identity
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,7 +45,7 @@ class UsAccessorySourceIntakeTests(unittest.TestCase):
                 self.assertEqual(manifest["target"]["languages"], ["en"])
                 self.assertEqual(manifest["original_source"]["sha256"], digest)
                 original = source / manifest["original_source"]["path"]
-                self.assertEqual(hashlib.sha256(original.read_bytes()).hexdigest(), digest)
+                self.assertEqual(resolve_source_identity(original)[1], digest)
                 self.assertFalse(manifest["publication_eligible"])
                 self.assertEqual(
                     manifest["publication_status"], "review-candidate-no-release-authorization"

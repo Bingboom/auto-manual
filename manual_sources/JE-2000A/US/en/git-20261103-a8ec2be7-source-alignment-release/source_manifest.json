@@ -89,9 +89,9 @@
   },
   "inputs": [
     {
-      "path": "JE-2000A-US-EN.pdf",
-      "size": 5437332,
-      "sha256": "a8ec2be735be6483d340f2f35c7bc13a9300bf7d9499f60099ed8d5ef5cf689f"
+      "path": "JE-2000A-US-EN.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "52eb3078c62956b27330044f134aa74f5ad7fdce0614f2a486228a5116a05444"
     },
     {
       "path": "README.md",
@@ -385,8 +385,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6427,
-      "sha256": "ce1e3fea0b46876174dcdc56589c54af500776beadff567a40a87a26860eba84"
+      "size": 6875,
+      "sha256": "b1c6770a972d43ff813012ad15a4fc4b89f9fd7975029a070ca0c4d0ba7f09fb"
     },
     {
       "path": "refresh_manifest.py",

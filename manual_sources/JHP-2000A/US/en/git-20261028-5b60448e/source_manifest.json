@@ -65,9 +65,9 @@
   "repo_inputs": [],
   "inputs": [
     {
-      "path": "JHP-2000A-US-en-V2.pdf",
-      "size": 1465449,
-      "sha256": "5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738"
+      "path": "JHP-2000A-US-en-V2.pdf.source-pointer.json",
+      "size": 561,
+      "sha256": "a7609a06a2373493b8de0407620dfc3a5e65818f9fb68cebbe35b27a8182b1ed"
     },
     {
       "path": "README.md",
@@ -421,8 +421,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6397,
-      "sha256": "1d192e3136e491ef156e700ee5805efe7aab962f3441257a4022e5ba056cc276"
+      "size": 6845,
+      "sha256": "d893130c87ae8722b45f0d193492f2005d90d02c103004c16d899c629cbbaf23"
     },
     {
       "path": "refresh_manifest.py",

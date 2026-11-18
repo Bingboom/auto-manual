@@ -69,9 +69,9 @@
   "repo_inputs": [],
   "inputs": [
     {
-      "path": "JE-1000G-JP-JA.pdf",
-      "size": 2804108,
-      "sha256": "6cf120136d8366ad37f590610d739e09754ddc38d4c8cd3123d9dca0de132aad"
+      "path": "JE-1000G-JP-JA.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "8f78bbc44fba4f9078ce607fd8394a627a0c7e5c6c42dcd2a6164aee47eaedcf"
     },
     {
       "path": "README.md",
@@ -450,8 +450,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6455,
-      "sha256": "ce0f2007cb73c4e5732c23c7afe96f4e4dce71818fc3b2daba6e45f2393d86a4"
+      "size": 6903,
+      "sha256": "49b3d80aa4a2a0fc877756643cae972ff9a991582aa82186fa5710d3fb9b745a"
     },
     {
       "path": "refresh_manifest.py",
@@ -500,8 +500,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 36697,
-      "sha256": "5d29fb48a48dfeda61ae4487bdd6bd2765bf3b14f5d0271460e336101f9b1e45"
+      "size": 36713,
+      "sha256": "c1c166717e72a1ce422ccb9c130daf0f743264e7296cab79f20847052c9743cd"
     },
     {
       "path": "web/ja/_static/source_geometry.css",

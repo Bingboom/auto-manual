@@ -865,9 +865,9 @@
   "transcription_cross_check": "Every line was transcribed from 150/300 dpi renders and compared word by word and number by number with an independent Tesseract 5 (psm 6) OCR pass of 300 dpi page strips, full width and per column half; all 47 disagreements were OCR misreads of white-on-dark headings, symbols (⎓, ≤, °, ×, ℃) or artwork, re-read on 300 dpi strips and 6x clips (temperature dashes, the full-width comma and colon, the ℃ glyph, USB-A rating hyphens, double spaces). Specifications, LCD, troubleshooting, safety and warranty numbers were re-read digit by digit.",
   "inputs": [
     {
-      "path": "JE-3000B-US-EN.pdf",
-      "size": 4152802,
-      "sha256": "bd8a82962865ae64cd52e9c6ebf9a20d8495652773ba09806d1911cb0f360294"
+      "path": "JE-3000B-US-EN.pdf.source-pointer.json",
+      "size": 553,
+      "sha256": "0ffcc3c1fb00d83e6f5296539543cfdb9978405095db5b5c921da5d4a317b433"
     },
     {
       "path": "README.md",
@@ -1151,8 +1151,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6427,
-      "sha256": "e73cb496d870fda27f260937dab1e62a0e4c543f65dd2f57f4268ce39605e503"
+      "size": 6875,
+      "sha256": "45de4eed6e8b8042b4cc5a899a82179df70fdf335e82ca04aa711802fb719055"
     },
     {
       "path": "refresh_manifest.py",

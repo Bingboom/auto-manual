@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JHP-2000A-US-en-V2.pdf",
+  "sha256": "5b60448e69a76d5a8386227bc800ffc83309c837dfc32f5b3fb1f0901bd3d738",
+  "size_bytes": 1465449,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3XbB2d",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "VwztbpmI3oBDezx6w8McCTmInWf"
+  },
+  "local_relpath": "JHP-2000A-US-en-V2.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JHP-3600A-RC-US-EN.pdf",
+  "sha256": "ab7f7393ed6fd1e08656f19a48bdc7fce8f827ee9be629f8aebfd95b7d5cf857",
+  "size_bytes": 4894475,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3XbLw6",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "GXrzbE6zGoNSnyxioeLcmXBcnQh"
+  },
+  "local_relpath": "JHP-3600A-RC-US-EN.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

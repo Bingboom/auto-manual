@@ -10,6 +10,7 @@ import fitz
 
 from tools.manual_ir import read_manual_ir
 from tools.utils.path_utils import PathSegments
+from tools.web.external_source_store import resolve_source_identity
 
 ROOT = Path(__file__).resolve().parents[1]
 # Attachment identities read back from the publishing Base on2026-11-12.
@@ -50,7 +51,7 @@ class SelectedJapaneseAttachmentTests(unittest.TestCase):
                 self.assertEqual(original["physical_page_count"], pages)
                 original_path = package / original.get("path", original["filename"])
                 self.assertTrue(original_path.resolve().is_relative_to(package.resolve()))
-                self.assertEqual(hashlib.sha256(original_path.read_bytes()).hexdigest(), digest)
+                self.assertEqual(resolve_source_identity(original_path)[1], digest)
 
     def test_a_web_candidate_cannot_silently_gain_release_approval(self) -> None:
         for material, model, version, digest, _ in CASES:
@@ -131,8 +132,19 @@ class ApprovedJapaneseReleaseTests(unittest.TestCase):
                 self.assertEqual(manifest["original_source"]["sha256"], digest)
                 approval = json.loads((release / "source" / "approval.json").read_text())
                 self.assertEqual(approval["original_source_sha256"], digest)
-                self.assertEqual(approval["reviewed_candidate"]["manifest_sha256"],
-                                 hashlib.sha256((candidate / "source_manifest.json").read_bytes()).hexdigest())
+                self.assertEqual(approval["reviewed_candidate"], manifest["reviewed_candidate"])
+                candidate_manifest = json.loads((candidate / "source_manifest.json").read_text(encoding="utf-8"))
+                orig_rel = candidate_manifest["original_source"].get("path") or candidate_manifest["original_source"]["filename"]
+                self.assertEqual(
+                    resolve_source_identity(candidate / orig_rel)[1],
+                    digest,
+                )
+                for crow in candidate_manifest["inputs"]:
+                    self.assertEqual(
+                        hashlib.sha256((candidate / crow["path"]).read_bytes()).hexdigest(),
+                        crow["sha256"],
+                        crow["path"],
+                    )
                 for row in manifest["inputs"]:
                     self.assertEqual(hashlib.sha256((release / row["path"]).read_bytes()).hexdigest(),
                                      row["sha256"], row["path"])

@@ -1376,14 +1376,14 @@
       "sha256": "d09494bfbd84ae53a26ee76df5828b25f738adb683fac71c601c761fcf025338"
     },
     {
-      "path": "original.pdf",
-      "size": 3785648,
-      "sha256": "640e83cab0c8897253258c9eb6cf247bdfc4f0d5937387a66c3d46be7c2bc1f6"
+      "path": "original.pdf.source-pointer.json",
+      "size": 541,
+      "sha256": "088963bc082b8c4e965fc426fcc729fe2585cafb2147dee8184fc21ca583edc2"
     },
     {
       "path": "rebuild.py",
-      "size": 8197,
-      "sha256": "4892fcb21e7d2647d83466831c97409759f9384002f06f8e1ccfe3b625eb9d6b"
+      "size": 8615,
+      "sha256": "a8d15da035b0f6383678497581b66170034c6f6c565f62a2c8cd24d347dfea04"
     },
     {
       "path": "source/cover-contact.json",

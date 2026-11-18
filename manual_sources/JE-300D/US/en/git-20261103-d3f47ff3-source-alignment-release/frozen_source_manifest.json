@@ -1962,14 +1962,14 @@
       "sha256": "8a73e7c14263cdd31b41d35e47c069397b7d4ed537d231445c0c72c96cc832ed"
     },
     {
-      "path": "original.pdf",
-      "size": 3783007,
-      "sha256": "d3f47ff3afe136665d1594e7395c9838ca00fe23450818e96641fc0fd4e6476b"
+      "path": "original.pdf.source-pointer.json",
+      "size": 541,
+      "sha256": "02499ced19e4120328d52ec3203bf3463ba643452af872f628b354370caabd83"
     },
     {
       "path": "rebuild.py",
-      "size": 8197,
-      "sha256": "4892fcb21e7d2647d83466831c97409759f9384002f06f8e1ccfe3b625eb9d6b"
+      "size": 8615,
+      "sha256": "a8d15da035b0f6383678497581b66170034c6f6c565f62a2c8cd24d347dfea04"
     },
     {
       "path": "source/approval.json",
@@ -2053,8 +2053,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 76704,
-      "sha256": "970f486e266b24f91dc7e04bb66095d459c6fe7ec539c16cf5a9605f840c607c"
+      "size": 76720,
+      "sha256": "ee04c001bf0a9188d46cdc483313817b98e40bb50f5f79364692f80199ac120e"
     },
     {
       "path": "web/en/_static/source_presentation.css",

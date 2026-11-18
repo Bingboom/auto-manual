@@ -1999,14 +1999,14 @@
       "sha256": "d7833e5427418be6131daae4e5227a8289d393064cdced4567c18c2c0b0f81f0"
     },
     {
-      "path": "original.pdf",
-      "size": 3539831,
-      "sha256": "3837e9fd2d779f07c7d59c7ddf82013756133dcc92aced9765d21cb8a485e39a"
+      "path": "original.pdf.source-pointer.json",
+      "size": 541,
+      "sha256": "59a1e8f7ea4467f9154e6c780a482665f755030c1c1bcffc376db5c078fdd355"
     },
     {
       "path": "rebuild.py",
-      "size": 8200,
-      "sha256": "d1ee618a2d771b6efd58975dbe233a6f1a0361c19a78ca74ac31bdd93c497d7d"
+      "size": 8618,
+      "sha256": "3ae3179af93aafb64b9e8218308016bb64667dfff831ea3b0aaf20e103c6b083"
     },
     {
       "path": "source/approval.json",

@@ -517,9 +517,9 @@
   },
   "inputs": [
     {
-      "path": "JE-240A-JP-JA.pdf",
-      "size": 3448108,
-      "sha256": "e227d165efcd389a260bb1b3f1a234c365c81465c01492c7e86d674afd8af2cf"
+      "path": "JE-240A-JP-JA.pdf.source-pointer.json",
+      "size": 551,
+      "sha256": "0fdb5a22e332a7accea82d0fe36df918d13c724116078fa93f0ec6f596637e2e"
     },
     {
       "path": "README.md",
@@ -668,8 +668,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 6357,
-      "sha256": "796bd130972375a4bc4ede493d64ba6400b934a8cc81dc15da5175f95c434bb0"
+      "size": 6805,
+      "sha256": "1208e885c3b8b5a217b94957ce0a0d579dfbe85072c5974143ff3406dff51ee6"
     },
     {
       "path": "refresh_manifest.py",

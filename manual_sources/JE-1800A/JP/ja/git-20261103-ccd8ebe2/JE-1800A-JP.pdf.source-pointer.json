@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JE-1800A-JP.pdf",
+  "sha256": "ccd8ebe25b3e5ab0a429ce0c4c4ffbe0fe47a34cee8bff3566228b3a9152ca91",
+  "size_bytes": 3650317,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3Xb47G",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "Uk2Jbxf4oo7QAvx2hW9c6xp7n0f"
+  },
+  "local_relpath": "JE-1800A-JP.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

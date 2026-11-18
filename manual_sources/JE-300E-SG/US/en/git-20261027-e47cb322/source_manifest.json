@@ -1822,14 +1822,14 @@
       "sha256": "60786ed50df8333c977773dee68a796c157d1330b44b04490e2b2557535ba41f"
     },
     {
-      "path": "original.pdf",
-      "size": 2407087,
-      "sha256": "e47cb3227267e799431d6231c8cd5eb950ceb0b7a9908e10cdb8e7abcf72c5d1"
+      "path": "original.pdf.source-pointer.json",
+      "size": 541,
+      "sha256": "17aad82804864f193418ba73c43cc8e5c92d4892e862b0b01c722f61f2668f29"
     },
     {
       "path": "rebuild.py",
-      "size": 8197,
-      "sha256": "4892fcb21e7d2647d83466831c97409759f9384002f06f8e1ccfe3b625eb9d6b"
+      "size": 8615,
+      "sha256": "a8d15da035b0f6383678497581b66170034c6f6c565f62a2c8cd24d347dfea04"
     },
     {
       "path": "source/approval.json",

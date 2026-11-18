@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "JHP-1000B-RC-US-en-V2.pdf",
+  "sha256": "af8a0775d0ba23a137fe024ae961c8b77f35797e1c8838a943ddbf8d418d9251",
+  "size_bytes": 9189510,
+  "feishu": {
+    "table_id": "tbl2tXQk8LnM2JKi",
+    "record_id": "reczz28Vph3XbMAA",
+    "field_name": "单语言说明书 -英语",
+    "file_token": "WvLebXSCnotrU1xEw1nclnTfnNf"
+  },
+  "local_relpath": "JHP-1000B-RC-US-en-V2.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}
