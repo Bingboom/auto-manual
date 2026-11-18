@@ -45,5 +45,31 @@ class DoctorEnAptCacheTests(unittest.TestCase):
         self.assertGreater(script.index(chown), script.index("sudo apt-get install"))
 
 
+class UnitShardAggregateTests(unittest.TestCase):
+    """`unit` is the required check; it must fail whenever any shard did not succeed."""
+
+    def setUp(self) -> None:
+        self.jobs = yaml.safe_load(WORKFLOW_PATH.read_text(encoding="utf-8"))["jobs"]
+
+    def test_shards_run_the_parallel_runner_over_the_whole_matrix(self) -> None:
+        shard = self.jobs["unit-shard"]
+        self.assertFalse(shard["strategy"]["fail-fast"])
+        self.assertGreaterEqual(len(shard["strategy"]["matrix"]["shard"]), 2)
+        step = shard["steps"][-1]
+        # Expression values reach the shell through env:, never expanded inside run:.
+        self.assertEqual({"UNIT_SHARD": "${{ matrix.shard }}", "UNIT_SHARD_TOTAL": "${{ strategy.job-total }}"}, step["env"])
+        self.assertEqual('python -m tests.run_fast --shard "${UNIT_SHARD}/${UNIT_SHARD_TOTAL}"', step["run"])
+        self.assertNotIn("${{", step["run"])
+
+    def test_unit_runs_even_after_a_shard_failure_and_requires_success(self) -> None:
+        unit = self.jobs["unit"]
+        self.assertEqual("unit-shard", unit["needs"])
+        self.assertTrue(str(unit["if"]).startswith("${{ always() && "))
+        step = unit["steps"][-1]
+        self.assertEqual("${{ needs.unit-shard.result }}", step["env"]["SHARDS_RESULT"])
+        self.assertIn('if [ "$SHARDS_RESULT" != "success" ]; then', step["run"])
+        self.assertIn("exit 1", step["run"])
+
+
 if __name__ == "__main__":
     unittest.main()

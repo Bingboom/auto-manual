@@ -1,129 +1,348 @@
-"""Local fast test tier: run test modules in parallel, skipping the slow ones.
+"""Parallel test runner: the CI ``unit`` shards and the local fast tier.
 
-``python -m unittest`` stays the full, single-process run that CI uses. This
-runner is for local iteration only::
+Each test module runs in its own ``python`` process, so a module can neither
+lean on nor leak into another module's imports or global state. Modules are
+spread over worker processes (one per CPU by default), heaviest first::
 
-    python -m tests.run_fast              # fast tier, one worker per CPU
-    python -m tests.run_fast -j 2         # fewer workers
-    python -m tests.run_fast --all        # every module, still in parallel
-    python -m tests.run_fast tests.test_x # only the named modules
+    python -m tests.run_fast                      # local fast tier (skips slow modules)
+    python -m tests.run_fast --all                # every module: the whole CI unit check
+    python -m tests.run_fast --shard 2/4          # exactly what CI shard 2 of 4 runs
+    python -m tests.run_fast --shard 2/4 --list   # show that shard's modules, run nothing
+    python -m tests.run_fast tests.test_x         # only the named modules
+    python -m tests.run_fast --all --write-timings  # refresh tests/unit_timings.json
 
-Modules listed in ``tests/slow_modules.txt`` (real Sphinx builds, IDML golden
-exports, frozen-AI replays) are skipped unless ``--all`` or named explicitly.
-Each worker runs a batch of modules with ``python -m unittest`` in its own
-process, so module-level state never leaks between batches.
+Shards are assigned deterministically from ``tests/unit_timings.json`` (recorded
+per-module seconds; an unknown module weighs ``default_seconds``), so every
+module lands in exactly one shard. The fast tier skips modules whose recorded
+time is at least ``SLOW_SECONDS`` (a module not yet recorded always runs). A
+module that runs longer than ``MODULE_TIMEOUT_SECONDS`` is killed with its
+process group and reported as timed out. A module that runs zero tests is an error
+unless the manifest lists it under ``zero_test_modules``.
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import os
-import re
+import signal
 import subprocess
 import sys
+import tempfile
 import time
-from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass
+import traceback
+import unittest
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass, field
 from pathlib import Path
 
 TESTS_DIR = Path(__file__).resolve().parent
 ROOT = TESTS_DIR.parent
-SLOW_LIST = TESTS_DIR / "slow_modules.txt"
+TIMINGS_PATH = TESTS_DIR / "unit_timings.json"
+SLOW_SECONDS = 5.0
+# Per-module wall-clock limit: far above the slowest module under CI load
+# (about 5.5 min) and below the CI job timeout (25 min), so a hang is named.
+MODULE_TIMEOUT_SECONDS = 15 * 60
+TIMEOUT_TAIL_LINES = 200
+REFRESH_COMMAND = "python -m tests.run_fast --all --write-timings"
 
-_RAN = re.compile(r"^Ran (\d+) tests? in", re.M)
-_FAILED = re.compile(r"^FAILED \((.*)\)$", re.M)
+
+@dataclass(frozen=True)
+class Timings:
+    modules: dict[str, float]
+    default_seconds: float
+    zero_test_modules: frozenset[str]
+
+    def weight(self, module: str) -> float:
+        return self.modules.get(module, self.default_seconds)
+
+    def is_slow(self, module: str) -> bool:
+        """Recorded at SLOW_SECONDS or more; a module not yet recorded is never slow."""
+
+        return self.modules.get(module, 0.0) >= SLOW_SECONDS
 
 
-def load_slow_modules(path: Path = SLOW_LIST) -> set[str]:
-    names = set()
-    for raw in path.read_text(encoding="utf-8").splitlines():
-        line = raw.split("#", 1)[0].strip()
-        if line:
-            name = line.split()[0]
-            names.add(name if name.startswith("tests.") else f"tests.{name}")
-    return names
+def load_timings(path: Path = TIMINGS_PATH) -> Timings:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return Timings(
+        modules={name: float(secs) for name, secs in data["modules"].items()},
+        default_seconds=float(data["default_seconds"]),
+        zero_test_modules=frozenset(data.get("zero_test_modules", [])),
+    )
 
 
 def discover_modules(tests_dir: Path = TESTS_DIR) -> list[str]:
-    return sorted(f"tests.{path.stem}" for path in tests_dir.glob("test_*.py"))
+    """Every module ``python -m unittest`` discovery imports (``tests/test*.py``)."""
+
+    return sorted(f"tests.{path.stem}" for path in tests_dir.glob("test*.py"))
 
 
-def plan_batches(modules: list[str], workers: int) -> list[list[str]]:
-    """Deal modules round-robin into small batches so workers stay busy."""
+def by_weight(modules: list[str], timings: Timings) -> list[str]:
+    """Heaviest first, ties by name: the scheduling order for workers and shards."""
 
-    count = max(1, min(len(modules), workers * 4))
-    batches: list[list[str]] = [[] for _ in range(count)]
-    for index, module in enumerate(modules):
-        batches[index % count].append(module)
-    return [batch for batch in batches if batch]
+    return sorted(modules, key=lambda name: (-timings.weight(name), name))
+
+
+def plan_shards(modules: list[str], count: int, timings: Timings) -> list[list[str]]:
+    """Deal modules into ``count`` shards, each to the currently lightest shard."""
+
+    shards: list[list[str]] = [[] for _ in range(count)]
+    loads = [0.0] * count
+    for module in by_weight(modules, timings):
+        index = min(range(count), key=lambda i: (loads[i], i))
+        shards[index].append(module)
+        loads[index] += timings.weight(module)
+    return [sorted(shard) for shard in shards]
+
+
+def parse_shard(text: str) -> tuple[int, int]:
+    index_text, _, total_text = text.partition("/")
+    try:
+        index, total = int(index_text), int(total_text)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"expected K/N, got {text!r}") from None
+    if total < 1 or not 1 <= index <= total:
+        raise argparse.ArgumentTypeError(f"shard {text!r} is out of range (1 <= K <= N)")
+    return index, total
 
 
 @dataclass
-class BatchResult:
-    modules: list[str]
+class ModuleResult:
+    module: str
+    seconds: float
     returncode: int
-    ran: int
-    failed: str
     output: str
+    counts: dict[str, int] = field(default_factory=dict)
+    problem: str = ""
+
+    @property
+    def ran(self) -> int:
+        return self.counts.get("ran", 0)
+
+    @property
+    def ok(self) -> bool:
+        return not self.problem
 
 
-def run_batch(modules: list[str], python: str = sys.executable) -> BatchResult:
-    env = dict(os.environ, AUTO_MANUAL_ENV_PREFLIGHT="0")
-    proc = subprocess.run(
-        [python, "-m", "unittest", *modules],
-        cwd=ROOT,
-        env=env,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    output = proc.stdout + proc.stderr
-    ran = sum(int(match) for match in _RAN.findall(output))
-    failed = ", ".join(_FAILED.findall(output))
-    return BatchResult(modules, proc.returncode, ran, failed, output)
+def judge(result: ModuleResult, zero_test_modules: frozenset[str]) -> str:
+    """Return why a module run counts as failed, or ``""`` when it passed."""
+
+    counts = result.counts
+    if not counts:
+        return f"no result (process exited {result.returncode})"
+    problems = [f"{key}={counts[key]}" for key in ("failures", "errors", "unexpected_successes") if counts[key]]
+    if problems:
+        return ", ".join(problems)
+    if result.returncode != 0:
+        return f"process exited {result.returncode}"
+    if counts["ran"] != counts["expected"]:
+        return f"ran {counts['ran']} of {counts['expected']} collected tests"
+    if counts["ran"] == 0 and result.module not in zero_test_modules:
+        return "ran no tests (list it under zero_test_modules only if that is intended)"
+    return ""
 
 
-def select_modules(requested: list[str], include_slow: bool) -> tuple[list[str], int]:
-    if requested:
-        return requested, 0
+def _kill_group(proc: subprocess.Popen[bytes]) -> None:
+    """Kill the module's process group: the worker and anything it left running."""
+
+    try:
+        if hasattr(os, "killpg"):
+            os.killpg(proc.pid, signal.SIGKILL)
+        elif proc.poll() is None:
+            proc.kill()
+    except (ProcessLookupError, PermissionError):
+        pass
+
+
+def _run_worker(module: str, python: str, timeout: float) -> ModuleResult:
+    env = dict(os.environ, AUTO_MANUAL_ENV_PREFLIGHT="0", PYTHONDONTWRITEBYTECODE="1")
+    with tempfile.TemporaryDirectory(prefix="run-fast-") as tmp:
+        result_file = Path(tmp) / "result.json"
+        log_file = Path(tmp) / "output.log"
+        started = time.monotonic()
+        timed_out = False
+        # Output goes to a file, not a pipe, so a leftover grandchild holding the
+        # stream cannot block the runner; a new session lets a kill reach it.
+        with log_file.open("wb") as log:
+            proc = subprocess.Popen(
+                [python, "-m", "tests.run_fast", "--worker", module, "--result-file", str(result_file)],
+                cwd=ROOT,
+                env=env,
+                stdin=subprocess.DEVNULL,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+                start_new_session=True,
+            )
+            try:
+                proc.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                timed_out = True
+            _kill_group(proc)
+            proc.wait()
+        seconds = time.monotonic() - started
+        output = log_file.read_text(encoding="utf-8", errors="replace")
+        counts = json.loads(result_file.read_text(encoding="utf-8")) if result_file.exists() else {}
+    result = ModuleResult(module, seconds, proc.returncode, output, counts)
+    if timed_out:
+        tail = "\n".join(output.splitlines()[-TIMEOUT_TAIL_LINES:])
+        result.output = f"(last {TIMEOUT_TAIL_LINES} lines of output)\n{tail}"
+        result.problem = f"timed out after {timeout:.0f} s"
+    return result
+
+
+def run_module(
+    module: str,
+    zero_test_modules: frozenset[str],
+    python: str = sys.executable,
+    timeout: float = MODULE_TIMEOUT_SECONDS,
+) -> ModuleResult:
+    """Run one module in a child process; never raises, so the report always prints."""
+
+    try:
+        result = _run_worker(module, python, timeout)
+    except Exception as exc:  # the runner itself failed: report it against the module
+        return ModuleResult(module, 0.0, -1, traceback.format_exc(), problem=f"runner error: {exc!r}")
+    if not result.problem:
+        result.problem = judge(result, zero_test_modules)
+    return result
+
+
+def _skipped_module_suite(module: str, exc: unittest.SkipTest) -> unittest.TestSuite:
+    """One skipped test for a module that raises SkipTest on import, as discovery records it."""
+
+    def skipped(self: unittest.TestCase) -> None:
+        raise exc
+
+    case_class = type("ModuleSkipped", (unittest.TestCase,), {module: skipped})
+    return unittest.TestSuite([case_class(module)])
+
+
+def worker(module: str, result_file: Path) -> int:
+    """Run one module in this process the way ``python -m unittest <module>`` would."""
+
+    sys.argv = [sys.argv[0]]  # tests see no runner arguments, as under `python -m unittest`
+    try:
+        suite = unittest.defaultTestLoader.loadTestsFromName(module)
+    except unittest.SkipTest as exc:
+        suite = _skipped_module_suite(module, exc)
+    expected = suite.countTestCases()
+    outcome = unittest.TextTestRunner(stream=sys.stderr, verbosity=1).run(suite)
+    counts = {
+        "expected": expected,
+        "ran": outcome.testsRun,
+        "failures": len(outcome.failures),
+        "errors": len(outcome.errors),
+        "skipped": len(outcome.skipped),
+        "expected_failures": len(outcome.expectedFailures),
+        "unexpected_successes": len(outcome.unexpectedSuccesses),
+    }
+    result_file.write_text(json.dumps(counts), encoding="utf-8")
+    return 0 if outcome.wasSuccessful() else 1
+
+
+def write_timings(results: list[ModuleResult], path: Path = TIMINGS_PATH) -> bool:
+    """Rewrite the manifest from a fully green run; return False (and write nothing) otherwise."""
+
+    if not results or any(not r.ok for r in results):
+        return False
+    current = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    current["refresh_command"] = REFRESH_COMMAND
+    current["measured"] = {
+        "date": time.strftime("%Y-%m-%d"),
+        "python": ".".join(map(str, sys.version_info[:3])),
+        "workers": f"{os.cpu_count()} CPUs",
+    }
+    current.setdefault("default_seconds", SLOW_SECONDS)
+    current.setdefault("zero_test_modules", [])
+    current["modules"] = {r.module: round(r.seconds, 1) for r in sorted(results, key=lambda r: r.module)}
+    path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return True
+
+
+def select_modules(args: argparse.Namespace, timings: Timings) -> tuple[list[str], str]:
+    if args.modules:
+        return list(args.modules), "named modules"
     modules = discover_modules()
-    if include_slow:
-        return modules, 0
-    slow = load_slow_modules()
-    kept = [module for module in modules if module not in slow]
-    return kept, len(modules) - len(kept)
+    if args.shard:
+        index, total = args.shard
+        return plan_shards(modules, total, timings)[index - 1], f"shard {index}/{total}"
+    if args.all:
+        return modules, "all modules"
+    kept = [name for name in modules if not timings.is_slow(name)]
+    return kept, f"fast tier, {len(modules) - len(kept)} slow module(s) skipped (--all to include)"
+
+
+def print_progress(done: int, total: int, result: ModuleResult) -> None:
+    status = "ok  " if result.ok else "FAIL"
+    tail = f"{result.ran} tests" if result.ok else result.problem
+    print(f"[run-fast] {done:>4}/{total} {status} {result.seconds:6.1f}s {result.module} ({tail})", flush=True)
+
+
+def report(results: list[ModuleResult], label: str, workers: int, elapsed: float, durations: int) -> int:
+    failed = [r for r in results if not r.ok]
+    slowest = sorted(results, key=lambda r: -r.seconds)
+    shown = slowest if durations == 0 else slowest[:durations]
+    print(f"\n[run-fast] slowest {len(shown)} of {len(results)} modules:")
+    for r in shown:
+        print(f"  {r.seconds:7.1f}s  {r.module}")
+    for r in failed:
+        print(f"\n===== FAILED {r.module}: {r.problem}\n{r.output.rstrip()}")
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            print(f"::error title=unit test module failed::{r.module}: {r.problem}")
+    totals = {key: sum(r.counts.get(key, 0) for r in results) for key in ("ran", "skipped")}
+    status = f"FAILED ({len(failed)} module(s): {', '.join(r.module for r in failed)})" if failed else "OK"
+    print(
+        f"\n[run-fast] {status}: {totals['ran']} tests ({totals['skipped']} skipped) in {len(results)} modules"
+        f" [{label}], {workers} workers on {os.cpu_count()} CPUs, {elapsed:.0f}s wall,"
+        f" {sum(r.seconds for r in results):.0f}s summed"
+    )
+    return 1 if failed else 0
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the local fast test tier in parallel.")
-    parser.add_argument("modules", nargs="*", help="test modules to run (default: all but slow_modules.txt)")
-    parser.add_argument("-j", "--jobs", type=int, default=os.cpu_count() or 2, help="parallel workers")
-    parser.add_argument("--all", action="store_true", help="include the modules in slow_modules.txt")
-    return parser.parse_args(argv)
+    parser = argparse.ArgumentParser(description="Run test modules in parallel processes (CI unit shards, local fast tier).")
+    parser.add_argument("modules", nargs="*", help="test modules to run (default: the fast tier)")
+    parser.add_argument("-j", "--jobs", type=int, default=os.cpu_count() or 2, help="worker processes (default: CPU count)")
+    parser.add_argument("--all", action="store_true", help="run every module, including slow ones")
+    parser.add_argument("--shard", type=parse_shard, metavar="K/N", help="run shard K of N (implies --all)")
+    parser.add_argument("--list", action="store_true", help="print the selected modules and their weights, run nothing")
+    parser.add_argument("--durations", type=int, default=20, metavar="N", help="list the N slowest modules (0: all)")
+    parser.add_argument("--write-timings", action="store_true", help=f"rewrite {TIMINGS_PATH.name} from this run (needs --all)")
+    parser.add_argument("--worker", metavar="MODULE", help=argparse.SUPPRESS)
+    parser.add_argument("--result-file", type=Path, help=argparse.SUPPRESS)
+    args = parser.parse_args(argv)
+    if args.write_timings and (args.modules or args.shard or not args.all):
+        parser.error("--write-timings needs a complete run: use --all without --shard or module names")
+    if args.shard and args.modules:
+        parser.error("--shard selects modules itself; do not name modules too")
+    return args
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    modules, skipped = select_modules(args.modules, args.all)
+    if args.worker:
+        return worker(args.worker, args.result_file)
+    timings = load_timings()
+    modules, label = select_modules(args, timings)
+    if args.list:
+        for name in by_weight(modules, timings):
+            print(f"{timings.weight(name):7.1f}s  {name}")
+        print(f"[run-fast] {len(modules)} modules [{label}], {sum(map(timings.weight, modules)):.0f}s recorded")
+        return 0
     workers = max(1, args.jobs)
-    batches = plan_batches(modules, workers)
+    print(f"[run-fast] {len(modules)} modules [{label}], {workers} workers, os.cpu_count()={os.cpu_count()}", flush=True)
     started = time.monotonic()
+    results: list[ModuleResult] = []
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        results = list(pool.map(run_batch, batches))
-    elapsed = time.monotonic() - started
-
-    failures = [result for result in results if result.returncode != 0]
-    for result in failures:
-        print(f"\n===== FAILED batch: {' '.join(result.modules)} ({result.failed or 'no summary'})")
-        print(result.output.rstrip())
-    total = sum(result.ran for result in results)
-    note = f", {skipped} slow module(s) skipped (--all to include)" if skipped else ""
-    status = "FAILED" if failures else "OK"
-    print(
-        f"\n[run-fast] {status}: {total} tests in {len(modules)} modules, "
-        f"{workers} workers, {elapsed:.0f}s{note}"
-    )
-    return 1 if failures else 0
+        futures = [pool.submit(run_module, name, timings.zero_test_modules) for name in by_weight(modules, timings)]
+        for future in as_completed(futures):
+            results.append(future.result())
+            print_progress(len(results), len(modules), results[-1])
+    status = report(results, label, workers, time.monotonic() - started, args.durations)
+    if args.write_timings:
+        written = write_timings(results)
+        print(f"[run-fast] {'wrote' if written else 'did NOT write (run was not green)'} {TIMINGS_PATH.relative_to(ROOT)}")
+    return status
 
 
 if __name__ == "__main__":
