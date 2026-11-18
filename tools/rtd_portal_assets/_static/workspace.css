@@ -3,7 +3,6 @@
 /* 知识库首页 (workspace_portal.html), the 2026-11 design: white cards on the cool ground of body.app.kb, one
    terracotta accent, line icons from _site_shell.html. Tokens come from site-shell.css; a nested radius is the outer
    radius minus the gap. No one-sided card borders, no gradients. */
-#home{max-width:1120px;padding:40px 48px 72px;display:flex;flex-direction:column;gap:40px;color:var(--app-ink)}
 #home h1,#home h2,#home h3{text-wrap:balance}
 #home p,#home small,#home li span{text-wrap:pretty}
 #home .intro{display:block;margin:0}
@@ -125,7 +124,6 @@
 #home .updates-empty{margin:0;color:var(--app-muted)}
 
 @media (max-width:900px){
-  #home{padding:24px 16px 48px;gap:28px}
   #home .home-doing{border-left:0;border-top:1px solid var(--app-divider,var(--app-line))}
 }
 @media (max-width:560px){
@@ -175,6 +173,12 @@
 #home .home-front-fig small{font-size:12px;color:var(--app-muted)}
 #home .home-front-meta{flex:none;padding:3px 9px;border-radius:6px;background:var(--app-tile,var(--app-bg));
   font-size:12px;line-height:18px;font-weight:500;color:var(--app-text2,var(--app-muted));white-space:nowrap}
+/* A row's cards share their row tracks (subgrid), so the dividers and figures line up across a row even when one
+   card's badge wraps under its figure; without subgrid each card keeps its own flex column. */
+@supports (grid-template-rows:subgrid){
+  #home .home-front-card{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0;min-height:0}
+  #home .home-front-foot{margin-top:0;align-content:flex-start;align-items:baseline}
+}
 @media (max-width:980px){
   #home{padding:28px 24px 56px;gap:28px}
   #home .home-front-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}

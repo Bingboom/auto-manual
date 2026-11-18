@@ -69,16 +69,17 @@ def _str_field(mapping: dict[str, Any] | None, key: str) -> str:
     return str(mapping.get(key) or "") if mapping else ""
 
 
-def _manual_counts(products: list[dict[str, Any]] | None) -> tuple[str | None, str, int]:
-    """(formatted manual count, 'N 个市场 · M 语种' meta without code enumeration, single-language count)."""
+def _manual_counts(products: list[dict[str, Any]] | None, languages: int | None) -> tuple[str | None, str]:
+    """(formatted manual count, 'N 个市场 · M 语种' meta without code enumeration).
+
+    ``languages`` is the publish manifest's language count (``deliverables.publication_languages``, as 说明书工作台
+    shows it); None leaves the language part out instead of counting only some publications.
+    """
     if not products:
-        return None, "", 0
+        return None, ""
     markets = len({str(p["region"]).strip() for p in products if str(p.get("region") or "").strip()})
-    languages = len({str(pub["lang"]).strip() for p in products
-                     for pub in p.get("publications") or []
-                     if pub.get("language_scope") == "single" and str(pub.get("lang") or "").strip()})
-    parts = [part for part in (_count_tag(markets, "个市场"), _count_tag(languages, "语种")) if part]
-    return f"{len(products):,}", " · ".join(parts), languages
+    parts = [part for part in (_count_tag(markets, "个市场"), _count_tag(languages or 0, "语种")) if part]
+    return f"{len(products):,}", " · ".join(parts)
 
 
 def _corpus_pairs(corpus: dict[str, Any] | None) -> str | None:
@@ -91,15 +92,18 @@ def _corpus_pairs(corpus: dict[str, Any] | None) -> str | None:
 
 
 def front_summary(matrix: dict[str, Any] | None, products: list[dict[str, Any]] | None,
-                  corpus: dict[str, Any] | None) -> list[dict[str, Any]]:
-    """知识资产's header summary capsule: products, published manuals and covered languages (None reads 暂无)."""
+                  languages: int | None) -> list[dict[str, Any]]:
+    """知识资产's header summary capsule: products, published manuals and covered languages (None reads 暂无).
+
+    覆盖语种 is the publish manifest's language count only (``deliverables.publication_languages``, the figure
+    说明书工作台 shows as 发布语言); it never falls back to the corpus or to another count.
+    """
     facts = matrix.get("facts") or {} if matrix else {}
-    manuals, _, manual_langs = _manual_counts(products)
-    langs = _list_len(corpus, "listed") or manual_langs
+    manuals, _ = _manual_counts(products, languages)
     return [
         {"id": "models", "label": "收录机型", "value": _fmt_int(facts.get("products")), "unit": "款"},
         {"id": "manuals", "label": "正式说明书", "value": manuals, "unit": "份"},
-        {"id": "languages", "label": "覆盖语种", "value": _fmt_int(langs or None), "unit": "种"},
+        {"id": "languages", "label": "覆盖语种", "value": _fmt_int(languages or None), "unit": "种"},
     ]
 
 
@@ -126,9 +130,15 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
                 corpus: dict[str, Any] | None, *,
                 products: list[dict[str, Any]] | None = None,
                 media_front: dict[str, Any] | None = None,
-                market: dict[str, Any] | None = None) -> list[dict[str, Any]]:
-    """知识资产's unified entry cards: icon, title, concise description, figure and count-only meta (None reads 暂无)."""
-    manuals, manual_meta, _ = _manual_counts(products)
+                market: dict[str, Any] | None = None,
+                languages: int | None = None) -> list[dict[str, Any]]:
+    """知识资产's unified entry cards: icon, title, concise description, figure and count-only meta (None reads 暂无).
+
+    Each line names only what its page holds; the 语料库 line says 已批准 only when its figure counts approved pairs.
+    """
+    manuals, manual_meta = _manual_counts(products, languages)
+    corpus_line = ("已批准的多语言标准句对与专业术语，供云文档与设计稿直接复用。" if (corpus or {}).get("approved")
+                   else "多语言标准句对与专业术语，供云文档与设计稿直接复用。")
     topics, topic_meta = _learning_stats(learning)
     media_count = media_front.get("count") if media_front else None
     policy_records = _list_len(market, "records")
@@ -141,7 +151,7 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
         },
         {
             "id": "corpus", "title": "语料库", "icon": "languages", "page": "assets/language/index",
-            "line": "已批准的多语言标准句对与专业术语，供云文档与设计稿直接复用。",
+            "line": corpus_line,
             "value": _corpus_pairs(corpus), "unit": "组句对",
             "meta": _count_tag(_list_len(corpus, "listed"), "语种对照"),
             "date": _str_field(corpus, "exported_at"),
@@ -154,14 +164,14 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
         },
         {
             "id": "media", "title": "视觉媒体", "icon": "image", "page": "assets/media/index",
-            "line": "说明书共用的标准安规符号、无字化产品线稿与界面插图素材。",
+            "line": "说明书共用的安规与市场符号、按键与显示屏图标，以及装箱线稿与小图形。",
             "value": _fmt_int(media_count), "unit": "件素材",
             "meta": _count_tag(_list_len(media_front, "types"), "类共用图元"),
             "date": _str_field(media_front, "updated"),
         },
         {
             "id": "policy", "title": "市场与政策", "icon": "globe", "page": "market/policy",
-            "line": "各目标市场的安规准入、认证标志与环保法规参考资料。",
+            "line": "各目标市场对说明书语言与准入、电价与家庭储能的政策参考资料。",
             "value": _fmt_int(policy_records or None), "unit": "条资料",
             "meta": _count_tag(countries, "个国家与地区"),
             "date": _str_field(market, "reviewed"),
@@ -171,7 +181,7 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
 
 def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: list[dict], system, matrix,
                       learning: dict[str, Any] | None, build_date: str, warn, design=None) -> dict:
-    """The layer pages' contexts, 知识库首页's cards and the 系统建设 part.
+    """The layer pages' contexts, what 资产总览's cards read (``media_front``, ``corpus``) and the 系统建设 part.
 
     Since the front cleanup (2026-11-17) 产品信息 (产品矩阵) has no lead; 内容与表现 is not shown (its address
     forwards to 设计规范); 视觉媒体 is a page for colleagues; 语言 is the 语料库 page; the
@@ -199,7 +209,6 @@ def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: l
         ("assets/language/index", {"layer": language}, "asset_language.html"),
     ]
     return {"pages": pages, "media_inventory": media, "media_front": media_front, "corpus": language["corpus"],
-            "cards": front_cards(matrix, learning, language["corpus"], products=products, media_front=media_front),
             "system": {"asset_map": extra["capability_map"], "asset_path": extra["path"],
                        "asset_layers": layers.layer_entries(matrix is not None), "asset_chips": chips}}
 

@@ -118,13 +118,13 @@
     is kept for its callers. -#}
 {%- set found = namespace(label=none, parent=none) -%}
 {%- for main in site_sections -%}
-  {%- for item in main.list + main.get('also', []) if item.label == crumb or (crumb == '首页' and item.key == 'overview') -%}
+  {%- for item in main.list + main.get('also', []) if item.label == crumb -%}
     {%- set found.label = main.label -%}
     {%- for entry in main.list if item.under and entry.key == item.under %}{% set found.parent = entry.label %}{% endfor -%}
   {%- endfor -%}
 {%- endfor -%}
 <div class="app-topbar">
-  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('首页', '资产总览', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> {% if found.parent %}{{ found.parent }} <span>/</span> {% endif %}<b>{{ crumb }}</b>{% endif %}</div>
+  <div class="app-crumb">工作资料 <span>/</span> {% if not internal or not found.label %}<b>{{ crumb }}</b>{% elif crumb in ('资产总览', found.label) %}<b>{{ found.label }}</b>{% else %}{{ found.label }} <span>/</span> {% if found.parent %}{{ found.parent }} <span>/</span> {% endif %}<b>{{ crumb }}</b>{% endif %}</div>
   <div class="app-topbar-right">{{ caller() if caller else '' }}</div>
 </div>
 {%- endmacro -%}

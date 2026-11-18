@@ -481,9 +481,9 @@ def collect_workspace_pages(app):
         "deliverables_entry": True,
         "design_entry": design is not None,
         "matrix_entry": matrix is not None,
-        "summary": front_summary(matrix, products, layers["corpus"]),
+        "summary": front_summary(matrix, products, deliverables.get("languages")),
         "cards": front_cards(matrix, learning, layers["corpus"], products=products,
-                             media_front=layers["media_front"], market=market),
+                             media_front=layers["media_front"], market=market, languages=deliverables.get("languages")),
         "value": value_page_context(load_value(ASSETS)),
     }, "workspace_portal.html"
     if system is not None:

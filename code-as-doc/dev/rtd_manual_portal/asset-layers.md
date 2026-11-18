@@ -212,12 +212,16 @@ layers that is not a figure:
 
 ## 知识库首页 and 系统建设
 
-- **知识库首页** (front cleanup, 2026-11-17; the 知识资产 page since the layout of the same day): the title
-  知识资产 and the line 「让产品信息和生产资料持续积累、关联和复用。」, then three asset cards (`#now`; 产品信息矩阵
-  「项目 · 属性 · 时间」, 产品知识「功能 · 限制 · 关系」, 语料库「句对 · 术语 · 复用」; `asset_pages.front_cards`),
-  each with its name, one line and one figure with its date (暂无 when unreadable, for instance without a readable product snapshot),
-  then the entrances to 说明书资料库 and 市场与政策 (`#doors`) and, with a share
-  package, 分享资料 (`#shares`). No status chips or ledger references. The slice-2
+- **资产总览 / 知识库首页** (front cleanup, 2026-11-17; overview of 2026-11-18): the title 知识资产 and the line
+  「让产品信息和生产资料持续积累、关联和复用。」 with the summary capsule (`asset_pages.front_summary`): 收录机型 (产品矩阵's
+  model count), 正式说明书 (published Web manuals, model × market) and 覆盖语种 (the publish manifest's language
+  count from `deliverables.publication_languages`, the same figure 说明书工作台 shows as 发布语言; no fallback to the
+  corpus; 暂无 when the manifest is unreadable or a target names no language). Then six cards (`#now`;
+  `asset_pages.front_cards`), each with an icon, an arrow, its name, one sentence naming only what its page holds
+  (语料库 says 已批准 only when its figure counts approved pairs), one figure (暂无 when unreadable) and a count
+  badge; the figure's date is only the badge's tooltip. The cards of a row share their row tracks (CSS subgrid), so
+  dividers and figures line up when a badge wraps. With a share package, 分享资料 (`#shares`) follows. No status
+  chips, eyebrows, footnotes or ledger references. The slice-2
   主线, 正在做, 定位与价值 statuses and 最近更新 left the page; 正在做 and 当前主线 stay on
   系统建设. The modules that fed them (`workspace_home.py`, `knowledge_updates.py`) and
   `workspace_home.yaml` were removed on 2026-11-17; `knowledge_updates.yaml` stays as the dated record

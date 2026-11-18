@@ -6,18 +6,17 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 ## Personal workspace entry
 
 The manual library root (说明书资料库) remains independent. The portal extension
-also builds `/workspace/` (知识资产, the first page of the 知识资产 section; formerly
-知识库首页). It is for product colleagues, not for maintainers (operator review
-2026-11-17), and minimal:
+also builds `/workspace/` (知识资产, the first page of the 知识资产 section, listed as 资产总览 in its left list;
+formerly 知识库首页). It is for product colleagues, not for maintainers (operator review 2026-11-17), and minimal:
 
-- The title 知识资产 and one line (让产品信息和生产资料持续积累、关联和复用。).
-- **资产** (`#now`): three cards, 产品信息矩阵, 产品知识 and 语料库, each with its name, a
-  line of keywords and one figure with its date (`tools/rtd/asset_pages.py` `front_cards`;
-  暂无 when the figure cannot be read). 产品信息矩阵 shows only when the matrix is
-  built. No status chips or ledger references; see
-  [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
-- **入口** (`#doors`): 说明书资料库 and 市场与政策, then, with the bundled
-  beginner-facing AI sharing package, AI 使用知识分享 (a link to
+- The title 知识资产 and one line (让产品信息和生产资料持续积累、关联和复用。), with the summary capsule at the
+  right: 收录机型, 正式说明书 and 覆盖语种 (`tools/rtd/asset_pages.py` `front_summary`; 暂无 when a figure cannot
+  be read).
+- **资产** (`#now`): six cards, one per page of the section (产品信息, 说明书资料库, 语料库, 产品知识, 视觉媒体,
+  市场与政策), each with an icon, an arrow, its name, one sentence, one figure and a count badge (`front_cards`).
+  The figure's date is only the badge's tooltip; nothing dated is printed. 产品信息 shows only when the matrix is
+  built. No status chips or ledger references; see [asset-layers.md](asset-layers.md#知识库首页-and-系统建设).
+- **分享** (`#doors`): with the bundled beginner-facing AI sharing package, AI 使用知识分享 (a link to
   `/ai-share/00_打开分享.html`).
 
 The former 主线, 正在做, 去哪里 groups, 定位与价值 theme cards and 最近更新 list left
