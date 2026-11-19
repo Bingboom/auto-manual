@@ -72,6 +72,39 @@ lark-cli --profile prod base +record-delete --as bot --base-token <BASE> --table
 | Attachment | upload is `base +record-upload-attachment` (base group, ≥1.0.69) with `--field-id`; `--file` must be a **cwd-relative path** | upload, then read back and confirm the file token is non-empty |
 | Text vs select case | sibling tables differ (footnotes `type` vs notes `Type`; Troubleshooting `Region` is plain text) | check `+field-list` before writing |
 
+## Building tables, forms, views and dashboards
+
+Verified 2026-11 on lark-cli 1.0.49 while building a new base from scratch.
+
+**Destructive: removing a form question deletes the field.** `base
++form-questions-delete` drops the underlying **table field and all its
+values**, not just the question. Removing a question in the new-style form UI
+does the same (confirmed with an empty field). There is no "hide question"
+call: `+form-questions-update` only changes `title` / `description` /
+`required`. To keep an internal field out of a form, either create that field
+**after** the form (fields added later do not join existing forms) or leave the
+question and set its description to 「提交时留空」. Never use either delete path
+on a field that holds data.
+
+| Object | Shape / trap |
+| --- | --- |
+| Table | `+table-create --name <n> --fields '[...]'`; the first field becomes the primary field |
+| Two-way link | `+field-create --json '{"name":"竞品","type":"link","link_table":"tbl…","bidirectional":true,"bidirectional_link_field_name":"文档"}'`; record values are `["rec…"]` and persisted on read-back in a fresh base |
+| Auto fields | `{"type":"created_by"}`, `{"type":"created_at","style":{"format":"yyyy/MM/dd HH:mm"}}` |
+| Select default | `"default_value":"<option>"` on `+field-create` sticks |
+| URL text | `{"type":"text","style":{"type":"url"}}`; read-back renders the value as `[url](url)` |
+| Form | `+form-create` adds **every** existing field as a question. Link fields cannot be added to a form through the API, and the new-style form UI cannot add an existing link field either |
+| View | `+view-create` then `+view-set-filter` `{"logic":"or","conditions":[["状态","==","待审核"],["状态","empty"]]}`, `+view-set-sort`, `+view-set-group`; a new kanban groups by an arbitrary field until you set the group |
+| Dashboard block | `data_config` SSOT is `dashboard-block-data-config.md` in the lark-base skill (not bundled with the CLI): counts use `count_all`, not a `COUNTA` rollup. Two `group_by` entries both in `enumerated` mode silently drop records carrying several values; split only one of them |
+| Dashboard text | line breaks are stripped server-side, so keep text blocks to one line |
+| Relative dates | UI-made cards store `"value":["Today"]` / `["CurrentWeek"]`; build relative-date cards in the UI rather than with a fixed timestamp that goes stale |
+| Computed data | `+dashboard-block-get-data` may return `empty chart data` right after creation; retry after ~20 s before debugging |
+| Table/view embed | the UI table component stores a hidden view (`<view> 副本`); its own filter is not readable through `+dashboard-block-get` |
+
+Cloud containers: `FEISHU_APP_ID` / `FEISHU_APP_SECRET` in the environment are
+not read automatically. Create the profile without echoing the secret:
+`printf '%s' "$FEISHU_APP_SECRET" | lark-cli config init --app-id "$FEISHU_APP_ID" --app-secret-stdin --brand feishu --name prod`.
+
 ## Cloud docs / wiki (the shapes other skills borrow)
 
 ```bash
