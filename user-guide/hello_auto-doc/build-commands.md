@@ -18,6 +18,10 @@ python build.py publish
 python build.py release-manifest
 python build.py preview --config configs/config.us-en.yaml --model JE-1000F --region US --page 03_product_overview_placeholder
 python build.py fast --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py web-package --package-command inventory --json
+python build.py web-package --package-command audit-styles --all-packages --respect-baseline
+python build.py ir-qc --ir-command audit --all-ir --output-path .tmp/ir_qc_audit.json
+python build.py ir-export --output-corpus .tmp/corpus.json --output-observations .tmp/observations.json
 python build.py html
 python build.py word
 python build.py pdf

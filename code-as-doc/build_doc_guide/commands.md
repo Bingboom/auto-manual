@@ -209,3 +209,19 @@ The current report defaults are review-oriented, not `_build`-oriented.
 If `--tracked-root` is omitted, `build.py` resolves `docs/_review/<model>/<region>/` and `reports/version_tracking/<model>/<region>/` automatically from the target.
 Initial baseline Added rows are now hidden by default so the first non-baseline review round is easier to read. Pass `--include-initial-adds` when you need the full initial import noise.
 Field pairing now prefers stable source back-mapping before falling back to rendered labels, so placeholder/spec label rewrites are more likely to appear as one `M` row with clearer `old_value/new_value` instead of separate `A/D` rows.
+
+## 7. Web Packages, ManualIR QC & Knowledge Export
+
+```powershell
+python build.py web-package --package-command inventory --json
+python build.py web-package --package-command verify-pins --all-packages
+python build.py web-package --package-command audit-styles --all-packages --respect-baseline
+python build.py ir-qc --ir-command audit --all-ir --output-path .tmp/ir_qc_audit.json
+python build.py ir-export --output-corpus .tmp/corpus.json --output-observations .tmp/observations.json
+```
+
+Meaning:
+
+- `web-package`: dispatches `inventory`, `verify-pins`, `audit-styles`, or `build` via `--package-command`. Pass `--package-dir <dir>` for one frozen package or `--all-packages` for repository-wide `verify-pins`/`audit-styles`; `build` requires `--package-dir`, `--lang`, and `--output-dir` (plus optional `--skip-pin-check`).
+- `ir-qc`: dispatches `audit` or `provenance` via `--ir-command`. Pass `--ir <path>` (with optional `--anchor-ir`) or `--all-ir` to discover and audit every `manual.ir.json` bundle and anchor pair; `--strict` fails on warnings, `--max-warnings <n>` enforces a warning ceiling, and `--output-path <path>` writes the JSON report.
+- `ir-export`: exports all-region `manual-ir/v2` corpus and observation artifacts (`--ir-root` repeatable, `--region`, `--model`, `--publication-eligible-only`, `--output-corpus`, `--output-observations`, `--previous-observations`); omit `--output-*` or write only under `.tmp/` to avoid dirtying the working tree.

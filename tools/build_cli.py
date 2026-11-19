@@ -22,6 +22,9 @@ def parse_args(
             "asset-check",
             "asset-intake",
             "new-line",
+            "web-package",
+            "ir-qc",
+            "ir-export",
             *build_actions,
             "idml",
             "review",
@@ -454,5 +457,132 @@ def parse_args(
         "--dry-run",
         action="store_true",
         help="For sync-data, spec-master-rebuild, process-build-queue, or process-review-start-queue: validate/report without writing files",
+    )
+    ap.add_argument(
+        "--package-command",
+        choices=("inventory", "verify-pins", "audit-styles", "build"),
+        default="inventory",
+        help="For web-package: subcommand to execute",
+    )
+    ap.add_argument(
+        "--package-dir",
+        type=Path,
+        default=None,
+        help="For web-package verify-pins/audit-styles/build: target frozen package directory",
+    )
+    ap.add_argument(
+        "--all-packages",
+        action="store_true",
+        help="For web-package verify-pins/audit-styles: sweep all discovered packages",
+    )
+    ap.add_argument(
+        "--output-dir",
+        type=Path,
+        default=None,
+        help="For web-package build: destination output directory",
+    )
+    ap.add_argument(
+        "--respect-baseline",
+        action="store_true",
+        help="For web-package audit-styles: allow recorded sealed-locale style baselines",
+    )
+    ap.add_argument(
+        "--skip-pin-check",
+        action="store_true",
+        help="For web-package build: skip SHA-256 manifest pin verification",
+    )
+    ap.add_argument(
+        "--ir-command",
+        choices=("audit", "provenance"),
+        default="audit",
+        help="For ir-qc: subcommand to execute",
+    )
+    ap.add_argument(
+        "--ir",
+        type=Path,
+        default=None,
+        help="For ir-qc: target manual.ir.json path",
+    )
+    ap.add_argument(
+        "--all-ir",
+        action="store_true",
+        help="For ir-qc: sweep all discovered manual.ir.json bundles and anchor pairs",
+    )
+    ap.add_argument(
+        "--anchor-ir",
+        type=Path,
+        default=None,
+        help="For ir-qc: optional English anchor manual.ir.json path",
+    )
+    ap.add_argument(
+        "--terms-json",
+        type=Path,
+        default=None,
+        help="For ir-qc audit: optional TM-B Terms JSON export",
+    )
+    ap.add_argument(
+        "--asset-registry",
+        type=Path,
+        default=None,
+        help="For ir-qc provenance: optional asset_registry.csv override",
+    )
+    ap.add_argument(
+        "--tm-json",
+        type=Path,
+        default=None,
+        help="For ir-qc provenance: optional TM-B Translation_Memory JSON export",
+    )
+    ap.add_argument(
+        "--no-verify-assets",
+        action="store_true",
+        help="For ir-qc audit: skip verifying metadata.asset_sha256 files on disk",
+    )
+    ap.add_argument(
+        "--strict",
+        action="store_true",
+        help="For ir-qc audit: fail on warnings as well as errors",
+    )
+    ap.add_argument(
+        "--output-path",
+        type=Path,
+        default=None,
+        help="For ir-qc: optional JSON report output path",
+    )
+    ap.add_argument(
+        "--max-warnings",
+        type=int,
+        default=None,
+        help="For ir-qc audit: fail when warning count exceeds this threshold",
+    )
+    ap.add_argument(
+        "--ir-root",
+        action="append",
+        type=Path,
+        dest="ir_roots",
+        default=[],
+        help="For ir-export: IR scan root (repeatable)",
+    )
+    ap.add_argument(
+        "--publication-eligible-only",
+        action="store_true",
+        help="For ir-export: include only publication_eligible bundles",
+    )
+    ap.add_argument(
+        "--output-corpus",
+        type=Path,
+        default=None,
+        help="For ir-export: write corpus JSON to path",
+    )
+    ap.add_argument(
+        "--output-observations",
+        type=Path,
+        default=None,
+        help="For ir-export: write observations JSON to path",
+    )
+    ap.add_argument(
+        "--previous-observations",
+        type=Path,
+        default=None,
+        help="For ir-export: earlier observation artifact to judge",
     )
     return ap.parse_args(argv)

@@ -44,6 +44,9 @@ class DispatchContext:
     maybe_sync_review_before_build: Callable[..., None]
     run_asset_command: Callable[[argparse.Namespace], None] | None = None
     run_new_line: Callable[[argparse.Namespace], None] | None = None
+    run_web_package_command: Callable[[argparse.Namespace], None] | None = None
+    run_ir_qc_command: Callable[[argparse.Namespace], None] | None = None
+    run_ir_export_command: Callable[[argparse.Namespace], None] | None = None
 
 
 ActionHandler = Callable[[argparse.Namespace, DispatchContext], None]
@@ -175,6 +178,24 @@ def _dispatch_new_line_action(args: argparse.Namespace, context: DispatchContext
     if context.run_new_line is None:
         raise RuntimeError("new-line is not wired into this build entrypoint")
     context.run_new_line(args)
+
+
+def _dispatch_web_package_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    if context.run_web_package_command is None:
+        raise RuntimeError("web-package is not wired into this build entrypoint")
+    context.run_web_package_command(args)
+
+
+def _dispatch_ir_qc_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    if context.run_ir_qc_command is None:
+        raise RuntimeError("ir-qc is not wired into this build entrypoint")
+    context.run_ir_qc_command(args)
+
+
+def _dispatch_ir_export_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    if context.run_ir_export_command is None:
+        raise RuntimeError("ir-export is not wired into this build entrypoint")
+    context.run_ir_export_command(args)
 
 
 def _dispatch_sync_review_action(args: argparse.Namespace, context: DispatchContext) -> None:
@@ -355,6 +376,9 @@ ACTION_HANDLERS: dict[str, ActionHandler] = {
     "asset-check": _dispatch_asset_action,
     "asset-intake": _dispatch_asset_action,
     "new-line": _dispatch_new_line_action,
+    "web-package": _dispatch_web_package_action,
+    "ir-qc": _dispatch_ir_qc_action,
+    "ir-export": _dispatch_ir_export_action,
     "review": _dispatch_review_action,
     "check": _dispatch_check_action,
     "sync-review": _dispatch_sync_review_action,
@@ -414,6 +438,9 @@ def dispatch_action(
     maybe_sync_review_before_build: Callable[[argparse.Namespace], None],
     run_asset_command: Callable[[argparse.Namespace], None] | None = None,
     run_new_line: Callable[[argparse.Namespace], None] | None = None,
+    run_web_package_command: Callable[[argparse.Namespace], None] | None = None,
+    run_ir_qc_command: Callable[[argparse.Namespace], None] | None = None,
+    run_ir_export_command: Callable[[argparse.Namespace], None] | None = None,
 ) -> None:
     context = DispatchContext(
         config_path=config_path,
@@ -445,6 +472,9 @@ def dispatch_action(
         maybe_sync_review_before_build=maybe_sync_review_before_build,
         run_asset_command=run_asset_command,
         run_new_line=run_new_line,
+        run_web_package_command=run_web_package_command,
+        run_ir_qc_command=run_ir_qc_command,
+        run_ir_export_command=run_ir_export_command,
     )
     context.ensure_supported_staging_action(args)
     ACTION_HANDLERS.get(args.action, _dispatch_build_action)(args, context)

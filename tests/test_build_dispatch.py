@@ -18,6 +18,9 @@ class TestBuildDispatch(unittest.TestCase):
             "asset-check",
             "asset-intake",
             "new-line",
+            "web-package",
+            "ir-qc",
+            "ir-export",
             "review",
             "check",
             "sync-review",
@@ -469,9 +472,22 @@ class TestBuildDispatch(unittest.TestCase):
 
         self.assertEqual("review-asis", calls[1][2]["source_override"])
 
+    def test_dispatch_action_should_route_web_package_ir_qc_and_ir_export(self) -> None:
+        self.assertEqual([("ensure", "web-package"), ("web-package", "web-package")], self._dispatch("web-package"))
+        self.assertEqual([("ensure", "ir-qc"), ("ir-qc", "ir-qc")], self._dispatch("ir-qc"))
+        self.assertEqual([("ensure", "ir-export"), ("ir-export", "ir-export")], self._dispatch("ir-export"))
+
+        with self.assertRaises(RuntimeError):
+            self._dispatch("web-package", _omit_optional_web_ir_handlers=True)
+        with self.assertRaises(RuntimeError):
+            self._dispatch("ir-qc", _omit_optional_web_ir_handlers=True)
+        with self.assertRaises(RuntimeError):
+            self._dispatch("ir-export", _omit_optional_web_ir_handlers=True)
+
     def _dispatch(self, action: str, **overrides) -> list[tuple]:
         preserve_assembly_patch = overrides.pop("_preserve_assembly_patch", False)
         preserve_layout_patch = overrides.pop("_preserve_layout_patch", False)
+        omit_optional_web_ir_handlers = overrides.pop("_omit_optional_web_ir_handlers", False)
         values = {
             "action": action,
             "data_root": "data/phase2",
@@ -558,6 +574,9 @@ class TestBuildDispatch(unittest.TestCase):
                 maybe_sync_review_before_build=record_maybe_sync,
                 run_asset_command=record_arg("asset-command"),
                 run_new_line=record_arg("new-line"),
+                run_web_package_command=None if omit_optional_web_ir_handlers else record_arg("web-package"),
+                run_ir_qc_command=None if omit_optional_web_ir_handlers else record_arg("ir-qc"),
+                run_ir_export_command=None if omit_optional_web_ir_handlers else record_arg("ir-export"),
             )
         return calls
 
