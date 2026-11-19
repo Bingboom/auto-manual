@@ -9,9 +9,10 @@ Add new notes for this topic here, not to the hub.
 
 ## Engineering and mirror validation
 
-`Manual Validation` retains all 17 engineering jobs on `Bingboom/auto-manual`.
+`Manual Validation` retains all 19 engineering jobs on `Bingboom/auto-manual`
+(18 repository-gated jobs plus `secret-scan`).
 On Hello-Docs and Hello-Docs-Review, only `secret-scan` and `business-content`
-allocate runners; the 16 engineering jobs are skipped by repository guards.
+allocate runners; the 18 repository-gated engineering jobs are skipped by repository guards.
 Nightly Render and Manifest Regenerate Diff also run
 only in auto-manual. Trigger definitions stay unchanged; skipped run records
 can remain visible without allocating those job runners.
@@ -49,6 +50,7 @@ GitHub validation note:
 - the unit suite runs as the `unit-shard` matrix (`python -m tests.run_fast --shard K/N`, each test module in its own process, shards balanced by `tests/unit_timings.json`); the required `unit` check only aggregates it and fails when any shard failed, was cancelled or was skipped. A failed shard's log ends with the failing modules' full output. Runner, local reproduction and manifest refresh: [tests guide](../tests/README.md)
 - that workflow now also runs `npm ci && npm test` in [`../integrations/openclaw/auto-manual-control-layer/`](../../integrations/openclaw/auto-manual-control-layer) so the OpenClaw command bridge stays covered in CI
 - that same workflow now also runs stable smoke paths for `build.py diff-report` and `build.py release-manifest`
+- that same workflow now also runs `web-ir-checks`, executing `build.py web-package` (`inventory` and `audit-styles --all-packages --respect-baseline`), `build.py ir-qc --ir-command audit --all-ir`, and `build.py ir-export` with outputs written solely under `"$RUNNER_TEMP"` (never modifying the checkout); strict `verify-pins --all-packages` and `--strict` IR warnings remain deferred from hard CI gating until existing package/IR baselines are retired
 - that same workflow now also runs `python -m tools.check_maintainability_guardrails` so the current hotspot wrappers and validators do not quietly grow back into giant files
 - the maintainability gate first fails a PR that tracks a mirror-owned path (`docs/publish`, `docs/knowledge`, `docs/review-drafts`, the list the mirror syncs refuse): review drafts carry unreleased content and live only in the private Hello-Docs-Review, so they must not reach public main. Untracked local staging under those paths does not trip it (operator decision 2026-10-23)
 - [`scripts/sync_mirror.sh`](../../scripts/sync_mirror.sh), run by [`sync-hello-docs.yml`](../../.github/workflows/sync-hello-docs.yml), composes each mirror from the source tree: strict keep paths take the mirror's subtree, overlay paths take the file-level union with the source winning, and when `MIRROR_OVERLAY_PRUNE_EXTERNALIZED=1` is set on the `Hello-Docs` sync it invokes [`tools/web/mirror_overlay_prune.py`](../../tools/web/mirror_overlay_prune.py) to drop mirror-only overlay files absent upstream and superseded by an upstream `external-source-pointer/v1` pointer (direct `<path>.source-pointer.json` or split `archive_parts`) while preserving non-externalized mirror-only files. The lists live in the workflow and the rules and cut-over steps in [the two-plane map §2.2](../../user-guide/two_plane_map.md#22-镜像同步的保留路径与过渡路径); `tests/test_sync_hello_docs_workflow.py` pins them. A manual run with `dry_run` (always a dry run off `main`, where the mirror checkout keeps no push credential) prints each path's summary, the diff against the mirror head and the composed tree, and pushes nothing

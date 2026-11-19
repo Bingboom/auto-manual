@@ -9,6 +9,7 @@ GitHub note:
 - after merge, `main` runs the same validation workflow again; that run is never cancelled by a later merge, so every commit on `main` gets a complete result
 - feature-branch pushes are not expected to run a second duplicate `push` validation pass
 - `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
+- `Manual Validation` also runs `web-ir-checks` (`build.py web-package` `inventory` + `audit-styles --all-packages --respect-baseline`, `build.py ir-qc --ir-command audit --all-ir`, and `build.py ir-export` into `"$RUNNER_TEMP"`) to guard frozen Web packages, `manual.ir.json` bundles, and all-region IR knowledge export without dirtying the checkout
 - the shared GitHub-hosted Feishu worker setup now installs `pandoc` from the official release action instead of `apt-get`, and it reuses pip/npm download caches, so remote queue runs are less likely to spend 10+ minutes waiting on slow dependency downloads before the actual build starts
 - `Manual Validation` now also runs `python -m tools.check_maintainability_guardrails` as a low-noise guard against the main orchestration and validation hotspots growing back into giant files
 - the same guard caps the agent-facing hubs (`AGENTS.md`, the build and workflow guide indexes, the live merge-authorization registry, the recent optimization log); move content to the owning topic page or archive rather than raising a cap
