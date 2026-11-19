@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import time
 from typing import Any
@@ -48,6 +49,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.rtd import deployment_receipt as receipt  # noqa: E402
+from tools.rtd import private_build_verify as private_verify  # noqa: E402
 from tools.web.document_link_queue import (  # noqa: E402
     describe_url_field,
     scalar_text,
@@ -101,6 +103,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--expected-project-slug",
         default=None,
         help="Override the slug derived from --base-url (required for custom domains)",
+    )
+    parser.add_argument(
+        "--rtd-project-slug",
+        default=None,
+        help="Alias for --expected-project-slug (or RTD_PROJECT_SLUG env var)",
+    )
+    parser.add_argument(
+        "--expected-commit",
+        default=None,
+        help="Optional 40-char git commit SHA expected for private RTD Builds API verification",
     )
     parser.add_argument(
         "--record-id",
@@ -199,6 +211,25 @@ def _new_session(args: argparse.Namespace) -> receipt.FetchSession:
     )
 
 
+_TERMINAL_FAILURE_CATEGORIES = frozenset(
+    {"rtd-auth-failed", "rtd-build-failed", "local-integrity-failed"}
+)
+
+
+def _terminal_failure_reason(results: list[dict[str, str]]) -> str | None:
+    categories = {entry.get("category") for entry in results if entry.get("status") != "ok"}
+    token_present = bool(os.environ.get(private_verify.API_TOKEN_ENV, "").strip())
+    if "login-required" in categories and not token_present:
+        return (
+            f"site requires sign-in (login-required) and "
+            f"{private_verify.API_TOKEN_ENV} is not set"
+        )
+    for category in sorted(_TERMINAL_FAILURE_CATEGORIES):
+        if category in categories:
+            return f"non-retryable verification failure ({category})"
+    return None
+
+
 def wait_for_verified_deployment(
     *,
     web_root: Path,
@@ -209,6 +240,7 @@ def wait_for_verified_deployment(
     verify_fn: Any = None,
     sleep_fn: Any = time.sleep,
     monotonic_fn: Any = time.monotonic,
+    private_state: dict[str, Any] | None = None,
 ) -> tuple[str, list[dict[str, str]], int]:
     """Poll the live site until every registrable target verifies or time runs out.
 
@@ -224,19 +256,38 @@ def wait_for_verified_deployment(
     attempts = 0
     while True:
         attempts += 1
-        results = verify(
-            web_root,
-            base_url=base_url,
-            targets=targets,
-            project_slug=project_slug,
-            session=_new_session(args),
-            include_dependency=include_dependency,
-        )
+        session = _new_session(args)
+        if verify is verify_targets_against_source:
+            results = verify(
+                web_root,
+                base_url=base_url,
+                targets=targets,
+                project_slug=project_slug,
+                session=session,
+                include_dependency=include_dependency,
+                expected_commit=getattr(args, "expected_commit", None),
+                private_state=private_state,
+            )
+        else:
+            results = verify(
+                web_root,
+                base_url=base_url,
+                targets=targets,
+                project_slug=project_slug,
+                session=session,
+                include_dependency=include_dependency,
+            )
         statuses = {entry["status"] for entry in results}
         if statuses <= {"ok"}:
             return "verified", results, attempts
+        terminal = _terminal_failure_reason(results)
+        if terminal is not None:
+            _ERR.error(f"[web-receipt] Failing fast without waiting: {terminal}")
+            final = "throttled" if statuses == {"throttled"} else "failed"
+            return final, results, attempts
         if monotonic_fn() >= deadline:
-            return ("failed" if "failed" in statuses else "throttled"), results, attempts
+            final = "throttled" if statuses <= {"ok", "throttled"} and "throttled" in statuses else "failed"
+            return final, results, attempts
         sleep_fn(max(0.0, float(args.poll_interval_seconds)))
 
 
@@ -336,6 +387,62 @@ def register_target_links(
     return outcomes
 
 
+def _register_verified_targets(
+    *,
+    args: argparse.Namespace,
+    base_url: str,
+    verified_targets: list[dict[str, Any]],
+    report: dict[str, Any],
+    sleep_fn: Any,
+    fetch_fields: Any,
+    lark_source_factory: Any,
+) -> None:
+    cfg = load_config(resolve_repo_path(args.config))
+    errors = collect_queue_preflight_errors(cfg)
+    if errors:
+        raise RuntimeError(
+            "Web receipt HTML_link writeback preflight failed:\n- " + "\n- ".join(errors)
+        )
+    binding = resolve_document_link_binding(cfg)
+    resolved_cli_bin = cli_bin(cfg)
+    identity = phase2_identity()
+    source = (
+        lark_source_factory(cli_bin=resolved_cli_bin, identity=identity)
+        if lark_source_factory
+        else LarkCliSource(cli_bin=resolved_cli_bin, identity=identity)
+    )
+    field_id_map = fetch_field_id_map(
+        cli_bin=resolved_cli_bin,
+        base_token=binding.base_token,
+        table_id=binding.table_id,
+        identity=identity,
+        run_lark_cli_json=run_lark_cli_json,
+    )
+    field_name = resolve_html_link_field_name(field_id_map)
+    if not field_name:
+        raise RuntimeError("Document_link does not expose a writable HTML_link field")
+    entries_by_identity = {
+        (entry["model"], entry["region"], entry["lang"]): entry
+        for entry in report["targets"]
+    }
+    for target in verified_targets:
+        url = publication_url(base_url, target["page"])
+        outcomes = register_target_links(
+            source=source,
+            binding=binding,
+            resolved_cli_bin=resolved_cli_bin,
+            identity=identity,
+            field_name=field_name,
+            target=target,
+            url=url,
+            sleep_fn=sleep_fn,
+            fetch_fields=fetch_fields,
+        )
+        entry = entries_by_identity[(target["model"], target["region"], target["lang"])]
+        entry["url"] = url
+        entry["records"] = outcomes
+
+
 def run(
     args: argparse.Namespace,
     *,
@@ -349,7 +456,11 @@ def run(
     manifest_path = publish_root / PUBLISH_MANIFEST
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
     base_url = str(args.base_url)
-    project_slug = expected_project_slug(base_url, args.expected_project_slug)
+    project_slug = expected_project_slug(
+        base_url,
+        args.expected_project_slug,
+        rtd_slug=getattr(args, "rtd_project_slug", None),
+    )
     report: dict[str, Any] = {
         "schema": REPORT_SCHEMA,
         "base_url": base_url,
@@ -370,6 +481,7 @@ def run(
         )
         return EXIT_OK, report
 
+    private_state: dict[str, Any] = {}
     status, results, attempts = wait_for_verified_deployment(
         web_root=publish_root / PathSegments.WEB,
         base_url=base_url,
@@ -379,9 +491,17 @@ def run(
         verify_fn=verify_fn,
         sleep_fn=sleep_fn,
         monotonic_fn=monotonic_fn,
+        private_state=private_state,
     )
     report["verify_status"] = status
     report["verify_attempts"] = attempts
+    report["verification_mode"] = private_state.get("verification_mode") or (
+        private_verify.VERIFICATION_MODE_PRIVATE
+        if any(r.get("mode") == private_verify.VERIFICATION_MODE_PRIVATE for r in results)
+        else private_verify.VERIFICATION_MODE_LIVE
+    )
+    if private_state.get("rtd_build"):
+        report["rtd_build"] = private_state["rtd_build"]
     verified_targets: list[dict[str, Any]] = []
     # zip(strict=False): source data may differ in length; keep the existing truncation
     for target, result in zip(targets, results, strict=False):
@@ -405,50 +525,15 @@ def run(
         report["targets"].append(entry)
 
     if verified_targets:
-        cfg = load_config(resolve_repo_path(args.config))
-        errors = collect_queue_preflight_errors(cfg)
-        if errors:
-            raise RuntimeError(
-                "Web receipt HTML_link writeback preflight failed:\n- " + "\n- ".join(errors)
-            )
-        binding = resolve_document_link_binding(cfg)
-        resolved_cli_bin = cli_bin(cfg)
-        identity = phase2_identity()
-        source = (
-            lark_source_factory(cli_bin=resolved_cli_bin, identity=identity)
-            if lark_source_factory
-            else LarkCliSource(cli_bin=resolved_cli_bin, identity=identity)
+        _register_verified_targets(
+            args=args,
+            base_url=base_url,
+            verified_targets=verified_targets,
+            report=report,
+            sleep_fn=sleep_fn,
+            fetch_fields=fetch_fields,
+            lark_source_factory=lark_source_factory,
         )
-        field_id_map = fetch_field_id_map(
-            cli_bin=resolved_cli_bin,
-            base_token=binding.base_token,
-            table_id=binding.table_id,
-            identity=identity,
-            run_lark_cli_json=run_lark_cli_json,
-        )
-        field_name = resolve_html_link_field_name(field_id_map)
-        if not field_name:
-            raise RuntimeError("Document_link does not expose a writable HTML_link field")
-        entries_by_identity = {
-            (entry["model"], entry["region"], entry["lang"]): entry
-            for entry in report["targets"]
-        }
-        for target in verified_targets:
-            url = publication_url(base_url, target["page"])
-            outcomes = register_target_links(
-                source=source,
-                binding=binding,
-                resolved_cli_bin=resolved_cli_bin,
-                identity=identity,
-                field_name=field_name,
-                target=target,
-                url=url,
-                sleep_fn=sleep_fn,
-                fetch_fields=fetch_fields,
-            )
-            entry = entries_by_identity[(target["model"], target["region"], target["lang"])]
-            entry["url"] = url
-            entry["records"] = outcomes
 
     written = sum(
         1
@@ -476,7 +561,7 @@ def run(
     print(
         f"[web-receipt] {report['status']}: {written} written, {skipped} already "
         f"registered across {len(targets)} registrable target(s) "
-        f"(verify {status} after {attempts} attempt(s))"
+        f"(verify {status} via {report['verification_mode']} after {attempts} attempt(s))"
     )
     return exit_code, report
 

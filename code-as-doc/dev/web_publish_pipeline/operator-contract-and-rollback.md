@@ -38,14 +38,19 @@ facts and never lets one stand in for another:
 | --- | --- | --- |
 | Approval | the human merge of `publish -> main` | PR merge commit on Hello-Docs `main` |
 | Deployment | the RTD build of that `main` push | RTD build history; receipt-lane verify attempts |
-| Online verification | `verify_deployment` passing against the live site | `web-publish-receipt.yml` run + `HTML_link` write with same-record readback |
+| Online verification | `verify_deployment` live-HTML check (public RTD) **or** local `docs/publish/web/` integrity proof + RTD v3 Builds API `success=True` (private RTD Business with `READTHEDOCS_API_TOKEN`) | `web-publish-receipt.yml` run (`verification_mode`: `live-html` \| `rtd-private-build`) + `HTML_link` write with same-record readback |
 
 `HTML_link` is written only after the third fact: a merged PR proves the
-candidate was accepted, an RTD build proves the deploy pipeline ran, and only
-the live-content verification proves readers actually reach the target version.
-A deployment that fails verification is never registered as online; a failed
-registration goes to an independent retry (re-run the receipt workflow),
-never to a re-publish of the manual.
+candidate was accepted, an RTD build proves the deploy pipeline ran, and
+verification proves either that public readers receive matching bytes or (when
+the site redirects anonymous readers to `/cas/login`) that the frozen
+`docs/publish/web/` tree is intact and RTD Business completed a successful
+build covering the `docs/publish` commit on the target version (`latest`). If a
+sign-in redirect occurs without `READTHEDOCS_API_TOKEN`, or if the matching
+RTD build finished with `success=False`, `web-publish-receipt.yml` fails fast
+instead of polling for 30 minutes. A deployment that fails verification is never
+registered as online; a failed registration goes to an independent retry
+(re-run the receipt workflow), never to a re-publish of the manual.
 
 For the Git-only path, use the evidence contract in section 2.2. Do not create
 placeholder online records or write `HTML_link` to imitate queue completion.
@@ -56,10 +61,23 @@ watch for later drift.
 is the independent detector: a daily scheduled run on the Hello-Docs business
 plane feeds every target of `Hello-Docs/main:docs/publish/publish_manifest.json`
 through [`tools/verify_web_deployment_targets.py`](../../../tools/verify_web_deployment_targets.py),
-which runs the full `tools.rtd.deployment_receipt.verify_deployment` check per
-canonical nested page — frozen-source byte identity plus the expected RTD
-project slug derived from the base URL — and fails the run on any unreachable
-page, drifted bytes, or wrong-site deployment. Failures open the
+using a two-tier contract:
+
+1. **Public site (`verification_mode: live-html`)**: runs the full
+   `tools.rtd.deployment_receipt.verify_deployment` check per canonical nested
+   page — frozen-source byte identity plus the expected RTD project slug
+   derived from the base URL — and fails on any unreachable page, drifted bytes,
+   or wrong-site deployment.
+2. **Private RTD Business (`verification_mode: rtd-private-build`)**: when the
+   live HTTP probe hits a sign-in redirect (`/login` / `/cas/login`) and
+   `READTHEDOCS_API_TOKEN` is configured, verifies local `docs/publish/`
+   integrity (manifest target/file entries, `source_fingerprint`, non-empty
+   target pages and local assets) plus the RTD v3 Builds API (`success=True` on
+   the target version for `HEAD` or a descendant of the last commit modifying
+   `docs/publish`). Without `READTHEDOCS_API_TOKEN`, a sign-in redirect fails
+   closed immediately as `unverifiable` (exit 75).
+
+Failures open the
 `web-deployment-verify` sentinel issue through the shared
 `queue-sentinel-issue` action; the next fully green run closes it.
 

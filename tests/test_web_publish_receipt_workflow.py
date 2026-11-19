@@ -76,6 +76,23 @@ class TestWebPublishReceiptWorkflow(unittest.TestCase):
         self.assertEqual("always()", sentinel["if"])
         self.assertEqual("queue-failure-web-receipt", sentinel["with"]["label"])
 
+    def test_private_rtd_token_and_full_history_checkout_are_wired(self) -> None:
+        checkout = next(
+            step
+            for step in self.job["steps"]
+            if str(step.get("uses", "")).startswith("actions/checkout")
+        )
+        self.assertEqual(0, checkout["with"]["fetch-depth"])
+        register = next(
+            step
+            for step in self.job["steps"]
+            if step.get("name") == "Verify deployment and register HTML_link"
+        )
+        self.assertEqual(
+            "${{ secrets.READTHEDOCS_API_TOKEN }}",
+            register["env"]["READTHEDOCS_API_TOKEN"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

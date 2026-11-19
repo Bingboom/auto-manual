@@ -11,14 +11,18 @@ from pathlib import Path
 import sys
 import time
 from urllib.parse import urlsplit
-from urllib.request import Request, urlopen
+from urllib.request import urlopen
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.rtd.deployment_receipt import (
     DEFAULT_RTD_BASE_URL, CrossOriginRedirect, FetchSession, _without_rtd_proxy_injection,
-    rtd_project_slug_from_base_url,
+)
+from tools.rtd.private_build_verify import (
+    API_TOKEN_ENV as _API_TOKEN_ENV,
+    fetch_rtd_builds_bytes,
+    rtd_builds_api,
 )
 from tools.workspace_freshness import SHOWN, inventory
 from tools.workspace_refresh_publish import command
@@ -27,7 +31,7 @@ from tools.workspace_snapshot import atomic_json
 BASE_URL = DEFAULT_RTD_BASE_URL.rstrip("/") + "/"
 ROUTE = "workspace/deliverables/index.html"
 # Read the Docs for Business answers its builds API only with a token; Community answers anonymously.
-API_TOKEN_ENV = "READTHEDOCS_API_TOKEN"
+API_TOKEN_ENV = _API_TOKEN_ENV
 
 
 class LoginRequired(ValueError):
@@ -36,21 +40,16 @@ class LoginRequired(ValueError):
 
 def builds_api(base_url: str) -> tuple[str, str, bool] | None:
     """Builds API URL, dashboard build prefix and whether a token is required; None off Read the Docs."""
-    slug = rtd_project_slug_from_base_url(base_url)
-    if slug is None:
-        return None
-    business = (urlsplit(base_url).hostname or "").lower().endswith(".readthedocs-hosted.com")
-    domain = "readthedocs.com" if business else "readthedocs.org"
-    return (f"https://{domain}/api/v3/projects/{slug}/builds/",
-            f"https://app.{domain}/projects/{slug}/builds/", business)
+    return rtd_builds_api(base_url)
 
 
 def fetch_builds(url: str, token: str) -> bytes:
-    if not token:
-        return FetchSession().fetch(url)
-    request = Request(url, headers={"Authorization": f"Token {token}", "User-Agent": "auto-manual-deployment/1"})
-    with urlopen(request, timeout=30) as response:
-        return response.read()
+    return fetch_rtd_builds_bytes(
+        url,
+        token,
+        urlopen_fn=urlopen,
+        fetch_fn=lambda target: FetchSession().fetch(target),
+    )
 
 
 def verify_once(root: Path, revision: str, *, fetch=None) -> dict:

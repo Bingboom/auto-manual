@@ -3,7 +3,9 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import os
 from pathlib import Path
+import subprocess
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
@@ -11,6 +13,7 @@ from unittest.mock import patch
 from urllib.error import HTTPError, URLError
 
 from tools.rtd import deployment_receipt as receipt
+from tools.rtd import private_build_verify as private_verify
 from tools import verify_web_deployment_targets as verifier
 
 
@@ -222,6 +225,7 @@ class DeploymentVerificationTests(unittest.TestCase):
         report = json.loads(stdout.getvalue())
         self.assertEqual(verifier.REPORT_SCHEMA, report["schema"])
         self.assertEqual("verified", report["status"])
+        self.assertEqual("live-html", report["verification_mode"])
         self.assertEqual(1, report["targets_checked"])
         self.assertEqual("ht-doc", report["expected_project_slug"])
 
@@ -575,6 +579,308 @@ class DeploymentVerificationTests(unittest.TestCase):
         self.assertAlmostEqual(1.0 / verifier.DEFAULT_RPS, default.min_interval)
         with self.assertRaisesRegex(ValueError, "--rps"):
             verifier._session(verifier.parse_args(["--rps", "-1"]))
+
+
+class PrivateRtdDeploymentVerificationTests(unittest.TestCase):
+    BUSINESS_BASE_URL = "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
+    CAS_LOGIN = "https://app.readthedocs.com/cas/login"
+
+    def setUp(self) -> None:
+        self.temp = TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.repo = Path(self.temp.name)
+        self._git("init")
+        self._git("config", "user.email", "test@example.invalid")
+        self._git("config", "user.name", "Test User")
+        (self.repo / "README.md").write_text("init\n", encoding="utf-8")
+        self._git("add", "README.md")
+        self._git("commit", "-m", "chore: initial commit")
+        self.pre_publish_sha = self._git("rev-parse", "HEAD")
+
+        self.publish = self.repo / "docs" / "publish"
+        self.web = self.publish / "web"
+        self.web.mkdir(parents=True)
+        (self.web / "conf.py").write_text('project = "Test"\n', encoding="utf-8")
+        (self.web / "index.md").write_text("# Library\n", encoding="utf-8")
+        asset = self.web / "_static" / "manual-assets" / "diagram.png"
+        asset.parent.mkdir(parents=True, exist_ok=True)
+        asset.write_bytes(b"\x89PNG\r\n\x1a\n")
+        for page in (PAGE_ONE, PAGE_TWO):
+            route = Path(page).parent
+            stem = Path(page).stem
+            target_dir = self.web / route
+            target_dir.mkdir(parents=True, exist_ok=True)
+            (target_dir / "index.md").write_text(
+                f"# Manual\n\n```{{toctree}}\n{stem}\n```\n",
+                encoding="utf-8",
+            )
+            (target_dir / f"{stem}.md").write_text(
+                '<img src="../../../../_static/manual-assets/diagram.png"/>\n',
+                encoding="utf-8",
+            )
+        (self.publish / verifier.PUBLISH_MANIFEST).write_text(
+            json.dumps(_manifest_payload()), encoding="utf-8"
+        )
+        self._git("add", "docs/publish")
+        self._git("commit", "-m", "feat(publish): publish web manuals")
+        self.publish_sha = self._git("rev-parse", "HEAD")
+
+        (self.repo / "knowledge.txt").write_text("update\n", encoding="utf-8")
+        self._git("add", "knowledge.txt")
+        self._git("commit", "-m", "chore(knowledge): non-publish update")
+        self.head_sha = self._git("rev-parse", "HEAD")
+
+    def _git(self, *args: str) -> str:
+        return subprocess.check_output(
+            ["git", "-C", str(self.repo), *args], text=True
+        ).strip()
+
+    def _cas_redirect(self, _url: str) -> bytes:
+        raise receipt.CrossOriginRedirect(self.CAS_LOGIN)
+
+    def _fake_builds_opener(self, builds_payload: dict):
+        seen: list[tuple[str, str | None]] = []
+
+        def opener(request, timeout=30):
+            seen.append((request.full_url, request.get_header("Authorization")))
+            return io.BytesIO(json.dumps(builds_payload).encode("utf-8"))
+
+        return opener, seen
+
+    def test_private_cas_login_without_token_fails_fast_unverifiable(self) -> None:
+        calls: list[str] = []
+
+        def probe(url: str) -> bytes:
+            calls.append(url)
+            raise receipt.CrossOriginRedirect(self.CAS_LOGIN)
+
+        stdout = io.StringIO()
+        with patch.dict(os.environ, {private_verify.API_TOKEN_ENV: ""}):
+            with patch.object(receipt, "_fetch", side_effect=probe):
+                with contextlib.redirect_stdout(stdout):
+                    code = verifier.main([
+                        "--publish-root", str(self.publish),
+                        "--base-url", self.BUSINESS_BASE_URL,
+                        "--rps", "0",
+                        "--json",
+                    ])
+        self.assertEqual(verifier.EXIT_UNDECIDED, code)
+        self.assertEqual(1, len(calls))
+        report = json.loads(stdout.getvalue())
+        self.assertEqual("unverifiable", report["status"])
+        self.assertEqual({"login-required": 2}, report["undecided_categories"])
+        self.assertIn(private_verify.API_TOKEN_ENV, report["headline"])
+
+    def test_private_cas_login_with_token_and_valid_descendant_build_passes(self) -> None:
+        builds_payload = {
+            "results": [
+                {
+                    "id": 4762840,
+                    "commit": self.head_sha,
+                    "state": {"code": "finished"},
+                    "finished": "2026-11-19T03:37:13Z",
+                    "success": True,
+                    "version": {"slug": "latest"},
+                }
+            ]
+        }
+        opener, seen = self._fake_builds_opener(builds_payload)
+        stdout = io.StringIO()
+        with patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "super-secret-token"}):
+            with patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with patch.object(private_verify, "urlopen", side_effect=opener):
+                    with contextlib.redirect_stdout(stdout):
+                        code = verifier.main([
+                            "--publish-root", str(self.publish),
+                            "--base-url", self.BUSINESS_BASE_URL,
+                            "--rps", "0",
+                            "--json",
+                        ])
+        self.assertEqual(0, code)
+        self.assertEqual(
+            [("https://readthedocs.com/api/v3/projects/ht-docs-ht-manuals/builds/", "Token super-secret-token")],
+            seen,
+        )
+        raw_out = stdout.getvalue()
+        self.assertNotIn("super-secret-token", raw_out)
+        report = json.loads(raw_out)
+        self.assertEqual("verified", report["status"])
+        self.assertEqual("rtd-private-build", report["verification_mode"])
+        self.assertEqual(4762840, report["rtd_build"]["id"])
+        self.assertEqual({"rtd-private-build"}, {entry["mode"] for entry in report["results"]})
+
+    def test_private_accepts_build_covering_publish_commit_when_head_is_newer_non_publish(self) -> None:
+        builds_payload = {
+            "results": [
+                {
+                    "id": 4762800,
+                    "commit": self.publish_sha,
+                    "state": {"code": "finished"},
+                    "finished": "2026-11-19T02:00:00Z",
+                    "success": True,
+                    "version": "latest",
+                }
+            ]
+        }
+        opener, _seen = self._fake_builds_opener(builds_payload)
+        stdout = io.StringIO()
+        with patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "tok"}):
+            with patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with patch.object(private_verify, "urlopen", side_effect=opener):
+                    with contextlib.redirect_stdout(stdout):
+                        code = verifier.main([
+                            "--publish-root", str(self.publish),
+                            "--base-url", self.BUSINESS_BASE_URL,
+                            "--rps", "0",
+                            "--json",
+                        ])
+        self.assertEqual(0, code)
+        report = json.loads(stdout.getvalue())
+        self.assertEqual(4762800, report["rtd_build"]["id"])
+
+    def test_private_rejects_stale_pre_publish_commit_or_wrong_version(self) -> None:
+        for label, payload in (
+            (
+                "pre-publish-commit",
+                {
+                    "results": [
+                        {
+                            "id": 4760001,
+                            "commit": self.pre_publish_sha,
+                            "state": {"code": "finished"},
+                            "finished": "2026-11-18T00:00:00Z",
+                            "success": True,
+                            "version": {"slug": "latest"},
+                        }
+                    ]
+                },
+            ),
+            (
+                "wrong-version",
+                {
+                    "results": [
+                        {
+                            "id": 4760002,
+                            "commit": self.head_sha,
+                            "state": {"code": "finished"},
+                            "finished": "2026-11-19T03:00:00Z",
+                            "success": True,
+                            "version": {"slug": "v1.0"},
+                        }
+                    ]
+                },
+            ),
+        ):
+            with self.subTest(label=label):
+                opener, _seen = self._fake_builds_opener(payload)
+                stdout = io.StringIO()
+                with patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "tok"}):
+                    with patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                        with patch.object(private_verify, "urlopen", side_effect=opener):
+                            with contextlib.redirect_stdout(stdout):
+                                code = verifier.main([
+                                    "--publish-root", str(self.publish),
+                                    "--base-url", self.BUSINESS_BASE_URL,
+                                    "--rps", "0",
+                                    "--json",
+                                ])
+                self.assertEqual(verifier.EXIT_FAILED, code)
+                report = json.loads(stdout.getvalue())
+                self.assertEqual("failed", report["status"])
+                self.assertEqual({"stale-deployment": 2}, report["mismatch_categories"])
+
+    def test_private_rtd_failed_build_fails_closed(self) -> None:
+        builds_payload = {
+            "results": [
+                {
+                    "id": 4762899,
+                    "commit": self.head_sha,
+                    "state": {"code": "finished"},
+                    "finished": "2026-11-19T03:40:00Z",
+                    "success": False,
+                    "version": {"slug": "latest"},
+                }
+            ]
+        }
+        opener, _seen = self._fake_builds_opener(builds_payload)
+        stdout = io.StringIO()
+        with patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "tok"}):
+            with patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with patch.object(private_verify, "urlopen", side_effect=opener):
+                    with contextlib.redirect_stdout(stdout):
+                        code = verifier.main([
+                            "--publish-root", str(self.publish),
+                            "--base-url", self.BUSINESS_BASE_URL,
+                            "--rps", "0",
+                            "--json",
+                        ])
+        self.assertEqual(verifier.EXIT_FAILED, code)
+        report = json.loads(stdout.getvalue())
+        self.assertEqual("failed", report["status"])
+        self.assertEqual({"rtd-build-failed": 2}, report["mismatch_categories"])
+
+    def test_private_rtd_in_progress_build_reports_unverifiable_75(self) -> None:
+        builds_payload = {
+            "results": [
+                {
+                    "id": 4762900,
+                    "commit": self.publish_sha,
+                    "state": {"code": "building"},
+                    "finished": None,
+                    "success": None,
+                    "version": {"slug": "latest"},
+                }
+            ]
+        }
+        # Set HEAD == publish_sha so no earlier covering build exists
+        self._git("reset", "--hard", self.publish_sha)
+        opener, _seen = self._fake_builds_opener(builds_payload)
+        stdout = io.StringIO()
+        with patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "tok"}):
+            with patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with patch.object(private_verify, "urlopen", side_effect=opener):
+                    with contextlib.redirect_stdout(stdout):
+                        code = verifier.main([
+                            "--publish-root", str(self.publish),
+                            "--base-url", self.BUSINESS_BASE_URL,
+                            "--rps", "0",
+                            "--json",
+                        ])
+        self.assertEqual(verifier.EXIT_UNDECIDED, code)
+        report = json.loads(stdout.getvalue())
+        self.assertEqual("unverifiable", report["status"])
+        self.assertEqual({"rtd-build-in-progress": 2}, report["undecided_categories"])
+
+    def test_private_missing_local_asset_fails_closed(self) -> None:
+        (self.web / "_static" / "manual-assets" / "diagram.png").unlink()
+        builds_payload = {
+            "results": [
+                {
+                    "id": 4762840,
+                    "commit": self.head_sha,
+                    "state": {"code": "finished"},
+                    "finished": "2026-11-19T03:37:13Z",
+                    "success": True,
+                    "version": {"slug": "latest"},
+                }
+            ]
+        }
+        opener, _seen = self._fake_builds_opener(builds_payload)
+        stdout = io.StringIO()
+        with patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "tok"}):
+            with patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with patch.object(private_verify, "urlopen", side_effect=opener):
+                    with contextlib.redirect_stdout(stdout):
+                        code = verifier.main([
+                            "--publish-root", str(self.publish),
+                            "--base-url", self.BUSINESS_BASE_URL,
+                            "--rps", "0",
+                            "--json",
+                        ])
+        self.assertEqual(verifier.EXIT_FAILED, code)
+        report = json.loads(stdout.getvalue())
+        self.assertEqual("failed", report["status"])
+        self.assertEqual({"local-integrity-failed": 2}, report["mismatch_categories"])
 
 
 if __name__ == "__main__":
