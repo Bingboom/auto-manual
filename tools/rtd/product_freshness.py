@@ -24,7 +24,9 @@ from __future__ import annotations
 import datetime as dt
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
+from tools.product_matrix_base.publish import BRANCH as REFRESH_BRANCH
 from tools.product_matrix_base.sync import STATUS_FILE, STATUS_SCHEMA, parse_time, read_json
 from tools.rtd.product_library import SNAPSHOT
 
@@ -32,6 +34,8 @@ DEFAULT_LIMIT = 7  # used only when the source registry cannot be read
 CST = dt.timezone(dt.timedelta(hours=8))
 UNKNOWN_BUILD = "未记录（旧版快照）"
 NO_SUCCESS = "无记录"
+REFRESH_WORKFLOW_URL = "https://github.com/Bingboom/Hello-Docs/actions/workflows/workspace-data-refresh.yml"
+REFRESH_PR_URL = f"https://github.com/Bingboom/Hello-Docs/pulls?q=is%3Apr+is%3Aopen+head%3A{quote(REFRESH_BRANCH, safe='')}"
 
 
 def _shown(moment: dt.datetime | None) -> str:
@@ -87,7 +91,7 @@ def freshness(snapshot: dict[str, Any], status: dict[str, Any] | None, *, today:
         warnings += _status_warnings(status, snapshot)
     return {"read_at": _shown(read) or "未记录", "built_at": _shown(built) or UNKNOWN_BUILD,
             "last_success": _shown(success) or NO_SUCCESS, "warnings": warnings, "stale": bool(warnings),
-            "limit": limit}
+            "limit": limit, "refresh_url": REFRESH_WORKFLOW_URL, "review_pr_url": REFRESH_PR_URL}
 
 
 def freshness_context(knowledge_dir: Path, snapshot: dict[str, Any] | None, *, today: dt.date,
@@ -98,5 +102,5 @@ def freshness_context(knowledge_dir: Path, snapshot: dict[str, Any] | None, *, t
     return freshness(snapshot, load_status(knowledge_dir), today=today, limit=stale_limit(registry))
 
 
-__all__ = ["DEFAULT_LIMIT", "NO_SUCCESS", "UNKNOWN_BUILD", "freshness", "freshness_context", "load_status",
-           "stale_limit"]
+__all__ = ["DEFAULT_LIMIT", "NO_SUCCESS", "REFRESH_PR_URL", "REFRESH_WORKFLOW_URL", "UNKNOWN_BUILD", "freshness",
+           "freshness_context", "load_status", "stale_limit"]

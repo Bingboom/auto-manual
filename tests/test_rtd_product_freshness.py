@@ -108,6 +108,12 @@ class TemplateTest(unittest.TestCase):
                 self.assertEqual(banner["role"], "status")
                 self.assertIn("产品 2→3", banner.li.get_text())
                 self.assertIsNone(banner.select_one("b"))  # status text is escaped
+                for host in (banner, page.select_one(".pt-sync")):
+                    links = [(a.get_text(), a["href"], a.get("target"), a.get("rel")) for a in host.select("a.pt-sync-btn")]
+                    self.assertEqual(links, [
+                        ("同步多维表", pf.REFRESH_WORKFLOW_URL, "_blank", ["noopener"]),
+                        ("待审快照 PR", pf.REFRESH_PR_URL, "_blank", ["noopener"]),
+                    ])
         quiet = render("product_matrix.html", {**pl.library_view(NEW), "freshness": pf.freshness(
             NEW, status(), today=TODAY, limit=7)})
         self.assertIsNone(quiet.select_one(".pt-stale"))
