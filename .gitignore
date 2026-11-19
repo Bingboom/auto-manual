@@ -2,13 +2,7 @@
 .tmp/
 
 # Build outputs
-docs/_build/*
-!docs/_build/*/
-docs/_build/*/*
-!docs/_build/*/*/
-docs/_build/*/*/*
-!docs/_build/*/*/rst/
-!docs/_build/*/*/rst/**
+docs/_build/
 docs/generated/
 
 # Runtime release output is delivered through Feishu / GitHub Actions, not Git.
