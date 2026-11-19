@@ -22,7 +22,7 @@ TABLES = ("产品", "属性", "来源", "事实")
 PRIMARY = {"产品": "产品键", "属性": "属性键", "来源": "来源键", "事实": "事实键", "矩阵": "产品键"}
 BATCH = 100  # the CLI accepts at most 200 rows per batch-create; stay well inside it
 CANDIDATE = "候选"
-BRAND = "自有"
+BRAND = ["未知"]
 NO_CONDITION = "-"
 CST = timezone(timedelta(hours=8))
 SOURCE_TYPE = "网页说明书"

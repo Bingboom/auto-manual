@@ -193,6 +193,13 @@ class DictionaryAndManifestTest(unittest.TestCase):
                                      "矩阵": "产品键"})
         state = next(f for f in tables["事实"]["fields"] if f["name"] == "核实状态")
         self.assertEqual(state["options"][0], "候选")
+        products = {f["name"]: f for f in tables["产品"]["fields"]}
+        self.assertNotIn("代际", products)
+        self.assertNotIn("关联 SKU", products)
+        self.assertEqual(products["SKU 最早创建时间"]["type"], "lookup")
+        self.assertEqual(products["SKU 最早创建时间（本市场）"]["type"], "formula")
+        self.assertTrue(products["品牌"]["multiple"])
+        self.assertIn("未知", products["品牌"]["options"])
 
 
 class StagingTest(unittest.TestCase):

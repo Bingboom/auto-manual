@@ -103,6 +103,46 @@ class ExportTests(unittest.TestCase):
             self.assertEqual(manifest["tables"][0]["sha256"], entry["sha256"])
             self.assertIn("formula", manifest["tables"][0]["field_types"].values())
 
+    def test_projected_export_and_restore_skip_formula_and_lookup_columns(self):
+        state: dict = {}
+
+        def fake(args, lark_cli="lark-cli"):
+            sub = args[1]
+            if sub == "+table-list":
+                return {"data": {"items": [{"name": "产品", "table_id": "tblP"}]}}
+            if sub == "+field-list":
+                return {"data": {"fields": [
+                    {"id": "f1", "name": "产品键", "type": "text"},
+                    {"id": "f2", "name": "SKU 最早创建时间", "type": "lookup"},
+                    {"id": "f3", "name": "SKU 最早创建时间（本市场）", "type": "formula"},
+                ]}}
+            if sub == "+record-list":
+                return {"data": {
+                    "fields": ["产品键", "SKU 最早创建时间", "SKU 最早创建时间（本市场）"],
+                    "field_id_list": ["f1", "f2", "f3"],
+                    "data": [["JE-1000F/US", ["2024/07/30 09:15 (GMT+8)"], "45215.5"]],
+                    "record_id_list": ["rec1"],
+                    "has_more": False,
+                }}
+            if sub == "+record-batch-create":
+                state.setdefault("batches", []).append(json.loads(args[args.index("--json") + 1]))
+                return {"code": 0, "data": {"records": [{}]}}
+            raise AssertionError(f"unexpected lark call: {args[:3]}")
+
+        manifest = {"schema_version": "bitable-schema/v1", "tables": [{"name": "产品", "fields": [
+            {"name": "产品键", "type": "text"},
+            {"name": "SKU 最早创建时间", "type": "lookup"},
+            {"name": "SKU 最早创建时间（本市场）", "type": "formula"},
+        ]}]}
+        with temp_test_root() as root, patch.object(bcb.bs, "_lark", fake):
+            report = bcb.export_content(manifest, "basTOK", "product_matrix", Path(root), "lark-cli", projected_read=True)
+            self.assertEqual(report["missing_columns"], {})
+            restore = bcb.restore_content(Path(root) / "product_matrix", "basSCRATCH", ["产品"],
+                                          write=False, allow_nonempty=True, lark_cli="lark-cli")
+            (plan,) = restore["tables"]
+            self.assertEqual(plan["skipped_columns"], ["SKU 最早创建时间", "SKU 最早创建时间（本市场）"])
+            self.assertEqual(plan["planned_rows"], 1)
+
 
 class RestoreTests(unittest.TestCase):
     def _export(self, root, state):
