@@ -1,6 +1,6 @@
 {
   "schema_version": "bitable-schema/v1",
-  "note": "产品信息矩阵（发布文档管理 base）的五张表。名称为键，不含 id 和数据；每张表第一个字段是主字段。link 类型字段由人工在飞书界面建立（apply 只列出不创建）。契约见 code-as-doc/dev/product_matrix_base.md。",
+  "note": "产品信息矩阵（发布文档管理 base）的五张表。名称为键，不含 id 和数据；每张表第一个字段是主字段。formula / lookup / link 类型字段由人工在飞书界面建立（apply 只列出不创建）。契约见 code-as-doc/dev/product_matrix_base.md。",
   "tables": [
     {
       "name": "产品",
@@ -31,15 +31,15 @@
           ]
         },
         {
-          "name": "代际",
-          "type": "text"
-        },
-        {
           "name": "品牌",
           "type": "select",
-          "multiple": false,
+          "multiple": true,
           "options": [
-            "自有"
+            "自制类",
+            "采购类",
+            "委外类",
+            "虚拟类",
+            "未知"
           ]
         },
         {
@@ -75,7 +75,11 @@
             "SolarSaga Air",
             "充电与输入",
             "连接与配电",
-            "保护与搬运"
+            "保护与搬运",
+            "SolarSaga Mini",
+            "SolarSaga Light",
+            "SolarSaga 500W",
+            "Solar Panel"
           ]
         },
         {
@@ -139,16 +143,34 @@
           "type": "text"
         },
         {
-          "name": "关联 SKU",
-          "type": "link",
+          "name": "SKU 最早创建时间",
+          "type": "lookup",
           "detail": {
-            "target_table": "SKU（plm数据）",
-            "note": "预留，由操作者手工建立并填写"
+            "aggregate": "raw_value",
+            "from": "父-子物料映射",
+            "select": "sku创建时间",
+            "where": {
+              "conditions": [
+                [
+                  "项目号",
+                  "==",
+                  {
+                    "field": "项目号（仅飞书）",
+                    "type": "field_ref"
+                  }
+                ]
+              ],
+              "logic": "and"
+            }
           }
         },
         {
-          "name": "SKU 最早创建时间",
-          "type": "datetime"
+          "name": "SKU 最早创建时间（本市场）",
+          "type": "formula",
+          "detail": {
+            "description": "本产品在本市场的 SKU 中，在 PLM 里最早的创建时间；表示进入系统的时间，不是上市日期。",
+            "expression": "[父-子物料映射].FILTER(CurrentValue.[项目号]=[项目号（仅飞书）]&&CurrentValue.[区域].CONTAIN([市场])).[sku创建时间].FILTER(NOT(ISBLANK(CurrentValue))).SORT().FIRST()"
+          }
         },
         {
           "name": "备注",
