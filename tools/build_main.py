@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from functools import partial
 import subprocess
 from pathlib import Path
 from typing import Callable
@@ -45,6 +46,9 @@ def run_main(
     maybe_sync_review_before_build: Callable[[argparse.Namespace], None],
     run_asset_command: Callable[[argparse.Namespace], None] | None = None,
     run_new_line: Callable[[argparse.Namespace], None] | None = None,
+    run_web_package_command: Callable[[argparse.Namespace], None] | None = None,
+    run_ir_qc_command: Callable[[argparse.Namespace], None] | None = None,
+    run_ir_export_command: Callable[[argparse.Namespace], None] | None = None,
 ) -> int:
     # Make phase2/Feishu secrets from ~/.auto-manual-phase2.env available to this
     # process (and the child processes it spawns, e.g. tools/data/sync_data.py) without
@@ -54,6 +58,19 @@ def run_main(
 
     args = parse_args(argv)
     config_path = resolve_path_from_root(args.config)
+    repo_root = resolve_path_from_root(".")
+    if run_web_package_command is None and args.action == "web-package":
+        from tools.web.package_commands import run_web_package_command as _run_web_package_command_impl
+
+        run_web_package_command = partial(_run_web_package_command_impl, repo_root=repo_root)
+    if run_ir_qc_command is None and args.action == "ir-qc":
+        from tools.web.ir_commands import run_ir_qc_command as _run_ir_qc_command_impl
+
+        run_ir_qc_command = partial(_run_ir_qc_command_impl, repo_root=repo_root)
+    if run_ir_export_command is None and args.action == "ir-export":
+        from tools.manual_knowledge.ir_commands import run_ir_export_command as _run_ir_export_command_impl
+
+        run_ir_export_command = partial(_run_ir_export_command_impl, repo_root=repo_root)
 
     try:
         dispatch_action(
@@ -87,6 +104,9 @@ def run_main(
             maybe_sync_review_before_build=maybe_sync_review_before_build,
             run_asset_command=run_asset_command,
             run_new_line=run_new_line,
+            run_web_package_command=run_web_package_command,
+            run_ir_qc_command=run_ir_qc_command,
+            run_ir_export_command=run_ir_export_command,
         )
     except subprocess.CalledProcessError as exc:
         return exc.returncode or 1

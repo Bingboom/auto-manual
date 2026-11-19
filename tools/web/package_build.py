@@ -523,7 +523,7 @@ def _emit(payload: Mapping[str, Any], text: str, *, as_json: bool) -> None:
         print(text)
 
 
-def _format_verify_text(report: Mapping[str, Any]) -> str:
+def format_verify_text(report: Mapping[str, Any]) -> str:
     status = "OK" if report["ok"] else "FAILED"
     return (
         f"[verify-pins] {status}: {report['package_dir']} "
@@ -533,7 +533,7 @@ def _format_verify_text(report: Mapping[str, Any]) -> str:
     )
 
 
-def _format_audit_text(report: Mapping[str, Any]) -> str:
+def format_audit_text(report: Mapping[str, Any]) -> str:
     status = "OK" if report["ok"] else "FAILED"
     lines = [f"[audit-styles] {status}: {report['package_dir']}"]
     for loc in report["locales"]:
@@ -542,6 +542,10 @@ def _format_audit_text(report: Mapping[str, Any]) -> str:
     if report.get("error"):
         lines.append(f"  error: {report['error']}")
     return "\n".join(lines)
+
+
+_format_verify_text = format_verify_text
+_format_audit_text = format_audit_text
 
 
 def main(argv: Sequence[str] | None = None) -> int:

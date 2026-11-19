@@ -1492,10 +1492,13 @@ def build_ir_observations(
     corpus: dict[str, Any],
     corpus_bytes: bytes | None = None,
     features: dict[str, dict[str, bool]] | None = None,
+    *,
+    repo_root_path: Path | None = None,
 ) -> dict[str, Any]:
     """Build auto-manual-knowledge-observations/v1 with CJK/KR/US regulatory and topic enrichment."""
     raw_bytes = corpus_bytes if corpus_bytes is not None else json.dumps(corpus, ensure_ascii=False, sort_keys=True).encode("utf-8")
-    feat = features if features is not None else load_capabilities(repo_root() / PathSegments.DATA)
+    root = (repo_root_path or repo_root()).resolve()
+    feat = features if features is not None else load_capabilities(root / PathSegments.DATA)
     base = build_observations(corpus, raw_bytes, feat)
     by_block = _index_base_items(corpus, base["items"])
     merged: list[dict[str, Any]] = []
@@ -1530,6 +1533,53 @@ def _write_json_atomic(destination: Path, payload: Mapping[str, Any]) -> None:
     tmp.replace(destination)
 
 
+def export_ir_knowledge(
+    *,
+    roots: Sequence[Path] = (),
+    region: str | None = None,
+    model: str | None = None,
+    publication_eligible_only: bool = False,
+    output_corpus: Path | None = None,
+    output_observations: Path | None = None,
+    previous_observations: Path | None = None,
+    repo_root_path: Path | None = None,
+) -> dict[str, Any]:
+    """Run all-region ManualIR v2 corpus + observations export and return summary metadata."""
+    root = (repo_root_path or repo_root()).resolve()
+    corpus = make_ir_corpus(
+        roots=roots,
+        region=region,
+        model=model,
+        publication_eligible_only=publication_eligible_only,
+        repo_root_path=root,
+    )
+    corpus_bytes = (json.dumps(corpus, ensure_ascii=False, sort_keys=True, indent=1) + "\n").encode("utf-8")
+    observations = build_ir_observations(corpus, corpus_bytes=corpus_bytes, repo_root_path=root)
+
+    if output_corpus is not None:
+        _write_json_atomic(output_corpus, corpus)
+    if output_observations is not None:
+        _write_json_atomic(output_observations, observations)
+
+    obs_summary = {k: v for k, v in observations["summary"].items() if k != "items_by_variant"}
+    summary: dict[str, Any] = {
+        "status": "ok",
+        "region": corpus["region"],
+        "regions": corpus["regions"],
+        "counts": corpus["counts"],
+        "skipped_duplicates_count": len(corpus["skipped_duplicates"]),
+        "observation_summary": obs_summary,
+    }
+    if output_corpus is not None:
+        summary["corpus_path"] = str(output_corpus)
+    if output_observations is not None:
+        summary["observations_path"] = str(output_observations)
+    if previous_observations is not None:
+        previous = json.loads(previous_observations.read_text(encoding="utf-8"))
+        summary["previous"] = judge_previous(previous, observations["items"], corpus)
+    return summary
+
+
 def main(argv: list[str] | None = None) -> int:
     """CLI entrypoint for all-region ManualIR v2 knowledge export and observation."""
     parser = argparse.ArgumentParser(description="Export all-region ManualIR v2 knowledge corpus and observations")
@@ -1542,37 +1592,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--previous-observations", type=Path, default=None, help="Earlier observation artifact to judge")
     args = parser.parse_args(argv)
 
-    corpus = make_ir_corpus(
+    summary = export_ir_knowledge(
         roots=args.roots,
         region=args.region,
         model=args.model,
         publication_eligible_only=args.publication_eligible_only,
+        output_corpus=args.output_corpus,
+        output_observations=args.output_observations,
+        previous_observations=args.previous_observations,
     )
-    corpus_bytes = (json.dumps(corpus, ensure_ascii=False, sort_keys=True, indent=1) + "\n").encode("utf-8")
-    observations = build_ir_observations(corpus, corpus_bytes=corpus_bytes)
-
-    if args.output_corpus is not None:
-        _write_json_atomic(args.output_corpus, corpus)
-    if args.output_observations is not None:
-        _write_json_atomic(args.output_observations, observations)
-
-    obs_summary = {k: v for k, v in observations["summary"].items() if k != "items_by_variant"}
-    summary: dict[str, Any] = {
-        "status": "ok",
-        "region": corpus["region"],
-        "regions": corpus["regions"],
-        "counts": corpus["counts"],
-        "skipped_duplicates_count": len(corpus["skipped_duplicates"]),
-        "observation_summary": obs_summary,
-    }
-    if args.output_corpus is not None:
-        summary["corpus_path"] = str(args.output_corpus)
-    if args.output_observations is not None:
-        summary["observations_path"] = str(args.output_observations)
-    if args.previous_observations is not None:
-        previous = json.loads(args.previous_observations.read_text(encoding="utf-8"))
-        summary["previous"] = judge_previous(previous, observations["items"], corpus)
-
     print(json.dumps(summary, ensure_ascii=False, sort_keys=True, indent=2))
     return 0
 

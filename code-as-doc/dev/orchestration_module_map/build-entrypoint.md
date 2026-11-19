@@ -199,6 +199,12 @@ analytics is configured; unknown alias shapes pass through unchanged.
 - [`tools/asset_commands.py`](../../../tools/asset_commands.py)
   - single `build.py` command facade for `asset-check` and `asset-intake`
   - fail-closed validation of the public AI-intake argument contract
+- [`tools/web/package_commands.py`](../../../tools/web/package_commands.py)
+  - `build.py web-package` facade and batch `--all-packages` sweep helpers (`inventory`, `verify-pins`, `audit-styles`, `build`) over `tools/web/package_build.py` and `tools/web/package_inventory.py`
+- [`tools/web/ir_commands.py`](../../../tools/web/ir_commands.py)
+  - `build.py ir-qc` facade and `--all-ir` sweep helpers (`audit`, `provenance`) over `tools/web/ir_qc.py` and `tools/corpus/discover.py`
+- [`tools/manual_knowledge/ir_commands.py`](../../../tools/manual_knowledge/ir_commands.py)
+  - `build.py ir-export` facade over [`tools/manual_knowledge/ir_export.py`](../../../tools/manual_knowledge/ir_export.py) (`export_ir_knowledge`) for all-region `manual-ir/v2` corpus and observation export
 - [`tools/asset_registry.py`](../../../tools/asset_registry.py)
   - canonical asset-registry validation and target-scoped approved-export resolution
   - immutable CSV-byte parsing plus approved/temporary/missing/quarantined status contract
