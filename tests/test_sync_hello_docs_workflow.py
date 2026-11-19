@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 from pathlib import Path
+import hashlib
+import json
 import os
 import subprocess
+import sys
 from tempfile import TemporaryDirectory
 import unittest
 
@@ -73,9 +76,11 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
             return a == b or a.startswith(b + "/") or b.startswith(a + "/")
 
         self.assertEqual(self.sync_step["env"]["MIRROR_OVERLAY_PATHS"], HELLO_DOCS_OVERLAY)
+        self.assertEqual(self.sync_step["env"]["MIRROR_OVERLAY_PRUNE_EXTERNALIZED"], "1")
         # Hello-Docs-Review has no overlay: it does not read the frozen packages, so upstream
         # deletions must keep reaching it.
         self.assertNotIn("MIRROR_OVERLAY_PATHS", self.review_step["env"])
+        self.assertNotIn("MIRROR_OVERLAY_PRUNE_EXTERNALIZED", self.review_step["env"])
         for step in (self.sync_step, self.review_step):
             env = step["env"]
             keep = env["MIRROR_KEEP_PATHS"].split()
@@ -698,6 +703,111 @@ cd "{other}" && git pull -q origin main \\
                 self.assertNotEqual(result.returncode, 0)
                 self.assertIn(f"::error::{missing} is not a file", result.stdout)
                 self.assertEqual(git(mirror, "rev-parse", "HEAD"), synced)
+
+    def test_overlay_prune_externalized_removes_superseded_binaries_and_keeps_others(self) -> None:
+        from tools.web import external_source_store as store
+
+        def pointer_json(file_name: str, payload: bytes) -> str:
+            return json.dumps(
+                {
+                    "schema_version": store.POINTER_SCHEMA_VERSION,
+                    "storage_role": "asset_sources",
+                    "file_name": file_name,
+                    "sha256": hashlib.sha256(payload).hexdigest(),
+                    "size_bytes": len(payload),
+                    "feishu": {
+                        "table_id": store.ASSET_SOURCES_TABLE_ID,
+                        "record_id": "recAbcDef123456",
+                        "field_name": "source_file",
+                        "file_token": "boxcnTokenAbc123456789",
+                    },
+                },
+                indent=2,
+            ) + "\n"
+
+        full_pdf_sha = hashlib.sha256(b"part1part2").hexdigest()
+        manifest_json = json.dumps(
+            {
+                "original_source": {
+                    "filename": "split.pdf",
+                    "sha256": full_pdf_sha,
+                    "archive_parts": [
+                        {"path": "source/pdf-archive/part-001.bin", "size": 5},
+                        {"path": "source/pdf-archive/part-002.bin", "size": 5},
+                    ],
+                }
+            }
+        )
+        source_files = {
+            "manual_sources/A/manual.pdf.source-pointer.json": pointer_json("manual.pdf", b"pdf-a"),
+            "manual_sources/A/设计 修正.ai.source-pointer.json": pointer_json("设计 修正.ai", b"ai-a"),
+            "manual_sources/A/tracked.pdf": "still-in-upstream",
+            "manual_sources/A/tracked.pdf.source-pointer.json": pointer_json("tracked.pdf", b"still-in-upstream"),
+            "data/manual_sources/B/manifest.json": manifest_json,
+            "data/manual_sources/B/source/pdf-archive/split.pdf.source-pointer.json": pointer_json(
+                "split.pdf", b"part1part2"
+            ),
+        }
+        mirror_files = {
+            "docs/publish/p.txt": "published",
+            "docs/knowledge/k.txt": "knowledge",
+            "manual_sources/A/manual.pdf": "old-pdf-a",
+            "manual_sources/A/设计 修正.ai": "old-ai-a",
+            "manual_sources/A/tracked.pdf": "old-tracked",
+            "manual_sources/M/only.json": "downstream-only",
+            "data/manual_sources/B/source/pdf-archive/part-001.bin": "part1",
+            "data/manual_sources/B/source/pdf-archive/part-002.bin": "part2",
+            "data/manual_sources/B/source/pdf-archive/.gitattributes": "*.bin binary\n",
+            "reports/downstream.txt": "keep-report",
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._fixture(root, source_files, mirror_files)
+            dry = self._sync(
+                root,
+                MIRROR_DRY_RUN="1",
+                MIRROR_KEEP_PATHS="docs/publish docs/knowledge",
+                MIRROR_OVERLAY_PATHS="manual_sources data/manual_sources reports",
+                MIRROR_OVERLAY_PRUNE_EXTERNALIZED="1",
+                PYTHON=sys.executable,
+            )
+            self.assertEqual(dry.returncode, 0, dry.stdout + dry.stderr)
+            self.assertIn("pruned 2 externalized file(s)", dry.stdout)
+            self.assertIn("overlay manual_sources: mirror_only_kept=1 source_updated=1 mirror_lost_to_source_conflict=0 pruned_externalized=2", dry.stdout)
+            self.assertIn("overlay data/manual_sources: mirror_only_kept=1 source_updated=0 mirror_lost_to_source_conflict=0 pruned_externalized=2", dry.stdout)
+            composed = dry.stdout.split("DRY_RUN composed_tree=")[1].split()[0]
+
+            real = self._sync(
+                root,
+                MIRROR_KEEP_PATHS="docs/publish docs/knowledge",
+                MIRROR_OVERLAY_PATHS="manual_sources data/manual_sources reports",
+                MIRROR_OVERLAY_PRUNE_EXTERNALIZED="1",
+                PYTHON=sys.executable,
+            )
+            self.assertEqual(real.returncode, 0, real.stdout + real.stderr)
+            self.assertEqual(self._git(root / "remote.git", "rev-parse", "main^{tree}"), composed)
+            self.assertEqual(
+                self._remote_files(root, "manual_sources"),
+                {
+                    "manual_sources/A/manual.pdf.source-pointer.json",
+                    "manual_sources/A/设计 修正.ai.source-pointer.json",
+                    "manual_sources/A/tracked.pdf",
+                    "manual_sources/A/tracked.pdf.source-pointer.json",
+                    "manual_sources/M/only.json",
+                },
+            )
+            self.assertEqual(self._remote(root, "manual_sources/A/tracked.pdf"), "still-in-upstream")
+            self.assertEqual(
+                self._remote_files(root, "data/manual_sources"),
+                {
+                    "data/manual_sources/B/manifest.json",
+                    "data/manual_sources/B/source/pdf-archive/split.pdf.source-pointer.json",
+                    "data/manual_sources/B/source/pdf-archive/.gitattributes",
+                },
+            )
+            self.assertEqual(self._remote(root, "docs/publish/p.txt"), "published")
+            self.assertEqual(self._remote(root, "docs/knowledge/k.txt"), "knowledge")
+            self.assertEqual(self._remote(root, "reports/downstream.txt"), "keep-report")
 
 
 if __name__ == "__main__":

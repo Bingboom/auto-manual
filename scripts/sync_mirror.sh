@@ -16,6 +16,10 @@
 #                           updated as before; files that exist only in the mirror head are kept,
 #                           so removing a file or sub-directory upstream does not remove it
 #                           downstream. Where a file and a directory collide, the source wins.
+#   MIRROR_OVERLAY_PRUNE_EXTERNALIZED
+#                           when "1", mirror-only overlay files absent from source/ and superseded
+#                           by an upstream external-source-pointer/v1 pointer (direct sidecar or
+#                           split archive_parts) are pruned instead of kept (default "0").
 #   SOURCE_FORBIDDEN_PATHS  paths auto-manual must never contain (defaults to the kept paths)
 #   MIRROR_README           optional source file installed as the mirror's README.md
 #                           (mirrors/<repository>/README.md, maintained in auto-manual)
@@ -35,7 +39,10 @@ set -euo pipefail
 : "${MIRROR_BRANCH:?}" "${SOURCE_REPOSITORY:?}" "${SOURCE_SHA:?}" "${SOURCE_RUN_URL:?}"
 keep_paths="${MIRROR_KEEP_PATHS:?}"
 overlay_paths="${MIRROR_OVERLAY_PATHS:-}"
+prune_externalized="${MIRROR_OVERLAY_PRUNE_EXTERNALIZED:-0}"
 forbidden_paths="${SOURCE_FORBIDDEN_PATHS:-${keep_paths}}"
+script_repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+python_bin="${PYTHON:-python3}"
 
 # Two path lists overlap when an entry equals, contains or lies under another.
 overlaps() {
@@ -108,7 +115,7 @@ overlay_entries() {
 # Compose the source tree with the content paths of ${mirror_parent} into ${combined_tree};
 # collect one summary line per path in ${path_summary}.
 compose() {
-  local mirror_index content_path kind content_tree source_oid work stats a readme_blob kept updated conflicts
+  local mirror_index content_path kind content_tree source_oid work stats a readme_blob kept updated conflicts pruned
   mirror_index="$(mktemp)"
   rm -f "${mirror_index}"
   work="$(mktemp -d)"
@@ -166,14 +173,32 @@ compose() {
     list_entries "${mirror_index}" "${content_path}" > "${work}/source"
     git -C mirror ls-tree -r -z --full-tree "${mirror_parent}" -- "${content_path}" > "${work}/mirror"
     overlay_entries "${work}/source" "${work}/mirror" "${work}/stats" > "${work}/add"
+    read -r kept updated conflicts < "${work}/stats"
+    pruned=0
+    if [ "${prune_externalized}" = "1" ] && [ -s "${work}/add" ]; then
+      PYTHONPATH="${script_repo}${PYTHONPATH:+:${PYTHONPATH}}" "${python_bin}" -m tools.web.mirror_overlay_prune filter-ls-tree \
+        --source-root source \
+        --overlay-paths "${overlay_paths}" \
+        --input "${work}/add" \
+        --output "${work}/add.pruned" \
+        --stats-file "${work}/prune_stats"
+      mv "${work}/add.pruned" "${work}/add"
+      read -r kept pruned < "${work}/prune_stats"
+    fi
     if [ -s "${work}/add" ]; then
       GIT_INDEX_FILE="${mirror_index}" git -C mirror update-index -z --index-info < "${work}/add"
     fi
-    read -r kept updated conflicts < "${work}/stats"
+    if [ "${pruned}" -gt 0 ]; then
+      echo "::notice::Overlay path ${content_path} pruned ${pruned} externalized file(s) superseded by upstream pointers."
+    fi
     if [ "${kept}" -gt 0 ]; then
       echo "::notice::Overlay path ${content_path} keeps ${kept} file(s) that exist only in the mirror (deleted upstream or written downstream)."
     fi
-    path_summary+="overlay ${content_path}: mirror_only_kept=${kept} source_updated=${updated} mirror_lost_to_source_conflict=${conflicts}"$'\n'
+    if [ "${prune_externalized}" = "1" ]; then
+      path_summary+="overlay ${content_path}: mirror_only_kept=${kept} source_updated=${updated} mirror_lost_to_source_conflict=${conflicts} pruned_externalized=${pruned}"$'\n'
+    else
+      path_summary+="overlay ${content_path}: mirror_only_kept=${kept} source_updated=${updated} mirror_lost_to_source_conflict=${conflicts}"$'\n'
+    fi
   done
 
   if [ -n "${MIRROR_README:-}" ]; then

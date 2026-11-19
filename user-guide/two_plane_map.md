@@ -148,6 +148,7 @@ Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明
 
 - **严格保留**（`MIRROR_KEEP_PATHS`）：镜像的子树整体胜出，auto-manual 侧被 `SOURCE_FORBIDDEN_PATHS` 拒收。Hello-Docs 是 `docs/publish`、`docs/knowledge`；Hello-Docs-Review 是 `docs/review-drafts`。
 - **过渡叠加**（`MIRROR_OVERLAY_PATHS`，只用于 Hello-Docs）：按文件取并集，源侧胜出。auto-manual 新增和修改的文件照常同步，上游删除不传到镜像，只在镜像里存在的文件保留。Hello-Docs-Review 不读冻结包，没有叠加路径，上游删除照常传过去。
+- **已指针化源二进制清理**（`MIRROR_OVERLAY_PRUNE_EXTERNALIZED=1`，只用于 Hello-Docs）：当镜像里的仅镜像文件已从 auto-manual 删除，且在 auto-manual 中被有效的 `external-source-pointer/v1` 指针取代（直接 `<path>.source-pointer.json` 伴随文件，或经包内 `manifest.json`/`source_manifest.json`/`pdf-identity.json` 的 `archive_parts` 与匹配指针声明的拆分 `.bin` 分片）时，[`sync_mirror.sh`](../scripts/sync_mirror.sh) 会在提交前经 [`tools/web/mirror_overlay_prune.py`](../tools/web/mirror_overlay_prune.py) 将其从叠加中移除；上游仍存在的文件及未被指针取代的仅镜像文件完整保留。
 - 叠加的两个代价：上游删除或改名留下的旧文件会一直留在镜像，直到在镜像里删除；镜像里改了一个上游仍存在的文件，下次同步会被源侧覆盖，所以要等该文件或目录从上游删除后再在镜像里改。
 - 删除叠加路径下的一个子目录（如单个包）不需要其他操作。整条路径切换要在一个 auto-manual PR 内完成：先手动跑一次 `dry_run` 看摘要，再删除上游目录，把它从 `MIRROR_OVERLAY_PATHS` 移到 `MIRROR_KEEP_PATHS`，并加入 `SOURCE_FORBIDDEN_PATHS` 和 `tools/check_maintainability_guardrails.py` 的 `MIRROR_OWNED_PATHS`。
 - 手动运行可从任意分支发起；不在 `main` 上时一律只做 dry run，镜像检出也不保留推送凭据，脚本本身在 `GITHUB_REF` 不是 `refs/heads/main` 时也拒绝推送。

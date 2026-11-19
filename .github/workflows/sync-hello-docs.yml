@@ -67,8 +67,10 @@ jobs:
           SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           MIRROR_KEEP_PATHS: docs/publish docs/knowledge
           # Transitional business paths: file-level union, source wins, upstream deletions stay
-          # downstream. Rules and per-path cut-over: user-guide/two_plane_map.md §2.2.
+          # downstream (except externalized sources superseded by upstream pointers).
+          # Rules and per-path cut-over: user-guide/two_plane_map.md §2.2.
           MIRROR_OVERLAY_PATHS: manual_sources data/manual_sources reports configs/targets bitable_schema/business
+          MIRROR_OVERLAY_PRUNE_EXTERNALIZED: "1"
           MIRROR_README: mirrors/Hello-Docs/README.md
         run: bash source/scripts/sync_mirror.sh
 
