@@ -71,5 +71,42 @@ class UnitShardAggregateTests(unittest.TestCase):
         self.assertIn("exit 1", step["run"])
 
 
+class WebIrChecksWorkflowTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.workflow = yaml.safe_load(WORKFLOW_PATH.read_text(encoding="utf-8"))
+        self.job = self.workflow["jobs"]["web-ir-checks"]
+
+    def test_job_is_gated_to_auto_manual_and_uses_pinned_python(self) -> None:
+        self.assertEqual("${{ github.repository == 'Bingboom/auto-manual' }}", self.job["if"])
+        self.assertEqual("ubuntu-latest", self.job["runs-on"])
+        self.assertGreaterEqual(int(self.job["timeout-minutes"]), 5)
+        steps = self.job["steps"]
+        self.assertEqual("actions/checkout", step_action_name(steps[0]))
+        self.assertEqual("actions/setup-python", step_action_name(steps[1]))
+        self.assertEqual("3.12", steps[1]["with"]["python-version"])
+        self.assertIn("pip install -r requirements.lock", str(steps[2]["run"]))
+
+    def test_runs_four_web_and_ir_checks_into_runner_temp(self) -> None:
+        run_scripts = [str(step["run"]) for step in self.job["steps"][3:]]
+        joined = "\n".join(run_scripts)
+        self.assertNotIn("${{", joined)
+        self.assertIn(
+            'python build.py web-package --package-command inventory --json > "$RUNNER_TEMP/web_package_inventory.json"',
+            run_scripts,
+        )
+        self.assertIn(
+            "python build.py web-package --package-command audit-styles --all-packages --respect-baseline",
+            run_scripts,
+        )
+        self.assertIn(
+            'python build.py ir-qc --ir-command audit --all-ir --output-path "$RUNNER_TEMP/ir_qc_audit.json"',
+            run_scripts,
+        )
+        self.assertIn(
+            'python build.py ir-export --output-corpus "$RUNNER_TEMP/corpus.json" --output-observations "$RUNNER_TEMP/observations.json"',
+            run_scripts,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
