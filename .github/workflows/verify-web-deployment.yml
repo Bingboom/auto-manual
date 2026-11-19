@@ -64,6 +64,8 @@ jobs:
       AUTO_MANUAL_RTD_VERIFY_SCOPE: ${{ inputs.asset-scope || 'markup' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -90,6 +92,7 @@ jobs:
         shell: bash
         env:
           VERIFY_LIMIT: ${{ inputs.limit || '' }}
+          READTHEDOCS_API_TOKEN: ${{ secrets.READTHEDOCS_API_TOKEN }}
         run: |
           cmd=(python -m tools.verify_web_deployment_targets
             --publish-root docs/publish
@@ -115,9 +118,14 @@ jobs:
           failed = report.get("targets_failed", 0)
           throttled = report.get("targets_throttled", 0)
           status = report.get("status") or ("verified" if code == 0 else "error")
+          mode = report.get("verification_mode") or "live-html"
           verified = max(checked - failed - throttled, 0)
           headline = {
-              "verified": "all targets verified",
+              "verified": f"all targets verified ({mode})",
+              "unverifiable": (
+                  report.get("headline")
+                  or "UNVERIFIABLE — pages could not be read; see the run log."
+              ),
               "throttled": (
                   "UNDECIDED — the RTD host rate-limited the run. No target was "
                   "disproved; nothing is known to be wrong. Re-run the workflow "

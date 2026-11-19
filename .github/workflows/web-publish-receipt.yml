@@ -66,6 +66,8 @@ jobs:
       AUTO_MANUAL_RTD_VERIFY_RPS: ${{ inputs.rps || vars.AUTO_MANUAL_RTD_VERIFY_RPS || '2' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Validate execution plane
         shell: bash
@@ -94,6 +96,7 @@ jobs:
         env:
           DEPLOY_TIMEOUT_SECONDS: ${{ inputs['deploy-timeout-seconds'] || '' }}
           RECORD_IDS: ${{ inputs.record_ids || '' }}
+          READTHEDOCS_API_TOKEN: ${{ secrets.READTHEDOCS_API_TOKEN }}
         run: |
           cmd=(python -m tools.write_web_publish_receipt_links
             --config configs/config.us.yaml

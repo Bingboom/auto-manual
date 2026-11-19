@@ -143,8 +143,39 @@ keep their earlier meaning for readers that derive "verified" from them.
 
 The production site has answered anonymous readers with a sign-in redirect since
 2026-10-19 (see [Workspace data refresh](workspace_data_refresh.md)), so an
-anonymous catalog run is `unverifiable / login-required` for every target: it
-proves nothing about the pages, and re-running does not change that.
+anonymous catalog run without `READTHEDOCS_API_TOKEN` is
+`unverifiable / login-required` for every target: it proves nothing about the
+pages, and re-running does not change that.
+
+### Private RTD Business two-tier verification (`rtd-private-build`)
+
+When `--publish-root` is provided and the live HTTP probe hits a sign-in
+redirect (`/login` or `/cas/login`), `tools/verify_web_deployment_targets.py`
+and `tools/write_web_publish_receipt_links.py` branch cleanly based on
+`READTHEDOCS_API_TOKEN` (shared helper in `tools/rtd/private_build_verify.py`):
+
+- **Public sites (`verification_mode: live-html`)** remain unchanged: full live
+  HTML & asset byte/fingerprint verification via `verify_deployment`.
+- **Private RTD Business without `READTHEDOCS_API_TOKEN`**: fails fast on
+  attempt 1 with `login-required` instead of polling for 30 minutes
+  (`verify_web_deployment_targets.py` exits 75 `unverifiable`;
+  `write_web_publish_receipt_links.py` exits 1 without waiting).
+- **Private RTD Business with `READTHEDOCS_API_TOKEN`** (`verification_mode:
+  rtd-private-build`):
+  1. Verifies local `docs/publish/` integrity (`publish_manifest.json` target
+     and file entries, `source_fingerprint`, non-empty target pages under
+     `docs/publish/web/`, and existing non-empty local asset references).
+  2. Queries the RTD v3 Builds API
+     (`https://readthedocs.com/api/v3/projects/<slug>/builds/` with
+     `Authorization: Token ...`) for the expected version (`latest` by default).
+  3. Requires a `state.code == "finished"` and `success is True` build whose
+     `commit` equals `HEAD` or is a descendant of the last commit touching
+     `docs/publish` (`git merge-base --is-ancestor`), so scheduled runs after
+     non-publish commits still validate while older pre-publish builds never
+     pass. An in-progress build (`triggered`/`cloning`/`installing`/`building`
+     or `finished is None`) allows polling in `write_web_publish_receipt_links`
+     and exits 75 `unverifiable` in single-shot verification; a finished
+     `success is False` build fails fast immediately without waiting.
 
 The four-way split is opt-in (`separate_unverifiable=True`):
 `verify_targets_against_source` and `verify_targets_live_slug` keep their

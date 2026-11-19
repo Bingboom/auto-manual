@@ -64,6 +64,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.rtd import deployment_receipt as receipt  # noqa: E402
+from tools.rtd import private_build_verify as private_verify  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.utils.log import get_logger
@@ -190,9 +191,15 @@ def manifest_targets(payload: Any) -> list[dict[str, str]]:
     return targets
 
 
-def expected_project_slug(base_url: str, explicit: str | None = None) -> str:
-    if explicit:
-        return explicit
+def expected_project_slug(
+    base_url: str,
+    explicit: str | None = None,
+    *,
+    rtd_slug: str | None = None,
+) -> str:
+    chosen = explicit or rtd_slug or os.environ.get("RTD_PROJECT_SLUG", "").strip() or None
+    if chosen:
+        return chosen
     derived = receipt.rtd_project_slug_from_base_url(base_url)
     if derived is None:
         raise ValueError(
@@ -236,6 +243,12 @@ def classify_failure(exc: Exception) -> tuple[str, str]:
     """
     if isinstance(exc, receipt.DeploymentThrottled):
         return STATUS_THROTTLED, "rate-limited"
+    if isinstance(exc, private_verify.RtdBuildError):
+        if exc.category in {"rtd-build-in-progress", "rtd-auth-failed", "transport"}:
+            return STATUS_UNVERIFIABLE, exc.category
+        return STATUS_MISMATCH, exc.category
+    if isinstance(exc, private_verify.LocalIntegrityError):
+        return STATUS_MISMATCH, exc.category
     if isinstance(exc, receipt.CrossOriginRedirect):
         if exc.login_required:
             return STATUS_UNVERIFIABLE, "login-required"
@@ -286,6 +299,84 @@ def _budget_exhausted(target: dict[str, str], *, mode: str) -> dict[str, str]:
     )
 
 
+def _verify_targets_private_rtd(
+    web_root: Path,
+    *,
+    base_url: str,
+    targets: list[dict[str, str]],
+    project_slug: str,
+    session: receipt.FetchSession,
+    token: str,
+    redirect_exc: receipt.CrossOriginRedirect,
+    expected_commit: str | None = None,
+    separate_unverifiable: bool = False,
+    private_state: dict[str, Any] | None = None,
+) -> list[dict[str, str]]:
+    mode = private_verify.VERIFICATION_MODE_PRIVATE
+    business_hint = (
+        "readthedocs.com" in redirect_exc.destination.lower()
+        or (urlsplit(base_url).hostname or "").lower().endswith(".readthedocs-hosted.com")
+    )
+    try:
+        per_page_errors, state = private_verify.verify_private_rtd_deployment(
+            web_root,
+            base_url=base_url,
+            targets=targets,
+            project_slug=project_slug,
+            token=token,
+            session=session,
+            expected_commit=expected_commit,
+            business_hint=business_hint,
+        )
+    except private_verify.RtdBuildError as exc:
+        if private_state is not None:
+            private_state["verification_mode"] = mode
+            if exc.build_info:
+                private_state["rtd_build"] = exc.build_info
+        return [
+            _failure(target, mode=mode, exc=exc, separate_unverifiable=separate_unverifiable)
+            for target in targets
+        ]
+    except receipt.DeploymentThrottled as exc:
+        if private_state is not None:
+            private_state["verification_mode"] = mode
+        return [
+            _failure(target, mode=mode, exc=exc, separate_unverifiable=separate_unverifiable)
+            for target in targets
+        ]
+    except (private_verify.LocalIntegrityError, ValueError) as exc:
+        wrapped = (
+            exc
+            if isinstance(exc, private_verify.LocalIntegrityError)
+            else private_verify.LocalIntegrityError(str(exc))
+        )
+        if private_state is not None:
+            private_state["verification_mode"] = mode
+        return [
+            _failure(target, mode=mode, exc=wrapped, separate_unverifiable=separate_unverifiable)
+            for target in targets
+        ]
+
+    if private_state is not None:
+        private_state.update(state)
+    results = []
+    for target in targets:
+        err = per_page_errors.get(target["page"])
+        if err:
+            results.append(
+                _result(
+                    target,
+                    mode=mode,
+                    status=STATUS_MISMATCH,
+                    category="local-integrity-failed",
+                    error=err,
+                )
+            )
+        else:
+            results.append(_result(target, mode=mode))
+    return results
+
+
 def verify_targets_against_source(
     web_root: Path,
     *,
@@ -295,6 +386,9 @@ def verify_targets_against_source(
     session: receipt.FetchSession | None = None,
     include_dependency: Callable[[str], bool] | None = None,
     separate_unverifiable: bool = False,
+    rtd_api_token: str | None = None,
+    expected_commit: str | None = None,
+    private_state: dict[str, Any] | None = None,
 ) -> list[dict[str, str]]:
     """Full verification: frozen receipt + byte identity + project slug per target.
 
@@ -308,12 +402,34 @@ def verify_targets_against_source(
     mode = "frozen-source"
     session = session or receipt.FetchSession()
     routes = [target["page"] for target in targets]
+    token = (
+        rtd_api_token
+        if rtd_api_token is not None
+        else os.environ.get(private_verify.API_TOKEN_ENV, "")
+    ).strip()
     try:
         receipt.verify_deployment(
             web_root, base_url, routes, expected_project_slug=project_slug, session=session,
             include_dependency=include_dependency,
         )
-    except Exception:  # noqa: BLE001 - falls back to per-target verification
+    except Exception as batch_exc:  # noqa: BLE001 - falls back to private RTD or per-target attribution
+        if (
+            isinstance(batch_exc, receipt.CrossOriginRedirect)
+            and batch_exc.login_required
+            and token
+        ):
+            return _verify_targets_private_rtd(
+                web_root,
+                base_url=base_url,
+                targets=targets,
+                project_slug=project_slug,
+                session=session,
+                token=token,
+                redirect_exc=batch_exc,
+                expected_commit=expected_commit,
+                separate_unverifiable=separate_unverifiable,
+                private_state=private_state,
+            )
         results = []
         for target in targets:
             if session.budget_exhausted:
@@ -332,6 +448,8 @@ def verify_targets_against_source(
             else:
                 results.append(_result(target, mode=mode))
         return results
+    if private_state is not None:
+        private_state["verification_mode"] = private_verify.VERIFICATION_MODE_LIVE
     return [_result(target, mode=mode) for target in targets]
 
 
@@ -393,6 +511,7 @@ def build_report(
     project_slug: str,
     results: list[dict[str, str]],
     session: receipt.FetchSession | None = None,
+    private_state: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Mismatch outranks everything: a real verdict is never masked by a 429 or a sign-in page.
 
@@ -413,10 +532,18 @@ def build_report(
         status = STATUS_THROTTLED
     else:
         status = "verified"
-    report = {
+    verification_mode = (private_state or {}).get("verification_mode")
+    if not verification_mode:
+        verification_mode = (
+            private_verify.VERIFICATION_MODE_PRIVATE
+            if any(entry.get("mode") == private_verify.VERIFICATION_MODE_PRIVATE for entry in results)
+            else private_verify.VERIFICATION_MODE_LIVE
+        )
+    report: dict[str, Any] = {
         "schema": REPORT_SCHEMA,
         "base_url": base_url,
         "expected_project_slug": project_slug,
+        "verification_mode": verification_mode,
         "targets_checked": len(results),
         "targets_failed": len(failed),
         "targets_throttled": len(unverifiable) + len(throttled),
@@ -431,6 +558,8 @@ def build_report(
         "status": status,
         "results": results,
     }
+    if private_state and private_state.get("rtd_build"):
+        report["rtd_build"] = private_state["rtd_build"]
     if session is not None:
         report["transport"] = session.stats()
     return report
@@ -460,6 +589,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--expected-project-slug",
         default=None,
         help="Override the slug derived from --base-url (required for custom domains)",
+    )
+    parser.add_argument(
+        "--rtd-project-slug",
+        default=None,
+        help="Alias for --expected-project-slug (or RTD_PROJECT_SLUG env var)",
+    )
+    parser.add_argument(
+        "--expected-commit",
+        default=None,
+        help="Optional 40-char git commit SHA expected for private RTD Builds API verification",
     )
     parser.add_argument("--limit", type=int, default=None, help="Verify only the first N targets")
     parser.add_argument("--json", action="store_true", help="Print the JSON report instead of text lines")
@@ -528,6 +667,13 @@ def headline(report: dict[str, Any]) -> str:
     undecided = report.get("undecided_categories", {})
     status = report.get("status")
     if status == "verified":
+        if report.get("verification_mode") == private_verify.VERIFICATION_MODE_PRIVATE:
+            build = report.get("rtd_build") or {}
+            build_label = f" #{build['id']}" if build.get("id") is not None else ""
+            return (
+                f"VERIFIED: local docs/publish/web integrity and RTD private build"
+                f"{build_label} succeeded."
+            )
         return "VERIFIED: every target matches its frozen publish source."
     if status == "failed":
         mismatched = counts.get("mismatched", 0)
@@ -542,7 +688,17 @@ def headline(report: dict[str, Any]) -> str:
         return (
             "UNVERIFIABLE: the site redirected the anonymous verifier to its sign-in page, "
             "so no page could be read. Nothing is known to be wrong, and a re-run will not "
-            "help: the check needs an authenticated read path or a different proof."
+            f"help: set {private_verify.API_TOKEN_ENV} or use an authenticated read path."
+        )
+    if status == STATUS_UNVERIFIABLE and undecided.get("rtd-build-in-progress"):
+        return (
+            "UNVERIFIABLE: RTD private build is currently in progress; "
+            "re-run once the build finishes."
+        )
+    if status == STATUS_UNVERIFIABLE and undecided.get("rtd-auth-failed"):
+        return (
+            f"UNVERIFIABLE: RTD Builds API rejected {private_verify.API_TOKEN_ENV} "
+            "(HTTP 401/403). Check the repository secret."
         )
     if status == STATUS_UNVERIFIABLE:
         return (
@@ -556,7 +712,11 @@ def headline(report: dict[str, Any]) -> str:
 
 
 def run(args: argparse.Namespace) -> tuple[int, dict[str, Any]]:
-    project_slug = expected_project_slug(str(args.base_url), args.expected_project_slug)
+    project_slug = expected_project_slug(
+        str(args.base_url),
+        args.expected_project_slug,
+        rtd_slug=getattr(args, "rtd_project_slug", None),
+    )
     session = _session(args)
     if args.publish_root is not None:
         publish_root = Path(args.publish_root)
@@ -571,6 +731,7 @@ def run(args: argparse.Namespace) -> tuple[int, dict[str, Any]]:
             raise ValueError("--limit must be a positive integer")
         targets = targets[: args.limit]
     scope = str(getattr(args, "asset_scope", "markup"))
+    private_state: dict[str, Any] = {}
     if args.publish_root is not None:
         results = verify_targets_against_source(
             publish_root / PathSegments.WEB,
@@ -580,6 +741,8 @@ def run(args: argparse.Namespace) -> tuple[int, dict[str, Any]]:
             session=session,
             include_dependency=None if scope == "full" else receipt.markup_dependency,
             separate_unverifiable=True,
+            expected_commit=getattr(args, "expected_commit", None),
+            private_state=private_state,
         )
     else:
         results = verify_targets_live_slug(
@@ -594,6 +757,7 @@ def run(args: argparse.Namespace) -> tuple[int, dict[str, Any]]:
         project_slug=project_slug,
         results=results,
         session=session,
+        private_state=private_state,
     )
     report["asset_scope"] = scope if args.publish_root is not None else "live-slug"
     report["headline"] = headline(report)
@@ -648,8 +812,15 @@ def main(argv: list[str] | None = None) -> int:
     print(
         f"[verify-web-deploy] {report['status']}: {tally} against {report['base_url']} "
         f"(expected project: {report['expected_project_slug']}, "
+        f"verification mode: {report.get('verification_mode', 'live-html')}, "
         f"asset scope: {report.get('asset_scope', 'markup')})"
     )
+    if report.get("rtd_build"):
+        build = report["rtd_build"]
+        print(
+            f"[verify-web-deploy] rtd_build: id={build.get('id')} "
+            f"commit={build.get('commit')} url={build.get('url')}"
+        )
     if report["status"] in UNDECIDED_STATUSES:
         print(
             "[verify-web-deploy] no target was disproved; undecided targets are "

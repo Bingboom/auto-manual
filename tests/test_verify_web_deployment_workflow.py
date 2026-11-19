@@ -100,6 +100,18 @@ class TestVerifyWebDeploymentWorkflow(unittest.TestCase):
         self.assertIn("UNDECIDED", details)
         self.assertIn("retry signal", details)
 
+    def test_private_rtd_token_and_full_history_checkout_are_wired(self) -> None:
+        checkout = next(
+            step
+            for step in self.job["steps"]
+            if str(step.get("uses", "")).startswith("actions/checkout")
+        )
+        self.assertEqual(0, checkout["with"]["fetch-depth"])
+        self.assertEqual(
+            "${{ secrets.READTHEDOCS_API_TOKEN }}",
+            self.verify_step()["env"]["READTHEDOCS_API_TOKEN"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

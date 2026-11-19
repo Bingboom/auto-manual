@@ -1,13 +1,18 @@
 from __future__ import annotations
 
+import io
 import json
+import os
 from pathlib import Path
+import subprocess
 import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest import mock
 
 from tools import publish_branch_assembly, write_web_publish_receipt_links as receipt_links
+from tools.rtd import deployment_receipt as receipt
+from tools.rtd import private_build_verify as private_verify
 from tools.web.document_link_queue import (
     describe_url_field,
     split_rendered_url,
@@ -500,6 +505,287 @@ class UrlFieldReadbackNormalizationTests(unittest.TestCase):
         self.assertIn("https://a.example/a.html", described)
         self.assertIn("https://b.example/b.html", described)
         self.assertIn("link target", described)
+
+
+class PrivateRtdReceiptLaneTests(unittest.TestCase):
+    """End-to-end receipt lane tests against a private /cas/login RTD Business site."""
+
+    BUSINESS_BASE_URL = "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
+    CAS_LOGIN = "https://app.readthedocs.com/cas/login"
+
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        write_release_target(
+            self.root,
+            model="JE-1000F",
+            region="US",
+            lang="en",
+            version="2.0",
+            queue_record_ids=["rec_web_1", "rec_web_2"],
+        )
+        self.publish_root = self.root / "docs" / "publish"
+        publish_branch_assembly.assemble_web_publish_branch(
+            repo_root=self.root,
+            releases_root=self.root / "reports" / "releases",
+            output_dir=self.publish_root,
+            title="Manual Library",
+        )
+        subprocess.run(["git", "-C", str(self.root), "init"], check=True, capture_output=True)
+        subprocess.run(
+            ["git", "-C", str(self.root), "config", "user.email", "test@example.invalid"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "-C", str(self.root), "config", "user.name", "Test User"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "-C", str(self.root), "add", "docs/publish"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "-C", str(self.root), "commit", "-m", "feat(publish): add manual"],
+            check=True,
+            capture_output=True,
+        )
+        self.commit_sha = subprocess.check_output(
+            ["git", "-C", str(self.root), "rev-parse", "HEAD"], text=True
+        ).strip()
+
+    def _args(self, *, deploy_timeout: float = 1800) -> object:
+        return receipt_links.parse_args(
+            [
+                "--config",
+                "configs/config.us.yaml",
+                "--publish-root",
+                str(self.publish_root),
+                "--base-url",
+                self.BUSINESS_BASE_URL,
+                "--deploy-timeout-seconds",
+                str(deploy_timeout),
+                "--poll-interval-seconds",
+                "60",
+                "--rps",
+                "0",
+            ]
+        )
+
+    def _run_with_lark_mocks(self, *, args, store: _FieldStore, sleep_calls: list[float]):
+        source = _RecordingSource()
+        store.attach(source)
+        binding = SimpleNamespace(base_token="base_tok", table_id="tbl_link")
+        patches = (
+            mock.patch.object(receipt_links, "load_config", return_value={}),
+            mock.patch.object(receipt_links, "collect_queue_preflight_errors", return_value=[]),
+            mock.patch.object(receipt_links, "resolve_document_link_binding", return_value=binding),
+            mock.patch.object(receipt_links, "cli_bin", return_value="lark-cli"),
+            mock.patch.object(receipt_links, "phase2_identity", return_value="bot"),
+            mock.patch.object(receipt_links, "fetch_field_id_map", return_value={"HTML_link": "fld1"}),
+        )
+        for p in patches:
+            p.start()
+            self.addCleanup(p.stop)
+        exit_code, report = receipt_links.run(
+            args,
+            sleep_fn=sleep_calls.append,
+            fetch_fields=store.fetch,
+            lark_source_factory=lambda **_kwargs: source,
+        )
+        return exit_code, report, source
+
+    def _cas_redirect(self, _url: str) -> bytes:
+        raise receipt.CrossOriginRedirect(self.CAS_LOGIN)
+
+    def test_private_without_token_fails_fast_without_30_min_wait(self) -> None:
+        store = _FieldStore({})
+        sleep_calls: list[float] = []
+        with mock.patch.dict(os.environ, {private_verify.API_TOKEN_ENV: ""}):
+            with mock.patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                exit_code, report, source = self._run_with_lark_mocks(
+                    args=self._args(deploy_timeout=1800),
+                    store=store,
+                    sleep_calls=sleep_calls,
+                )
+        self.assertEqual(receipt_links.EXIT_FAILED, exit_code)
+        self.assertEqual("failed", report["status"])
+        self.assertEqual(1, report["verify_attempts"])
+        self.assertEqual([], sleep_calls)
+        self.assertEqual([], source.upserts)
+
+    def test_private_with_token_and_succeeded_build_writes_html_links(self) -> None:
+        payload = {
+            "results": [
+                {
+                    "id": 4762840,
+                    "commit": self.commit_sha,
+                    "state": {"code": "finished"},
+                    "finished": "2026-11-19T03:37:13Z",
+                    "success": True,
+                    "version": {"slug": "latest"},
+                }
+            ]
+        }
+
+        def opener(request, timeout=30):
+            return io.BytesIO(json.dumps(payload).encode("utf-8"))
+
+        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""})
+        sleep_calls: list[float] = []
+        with mock.patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "token-123"}):
+            with mock.patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with mock.patch.object(private_verify, "urlopen", side_effect=opener):
+                    exit_code, report, source = self._run_with_lark_mocks(
+                        args=self._args(deploy_timeout=1800),
+                        store=store,
+                        sleep_calls=sleep_calls,
+                    )
+        self.assertEqual(receipt_links.EXIT_OK, exit_code)
+        self.assertEqual("registered", report["status"])
+        self.assertEqual("rtd-private-build", report["verification_mode"])
+        self.assertEqual(4762840, report["rtd_build"]["id"])
+        self.assertEqual(1, report["verify_attempts"])
+        self.assertEqual(2, report["records_written"])
+        expected_url = (
+            f"{self.BUSINESS_BASE_URL}/JE-1000F/US/en/md/manual_je1000f_us_en.html"
+        )
+        self.assertEqual(
+            [
+                ("base_tok", "tbl_link", "rec_web_1", {"HTML_link": expected_url}),
+                ("base_tok", "tbl_link", "rec_web_2", {"HTML_link": expected_url}),
+            ],
+            source.upserts,
+        )
+
+    def test_private_with_token_polls_in_progress_build_until_success(self) -> None:
+        responses = [
+            {
+                "results": [
+                    {
+                        "id": 4762841,
+                        "commit": self.commit_sha,
+                        "state": {"code": "building"},
+                        "finished": None,
+                        "success": None,
+                        "version": {"slug": "latest"},
+                    }
+                ]
+            },
+            {
+                "results": [
+                    {
+                        "id": 4762841,
+                        "commit": self.commit_sha,
+                        "state": {"code": "finished"},
+                        "finished": "2026-11-19T03:40:00Z",
+                        "success": True,
+                        "version": {"slug": "latest"},
+                    }
+                ]
+            },
+        ]
+        call_idx = {"n": 0}
+
+        def opener(request, timeout=30):
+            idx = min(call_idx["n"], len(responses) - 1)
+            call_idx["n"] += 1
+            return io.BytesIO(json.dumps(responses[idx]).encode("utf-8"))
+
+        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""})
+        sleep_calls: list[float] = []
+        with mock.patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "token-123"}):
+            with mock.patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with mock.patch.object(private_verify, "urlopen", side_effect=opener):
+                    exit_code, report, source = self._run_with_lark_mocks(
+                        args=self._args(deploy_timeout=1800),
+                        store=store,
+                        sleep_calls=sleep_calls,
+                    )
+        self.assertEqual(receipt_links.EXIT_OK, exit_code)
+        self.assertEqual("registered", report["status"])
+        self.assertEqual(2, report["verify_attempts"])
+        # One 60s poll wait followed by two 2s Bitable readback delays.
+        self.assertEqual([60.0, 2.0, 2.0], sleep_calls)
+        self.assertEqual(2, len(source.upserts))
+
+    def test_private_with_token_fails_fast_when_build_finished_failed(self) -> None:
+        payload = {
+            "results": [
+                {
+                    "id": 4762842,
+                    "commit": self.commit_sha,
+                    "state": {"code": "finished"},
+                    "finished": "2026-11-19T03:42:00Z",
+                    "success": False,
+                    "version": {"slug": "latest"},
+                }
+            ]
+        }
+
+        def opener(request, timeout=30):
+            return io.BytesIO(json.dumps(payload).encode("utf-8"))
+
+        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""})
+        sleep_calls: list[float] = []
+        with mock.patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "token-123"}):
+            with mock.patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with mock.patch.object(private_verify, "urlopen", side_effect=opener):
+                    exit_code, report, source = self._run_with_lark_mocks(
+                        args=self._args(deploy_timeout=1800),
+                        store=store,
+                        sleep_calls=sleep_calls,
+                    )
+        self.assertEqual(receipt_links.EXIT_FAILED, exit_code)
+        self.assertEqual("failed", report["status"])
+        self.assertEqual(1, report["verify_attempts"])
+        self.assertEqual([], sleep_calls)
+        self.assertEqual([], source.upserts)
+
+    def test_private_with_token_fails_fast_when_local_manual_file_missing(self) -> None:
+        (
+            self.publish_root
+            / "web"
+            / "JE-1000F"
+            / "US"
+            / "en"
+            / "md"
+            / "manual_je1000f_us_en.md"
+        ).unlink()
+        payload = {
+            "results": [
+                {
+                    "id": 4762843,
+                    "commit": self.commit_sha,
+                    "state": {"code": "finished"},
+                    "finished": "2026-11-19T03:45:00Z",
+                    "success": True,
+                    "version": {"slug": "latest"},
+                }
+            ]
+        }
+
+        def opener(request, timeout=30):
+            return io.BytesIO(json.dumps(payload).encode("utf-8"))
+
+        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""})
+        sleep_calls: list[float] = []
+        with mock.patch.dict(os.environ, {private_verify.API_TOKEN_ENV: "token-123"}):
+            with mock.patch.object(receipt, "_fetch", side_effect=self._cas_redirect):
+                with mock.patch.object(private_verify, "urlopen", side_effect=opener):
+                    exit_code, report, source = self._run_with_lark_mocks(
+                        args=self._args(deploy_timeout=1800),
+                        store=store,
+                        sleep_calls=sleep_calls,
+                    )
+        self.assertEqual(receipt_links.EXIT_FAILED, exit_code)
+        self.assertEqual("failed", report["status"])
+        self.assertEqual(1, report["verify_attempts"])
+        self.assertEqual([], sleep_calls)
+        self.assertEqual([], source.upserts)
 
 
 if __name__ == "__main__":
