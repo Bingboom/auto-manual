@@ -14,14 +14,23 @@
     made, when the sync check last confirmed it, and a warning when the data may be out of date. Nothing without a
     snapshot (``freshness`` is None). 产品矩阵 places the two parts apart (the warning above the matrix, the times
     under it); the other product pages use ``product_freshness`` for both. -#}
+{%- macro _ext_icon() -%}<svg class="pt-ext-ic" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5h5v5M9.5 2.5l-6 6"/></svg>{%- endmacro -%}
+{%- macro _sync_actions(freshness) -%}
+{%- if freshness and freshness.refresh_url %}
+<div class="pt-sync-actions">
+  <a class="pt-sync-btn" href="{{ freshness.refresh_url|e }}" target="_blank" rel="noopener" title="打开 Hello-Docs Workspace Data Refresh 工作流（Run workflow 选择 product_matrix）">同步多维表{{ _ext_icon() }}</a>
+  {%- if freshness.review_pr_url %}<a class="pt-sync-btn" href="{{ freshness.review_pr_url|e }}" target="_blank" rel="noopener" title="查看并合入待审的产品快照刷新 PR">待审快照 PR{{ _ext_icon() }}</a>{% endif %}
+</div>
+{%- endif %}
+{%- endmacro -%}
 {%- macro product_stale(freshness) -%}
 {%- if freshness and freshness.warnings %}
-<div class="pt-stale" role="status"><strong>数据可能不是最新</strong><ul>{% for warning in freshness.warnings %}<li>{{ warning|e }}</li>{% endfor %}</ul></div>
+<div class="pt-stale" role="status"><div class="pt-stale-head"><strong>数据可能不是最新</strong>{{ _sync_actions(freshness) }}</div><ul>{% for warning in freshness.warnings %}<li>{{ warning|e }}</li>{% endfor %}</ul></div>
 {%- endif %}
 {%- endmacro -%}
 {%- macro product_sync(freshness) -%}
 {%- if freshness %}
-<p class="pt-sync"><span>数据读取于 {{ freshness.read_at|e }}</span><span>快照生成于 {{ freshness.built_at|e }}</span><span>最近同步成功 {{ freshness.last_success|e }}</span></p>
+<div class="pt-sync"><div class="pt-sync-times"><span>数据读取于 {{ freshness.read_at|e }}</span><span>快照生成于 {{ freshness.built_at|e }}</span><span>最近同步成功 {{ freshness.last_success|e }}</span></div>{{ _sync_actions(freshness) }}</div>
 {%- endif %}
 {%- endmacro -%}
 {%- macro product_freshness(freshness) -%}

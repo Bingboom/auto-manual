@@ -92,8 +92,20 @@ th[aria-sort="descending"] .pt-sort::after {content:" ↓"}
 .pt-table thead th:first-child {z-index:3;background:#f8fafc}
 .pt-table tbody tr.pt-group th {position:static}
 .pc-table tbody tr.is-diff th {background:#faf0dc}
-/* Data freshness on every product page (tools/rtd/product_freshness.py): three times, and an amber warning. */
-.pt-sync {margin:0;display:flex;flex-wrap:wrap;gap:2px 16px;font-size:12px;line-height:18px;color:var(--app-muted)}
+/* Data freshness on every product page (tools/rtd/product_freshness.py): three times, action buttons, and an amber warning. */
+.pt-sync {margin:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;
+  font-size:12px;line-height:18px;color:var(--app-muted)}
+.pt-sync-times {display:flex;flex-wrap:wrap;gap:2px 16px}
+.pt-sync-actions {display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pt-sync-btn {display:inline-flex;align-items:center;gap:4px;min-height:24px;padding:0 9px;border:1px solid var(--app-line);
+  border-radius:6px;background:var(--surface);font-size:12px;font-weight:500;line-height:22px;color:var(--app-text2,var(--app-ink));
+  text-decoration:none;white-space:nowrap;transition:border-color .12s,color .12s,background .12s}
+.pt-sync-btn:hover {border-color:var(--brand);color:var(--brand);background:#fffaf7}
+.pt-sync-btn:focus-visible {outline:2px solid var(--brand);outline-offset:1px}
+.pt-ext-ic {flex:none;opacity:.7}
 .pt-stale {margin:0;padding:10px 14px;border:1px solid #efdcb4;border-radius:var(--radius-md);background:#fdf8ee;
   font-size:13px;line-height:20px;color:#5c3d0a}
+.pt-stale-head {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px}
+.pt-stale .pt-sync-btn {border-color:#e2c68c;background:#fffdf7;color:#5c3d0a;font-weight:600}
+.pt-stale .pt-sync-btn:hover {border-color:#b88424;background:#fff;color:#3d2603}
 .pt-stale ul {margin:4px 0 0;padding-left:18px}

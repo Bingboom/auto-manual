@@ -413,9 +413,11 @@ address forwards here, and the public manual library never links to it.
   public-role build in `tests/test_rtd_portal.py` fails if any file or text of
   `knowledge/product-matrix` reaches its output. Tests use invented products and
   projects (`P-FAKE-*`).
-- **Freshness.** Every product page (产品矩阵, 产品对比, 参数表, 产品档案) shows `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; on 产品矩阵, 产品对比 and 参数表 quietly under the main card, on 产品档案 under its header; a v1.1 snapshot
-  has no build time and shows `未记录（旧版快照）`), and an amber `数据可能不是最新`
-  box when the snapshot is past the registry's `product_matrix.stale_after_days`
+- **Freshness.** Every product page (产品矩阵, 演进时间轴, 产品对比, 参数表, 产品档案) shows `数据读取于 · 快照生成于 · 最近同步成功` (Beijing time; quietly at the foot of `<main>`; a v1.1 snapshot
+  has no build time and shows `未记录（旧版快照）`), paired on the right with two shortcut
+  buttons (`同步多维表` opening Hello-Docs `Workspace Data Refresh` and `待审快照 PR`
+  opening open `chore/product-matrix-refresh` PRs), and an amber `数据可能不是最新`
+  box (which also surfaces the same two shortcut buttons) when the snapshot is past the registry's `product_matrix.stale_after_days`
   without a successful check, when the last check found the base ahead or failed, or
   when the base's latest fact record time is newer than the snapshot's.
   `tools/rtd/product_freshness.py` decides this at build time from the snapshot and
