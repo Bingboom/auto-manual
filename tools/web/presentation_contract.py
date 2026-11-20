@@ -59,7 +59,7 @@ def merge_contract_layers(base: Any, override: Any, *, field: str = "contract") 
         base_by_id = _list_by_id(base, field=field)
         override_by_id = _list_by_id(override, field=field)
         if base_by_id is not None and override_by_id is not None:
-            merged = [
+            merged_list = [
                 merge_contract_layers(
                     item,
                     override_by_id[str(item["id"])],
@@ -70,12 +70,12 @@ def merge_contract_layers(base: Any, override: Any, *, field: str = "contract") 
                 for item in base
             ]
             base_ids = set(base_by_id)
-            merged.extend(
+            merged_list.extend(
                 deepcopy(item)
                 for item in override
                 if str(item["id"]) not in base_ids
             )
-            return merged
+            return merged_list
     return deepcopy(override)
 
 
@@ -696,7 +696,7 @@ def _normalize_coverage_policy(
                 f"{prefix}.required_slots are incomplete or out of scope; "
                 f"missing={missing}, extra={extra}"
             )
-    normalized = {
+    normalized: dict[str, Any] = {
         "policy_id": policy_id,
         "locales": locales,
         "required_slots": required_slots,

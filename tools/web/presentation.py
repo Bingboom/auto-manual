@@ -329,7 +329,7 @@ def _transform_product_overview(
     soup: BeautifulSoup,
     *,
     source_path: Path,
-    contract: dict[str, Any],
+    contract: Mapping[str, Any],
     composites: WebCompositeContext,
 ) -> None:
     try:
@@ -877,7 +877,7 @@ def _transform_operations(
     soup: BeautifulSoup,
     *,
     source_path: Path,
-    contract: dict[str, Any],
+    contract: Mapping[str, Any],
     composites: WebCompositeContext,
     resolved_component_ids: frozenset[str] = frozenset(),
     operation_panel_copy: Sequence[Mapping[str, Any]] = (),
@@ -1033,7 +1033,7 @@ def _transform_reference_figures(
     soup: BeautifulSoup,
     *,
     source_path: Path,
-    contract: dict[str, Any],
+    contract: Mapping[str, Any],
     composites: WebCompositeContext,
 ) -> None:
     for spec in contract["reference_figures"]["figures"]:
@@ -1554,21 +1554,25 @@ def _ensure_operations_tables(soup: BeautifulSoup, target: _WebFragmentTarget) -
 
 
 def _transform_meaning_symbols(soup: BeautifulSoup, target: _WebFragmentTarget) -> None:
-    common = {
-        "source_path": target.source_path,
-        "error_type": WebPresentationError,
-        "language": target.language,
-        "model": target.model,
-        "region": target.region,
-    }
     if "HB-TABLE-SYMBOL-SIGNAL" not in target.resolved:
         transform_symbol_signal_table(
             soup,
             expected_body_rows=int(target.data["meaning_symbols"]["signal_row_count"]),
-            **common,
+            source_path=target.source_path,
+            error_type=WebPresentationError,
+            language=target.language,
+            model=target.model,
+            region=target.region,
         )
     if "HB-TABLE-SYMBOL-ICON" not in target.resolved:
-        transform_symbol_pairs(soup, **common)
+        transform_symbol_pairs(
+            soup,
+            source_path=target.source_path,
+            error_type=WebPresentationError,
+            language=target.language,
+            model=target.model,
+            region=target.region,
+        )
 
 
 def _transform_legacy_target_pages(

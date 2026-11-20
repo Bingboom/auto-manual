@@ -397,7 +397,13 @@ def arrange_base_art_operation(
         _place_supporting_panels(supporting, canvas, layout, source_path, error_type)
 
 
-def _place_supporting_panels(supporting, canvas, layout, source_path, error_type):
+def _place_supporting_panels(
+    supporting: Tag,
+    canvas: Tag,
+    layout: Mapping[str, Any],
+    source_path: Path,
+    error_type: type[Exception],
+) -> None:
     """Optional live CSS bubbles on an artwork's declared empty copy region."""
     if "supporting_anchor" not in layout:
         return

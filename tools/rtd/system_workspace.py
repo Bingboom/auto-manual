@@ -41,6 +41,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+from collections.abc import Callable
 from pathlib import Path, PurePosixPath
 from typing import Any, NamedTuple
 from urllib.parse import quote, urlsplit
@@ -681,8 +682,10 @@ def _block_problems(key: str, block: object, codes: list[str], approved_key: boo
 def _approved_problems(key: str, block: dict[str, Any]) -> list[str]:
     """``approved_by_language`` (v1.1): approved rows per language, within that language and the approved total."""
     approved = block.get(CORPUS_APPROVED_KEY)
-    by_language = block.get("by_language") if isinstance(block.get("by_language"), dict) else {}
-    by_status = block.get("by_status") if isinstance(block.get("by_status"), dict) else {}
+    raw_by_language = block.get("by_language")
+    by_language: dict[str, Any] = raw_by_language if isinstance(raw_by_language, dict) else {}
+    raw_by_status = block.get("by_status")
+    by_status: dict[str, Any] = raw_by_status if isinstance(raw_by_status, dict) else {}
     if not isinstance(approved, dict):
         return [f"{key}.{CORPUS_APPROVED_KEY} must map language codes to counts"]
     if not set(approved) <= set(by_language):
@@ -834,7 +837,7 @@ def _cell_text(value: object) -> str:
     return str(value).strip() if value is not None else ""
 
 
-def _table_rows(run, base_token: str, table_id: str) -> tuple[list[str], list[dict[str, Any]]]:
+def _table_rows(run: Callable[..., Any], base_token: str, table_id: str) -> tuple[list[str], list[dict[str, Any]]]:
     """Every row of one table as {field: value}; +record-list caps a page at 200."""
     from tools.workspace_snapshot import complete_rows
 
@@ -859,7 +862,7 @@ def _table_aggregate(header: list[str], rows: list[dict[str, Any]], codes: list[
     }
 
 
-def corpus_export(contract: dict[str, Any], *, base_token: str, run, today: dt.date,
+def corpus_export(contract: dict[str, Any], *, base_token: str, run: Callable[..., Any], today: dt.date,
                   previous: dict[str, Any] | None = None) -> dict[str, Any]:
     """Aggregate the live TM base into a snapshot; read-only, counts only.
 
@@ -890,7 +893,7 @@ def corpus_export(contract: dict[str, Any], *, base_token: str, run, today: dt.d
     return snapshot
 
 
-def lark_runner(cli_bin: str, identity: str):
+def lark_runner(cli_bin: str, identity: str) -> Callable[[list[str]], dict[str, Any]]:
     """``run(args) -> payload`` over the shared hardened lark-cli transport."""
     from tools.feishu_record_transport import run_lark_cli_json
     from tools.phase2_support import parse_json_payload, resolved_cli_command_parts
@@ -983,8 +986,10 @@ def _status_view(status: str) -> dict[str, str]:
 def status_counts(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """How many entries have each status, strongest first, with each one's share for a stacked bar."""
     total = len(entries)
-    counts = [{**_status_view(status), "count": sum(1 for entry in entries if entry["status"] == status)}
-              for status in sorted(STATUS_LABELS, key=lambda s: -STATUS_ORDER[s])]
+    counts: list[dict[str, Any]] = [
+        {**_status_view(status), "count": sum(1 for entry in entries if entry["status"] == status)}
+        for status in sorted(STATUS_LABELS, key=lambda s: -STATUS_ORDER[s])
+    ]
     return [{**row, "percent": round(100 * row["count"] / total, 1)} for row in counts if row["count"]]
 
 
@@ -1055,7 +1060,11 @@ def _source_figure(sources: list[dict[str, Any]] | None = None, **_: Any) -> dic
 
 
 # Lane figures read from what the page already holds rather than from the manifest or a snapshot of their own.
-_LANE_FIGURES = {"reviews": _review_figure, "capabilities": _capability_figure, "sources": _source_figure}
+_LANE_FIGURES: dict[str, Callable[..., dict[str, Any]]] = {
+    "reviews": _review_figure,
+    "capabilities": _capability_figure,
+    "sources": _source_figure,
+}
 
 
 def lane_metrics(name: str, *, focus: dict[str, Any], facts: dict[str, Any] | None,
@@ -1188,8 +1197,6 @@ def _lane_view(lane: dict[str, Any], *, ledger: Ledger | None, gates_by_id: dict
     name, _, condition = str(lane["title"]).partition(" · ")
     tracked = bool(lane.get("gates") or lane.get("revs"))
     progress = _lane_progress(lane, ledger=ledger, gates_by_id=gates_by_id, ledger_url=ledger_url)
-    figures = {"focus": focus, "facts": facts, "corpus": corpus_block, "skeletons": skeletons,
-               "reviews": reviews, "card": card, "sources": sources}
     return {
         "id": lane["id"], "title": lane["title"], "goal": lane.get("goal") or "",
         "name": name, "condition": condition, **_lane_status(entries[0] if len(entries) == 1 else card),
@@ -1197,8 +1204,14 @@ def _lane_view(lane: dict[str, Any], *, ledger: Ledger | None, gates_by_id: dict
         "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]],
         # The card that holds the lane's evidence: its own card, else the card of its first item.
         "card": lane.get("card") or str((lane.get("items") or [""])[0]).partition(".")[0],
-        "metrics": [metric for metric_name in lane.get("metrics") or []
-                    for metric in lane_metrics(metric_name, **figures)],
+        "metrics": [
+            metric
+            for metric_name in lane.get("metrics") or []
+            for metric in lane_metrics(
+                metric_name, focus=focus, facts=facts, corpus=corpus_block,
+                skeletons=skeletons, reviews=reviews, card=card, sources=sources,
+            )
+        ],
         # Not "items": Jinja resolves lane.items to the dict method.
         "entries": entries,
         "progress": progress,
@@ -1322,7 +1335,7 @@ def _iso_date(value: str) -> dt.date:
         raise argparse.ArgumentTypeError(f"not an ISO date: {value!r}") from None
 
 
-def system_page_context(app, assets: Path) -> dict[str, Any] | None:
+def system_page_context(app: Any, assets: Path) -> dict[str, Any] | None:
     """Context for SYSTEM_PAGE, or None (with a warning) when the page cannot render."""
     from sphinx.util import logging as sphinx_logging
 
@@ -1419,7 +1432,7 @@ def main(argv: list[str] | None = None) -> int:
     return 1 if errors else 0
 
 
-def _run_corpus_export(args) -> int:
+def _run_corpus_export(args: argparse.Namespace) -> int:
     try:
         contract = load_contract(args.contract)
     except ContractError as exc:
@@ -1462,7 +1475,7 @@ def _run_corpus_export(args) -> int:
         print("ERROR   candidate validation or atomic replacement failed; previous snapshot retained")
         return 1
     print(json.dumps(result, ensure_ascii=False))
-    saved = previous if result["status"] == "unchanged" else snapshot
+    saved = previous if result["status"] == "unchanged" and previous is not None else snapshot
     pairs, terms = saved["sentence_pairs"], saved["terms"]
     print(f"{result['status']} {output}: {pairs['total']} sentence pairs, {terms['total']} terms, snapshot dated "
           f"{saved['exported_at']}; history carries {len(saved.get('history') or [])} earlier month(s)")

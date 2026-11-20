@@ -4,6 +4,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 from copy import deepcopy
 from pathlib import Path
+from typing import Any
 
 from bs4 import BeautifulSoup
 
@@ -14,14 +15,14 @@ from tools.manual_ir.flow import flow_nodes_to_html
 from tools.web.presentation_contract import _validate_reference_base_art_layout
 
 
-def _native_caption_labels(book, figure):
+def _native_caption_labels(book: Any, figure: dict[str, Any]) -> list[dict[str, Any]]:
     """Use hash-pinned PDF geometry when one native block contains several labels."""
     record = book.records.get('reference_captions', {}).get(figure['slug'], {})
     labels = record.get('labels', [])
     if record.get('physical_page') != figure['physical_page'] or not labels:
         raise ValueError(f"{figure['slug']}: native reference captions page/labels mismatch")
     x0, y0, x1, y1 = figure['clip_points']
-    resolved = []
+    resolved: list[dict[str, Any]] = []
     for label in labels:
         bbox = label.get('bbox', [])
         value = label.get('text', '')
@@ -33,13 +34,13 @@ def _native_caption_labels(book, figure):
     return resolved
 
 
-def _exact_block_labels(book, figure, labels):
+def _exact_block_labels(book: Any, figure: dict[str, Any], labels: list[str]) -> list[dict[str, Any]]:
     page = next(p for p in book.source['pages']
                 if p['physical_page'] == figure['physical_page'])
     x0, y0, x1, y1 = figure['clip_points']
     available = [b for b in page['blocks_visual_order']
                  if x0 <= b['bbox'][0] < x1 and y0 <= b['bbox'][1] < y1]
-    resolved = []
+    resolved: list[dict[str, Any]] = []
     for expected in labels:
         matches = [b for b in available if squash(b['text']) == expected]
         if len(matches) != 1 or any(b['bbox'] == matches[0]['bbox'] for b in resolved):
@@ -49,7 +50,7 @@ def _exact_block_labels(book, figure, labels):
     return resolved
 
 
-def _resolve_labels(book, figure, binding):
+def _resolve_labels(book: Any, figure: dict[str, Any], binding: Mapping[str, Any]) -> list[dict[str, Any]]:
     labels = binding.get('live_labels')
     if binding.get('native_captions'):
         if labels is not None or binding['native_captions'] is not True:
@@ -63,7 +64,7 @@ def _resolve_labels(book, figure, binding):
     return _exact_block_labels(book, figure, labels)
 
 
-def bind_reference_labels(book, bindings):
+def bind_reference_labels(book: Any, bindings: Mapping[str, Any]) -> None:
     """Resolve each declared label once within its PDF figure, before copying assets."""
     for figure in book.figures:
         binding = bindings[figure['slug']]
@@ -79,14 +80,19 @@ def bind_reference_labels(book, bindings):
         figure.update(live_captions=resolved, base_art_layout=deepcopy(layout))
 
 
-def reference_label_regions(figures):
+def reference_label_regions(figures: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Consume only matched label blocks; neighboring charging copy stays prose."""
     return [{'physical_page': figure['physical_page'], 'section': figure['section_id'],
              'consume_bbox': label['bbox']}
             for figure in figures for label in figure.get('live_captions', [])]
 
 
-def finished_artwork_node(figure, asset, source_captions, language):
+def finished_artwork_node(
+    figure: dict[str, Any],
+    asset: Mapping[str, Any],
+    source_captions: Mapping[str, Any],
+    language: str,
+) -> dict[str, Any]:
     """Keep a locale-bound source panel intact, with its native captions once."""
     from tools.web.frozen_pdf_app import artwork_node
 
@@ -100,7 +106,7 @@ def finished_artwork_node(figure, asset, source_captions, language):
     )
 
 
-def labeled_artwork_node(figure, asset_ref, language):
+def labeled_artwork_node(figure: dict[str, Any], asset_ref: str, language: str) -> dict[str, Any]:
     """Create a frozen ReferenceFigure spec through the shared HTML intake adapter."""
     identity = figure['slug']
     labels = figure['live_captions']

@@ -19,7 +19,7 @@ from tools.utils.path_utils import PathSegments
 from tools.web.language_release_evidence import _safe_relative
 
 
-def _rgb(tone: str) -> tuple[int, ...]:
+def _rgb(tone: object) -> tuple[int, ...]:
     if not isinstance(tone, str) or len(tone) != 7 or not tone.startswith('#'):
         raise ValueError('caption frame requires a measured #rrggbb tone')
     return tuple(int(tone[i:i + 2], 16) for i in (1, 3, 5))

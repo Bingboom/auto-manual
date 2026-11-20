@@ -3,8 +3,9 @@ from __future__ import annotations
 
 from copy import deepcopy
 from pathlib import Path
+from typing import Any
 
-from bs4 import BeautifulSoup, Comment, NavigableString
+from bs4 import BeautifulSoup, Comment, NavigableString, PageElement
 
 from tools.component_specs.registry import component_registry_context
 from tools.component_specs.theme import manual_theme_context
@@ -24,7 +25,7 @@ from tools.utils.path_utils import get_paths
 def tree_to_html(tree: list[dict]) -> str:
     validate_tree(tree)
     soup = BeautifulSoup("", "html.parser")
-    def decode(node):
+    def decode(node: dict[str, Any]) -> PageElement:
         if node["type"] == "text":
             return NavigableString(node["text"])
         if node["type"] == "comment":
@@ -38,7 +39,7 @@ def tree_to_html(tree: list[dict]) -> str:
     return str(soup)
 
 
-def _rebase_packaged_flow(value, *, root: Path, assets: dict[str, str]):
+def _rebase_packaged_flow(value: Any, *, root: Path, assets: dict[str, str]) -> Any:
     """Rebind packaged component and ordinary-flow assets before HTML replay."""
 
     if isinstance(value, dict):

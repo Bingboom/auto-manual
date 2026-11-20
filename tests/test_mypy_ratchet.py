@@ -26,6 +26,16 @@ class ParseTest(unittest.TestCase):
             counts,
         )
 
+    def test_web_first_packages_are_enrolled_in_ratchet(self) -> None:
+        for pkg in (
+            "tools/corpus",
+            "tools/product_matrix_base",
+            "tools/manual_knowledge",
+            "tools/rtd",
+            "tools/web",
+        ):
+            self.assertIn(pkg, ratchet.PACKAGES)
+
 
 class CheckRepositoryTest(unittest.TestCase):
     def _root(self, tmp: str) -> Path:

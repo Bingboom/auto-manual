@@ -508,7 +508,9 @@ def reviewed_inputs_match_with_pointers(
     extra_raw_set = frozenset(extra_map)
     raw_set = frozenset(raw_archive_paths)
     adapter_set = frozenset(adapter_paths)
-    all_pointer_rows = [row for row in manifest_rows if _row_path(row).endswith(POINTER_SUFFIX)]
+    all_pointer_rows: list[Mapping[str, Any]] = [
+        row for row in manifest_rows if _row_path(row).endswith(POINTER_SUFFIX)
+    ]
     if raw_set & extra_raw_set or not _validate_all_pointer_sources(
         package_root, approval_rows, all_pointer_rows, raw_set, original_sha256, extra_map
     ):

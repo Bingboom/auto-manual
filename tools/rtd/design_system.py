@@ -283,7 +283,7 @@ def template_context(context: dict[str, Any]) -> dict[str, Any]:
     return page
 
 
-def design_page_context(app, assets: Path) -> dict[str, Any] | None:
+def design_page_context(app: Any, assets: Path) -> dict[str, Any] | None:
     """Context for PAGE, or None (with a warning) when the data has drifted."""
     from sphinx.util import logging as sphinx_logging
 

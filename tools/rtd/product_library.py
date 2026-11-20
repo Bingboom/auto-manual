@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import re
 from collections import defaultdict
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -202,7 +203,11 @@ def library_view(snapshot: dict[str, Any], product_catalog: dict[str, Any] | Non
             "facts": {"products": len(models)}, "built_on": updated}
 
 
-def library_context(knowledge_dir: Path, product_catalog: dict[str, Any] | None, warn=None) -> dict[str, Any]:
+def library_context(
+    knowledge_dir: Path,
+    product_catalog: dict[str, Any] | None,
+    warn: Callable[..., Any] | None = None,
+) -> dict[str, Any]:
     """The page context; without a usable snapshot, or with no product in it, the page says so and shows no figures.
 
     An unusable snapshot is a Sphinx warning, which never fails the build: the RTD build runs without ``-W`` or

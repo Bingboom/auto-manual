@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
+from collections.abc import Callable
 from typing import Any
 
 from tools.rtd.product_library import MARKET_ORDER, has_cells, market_label, safe_model
@@ -83,7 +84,7 @@ def row_key(row: dict[str, Any]) -> str:
     return str(row.get("key") or f"{row['model']}/{row.get('market')}")
 
 
-def named_parameters(snapshot: dict[str, Any], warn=None) -> dict[str, dict[str, Any]]:
+def named_parameters(snapshot: dict[str, Any], warn: Callable[..., Any] | None = None) -> dict[str, dict[str, Any]]:
     """The snapshot's parameters by key; one without a Chinese name is left out with a build warning (a page never
     shows a key in its place)."""
     parameters: dict[str, dict[str, Any]] = {}
@@ -133,7 +134,7 @@ def _position(position: str) -> dict[str, str]:
 
 
 def _sources(cell: dict[str, Any], name: str, values: dict[str, dict[str, Any]], sources: dict[str, dict[str, Any]],
-             labels: dict[str, str]) -> list[dict[str, str]]:
+             labels: dict[str, str]) -> list[dict[str, Any]]:
     """Every value that took part in the cell, the chosen one first: where it is printed and how."""
     chosen = str(cell.get("value") or "")
     ids = [str(i) for i in cell.get("candidates") or []] or [chosen]
@@ -275,7 +276,7 @@ def matrix_extras(matrix: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
     return extras
 
 
-def models_of(snapshot: dict[str, Any], warn=None) -> dict[str, list[dict[str, Any]]]:
+def models_of(snapshot: dict[str, Any], warn: Callable[..., Any] | None = None) -> dict[str, list[dict[str, Any]]]:
     """The snapshot's rows by model; a model code unfit for a page path is skipped with a warning."""
     by_model: dict[str, list[dict[str, Any]]] = defaultdict(list)
     skipped: set[str] = set()
@@ -293,7 +294,7 @@ def models_of(snapshot: dict[str, Any], warn=None) -> dict[str, list[dict[str, A
 
 
 def profile_pages(snapshot: dict[str, Any], *, labels: dict[str, str], extras: dict[str, dict[str, Any]] | None = None,
-                  warn=None) -> list[tuple[str, dict[str, Any]]]:
+                  warn: Callable[..., Any] | None = None) -> list[tuple[str, dict[str, Any]]]:
     """(page name, context) for every model in the snapshot; none without the decided cells."""
     if not has_cells(snapshot):
         return []

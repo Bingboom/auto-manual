@@ -1,10 +1,15 @@
 """Shared Web table presentation for authored LCD and symbol references."""
-from bs4 import BeautifulSoup
+from __future__ import annotations
 
+from typing import Any
+
+from bs4 import BeautifulSoup, Tag
+
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.reference_table import reference_table_projection
 
 
-def _row(soup, values, *, header=False):
+def _row(soup: BeautifulSoup, values: list[dict[str, Any]], *, header: bool = False) -> Tag:
     row = soup.new_tag("tr")
     for value in values:
         cell = soup.new_tag("th" if header else "td")
@@ -21,7 +26,7 @@ def _row(soup, values, *, header=False):
     return row
 
 
-def render_reference_table_component(spec):
+def render_reference_table_component(spec: ComponentSpec) -> str:
     projection = reference_table_projection(spec)
     soup = BeautifulSoup("", "html.parser")
     figure = soup.new_tag("figure", attrs={

@@ -431,8 +431,8 @@ def _run_dry_run(args: argparse.Namespace) -> int:
             f"pruned={summary['pruned_count']} ({summary['pruned_mib']:.2f} MiB) "
             f"kept={summary['kept_count']}"
         )
-        for ext, stats in summary["pruned_by_suffix"].items():
-            print(f"  {ext}: {stats['count']} file(s), {stats['mib']:.2f} MiB")
+        for ext, (cnt, sz) in sorted(by_suffix.items()):
+            print(f"  {ext}: {cnt} file(s), {sz / (1024 * 1024):.2f} MiB")
         for path in plan.kept_paths:
             print(f"  kept: {path}")
     return 0

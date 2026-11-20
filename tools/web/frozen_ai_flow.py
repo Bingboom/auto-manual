@@ -1,8 +1,10 @@
 """Neutral source-flow construction for positioned, frozen manual text."""
 from __future__ import annotations
 
+from collections.abc import Iterable
 from copy import deepcopy
 import re
+from typing import Any
 
 from tools.component_specs.adapters import web_callout_classes
 from tools.component_specs.callout import callout_component_spec
@@ -10,7 +12,7 @@ from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.flow import FLOW_V2_SCHEMA_VERSION
 
 
-def node(kind: str, children=(), **fields) -> dict:
+def node(kind: str, children: Iterable[dict[str, Any]] = (), **fields: Any) -> dict:
     result = {"kind": kind, **fields}
     if kind not in {"text", "image", "component", "line_break"}:
         result["children"] = list(children)
@@ -69,7 +71,7 @@ def table(rows: list[list[dict]], *, css_class: str = "manual-table") -> dict:
                 presentation={"html": {"attributes": {"class": css_class}}})
 
 
-def cell(value: str, *, header=False, **fields) -> dict:
+def cell(value: str, *, header: bool = False, **fields: Any) -> dict:
     return node("table_cell", [text(value)], header=header, **fields)
 
 
@@ -81,7 +83,7 @@ def scroll_table(rows: list[list[dict]]) -> dict:
 
 def callout(label: str, body: list[dict], *, variant: str, language: str, source_ref: str) -> dict:
     """Bind the source's exact label/body to the existing shared carrier contract."""
-    def leaves(item):
+    def leaves(item: dict[str, Any]) -> list[str]:
         if item.get("kind") == "text":
             return [item["text"]]
         return [part for child in item.get("children", []) for part in leaves(child)]
@@ -90,7 +92,7 @@ def callout(label: str, body: list[dict], *, variant: str, language: str, source
     spec = callout_component_spec(label=label, body="\n".join(part for b in body for part in leaves(b)),
                                   items=items, variant=variant, language=language, source_ref=source_ref)
     classes = web_callout_classes(spec)
-    def attributes(css):
+    def attributes(css: str) -> dict[str, dict[str, dict[str, str]]]:
         return {"html": {"attributes": {"class": css}}}
     carrier = table([[node("table_cell", [text(label)], header=False,
                            presentation=attributes("manual-callout-label")),

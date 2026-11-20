@@ -285,7 +285,8 @@ def provenance(staged: dict[str, list[dict[str, Any]]], live_sources: Iterable[d
     sources.update({row["来源键"]: row for row in staged.get("来源", [])})
     cited = {f.get("来源键") for f in staged.get("事实", [])}
     problems = []
-    for key in sorted(({r["来源键"] for r in staged.get("来源", [])} | cited) & set(sources)):
+    known_cited = sorted(k for k in ({r["来源键"] for r in staged.get("来源", [])} | cited) & set(sources) if isinstance(k, str))
+    for key in known_cited:
         kind = _text(sources[key].get("来源类型"))
         if kind != SOURCE_TYPE:
             problems.append(f"来源 {key}: kind {kind!r} has no provenance check")

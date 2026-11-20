@@ -10,6 +10,7 @@ import json
 from io import BytesIO
 from pathlib import Path
 import re
+from typing import Any
 
 import fitz
 from PIL import Image, ImageChops, ImageStat
@@ -256,7 +257,7 @@ def _join_declared_linebreaks(source_text: str, row: dict) -> str:
     return source_text
 
 
-def _reference(page, row: dict, meaning: str, erratum: dict | None = None) -> bytes:
+def _reference(page: fitz.Page, row: dict, meaning: str, erratum: dict | None = None) -> bytes:
     glyph, caption, band = (fitz.Rect(row[key]) for key in
                             ('glyph_bbox', 'caption_bbox', 'row_bbox'))
     if (band.is_empty or not page.rect.contains(band) or not band.contains(glyph)
@@ -426,7 +427,7 @@ def _admit_with_pointer(rows: list[dict], expected: list[tuple[str, str]], *,
     return report
 
 
-def _component_rows(specs):
+def _component_rows(specs: list[Any]) -> list[tuple[str, str]]:
     expected = []
     for spec in specs:
         panels = next(slot.content for slot in spec.slots if slot.role == 'panels')

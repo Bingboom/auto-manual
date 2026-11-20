@@ -1,7 +1,9 @@
 """Explicit, hash-pinned finished Overview panels over retained semantic copy."""
 from __future__ import annotations
 
+from collections.abc import Iterator, Sequence
 from pathlib import Path
+from typing import Any
 
 from bs4 import BeautifulSoup
 
@@ -11,7 +13,7 @@ from tools.web.composite_manifest import WebCompositeEntry
 from tools.web.embedded_components import render_embedded_web_component
 
 
-def bind_finished_overview(book, bindings: dict, manifest: Path) -> None:
+def bind_finished_overview(book: Any, bindings: dict, manifest: Path) -> None:
     """Validate all declared panels; package only the requested locale's pair."""
     panels = bindings.get("overview_finished_panels")
     book.overview_finished_panels = {}
@@ -44,13 +46,13 @@ def bind_finished_overview(book, bindings: dict, manifest: Path) -> None:
             mappings.append({"locale": book.language, "source_patterns": []})
 
 
-def finished_overview_composites(book, pages) -> list[dict]:
+def finished_overview_composites(book: Any, pages: Sequence[Any]) -> list[dict]:
     """Freeze the public semantic fragment hash, retaining all IR callout copy."""
     panels = getattr(book, "overview_finished_panels", {})
     if not panels:
         return []
 
-    def components(value):
+    def components(value: Any) -> Iterator[dict[str, Any]]:
         if isinstance(value, dict):
             if value.get("component_spec", {}).get("component_id") == COMPONENT_ID:
                 yield value

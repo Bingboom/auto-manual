@@ -1,17 +1,19 @@
 """Keep native front matter and safety structure on the shared manual styles."""
 from __future__ import annotations
 
+from collections.abc import Callable
 from copy import deepcopy
 import re
+from typing import Any
 
 from tools.web.frozen_ai_flow import callout, heading, is_heading, node, paragraph, squash, text
 
 
-def strong_paragraph(value):
+def strong_paragraph(value: str) -> dict[str, Any]:
     return node('paragraph', [node('strong', [text(value)])])
 
 
-def preface_flow(raw, correct):
+def preface_flow(raw: str, correct: Callable[[str], str]) -> list[dict[str, Any]]:
     """Separate the printed IMPORTANT label and join only print-wrapped lines."""
     lines = [line.strip() for line in raw.splitlines() if line.strip()]
     if lines and re.fullmatch(r'[A-Z]{2}', lines[0]):
@@ -30,7 +32,7 @@ def preface_flow(raw, correct):
     return ([strong_paragraph(label)] if label else []) + [paragraph(p) for p in paragraphs]
 
 
-def template_heading_levels(value):
+def template_heading_levels(value: dict[str, Any]) -> dict[str, Any]:
     """Native H2 chapters/H3 subsections project to the template H1/H2 scale."""
     result = deepcopy(value)
     if result.get('kind') == 'component':
@@ -42,7 +44,7 @@ def template_heading_levels(value):
     return result
 
 
-def safety_flow(book):
+def safety_flow(book: Any) -> list[dict[str, Any]]:
     """Map the source warning, eight precautions and maintenance section once."""
     start, end = book.starts()[:2]
     blocks = [block for page in book.source['pages'] for block in page['blocks_visual_order']
@@ -56,9 +58,10 @@ def safety_flow(book):
     if len(headings) != 1:
         raise ValueError('native safety must contain one maintenance heading')
     split = headings[0]
-    items, continuation = [], []
+    items: list[dict[str, Any]] = []
+    continuation: list[str] = []
 
-    def flush():
+    def flush() -> None:
         if continuation:
             if not items:
                 raise ValueError('safety continuation has no owning precaution')
@@ -90,7 +93,7 @@ def safety_flow(book):
             heading(body[split], level=2), *[paragraph(v) for v in body[split + 1:]]]
 
 
-def positioned_safety_flow(book):
+def positioned_safety_flow(book: Any) -> list[dict[str, Any]]:
     """Use a target's native positioned safety leaves when PDF blocks merge bullets."""
     record = book.records['safety']
     notice = callout(record['warning'], [strong_paragraph(record['lead'])],

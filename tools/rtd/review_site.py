@@ -42,6 +42,7 @@ import re
 import sys
 from datetime import date
 from pathlib import Path, PurePosixPath
+from typing import Any
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -132,7 +133,7 @@ def _check_manifest(directory: Path, drafts_root: Path, manifest: object, *, mil
     return expected
 
 
-def _json(path: Path):
+def _json(path: Path) -> Any:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError) as error:
@@ -282,7 +283,8 @@ def _volume(directory: Path) -> dict | None:
 def load_drafts(drafts_root: Path) -> tuple[list[dict], list[str]]:
     """One entry per model/region (working draft and frozen milestones, newest first), and cross-line warnings."""
     labels = region_labels(ASSETS)
-    lines, loaded = [], set()
+    lines: list[dict[str, Any]] = []
+    loaded: set[Path] = set()
     for manifest in sorted(drafts_root.glob(f"*/*/{MANIFEST}")):
         frozen = sorted(manifest.parent.glob(f"{MILESTONES}/*/{MANIFEST}"))
         loaded.update((manifest, *frozen))
@@ -324,7 +326,7 @@ def topic_warnings(lines: list[dict]) -> list[str]:
     return warnings
 
 
-def render(template: str, **context) -> str:
+def render(template: str, **context: Any) -> str:
     env = Environment(loader=FileSystemLoader(str(ASSETS)), autoescape=select_autoescape(("html",)))
     return env.get_template(template).render(**context)
 

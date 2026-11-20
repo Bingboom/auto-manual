@@ -320,7 +320,7 @@ def drop_columns(run: Runner, planned: dict[str, Any], names: list[str]) -> list
     if filled:
         raise LoadError(f"{MATRIX} columns to drop still hold values: {filled}")
     have = fields(run, planned["table_id"])
-    ids = {name: (have.get(name) or {}).get("id") or (have.get(name) or {}).get("field_id") for name in names}
+    ids = {name: str((have.get(name) or {}).get("id") or (have.get(name) or {}).get("field_id") or "") for name in names}
     missing = sorted(name for name, field_id in ids.items() if not field_id)
     if missing:
         raise LoadError(f"{MATRIX} columns to drop have no field id: {missing}")

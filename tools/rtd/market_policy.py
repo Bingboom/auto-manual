@@ -129,7 +129,7 @@ def market_context(knowledge_root: Path, assets: Path = ASSETS) -> dict:
     data = json.loads(source.read_text(encoding="utf-8"))
     if data.get("schema_version") != 1:
         raise ValueError("market policy snapshot needs schema_version 1")
-    ids = set()
+    ids: set[str] = set()
     for record in data["records"]:
         _validate_record(record, ids)
         _validate_evidence(record, source)

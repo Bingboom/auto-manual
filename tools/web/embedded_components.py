@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from copy import deepcopy
 from pathlib import Path
-from typing import Mapping
+from typing import Any, Mapping
 
 from tools.component_specs.auto_resume import COMPONENT_ID as AUTO_RESUME_ID
 from tools.component_specs.model import ComponentSpec
@@ -163,8 +163,15 @@ __all__ = ["render_embedded_web_component"]
 
 
 def _render_embedded_operation(
-    spec, node, source_path, model, region, language, composite_manifest, contract,
-):
+    spec: ComponentSpec,
+    node: Mapping[str, Any],
+    source_path: Path,
+    model: str | None,
+    region: str | None,
+    language: str | None,
+    composite_manifest: Any,
+    contract: Mapping[str, Any],
+) -> str:
     carrier = _carrier_html(node)
     declared = spec.metadata.get("web_presentation")
     if not declared and not supports_figure_contract(source_path, dict(contract)):

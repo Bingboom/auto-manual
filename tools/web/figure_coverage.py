@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import fnmatch
 import re
+from collections.abc import Iterator
 from dataclasses import replace
 from pathlib import Path
 from typing import Any, Iterable, Sequence
@@ -218,7 +219,7 @@ def _base_art_measured_sha256(contract: dict[str, Any], replace_key: str) -> str
     return measured
 
 
-def _declared_art_hashes(value, replace_key):
+def _declared_art_hashes(value: Any, replace_key: str) -> Iterator[Any]:
     if isinstance(value, list):
         for child in value:
             yield from _declared_art_hashes(child, replace_key)
@@ -232,7 +233,7 @@ def _declared_art_hashes(value, replace_key):
                 yield from _declared_art_hashes(child, replace_key)
 
 
-def _page_base_art_sha256(page, contract, replace_key):
+def _page_base_art_sha256(page: Any, contract: dict[str, Any], replace_key: str) -> str:
     """Source-declared reference anchors are frozen in IR, not global profiles."""
     hashes = [digest for block in getattr(page, "blocks", ())
               for digest in _declared_art_hashes(block.payload, replace_key)]
@@ -240,7 +241,7 @@ def _page_base_art_sha256(page, contract, replace_key):
         return _base_art_measured_sha256(contract, replace_key)
     if len(hashes) != 1 or not _SHA256_RE.fullmatch(str(hashes[0])):
         raise ValueError(f"base-art Web figure {replace_key} has invalid declared art evidence")
-    return hashes[0]
+    return str(hashes[0])
 
 
 def _status_counts(slots: list[dict[str, Any]]) -> dict[str, int]:

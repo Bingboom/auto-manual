@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from typing import Any
 
 from tools.manual_knowledge.html import extract_sections, identity
 from tools.manual_knowledge.identity import MACHINE_SURFACE, variant_identity
@@ -64,7 +65,7 @@ def make_corpus(products: list[dict], output_root: Path, *, source_sha256: str,
                        "sections": sum(len(d["sections"]) for d in documents)}}
 
 
-def write_knowledge(app, exception) -> None:
+def write_knowledge(app: Any, exception: Exception | None) -> None:
     """Do not emit a production query corpus for drafts or bootstrap fixtures."""
     source = Path(app.srcdir)
     manifest_path = source.parent / "publish_manifest.json"

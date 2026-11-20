@@ -13,6 +13,7 @@ import re
 import unicodedata
 from decimal import Decimal
 from collections import defaultdict
+from collections.abc import Callable
 from typing import Any
 
 from tools.product_matrix_base.matrix import (
@@ -76,6 +77,7 @@ def compare_key(text: Any) -> str | None:
 
 def _same_value(fact: dict[str, Any]) -> tuple[Any, str]:
     """A fact's value for comparison: the number as a number (100 equals 100.0), and the text."""
+    number: float | int | str | None
     try:
         number = _number(fact.get("数值"))
     except (TypeError, ValueError):
@@ -84,7 +86,7 @@ def _same_value(fact: dict[str, Any]) -> tuple[Any, str]:
 
 
 def _one(facts: list[dict[str, Any]], attribute: dict[str, Any], by_source: dict[str, dict[str, Any]],
-         source_id) -> dict[str, Any]:
+         source_id: Callable[[str], Any]) -> dict[str, Any]:
     ranked = sorted(facts, key=lambda f: _rank(f, by_source))
     best = ranked[0]
     unit = _text(attribute.get("规范单位"))
@@ -106,7 +108,7 @@ def _one(facts: list[dict[str, Any]], attribute: dict[str, Any], by_source: dict
 
 
 def build_cells(facts: list[dict[str, Any]], attributes: list[dict[str, Any]], sources: list[dict[str, Any]],
-                source_id) -> list[dict[str, Any]]:
+                source_id: Callable[[str], Any]) -> list[dict[str, Any]]:
     """One cell per (product, enabled parameter, test condition) that has at least one taking-part fact."""
     enabled = {a["属性键"]: a for a in attributes if _text(a.get("状态")) in ("", "启用")}
     by_source = {_text(s.get("来源键")): s for s in sources}
