@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import unittest
 from pathlib import Path
 
@@ -106,6 +107,50 @@ class WebIrChecksWorkflowTests(unittest.TestCase):
             'python build.py ir-export --output-corpus "$RUNNER_TEMP/corpus.json" --output-observations "$RUNNER_TEMP/observations.json"',
             run_scripts,
         )
+
+
+class WorkflowNode24ActionPolicyTests(unittest.TestCase):
+    _MIN_NODE24_MAJORS = {
+        "actions/checkout": 7,
+        "actions/setup-python": 7,
+        "actions/setup-node": 7,
+        "actions/cache": 6,
+        "actions/upload-artifact": 7,
+        "actions/download-artifact": 8,
+        "actions/github-script": 9,
+    }
+
+    def test_all_workflows_and_actions_use_node24_action_majors(self) -> None:
+        files = sorted((REPO_ROOT / ".github" / "workflows").glob("*.yml")) + sorted(
+            (REPO_ROOT / ".github" / "actions").glob("**/action.yml")
+        )
+        self.assertTrue(files)
+        violations: list[str] = []
+        for path in files:
+            doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+            steps = (
+                [s for job in (doc.get("jobs") or {}).values() for s in (job.get("steps") or [])]
+                if "jobs" in doc
+                else list((doc.get("runs") or {}).get("steps") or [])
+            )
+            for step in steps:
+                uses = str(step.get("uses") or "")
+                match = re.match(r"^(actions/[A-Za-z0-9_-]+)@v(\d+)$", uses)
+                if not match:
+                    continue
+                action, major = match.group(1), int(match.group(2))
+                min_major = self._MIN_NODE24_MAJORS.get(action)
+                if min_major is not None and major < min_major:
+                    violations.append(f"{path.name}: {uses} (< @v{min_major})")
+        self.assertEqual([], violations)
+
+    def test_workspace_data_verify_uses_blobless_full_history_checkout(self) -> None:
+        wf = yaml.safe_load(
+            (REPO_ROOT / ".github" / "workflows" / "workspace-data-verify.yml").read_text(encoding="utf-8")
+        )
+        checkout = wf["jobs"]["verify"]["steps"][0]
+        self.assertEqual(0, checkout["with"]["fetch-depth"])
+        self.assertEqual("blob:none", checkout["with"]["filter"])
 
 
 if __name__ == "__main__":

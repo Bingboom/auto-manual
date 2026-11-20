@@ -107,6 +107,7 @@ class TestVerifyWebDeploymentWorkflow(unittest.TestCase):
             if str(step.get("uses", "")).startswith("actions/checkout")
         )
         self.assertEqual(0, checkout["with"]["fetch-depth"])
+        self.assertEqual("blob:none", checkout["with"]["filter"])
         self.assertEqual(
             "${{ secrets.READTHEDOCS_API_TOKEN }}",
             self.verify_step()["env"]["READTHEDOCS_API_TOKEN"],

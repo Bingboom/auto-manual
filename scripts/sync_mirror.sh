@@ -69,8 +69,12 @@ source_tree="$(git -C source rev-parse HEAD^{tree})"
 mirror_parent="$(git -C mirror rev-parse HEAD)"
 
 source_bundle="$(mktemp)"
-git -C source bundle create "${source_bundle}" HEAD
-git -C mirror fetch --quiet "${source_bundle}" HEAD
+snapshot_commit="$(git -C source -c user.name=sync -c user.email=sync@local commit-tree "${source_tree}" -m "sync snapshot")"
+git -C source update-ref refs/sync/snapshot "${snapshot_commit}"
+git -C source bundle create "${source_bundle}" refs/sync/snapshot
+git -C source update-ref -d refs/sync/snapshot
+git -C mirror fetch --quiet "${source_bundle}" refs/sync/snapshot
+rm -f "${source_bundle}"
 
 for content_path in ${forbidden_paths}; do
   if git -C mirror cat-file -e "${source_tree}:${content_path}" 2>/dev/null; then

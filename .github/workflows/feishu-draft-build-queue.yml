@@ -80,7 +80,7 @@ jobs:
       AUTO_MANUAL_ARTIFACT_SINK_PROVIDER: lark_drive
       AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER: ${{ vars.AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 2
@@ -182,7 +182,7 @@ jobs:
 
       - name: Upload built docs artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: feishu-draft-build-queue-output
           path: |
@@ -195,7 +195,7 @@ jobs:
 
       - name: Upload OpenClaw run metadata
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-draft-build-queue-run.json

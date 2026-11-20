@@ -43,19 +43,19 @@ jobs:
           fi
 
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: source
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Checkout mirror
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.MIRROR_REPOSITORY }}
           ref: ${{ env.MIRROR_BRANCH }}
           path: mirror
           token: ${{ secrets.HELLO_DOCS_SYNC_TOKEN }}
-          fetch-depth: 0
+          fetch-depth: 1
           # Off main the token only reads the mirror: it is not left in mirror/.git/config,
           # so the sync script has no credential to push with.
           persist-credentials: ${{ github.ref == 'refs/heads/main' }}
@@ -76,7 +76,7 @@ jobs:
 
       - name: Workspace mirror failure notice
         if: ${{ !cancelled() && env.MIRROR_DRY_RUN != '1' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           SYNC_STATUS: ${{ job.status }}
         with:
@@ -126,20 +126,20 @@ jobs:
 
       - name: Checkout source
         if: ${{ steps.token.outputs.ready == 'true' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: source
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Checkout review mirror
         if: ${{ steps.token.outputs.ready == 'true' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.MIRROR_REPOSITORY }}
           ref: ${{ env.MIRROR_BRANCH }}
           path: mirror
           token: ${{ secrets.REVIEW_DOCS_SYNC_TOKEN }}
-          fetch-depth: 0
+          fetch-depth: 1
           persist-credentials: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Commit and push review mirror update

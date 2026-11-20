@@ -3,7 +3,7 @@ description: Set up the shared Python, Node, pandoc, and lark-cli environment fo
 runs:
   using: composite
   steps:
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v7
       with:
         python-version: "3.12"
         cache: "pip"
@@ -24,12 +24,12 @@ runs:
         python -m pip install --upgrade pip
         python -m pip install -r requirements.lock
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v7
       with:
         node-version: "20"
 
     - name: Cache npm downloads
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ~/.npm
         key: ${{ runner.os }}-feishu-common-npm-${{ hashFiles('.github/actions/feishu-common-setup/action.yml') }}
