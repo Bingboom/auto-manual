@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-20",
+  "operator_quote": "确认图标，继续发布（推荐）",
+  "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+  "efup10_sha256": "307727a1a231e1bab706c6689bff87fb25f331627273c6aef5758fdc44a3646f",
+  "comparison_file": "efup10-source-vs-web-approval.png",
+  "comparison_sha256": "e052dace2e9cc6520cde641a7d1e1d9d060058e41e0d00e79773668a2427eb14",
+  "other_symbols": "Reuse existing canonical glyphs unchanged; Chinese captions verified against physical p4 pixels/native text; no new variant for existing semantic groups. WEEE follows the existing canonical native/je3000c-kr-78316033-07 rather than the legacy crossed-bin-bar PNG."
+}

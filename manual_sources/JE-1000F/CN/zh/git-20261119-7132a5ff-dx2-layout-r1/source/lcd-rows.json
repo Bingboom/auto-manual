@@ -1,0 +1,132 @@
+[
+  {
+    "printed_page": 4,
+    "number": "1",
+    "description": "点亮：Wi-Fi 已连接。闪烁：准备连接 Wi-Fi。熄灭：Wi-Fi 未连接。"
+  },
+  {
+    "printed_page": 4,
+    "number": "2",
+    "description": "点亮：蓝牙已连接。闪烁：准备连接蓝牙。熄灭：蓝牙未连接。"
+  },
+  {
+    "printed_page": 4,
+    "number": "3",
+    "description": "点亮：静音充电模式已开启，充电功率降低，充电速度变慢，同时显著降低充电时的噪音（请在APP中开启/关闭该功能）。熄灭：静音充电模式未开启/已关闭。（请在 APP 中开启/关闭该功能，关机可记忆保存）。"
+  },
+  {
+    "printed_page": 4,
+    "number": "4",
+    "description": "自定义便携式储能电源的充电计划，适用于电价有波动的情况，可根据电价峰谷时间段制定充电计划，减少用电成本。（请在 APP 中开启/关闭该功能，关机可记忆保存）。"
+  },
+  {
+    "printed_page": 4,
+    "number": "5",
+    "description": "点亮：自发自用模式已开启，最大化利用太阳能，减少电网电力消耗，减少用电成本。熄灭：自发自用模式未开启/已关闭。（请在 APP 中开启/关闭该功能，关机可记忆保存）。"
+  },
+  {
+    "printed_page": 4,
+    "number": "6",
+    "description": "点亮：TOU模式开启（默认60%备电电量）。高峰时段，当储能电量高于备电电量时，优先使用储能供电，减少高峰用电成本；谷价时段，利用市电对储能进行充电，实现 削峰填谷 的电价优化策略。熄灭：TOU模式关闭。设备不执行 TOU（分时电价）策略，按照默认供电与充电逻辑运行。（请在 APP 中开启/关闭该功能，关机可记忆保存）。"
+  },
+  {
+    "printed_page": 4,
+    "number": "7",
+    "description": "点亮：设备处于旁路模式，此时市电切换至储能电池供电的时间为 10 ms。熄灭：设备未处于旁路模式。"
+  },
+  {
+    "printed_page": 5,
+    "number": "8",
+    "description": "AC输出（纯正弦波）已开启。"
+  },
+  {
+    "printed_page": 5,
+    "number": "9",
+    "description": "显示AC输出口的输出电压和频率。"
+  },
+  {
+    "printed_page": 5,
+    "number": "10",
+    "description": "显示当前充电功率。"
+  },
+  {
+    "printed_page": 5,
+    "number": "11",
+    "description": "显示剩余充电时间。"
+  },
+  {
+    "printed_page": 5,
+    "number": "12",
+    "description": "产品通过市电进行充电。"
+  },
+  {
+    "printed_page": 5,
+    "number": "13",
+    "description": "产品通过 DC 输入端口（DC8020）连接 12V 车载充电线进行充电。"
+  },
+  {
+    "printed_page": 5,
+    "number": "14",
+    "description": "产品通过 DC 输入端口（DC8020）连接太阳能板进行充电。"
+  },
+  {
+    "printed_page": 5,
+    "number": "15",
+    "description": "点亮：节省电池模式已开启，通过限制电池的最大可用容量来延长电池使用寿命。熄灭：节省电池模式未开启/已关闭。（请在 APP 中开启/关闭该功能，关机可记忆保存）。注：开启后偶尔会满充满放，用于校准SOC。"
+  },
+  {
+    "printed_page": 5,
+    "number": "16",
+    "description": "点亮：充电速度限制已开启关机重启后继续执行此充电功率熄灭：充电速度限制已关闭。（请在 APP 中开启/关闭该功能，关机可记忆保存）。"
+  },
+  {
+    "printed_page": 5,
+    "number": "17",
+    "description": "当本产品处于充电状态时，该图标顺时针转动；当产品处于放电状态时，该图标显示当前电量。"
+  },
+  {
+    "printed_page": 5,
+    "number": "18",
+    "description": "点亮：当前电池电量低于 20%。闪烁：当前电池电量低于 5%。熄灭：设备正在充电中。"
+  },
+  {
+    "printed_page": 5,
+    "number": "19",
+    "description": "显示当前电池电量。0%代表电池完全放电,100%代表电池电量已充满。"
+  },
+  {
+    "printed_page": 5,
+    "number": "20",
+    "description": "通过App为输出端口设置关闭倒计时，时间结束后自动断电，节约能源并保护电池。仅对当前设置有效，设备重启后需重新设定。"
+  },
+  {
+    "printed_page": 5,
+    "number": "21",
+    "description": "出厂默认开启，默认时间为12H。AC输出≤25W、DC输出≤2W（不含应急灯）且持续达到设定时间后，将自动关闭对应输出。点亮：节能模式开启。熄灭：节能模式关闭。（可在APP中设置时间，关机可记忆保存）。"
+  },
+  {
+    "printed_page": 5,
+    "number": "22",
+    "description": "如果屏幕上出现 ，请勿担心，电池降温后可自行恢复。"
+  },
+  {
+    "printed_page": 5,
+    "number": "22",
+    "description": "如果屏幕上出现 ，请勿担心，环境温度恢复后自动恢复。"
+  },
+  {
+    "printed_page": 5,
+    "number": "23",
+    "description": "产品发生故障，请参考故障代码模块内容了解详情。"
+  },
+  {
+    "printed_page": 5,
+    "number": "24",
+    "description": "显示当前放电功率。"
+  },
+  {
+    "printed_page": 5,
+    "number": "25",
+    "description": "显示剩余放电时间。"
+  }
+]

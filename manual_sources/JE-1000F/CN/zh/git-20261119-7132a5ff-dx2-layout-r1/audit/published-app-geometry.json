@@ -1,0 +1,14 @@
+{
+  "schema": "published-layout-regression/v1",
+  "prior_source_package": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2",
+  "prior_release_pr": "https://github.com/Bingboom/Hello-Docs/pull/338",
+  "prior_release_commit": "dc1ac9ea1ad39d1ddfb7102a4d4949c21ef84a71",
+  "observed_phone_pair_width_px": 826.125,
+  "approved_max_width_rem": 26,
+  "cause": "Content-addressed publication asset paths invalidate the filename-dependent selector.",
+  "old_selector": ".hb-reference-figure:has(img[src$=\"cn-app-phones.png\"])",
+  "selector": ".hb-reference-figure[data-reference-id=\"app-phones\"]",
+  "image_bytes_changed": false,
+  "copy_changed": false,
+  "authorization": "MA-476"
+}

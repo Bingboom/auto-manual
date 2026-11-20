@@ -1,0 +1,44 @@
+{
+  "manual-icon": "assets/shared-manual.png",
+  "lcd": [
+    "assets/shared-lcd-01.png",
+    "assets/shared-lcd-02.png",
+    "assets/shared-lcd-03.png",
+    "assets/shared-lcd-04.png",
+    "assets/shared-lcd-05.png",
+    "assets/shared-lcd-06.png",
+    "assets/shared-lcd-07.png",
+    "assets/shared-lcd-08.png",
+    "assets/shared-lcd-09.png",
+    "assets/shared-lcd-10.png",
+    "assets/shared-lcd-11.png",
+    "assets/shared-lcd-12.png",
+    "assets/shared-lcd-13.png",
+    "assets/shared-lcd-14.png",
+    "assets/shared-lcd-15.png",
+    "assets/shared-lcd-16.png",
+    "assets/shared-lcd-17.png",
+    "assets/shared-lcd-18.png",
+    "assets/shared-lcd-19.png",
+    "assets/shared-lcd-20.png",
+    "assets/shared-lcd-21.png",
+    "assets/shared-lcd-22.png",
+    "assets/shared-lcd-23.png",
+    "assets/shared-lcd-24.png",
+    "assets/shared-lcd-25.png",
+    "assets/shared-lcd-26.png"
+  ],
+  "symbols": [
+    "assets/shared-symbol-1.svg",
+    "assets/shared-symbol-2.svg",
+    "assets/shared-symbol-3.svg",
+    "assets/shared-symbol-4.svg",
+    "assets/cn-efup10-candidate.png"
+  ],
+  "buttons": {
+    "button/power": "assets/shared-button-power.svg",
+    "button/ac": "assets/shared-button-ac.svg",
+    "button/dc_usb": "assets/shared-button-dc_usb.svg",
+    "button/led": "assets/shared-button-led.svg"
+  }
+}
