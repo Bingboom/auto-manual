@@ -3654,6 +3654,19 @@
       "legacy_variants": [],
       "captions": {},
       "decision": null
+    },
+    {
+      "id": "efup-10",
+      "meaning": "环保使用期限10年",
+      "status": "proposed",
+      "canonical": "efup/10-native-cn-dx2",
+      "legacy_variants": [],
+      "captions": {
+        "zh": [
+          "本产品的环保使用期限为10年。在此期限内，产品中含有的有害物质不会发生外泄或突变，用户正常使用本产品不会对环境造成严重污染，也不会对人身、财产造成严重损害。"
+        ]
+      },
+      "decision": null
     }
   ]
 }

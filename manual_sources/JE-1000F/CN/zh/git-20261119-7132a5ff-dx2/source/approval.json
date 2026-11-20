@@ -15,8 +15,8 @@
   "reviewed_inputs": [
     {
       "path": "README.md",
-      "size": 2845,
-      "sha256": "e0de7929052db86a5b0f2bbfeed0aa11ecdc57cacfe6a4eb7548a27436ae8144"
+      "size": 3300,
+      "sha256": "9cf2ccea9980a11516f02cfb02607a2495026ca4442303ba172457bb729dc5cc"
     },
     {
       "path": "assets/cn-ac-cable.png",
@@ -70,8 +70,8 @@
     },
     {
       "path": "assets/cn-car-charge-framed.svg",
-      "size": 6000449,
-      "sha256": "d7ceb8c39bf3c52a1b60a1f3faefd2f437105a698836f6fb45562ca39559315b"
+      "size": 2908477,
+      "sha256": "0c4a89e24e47f058283398e6580437b4c6cb1f1fb2ca80948c8983787defb1a6"
     },
     {
       "path": "assets/cn-car-charge.png",
@@ -170,8 +170,8 @@
     },
     {
       "path": "assets/cn-solar-four-framed.svg",
-      "size": 5982340,
-      "sha256": "fc382bd9c50067062bbe0f49385f8339b558883278045406c17d89d811556c97"
+      "size": 2890368,
+      "sha256": "493cccd4cb763fde54b975f046a458e453663f821613bf8d4ad7b5cc9f70b154"
     },
     {
       "path": "assets/cn-solar-four.png",
@@ -439,6 +439,11 @@
       "sha256": "c620e8affa44900778008a6ec7ba1123ce43efbbc39df0578d35b0d64577be63"
     },
     {
+      "path": "audit/svg-lossless-optimization.json",
+      "size": 1124,
+      "sha256": "f6d68ba2d725c0ead6bc95dd859714bbde36e1ebd0d79db2e78d732bb11c9c9f"
+    },
+    {
       "path": "audit/symbol-registration-approval.json",
       "size": 699,
       "sha256": "909e291c07abebe009a893767c0ca2d34aac70405d53481851d95f89fdd5bfac"
@@ -502,6 +507,11 @@
       "path": "source/reused-assets.json",
       "size": 1315,
       "sha256": "0a720c73c74e38d5eb12ad553bbe477866f69f48e9ab6c200ea8caf1743285fe"
+    },
+    {
+      "path": "source/svg_lossless_grouping.mjs",
+      "size": 2101,
+      "sha256": "23705622cd1d5f945874510d4dab9ef992ef372259f873c60b3caf6da77a624e"
     },
     {
       "path": "source/zh/content.json",

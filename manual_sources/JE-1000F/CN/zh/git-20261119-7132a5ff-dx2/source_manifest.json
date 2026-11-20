@@ -66,8 +66,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 2845,
-      "sha256": "e0de7929052db86a5b0f2bbfeed0aa11ecdc57cacfe6a4eb7548a27436ae8144"
+      "size": 3300,
+      "sha256": "9cf2ccea9980a11516f02cfb02607a2495026ca4442303ba172457bb729dc5cc"
     },
     {
       "path": "assets/cn-ac-cable.png",
@@ -121,8 +121,8 @@
     },
     {
       "path": "assets/cn-car-charge-framed.svg",
-      "size": 6000449,
-      "sha256": "d7ceb8c39bf3c52a1b60a1f3faefd2f437105a698836f6fb45562ca39559315b"
+      "size": 2908477,
+      "sha256": "0c4a89e24e47f058283398e6580437b4c6cb1f1fb2ca80948c8983787defb1a6"
     },
     {
       "path": "assets/cn-car-charge.png",
@@ -221,8 +221,8 @@
     },
     {
       "path": "assets/cn-solar-four-framed.svg",
-      "size": 5982340,
-      "sha256": "fc382bd9c50067062bbe0f49385f8339b558883278045406c17d89d811556c97"
+      "size": 2890368,
+      "sha256": "493cccd4cb763fde54b975f046a458e453663f821613bf8d4ad7b5cc9f70b154"
     },
     {
       "path": "assets/cn-solar-four.png",
@@ -490,6 +490,11 @@
       "sha256": "c620e8affa44900778008a6ec7ba1123ce43efbbc39df0578d35b0d64577be63"
     },
     {
+      "path": "audit/svg-lossless-optimization.json",
+      "size": 1124,
+      "sha256": "f6d68ba2d725c0ead6bc95dd859714bbde36e1ebd0d79db2e78d732bb11c9c9f"
+    },
+    {
       "path": "audit/symbol-registration-approval.json",
       "size": 699,
       "sha256": "909e291c07abebe009a893767c0ca2d34aac70405d53481851d95f89fdd5bfac"
@@ -511,8 +516,8 @@
     },
     {
       "path": "source/approval.json",
-      "size": 16817,
-      "sha256": "9949af04fa628bc1f5eda45805860c0077d745ec03e4a9fd0941c09e029f39ce"
+      "size": 17153,
+      "sha256": "77a5d16020bc51540121839ffd4638c7ae01cbd54c12fd57546ab50f74536245"
     },
     {
       "path": "source/figures.json",
@@ -558,6 +563,11 @@
       "path": "source/reused-assets.json",
       "size": 1315,
       "sha256": "0a720c73c74e38d5eb12ad553bbe477866f69f48e9ab6c200ea8caf1743285fe"
+    },
+    {
+      "path": "source/svg_lossless_grouping.mjs",
+      "size": 2101,
+      "sha256": "23705622cd1d5f945874510d4dab9ef992ef372259f873c60b3caf6da77a624e"
     },
     {
       "path": "source/zh/content.json",
@@ -611,8 +621,8 @@
     },
     {
       "path": "web/zh/assets/cn-car-charge-framed.svg",
-      "size": 6000449,
-      "sha256": "d7ceb8c39bf3c52a1b60a1f3faefd2f437105a698836f6fb45562ca39559315b"
+      "size": 2908477,
+      "sha256": "0c4a89e24e47f058283398e6580437b4c6cb1f1fb2ca80948c8983787defb1a6"
     },
     {
       "path": "web/zh/assets/cn-dc-usb-power-framed.svg",
@@ -681,8 +691,8 @@
     },
     {
       "path": "web/zh/assets/cn-solar-four-framed.svg",
-      "size": 5982340,
-      "sha256": "fc382bd9c50067062bbe0f49385f8339b558883278045406c17d89d811556c97"
+      "size": 2890368,
+      "sha256": "493cccd4cb763fde54b975f046a458e453663f821613bf8d4ad7b5cc9f70b154"
     },
     {
       "path": "web/zh/assets/cn-ups-framed.svg",
@@ -876,8 +886,8 @@
     },
     {
       "path": "web/zh/manual.ir.json",
-      "size": 378916,
-      "sha256": "1521ccd30dfe3407bdf76ce854bb900226d398de7e39c14907a72fe1a1bfd150"
+      "size": 379292,
+      "sha256": "d96c180382710dee08cf4af42eac0b5c30fe8dbc163d57f195490a122746c046"
     },
     {
       "path": "web/zh/manual_je1000f_cn_zh.md",
@@ -886,6 +896,130 @@
     }
   ],
   "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/component_registry.yaml",
+      "sha256": "8c2313fc7382808efd5fd59e57a14adcd41423fb873498dd6033637647bd6795",
+      "size": 15821
+    },
+    {
+      "path": "docs/renderers/contracts/manual_style.yaml",
+      "sha256": "aa2e008e56a284224882177cced938824e4265f9b8ebf8afcf436044c0021818",
+      "size": 54018
+    },
+    {
+      "path": "docs/renderers/contracts/manual_theme.yaml",
+      "sha256": "8dd02bb2897cfc1982eb144fdb05d7a2267f2a7c97581c455eb408c2b20a0537",
+      "size": 8700
+    },
+    {
+      "path": "docs/renderers/contracts/overview_component_instances.json",
+      "sha256": "98e00b04a92702e3e7c060790688e4ce3231b93552c05de0183c7a13fd6592a3",
+      "size": 19981
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_component_admission.json",
+      "sha256": "22cdf8cced7dcc312b8928da3368fcae3316543122ff46bd154d683b43a8f3c6",
+      "size": 354578
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_style_baseline.json",
+      "sha256": "320e428e070944a2cc757f3354011a1a16824c7b493ae752ad3c88a97175b57e",
+      "size": 25894
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout_registry.json",
+      "sha256": "3ac4af5d3b9ff6a074d835597bc2b2bc8aeabab935eb0fb9dc631d89075fdd44",
+      "size": 587
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_caption_errata.json",
+      "sha256": "5e6eb78ea050810c2fc0dfef12b3084d72843dcbe07c14b0199e8ba1b0092d5b",
+      "size": 1040
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_glyph_waivers.json",
+      "sha256": "4172114e00f59e4f46791de92e34618af9b868eec5fadb3126c228882a1484d0",
+      "size": 6555
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_web_only_rows.json",
+      "sha256": "5252726e2da8d344d775afff3430e0759c39baa3d7d1f20347678e95d237abf7",
+      "size": 4538
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_components.css",
+      "sha256": "24b5364d0ca23552344685c782db270ddec9e727014aa71441f8a3170b311e6d",
+      "size": 3442
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_control_labels.css",
+      "sha256": "21d1efd3ad4a65196518c6a8ea787d68f45dd22be28cb989e4195cd91758ee94",
+      "size": 1225
+    },
+    {
+      "path": "docs/renderers/contracts/web_base_art_components.css",
+      "sha256": "a9d5fad3dcb9a104ac10daef583be0c8c93a1818296c604e855e349a66985a6d",
+      "size": 20333
+    },
+    {
+      "path": "docs/renderers/contracts/web_battery_pack_components.css",
+      "sha256": "a36844c9c4beaa9ea9f93b90ac602d9b62fc44924dff52eb52a0e0dffdf6d7e3",
+      "size": 10570
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_components.css",
+      "sha256": "f293ec637ef164e78c793d998d93cfeafe8fae9ef40adf6c1fe36cd0d456e83f",
+      "size": 3224
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_statement.css",
+      "sha256": "34cf40b5b37310ec2f44c560a2ab65a2465211221f75f0b746eb83752e7f361c",
+      "size": 960
+    },
+    {
+      "path": "docs/renderers/contracts/web_inbox_components.css",
+      "sha256": "e9343d659c4a423ac2bdc2b58005ffbf7e3b2e84424d1d37c574c803322532c3",
+      "size": 4431
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "sha256": "9ee899cc83146bc9cb7cd6228efd48e131c4c9e6f317040921f9871ba6a506fc",
+      "size": 47843
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.json",
+      "sha256": "f4d0628d8655402d2db30d9e92158290ad0f1c1e5a1f2690f9fb726cf93e1280",
+      "size": 603
+    },
+    {
+      "path": "docs/renderers/contracts/web_operation_clock.css",
+      "sha256": "8b5229d556bfc4accdcb71f14eb46f88cdab2ff9c31571894e04c18d6a02eabd",
+      "size": 649
+    },
+    {
+      "path": "docs/renderers/contracts/web_registration_components.css",
+      "sha256": "a112dd88a80191254f946e91947a265680d8a99239f1cb60198e37f2e7acb23c",
+      "size": 916
+    },
+    {
+      "path": "docs/renderers/contracts/web_safety_components.css",
+      "sha256": "62cf2db468aa672bdd7ef5b8e6264f4905b0d79614c205e2b470a3e5c8807914",
+      "size": 4211
+    },
+    {
+      "path": "docs/renderers/contracts/web_source_panels.css",
+      "sha256": "56dd2c89df20ebea5db2468349c8c6c5ebe97e0987ad2b7367f94029ce918477",
+      "size": 26179
+    },
+    {
+      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
+      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9",
+      "size": 2895
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "sha256": "f3b0d76ccc597b4cb9c7a8926341c6fb5a808c6cb70a2ab5d6de55b8ab9a8f6c"
+    },
     {
       "path": "tools/build_paths.py",
       "sha256": "13b7db543794ab70a06037ceb274d028e6d75b2d4983d022e39209f70fd536f5",
@@ -1720,126 +1854,6 @@
       "path": "tools/web/warranty_component.py",
       "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a",
       "size": 3977
-    },
-    {
-      "path": "docs/renderers/contracts/component_registry.yaml",
-      "sha256": "8c2313fc7382808efd5fd59e57a14adcd41423fb873498dd6033637647bd6795",
-      "size": 15821
-    },
-    {
-      "path": "docs/renderers/contracts/manual_style.yaml",
-      "sha256": "aa2e008e56a284224882177cced938824e4265f9b8ebf8afcf436044c0021818",
-      "size": 54018
-    },
-    {
-      "path": "docs/renderers/contracts/manual_theme.yaml",
-      "sha256": "8dd02bb2897cfc1982eb144fdb05d7a2267f2a7c97581c455eb408c2b20a0537",
-      "size": 8700
-    },
-    {
-      "path": "docs/renderers/contracts/overview_component_instances.json",
-      "sha256": "98e00b04a92702e3e7c060790688e4ce3231b93552c05de0183c7a13fd6592a3",
-      "size": 19981
-    },
-    {
-      "path": "docs/renderers/contracts/prepared_component_admission.json",
-      "sha256": "22cdf8cced7dcc312b8928da3368fcae3316543122ff46bd154d683b43a8f3c6",
-      "size": 354578
-    },
-    {
-      "path": "docs/renderers/contracts/prepared_style_baseline.json",
-      "sha256": "320e428e070944a2cc757f3354011a1a16824c7b493ae752ad3c88a97175b57e",
-      "size": 25894
-    },
-    {
-      "path": "docs/renderers/contracts/reference_layout_registry.json",
-      "sha256": "3ac4af5d3b9ff6a074d835597bc2b2bc8aeabab935eb0fb9dc631d89075fdd44",
-      "size": 587
-    },
-    {
-      "path": "docs/renderers/contracts/symbol_caption_errata.json",
-      "sha256": "5e6eb78ea050810c2fc0dfef12b3084d72843dcbe07c14b0199e8ba1b0092d5b",
-      "size": 1040
-    },
-    {
-      "path": "docs/renderers/contracts/symbol_glyph_waivers.json",
-      "sha256": "4172114e00f59e4f46791de92e34618af9b868eec5fadb3126c228882a1484d0",
-      "size": 6555
-    },
-    {
-      "path": "docs/renderers/contracts/symbol_web_only_rows.json",
-      "sha256": "5252726e2da8d344d775afff3430e0759c39baa3d7d1f20347678e95d237abf7",
-      "size": 4538
-    },
-    {
-      "path": "docs/renderers/contracts/web_app_components.css",
-      "sha256": "24b5364d0ca23552344685c782db270ddec9e727014aa71441f8a3170b311e6d",
-      "size": 3442
-    },
-    {
-      "path": "docs/renderers/contracts/web_app_control_labels.css",
-      "sha256": "21d1efd3ad4a65196518c6a8ea787d68f45dd22be28cb989e4195cd91758ee94",
-      "size": 1225
-    },
-    {
-      "path": "docs/renderers/contracts/web_base_art_components.css",
-      "sha256": "a9d5fad3dcb9a104ac10daef583be0c8c93a1818296c604e855e349a66985a6d",
-      "size": 20333
-    },
-    {
-      "path": "docs/renderers/contracts/web_battery_pack_components.css",
-      "sha256": "a36844c9c4beaa9ea9f93b90ac602d9b62fc44924dff52eb52a0e0dffdf6d7e3",
-      "size": 10570
-    },
-    {
-      "path": "docs/renderers/contracts/web_fcc_components.css",
-      "sha256": "f293ec637ef164e78c793d998d93cfeafe8fae9ef40adf6c1fe36cd0d456e83f",
-      "size": 3224
-    },
-    {
-      "path": "docs/renderers/contracts/web_fcc_statement.css",
-      "sha256": "34cf40b5b37310ec2f44c560a2ab65a2465211221f75f0b746eb83752e7f361c",
-      "size": 960
-    },
-    {
-      "path": "docs/renderers/contracts/web_inbox_components.css",
-      "sha256": "e9343d659c4a423ac2bdc2b58005ffbf7e3b2e84424d1d37c574c803322532c3",
-      "size": 4431
-    },
-    {
-      "path": "docs/renderers/contracts/web_manual.css",
-      "sha256": "9ee899cc83146bc9cb7cd6228efd48e131c4c9e6f317040921f9871ba6a506fc",
-      "size": 47843
-    },
-    {
-      "path": "docs/renderers/contracts/web_manual.json",
-      "sha256": "f4d0628d8655402d2db30d9e92158290ad0f1c1e5a1f2690f9fb726cf93e1280",
-      "size": 603
-    },
-    {
-      "path": "docs/renderers/contracts/web_operation_clock.css",
-      "sha256": "8b5229d556bfc4accdcb71f14eb46f88cdab2ff9c31571894e04c18d6a02eabd",
-      "size": 649
-    },
-    {
-      "path": "docs/renderers/contracts/web_registration_components.css",
-      "sha256": "a112dd88a80191254f946e91947a265680d8a99239f1cb60198e37f2e7acb23c",
-      "size": 916
-    },
-    {
-      "path": "docs/renderers/contracts/web_safety_components.css",
-      "sha256": "62cf2db468aa672bdd7ef5b8e6264f4905b0d79614c205e2b470a3e5c8807914",
-      "size": 4211
-    },
-    {
-      "path": "docs/renderers/contracts/web_source_panels.css",
-      "sha256": "56dd2c89df20ebea5db2468349c8c6c5ebe97e0987ad2b7367f94029ce918477",
-      "size": 26179
-    },
-    {
-      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
-      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9",
-      "size": 2895
     }
   ],
   "shared_component_exceptions": [],

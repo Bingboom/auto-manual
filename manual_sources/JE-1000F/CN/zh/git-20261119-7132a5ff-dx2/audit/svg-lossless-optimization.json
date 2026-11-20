@@ -1,0 +1,33 @@
+{
+  "method": "Group adjacent paths with identical inherited paint attributes; retain every path, coordinate, transform, clip and opacity; SVGO4.0.0 structural-only plugins; no path simplification or numeric rounding.",
+  "items": [
+    {
+      "filename": "cn-car-charge-framed.svg",
+      "before_sha256": "d7ceb8c39bf3c52a1b60a1f3faefd2f437105a698836f6fb45562ca39559315b",
+      "after_sha256": "0c4a89e24e47f058283398e6580437b4c6cb1f1fb2ca80948c8983787defb1a6",
+      "before_bytes": 6000449,
+      "after_bytes": 2908477,
+      "scale": 12,
+      "render_dimensions": [
+        3866,
+        1407
+      ],
+      "max_rgba_delta": 0,
+      "pixels_identical": true
+    },
+    {
+      "filename": "cn-solar-four-framed.svg",
+      "before_sha256": "fc382bd9c50067062bbe0f49385f8339b558883278045406c17d89d811556c97",
+      "after_sha256": "493cccd4cb763fde54b975f046a458e453663f821613bf8d4ad7b5cc9f70b154",
+      "before_bytes": 5982340,
+      "after_bytes": 2890368,
+      "scale": 12,
+      "render_dimensions": [
+        3782,
+        1432
+      ],
+      "max_rgba_delta": 0,
+      "pixels_identical": true
+    }
+  ]
+}

@@ -73,7 +73,7 @@
       "assets/cn-app-download.png": "7cad55026ad904d41abdcb53e2080aed90a090b1b8c64578ac2c74173316e09a",
       "assets/cn-app-phones.png": "50b8902964de2f73517c2f98bccf7b7a73e148ad1498561f318d0937b1dd5303",
       "assets/cn-app-results.png": "b4b71fa7fce6082e9858edf6c06407a9be5c076270f8c26110a5a23986510911",
-      "assets/cn-car-charge-framed.svg": "d7ceb8c39bf3c52a1b60a1f3faefd2f437105a698836f6fb45562ca39559315b",
+      "assets/cn-car-charge-framed.svg": "0c4a89e24e47f058283398e6580437b4c6cb1f1fb2ca80948c8983787defb1a6",
       "assets/cn-dc-usb-power-framed.svg": "49d5986d70a47ab4b556375e3e18aaba52826f3664dd265fac9562689282ff4f",
       "assets/cn-efup10-candidate.png": "307727a1a231e1bab706c6689bff87fb25f331627273c6aef5758fdc44a3646f",
       "assets/cn-energy-buttons-framed.svg": "16da9f9e2670d770e9f58a187fe517455e4107d102497471d090cc94d7c7769b",
@@ -87,7 +87,7 @@
       "assets/cn-registration-qr.png": "9056cd8ac8dcb4c93d60a0439b4f46d9cb90c9b0fc61a4aa7548be2d231b2ea9",
       "assets/cn-service-qr.png": "d582f739307be257a9d92f027d4d1da4f05eec7288b2c13f6c4bd69e689689f3",
       "assets/cn-solar-direct-framed.svg": "339b679a0b4e70c17ada3f2e6a930daa048ab42926b5bd5225f3b79fb2e1bbbf",
-      "assets/cn-solar-four-framed.svg": "fc382bd9c50067062bbe0f49385f8339b558883278045406c17d89d811556c97",
+      "assets/cn-solar-four-framed.svg": "493cccd4cb763fde54b975f046a458e453663f821613bf8d4ad7b5cc9f70b154",
       "assets/cn-ups-framed.svg": "985f8aace68a12aff83b8a1c7b26b1e933dd3a61baebe6dacd40750df57ecd47",
       "assets/shared-button-ac.svg": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
       "assets/shared-button-dc_usb.svg": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
@@ -1943,8 +1943,8 @@
       "reviewed_inputs": [
         {
           "path": "README.md",
-          "sha256": "e0de7929052db86a5b0f2bbfeed0aa11ecdc57cacfe6a4eb7548a27436ae8144",
-          "size": 2845
+          "sha256": "9cf2ccea9980a11516f02cfb02607a2495026ca4442303ba172457bb729dc5cc",
+          "size": 3300
         },
         {
           "path": "assets/cn-ac-cable.png",
@@ -1998,8 +1998,8 @@
         },
         {
           "path": "assets/cn-car-charge-framed.svg",
-          "sha256": "d7ceb8c39bf3c52a1b60a1f3faefd2f437105a698836f6fb45562ca39559315b",
-          "size": 6000449
+          "sha256": "0c4a89e24e47f058283398e6580437b4c6cb1f1fb2ca80948c8983787defb1a6",
+          "size": 2908477
         },
         {
           "path": "assets/cn-car-charge.png",
@@ -2098,8 +2098,8 @@
         },
         {
           "path": "assets/cn-solar-four-framed.svg",
-          "sha256": "fc382bd9c50067062bbe0f49385f8339b558883278045406c17d89d811556c97",
-          "size": 5982340
+          "sha256": "493cccd4cb763fde54b975f046a458e453663f821613bf8d4ad7b5cc9f70b154",
+          "size": 2890368
         },
         {
           "path": "assets/cn-solar-four.png",
@@ -2367,6 +2367,11 @@
           "size": 15309
         },
         {
+          "path": "audit/svg-lossless-optimization.json",
+          "sha256": "f6d68ba2d725c0ead6bc95dd859714bbde36e1ebd0d79db2e78d732bb11c9c9f",
+          "size": 1124
+        },
+        {
           "path": "audit/symbol-registration-approval.json",
           "sha256": "909e291c07abebe009a893767c0ca2d34aac70405d53481851d95f89fdd5bfac",
           "size": 699
@@ -2430,6 +2435,11 @@
           "path": "source/reused-assets.json",
           "sha256": "0a720c73c74e38d5eb12ad553bbe477866f69f48e9ab6c200ea8caf1743285fe",
           "size": 1315
+        },
+        {
+          "path": "source/svg_lossless_grouping.mjs",
+          "sha256": "23705622cd1d5f945874510d4dab9ef992ef372259f873c60b3caf6da77a624e",
+          "size": 2101
         },
         {
           "path": "source/zh/content.json",
