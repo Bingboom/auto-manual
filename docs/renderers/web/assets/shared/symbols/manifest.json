@@ -2722,6 +2722,30 @@
         ],
         "decision": "2026-11-18 current chat: authorized exact ATS native danger variant after existing canonical differed0.020251651 beyond fixed0.02 tolerance. Existing canonical choices, decisions, caption lists and glyph bytes remain unchanged; this new native asset is recorded only as a warning legacy variant. Preserve all three original selected paths and ancestors; SVGO4.0.0 only removes unreachable defs, keeping clip_7 and clip_8.12x RGBA pixels are exactly identical to complete original-native reference; full controlled source/caption evidence retained with installation package."
       }
+    },
+    {
+      "key": "efup/10-native-cn-dx2",
+      "path": "native-v1/efup-10-cn-dx2.png",
+      "sha256": "307727a1a231e1bab706c6689bff87fb25f331627273c6aef5758fdc44a3646f",
+      "status": "operator-confirmed Git-local shared source variant; no live asset promotion",
+      "provenance": {
+        "source": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2/original.pdf.source-pointer.json",
+        "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+        "physical_page": 4,
+        "drawing_indices": [
+          849,
+          850,
+          851,
+          852
+        ],
+        "glyph_bbox": [
+          190.5,
+          124,
+          220,
+          150.5
+        ],
+        "decision": "2026-11-20 current chat: 确认图标，继续发布（推荐）; source/Web pixel pair efup10-source-vs-web-approval.png reviewed; preserve native tint and paths, remove identified cell backdrop only."
+      }
     }
   ],
   "withdrawn": [
@@ -3313,6 +3337,9 @@
         ],
         "uk": [
           "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки. Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера."
+        ],
+        "zh": [
+          "废弃电池（产品）不可作为生活垃圾丢弃，请交由专门的回收机构处理。"
         ]
       },
       "decision": "SCG-20261103"
@@ -3363,6 +3390,9 @@
         ],
         "uk": [
           "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином."
+        ],
+        "zh": [
+          "本产品内置锂离子电池，废弃时请妥善回收处理。"
         ]
       },
       "decision": "SCG-20261104"
@@ -3623,6 +3653,19 @@
       "canonical": "protective-ground/circle-jats05a-native-f11037ba",
       "legacy_variants": [],
       "captions": {},
+      "decision": null
+    },
+    {
+      "id": "efup-10",
+      "meaning": "环保使用期限10年",
+      "status": "proposed",
+      "canonical": "efup/10-native-cn-dx2",
+      "legacy_variants": [],
+      "captions": {
+        "zh": [
+          "本产品的环保使用期限为10年。在此期限内，产品中含有的有害物质不会发生外泄或突变，用户正常使用本产品不会对环境造成严重污染，也不会对人身、财产造成严重损害。"
+        ]
+      },
       "decision": null
     }
   ]

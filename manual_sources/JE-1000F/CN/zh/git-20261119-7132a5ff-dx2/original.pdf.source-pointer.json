@@ -1,0 +1,16 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "asset_sources",
+  "file_name": "original.pdf",
+  "sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+  "size_bytes": 9916336,
+  "feishu": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "record_id": "reczz28bsOICNJBZ",
+    "field_name": "source_file",
+    "file_token": "OYIebFZbgoPlotxuotkcYvGJnYe"
+  },
+  "local_relpath": "original.pdf",
+  "source_key": "manual-JE-1000F-CN-zh-7132a5ff27529c9e",
+  "notes": "Operator-approved archive 2026-11-20; downloaded attachment is byte-identical to the supplied 18-page CN DX2 editable master PDF."
+}

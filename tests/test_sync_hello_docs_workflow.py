@@ -169,6 +169,10 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
                 tree = root / name
                 git(tree, "config", "user.name", "Test")
                 git(tree, "config", "user.email", "test@example.invalid")
+                # Keep Git maintenance in the fixture process: an auto-GC child
+                # can otherwise recreate .git entries during TemporaryDirectory cleanup.
+                git(tree, "config", "gc.autoDetach", "false")
+                git(tree, "config", "maintenance.autoDetach", "false")
                 (tree / "engine.txt").write_text(name)
                 if name == "mirror":
                     for folder in ("publish", "knowledge"):
