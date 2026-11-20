@@ -1,6 +1,14 @@
 ---
 name: product-manual-catalog
 description: Look up shipped product manuals and catalog overview from the Feishu "发布文档管理" Base. Use for chat asks like "JE-2000F 的说明书"、"日规有哪些说明书"、"产品总览"、"给我某产品的用户手册链接", i.e. finding a product's manual link, version, region, or document type, and for summarizing what manuals exist. This is a read-only catalog lookup, distinct from the phase2 build-source tables and from Translation_Memory.
+metadata:
+  owner: "发布资料维护人"
+  status: "active"
+  entry: "从发布文档管理查已发布说明书的链接、版本或区域"
+  tools: "scripts/query_product_manuals.py、发布文档管理"
+  validation: "用 tests/test_product_manual_catalog.py 核对语言与版本筛选"
+  reviewed: "2026-11-20"
+  retire_when: "发布目录迁移且原查询入口停用"
 ---
 
 # Product Manual Catalog
