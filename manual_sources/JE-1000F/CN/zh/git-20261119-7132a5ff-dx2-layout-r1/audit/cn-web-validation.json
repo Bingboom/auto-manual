@@ -1,0 +1,36 @@
+{
+  "profile": "prepared-document-shared-styles/v1",
+  "applicable": true,
+  "model": "JE-1000F",
+  "region": "CN",
+  "language": "zh",
+  "declared_tables": 0,
+  "issues": [],
+  "artifact": "cn-web-html-v7",
+  "manual_ir_issues": [],
+  "recursive_local_refs": 189,
+  "missing_resources": [],
+  "chapters": 14,
+  "temperature_inline_icons": 2,
+  "copy_edits": "two requested page15 edits verified",
+  "restored_printed_page16": true,
+  "source_pdf_unchanged": true,
+  "input_pins_verified": 93,
+  "repo_pins_verified": 191,
+  "viewports_passed": [
+    "1440x1000",
+    "390x844"
+  ],
+  "publication_eligible": false,
+  "framed_svg_panels": 11,
+  "downloadable_svgs": 12,
+  "app_captions": [
+    "2.1",
+    "2.2"
+  ],
+  "desktop_phones_max_width_px": 416,
+  "download_alignment": "top",
+  "footer_layout": "96px QR and caption left; manufacturer/factory groups right; stacked on mobile",
+  "other_13_chapters_unchanged": true,
+  "browser_note": "All referenced manual resources loaded in actual desktop/mobile browser verification."
+}
