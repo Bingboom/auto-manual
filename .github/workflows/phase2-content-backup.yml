@@ -48,7 +48,7 @@ jobs:
       FEISHU_PUBLISHED_DOCS_BASE_TOKEN: ${{ secrets.FEISHU_PUBLISHED_DOCS_BASE_TOKEN }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/feishu-common-setup
 
@@ -107,7 +107,7 @@ jobs:
 
       - name: Upload dated backup artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: phase2-content-backup-${{ github.run_id }}
           path: backup_out/
@@ -116,7 +116,7 @@ jobs:
 
       - name: Open or update tracking issue on failure
         if: steps.export_business.outcome == 'failure' || steps.export_tm.outcome == 'failure' || steps.export_matrix.outcome == 'failure'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const title = 'Phase2 content backup failing';
@@ -159,7 +159,7 @@ jobs:
         # The matrix step is guarded separately; `!= 'failure'` lets a skipped
         # matrix step still close the Issue once the exports that ran succeed.
         if: steps.export_business.outcome == 'success' && steps.export_tm.outcome == 'success' && steps.export_matrix.outcome != 'failure'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const title = 'Phase2 content backup failing';

@@ -65,9 +65,10 @@ jobs:
       AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest' }}
       AUTO_MANUAL_RTD_VERIFY_RPS: ${{ inputs.rps || vars.AUTO_MANUAL_RTD_VERIFY_RPS || '2' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
+          filter: blob:none
 
       - name: Validate execution plane
         shell: bash
@@ -120,7 +121,7 @@ jobs:
 
       - name: Upload receipt report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: web-publish-receipt-report
           path: web_publish_receipt_report.json

@@ -87,7 +87,8 @@ class ReviewBranchSyncWorkflowTests(unittest.TestCase):
 
     def test_drift_issue_is_opened_updated_and_closed(self) -> None:
         self.assertIn("[review-sync-drift]", self.workflow_text)
-        self.assertIn("actions/github-script@v7", self.workflow_text)
+        self.assertIn("actions/github-script@v9", self.workflow_text)
+        self.assertIn("filter: blob:none", self.workflow_text)
         self.assertIn("issues.createComment", self.workflow_text)
         self.assertIn("state: 'closed'", self.workflow_text)
 

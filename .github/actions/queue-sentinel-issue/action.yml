@@ -26,7 +26,7 @@ runs:
   steps:
     - name: Open or update tracking issue on failure
       if: ${{ inputs.job-status == 'failure' }}
-      uses: actions/github-script@v7
+      uses: actions/github-script@v9
       env:
         SENTINEL_LABEL: ${{ inputs.label }}
         SENTINEL_TITLE: ${{ inputs.title }}
@@ -76,7 +76,7 @@ runs:
 
     - name: Close tracking issue on recovery
       if: ${{ inputs.job-status == 'success' }}
-      uses: actions/github-script@v7
+      uses: actions/github-script@v9
       env:
         SENTINEL_LABEL: ${{ inputs.label }}
         SENTINEL_TITLE: ${{ inputs.title }}

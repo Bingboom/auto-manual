@@ -134,7 +134,16 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
     def test_sync_does_not_import_review_branches_into_main(self) -> None:
         self.assertNotIn("docs/_review", self.command)
         self.assertNotIn("review/", self.command)
-        self.assertIn('git -C source bundle create "${source_bundle}" HEAD', self.command)
+        self.assertIn('git -C source bundle create "${source_bundle}" refs/sync/snapshot', self.command)
+        for job_name in ("sync", "sync-review"):
+            checkouts = [
+                step for step in self.workflow["jobs"][job_name]["steps"]
+                if step_uses_action(step, "actions/checkout")
+            ]
+            self.assertEqual(len(checkouts), 2, job_name)
+            for checkout in checkouts:
+                self.assertEqual(checkout["with"]["fetch-depth"], 1, job_name)
+                self.assertNotIn("filter", checkout["with"], job_name)
 
     def test_each_mirror_installs_its_own_readme_from_the_source(self) -> None:
         for step, repository in ((self.sync_step, "Hello-Docs"), (self.review_step, "Hello-Docs-Review")):
@@ -808,6 +817,47 @@ cd "{other}" && git pull -q origin main \\
             self.assertEqual(self._remote(root, "docs/publish/p.txt"), "published")
             self.assertEqual(self._remote(root, "docs/knowledge/k.txt"), "knowledge")
             self.assertEqual(self._remote(root, "reports/downstream.txt"), "keep-report")
+
+    def test_shallow_depth1_sync_with_snapshot_bundle_and_race_retry(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._git(root, "init", "--bare", "-q", "-b", "main", "upstream.git")
+            self._git(root, "init", "--bare", "-q", "-b", "main", "remote.git")
+
+            up_work = root / "up_work"
+            self._git(root, "clone", "-q", str(root / "upstream.git"), str(up_work))
+            self._git(up_work, "config", "user.name", "Test")
+            self._git(up_work, "config", "user.email", "test@example.invalid")
+            self._write(up_work, {"engine.txt": "u1", "old.bin": "deleted-later"}, "Upstream 1")
+            self._write(up_work, {"engine.txt": "u2", "old.bin": None}, "Upstream 2")
+            self._git(up_work, "push", "-q", "origin", "main")
+
+            mir_work = root / "mir_work"
+            self._git(root, "clone", "-q", str(root / "remote.git"), str(mir_work))
+            self._git(mir_work, "config", "user.name", "Test")
+            self._git(mir_work, "config", "user.email", "test@example.invalid")
+            self._write(mir_work, {"docs/publish/p.txt": "m1"}, "Mirror 1")
+            self._write(mir_work, {"docs/publish/p2.txt": "m2"}, "Mirror 2")
+            self._git(mir_work, "push", "-q", "origin", "main")
+
+            # Clone both at depth=1 (matching fetch-depth: 1 in sync-hello-docs.yml).
+            self._git(root, "clone", "--depth=1", "-q", f"file://{root / 'upstream.git'}", "source")
+            self._git(root, "clone", "--depth=1", "-q", f"file://{root / 'remote.git'}", "mirror")
+
+            # Advance remote mirror while sync runs so retry loop also triggers on shallow clone.
+            self._write(mir_work, {"docs/publish/p3.txt": "race-m3"}, "Mirror race 3")
+            self._git(mir_work, "push", "-q", "origin", "main")
+
+            # Simulate mirror push failure on stale mirror_parent by verifying direct shallow push first,
+            # then re-testing retry when remote_head moved ahead of local mirror HEAD.
+            result = self._sync(root, MIRROR_OVERLAY_PATHS="")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("moved to", result.stdout)
+            self.assertEqual(self._remote(root, "engine.txt"), "u2")
+            self.assertEqual(self._remote(root, "docs/publish/p3.txt"), "race-m3")
+            # Temporary snapshot ref must not remain in source.
+            refs = self._git(root / "source", "for-each-ref", "--format=%(refname)", "refs/sync")
+            self.assertEqual(refs, "")
 
 
 if __name__ == "__main__":

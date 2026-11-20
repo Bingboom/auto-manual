@@ -83,6 +83,7 @@ class TestWebPublishReceiptWorkflow(unittest.TestCase):
             if str(step.get("uses", "")).startswith("actions/checkout")
         )
         self.assertEqual(0, checkout["with"]["fetch-depth"])
+        self.assertEqual("blob:none", checkout["with"]["filter"])
         register = next(
             step
             for step in self.job["steps"]
