@@ -1,0 +1,513 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JE-1000F",
+    "region": "CN",
+    "technical_version": "git-20261119-7132a5ff-dx2"
+  },
+  "languages": [
+    "zh"
+  ],
+  "original_source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+  "date": "2026-11-20",
+  "operator_quote": "推上去提交发布；允许归档这份原稿（推荐）；确认图标，继续发布（推荐）",
+  "authorization": "MA-475",
+  "reviewed_inputs": [
+    {
+      "path": "README.md",
+      "size": 2845,
+      "sha256": "e0de7929052db86a5b0f2bbfeed0aa11ecdc57cacfe6a4eb7548a27436ae8144"
+    },
+    {
+      "path": "assets/cn-ac-cable.png",
+      "size": 5509,
+      "sha256": "43a059232499e3352cd361de0e09839c828401d36eb1a812121aeded7a780594"
+    },
+    {
+      "path": "assets/cn-ac-charge-framed.svg",
+      "size": 1260411,
+      "sha256": "c7e9533b2c2d046c0c3e772b3c258bcd995629aea4c0ac6e78c152cba6f2e875"
+    },
+    {
+      "path": "assets/cn-ac-charge.png",
+      "size": 83828,
+      "sha256": "56a8d9d2905edce51d2465ae9824cb133e9c3bf0de7f80d77e4453364f8b03f0"
+    },
+    {
+      "path": "assets/cn-ac-power-framed.svg",
+      "size": 362915,
+      "sha256": "2b1dbd1d67b7128cf1997f977a02d526875e554e93146b89cbbbee781901a1f7"
+    },
+    {
+      "path": "assets/cn-ac-power.png",
+      "size": 90426,
+      "sha256": "91a82f9469fd2e4e46ae3ee644759f88dd0ffaa1d99bb50c94fa015a9ba1aeae"
+    },
+    {
+      "path": "assets/cn-app-controls-framed.svg",
+      "size": 920260,
+      "sha256": "2517a266c5816903102a40cf245b40013952ec9efe9a62b14429a829d61538e4"
+    },
+    {
+      "path": "assets/cn-app-controls.png",
+      "size": 21133,
+      "sha256": "569b177e904b7906b4d2f86a8a9a914d99441288f326e8689a885a2e5221a5b1"
+    },
+    {
+      "path": "assets/cn-app-download.png",
+      "size": 34288,
+      "sha256": "7cad55026ad904d41abdcb53e2080aed90a090b1b8c64578ac2c74173316e09a"
+    },
+    {
+      "path": "assets/cn-app-phones.png",
+      "size": 97462,
+      "sha256": "50b8902964de2f73517c2f98bccf7b7a73e148ad1498561f318d0937b1dd5303"
+    },
+    {
+      "path": "assets/cn-app-results.png",
+      "size": 93902,
+      "sha256": "b4b71fa7fce6082e9858edf6c06407a9be5c076270f8c26110a5a23986510911"
+    },
+    {
+      "path": "assets/cn-car-charge-framed.svg",
+      "size": 6000449,
+      "sha256": "d7ceb8c39bf3c52a1b60a1f3faefd2f437105a698836f6fb45562ca39559315b"
+    },
+    {
+      "path": "assets/cn-car-charge.png",
+      "size": 124697,
+      "sha256": "f67c8b5711804e21674ddf4d77867ff3e5faac600f1b940a9e09f2de70682121"
+    },
+    {
+      "path": "assets/cn-dc-usb-power-framed.svg",
+      "size": 441916,
+      "sha256": "49d5986d70a47ab4b556375e3e18aaba52826f3664dd265fac9562689282ff4f"
+    },
+    {
+      "path": "assets/cn-dc-usb-power.png",
+      "size": 91631,
+      "sha256": "0f0beba65c90e432e686f9ebb1f9641f4c24db3ee8d06df55095ceb22485cc9c"
+    },
+    {
+      "path": "assets/cn-efup10-candidate.png",
+      "size": 11926,
+      "sha256": "307727a1a231e1bab706c6689bff87fb25f331627273c6aef5758fdc44a3646f"
+    },
+    {
+      "path": "assets/cn-energy-buttons-framed.svg",
+      "size": 404777,
+      "sha256": "16da9f9e2670d770e9f58a187fe517455e4107d102497471d090cc94d7c7769b"
+    },
+    {
+      "path": "assets/cn-energy-buttons.png",
+      "size": 67159,
+      "sha256": "6ba8304f91d4b706395d72989d97fc6c70f1b182dadb6aabb68da6224758c4c4"
+    },
+    {
+      "path": "assets/cn-inbox-unit.png",
+      "size": 12973,
+      "sha256": "24c8388aa4054b0ce5f54fd2acf92f7f0ff3c080b678b04f9a44e48ac32d06e6"
+    },
+    {
+      "path": "assets/cn-lcd-button.png",
+      "size": 38328,
+      "sha256": "c7e95d0a2428448165b2cea904ececcd493378c2ebcdf747df0c33aaea17d147"
+    },
+    {
+      "path": "assets/cn-lcd-display.png",
+      "size": 93856,
+      "sha256": "fb88fd189d5088439453f050745ec368137ded69a0bd9c552c31c7ddc6037eb9"
+    },
+    {
+      "path": "assets/cn-led-light-framed.svg",
+      "size": 405423,
+      "sha256": "da2c40f5de5952ef31874708d76cbd2bf90f0eb42db13d388e19a8f884596bbf"
+    },
+    {
+      "path": "assets/cn-led-light.png",
+      "size": 60791,
+      "sha256": "8d01826971cccd14e3e8ae2c3a6a6474fa76c9085042be50c29b09e64bda2cdc"
+    },
+    {
+      "path": "assets/cn-main-power-framed.svg",
+      "size": 362363,
+      "sha256": "05ba767663e61d55cedc12b410aab931910cdaa145b4caa8c468cb42df5ec402"
+    },
+    {
+      "path": "assets/cn-main-power.png",
+      "size": 71718,
+      "sha256": "bc992922ca04b915b1c7e83beeb7c0b3402a725f0d4399382ab86868007cb4ac"
+    },
+    {
+      "path": "assets/cn-overview-front.png",
+      "size": 132388,
+      "sha256": "221219900ab8a5dd4a15251d087e323003486c3f073a17eea0d68921c4de5b41"
+    },
+    {
+      "path": "assets/cn-overview-input.png",
+      "size": 37556,
+      "sha256": "a6c18276aef48270c6cdce0481e0dc4da8cbc525d97cbae8ce839e287afcd792"
+    },
+    {
+      "path": "assets/cn-registration-qr.png",
+      "size": 21720,
+      "sha256": "9056cd8ac8dcb4c93d60a0439b4f46d9cb90c9b0fc61a4aa7548be2d231b2ea9"
+    },
+    {
+      "path": "assets/cn-service-qr.png",
+      "size": 14580,
+      "sha256": "d582f739307be257a9d92f027d4d1da4f05eec7288b2c13f6c4bd69e689689f3"
+    },
+    {
+      "path": "assets/cn-solar-direct-framed.svg",
+      "size": 1260104,
+      "sha256": "339b679a0b4e70c17ada3f2e6a930daa048ab42926b5bd5225f3b79fb2e1bbbf"
+    },
+    {
+      "path": "assets/cn-solar-direct.png",
+      "size": 149632,
+      "sha256": "6390c41ff4cd1498c4cfc0cd612b679cc34ce70d059d197791c74c48b110af95"
+    },
+    {
+      "path": "assets/cn-solar-four-framed.svg",
+      "size": 5982340,
+      "sha256": "fc382bd9c50067062bbe0f49385f8339b558883278045406c17d89d811556c97"
+    },
+    {
+      "path": "assets/cn-solar-four.png",
+      "size": 228304,
+      "sha256": "765389a8314998a72ab8e3b0d4adab19084300e0f947bdb0af29c0d75d1467e2"
+    },
+    {
+      "path": "assets/cn-ups-framed.svg",
+      "size": 598018,
+      "sha256": "985f8aace68a12aff83b8a1c7b26b1e933dd3a61baebe6dacd40750df57ecd47"
+    },
+    {
+      "path": "assets/cn-ups.png",
+      "size": 91993,
+      "sha256": "ca55a303e43848ee52e26d804de8b2680dbe1755220bd14f3d32f3de1d331858"
+    },
+    {
+      "path": "assets/shared-button-ac.svg",
+      "size": 1664,
+      "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839"
+    },
+    {
+      "path": "assets/shared-button-dc_usb.svg",
+      "size": 2936,
+      "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864"
+    },
+    {
+      "path": "assets/shared-button-led.svg",
+      "size": 2008,
+      "sha256": "9bfcc75dae807c470b6a6647de0112a986804e82abfede0c93cc2b100dcd3268"
+    },
+    {
+      "path": "assets/shared-button-power.svg",
+      "size": 2319,
+      "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed"
+    },
+    {
+      "path": "assets/shared-lcd-01.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "assets/shared-lcd-02.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "assets/shared-lcd-03.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "assets/shared-lcd-04.png",
+      "size": 2759,
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    {
+      "path": "assets/shared-lcd-05.png",
+      "size": 3466,
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783"
+    },
+    {
+      "path": "assets/shared-lcd-06.png",
+      "size": 2712,
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af"
+    },
+    {
+      "path": "assets/shared-lcd-07.png",
+      "size": 2868,
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc"
+    },
+    {
+      "path": "assets/shared-lcd-08.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "assets/shared-lcd-09.png",
+      "size": 3553,
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    {
+      "path": "assets/shared-lcd-10.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "assets/shared-lcd-11.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "assets/shared-lcd-12.png",
+      "size": 2223,
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c"
+    },
+    {
+      "path": "assets/shared-lcd-13.png",
+      "size": 1599,
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
+    },
+    {
+      "path": "assets/shared-lcd-14.png",
+      "size": 3059,
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4"
+    },
+    {
+      "path": "assets/shared-lcd-15.png",
+      "size": 1481,
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
+    },
+    {
+      "path": "assets/shared-lcd-16.png",
+      "size": 2772,
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad"
+    },
+    {
+      "path": "assets/shared-lcd-17.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "assets/shared-lcd-18.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "assets/shared-lcd-19.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "assets/shared-lcd-20.png",
+      "size": 3194,
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723"
+    },
+    {
+      "path": "assets/shared-lcd-21.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "assets/shared-lcd-22.png",
+      "size": 2248,
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "path": "assets/shared-lcd-23.png",
+      "size": 2206,
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    {
+      "path": "assets/shared-lcd-24.png",
+      "size": 3966,
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579"
+    },
+    {
+      "path": "assets/shared-lcd-25.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "assets/shared-lcd-26.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "assets/shared-manual.png",
+      "size": 1614,
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a"
+    },
+    {
+      "path": "assets/shared-symbol-1.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "assets/shared-symbol-2.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "assets/shared-symbol-3.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "assets/shared-symbol-3.svg",
+      "size": 3136,
+      "sha256": "7a07f68dc10f6d748ef90fa56822330ce831eac6ef25954bca8f4ddfc0cfbe34"
+    },
+    {
+      "path": "assets/shared-symbol-4.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "audit/artwork-reuse.md",
+      "size": 6687,
+      "sha256": "d040544f7293af2470daa391954f61554652ddf17b95eab1838c079b660f5118"
+    },
+    {
+      "path": "audit/asset-provenance.json",
+      "size": 33440,
+      "sha256": "7381ab651b22b9cc6758af05be7055036d3efc790496f886451f5b1f7a7c5f2b"
+    },
+    {
+      "path": "audit/browser-qa.json",
+      "size": 1723,
+      "sha256": "e0c3650491274b7cee33daee2e5fd00b79d6a9693d23c52d892d3408f6e8b1bd"
+    },
+    {
+      "path": "audit/cn-web-validation.json",
+      "size": 1032,
+      "sha256": "2ff5fdbdc77e037154700816817e1f796d71565c9ff3f39f11eca0f2b92fdc67"
+    },
+    {
+      "path": "audit/component-map.json",
+      "size": 9526,
+      "sha256": "ce3dc47d24f87c31df43ad74f55a5a96e510d524d63389d85b7999fd45ebccd0"
+    },
+    {
+      "path": "audit/discovery.md",
+      "size": 1677,
+      "sha256": "8a38dab03cca9f3573061414d00b090ead783b1b39fea5f6252092199f84641f"
+    },
+    {
+      "path": "audit/efup10-source-vs-web-approval.png",
+      "size": 64255,
+      "sha256": "e052dace2e9cc6520cde641a7d1e1d9d060058e41e0d00e79773668a2427eb14"
+    },
+    {
+      "path": "audit/finished-svg-provenance.json",
+      "size": 12271,
+      "sha256": "5891ce617d2c17abd9667dc7da104a89b134e51cab1de14256d74c68b20915c1"
+    },
+    {
+      "path": "audit/footer-layout-revision.json",
+      "size": 529,
+      "sha256": "b3f2bd8d2a58a16a98d4690a762b4fbdfc24f9b581854c6d801b7eb67f8b060d"
+    },
+    {
+      "path": "audit/intro-layout-revision.json",
+      "size": 620,
+      "sha256": "74a7c4b16daa185d26e142e94a01362fe78bceaea105950117230569d5cd8410"
+    },
+    {
+      "path": "audit/original-archive-readback.json",
+      "size": 438,
+      "sha256": "b477ff7ee970dff9c8bb5dc0d2a5634c78683f626dac5934d31a2ea219ebce6a"
+    },
+    {
+      "path": "audit/pending-confirmations-reference.md",
+      "size": 4291,
+      "sha256": "5467031724062949d5859aa96de2590b3c70586c701cdfdae3ec7b576d3806b2"
+    },
+    {
+      "path": "audit/pending-confirmations.json",
+      "size": 2584,
+      "sha256": "15148ca18d448911426370c03a7cc5c4f3c988a41f3455791bff0ae514ba6ce7"
+    },
+    {
+      "path": "audit/preflight.json",
+      "size": 15309,
+      "sha256": "c620e8affa44900778008a6ec7ba1123ce43efbbc39df0578d35b0d64577be63"
+    },
+    {
+      "path": "audit/symbol-registration-approval.json",
+      "size": 699,
+      "sha256": "909e291c07abebe009a893767c0ca2d34aac70405d53481851d95f89fdd5bfac"
+    },
+    {
+      "path": "audit/symbol-source-admission.json",
+      "size": 997,
+      "sha256": "e7cb47f85fc8d170cf20b66ba5bea28bd65776a67cc4d02fc479a2fe4023bd3f"
+    },
+    {
+      "path": "original.pdf.source-pointer.json",
+      "size": 634,
+      "sha256": "d62828e69f754ecf477cb93ee32d04a46b1225509b494cfb3512b6e52319001b"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 8611,
+      "sha256": "35daf96ac051f9c8e2aafd0d9ee3d21994be093a5e976c16029bfc471a0774d0"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 10711,
+      "sha256": "62185ec50040fef9c3c58877a64a18764d5948c78a104943edeb8987cef595ef"
+    },
+    {
+      "path": "source/finished-panel-crops.json",
+      "size": 3575,
+      "sha256": "cb627b86bd922184fee2ed68331ec4650e11789654f0594b1306a435e38c03c8"
+    },
+    {
+      "path": "source/finished-panel-recipe.json",
+      "size": 17803,
+      "sha256": "c02786b2419f63d09e4d06b8a53d1843fb809d557aa058b4e7edee84d2c4f9fe"
+    },
+    {
+      "path": "source/intake.py",
+      "size": 29153,
+      "sha256": "45e388f80f3b9d719107eac92f2c1e824db93e97b9a67f0470532656adaaf1e0"
+    },
+    {
+      "path": "source/kit.py",
+      "size": 11217,
+      "sha256": "544b0d224dd35dc6f368a5c42ca34c7affdbcfc3dff0e8b43fea842f5869ae85"
+    },
+    {
+      "path": "source/lcd-rows.json",
+      "size": 5227,
+      "sha256": "1040b0be8932bebf8d279ffdcb75b0191443ea6e15c24b373b9e69e445107101"
+    },
+    {
+      "path": "source/native-text.json",
+      "size": 853421,
+      "sha256": "5088bf2a3922cd20298b93775dc1852d6b170336d88821f054a2e1fdf85caec6"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 1211,
+      "sha256": "3cb01c4ded09bd56c2e766bc2696c956c4f32fd38dc82c3f1403f35c48c8c7e1"
+    },
+    {
+      "path": "source/reused-assets.json",
+      "size": 1315,
+      "sha256": "0a720c73c74e38d5eb12ad553bbe477866f69f48e9ab6c200ea8caf1743285fe"
+    },
+    {
+      "path": "source/zh/content.json",
+      "size": 246351,
+      "sha256": "d6274b33c850ef79625828c127712fd4ee349cf99291c00b063c7c8fbdc2eb68"
+    }
+  ],
+  "scope": "Reviewed JE-1000F CN DX2 native content and layout only; two printed-page15 corrections, restored printed16 from source master, complete gray-framed SVG panels, App size/captions and compact native back cover. Original source facts not revised beyond the explicit corrections; source-review questions retained separately. Canonical shared symbols and confirmed EFUP10 reuse; archive-only live write authorized."
+}

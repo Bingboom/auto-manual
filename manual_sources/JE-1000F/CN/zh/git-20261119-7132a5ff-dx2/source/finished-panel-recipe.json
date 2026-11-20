@@ -1,0 +1,867 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_je1000f_cn_dx2_55060100034",
+    "expected_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "expected_page_count": 18
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 18
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.5,
+      "page_scale": {
+        "1": 0.1
+      }
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "page_001",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "page_002",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "page_003",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "page_004",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "page_005",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "page_006",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "page_007",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "page_008",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "page_009",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "page_010",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "page_011",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "page_012",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "page_013",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "page_014",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "page_015",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "page_016",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "page_017",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "page_018",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "je1000f-cn-dx2/main-power",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.85,
+            69.63,
+            340.99,
+            256.76
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/main-power.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/main-power.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/ac-power",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            24.4,
+            307.6,
+            339.54,
+            495.93
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/ac-power.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/ac-power.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/dc-usb-power",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30.63,
+            42.95,
+            345.77,
+            232.38
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/dc-usb-power.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/dc-usb-power.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/energy-buttons",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.59,
+            29.12,
+            341.72,
+            172.05
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/energy-buttons.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/energy-buttons.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/led-light",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            23.89,
+            276.72,
+            344.76,
+            496.86
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/led-light.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/led-light.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/lcd-display-reference",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            24.94,
+            49.19,
+            346.72,
+            165.87
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/lcd-display-reference.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/lcd-display-reference.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/ups",
+      "page": 12,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            23.56,
+            82,
+            338.69,
+            238.3
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/ups.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/ups.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/ac-charge",
+      "page": 13,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.79,
+            56.18,
+            344.46,
+            171.84
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/ac-charge.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/ac-charge.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/solar-direct",
+      "page": 13,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.94,
+            335.42,
+            342.07,
+            470.93
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/solar-direct.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/solar-direct.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/solar-four",
+      "page": 14,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.27,
+            29.21,
+            341.4,
+            148.54
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/solar-four.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/solar-four.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/car-charge",
+      "page": 14,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            22.73,
+            320.92,
+            344.82,
+            438.09
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/car-charge.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/car-charge.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1000f-cn-dx2/app-controls",
+      "page": 17,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.97,
+            357.48,
+            331.73,
+            425.9
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/app-controls.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/app-controls.png",
+          "scale": 2
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "User-requested complete framed SVG candidate; no registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    }
+  ]
+}

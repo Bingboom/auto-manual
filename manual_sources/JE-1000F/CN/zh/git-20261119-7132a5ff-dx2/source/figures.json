@@ -1,0 +1,406 @@
+[
+  {
+    "slot": "inbox-unit",
+    "physical_page": 4,
+    "clip_points": [
+      39,
+      385,
+      122,
+      439
+    ],
+    "caption": "便携式储能电源1000 Pro 3",
+    "local_path": "assets/cn-inbox-unit.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "registration-qr",
+    "physical_page": 3,
+    "clip_points": [
+      293,
+      91,
+      342,
+      140
+    ],
+    "caption": "电小二户外电源服务小程序",
+    "local_path": "assets/cn-registration-qr.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "overview-front",
+    "physical_page": 5,
+    "clip_points": [
+      23,
+      67,
+      346,
+      290
+    ],
+    "caption": "产品介绍：正面接口、按键与额定值",
+    "local_path": "assets/cn-overview-front.png",
+    "embedded_words": true,
+    "printed_notes": []
+  },
+  {
+    "slot": "overview-input",
+    "physical_page": 5,
+    "clip_points": [
+      24,
+      310,
+      346,
+      362
+    ],
+    "caption": "产品介绍：AC与DC8020输入接口",
+    "local_path": "assets/cn-overview-input.png",
+    "embedded_words": true,
+    "printed_notes": []
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 6,
+    "clip_points": [
+      52,
+      51,
+      316,
+      219
+    ],
+    "caption": "显示屏界面及编号",
+    "local_path": "assets/cn-lcd-display.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "main-power",
+    "physical_page": 8,
+    "clip_points": [
+      25.85,
+      69.63,
+      340.99,
+      256.76
+    ],
+    "caption": "总电源开关：短按一次开机，长按3秒关机",
+    "local_path": "assets/cn-main-power-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "总电源开关键 开机 短按一次 关机 长按3秒 3s * 本产品的默认待机时间为2小时，若产品无任何充电 输入或放电输出，2小时后将自动关机，自动关机时 间可以在APP上设置。 节能模式下，开启AC输出，若产品无任何充电输入或放电输出，12小时后将关闭AC输出 （节能模式时间可以在APP上设置）。"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-main-power.png",
+      "sha256": "bc992922ca04b915b1c7e83beeb7c0b3402a725f0d4399382ab86868007cb4ac",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "ac-power",
+    "physical_page": 8,
+    "clip_points": [
+      24.4,
+      307.6,
+      339.54,
+      495.93
+    ],
+    "caption": "AC输出按键和连接示意",
+    "local_path": "assets/cn-ac-power-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "确保总电源开关键已打开。 AC输出按键统一控制所有AC输出口，短按一次开启，再短按一次关闭。 开启 短按一次 关闭 短按一次"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-ac-power.png",
+      "sha256": "91a82f9469fd2e4e46ae3ee644759f88dd0ffaa1d99bb50c94fa015a9ba1aeae",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "dc-usb-power",
+    "physical_page": 9,
+    "clip_points": [
+      30.63,
+      42.95,
+      345.77,
+      232.38
+    ],
+    "caption": "DC/USB输出按键和连接示意",
+    "local_path": "assets/cn-dc-usb-power-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "确保总电源开关键已打开。 开启 短按一次 关闭 短按一次"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-dc-usb-power.png",
+      "sha256": "0f0beba65c90e432e686f9ebb1f9641f4c24db3ee8d06df55095ceb22485cc9c",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "energy-buttons",
+    "physical_page": 10,
+    "clip_points": [
+      26.59,
+      29.12,
+      341.72,
+      172.05
+    ],
+    "caption": "总电源与AC组合按键",
+    "local_path": "assets/cn-energy-buttons-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "在AC或DC/USB输出开启状态下，同时长按总电源开关键与AC输出按键3秒，可开启或关闭节 能模式。"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-energy-buttons.png",
+      "sha256": "6ba8304f91d4b706395d72989d97fc6c70f1b182dadb6aabb68da6224758c4c4",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "led-light",
+    "physical_page": 10,
+    "clip_points": [
+      23.89,
+      276.72,
+      344.76,
+      496.86
+    ],
+    "caption": "LED灯按键示意",
+    "local_path": "assets/cn-led-light-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "LED灯有两种模式：照明模式和SOS模式，默认设置为照明模式。无论处于何种模式，长按 LED灯按钮均可关闭LED灯。 LIGHT 1 首次按下LED灯按钮可开启照明模式。 2 SOS 再次按下可切换至SOS模式。 3 第三次按下将关闭灯光。"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-led-light.png",
+      "sha256": "8d01826971cccd14e3e8ae2c3a6a6474fa76c9085042be50c29b09e64bda2cdc",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "lcd-button",
+    "physical_page": 11,
+    "clip_points": [
+      35,
+      65,
+      136,
+      150
+    ],
+    "caption": "总电源开关键与屏幕显示",
+    "local_path": "assets/cn-lcd-button.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "ups",
+    "physical_page": 12,
+    "clip_points": [
+      23.56,
+      82,
+      338.69,
+      238.3
+    ],
+    "caption": "UPS连接示意",
+    "local_path": "assets/cn-ups-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "* 确保总电源开关键已打开。"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-ups.png",
+      "sha256": "ca55a303e43848ee52e26d804de8b2680dbe1755220bd14f3d32f3de1d331858",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "ac-charge",
+    "physical_page": 13,
+    "clip_points": [
+      25.79,
+      56.18,
+      344.46,
+      171.84
+    ],
+    "caption": "市电充电连接示意",
+    "local_path": "assets/cn-ac-charge-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      ""
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-ac-charge.png",
+      "sha256": "56a8d9d2905edce51d2465ae9824cb133e9c3bf0de7f80d77e4453364f8b03f0",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "solar-direct",
+    "physical_page": 13,
+    "clip_points": [
+      26.94,
+      335.42,
+      342.07,
+      470.93
+    ],
+    "caption": "SolarSaga 200 ×2太阳能充电",
+    "local_path": "assets/cn-solar-direct-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      ""
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-solar-direct.png",
+      "sha256": "6390c41ff4cd1498c4cfc0cd612b679cc34ce70d059d197791c74c48b110af95",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "solar-four",
+    "physical_page": 14,
+    "clip_points": [
+      26.27,
+      29.21,
+      341.4,
+      148.54
+    ],
+    "caption": "SolarSaga 100 Air ×4太阳能充电",
+    "local_path": "assets/cn-solar-four-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "SolarSaga 100 Air × 4"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-solar-four.png",
+      "sha256": "765389a8314998a72ab8e3b0d4adab19084300e0f947bdb0af29c0d75d1467e2",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "car-charge",
+    "physical_page": 14,
+    "clip_points": [
+      22.73,
+      320.92,
+      344.82,
+      438.09
+    ],
+    "caption": "12V车型车充连接示意",
+    "local_path": "assets/cn-car-charge-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "车辆 *车载充电线需单独购买。"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-car-charge.png",
+      "sha256": "f67c8b5711804e21674ddf4d77867ff3e5faac600f1b940a9e09f2de70682121",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "app-download",
+    "physical_page": 17,
+    "clip_points": [
+      256,
+      57,
+      320,
+      121
+    ],
+    "caption": "电小二App下载二维码",
+    "local_path": "assets/cn-app-download.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "app-phones",
+    "physical_page": 17,
+    "clip_points": [
+      89,
+      174,
+      273,
+      325
+    ],
+    "caption": "电小二App添加设备：2.1与2.2",
+    "local_path": "assets/cn-app-phones.png",
+    "embedded_words": true,
+    "printed_notes": []
+  },
+  {
+    "slot": "app-controls",
+    "physical_page": 17,
+    "clip_points": [
+      28.97,
+      357.48,
+      331.73,
+      425.9
+    ],
+    "caption": "总电源、DC/USB、AC输出按键",
+    "local_path": "assets/cn-app-controls-framed.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "总电源开关键 DC/USB输出按键 AC输出按键"
+    ],
+    "superseded_artwork": {
+      "path": "assets/cn-app-controls.png",
+      "sha256": "569b177e904b7906b4d2f86a8a9a914d99441288f326e8689a885a2e5221a5b1",
+      "status": "superseded-do-not-reuse"
+    },
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "app-results",
+    "physical_page": 1,
+    "clip_points": [
+      2802,
+      1299,
+      3110,
+      1475
+    ],
+    "caption": "App连接设备、2.4GHz配网与连接结果",
+    "local_path": "assets/cn-app-results.png",
+    "embedded_words": true,
+    "printed_notes": []
+  },
+  {
+    "slot": "service-qr",
+    "physical_page": 18,
+    "clip_points": [
+      32,
+      439,
+      75,
+      482
+    ],
+    "caption": "电小二官方品牌公众号",
+    "local_path": "assets/cn-service-qr.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "inbox-ac",
+    "physical_page": 4,
+    "clip_points": [
+      166,
+      381,
+      223,
+      441
+    ],
+    "caption": "AC电源线",
+    "local_path": "assets/cn-ac-cable.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "inbox-manual",
+    "physical_page": 4,
+    "caption": "用户指南",
+    "local_path": "assets/shared-manual.png",
+    "embedded_words": false,
+    "printed_notes": []
+  }
+]
