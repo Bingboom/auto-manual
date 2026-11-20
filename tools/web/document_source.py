@@ -5,9 +5,10 @@ import json
 import hashlib
 from pathlib import Path
 import shutil
+from typing import Any
 from urllib.parse import unquote, urlparse
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.fcc_declaration import declares_fcc, require_fcc_claims
 from tools.component_specs.registry import (
@@ -21,6 +22,7 @@ from tools.component_specs.overview_instance import (
 from tools.component_specs.theme import load_manual_theme, theme_sha256
 from tools.manual_ir import (
     V2_SCHEMA_VERSION,
+    ManualIR,
     ManualSource,
     SourcePage,
     build_manual_ir_from_source,
@@ -39,7 +41,9 @@ from tools.web.presentation import (
 from tools.utils.path_utils import PathSegments
 
 
-def operation_panel_copy(text, source_path, *, active_tags):
+def operation_panel_copy(
+    text: str, source_path: Path, *, active_tags: set[str] | None
+) -> tuple[dict[str, Any], ...]:
     """Return a page's ``operation_panel_copy`` blocks, which HTML drops.
 
     Parse the same only-normalized RST the fragment is published from so a
@@ -76,7 +80,7 @@ def operation_panel_copy(text, source_path, *, active_tags):
     return tuple(payloads)
 
 
-def _consume_covered_annotations(soup, entry, image):
+def _consume_covered_annotations(soup: BeautifulSoup, entry: dict[str, Any], image: Tag) -> None:
     """Only consume explicitly bound, unchanged copy already present in art."""
     covered = []
     for binding in entry.get("covered_annotations", []):
@@ -95,7 +99,13 @@ def _consume_covered_annotations(soup, entry, image):
         image["alt"] = "；".join(covered)
 
 
-def _selected_illustration_manifests(single, by_language, target_language, *, projected):
+def _selected_illustration_manifests(
+    single: Path | None,
+    by_language: dict[str, Path] | None,
+    target_language: str,
+    *,
+    projected: bool,
+) -> dict[str, Path]:
     """Select a frozen language projection without reading other family assets."""
     if single is not None and by_language:
         raise ValueError(
@@ -129,7 +139,7 @@ def _bind_illustration_entries(loaded: dict, manifest_path: Path, declared: str,
 def _load_illustration_manifests(
     manifest_by_language: dict[str, Path],
     *,
-    materialized,
+    materialized: Any,
     target_language: str,
     languages: tuple,
     single_manifest: bool,
@@ -177,7 +187,7 @@ def _load_illustration_manifests(
     return replacements, illustration_entries, text_corrections, provenance
 
 
-def _apply_text_corrections(soup, text_corrections: list, used_text_corrections: set, lang: str) -> None:
+def _apply_text_corrections(soup: BeautifulSoup, text_corrections: list, used_text_corrections: set, lang: str) -> None:
     for index, (correction_language, correction) in enumerate(text_corrections):
         if index in used_text_corrections or correction_language != lang:
             continue
@@ -214,10 +224,19 @@ def _check_bindings_used(replacements: dict, used_replacements: set, text_correc
         raise ValueError(f"unused Web illustration text corrections: {unused}")
 
 
-def load_web_document(materialized, *, page_paths, declarations, page_languages, active_tags,
-                      output_dir: Path, composite_manifest, illustration_manifest: Path | None = None,
-                      illustration_manifests: dict[str, Path] | None = None,
-                      page_slots: dict[str, str] | None = None):
+def load_web_document(
+    materialized: Any,
+    *,
+    page_paths: tuple[Path, ...] | list[Path],
+    declarations: dict[Path, str],
+    page_languages: dict[str, str],
+    active_tags: set[str] | None,
+    output_dir: Path,
+    composite_manifest: Any,
+    illustration_manifest: Path | None = None,
+    illustration_manifests: dict[str, Path] | None = None,
+    page_slots: dict[str, str] | None = None,
+) -> ManualIR:
     from tools.word.bundle_html import (
         _extract_raw_html_blocks, _publish_rst_fragment_to_html,
         _resolve_fragment_lang, _rewrite_word_friendly_fragment, _resolve_fragment_asset_path,
@@ -279,10 +298,10 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         return relative
 
     source_pages = []
-    used_replacements = set()
-    used_text_corrections = set()
+    used_replacements: set[tuple[str, str]] = set()
+    used_text_corrections: set[int] = set()
 
-    def apply_illustration_replacement(soup, image, name, lang):
+    def apply_illustration_replacement(soup: BeautifulSoup, image: Tag, name: str, lang: str) -> None:
         entry = illustration_entries.get((lang, name), {})
         if (lang, name) in used_replacements and entry.get("allow_reuse") is not True:
             raise ValueError(f"repeated Web illustration source: {lang}/{name}")
@@ -351,7 +370,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
             if (lang, name) in replacements:
                 apply_illustration_replacement(soup, image, name, lang)
-        def package_image(image) -> str:
+        def package_image(image: Tag) -> str:
             src = str(image.get("src", ""))
             if src.startswith("assets/ir/"):
                 return src

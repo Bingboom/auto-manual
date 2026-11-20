@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import re
+from typing import Any
 
 from tools.web.frozen_ai_flow import heading, paragraph, prose, root, squash
 from tools.web.frozen_pdf_frontmatter import preface_flow, strong_paragraph, template_heading_levels
@@ -34,7 +35,7 @@ _EMERGENCY_CHARGING_LABELS = {
 }
 
 
-def _body_prose(value, section, language):
+def _body_prose(value: str, section: str, language: str) -> list[dict[str, Any]]:
     # The Ukrainian PDF joins this bold lead and its body in one text block;
     # the other three PDFs give it a separate block. Preserve both shapes.
     label = _EMERGENCY_CHARGING_LABELS.get(language)
@@ -43,11 +44,11 @@ def _body_prose(value, section, language):
     return prose(value)
 
 
-def _key(value):
+def _key(value: str) -> str:
     return re.sub(r"\W+", "", squash(value), flags=re.UNICODE).casefold()
 
 
-def _page(book, identity, nodes):
+def _page(book: Any, identity: str, nodes: list[dict[str, Any]]) -> SourcePage:
     source_path = getattr(book, "source_path", None)
     path = (source_path(identity) if callable(source_path) else
             review_dir_of(Path("frozen-pdf")) / book.target["model"] / book.target["region"] /
@@ -60,7 +61,7 @@ def _page(book, identity, nodes):
     )
 
 
-def _introduction(book):
+def _introduction(book: Any) -> tuple[str, list[dict[str, Any]]]:
     preface = book.front_back["locales"][book.language]["preface"]
     product = book.source["tables"]["specifications"]["groups"]["general"][0]["value"]
     title = f"{product} — {book.locale['label']}"
@@ -78,15 +79,15 @@ def _introduction(book):
     return title, preface_flow(preface["text"], book.correct)
 
 
-def _owns(region, page, bbox, section):
+def _owns(region: dict[str, Any], page: int, bbox: list[float], section: str) -> bool:
     x0, y0, x1, y1 = region["consume_bbox"]
     return (region["physical_page"] == page and region.get("section", section) == section
             and x0 <= bbox[0] < x1 and y0 <= bbox[1] < y1)
 
 
-def _table_events(book, starts):
+def _table_events(book: Any, starts: list[tuple[int, float, str]]) -> list[tuple[int, float, str, str, Any]]:
     """Every structured table is an explicit event, even on an empty body page."""
-    result = []
+    result: list[tuple[int, float, str, str, Any]] = []
     symbols = book.records["symbols"]
     result.append((symbols["pictogram_page"], 0, "symbols", "pictograms", lambda: symbol_pictogram_flow(
         symbols, headings=book.headers("symbols"), accessibility_label=book.locale["titles"][1],
@@ -101,20 +102,25 @@ def _table_events(book, starts):
                        f"table-{part}", lambda part=part: book.operation(part)))
     for section in ("troubleshooting", "specifications"):
         record = book.source["tables"][section]
-        args = {"language": book.language, "source_ref": f"{book.language}/{section}"}
+        source_ref = f"{book.language}/{section}"
         if section == "troubleshooting":
-            build = lambda record=record, args=args: troubleshooting_flow(record, headings=book.headers("troubleshooting"), **args)
+            build: Any = lambda record=record, source_ref=source_ref: troubleshooting_flow(
+                record, headings=book.headers("troubleshooting"), language=book.language, source_ref=source_ref,
+            )
             y = (getattr(book, "target_layout", None) or {}).get("table_event_y", {}).get("troubleshooting", 250)
         else:
-            build = lambda record=record, args=args: [
-                *specification_flow(record, group_headings=book.headers("specifications"), **args), *book.footnotes(),
+            build = lambda record=record, source_ref=source_ref: [
+                *specification_flow(
+                    record, group_headings=book.headers("specifications"), language=book.language, source_ref=source_ref,
+                ),
+                *book.footnotes(),
             ]
             y = next(start[1] for start in starts if start[2] == section) + .01
         result.append((record["physical_page"], y, section, section, build))
     return result
 
 
-def _structured_region(book, section, number, bbox):
+def _structured_region(book: Any, section: str, number: int, bbox: list[float]) -> bool:
     y = bbox[1]
     explicit = (getattr(book, "target_layout", None) or {}).get("structured_regions", {}).get(section)
     if explicit is not None:
@@ -138,7 +144,7 @@ def _structured_region(book, section, number, bbox):
     return False
 
 
-def _in_structured_region(regions, number, bbox):
+def _in_structured_region(regions: list[dict[str, Any]], number: int, bbox: list[float]) -> bool:
     x, y = bbox[:2]
     return any(region["physical_page"] == number
                and region["bbox"][0] <= x < region["bbox"][2]
@@ -146,7 +152,7 @@ def _in_structured_region(regions, number, bbox):
                for region in regions)
 
 
-def _reference_nodes(book, figure):
+def _reference_nodes(book: Any, figure: dict[str, Any]) -> list[dict[str, Any]]:
     """Keep native Overview view captions beside their governed diagrams."""
     layout = getattr(book, "target_layout", None) or {}
     overview = layout.get("media", {}).get("overview", {})
@@ -160,7 +166,7 @@ def _reference_nodes(book, figure):
     return [book.figure(figure)]
 
 
-def _consumed_regions(book):
+def _consumed_regions(book: Any) -> list[dict[str, Any]]:
     regions = list(book.consumed_media_regions())
     owners = {figure["slug"]: figure for figure in getattr(book, "figures", ())}
     for region in (getattr(book, "target_layout", None) or {}).get("reference_consumed_regions", []):
@@ -173,13 +179,17 @@ def _consumed_regions(book):
     return regions
 
 
-def _positioned_events(book, starts):
+def _positioned_events(
+    book: Any, starts: list[tuple[int, float, str]]
+) -> tuple[list[tuple[Any, ...]], list[dict[str, Any]]]:
     regions = _consumed_regions(book)
     panels = list(book.operation_panels())
     regions += [{"physical_page": event["physical_page"], "section": "operations",
                  "consume_bbox": event["consume_bbox"]} for event in panels]
-    events = [(number, y, 0, index, "chapter", section)
-              for index, (number, y, section) in enumerate(starts)]
+    events: list[tuple[Any, ...]] = [
+        (number, y, 0, index, "chapter", section)
+        for index, (number, y, section) in enumerate(starts)
+    ]
     for number, y, section, identity, build in _table_events(book, starts):
         events.append((number, y, 1, len(events), "content", (section, identity, build)))
     for index, event in enumerate(panels):
@@ -201,7 +211,9 @@ def _positioned_events(book, starts):
     return sorted(events), regions
 
 
-def _native_heading_nodes(book, section, number, block):
+def _native_heading_nodes(
+    book: Any, section: str, number: int, block: dict[str, Any]
+) -> list[dict[str, Any]] | None:
     native = next((item for item in
                    getattr(book, "records", {}).get("native_body_headings", {}).get("rows", [])
                    if item["section_id"] == section and item["physical_page"] == number
@@ -218,8 +230,18 @@ def _native_heading_nodes(book, section, number, block):
     return result
 
 
-def _append_source_block(book, body, headings_seen, starts, chapter, section,
-                         number, y, payload, regions):
+def _append_source_block(
+    book: Any,
+    body: list[dict[str, Any]],
+    headings_seen: set[str],
+    starts: list[tuple[int, float, str]],
+    chapter: int,
+    section: str,
+    number: int,
+    y: float,
+    payload: Any,
+    regions: list[dict[str, Any]],
+) -> None:
     block, notice, consumed = payload
     if (number == starts[chapter][0] and abs(y - starts[chapter][1]) < .01
             and _key(block["text"]) == _key(book.locale["titles"][chapter])):
@@ -240,7 +262,7 @@ def _append_source_block(book, body, headings_seen, starts, chapter, section,
         body.extend(_body_prose(book.correct(squash(block["text"])), section, book.language))
 
 
-def ordered_pages(book) -> tuple[str, tuple[SourcePage, ...]]:
+def ordered_pages(book: Any) -> tuple[str, tuple[SourcePage, ...]]:
     """Consume book methods and positioned events without revisiting the PDF.
 
     New book methods: ``media_section(section)``, ``operation_panels()`` and
@@ -256,7 +278,10 @@ def ordered_pages(book) -> tuple[str, tuple[SourcePage, ...]]:
     title, introduction = _introduction(book)
     pages = [_page(book, "introduction", introduction)]
     events, regions = _positioned_events(book, starts)
-    body, chapter, seen, headings_seen = [], -1, set(), set()
+    body: list[dict[str, Any]] = []
+    chapter = -1
+    seen: set[str] = set()
+    headings_seen: set[str] = set()
     for number, y, _priority, _sequence, kind, payload in events:
         if kind == "chapter":
             if chapter >= 0:

@@ -38,7 +38,7 @@ import json
 import os
 import re
 import sys
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from pathlib import Path, PurePosixPath
 from typing import Any
 from urllib.parse import urlsplit
@@ -136,7 +136,7 @@ def _field_name(item: object) -> str:
     return str(item)
 
 
-def _records(run, base_token: str, table_id: str, required: tuple[str, ...]) -> list[tuple[str, dict[str, Any]]]:
+def _records(run: Callable[..., Any], base_token: str, table_id: str, required: tuple[str, ...]) -> list[tuple[str, dict[str, Any]]]:
     """Every ``(record_id, {field: value})`` of one table; ``+record-list`` caps a page at 200."""
     from tools.workspace_snapshot import complete_rows
 
@@ -154,7 +154,7 @@ def _keep_latest(best: dict, slot: tuple, version: str, url: str) -> None:
         best[slot] = (version_key(version), version, url)
 
 
-def export_snapshot(*, run, base_token: str, build_table: str, key_table: str, today: dt.date) -> dict[str, Any]:
+def export_snapshot(*, run: Callable[..., Any], base_token: str, build_table: str, key_table: str, today: dt.date) -> dict[str, Any]:
     """The latest link per model, region, language and format; read-only.
 
     A build-table row names its document through the ``Document_Key`` link;
@@ -175,7 +175,7 @@ def export_snapshot(*, run, base_token: str, build_table: str, key_table: str, t
     best: dict[tuple[str, str, str], tuple[tuple[tuple[int, ...], str], str, str]] = {}
     for _, row in _records(run, base_token, build_table, required):
         link = row.get(DOCUMENT_KEY_FIELD)
-        record_id = link[0].get("id") if isinstance(link, list) and link and isinstance(link[0], dict) else ""
+        record_id = str(link[0].get("id") or "") if isinstance(link, list) and link and isinstance(link[0], dict) else ""
         if record_id not in keys:
             if any(feishu_url(row.get(field)) for field in FEISHU_FORMATS.values()):
                 raise RuntimeError("delivery link has no resolvable target identity")
@@ -405,7 +405,7 @@ def short_version(version: str) -> str:
     return match.group(1) if match else version
 
 
-def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], str],
+def deliverables_page_context(app: Any, assets: Path, names: dict[tuple[str, str], str],
                               language_order: Sequence[str], *, shorts: dict[str, str] | None = None,
                               groups: list[tuple[str, set[str]]] | None = None, other: str = "其他说明书",
                               codes: dict[str, str] | None = None) -> dict[str, Any]:
@@ -533,21 +533,21 @@ def main(argv: list[str] | None = None) -> int:
             print("ERROR   candidate validation or atomic replacement failed; previous snapshot retained")
             return 1
         print(json.dumps(result, ensure_ascii=False))
-        saved = previous if result["status"] == "unchanged" else snapshot
+        saved = previous if result["status"] == "unchanged" and previous is not None else snapshot
         print(f"{result['status']} {output}: {_summary(saved)}; snapshot dated {saved['exported_at']}")
         return 0
 
     path = args.snapshot or default_snapshot
-    snapshot, problems = load_snapshot(path)
+    loaded_snapshot, problems = load_snapshot(path)
     for problem in problems:
         print(f"ERROR   {path.name}: {problem}")
-    if snapshot is None:
+    if loaded_snapshot is None:
         return 1
     today = args.today or _utc_today()
-    reason = stale_reason(domain, dt.date.fromisoformat(snapshot["exported_at"]), today)
+    reason = stale_reason(domain, dt.date.fromisoformat(loaded_snapshot["exported_at"]), today)
     if reason:
         print(f"WARNING {path.name}: {reason}; no page shows it since 2026-11-09 — rerun export to keep it current")
-    print(f"deliverables snapshot: exported {snapshot['exported_at']}; {_summary(snapshot)}")
+    print(f"deliverables snapshot: exported {loaded_snapshot['exported_at']}; {_summary(loaded_snapshot)}")
     return 0
 
 

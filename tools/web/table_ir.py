@@ -25,7 +25,7 @@ def _add_class(tag: Tag, value: str) -> None:
 
 
 def _render_lcd(soup: BeautifulSoup, table: Tag, rows: list[Tag]) -> None:
-    roles = ("number", "icon", "name", "description")
+    roles: tuple[str, ...] = ("number", "icon", "name", "description")
     if "lcd-unnumbered" in table.get("class", []):
         roles = roles[1:]
     for colgroup in table.find_all("colgroup", recursive=False):

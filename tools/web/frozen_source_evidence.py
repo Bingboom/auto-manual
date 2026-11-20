@@ -75,11 +75,11 @@ def _locale_inventory(inputs: tuple, root: Path) -> tuple:
 
 
 class _Images(HTMLParser):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.sources: list[str] = []
 
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         if tag == "img":
             self.sources.append(dict(attrs).get("src") or "")
 

@@ -644,7 +644,7 @@ def matrix_context(root: Path, srcdir: Path, manifest: Path, assets: Path, setti
     }
 
 
-def product_matrix_page_context(app, assets: Path, settings: dict[str, Any], catalog: list[dict[str, Any]],
+def product_matrix_page_context(app: Any, assets: Path, settings: dict[str, Any], catalog: list[dict[str, Any]],
                                 product_catalog: dict[str, Any] | None) -> dict[str, Any] | None:
     """Context for PAGE, or None (with a warning) without a manifest or snapshot, or with drifted data."""
     from sphinx.util import logging as sphinx_logging

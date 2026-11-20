@@ -79,7 +79,7 @@ def freshness(snapshot: dict[str, Any], status: dict[str, Any] | None, *, today:
     """The pages' times and warnings for ``snapshot``; ``status`` is ignored unless it describes this snapshot."""
     read = parse_time(snapshot.get("read_at"))
     built = parse_time(snapshot.get("built_at"))
-    applies = bool(status) and (status.get("snapshot") or {}).get("read_at") == snapshot.get("read_at")
+    applies = status is not None and (status.get("snapshot") or {}).get("read_at") == snapshot.get("read_at")
     success = parse_time(status.get("last_success")) if applies and status else None
     confirmed = max((moment for moment in (read, success) if moment), default=None)
     warnings: list[str] = []

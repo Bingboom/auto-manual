@@ -8,13 +8,15 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from tools.manual_ir import ManualIR
 from tools.web.frozen_ai_web import assemble_book
 from tools.web.frozen_pdf_document import ordered_pages
 from tools.web.frozen_pdf_source import PdfBook
 
 
-def build_pdf_book(pdf_path: Path, recipe_root: Path, assets_manifest: Path,
-                   output: Path, language: str):
+def build_pdf_book(
+    pdf_path: Path, recipe_root: Path, assets_manifest: Path, output: Path, language: str
+) -> ManualIR:
     if output.exists():
         raise ValueError(f'output already exists; use a new candidate directory: {output}')
     if output.resolve().is_relative_to(recipe_root.resolve()):
@@ -24,7 +26,7 @@ def build_pdf_book(pdf_path: Path, recipe_root: Path, assets_manifest: Path,
     return assemble_book(book, title, pages)
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--pdf', type=Path, required=True)
     parser.add_argument('--recipe-root', type=Path, required=True)

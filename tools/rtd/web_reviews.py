@@ -13,6 +13,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import re
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -84,7 +85,7 @@ def count_of(value: object) -> int:
         return 0
 
 
-def read_reviews(run, base_token: str, table_id: str) -> list[dict[str, Any]]:
+def read_reviews(run: Callable[..., Any], base_token: str, table_id: str) -> list[dict[str, Any]]:
     """Every 审核稿 row with a model, sorted by model, market and language; read-only."""
     header, records = complete_rows(run, base_token, table_id)
     missing = [name for name in FIELDS.values() if name not in header]

@@ -18,7 +18,7 @@ from tools.component_specs.theme import load_manual_theme, theme_sha256
 from tools.web.frozen_ai_document import ordered_pages
 from tools.web.frozen_ai_source import FrozenBook
 from tools.web.frozen_web_component_coverage import require_frozen_component_coverage
-from tools.manual_ir import V2_SCHEMA_VERSION, build_manual_ir_from_source, read_manual_ir, write_manual_ir
+from tools.manual_ir import ManualIR, V2_SCHEMA_VERSION, build_manual_ir_from_source, read_manual_ir, write_manual_ir
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.document import validate_document
 from tools.manual_ir.hashing import file_sha256, value_sha256
@@ -85,7 +85,7 @@ def replay_package(package: Path) -> tuple[str, ...]:
     return fragments
 
 
-def build_book(source_root: Path, output: Path, language: str):
+def build_book(source_root: Path, output: Path, language: str) -> ManualIR:
     if output.exists():
         raise ValueError(f"output already exists; use a new candidate directory: {output}")
     if output.resolve().is_relative_to(source_root.resolve()):
@@ -95,7 +95,7 @@ def build_book(source_root: Path, output: Path, language: str):
     return assemble_book(book, title, pages)
 
 
-def assemble_book(book, title, pages):
+def assemble_book(book: FrozenBook, title: str, pages: tuple) -> ManualIR:
     """Assemble either positioned intake through the same frozen Web pipeline."""
     output, language = book.output, book.language
     registry = load_component_registry()
@@ -165,7 +165,7 @@ def assemble_book(book, title, pages):
     return ir
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)

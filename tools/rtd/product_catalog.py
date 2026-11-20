@@ -39,7 +39,7 @@ import os
 import re
 import subprocess
 import sys
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from pathlib import Path
 from typing import Any
 
@@ -150,7 +150,7 @@ def catalog_from_rows(fields: Iterable[object], rows: Iterable[tuple[str, dict[s
     """The snapshot from the 项目号 table's field schema and the 网页文档 rows, and the rows it skipped."""
     category_order, series_order = field_options(fields, CATEGORY_FIELD), field_options(fields, SERIES_FIELD)
     tier_order = field_options(fields, CAPACITY_FIELD)
-    models: dict[str, dict[str, str]] = {}
+    models: dict[str, dict[str, Any]] = {}
     own: set[str] = set()
     shared: dict[str, dict[str, Any]] = {}
     guides: dict[str, dict[str, Any]] = {}
@@ -335,7 +335,7 @@ def _field_items(payload: object) -> list[object]:
     return items
 
 
-def project_table_id(run, base_token: str) -> str:
+def project_table_id(run: Callable[..., Any], base_token: str) -> str:
     """The id of the Base's 项目号 table, found by its name."""
     payload = run(["base", "+table-list", "--base-token", base_token, "--format", "json"])
     data = payload.get("data") if isinstance(payload, dict) else None
@@ -347,7 +347,7 @@ def project_table_id(run, base_token: str) -> str:
     return found[0]
 
 
-def export_catalog(*, run, base_token: str, table_id: str, today: dt.date,
+def export_catalog(*, run: Callable[..., Any], base_token: str, table_id: str, today: dt.date,
                    project_table: str = "") -> tuple[dict[str, Any], list[str]]:
     """Read the 项目号 table's field schema and every 网页文档 row (read-only) and build the snapshot."""
     from tools.workspace_snapshot import complete_rows

@@ -9,6 +9,7 @@ import shutil
 import tempfile
 from dataclasses import fields, replace
 from pathlib import Path
+from typing import Any
 
 from tools.gen_index_bundle import MaterializedBundle, read_included_page_paths
 from tools.gen_index_bundle_plan import build_wrapper_index_text
@@ -126,9 +127,10 @@ def split_web_bundle(
     Only generated derivatives are written. Assets were already frozen by the
     shared bundle materializer and retain their bundle-relative paths.
     """
-    language = canonical_language(language)
-    if not language or language not in bundle.languages:
-        raise ValueError(f"Language is outside the frozen bundle: {language!r}")
+    resolved = canonical_language(language)
+    if not resolved or resolved not in bundle.languages:
+        raise ValueError(f"Language is outside the frozen bundle: {resolved!r}")
+    language = resolved
     source = bundle.bundle_dir.resolve(strict=True)
     destination = destination.resolve()
     if destination.exists() or destination.is_relative_to(source):
@@ -154,11 +156,11 @@ def split_web_bundle(
         source_hashes.append({"path": relative.as_posix(), "sha256": hashlib.sha256(raw).hexdigest()})
         if path.name in mixed:
             available = set(marker_languages(text))
-            if mixed[path.name]:
-                available.add(canonical_language(mixed[path.name]))
+            owner = canonical_language(mixed[path.name]) if mixed[path.name] else None
+            if owner:
+                available.add(owner)
             if language not in available:
                 raise ValueError(f"Mixed page has no declared block for {language}: {path}")
-            owner = canonical_language(mixed[path.name]) if mixed[path.name] else None
             if owner and owner != language and owner not in marker_languages(text):
                 # Make the implicit foreign leading block visible to the shared
                 # trimmer, which otherwise returns early on in-scope markers.
@@ -217,7 +219,7 @@ def split_web_bundle(
     }
     manifest = destination / "bundle_manifest.json"
     manifest.write_text(json.dumps(projection, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    changes = {}
+    changes: dict[str, Any] = {}
     for field in fields(bundle):
         value = getattr(bundle, field.name)
         if isinstance(value, Path) and value.resolve().is_relative_to(source):
@@ -289,7 +291,7 @@ def materialize_web_language_projection(
                 ) from rollback_error
             raise original_error
 
-        changes = {}
+        changes: dict[str, Any] = {}
         for field in fields(projected):
             value = getattr(projected, field.name)
             if isinstance(value, tuple) and value and all(

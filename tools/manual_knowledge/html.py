@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+from typing import Any
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
 
@@ -38,12 +39,13 @@ def _clean(main: Tag) -> None:
 
 
 def _list_block(node: Tag) -> dict:
-    items = []
+    items: list[dict[str, Any]] = []
     ordered = node.name == "ol"
     reversed_order = node.has_attr("reversed")
     start = str(node.get("start", len(node.find_all("li", recursive=False)) if reversed_order else 1))
     for number, item in list_entries(node):
         copy = BeautifulSoup(str(item), "html.parser").li
+        assert copy is not None
         nested = [_list_block(child) for child in item.find_all(["ol", "ul"])
                   if child.find_parent(["ol", "ul"]) is node]
         for child in copy.find_all(["ol", "ul"]):
@@ -87,7 +89,7 @@ class _Sections:
         self.url = url
         self.heading_level = heading_level
         self.sections: list[dict] = []
-        self.current = {"title": "Manual introduction", "anchor": "", "blocks": []}
+        self.current: dict[str, Any] = {"title": "Manual introduction", "anchor": "", "blocks": []}
 
     def flush(self) -> None:
         if self.current["blocks"]:

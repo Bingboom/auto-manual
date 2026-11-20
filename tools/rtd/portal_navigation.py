@@ -46,8 +46,10 @@ def _styles(settings: dict) -> dict[str, dict[str, str]]:
 
 
 def _category(cid: str, title: str, icon: str, series: list[tuple[str, list[dict]]]) -> dict:
-    groups = [{"id": f"{cid}-{index}", "title": line, "products": sorted(members, key=_model_key)}
-              for index, (line, members) in enumerate(series, 1) if members]
+    groups: list[dict[str, object]] = [
+        {"id": f"{cid}-{index}", "title": line, "products": sorted(members, key=_model_key)}
+        for index, (line, members) in enumerate(series, 1) if members
+    ]
     return {"id": cid, "title": title, "icon": icon, "series": groups,
             "models": len({product["model"] for _, members in series for product in members})}
 

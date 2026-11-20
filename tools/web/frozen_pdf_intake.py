@@ -10,10 +10,12 @@ from __future__ import annotations
 
 from itertools import pairwise
 from collections import defaultdict
+from collections.abc import Sequence
 import hashlib
 import json
 from pathlib import Path
 import re
+from typing import Any
 
 import fitz
 
@@ -31,15 +33,15 @@ _FAULT_EDGES = [265.944, 277.913, 289.883, 301.852, 313.275, 325.790,
                 337.760, 399.793, 438.462, 453.613, 473.349]
 
 
-def _clean(text):
+def _clean(text: str) -> str:
     return " ".join(text.split())
 
 
-def _digest(text):
+def _digest(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def read_recipe_json(root, relative, manifest=None):
+def read_recipe_json(root: str | Path, relative: str, manifest: dict[str, Any] | None = None) -> dict[str, Any]:
     """Read only a manifest-pinned recipe; historical artwork is never opened."""
     root = Path(root).resolve()
     if manifest is None:
@@ -54,11 +56,11 @@ def read_recipe_json(root, relative, manifest=None):
     return json.loads(raw.decode("utf-8"))
 
 
-def _read(root, name, manifest):
+def _read(root: str | Path, name: str, manifest: dict[str, Any]) -> dict[str, Any]:
     return read_recipe_json(root, f"source/{name}.json", manifest)
 
 
-def _page_record(page):
+def _page_record(page: fitz.Page) -> dict[str, Any]:
     text = page.get_text()
     return {
         "physical_page": page.number + 1,
@@ -73,13 +75,13 @@ def _page_record(page):
 
 
 class _PDFReader:
-    def __init__(self, document):
+    def __init__(self, document: fitz.Document) -> None:
         self.document = document
-        self.spans = []
-        self.unresolved = []
-        self.line_cache = {}
+        self.spans: list[dict[str, Any]] = []
+        self.unresolved: list[dict[str, Any]] = []
+        self.line_cache: dict[int, list[dict[str, Any]]] = {}
 
-    def _record(self, raw, page, bbox, field, **extra):
+    def _record(self, raw: str, page: int, bbox: Sequence[float], field: str, **extra: Any) -> str:
         self.spans.append({"field": field, "physical_page": page,
                            "bbox": list(bbox), "raw_text_sha256": _digest(raw), **extra})
         if "\ufffd" in raw:
@@ -87,7 +89,7 @@ class _PDFReader:
                                     "bbox": list(bbox), "replacement_character_count": raw.count("\ufffd")})
         return raw
 
-    def box(self, page, bbox, field):
+    def box(self, page: int, bbox: Sequence[float], field: str) -> str:
         if not isinstance(page, int) or not 1 <= page <= len(self.document):
             raise ValueError(f"{field}: physical page is outside PDF")
         rectangle = fitz.Rect(bbox)
@@ -98,7 +100,7 @@ class _PDFReader:
             raise ValueError(f"{field}: PDF text rectangle is empty")
         return self._record(raw, page, bbox, field)
 
-    def lines(self, page, bbox, field):
+    def lines(self, page: int, bbox: Sequence[float], field: str) -> str:
         """Select full PDF lines by majority overlap, then read in visual order.
 
         App recipe rectangles slightly overlap adjacent headings. Whole-block
@@ -118,7 +120,7 @@ class _PDFReader:
         return self._record(raw, page, bbox, field, selection="pdf-line-majority-overlap",
                             source_bboxes=[list(line["bbox"]) for line in selected])
 
-    def positioned(self, recipe, *, page=None, field="record"):
+    def positioned(self, recipe: Any, *, page: int | None = None, field: str = "record") -> Any:
         """Retain geometry/structure only; reread every leaf from the open PDF."""
         if isinstance(recipe, list):
             return [self.positioned(value, page=page, field=f"{field}/{i}")
@@ -128,6 +130,8 @@ class _PDFReader:
         page = recipe.get("physical_page", page)
         result = {key: value for key, value in recipe.items() if key in _GEOMETRY_KEYS}
         if "bbox" in recipe and ("text" in recipe or "raw_text" in recipe):
+            if not isinstance(page, int):
+                raise ValueError(f"{field}: physical page is outside PDF")
             extract = self.lines if recipe.get("selection") == "lines" or field.startswith("app_sections/") else self.box
             raw = extract(page, recipe["bbox"], field)
             return {**result, "physical_page": page, "raw_text": raw, "text": _clean(raw)}
@@ -144,7 +148,9 @@ class _PDFReader:
         return result
 
 
-def _chapter_titles(document, sections, layout=None):
+def _chapter_titles(
+    document: fitz.Document, sections: list[dict[str, Any]], layout: dict[str, Any] | None = None
+) -> list[dict[str, Any]]:
     by_page = defaultdict(list)
     for section in sections:
         by_page[section["physical_pages"][0]].append(section["id"])
@@ -177,7 +183,7 @@ def _chapter_titles(document, sections, layout=None):
     return [headings[section["id"]] for section in sections]
 
 
-def _specifications(reader, number, layout=None):
+def _specifications(reader: _PDFReader, number: int, layout: dict[str, Any] | None = None) -> dict[str, Any]:
     groups = {}
     layout = layout or {}
     if "cells" in layout:
@@ -204,7 +210,7 @@ def _specifications(reader, number, layout=None):
             "value_breaks": layout.get("value_breaks", [])}
 
 
-def _faults(reader, number, layout=None):
+def _faults(reader: _PDFReader, number: int, layout: dict[str, Any] | None = None) -> dict[str, Any]:
     # Fixed ruled-cell geometry, verified across all four source pages. Avoid
     # find_tables: that helper internally rasterizes the page in some versions.
     rows = []
@@ -230,7 +236,9 @@ def _faults(reader, number, layout=None):
     return {"physical_page": number, "rows": rows}
 
 
-def _symbols(reader, recipe, language, layout=None):
+def _symbols(
+    reader: _PDFReader, recipe: dict[str, Any], language: str, layout: dict[str, Any] | None = None
+) -> dict[str, Any]:
     number = recipe["physical_page"]
     shift = -10 if language == "nl" and layout is None else 0
     rows = []
@@ -254,7 +262,7 @@ def _symbols(reader, recipe, language, layout=None):
             "pictogram_page": recipe["pictogram_page"], "pictograms": pictograms}
 
 
-def _lcd(reader, recipe):
+def _lcd(reader: _PDFReader, recipe: dict[str, Any]) -> dict[str, Any]:
     rows = []
     for index, row in enumerate(recipe["rows"]):
         item = {key: row[key] for key in ("number", "physical_page", "label_bbox", "meaning_bbox")}
@@ -266,7 +274,13 @@ def _lcd(reader, recipe):
     return {"pages": list(recipe["pages"]), "rows": rows}
 
 
-def _front_back(reader, recipe, language, pdf_hash, candidate=None):
+def _front_back(
+    reader: _PDFReader,
+    recipe: dict[str, Any],
+    language: str,
+    pdf_hash: str,
+    candidate: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     locale = recipe["locales"][language]
     preface = locale["preface"]
     if preface.get("status") == "missing-in-source":
@@ -291,19 +305,21 @@ def _front_back(reader, recipe, language, pdf_hash, candidate=None):
     }
 
 
-def _media_records(reader, layout, sections):
+def _media_records(
+    reader: _PDFReader, layout: dict[str, Any], sections: list[dict[str, Any]]
+) -> dict[str, Any]:
     """Read target media labels from the same native PDF as body copy."""
     media = layout.get("media", {})
     if not media:
         return {}
     pages = {section["id"]: section["physical_pages"][0] for section in sections}
-    result = {}
+    result: dict[str, Any] = {}
     for section, key in (("in_the_box", "inbox"), ("product_overview", "overview")):
         recipe = media.get(key)
         if not recipe:
             continue
         number = pages[section]
-        record = {"physical_page": number,
+        record: dict[str, Any] = {"physical_page": number,
                   "title": _clean(reader.box(number, recipe["title_bbox"], f"media/{key}/title"))}
         if key == "inbox":
             record["cards"] = [{"id": card["id"], "label": _clean(reader.box(
@@ -314,7 +330,7 @@ def _media_records(reader, layout, sections):
         else:
             record["views"] = {}
             for view_id, view in recipe["views"].items():
-                item = {"caption": _clean(reader.box(number, view["caption_bbox"],
+                item: dict[str, Any] = {"caption": _clean(reader.box(number, view["caption_bbox"],
                         f"media/overview/{view_id}/caption")), "callouts": {}}
                 for callout_id, callout in view["callouts"].items():
                     extract = reader.lines if callout.get("selection") == "lines" else reader.box
@@ -329,29 +345,37 @@ def _media_records(reader, layout, sections):
     for panel in media.get("operation_panels", []):
         number = panel.get("physical_page", pages["operations"] + panel.get("page_offset", 0))
         copy = panel["copy"]
-        def field(name, bbox, selection=None, *, copy=copy, number=number, panel_id=panel["id"]):
+        def field(
+            name: str,
+            bbox: Sequence[float],
+            selection: str | None = None,
+            *,
+            copy: dict[str, Any] = copy,
+            number: int = number,
+            panel_id: str = panel["id"],
+        ) -> str:
             selection = copy.get("selection") if selection is None else selection
             extract = reader.lines if selection == "lines" else reader.box
             return _clean(extract(number, bbox, f"media/operations/{panel_id}/{name}"))
-        record = {"physical_page": number, "prerequisite": "", "supporting_copy": [],
+        panel_record: dict[str, Any] = {"physical_page": number, "prerequisite": "", "supporting_copy": [],
                   "mode_label": "", "sos_label": "", "steps": []}
         if "prerequisite_bbox" in copy:
-            record["prerequisite"] = field("prerequisite", copy["prerequisite_bbox"])
+            panel_record["prerequisite"] = field("prerequisite", copy["prerequisite_bbox"])
         for index, bbox in enumerate(copy.get("supporting_copy_bboxes", [])):
-            record["supporting_copy"].append(field(f"supporting/{index}", bbox))
+            panel_record["supporting_copy"].append(field(f"supporting/{index}", bbox))
         for name in ("mode_label", "sos_label"):
             if f"{name}_bbox" in copy:
-                record[name] = field(name, copy[f"{name}_bbox"])
+                panel_record[name] = field(name, copy[f"{name}_bbox"])
         for step in copy["steps"]:
             parts = [{"role": part["role"], "text": field(
                 f"steps/{step['id']}/{index}", part["bbox"], part.get("selection"))}
                      for index, part in enumerate(step["parts"])]
-            record["steps"].append({"id": step["id"], "parts": parts})
-        result["operation_panels"][panel["id"]] = record
+            panel_record["steps"].append({"id": step["id"], "parts": parts})
+        result["operation_panels"][panel["id"]] = panel_record
     return result
 
 
-def _target_layout(recipe_root, manifest, language):
+def _target_layout(recipe_root: Path, manifest: dict[str, Any], language: str) -> dict[str, Any] | None:
     path = "source/target_layout.json"
     if not any(entry["path"] == path for entry in manifest["inputs"]):
         return None
@@ -363,7 +387,7 @@ def _target_layout(recipe_root, manifest, language):
     return {**layout, **layout.get("locales", {}).get(language, {})}
 
 
-def _reference_captions(reader, figures):
+def _reference_captions(reader: _PDFReader, figures: list[dict[str, Any]]) -> dict[str, Any]:
     captions = {}
     for figure in figures:
         slug = figure["slug"]
@@ -383,9 +407,11 @@ def _reference_captions(reader, figures):
     return captions
 
 
-def _target_safety(reader, safety, sections):
+def _target_safety(
+    reader: _PDFReader, safety: dict[str, Any], sections: list[dict[str, Any]]
+) -> dict[str, Any]:
     number = sections[0]["physical_pages"][0]
-    record = {name: _clean(reader.box(number, safety[f"{name}_bbox"], f"safety/{name}"))
+    record: dict[str, Any] = {name: _clean(reader.box(number, safety[f"{name}_bbox"], f"safety/{name}"))
               for name in ("warning", "lead", "intro", "precautions",
                            "maintenance_heading", "maintenance_body")}
     record["precautions"] = [value.strip() for value in record["precautions"].split("•")[1:]]
@@ -394,8 +420,10 @@ def _target_safety(reader, safety, sections):
     return record
 
 
-def _target_records(reader, layout, sections):
-    records = {"media": _media_records(reader, layout, sections)}
+def _target_records(
+    reader: _PDFReader, layout: dict[str, Any], sections: list[dict[str, Any]]
+) -> dict[str, Any]:
+    records: dict[str, Any] = {"media": _media_records(reader, layout, sections)}
     controls = layout.get("app", {}).get("control_labels")
     if controls:
         records["app_control_labels"] = {"rows": [{
@@ -418,7 +446,9 @@ def _target_records(reader, layout, sections):
     return records
 
 
-def _target_table_headers(reader, layout, source, records):
+def _target_table_headers(
+    reader: _PDFReader, layout: dict[str, Any], source: dict[str, Any], records: dict[str, Any]
+) -> dict[str, list[str]]:
     headers = {}
     for kind, boxes in layout.get("table_headers", {}).items():
         number = (records["symbols"]["physical_page"] if kind == "symbols" else
@@ -428,7 +458,9 @@ def _target_table_headers(reader, layout, source, records):
     return headers
 
 
-def _preface_candidate(recipe_root, manifest, layout, language):
+def _preface_candidate(
+    recipe_root: Path, manifest: dict[str, Any], layout: dict[str, Any] | None, language: str
+) -> dict[str, Any] | None:
     binding = (layout or {}).get("preface_candidate")
     if not binding:
         return None
@@ -455,7 +487,7 @@ def _preface_candidate(recipe_root, manifest, layout, language):
     return {"status": status, "approval": approval, "content": candidate}
 
 
-def _warranty_years(records):
+def _warranty_years(records: dict[str, Any]) -> None:
     for prefix in ("standard", "extension"):
         raw = records["warranty_columns"]["blocks"][f"{prefix}_heading"]["raw_text"]
         numbers = re.findall(r"^\s*(\d+)\s*$", raw, flags=re.MULTILINE)
@@ -464,7 +496,7 @@ def _warranty_years(records):
         records["warranty_columns"][f"{prefix}_years"] = int(numbers[0])
 
 
-def _verify_sibling_ai(pdf_path, original, provenance):
+def _verify_sibling_ai(pdf_path: Path, original: dict[str, Any], provenance: dict[str, Any]) -> None:
     ai_path = pdf_path.parent / original["filename"]
     if not ai_path.is_file():
         return

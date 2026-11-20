@@ -119,8 +119,10 @@ def capability_map(data: dict[str, Any], cards: list[dict[str, Any]]) -> dict[st
     production = [by_id[card_id] for card_id in data["production"] if card_id in by_id]
     if set(by_id) != regrouped | {card["id"] for card in production} or regrouped & set(data["production"]):
         raise LayerDataError(f"{DATA_NAME}: every capability card must be regrouped or kept whole, not both")
-    layers = {layer: {"entries": entries, "counts": status_counts(entries) if entries else [], "anchors": []}
-              for layer, entries in placed.items()}
+    layers: dict[str, dict[str, Any]] = {
+        layer: {"entries": entries, "counts": status_counts(entries) if entries else [], "anchors": []}
+        for layer, entries in placed.items()
+    }
     for card_id in sorted(regrouped):  # an old card id anchors on the layer that holds most of its items
         held = [sum(entry["card"] == card_id for entry in placed[layer]) for layer in LAYER_IDS]
         layers[LAYER_IDS[held.index(max(held))]]["anchors"].append(card_id)

@@ -23,6 +23,7 @@ import json
 from pathlib import Path
 import re
 import sys
+from typing import Any
 import unicodedata
 
 from tools.check.docs_capability import CAPABILITIES_CSV, load_capabilities
@@ -94,7 +95,7 @@ def _assign_ids(items: list[dict]) -> None:
 
 def build_items(corpus: dict, features: dict[str, dict[str, bool]]) -> list[dict]:
     """Knowledge Items in corpus order, each with its content-addressed ``knowledge_id``."""
-    items = []
+    items: list[dict[str, Any]] = []
     for document in corpus["documents"]:
         context = _context(document, features)
         for section in document["sections"]:

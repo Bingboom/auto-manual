@@ -92,7 +92,7 @@ def load_topics(knowledge_root: Path) -> dict | None:
     return _load(knowledge_root, TOPICS)
 
 
-def _text(value) -> bool:
+def _text(value: object) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
@@ -130,7 +130,8 @@ def _validate_case(case: dict, ids: set[str], static: Path) -> None:
 
 def _cases(knowledge_root: Path, static: Path, products: list[dict]) -> list[dict]:
     """The worked product cases; a case shows only while the catalog holds the manual it quotes."""
-    cases, ids = [], set()
+    cases = []
+    ids: set[str] = set()
     for case in (_load(knowledge_root, CASES) or {"cases": []})["cases"]:
         _validate_case(case, ids, static)
         reference = next((ref for ref in _references(products, {case["model"]}) if ref["region"] == case["region"]),

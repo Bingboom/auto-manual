@@ -11,6 +11,7 @@ import json
 import re
 from pathlib import Path
 import shutil
+from typing import Any
 
 from tools.component_specs.overview_instance import (
     overview_instance_sha256, resolve_overview_instance, validate_resolved_overview_instance,
@@ -29,7 +30,7 @@ from tools.web.presentation import load_web_manual_contract
 _REFERENCE_IDS = {'ups_connection', 'ac_wall_charging', 'solar_single', 'solar_four', 'car_charging'}
 
 
-def _repair_label_wrapping(data, language):
+def _repair_label_wrapping(data: dict[str, Any], language: str) -> None:
     # Exact native extraction whitespace only. These are formatting repairs,
     # distinct from approved edits to the author's wording.
     fixes = {
@@ -69,7 +70,9 @@ def _overview_binding(bindings: dict, target: dict) -> dict:
     return instance
 
 
-def _recover_source_data(book, data, pdf_path, original, language):
+def _recover_source_data(
+    book: PdfBook, data: dict[str, Any], pdf_path: Path, original: dict[str, Any], language: str
+) -> dict[str, Any]:
     ai = pdf_path.parent / original['original_source']['filename']
     if not book.target_layout:
         return recover_pdf_glyphs(data, ai)
@@ -84,7 +87,9 @@ def _recover_source_data(book, data, pdf_path, original, language):
     return data
 
 
-def _bind_source_figures(book, bindings, language, reference_ids):
+def _bind_source_figures(
+    book: PdfBook, bindings: dict[str, Any], language: str, reference_ids: set[str]
+) -> dict[str, dict[str, Any]]:
     recipes = book.read(f'source/{language}_figure_manifest.json')['figures']
     selected = bindings.get('figures', [])
     reference_bindings = {figure['slug']: figure for figure in selected}
@@ -99,7 +104,7 @@ def _bind_source_figures(book, bindings, language, reference_ids):
     return reference_bindings
 
 
-def _required_asset_keys(book, bindings):
+def _required_asset_keys(book: PdfBook, bindings: dict[str, Any]) -> set[str]:
     media_keys = book.target_layout.get('media_asset_keys', MEDIA_ASSET_KEYS)
     lcd_rows = book.target_layout.get('lcd_rows')
     lcd_keys = ([f"lcd.icon.{row['icon_id']}" for row in lcd_rows] if lcd_rows else
@@ -109,7 +114,7 @@ def _required_asset_keys(book, bindings):
             *(figure['asset_key'] for figure in bindings.get('figures', []))}
 
 
-def _allowed_asset_modes(layout):
+def _allowed_asset_modes(layout: dict[str, Any]) -> set[str]:
     modes = {'textless', 'fixed-product-markings', 'app-ui'}
     if layout.get('allow_source_finished_panels'):
         modes.add('source-finished-panel')
@@ -136,8 +141,12 @@ class PdfBook(FrozenBook):
         data = _recover_source_data(self, data, pdf_path, original, language)
         data = apply_native_errata(data, self.errata, language, text_source['sha256'])
         _repair_label_wrapping(data, language)
-        for key in ('source', 'index', 'locale', 'records', 'front_back', 'provenance'):
-            setattr(self, key, data[key])
+        self.source = data['source']
+        self.index = data['index']
+        self.locale = data['locale']
+        self.records = data['records']
+        self.front_back = data['front_back']
+        self.provenance = data['provenance']
         if bindings['target'] != {key: self.target[key] for key in ('model', 'region')}:
             raise ValueError('artwork target disagrees with PDF')
         version = bindings.get('technical_version', '')
@@ -192,25 +201,25 @@ class PdfBook(FrozenBook):
             'artwork_manifest_sha256': file_sha256(assets_manifest),
         }
 
-    def read(self, path):
+    def read(self, path: str) -> dict[str, Any]:
         if path == 'source_manifest.json':
             return super().read(path)
         return read_recipe_json(self.source_root, path)
 
-    def media_section(self, section):
+    def media_section(self, section: str) -> list[dict[str, Any]] | None:
         if (section == 'product_overview' and
                 self.target_layout.get('media', {}).get('overview', {}).get('presentation') == 'reference-figures'):
             return []
         return media_section(self, section, self.assets)
 
-    def operation_panels(self):
+    def operation_panels(self) -> list[dict[str, Any]]:
         return operation_panels(self, self.assets)
 
-    def consumed_media_regions(self):
+    def consumed_media_regions(self) -> list[dict[str, Any]]:
         from tools.web.frozen_pdf_reference import reference_label_regions
         return [*consumed_media_regions(self), *reference_label_regions(self.figures)]
 
-    def figure(self, figure):
+    def figure(self, figure: dict[str, Any]) -> dict[str, Any]:
         # A local source panel is not an approved composite. Its embedded
         # captions retain native semantic copy without a duplicate visible row.
         from tools.web.frozen_pdf_app import artwork_node
@@ -242,7 +251,7 @@ class PdfBook(FrozenBook):
                             f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}",
                             accessibility_label=accessibility_label, semantic_copy=semantic_copy)
 
-    def special(self, section):
+    def special(self, section: str) -> list[dict[str, Any]]:
         if section == 'safety':
             from tools.web.frozen_pdf_frontmatter import positioned_safety_flow, safety_flow
             return positioned_safety_flow(self) if 'safety' in self.records else safety_flow(self)

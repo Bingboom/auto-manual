@@ -95,14 +95,16 @@ def _folder_members(root: Path, folder: str) -> list[tuple[str, str | None, str 
 
 
 def _file_members(root: Path, files: list) -> list[tuple[str, str | None, str | None]]:
-    members = []
+    members: list[tuple[str, str | None, str | None]] = []
     for entry in files:
         entry = entry if isinstance(entry, dict) else {"file": entry}
-        match = _REF.fullmatch(str(entry["file"]))
+        file_ref = str(entry["file"])
+        match = _REF.fullmatch(file_ref)
         if match is None or match.group(2).rsplit(".", 1)[-1].lower() not in {"svg", "png"}:
             raise DesignSystemError(f"asset {entry['file']}: needs <group>/<file>.svg|png")
         asset_source(root, *match.groups())
-        members.append((entry["file"], None, entry.get("ground")))
+        ground = entry.get("ground")
+        members.append((file_ref, None, str(ground) if ground is not None else None))
     return members
 
 
@@ -225,7 +227,9 @@ def asset_gallery(content: dict, root: Path, used_assets: dict[str, Path]) -> di
     """
     section = content["assets"]
     notes = section.get("notes", {})
-    groups, seen, matched = [], set(), set()
+    groups: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    matched: set[str] = set()
     for group in section["groups"]:
         if not _ID.fullmatch(str(group["id"])) or group["id"] in seen:
             raise DesignSystemError(f"asset group {group['id']}: needs a unique id")

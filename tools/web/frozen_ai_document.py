@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+from typing import Any
 
 from tools.web.frozen_ai_flow import heading, node, paragraph, prose, root, squash, text
 from tools.web.frozen_ai_source import FrozenBook, _key
@@ -12,7 +13,7 @@ from tools.manual_ir.hashing import value_sha256
 from tools.manual_ir.source import SourcePage
 
 
-def _page(book, identity, nodes):
+def _page(book: FrozenBook, identity: str, nodes: list[dict[str, Any]]) -> SourcePage:
     return SourcePage(
         page_id=identity, source_ref=f"{book.language}/{identity}",
         source_path=f"frozen-source/{book.language}/{identity}.json",
@@ -22,7 +23,7 @@ def _page(book, identity, nodes):
     )
 
 
-def _introduction(book):
+def _introduction(book: FrozenBook) -> tuple[str, list[dict[str, Any]]]:
     preface = book.front_back["locales"][book.language]["preface"]["text"]
     preface = re.sub(r"^(?:UA|PT|NL|PL)\s*\n", "", preface)
     preface = re.sub(r"\nВАЖЛИВО\s*$", "", preface)
@@ -89,10 +90,11 @@ def ordered_pages(book: FrozenBook) -> tuple[str, tuple[SourcePage, ...]]:
     pages = [_page(book, "introduction", intro)]
     starts, sections = book.starts(), []
     chapter, body = -1, []
-    figures_seen, operations_seen = set(), set()
+    figures_seen: set[str] = set()
+    operations_seen: set[str] = set()
     pictograms_seen = False
 
-    def emit_figure(figure):
+    def emit_figure(figure: dict[str, Any]) -> None:
         if figure["slug"] in figures_seen:
             raise ValueError(f"duplicate source figure: {figure['slug']}")
         body.append(book.figure(figure))

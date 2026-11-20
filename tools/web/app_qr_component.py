@@ -1,10 +1,13 @@
 """Web projection of the shared App QR-only download variant."""
+from __future__ import annotations
+
 from bs4 import BeautifulSoup
 
 from tools.component_specs.app_adapters import web_app_projection
+from tools.component_specs.model import ComponentSpec
 
 
-def render_qr_download(spec, carrier_html):
+def render_qr_download(spec: ComponentSpec, carrier_html: str) -> str:
     payload = web_app_projection(spec)
     soup = BeautifulSoup(carrier_html, "html.parser")
     images, paragraphs = soup.find_all("img"), soup.find_all("p")

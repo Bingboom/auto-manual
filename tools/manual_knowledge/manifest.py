@@ -26,6 +26,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+from typing import Any
 
 from tools.manual_knowledge.identity import GENERATOR_VERSION
 from tools.utils.path_utils import PathSegments, repo_root
@@ -37,7 +38,7 @@ KNOWN_CALLOUT_LABELS_CSV = "machine_surface_known_callout_labels.csv"
 LABEL_DISPOSITIONS = ("icon_only", "source_defect", "pending_style_guide")
 
 
-def canonical(value) -> bytes:
+def canonical(value: Any) -> bytes:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
 
 

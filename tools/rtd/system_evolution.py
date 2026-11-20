@@ -143,7 +143,7 @@ def _architecture(data: object, repositories: dict[str, str]) -> dict | None:
         return None
     if not isinstance(data, dict):
         raise EvolutionError("architecture must be a mapping")
-    view = {key: _text(data, key) for key in
+    view: dict[str, Any] = {key: _text(data, key) for key in
             ("title", "intro", "adapter_note", "artwork_note")}
     identifiers = []
     by_id = {}

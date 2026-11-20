@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Fail-closed ratchet for untyped-def mypy errors in the CQ-4.5 packages.
+"""Fail-closed ratchet for untyped-def mypy errors in strictly checked packages.
 
-Plan item CQ-4.5 moves ``tools/manual_ir``, ``tools/component_specs`` and
-``tools/csv_pages`` toward a strict mypy override.  Until each package reaches
+Plan item CQ-4.5 moved ``tools/manual_ir``, ``tools/component_specs`` and
+``tools/csv_pages`` to zero errors, and Web-first expansion enrolled
+``tools/corpus``, ``tools/product_matrix_base``, ``tools/manual_knowledge``,
+``tools/rtd`` and ``tools/web``.  Until each package reaches
 zero, this check runs ``mypy --disallow-untyped-defs`` over them and keeps the
 error count from growing, per source file, with the same rules as the other
 ratchets:
@@ -43,7 +45,16 @@ _ERR = get_logger("mypy-ratchet", stream="stderr")
 
 REPO_ROOT = _REPO_ROOT
 DEFAULT_BASELINE = REPO_ROOT / "data" / "mypy_untyped_baseline.tsv"
-PACKAGES = ("tools/manual_ir", "tools/component_specs", "tools/csv_pages")
+PACKAGES = (
+    "tools/manual_ir",
+    "tools/component_specs",
+    "tools/csv_pages",
+    "tools/corpus",
+    "tools/product_matrix_base",
+    "tools/manual_knowledge",
+    "tools/rtd",
+    "tools/web",
+)
 MYPY_VERSION = "2.3.1"
 _ERROR_LINE = re.compile(r"^(?P<path>[^:\s][^:]*\.pyi?):(?P<line>\d+):(?:\d+:)? error:")
 
@@ -107,8 +118,8 @@ def source_paths(repo_root: Path) -> Iterable[str]:
 
 def write_baseline(path: Path, counts: Iterable[FileCount]) -> Path:
     header = (
-        "# Per-file count of `mypy --disallow-untyped-defs` errors in tools/manual_ir,\n"
-        f"# tools/component_specs and tools/csv_pages (mypy {MYPY_VERSION}). No file may grow,\n"
+        "# Per-file count of `mypy --disallow-untyped-defs` errors across the enrolled\n"
+        f"# packages in tools/check_mypy_ratchet.py (mypy {MYPY_VERSION}). No file may grow,\n"
         "# unlisted files may not add one, and a lower count must be written back.\n"
         "# Regenerate intentionally with:\n"
         "#   python tools/check_mypy_ratchet.py update\n"

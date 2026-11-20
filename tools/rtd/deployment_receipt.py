@@ -12,6 +12,7 @@ from pathlib import Path
 import re
 from ssl import SSLEOFError
 from time import monotonic, sleep
+from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import unquote, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -74,7 +75,7 @@ class DeploymentThrottled(Exception):
         self.retry_after = retry_after
 
 
-def retry_after_seconds(headers) -> float | None:
+def retry_after_seconds(headers: Any) -> float | None:
     """Parse a Retry-After header (delta-seconds or HTTP-date), capped."""
     value = getattr(headers, "get", lambda _name: None)("Retry-After")
     if not isinstance(value, str) or not value.strip():
@@ -206,7 +207,7 @@ def _inventory(root: Path, *, max_total_bytes: int | None = None,
                max_files: int | None = None) -> dict[str, str]:
     total_limit = MAX_TOTAL_BYTES if max_total_bytes is None else max_total_bytes
     file_limit = MAX_FILES if max_files is None else max_files
-    result = {}
+    result: dict[str, str] = {}
     total = 0
     for path in sorted(root.rglob("*")):
         relative = path.relative_to(root)
@@ -237,7 +238,7 @@ def source_fingerprint(web_root: Path) -> str:
     return hashlib.sha256(json.dumps(inventory, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
-def write_deployment_receipt(app, exception) -> None:
+def write_deployment_receipt(app: Any, exception: Exception | None) -> None:
     """Sphinx build-finished callback; unrelated/non-HTML builds are untouched."""
     source = Path(app.srcdir)
     if (exception is not None or getattr(app.builder, "format", None) != "html"
@@ -304,7 +305,9 @@ def _deterministic_failure(exc: Exception) -> bool:
 
 
 class _Redirect(HTTPRedirectHandler):
-    def redirect_request(self, req, fp, code, msg, headers, newurl):
+    def redirect_request(
+        self, req: Request, fp: Any, code: int, msg: str, headers: Any, newurl: str
+    ) -> Request | None:
         # Compare origins before the strict URL checks: a sign-in page's own query must not hide where it is.
         moved = urlsplit(newurl)
         if (moved.scheme, moved.hostname, moved.port or 443) != _origin(_canonical_probe_url(req.full_url)):
@@ -313,7 +316,7 @@ class _Redirect(HTTPRedirectHandler):
         return super().redirect_request(req, fp, code, msg, headers, _probe_url(target))
 
 
-def _read_complete(response, deadline: float) -> bytes:
+def _read_complete(response: Any, deadline: float) -> bytes:
     length = response.headers.get("Content-Length")
     if length is not None:
         if re.fullmatch(r"[0-9]+", length) is None or int(length) > MAX_FILE_BYTES:
@@ -378,32 +381,32 @@ def _fetch(url: str) -> bytes:
 
 
 class _Resources(HTMLParser):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
-        self.urls = []
+        self.urls: list[str] = []
         self.in_style = False
 
-    def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attr_map = dict(attrs)
         if tag == "base":
             raise ValueError("HTML base URL overrides are not permitted")
-        self.urls.extend(_css_urls(attrs.get("style", "")))
+        self.urls.extend(_css_urls(attr_map.get("style") or ""))
         if tag == "style":
             self.in_style = True
         if tag == "object":
-            self.urls.append(attrs.get("data", ""))
+            self.urls.append(attr_map.get("data") or "")
         if tag in {"img", "script", "source", "video", "audio", "iframe", "embed"}:
-            self.urls.extend([attrs.get("src", ""), attrs.get("poster", "")])
-            self.urls.extend(item.strip().split()[0] for item in attrs.get("srcset", "").split(",")
+            self.urls.extend([attr_map.get("src") or "", attr_map.get("poster") or ""])
+            self.urls.extend(item.strip().split()[0] for item in (attr_map.get("srcset") or "").split(",")
                              if item.strip())
-        if tag == "link" and set(attrs.get("rel", "").split()) & {"stylesheet", "icon", "preload"}:
-            self.urls.append(attrs.get("href", ""))
+        if tag == "link" and set((attr_map.get("rel") or "").split()) & {"stylesheet", "icon", "preload"}:
+            self.urls.append(attr_map.get("href") or "")
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag: str) -> None:
         if tag == "style":
             self.in_style = False
 
-    def handle_data(self, data):
+    def handle_data(self, data: str) -> None:
         if self.in_style:
             self.urls.extend(_css_urls(data))
 
@@ -547,7 +550,7 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str],
     if not set(routes).issubset(files):
         raise ValueError("Deployment receipt lacks selected routes")
     selected = set(routes)
-    checked = set()
+    checked: set[str] = set()
     unfetched: set[str] = set()
     proxy_injections = []
     observed_slugs: set[str] = set()

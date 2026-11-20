@@ -143,20 +143,21 @@ def match_row(line: dict, records: list[tuple[str, dict]]) -> tuple[str, dict]:
     return record, row
 
 
-def read_record(run, base_token: str, table_id: str, record: str) -> dict:
+def read_record(run: Callable[..., Any], base_token: str, table_id: str, record: str) -> dict:
     payload = run(["base", "+record-get", "--base-token", base_token, "--table-id", table_id,
                    "--record-id", record, "--format", "json"])
     data = payload.get("data") if isinstance(payload, dict) and payload.get("code", 0) in (0, "0") else None
     rows = data.get("data") if isinstance(data, dict) else None
-    if not isinstance(rows, list) or len(rows) != 1 or not isinstance(data.get("fields"), list):
+    fields_raw = data.get("fields") if isinstance(data, dict) else None
+    if not isinstance(rows, list) or len(rows) != 1 or not isinstance(fields_raw, list):
         raise RuntimeError(f"record {record}: read-back returned no record")
     names = [str(f.get("field_name") or f.get("name") or "") if isinstance(f, dict) else str(f)
-             for f in data["fields"]]
+             for f in fields_raw]
     return dict(zip(names, rows[0], strict=False))
 
 
-def sync_line(line: dict, manifest: dict, records: list[tuple[str, dict]], *, run, base_token: str,
-              table_id: str, site: str, write: bool, sleep: Callable[[float], None], out) -> bool:
+def sync_line(line: dict, manifest: dict, records: list[tuple[str, dict]], *, run: Callable[..., Any], base_token: str,
+              table_id: str, site: str, write: bool, sleep: Callable[[float], None], out: Any) -> bool:
     """Plan (and with ``write`` apply and verify) one line; True when it ended clean."""
     name = f"{line['model']}/{line['region']}"
     try:
@@ -207,7 +208,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
-def main(argv: list[str], *, run=None, sleep: Callable[[float], None] = time.sleep, out=sys.stdout) -> int:
+def main(argv: list[str], *, run: Callable[..., Any] | None = None, sleep: Callable[[float], None] = time.sleep, out: Any = sys.stdout) -> int:
     args = parse_args(argv)
     if not args.base_token:
         print(f"ERROR no Base token: pass --base-token or set {BASE_ENV}", file=out)

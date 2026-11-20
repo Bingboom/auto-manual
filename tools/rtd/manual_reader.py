@@ -11,6 +11,7 @@ exactly the manual text.
 """
 from __future__ import annotations
 
+from collections.abc import Callable
 from functools import lru_cache
 from html.parser import HTMLParser
 from pathlib import Path
@@ -54,18 +55,18 @@ class _NativeTables(HTMLParser):
         line, column = self.getpos()
         return self.lines[line - 1] + column
 
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         classes = set((dict(attrs).get("class") or "").split())
         wrap = (tag == "table" and "manual-table" in classes
                 and not any(parent == "table" or scroll for parent, scroll, _ in self.open))
         if tag not in _VOID_ELEMENTS:
             self.open.append((tag, bool(classes & _TABLE_SCROLL_CONTAINERS), self._offset() if wrap else None))
 
-    def handle_startendtag(self, tag, attrs):
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         # A self-closing tag does not open an ancestor or form a complete table.
         pass
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag: str) -> None:
         for index in range(len(self.open) - 1, -1, -1):
             opened, _, start = self.open[index]
             if opened == tag:
@@ -94,7 +95,8 @@ def scroll_native_tables(body: str) -> str:
     tables = _NativeTables(body)
     tables.feed(body)
     tables.close()
-    parts, end = [], 0
+    parts: list[str] = []
+    end = 0
     for start, stop in sorted(tables.ranges):
         parts.extend((body[end:start], '<div class="table-wrapper docutils">', body[start:stop], "</div>"))
         end = stop
@@ -138,7 +140,7 @@ class _Outline(HTMLParser):
         self.heading: tuple[str, str | None, list[str]] | None = None
         self.unnamed: list = []  # [tag, depth] while inside a heading part that is not its name
 
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
         if tag == "section":
             outer = self.open[-1]
@@ -155,7 +157,7 @@ class _Outline(HTMLParser):
         elif tag == "br":
             self.heading[2].append(" ")
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag: str) -> None:
         if tag == "section":
             self._close_section()
         elif self.heading is not None and tag == self.heading[0]:
@@ -165,11 +167,11 @@ class _Outline(HTMLParser):
             if not self.unnamed[1]:
                 self.unnamed = []
 
-    def handle_data(self, data):
+    def handle_data(self, data: str) -> None:
         if self.heading is not None and not self.unnamed:
             self.heading[2].append(data)
 
-    def close(self):
+    def close(self) -> None:
         super().close()
         while len(self.open) > 1:
             self._close_section()
@@ -185,6 +187,7 @@ class _Outline(HTMLParser):
             outer.entries.extend(section.entries)
 
     def _close_heading(self) -> None:
+        assert self.heading is not None
         tag, anchor, parts = self.heading
         self.heading, self.unnamed = None, []
         title = " ".join("".join(parts).split())
@@ -236,7 +239,7 @@ def frame_text(table: dict[str, dict[str, str]], lang: str) -> tuple[str, dict[s
     return shown, table[shown]
 
 
-def locale_options(product: dict, active: dict, pathto) -> list[dict[str, Any]]:
+def locale_options(product: dict, active: dict, pathto: Callable[[str], str]) -> list[dict[str, Any]]:
     """The language select: one option per verified publication of the product, the current one selected."""
     options = []
     for item in product["language_options"]:

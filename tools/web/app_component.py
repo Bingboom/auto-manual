@@ -1,6 +1,8 @@
 """Web renderer for App ComponentSpecs embedded in whole-document flow."""
 from __future__ import annotations
 
+from typing import Any
+
 from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.app_adapters import web_app_projection
@@ -27,16 +29,19 @@ def _phone_width(spec: ComponentSpec) -> str:
     return f"min(100%,{maximum:g}rem)"
 
 
-def _apply_phone_geometry(figure, spec):
+def _apply_phone_geometry(figure: Tag, spec: ComponentSpec) -> None:
     stage = figure.select_one(".hb-app-add-device-phone-stage")
     if "phone_max_width_rem" in spec.metadata:
+        assert stage is not None
         stage["style"] = "width:" + _phone_width(spec)
     if caption := figure.find("figcaption", recursive=False):
         caption["style"] = str(caption["style"]) + ";width:" + _phone_width(spec)
         align_caption_centers(figure, spec.metadata.get("caption_centers_pct"))
 
 
-def _append_interstitial_note(soup, figure, payload, source_ref):
+def _append_interstitial_note(
+    soup: BeautifulSoup, figure: Tag, payload: dict[str, Any], source_ref: str
+) -> None:
     note = payload.get("interstitial_note")
     tables = soup.find_all("table", recursive=False)
     if note is None and not tables:

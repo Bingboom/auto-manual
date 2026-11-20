@@ -6,6 +6,7 @@ from copy import deepcopy
 from pathlib import Path
 import re
 import shutil
+from typing import Any
 
 from tools.web.frozen_ai_flow import callout, cell, heading, is_heading, node, paragraph, prose, scroll_table, squash, text
 from tools.web.frozen_ai_media_components import app_nodes, figure_node
@@ -17,11 +18,11 @@ from tools.manual_ir.components import component_flow_node
 from tools.component_specs.key_combinations import key_combinations_component_spec
 
 
-def _key(value):
+def _key(value: str) -> str:
     return re.sub(r"\W+", "", squash(value), flags=re.UNICODE).casefold()
 
 
-def _positioned_headers(book, kind, boxes):
+def _positioned_headers(book: FrozenBook, kind: str, boxes: list[list[float]]) -> list[str]:
     number = (book.records["symbols"]["physical_page"] if kind == "symbols" else
               book.source["tables"][kind]["physical_page"])
     blocks = book.page(number)["blocks_visual_order"]
@@ -36,13 +37,16 @@ def _positioned_headers(book, kind, boxes):
     return values
 
 
-def _in_box(block, bbox):
+def _in_box(block: dict[str, Any], bbox: list[float]) -> bool:
     x, y = block["bbox"][:2]
     return bbox[0] <= x < bbox[2] and bbox[1] <= y < bbox[3]
 
 
-def _positioned_callouts(book, blocks, number, labels):
-    result, consumed = {}, set()
+def _positioned_callouts(
+    book: FrozenBook, blocks: list[dict[str, Any]], number: int, labels: dict[str, str]
+) -> tuple[dict[int, dict[str, Any]], set[int]]:
+    result: dict[int, dict[str, Any]] = {}
+    consumed: set[int] = set()
     for recipe in (getattr(book, "target_layout", None) or {}).get("callout_regions", []):
         if recipe["physical_page"] != number:
             continue
@@ -73,7 +77,9 @@ def _positioned_callouts(book, blocks, number, labels):
     return result, consumed
 
 
-def _adjacent_notice_candidates(blocks, index, consumed):
+def _adjacent_notice_candidates(
+    blocks: list[dict[str, Any]], index: int, consumed: set[int]
+) -> list[tuple[int, dict[str, Any]]]:
     label = blocks[index]
     _, y0, x1, y1 = label["bbox"]
     candidates = [(j, b) for j, b in enumerate(blocks) if j != index and j not in consumed
@@ -89,7 +95,14 @@ def _adjacent_notice_candidates(blocks, index, consumed):
     return candidates
 
 
-def _inferred_callouts(book, blocks, number, labels, result, consumed):
+def _inferred_callouts(
+    book: FrozenBook,
+    blocks: list[dict[str, Any]],
+    number: int,
+    labels: dict[str, str],
+    result: dict[int, dict[str, Any]],
+    consumed: set[int],
+) -> tuple[dict[int, dict[str, Any]], set[int]]:
     for index, label in enumerate(blocks):
         if index in consumed:
             continue
@@ -160,10 +173,10 @@ class FrozenBook:
         self.icon_refs = [self.asset(f"figures/{language}/{Path(row['icon_path']).name}", row["icon_sha256"])
                           for row in self.records["symbols"]["pictograms"]]
 
-    def read(self, path):
+    def read(self, path: str) -> dict[str, Any]:
         return json.loads((self.source_root / path).read_text(encoding="utf-8"))
 
-    def asset(self, relative, expected):
+    def asset(self, relative: str, expected: str) -> str:
         source = (self.source_root / relative).resolve()
         if not source.is_relative_to(self.source_root) or file_sha256(source) != expected:
             raise ValueError(f"asset changed: {relative}")
@@ -174,24 +187,24 @@ class FrozenBook:
         self.hashes[destination] = expected
         return destination
 
-    def correct(self, value):
+    def correct(self, value: str) -> str:
         for entry in self.errata["entries"]:
             if entry["locale"] == self.language:
                 if value == entry["source_text"] or entry["id"].endswith("USB-C"):
                     value = value.replace(entry["source_text"], entry["corrected_text"])
         return value
 
-    def figure(self, figure):
+    def figure(self, figure: dict[str, Any]) -> dict[str, Any]:
         art = self.art[figure["slug"]]
         title = self.locale["titles"][self.index["section_ids"].index(figure["section_id"])]
         return figure_node(asset_ref=art["asset_ref"], content_sha256=art["sha256"],
                            reference_id=figure["slug"], alt=f"{title}: {figure['slug'].replace('_', ' ')}",
                            language=self.language, source_ref=f"{self.language}/page-{figure['physical_page']}/{figure['slug']}")
 
-    def page(self, number):
+    def page(self, number: int) -> dict[str, Any]:
         return next(page for page in self.source["pages"] if page["physical_page"] == number)
 
-    def starts(self):
+    def starts(self) -> list[tuple[int, float, str]]:
         starts = []
         # zip(strict=False): source data may differ in length; keep the existing truncation
         for section_id, title in zip(self.index["section_ids"], self.locale["titles"], strict=False):
@@ -205,7 +218,7 @@ class FrozenBook:
             raise ValueError("section order disagrees with source")
         return starts
 
-    def headers(self, kind):
+    def headers(self, kind: str) -> list[str]:
         extracted = self.source.get("table_headers", {}).get(kind)
         if extracted:
             return list(extracted)
@@ -224,7 +237,7 @@ class FrozenBook:
         return [squash(next(b["text"] for b in blocks if low <= b["bbox"][1] < high and is_heading(b["text"])))
                 for low, high in ((50, 70), (175, 195), (235, 260), (370, 392))]
 
-    def footnotes(self):
+    def footnotes(self) -> list[dict[str, Any]]:
         page = self.page(self.source["tables"]["specifications"]["physical_page"])
         bbox = (getattr(self, "target_layout", None) or {}).get("specification_footnotes_bbox")
         if bbox:
@@ -254,20 +267,20 @@ class FrozenBook:
         notes[0] = notes[0].replace("USB Type-C", "USB Type-C®", 1).replace("USB-C", "USB-C®", 1)
         return [paragraph(value) for value in notes]
 
-    def special(self, section):
-        args = {"language": self.language, "source_ref": f"{self.language}/{section}"}
+    def special(self, section: str) -> list[dict[str, Any]]:
+        source_ref = f"{self.language}/{section}"
         title = self.locale["titles"][self.index["section_ids"].index(section)]
         if section == "symbols":
             return symbol_signal_flow(self.records["symbols"], headings=self.headers("symbols"),
-                                      accessibility_label=title, **args)
+                                      accessibility_label=title, language=self.language, source_ref=source_ref)
         if section == "warranty":
             record = deepcopy(self.records["warranty_columns"])
             for block in record["blocks"].values():
                 if "text" in block:
                     block["text"] = self.correct(block["text"])
-            return warranty_flow(record, **args)
+            return warranty_flow(record, language=self.language, source_ref=source_ref)
         if section == "app_setup":
-            return list(app_nodes(self.records["app_sections"], self.art, **args))
+            return list(app_nodes(self.records["app_sections"], self.art, language=self.language, source_ref=source_ref))
         if section == "lcd_display":
             figure = next(f for f in self.figures if f["slug"] == "lcd_display")
             rows = [[cell(str(row["number"]), header=True),
@@ -278,7 +291,7 @@ class FrozenBook:
             return [self.figure(figure), scroll_table(rows)]
         return []
 
-    def operation(self, part):
+    def operation(self, part: str) -> list[dict[str, Any]]:
         record = self.records["operation_tables"][part]
         if part == "lcd_mode":
             return lcd_mode_flow(record, artwork_ref=self.art["lcd_mode_art"]["asset_ref"],
@@ -301,7 +314,9 @@ class FrozenBook:
             result.append(component_flow_node(spec, root=True))
         return result
 
-    def callouts(self, blocks, number):
+    def callouts(
+        self, blocks: list[dict[str, Any]], number: int
+    ) -> tuple[dict[int, dict[str, Any]], set[int]]:
         """Bind left-hand notice labels to their adjacent source body rectangles."""
         # zip(strict=False): source data may differ in length; keep the existing truncation
         labels = {row["label"].casefold(): variant for row, variant in zip(self.records["symbols"]["rows"], ("warning", "caution", "note", "tip"), strict=False)}

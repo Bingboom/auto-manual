@@ -7,6 +7,7 @@ import os
 import re
 import subprocess
 from pathlib import Path
+from typing import Any
 
 from tools.utils.path_utils import repo_root
 
@@ -31,14 +32,14 @@ def workspace_revision(root: Path) -> dict[str, str]:
             "built_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
 
 
-def page_revision(app) -> dict[str, str]:
+def page_revision(app: Any) -> dict[str, str]:
     """Cache once so HTML and its JSON receipt have the same build identity."""
     receipt = workspace_revision(repo_root())
     app._system_workspace_revision = receipt
     return receipt
 
 
-def write_workspace_revision(app, exception) -> None:
+def write_workspace_revision(app: Any, exception: Exception | None) -> None:
     """Publish only a successful rendered page's receipt, never a main-branch claim."""
     receipt = getattr(app, "_system_workspace_revision", None)
     if exception is not None or receipt is None:

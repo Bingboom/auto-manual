@@ -1,14 +1,15 @@
 """Preserve HTML table coordinates and spans for grounded manual queries."""
 from __future__ import annotations
 
+from collections.abc import Iterator
 import re
 
-from bs4 import Comment, NavigableString, Tag
+from bs4 import Comment, NavigableString, PageElement, Tag
 
 _BREAKS = {"p", "div", "li", "dt", "dd", "figcaption", "tr", "h1", "h2", "h3", "h4", "h5", "h6"}
 
 
-def list_entries(node: Tag):
+def list_entries(node: Tag) -> Iterator[tuple[int, Tag]]:
     """Resolve authored numbering once for standalone and embedded lists."""
     items = node.find_all("li", recursive=False)
     reversed_order = node.has_attr("reversed")
@@ -25,11 +26,13 @@ def list_entries(node: Tag):
         number += -1 if reversed_order else 1
 
 
-def _text_parts(node):
+def _text_parts(node: PageElement) -> Iterator[str]:
     if isinstance(node, Comment):
         return
     if isinstance(node, NavigableString):
         yield re.sub(r"\s+", " ", str(node))
+        return
+    if not isinstance(node, Tag):
         return
     if node.name == "br":
         yield "\n"

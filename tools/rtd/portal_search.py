@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 from html.parser import HTMLParser
 from pathlib import Path
+from typing import Any
 
 from tools.utils.path_utils import static_dir_of
 
@@ -17,27 +18,27 @@ from tools.utils.path_utils import static_dir_of
 class ManualSections(HTMLParser):
     """Collect visible main content, preserving rendered section anchors."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
-        self.stack = []
-        self.rows = []
+        self.stack: list[tuple[str, bool, bool, str]] = []
+        self.rows: list[dict[str, str]] = []
         self.title = "Manual overview"
         self.anchor = ""
-        self.parts = []
-        self.heading = None
+        self.parts: list[str] = []
+        self.heading: list[str] | None = None
 
-    def flush(self):
+    def flush(self) -> None:
         text = " ".join(" ".join(self.parts).split())
         if text:
             self.rows.append({"title": self.title, "anchor": self.anchor, "text": text})
         self.parts = []
 
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
         parent = self.stack[-1] if self.stack else ("", False, False, "")
         main = parent[1] or tag == "main" or values.get("role") == "main"
-        skip = parent[2] or tag in {"script", "style", "nav"} or "headerlink" in values.get("class", "").split()
-        anchor = values.get("id", parent[3]) if tag == "section" else parent[3]
+        skip = parent[2] or tag in {"script", "style", "nav"} or "headerlink" in (values.get("class") or "").split()
+        anchor = (values.get("id") or parent[3]) if tag == "section" else parent[3]
         if tag not in {"img", "br", "hr", "input", "meta", "link", "source", "wbr", "area", "base", "col", "embed", "param"}:
             self.stack.append((tag, main, skip, anchor))
         if main and not skip and tag in {"h1", "h2", "h3", "h4", "h5", "h6"}:
@@ -45,7 +46,7 @@ class ManualSections(HTMLParser):
             self.heading = []
             self.anchor = values.get("id") or anchor
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag: str) -> None:
         if self.heading is not None and tag in {"h1", "h2", "h3", "h4", "h5", "h6"}:
             self.title = " ".join(" ".join(self.heading).split())
             self.heading = None
@@ -54,7 +55,7 @@ class ManualSections(HTMLParser):
                 del self.stack[index:]
                 break
 
-    def handle_data(self, data):
+    def handle_data(self, data: str) -> None:
         if self.stack and self.stack[-1][1] and not self.stack[-1][2]:
             if self.heading is not None:
                 self.heading.append(data)
@@ -62,7 +63,7 @@ class ManualSections(HTMLParser):
                 self.parts.append(data)
 
 
-def write_search_index(app, exception):
+def write_search_index(app: Any, exception: Exception | None) -> None:
     if exception is not None or app.builder.format != "html":
         return
     from tools.rtd.portal import portal_data

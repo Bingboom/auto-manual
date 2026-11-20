@@ -5,9 +5,11 @@ import datetime as dt
 import json
 import os
 import re
+from collections.abc import Iterator
 from html import escape, unescape
 from html.parser import HTMLParser
 from pathlib import Path
+from typing import Any
 from urllib.parse import unquote, urlsplit
 
 from tools.utils.path_utils import PathSegments, repo_root, static_dir_of
@@ -90,7 +92,7 @@ def product_image(source: Path, root: Path) -> str:
 
 def catalog(root: Path, settings: dict) -> list[dict]:
     """Project only explicit existing index links; never synthesize locales."""
-    records = []
+    records: list[dict[str, Any]] = []
     index = root / "index.md"
     if not index.is_file():
         return records
@@ -128,19 +130,19 @@ def without_leading_language_label(body: str, label: str) -> str:
     return body
 
 
-def configure(app, config) -> None:
+def configure(app: Any, config: Any) -> None:
     config.html_title = SITE_NAME
     # Absolute engineering assets are independent of the frozen source config.
     config.templates_path = [str(ASSETS), *config.templates_path]
     config.html_static_path = [*config.html_static_path, str(ASSETS / PathSegments.STATIC)]
 
 
-def site_role(app) -> str:
+def site_role(app: Any) -> str:
     """The build's role; see tools/rtd/site_role.py for the Read the Docs rule."""
     return resolve_site_role(app.config.rtd_site_role, os.environ)[0]
 
 
-def announce_site_role(app) -> None:
+def announce_site_role(app: Any) -> None:
     """Fail a misconfigured build before any page is written, and log the role it builds."""
     from sphinx.util import logging as sphinx_logging
 
@@ -148,7 +150,7 @@ def announce_site_role(app) -> None:
     sphinx_logging.getLogger(__name__).info("RTD site role: %s (%s)", role, reason)
 
 
-def manuals_only(app) -> bool:
+def manuals_only(app: Any) -> bool:
     """A manuals-only build emits no knowledge, workspace or sharing pages."""
     return site_role(app) == "manuals"
 
@@ -164,7 +166,7 @@ def site_base_url_for(settings: dict) -> str:
         os.environ.get("READTHEDOCS_CANONICAL_URL") or settings.get("site_base_url", ""))
 
 
-def portal_data(app) -> tuple[dict, list[dict]]:
+def portal_data(app: Any) -> tuple[dict, list[dict]]:
     """Validate frozen publications once per build, not once per output page."""
     cached = getattr(app, "_rtd_portal_data", None)
     if cached is None:
@@ -178,7 +180,7 @@ def portal_data(app) -> tuple[dict, list[dict]]:
     return cached
 
 
-def classified_catalog(app, products: list[dict]) -> dict | None:
+def classified_catalog(app: Any, products: list[dict]) -> dict | None:
     """The 产品分类 snapshot, each product classified by it; None (with a warning) when unusable."""
     from sphinx.util import logging as sphinx_logging
 
@@ -194,12 +196,12 @@ def classified_catalog(app, products: list[dict]) -> dict | None:
     return product_catalog
 
 
-def prepare_catalog(app) -> None:
+def prepare_catalog(app: Any) -> None:
     # Populate before parallel page writers fork; a failed validation is never cached.
     portal_data(app)
 
 
-def clear_catalog_cache(app, exception) -> None:
+def clear_catalog_cache(app: Any, exception: Exception | None) -> None:
     # A later build in the same process must validate its own frozen inputs again.
     app._rtd_portal_data = None
     app._rtd_product_catalog = None
@@ -209,7 +211,7 @@ def clear_catalog_cache(app, exception) -> None:
     app._rtd_matrix_context = _UNSET
 
 
-def decorate_manual(app, context, *, settings: dict, product: dict, active: dict,
+def decorate_manual(app: Any, context: dict[str, Any], *, settings: dict, product: dict, active: dict,
                     channels: list[dict[str, str]], site_base_url: str) -> None:
     """Put a verified single-language manual page in the reading frame (manual_reader.html, 2026-11).
 
@@ -250,10 +252,10 @@ def decorate_manual(app, context, *, settings: dict, product: dict, active: dict
     app.add_css_file("manual-reader.css")
 
 
-def cached_asset_versions(app) -> dict[str, str]:
+def cached_asset_versions(app: Any) -> dict[str, str]:
     """Short content hash per portal CSS/JS under ASSETS/_static, computed once per build."""
     cached = getattr(app, "_rtd_asset_versions", _UNSET)
-    if cached is _UNSET:
+    if not isinstance(cached, dict):
         from tools.rtd.deliverables import asset_versions
 
         cached = asset_versions(ASSETS)
@@ -261,14 +263,14 @@ def cached_asset_versions(app) -> dict[str, str]:
     return cached
 
 
-def version_portal_static(app, context: dict) -> None:
+def version_portal_static(app: Any, context: dict) -> None:
     """Append ?v=<sha256[:12]> to portal _static/*.css and _static/*.js links so cached sheets never unstyle new HTML."""
     pathto = context.get("pathto")
     if not callable(pathto):
         return
     versions = cached_asset_versions(app)
 
-    def versioned(uri: str, *args, **kwargs) -> str:
+    def versioned(uri: str, *args: Any, **kwargs: Any) -> str:
         resolved = pathto(uri, *args, **kwargs)
         if isinstance(uri, str) and uri.startswith("_static/") and "?" not in resolved:
             token = versions.get(uri.removeprefix("_static/"))
@@ -279,7 +281,9 @@ def version_portal_static(app, context: dict) -> None:
     context["pathto"] = versioned
 
 
-def page_context(app, pagename, templatename, context, doctree):
+def page_context(
+    app: Any, pagename: str, templatename: str, context: dict[str, Any], doctree: Any
+) -> str | None:
     if doctree is None or pagename in (app.config.root_doc, "search"):
         version_portal_static(app, context)
     settings, products = portal_data(app)
@@ -336,7 +340,7 @@ def page_context(app, pagename, templatename, context, doctree):
     return "manual_portal.html"
 
 
-def workbench_catalog(app, settings: dict, products: list[dict]) -> dict:
+def workbench_catalog(app: Any, settings: dict, products: list[dict]) -> dict:
     """The 说明书工作台's view of the catalog: the library's categories, each model's 商品简称, language codes."""
     from tools.rtd.portal_navigation import OTHER
 
@@ -348,7 +352,7 @@ def workbench_catalog(app, settings: dict, products: list[dict]) -> dict:
             "codes": dict(settings.get("language_display_codes") or {})}
 
 
-def search_page(app, settings: dict, products: list[dict], beacon_token: str) -> dict:
+def search_page(app: Any, settings: dict, products: list[dict], beacon_token: str) -> dict:
     """搜索说明书正文 in the site shell: the library's categories as filters, the same sidebar as the library root."""
     from tools.rtd.portal_search import search_page_context
 
@@ -357,7 +361,7 @@ def search_page(app, settings: dict, products: list[dict], beacon_token: str) ->
             "search": search_page_context(settings, library), "analytics_beacon": beacon_markup(beacon_token)}
 
 
-def workspace_content(app) -> Path:
+def workspace_content(app: Any) -> Path:
     """Read business-owned content from Hello-Docs, outside mirrored tools."""
     configured = app.config.rtd_knowledge_dir
     return Path(configured) if configured else repo_root() / PathSegments.DOCS / "knowledge"
@@ -366,58 +370,51 @@ def workspace_content(app) -> Path:
 _UNSET = object()
 
 
-def cached_system_context(app):
+def cached_system_context(app: Any) -> dict[str, Any] | None:
     """Build the system page context once per build; the root sidebar and the page share it."""
-    cached = getattr(app, "_rtd_system_context", _UNSET)
-    if cached is _UNSET:
-        cached = system_page_context(app, ASSETS)
-        app._rtd_system_context = cached
-    return cached
+    if getattr(app, "_rtd_system_context", _UNSET) is _UNSET:
+        app._rtd_system_context = system_page_context(app, ASSETS)
+    return app._rtd_system_context
 
 
-def cached_design_context(app):
+def cached_design_context(app: Any) -> dict[str, Any] | None:
     """Build the design-system context once per build; the sidebar and the page share it."""
-    cached = getattr(app, "_rtd_design_context", _UNSET)
-    if cached is _UNSET:
-        cached = design_page_context(app, ASSETS)
-        app._rtd_design_context = cached
-    return cached
+    if getattr(app, "_rtd_design_context", _UNSET) is _UNSET:
+        app._rtd_design_context = design_page_context(app, ASSETS)
+    return app._rtd_design_context
 
 
-def cached_data_context(app):
+def cached_data_context(app: Any) -> dict[str, Any] | None:
     """Build the workbench statistics context once per build."""
-    cached = getattr(app, "_rtd_data_context", _UNSET)
-    if cached is _UNSET:
-        cached = system_data_page_context(app, portal_data(app)[0])
-        app._rtd_data_context = cached
-    return cached
+    if getattr(app, "_rtd_data_context", _UNSET) is _UNSET:
+        app._rtd_data_context = system_data_page_context(app, portal_data(app)[0])
+    return app._rtd_data_context
 
 
-def cached_matrix_context(app):
+def cached_matrix_context(app: Any) -> dict[str, Any]:
     """Build the 产品矩阵 context once per build; the sidebar, the home card and the page share it.
 
     Private (combined) role only: it reads the product-information snapshot from the knowledge directory
     (tools/rtd/product_library.py). Without a usable snapshot the page still builds and says so.
     """
-    cached = getattr(app, "_rtd_matrix_context", _UNSET)
-    if cached is _UNSET:
+    if getattr(app, "_rtd_matrix_context", _UNSET) is _UNSET:
         from sphinx.util import logging as sphinx_logging
         from tools.rtd.product_library import library_context
 
         portal_data(app)  # loads the 产品分类 snapshot, whose category, series and tier order the page follows
-        cached = library_context(workspace_content(app), getattr(app, "_rtd_product_catalog", None),
-                                 warn=sphinx_logging.getLogger(__name__).warning)
-        app._rtd_matrix_context = cached
-    return cached
+        app._rtd_matrix_context = library_context(
+            workspace_content(app), getattr(app, "_rtd_product_catalog", None),
+            warn=sphinx_logging.getLogger(__name__).warning,
+        )
+    return app._rtd_matrix_context
 
 
-def product_freshness(app):
+def product_freshness(app: Any) -> dict[str, Any] | None:
     """The product pages' sync times and stale warning (tools/rtd/product_freshness.py), once per build.
 
     Private role only: read from the knowledge directory beside the snapshot; None without a usable snapshot.
     """
-    cached = getattr(app, "_rtd_product_freshness", _UNSET)
-    if cached is _UNSET:
+    if getattr(app, "_rtd_product_freshness", _UNSET) is _UNSET:
         from tools.rtd.product_freshness import freshness_context
         from tools.rtd.product_library import SnapshotError, load_snapshot
         from tools.rtd.source_registry import load_registry
@@ -433,12 +430,13 @@ def product_freshness(app):
                 today = dt.date.fromisoformat(configured)
             except ValueError:
                 pass  # the workbench pages already warn about a malformed date
-        cached = freshness_context(workspace_content(app), snapshot, today=today, registry=load_registry(ASSETS)[0])
-        app._rtd_product_freshness = cached
-    return cached
+        app._rtd_product_freshness = freshness_context(
+            workspace_content(app), snapshot, today=today, registry=load_registry(ASSETS)[0]
+        )
+    return app._rtd_product_freshness
 
 
-def site_nav(app) -> dict:
+def site_nav(app: Any) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
     if manuals_only(app):
         # The public shell hides internal entries; do not build their contexts at all.
@@ -451,7 +449,7 @@ def site_nav(app) -> dict:
     }
 
 
-def collect_workspace_pages(app):
+def collect_workspace_pages(app: Any) -> Iterator[tuple[str, dict[str, Any], str]]:
     """Add the workspace entry, its pages and the product pages, leaving the manual-center root alone.
 
     The workspace exists as a separate entry, with the system and deliverables
@@ -540,7 +538,9 @@ def collect_workspace_pages(app):
     yield from product_profile_pages(app, settings, products, build_date=_build_date(deliverables, system))
 
 
-def product_profile_pages(app, settings: dict, products: list[dict], *, build_date: str = ""):
+def product_profile_pages(
+    app: Any, settings: dict, products: list[dict], *, build_date: str = ""
+) -> Iterator[tuple[str, dict[str, Any], str]]:
     """产品档案: one page per model of the product-information snapshot (private role only).
 
     None is built without a usable snapshot or without its decided cells (schema v1.1); 产品矩阵 then says so or links
@@ -585,7 +585,7 @@ def _build_date(deliverables: dict, system: dict | None) -> str:
             or dt.datetime.now(dt.timezone.utc).date().isoformat())
 
 
-def write_design_pages(app, exception) -> None:
+def write_design_pages(app: Any, exception: Exception | None) -> None:
     """Write the design-system previews, live stylesheet and art beside its page."""
     if exception is not None or getattr(app.builder, "format", None) != "html" or manuals_only(app):
         return
@@ -594,7 +594,7 @@ def write_design_pages(app, exception) -> None:
         write_design_system(Path(app.outdir), ASSETS, design)
 
 
-def copy_workspace_content(app, exception) -> None:
+def copy_workspace_content(app: Any, exception: Exception | None) -> None:
     """Copy the approved sharing package; policy source screenshots stay off-site."""
     if exception is not None or manuals_only(app):
         return
@@ -608,7 +608,7 @@ def copy_workspace_content(app, exception) -> None:
     )
 
 
-def setup(app):
+def setup(app: Any) -> dict[str, Any]:
     from tools.manual_knowledge.export import write_knowledge
     from tools.rtd.deployment_receipt import write_deployment_receipt
     from tools.rtd.portal_search import write_search_index

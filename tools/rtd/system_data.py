@@ -205,7 +205,7 @@ def system_data_context(root: Path, manifest: Path, language_codes: dict[str, st
     }
 
 
-def system_data_page_context(app, settings: dict[str, Any]) -> dict[str, Any] | None:
+def system_data_page_context(app: Any, settings: dict[str, Any]) -> dict[str, Any] | None:
     """Context for the workbench 数据统计 tab, or None (with a warning) when the committed data has drifted."""
     from sphinx.util import logging as sphinx_logging
 

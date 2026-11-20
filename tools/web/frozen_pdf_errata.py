@@ -1,8 +1,13 @@
 """Apply operator-approved, exact-field errata before shared component mapping."""
+from __future__ import annotations
+
 from copy import deepcopy
+from typing import Any
 
 
-def apply_native_errata(data, ledger, language, source_sha256):
+def apply_native_errata(
+    data: dict[str, Any], ledger: dict[str, Any], language: str, source_sha256: str
+) -> dict[str, Any]:
     result = deepcopy(data)
     seen = set()
     for entry in ledger.get('entries', []):

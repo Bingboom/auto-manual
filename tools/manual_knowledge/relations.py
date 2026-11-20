@@ -29,9 +29,10 @@ when it claims none.
 from __future__ import annotations
 
 from collections import Counter, defaultdict
-from collections.abc import Iterable, Iterator
+from collections.abc import Callable, Iterable, Iterator
 import hashlib
 import re
+from typing import Any
 import unicodedata
 
 from tools.manual_knowledge.topics import classify
@@ -70,7 +71,7 @@ def _member(item: dict) -> dict:
             "severity": item["severity"], "block_type": item["source"]["block_type"]}
 
 
-def _relation(kind: str, category: str, scope: dict, members: list[dict], **fields) -> dict:
+def _relation(kind: str, category: str, scope: dict, members: list[dict], **fields: Any) -> dict:
     absent = fields.get("absent_in", [])
     key = "\x1f".join([kind, category, *sorted(item["knowledge_id"] for item in members),
                        *sorted(entry["variant_key"] for entry in absent)])
@@ -294,7 +295,7 @@ def _confidence(strength: str, alignments: list[str]) -> str:
     return "medium" if confidence == "high" and "same" not in alignments else confidence
 
 
-def _disagreeing_alignments(members: list[dict], value) -> list[str]:
+def _disagreeing_alignments(members: list[dict], value: Callable[[dict], Any]) -> list[str]:
     return [revision_alignment(a["observed_context"], b["observed_context"])
             for index, a in enumerate(members) for b in members[index + 1:] if value(a) != value(b)]
 

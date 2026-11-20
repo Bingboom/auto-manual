@@ -50,7 +50,7 @@ def audit_frozen_component_coverage(raw: Mapping[str, Any]) -> dict[str, Any]:
     components: Counter = Counter()
     references: list[dict[str, str]] = []
 
-    def visit(node, location, counts):
+    def visit(node: Any, location: str, counts: Counter[str]) -> None:
         if not isinstance(node, dict):
             issues.append(f"{location}: flow node must be an object")
             return

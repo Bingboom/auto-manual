@@ -8,6 +8,7 @@ pages then show no chip, the home page no main line and 系统建设 its capabil
 """
 from __future__ import annotations
 
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -18,7 +19,7 @@ from tools.rtd.system_workspace import CONTRACT_NAME, ContractError, load_contra
 from tools.utils.path_utils import repo_root
 
 
-def _ledger(assets: Path, root: Path):
+def _ledger(assets: Path, root: Path) -> tuple[Any, dict[str, str]]:
     try:
         contract = load_contract(assets / CONTRACT_NAME)
         repositories = {k: str(v).rstrip("/") for k, v in (contract.get("repositories") or {}).items()}
@@ -32,7 +33,7 @@ def _source_url(data: dict[str, Any], repositories: dict[str, str]) -> str:
     return f"{repositories.get(repo, '')}/blob/main/{path}" if repositories.get(repo) else ""
 
 
-def curated(assets: Path, root: Path, system: dict[str, Any] | None, warn) -> dict[str, Any]:
+def curated(assets: Path, root: Path, system: dict[str, Any] | None, warn: Callable[..., Any]) -> dict[str, Any]:
     """Chips, main line, the regrouped capability map and the path; empty parts when the data file is unusable.
 
     Without a readable contract or ledger no chip can be derived: every layer shows none, with a warning.
@@ -179,8 +180,19 @@ def front_cards(matrix: dict[str, Any] | None, learning: dict[str, Any] | None,
     ]
 
 
-def asset_layer_pages(*, srcdir: Path, assets: Path, settings: dict, products: list[dict], system, matrix,
-                      learning: dict[str, Any] | None, build_date: str, warn, design=None) -> dict:
+def asset_layer_pages(
+    *,
+    srcdir: Path,
+    assets: Path,
+    settings: dict,
+    products: list[dict],
+    system: dict[str, Any] | None,
+    matrix: Any,
+    learning: dict[str, Any] | None,
+    build_date: str,
+    warn: Callable[..., Any],
+    design: Any = None,
+) -> dict:
     """The layer pages' contexts, what 资产总览's cards read (``media_front``, ``corpus``) and the 系统建设 part.
 
     Since the front cleanup (2026-11-17) 产品信息 (产品矩阵) has no lead; 内容与表现 is not shown (its address

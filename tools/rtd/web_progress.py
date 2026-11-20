@@ -33,7 +33,7 @@ import re
 import subprocess
 import sys
 from collections import Counter, defaultdict
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from pathlib import Path, PurePosixPath
 from typing import Any
 from urllib.parse import urlsplit
@@ -191,7 +191,7 @@ def manifest_history(repo: Path, ref: str = "HEAD") -> list[dict[str, Any]]:
     return _cumulative(dated)
 
 
-def export_snapshot(*, run, base_token: str, table_id: str, timeline: list[dict[str, Any]],
+def export_snapshot(*, run: Callable[..., Any], base_token: str, table_id: str, timeline: list[dict[str, Any]],
                     today: dt.date, review_table: str = "", base_url: str = "") -> dict[str, Any]:
     """The 网页文档 table's 核对 ticks and active-SKU markets, with ``timeline``; read-only.
 
@@ -325,7 +325,7 @@ def _editions(targets: list[dict[str, Any]]) -> dict[tuple[str, str], dict[str, 
     return editions
 
 
-def _online_cell(market: str, entry: dict[str, Any], expected: set[str], rank) -> dict[str, Any]:
+def _online_cell(market: str, entry: dict[str, Any], expected: set[str], rank: Callable[[str], tuple[int, str]]) -> dict[str, Any]:
     have, want = sorted(entry["langs"], key=rank), sorted(expected, key=rank)
     missing = [lang for lang in want if lang not in entry["langs"]]
     title = "已有 " + "、".join(lang.upper() for lang in have)
@@ -343,7 +343,16 @@ def _review_title(review: dict[str, Any]) -> str:
     return title + (f" · 待研发确认 {review['open']} 项" if review["open"] else "")
 
 
-def _cell(model: str, market: str, editions, expected, sold, labels, rank, review=None) -> dict[str, Any]:
+def _cell(
+    model: str,
+    market: str,
+    editions: dict[tuple[str, str], dict[str, Any]],
+    expected: dict[str, set[str]],
+    sold: dict[str, list[str]],
+    labels: dict[str, str],
+    rank: Callable[[str], tuple[int, str]],
+    review: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     """One matrix cell: online (with any newer draft in review), in review, 待转 or blank."""
     cell = {"market": market, "state": "", "text": "", "legacy": False, "docname": "", "href": "", "title": "",
             "review": None}
@@ -441,8 +450,16 @@ def progress_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, Any]
     }
 
 
-def _matrix(editions, expected, sold: dict[str, list[str]], reviews: list[dict[str, Any]], *,
-            labels: dict[str, str], names: dict[tuple[str, str], str], rank) -> tuple[list[str], list[str], list[dict[str, Any]]]:
+def _matrix(
+    editions: dict[tuple[str, str], dict[str, Any]],
+    expected: dict[str, set[str]],
+    sold: dict[str, list[str]],
+    reviews: list[dict[str, Any]],
+    *,
+    labels: dict[str, str],
+    names: dict[tuple[str, str], str],
+    rank: Callable[[str], tuple[int, str]],
+) -> tuple[list[str], list[str], list[dict[str, Any]]]:
     """The online models, the market columns and one row per model, drafts-only models first."""
     in_review = _review_cells(reviews)
     online = sorted({model for model, _ in editions}, key=lambda m: (CATEGORY_ORDER.index(category(m)), m))
@@ -458,7 +475,7 @@ def _matrix(editions, expected, sold: dict[str, list[str]], reviews: list[dict[s
     return online, markets, rows
 
 
-def _language_rank(language_order: Sequence[str]):
+def _language_rank(language_order: Sequence[str]) -> Callable[[str], tuple[int, str]]:
     order = list(language_order)
     return lambda lang: ((order.index(lang) if lang in order else len(order)), lang)
 
@@ -539,7 +556,7 @@ def web_only(models: list[dict[str, Any]], regions: list[dict[str, Any]]) -> tup
 
 def progress_page_context(assets: Path, targets: list[dict[str, Any]] | None, *, labels: dict[str, str],
                           names: dict[tuple[str, str], str], language_order: Sequence[str],
-                          today: dt.date, warn) -> dict[str, Any]:
+                          today: dt.date, warn: Callable[..., Any]) -> dict[str, Any]:
     """The view from the registered snapshot; problems go to ``warn``, the view still renders."""
     registry, problems = load_registry(assets)
     domain = (registry or {}).get(DOMAIN)
@@ -635,15 +652,15 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     path = args.snapshot or default_snapshot
-    snapshot, problems = load_snapshot(path)
+    loaded_snapshot, problems = load_snapshot(path)
     for problem in problems:
         print(f"ERROR   {path.name}: {problem}")
-    if snapshot is None:
+    if loaded_snapshot is None:
         return 1
-    reason = stale_reason(domain, dt.date.fromisoformat(snapshot["exported_at"]), today)
+    reason = stale_reason(domain, dt.date.fromisoformat(loaded_snapshot["exported_at"]), today)
     if reason:
         print(f"WARNING {path.name}: {reason}; the page marks it 待复核 — rerun export")
-    print(f"web progress snapshot: exported {snapshot['exported_at']}; {_summary(snapshot)}")
+    print(f"web progress snapshot: exported {loaded_snapshot['exported_at']}; {_summary(loaded_snapshot)}")
     return 0
 
 

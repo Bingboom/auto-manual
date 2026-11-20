@@ -118,8 +118,8 @@ def parse_capacity(text: str) -> dict:
 
 def parse_power(text: str) -> dict:
     """Electrical rating cell: max W (rated), surge W, voltage range, frequency, current."""
-    watts = []
-    surge = []
+    watts: list[float] = []
+    surge: list[float] = []
     for m in re.finditer(r"(?<![\d.,])(" + NUM + r")\s?(W|Вт|瓦)(?![a-zA-Z])", text):
         val = to_float(m.group(1), "w")
         if val is None:

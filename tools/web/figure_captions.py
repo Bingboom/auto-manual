@@ -1,9 +1,14 @@
 """Align live captions to source-bound illustration centers."""
+from __future__ import annotations
+
 from itertools import pairwise
 import math
+from typing import Any
+
+from bs4 import Tag
 
 
-def align_caption_centers(figure, centers):
+def align_caption_centers(figure: Tag, centers: Any) -> None:
     """Keep the shared caption grid, offsetting its labels to native centers."""
     if centers is None:
         return

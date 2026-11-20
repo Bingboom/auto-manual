@@ -104,7 +104,8 @@ def symbol_usage(pages: list[tuple[dict[str, Any], Path]], hashes: set[str]) -> 
 
 def _symbol_row(entry: dict[str, Any], usage: dict[str, dict[str, int]] | None) -> dict[str, Any]:
     sha = _text(entry, "sha256")
-    provenance = entry.get("provenance") if isinstance(entry.get("provenance"), dict) else {}
+    raw_provenance = entry.get("provenance")
+    provenance = raw_provenance if isinstance(raw_provenance, dict) else {}
     use = (usage or {}).get(sha) or {}
     return {"key": _text(entry, "key"), "file": Path(_text(entry, "path")).name, "status": _text(entry, "status"),
             "hash": sha[:12], "source": bool(provenance.get("source")),
