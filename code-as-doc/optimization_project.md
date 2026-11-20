@@ -52,7 +52,7 @@ record](dev/manual_ir_app_reference_plan.md). The 5B source/crop/hash evidence i
 recorded in the [EU finished-panel closeout](dev/je1000f_eu_finished_panels_discovery_2026-09.md).
 
 
-Updated: 2026-10-18
+Updated: 2026-11-20
 
 ## 1. Role
 
@@ -117,32 +117,20 @@ Suggested workstream statuses:
 
 ## 3. Current Baseline
 
-As of 2026-05-07, the repo has working baselines for:
+As of 2026-11-20, the repo has working baselines for:
 
-- [`build.py`](../build.py) as the primary cross-platform entrypoint
-- target-scoped runtime outputs under [`docs/_build/<model>/<region>/`](../docs/_build)
-- review bundles under [`docs/_review/<model>/<region>/`](../docs/_review)
-- `sync-data`
-- `check`
-- page contracts
-- diff-report file/page/field reporting
-- `release-manifest`
-- `preview`
-- `fast`
-- `message-control-dry-run` as a maintainer-only Phase 0 natural-language control resolver that returns structured JSON without dispatching real workflows
-- explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest
-- CI baseline for `lint`, `unit`, `doctor`, `check`, `diff-report` smoke, `release-manifest` smoke, and review-preview packaging smoke
-- OpenClaw Phase 2 repo-local control surfaces through `queue-query`, `queue-resolve-action`, and `queue-execute`
-- repo-owned OpenClaw integration packages under [`integrations/openclaw/`](../integrations/openclaw)
-- phase2 snapshot completeness validation for required synced tables and derived files
-- registered `build.py` action dispatch for explicit non-build actions
-- config contract validation for phase2 table bindings and declared build languages
-- queue `RUNNING` writeback before success/failure completion
-- first repo-owned external table contract and queue-state model docs under [`code-as-doc/dev/`](dev)
+- [`build.py`](../build.py) as the primary cross-platform entrypoint, including Web-first commands (`web-package`, `ir-qc`, `ir-export`) alongside `sync-data`, `check`, `diff-report`, `release-manifest`, `preview`, and `fast`
+- `ManualIR v2` structural and bilingual QC (`build.py ir-qc`) wired into CI (`web-ir-checks`), plus Read the Docs multi-repo/single-portal publishing ([`tools/rtd/`](../tools/rtd)) with Product-Matrix v1.2 export and RTD v3 private Builds API local verification (`#1795`)
+- externalized heavy binary sources via `external-source-pointer/v1` (`201` files / `1,677.00 MiB` externalized; `0` tracked `.ai` or `.bin` files; raw-binary ratchet down to `3` files / `6.40 MiB`), untracked `docs/_build/` (`-234` files / `157.61 MiB`, `#1798`), and `Hello-Docs` mirror overlay pruning ([`tools/web/mirror_overlay_prune.py`](../tools/web/mirror_overlay_prune.py), `#1794`)
+- target-scoped runtime outputs under `docs/_build/<model>/<region>/` (gitignored runtime build artifact, untracked in `#1798`) and review bundles under [`docs/_review/<model>/<region>/`](../docs/_review)
+- explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest, plus `Approved`-only TM-B filtering/pagination (`#1729`), TM-B schema manifest alignment (`#1776`), Feishu `429` retry + `O(1)` `record-get` (`#1746`), attachment inventory + `restore-links` (`#1747`), nightly 50-field product-matrix projected backup (`#1761`), and live `产品` manifest alignment (`#1796`)
+- Node 24 GitHub Actions across `17` workflows + `3` composite actions, `fetch-depth: 1` `refs/sync/snapshot` mirror sync, and `filter: blob:none` sparse/blobless read-only checks (`#1801`)
+- strict zero-error `mypy` gate expanded across `9` core packages (`tools/utils`, `tools/corpus`, `tools/product_matrix_base`, `tools/manual_knowledge`, `tools/rtd`, `tools/web`, `tools/web_publish`, plus typed subpackages — `260` files / `61,306` LOC, `30.18%` of `tools/`'s `203,108` LOC, `#1802`), backed by `data/frozen_package_registry.json` (`keep-frozen` legacy boundaries)
+- retired legacy surfaces (`site/` + review-preview packager `#1728`, DingTalk & Wukong adapters `#1733`, automatic triggers on `8` legacy template queue/cron workflows gated behind `LEGACY_TEMPLATE_QUEUE_ENABLED` `#1756`, and governed skill lifecycle frontmatter `#1773`)
+- `message-control-dry-run`, OpenClaw repo-local control surfaces (`queue-query`, `queue-resolve-action`, `queue-execute`), [`integrations/openclaw/`](../integrations/openclaw), phase2 snapshot completeness validation, and config contract validation
 - data-driven rendering for reference/tabular/safety pages (`symbols`, `lcd_icons`, `troubleshooting`, `spec`, safety blocks) through [`tools/csv_pages/`](../tools/csv_pages) renderers, `page_registry.csv` composition, and `content_blocks.csv`
 - structured short-copy through `Manual_Copy_Source` plus Translation Memory tags, resolved into RST via `{{ copy:<copy_key> }}` while templates keep layout
-- snapshot-based content linting through [`tools/content_lint.py`](../tools/content_lint.py), with machine-readable `--json` output and local QC reports
-- closed-loop QC requirements under [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
+- snapshot-based content linting through [`tools/content_lint.py`](../tools/content_lint.py), with machine-readable `--json` output and local QC reports, plus closed-loop QC requirements under [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
 - deterministic reviewer-diff backport through [`tools/backport/cloud_doc.py`](../tools/backport/cloud_doc.py), writing accepted review-doc changes only to `docs/_review/...` through a draft PR into the review branch; template and source-table changes leave as proposals for the template-sync and approval-gated source-table roles (since the 2026-06-18 scope decision)
 
 ## 4. Recently Completed
@@ -158,13 +146,17 @@ Keep this section short and current.
 
 1. GitHub-hosted queue/publish flows now share setup and smoke coverage, but still rely on workflow-level validation more than full remote end-to-end execution.
 2. Page assembly is split: reference/tabular/safety pages are data-driven, but prose pages (product overview, operation guide, app setup, and most long-form pages) are still template-forked per language family. The generalized assembly pilot was rolled back (#295/#296). The goal is to eliminate the per-language template forks and structure reusable content per the content-truth allocation rule — not to structuralize all prose; long-form/compliance prose is deliberately repository-owned. See [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md).
-3. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support, but shared state for multi-instance use and stable named-ingress rollout are still open. The current server-side follow-up is provisioning one Cloudflare-managed domain plus one named tunnel hostname so Feishu no longer depends on a temporary `trycloudflare.com` URL.
+3. The Feishu IM ingress adapter is now repo-local and has explicit ECS deployment assets plus encrypted callback support (DingTalk and Wukong were retired in `#1733`), but shared state for multi-instance use and stable named-ingress rollout remain open if scaled out.
 4. Rule-based content QC is now machine-readable and locally reportable (`content_lint --json`, local reports, lightweight `source_ref`), and the sync-time `record_id` sidecar (Milestone F, F1) is part of `sync-data`; the Feishu `QC_Report` writer (F8) stops at the dry-run boundary until the operator creates the table and wires its live transport ([activation checklist](dev/backport_live_activation_checklist.md) Step 3).
 5. Dev→prod **Bitable** structure is now exportable/appliable and parity-checkable (`tools/bitable_schema.py` `export`/`apply`/`parity`), but reference-data sync, a unified one-command promotion, and prod-side CI triggering are still manual. Full loop inventory + remaining gaps (A/C/D/E) are recorded in [`dev/closed_loop_gaps.md`](dev/closed_loop_gaps.md).
 6. Milestone J's asset loop has deterministic AI intake, a verified first live archive in the three new `04_资产*` tables, and a post-review bundle finalizer, but remains open on four concrete legs: syncing the Base registry mirror through `sync-data`, migrating current template paths to `asset:`, explicit IDML consumption from the finalized bundle root, and release-manifest asset lineage. Track the exact status in [`next_optimization_checklist.md`](next_optimization_checklist.md) §6h and [`dev/asset_ai_master_intake_plan.md`](dev/asset_ai_master_intake_plan.md).
-7. Enterprise ops gaps (2026-07-17 review): CI never installs from `requirements.lock` (loose ranges only), TeXLive is reinstalled unpinned on every queue run, there is no point-in-time backup/restore of the Feishu phase2 source tables, queue-processing failures notify no one (only the sentinel crons open Issues), there is no `CODEOWNERS` / secret scanning / dependabot, and the InDesign finalize leg runs on one Mac with no version lock. Tracked as Workstream T.
-8. Scale walls for the 10-dev / 50-line target (2026-07-17 review): frozen-copy review branches make every shared-template fix O(N) manual `sync-review` merges with clobber risk; the build queue is one serialized runner; `docs/_build` binary assets are raw in git (pack already ~148 MiB); the Feishu transport is duplicated across 5+ independent `lark-cli` runners with no retry/rate-limit in the sync path; adding a language requires code and golden-test edits. Tracked as Workstreams U and V.
+7. Enterprise ops gaps (2026-07-17 review): Tier 1 hardening (`requirements.lock`, nightly phase2/product-matrix backups `#1761`, queue/sentinel alerting, secret scanning, second InDesign host) is implemented; remaining items are formal Phase 0 exit sign-off and TeXLive/InDesign version-pinning if legacy print maintenance continues. Tracked as Workstream T.
+8. Scale walls for the 10-dev / 50-line target: raw-binary git bloat and `docs/_build/` tracking are resolved (`#1783`–`#1792` externalized `201` files / `1,677.00 MiB`; `#1794` pruned the `Hello-Docs` mirror overlay; `#1798` untracked `234` `docs/_build/` files / `157.61 MiB`); open scale walls remain frozen-copy review-branch propagation (Workstream V), serialized build-queue/Feishu-transport consolidation (Workstream U), and language onboarding overhead.
 9. Web finished-figure debt is explicit and ratcheted. `JE-1000F/EU` is clean at 55/55 localized approved composites (including IT 11/11). The versioned baseline records nine US Charging `editable-fallback` rows (three per EN/FR/ES) and nine KR `missing` Overview/Operation/Charging rows. New or worsening debt fails; a repaired row must become a locale-matched `finished-panel` / `approved-composite` and delete its stale baseline entry in the same change. Textless art plus HTML/SVG text or leader lines never closes a row. LCD Mode's editable HTML table is intentionally outside this debt.
+10. **Web-package declarative migration backlog (`2026-11-20`)**: `build.py web-package --package-command inventory` reports `267` packages (`224` under `manual_sources/`, `43` under `data/manual_sources/`), of which `171` still rely on `custom_script_count` builds and only `16` are `declarative_ready_count` (`140` `approved_count`, `224` `sealed_package_count`, `191` `external_source_pointer_count` across `187` packages, `large_binary_bytes=0`), while `data/frozen_package_registry.json` tracks all `267` packages (`121` pinning shared inputs, `146` without pins).
+11. **Static Web media footprint (`2026-11-20`)**: while large raw binaries are externalized, static `.png`/`.svg` assets under `manual_sources/` and `data/manual_sources/` total `26,441` files / `2.41 GiB` (`2,472.07 MiB`) and lack a deduplication or size ratchet.
+12. **IR QC warning backlog (`2026-11-20`)**: `build.py ir-qc --ir-command audit --all-ir` passes with `0` errors across `330` bundles (`60` paired, `210` clean), but carries `517` non-blocking warnings across `120` bundles (`389` `untranslated_english_residue`, `95` `unknown_callout_severity`, `33` `callout_severity_mismatch`).
+13. **Dormant legacy print/IDML surface (`2026-11-20`)**: `tools/idml/` (`125` files, `40,041` LOC) and `tools/build_queue/` (`48` files, `12,994` LOC) remain frozen under `data/frozen_package_registry.json` (`keep-frozen`) with `8` legacy template workflows gated behind `LEGACY_TEMPLATE_QUEUE_ENABLED` (`#1756`), awaiting formal sunset once legacy print maintenance ends.
 
 ## 6. Active Workstreams
 
@@ -302,7 +294,7 @@ Status: deferred
 
 Why now:
 
-- IM-triggered production (OpenClaw, DingTalk, Feishu IM) is advanced but not yet hands-off for multi-instance use
+- IM-triggered production (OpenClaw, Feishu IM; DingTalk and Wukong retired in `#1733`) is advanced but not yet hands-off for multi-instance use
 
 Scope:
 
@@ -313,7 +305,7 @@ Scope:
 Exit criteria:
 
 - adapters run multi-instance without state collisions
-- Feishu/DingTalk ingress uses a stable named hostname
+- Feishu IM ingress uses a stable named hostname
 - the restart/runtime contract is documented
 
 ### Workstream Q: Backport Layer-Routing And Template-Sync
@@ -496,7 +488,7 @@ Exit criteria:
 
 ### Workstream Y: Code Quality And Iterability
 
-Status: active — phase 1 done (#1318–#1322 plus follow-ups, 2026-09-29/30); phase 2 (test seams, logging and subprocess contracts, validator rewrites) next
+Status: active — phase 1 (#1318–#1322), CQ-1/2/3/5/7/4.5 hardening, and Web-first strict `mypy` gate expansion (#1802: `9` core packages, `260` files / `61,306` LOC = `30.18%` of `tools/`) done; remaining type coverage and test/validator paydowns continue incrementally
 
 PR-level breakdown and the authoritative checklist:
 [`dev/code_quality_iterability_plan.md`](dev/code_quality_iterability_plan.md)
@@ -526,7 +518,7 @@ completed CQ item has a record in [`code_optimization_log.md`](code_optimization
 
 ### Workstream Z: Engine And Business Data Decoupling
 
-Status: active — Stage 1 (sync overlay paths) is in review as PR #1727 (which replaces #1724); operator decisions recorded 2026-11-16
+Status: active — Stage 1 (`#1727`) merged; legacy `site/`/DingTalk/Wukong retirement (`#1728`, `#1733`), raw-binary externalization (`#1783`–`#1792`: `201` files / `1,677.00 MiB`), mirror overlay pruning (`#1794`), and `docs/_build/` untracking (`#1798`: `234` files / `157.61 MiB`) complete; static manual-source asset dedup and legacy template-queue sunset remain
 
 Plan document and authoritative item list:
 [`dev/engine_business_decoupling_checklist.md`](dev/engine_business_decoupling_checklist.md)
@@ -594,6 +586,13 @@ approved-source intake and release traceability; (c) product/SKU/market/language
 associations; (d) source-linked, selective knowledge extraction and human
 validation; (e) template applicability and drafting guidance for people/agents;
 (f) measured query/use and correction feedback. Extraction remains a derivative, not a new content authority.
+
+**2026-11-20 next-horizon priorities (Web-first & governance):**
+
+1. **Declarative `web-package` migration & `frozen_package_registry` tightening**: migrate the `171` `custom_script_count` packages (`267` total: `224` under `manual_sources/`, `43` under `data/manual_sources/`, `16` currently `declarative_ready_count`, `140` `approved_count`, `224` `sealed_package_count`, `191` `external_source_pointer_count` across `187` packages, `large_binary_bytes=0`) toward declarative `web-package` builds and close the `146` unpinned packages (`121` currently pin shared inputs) in `data/frozen_package_registry.json`.
+2. **Static `.png`/`.svg` asset deduplication & optimization**: shrink the `2.41 GiB` (`2,472.07 MiB`, `26,441` files) static image/SVG footprint across `manual_sources/` and `data/manual_sources/` via shared-asset deduplication, external pointer reuse, or lossless optimization.
+3. **IR QC warning burn-down toward `--strict` / ratchet enforcement**: pay down the `517` non-blocking warnings across `120` of `330` IR bundles (`60` paired; `210` clean, `0` errors — `389` `untranslated_english_residue`, `95` `unknown_callout_severity`, `33` `callout_severity_mismatch`) so `build.py ir-qc` can ratchet warnings in CI.
+4. **Dormant legacy print/IDML module isolation & retirement**: keep `tools/idml/` (`125` files, `40,041` LOC) and `tools/build_queue/` (`48` files, `12,994` LOC) frozen under `data/frozen_package_registry.json` (`keep-frozen`) and schedule retirement once legacy print/InDesign maintenance closes.
 
 The numbered sequence below retains earlier engineering dependencies as a
 historical workstream order, **not an instruction to execute deferred
