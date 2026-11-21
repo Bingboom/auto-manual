@@ -395,6 +395,21 @@ class BuildWebIrCliTests(unittest.TestCase):
             self.assertNotIn("unknown", report["warning_types"])
             self.assertTrue(out_report.is_file())
 
+            # Exact --max-warnings=1 boundary passes
+            with redirect_stdout(io.StringIO()):
+                ir_commands.run_ir_qc_command(
+                    SimpleNamespace(
+                        ir_command="audit",
+                        ir=None,
+                        all_ir=True,
+                        max_warnings=report["total_warnings"],
+                        strict=False,
+                        no_verify_assets=True,
+                        json=True,
+                    ),
+                    repo_root=root,
+                )
+
             # Exceeding --max-warnings=0 fails
             with redirect_stdout(io.StringIO()), self.assertRaises(RuntimeError):
                 ir_commands.run_ir_qc_command(

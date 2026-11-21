@@ -74,17 +74,20 @@ def _table_block(headers: list[str], rows: list[list[str]]) -> dict[str, Any]:
     return {"kind": "table", "children": [head, body]}
 
 
-def _callout_component(label: str, body: str) -> dict[str, Any]:
+def _callout_component(label: str, body: str, variant: str | None = None) -> dict[str, Any]:
+    spec: dict[str, Any] = {
+        "schema_version": "component-spec/v1",
+        "component_id": "HB-CALLOUT-STRIP",
+        "slots": [
+            {"role": "label", "content": label, "content_kind": "inline_text"},
+            {"role": "body", "content": body, "content_kind": "rich_text"},
+        ],
+    }
+    if variant is not None:
+        spec["variant"] = variant
     return {
         "kind": "component",
-        "component_spec": {
-            "schema_version": "component-spec/v1",
-            "component_id": "HB-CALLOUT-STRIP",
-            "slots": [
-                {"role": "label", "content": label, "content_kind": "inline_text"},
-                {"role": "body", "content": body, "content_kind": "rich_text"},
-            ],
-        },
+        "component_spec": spec,
         "carrier_flow": [
             {
                 "kind": "table",
@@ -602,3 +605,116 @@ class WebIrQcTests(unittest.TestCase):
         self.assertEqual(prov["schema_version"], PROVENANCE_SCHEMA_VERSION)
         self.assertEqual(prov["tm_attribution"]["status"], "not_provided")
         self.assertEqual(prov["visual_assets"]["status"], "attributed")
+
+    def test_callout_alias_normalization_and_strict_malformed_rejection(self) -> None:
+        self.assertEqual(resolve_callout_severity("Remarks"), "note")
+        self.assertEqual(resolve_callout_severity("  remark : "), "note")
+        self.assertEqual(resolve_callout_severity("Mise en garde"), "caution")
+        self.assertEqual(resolve_callout_severity("Warm Tip"), "tip")
+        self.assertEqual(resolve_callout_severity("info"), "note")
+        self.assertEqual(resolve_callout_severity("充電に関する安全上のご注意"), "caution")
+        self.assertEqual(resolve_callout_severity("使用上 のご注意"), "caution")
+        self.assertEqual(resolve_callout_severity("ご使用前の確認"), "note")
+        self.assertEqual(resolve_callout_severity("⚠"), "unknown")
+        self.assertEqual(resolve_callout_severity("banana"), "unknown")
+        self.assertEqual(resolve_callout_severity("WAARSCHU"), "unknown")
+        self.assertEqual(resolve_callout_severity("OSTRZE"), "unknown")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            en_ir = _write_ir_bundle(
+                root / "en",
+                language="en",
+                pages=[
+                    _page(
+                        "04_safety_en.rst",
+                        "en",
+                        [
+                            _callout_component("Caution", "Check polarity.", variant="caution"),
+                            _callout_component("Remarks", "Auto sleep in 2h.", variant="note"),
+                            _callout_component("WARNING", "High voltage hazard.", variant="warning"),
+                        ],
+                    )
+                ],
+            )
+            fr_ir = _write_ir_bundle(
+                root / "fr",
+                language="fr",
+                pages=[
+                    _page(
+                        "04_safety_fr.rst",
+                        "fr",
+                        [
+                            _callout_component("Mise en garde", "Vérifiez la polarité.", variant="caution"),
+                            _callout_component("Remarque", "Veille automatique en 2 h.", variant="note"),
+                            _callout_component("AVERTISSEMENT", "Risque haute tension.", variant="warning"),
+                        ],
+                    )
+                ],
+            )
+            clean_pair_report = audit_manual_ir(fr_ir, anchor_ir_path=en_ir)
+            self.assertEqual(clean_pair_report["summary"]["warnings"], 0)
+
+            icon_valid_ir = _write_ir_bundle(
+                root / "nl_icon",
+                language="nl",
+                pages=[
+                    _page(
+                        "04_safety_nl.rst",
+                        "nl",
+                        [
+                            _callout_component("⚠", "Brandgevaar.", variant="warning"),
+                            _callout_component("⚠️", "Gevaar.", variant="warning"),
+                        ],
+                    )
+                ],
+            )
+            self.assertEqual(audit_manual_ir(icon_valid_ir)["summary"]["warnings"], 0)
+
+            malformed_ir = _write_ir_bundle(
+                root / "nl_bad",
+                language="nl",
+                pages=[
+                    _page(
+                        "04_safety_nl.rst",
+                        "nl",
+                        [
+                            _callout_component("WAARSCHU", "Broken label.", variant="warning"),
+                            _callout_component("banana", "Bogus label.", variant="note"),
+                            _callout_component("⚠", "Missing explicit variant."),
+                        ],
+                    )
+                ],
+            )
+            malformed_report = audit_manual_ir(malformed_ir)
+            unknown_labels = [
+                item["label"]
+                for item in malformed_report["findings"]
+                if item["type"] == "unknown_callout_severity"
+            ]
+            self.assertEqual(unknown_labels, ["WAARSCHU", "banana", "⚠"])
+
+            downgraded_fr_ir = _write_ir_bundle(
+                root / "fr_bad",
+                language="fr",
+                pages=[
+                    _page(
+                        "04_safety_fr.rst",
+                        "fr",
+                        [
+                            _callout_component("Mise en garde", "Vérifiez la polarité.", variant="caution"),
+                            _callout_component("Remarque", "Veille automatique en 2 h.", variant="note"),
+                            _callout_component("Remarque", "Gravité dégradée.", variant="note"),
+                        ],
+                    )
+                ],
+            )
+            downgrade_report = audit_manual_ir(downgraded_fr_ir, anchor_ir_path=en_ir)
+            mismatches = [
+                item
+                for item in downgrade_report["findings"]
+                if item["type"] == "callout_severity_mismatch"
+            ]
+            self.assertEqual(len(mismatches), 1)
+            self.assertEqual(mismatches[0]["anchor_severities"], ["caution", "note", "warning"])
+            self.assertEqual(mismatches[0]["target_severities"], ["caution", "note", "note"])
