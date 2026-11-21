@@ -175,7 +175,23 @@ def load_baseline() -> dict[str, Any]:
     return data
 
 
-def require_prepared_style_admission(markdown_dir: Path, manifest: Mapping[str, Any]) -> dict[str, Any]:
+def _baseline_entries_by_sha() -> dict[str, dict[str, Any]]:
+    entries: dict[str, dict[str, Any]] = {}
+    for row in load_baseline()["entries"]:
+        if isinstance(row, Mapping):
+            sha = row.get("ir_content_sha256")
+            if isinstance(sha, str) and sha:
+                entries[sha] = dict(row)
+    return entries
+
+
+def require_prepared_style_admission(
+    markdown_dir: Path,
+    manifest: Mapping[str, Any],
+    *,
+    respect_baseline: bool = False,
+    source_ir_path: Path | None = None,
+) -> dict[str, Any]:
     """Seal-time gate: a prepared-document locale passes, or is an unchanged pre-gate baseline entry."""
     import json
 
@@ -185,11 +201,32 @@ def require_prepared_style_admission(markdown_dir: Path, manifest: Mapping[str, 
     raw = json.loads(ir_path.read_text(encoding="utf-8"))
     if raw.get("source") != PREPARED_SOURCE:
         return {"profile": PROFILE, "applicable": False, "issues": []}
-    baseline = {row.get("ir_content_sha256") for row in load_baseline()["entries"]}
-    if raw.get("content_sha256") in baseline:
+    baseline_by_sha = _baseline_entries_by_sha()
+    if raw.get("content_sha256") in baseline_by_sha:
         return {"profile": PROFILE, "applicable": True, "baseline": True, "issues": []}
     report = audit_prepared_package_locale(Path(markdown_dir).parent.parent, Path(markdown_dir), manifest)
     if report["issues"]:
+        if respect_baseline and source_ir_path is not None and Path(source_ir_path).is_file():
+            sealed_raw = json.loads(Path(source_ir_path).read_text(encoding="utf-8"))
+            if isinstance(sealed_raw, Mapping):
+                sealed_sha = sealed_raw.get("content_sha256")
+                sealed_lang = sealed_raw.get("language", raw.get("language"))
+                baseline_entry = baseline_by_sha.get(sealed_sha) if isinstance(sealed_sha, str) else None
+                if (
+                    baseline_entry is not None
+                    and sealed_lang == raw.get("language")
+                    and isinstance(baseline_entry.get("issues"), int)
+                    and len(report["issues"]) <= baseline_entry["issues"]
+                ):
+                    return {
+                        "profile": PROFILE,
+                        "applicable": True,
+                        "baseline": True,
+                        "baseline_source": "sealed-ir",
+                        "baseline_issues": baseline_entry["issues"],
+                        "rebuilt_issues": len(report["issues"]),
+                        "issues": [],
+                    }
         target = "/".join(str(raw.get(key, "?")) for key in ("model", "region", "language"))
         raise RuntimeError(f"shared style admission failed for {target}: " + "; ".join(report["issues"][:12]))
     return report

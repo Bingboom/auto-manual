@@ -470,6 +470,81 @@ class DeclarativeBuildTests(unittest.TestCase):
             self.assertTrue(res["ok"])
             self.assertIn("Updated copy.", Path(res["markdown_path"]).read_text(encoding="utf-8"))
 
+    def test_build_respect_baseline_admits_baselined_pkg_and_rejects_growth(self) -> None:
+        from unittest import mock
+        from tools.web import prepared_style_audit
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            pkg = root / "pkg"
+            self._create_declarative_package(pkg)
+            (pkg / "source" / "geometry.css").write_text(
+                ".manual-doc { max-width: 720px; color: #111; }\n",
+                encoding="utf-8",
+            )
+            sealed_dir = pkg / "web" / "en"
+            sealed_dir.mkdir(parents=True)
+            (sealed_dir / PathSegments.MANUAL_IR_JSON).write_text(
+                json.dumps({"content_sha256": "deadbeef" * 8, "language": "en"}),
+                encoding="utf-8",
+            )
+            fake_baseline = {
+                "schema_version": prepared_style_audit.BASELINE_SCHEMA,
+                "entries": [
+                    {
+                        "web_root": "pkg/web/en",
+                        "ir_content_sha256": "deadbeef" * 8,
+                        "issues": 1,
+                    }
+                ],
+            }
+            with mock.patch.object(prepared_style_audit, "load_baseline", return_value=fake_baseline):
+                with self.assertRaisesRegex(RuntimeError, "shared style admission failed"):
+                    build_declarative_package(
+                        pkg,
+                        lang="en",
+                        output_dir=root / "out_strict",
+                        repo_root=DEFAULT_REPO_ROOT,
+                        skip_pin_check=True,
+                        respect_baseline=False,
+                    )
+
+                code, out = _run_cli(
+                    [
+                        "build",
+                        str(pkg),
+                        "--lang",
+                        "en",
+                        "--out",
+                        str(root / "out_baseline"),
+                        "--repo-root",
+                        str(DEFAULT_REPO_ROOT),
+                        "--skip-pin-check",
+                        "--respect-baseline",
+                        "--json",
+                    ]
+                )
+                self.assertEqual(code, 0, out)
+                payload = json.loads(out)
+                self.assertTrue(payload["ok"])
+                self.assertTrue(payload["admission"]["baseline"])
+                self.assertEqual(payload["admission"]["baseline_source"], "sealed-ir")
+
+                # Adding a second paint issue above baseline ceiling (1) must fail closed
+                (pkg / "source" / "geometry.css").write_text(
+                    ".manual-doc { max-width: 720px; color: #111; background: #fff; }\n",
+                    encoding="utf-8",
+                )
+                with self.assertRaisesRegex(RuntimeError, "shared style admission failed"):
+                    build_declarative_package(
+                        pkg,
+                        lang="en",
+                        output_dir=root / "out_grown",
+                        repo_root=DEFAULT_REPO_ROOT,
+                        skip_pin_check=True,
+                        respect_baseline=True,
+                    )
+
 
 if __name__ == "__main__":
     unittest.main()

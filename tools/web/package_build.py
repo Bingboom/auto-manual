@@ -404,6 +404,7 @@ def build_declarative_package(
     output_dir: Path,
     repo_root: Path = DEFAULT_REPO_ROOT,
     skip_pin_check: bool = False,
+    respect_baseline: bool = False,
 ) -> dict[str, Any]:
     """Build a declarative Web package into ``output_dir`` and run style admission."""
     package_dir = package_dir.resolve()
@@ -472,7 +473,12 @@ def build_declarative_package(
     if conf_path.is_file():
         with conf_path.open("a", encoding="utf-8") as stream:
             stream.write(f"\nlanguage = {lang!r}\n")
-    admission = require_prepared_style_admission(output_dir, manifest)
+    admission = require_prepared_style_admission(
+        output_dir,
+        manifest,
+        respect_baseline=respect_baseline,
+        source_ir_path=package_dir / "web" / lang / PathSegments.MANUAL_IR_JSON,
+    )
     return {
         "ok": True,
         "package_dir": str(package_dir),
@@ -511,6 +517,7 @@ def _build_parser() -> argparse.ArgumentParser:
     p_build.add_argument("--lang", required=True)
     p_build.add_argument("--out", required=True, type=Path)
     p_build.add_argument("--repo-root", type=Path, default=DEFAULT_REPO_ROOT)
+    p_build.add_argument("--respect-baseline", action="store_true")
     p_build.add_argument("--skip-pin-check", action="store_true")
     p_build.add_argument("--json", action="store_true")
     return parser
@@ -574,6 +581,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 output_dir=args.out,
                 repo_root=args.repo_root,
                 skip_pin_check=args.skip_pin_check,
+                respect_baseline=args.respect_baseline,
             )
         except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
             error_payload = {"ok": False, "error": str(exc)}

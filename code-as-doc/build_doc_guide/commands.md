@@ -222,6 +222,6 @@ python build.py ir-export --output-corpus .tmp/corpus.json --output-observations
 
 Meaning:
 
-- `web-package`: dispatches `inventory`, `verify-pins`, `audit-styles`, or `build` via `--package-command`. Pass `--package-dir <dir>` for one frozen package or `--all-packages` for repository-wide `verify-pins`/`audit-styles`; `build` requires `--package-dir`, `--lang`, and `--output-dir` (plus optional `--skip-pin-check`).
+- `web-package`: dispatches `inventory`, `verify-pins`, `audit-styles`, or `build` via `--package-command`. Pass `--package-dir <dir>` for one frozen package or `--all-packages` for repository-wide `verify-pins`/`audit-styles`; `build` requires `--package-dir`, `--lang`, and `--output-dir` (plus optional `--skip-pin-check` and `--respect-baseline` to admit baselined packages without issue growth).
 - `ir-qc`: dispatches `audit` or `provenance` via `--ir-command`. Pass `--ir <path>` (with optional `--anchor-ir`) or `--all-ir` to discover and audit every `manual.ir.json` bundle and anchor pair; `--strict` fails on warnings, `--max-warnings <n>` enforces a warning ceiling, and `--output-path <path>` writes the JSON report.
 - `ir-export`: exports all-region `manual-ir/v2` corpus and observation artifacts (`--ir-root` repeatable, `--region`, `--model`, `--publication-eligible-only`, `--output-corpus`, `--output-observations`, `--previous-observations`); omit `--output-*` or write only under `.tmp/` to avoid dirtying the working tree.

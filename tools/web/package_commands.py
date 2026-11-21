@@ -206,6 +206,7 @@ def run_web_package_command(args: argparse.Namespace, *, repo_root: Path) -> Non
                 output_dir=_resolve_repo_path(root, output_dir_raw),
                 repo_root=root,
                 skip_pin_check=bool(getattr(args, "skip_pin_check", False)),
+                respect_baseline=bool(getattr(args, "respect_baseline", False)),
             )
         except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
             _emit({"ok": False, "error": str(exc)}, f"[build] FAILED: {exc}", as_json=as_json)
