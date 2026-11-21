@@ -246,6 +246,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -462,6 +467,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -864,6 +874,11 @@
           "handling": "keep-frozen",
           "reason": "MA-475: append confirmed EFUP10 Git-local glyph and source-verified CN captions for existing canonical WEEE/Li-ion groups only; all existing glyph bytes and frozen manuals remain unchanged. Rebuild historical editions only under a separate scoped revision.",
           "since": "2026-11-20"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -1080,6 +1095,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -1296,6 +1316,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -2561,6 +2586,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -2819,6 +2849,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -3077,6 +3112,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -3971,6 +4011,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -5455,6 +5500,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -5501,12 +5551,34 @@
     "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2": {
       "approval": "MA-475: operator-approved CN DX2 Web source, archive and EFUP10 confirmation 2026-11-20",
       "registered": "2026-11-20",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/package_build.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        }
+      }
     },
     "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r1": {
       "approval": "MA-476: necessary publication-safe App sizing correction completing the approved JE-1000F CN release",
       "registered": "2026-11-20",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/package_build.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        }
+      }
     },
     "manual_sources/JE-1000F/EU/en-fr/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -5921,6 +5993,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -6127,6 +6204,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -6348,6 +6430,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -6469,6 +6556,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -6793,6 +6885,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -6999,6 +7096,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -7205,6 +7307,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -7421,6 +7528,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -7627,6 +7739,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -7838,6 +7955,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -8054,6 +8176,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -8260,6 +8387,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -8476,6 +8608,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -8692,6 +8829,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -8898,6 +9040,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -9064,6 +9211,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -9390,6 +9542,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -9606,6 +9763,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -9817,6 +9979,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -10023,6 +10190,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -10239,6 +10411,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -10450,6 +10627,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -10656,6 +10838,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -10877,6 +11064,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -11088,6 +11280,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -11294,6 +11491,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -11565,6 +11767,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -12322,6 +12529,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -12488,6 +12700,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -12654,6 +12871,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -12820,6 +13042,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/prepared_style_audit.py": {
+          "handling": "keep-frozen",
+          "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -13244,6 +13471,17 @@
       "packages": 1,
       "handling": "keep-frozen",
       "reason": "MA-475: append confirmed EFUP10 Git-local glyph and source-verified CN captions for existing canonical WEEE/Li-ion groups only; all existing glyph bytes and frozen manuals remain unchanged. Rebuild historical editions only under a separate scoped revision.",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-21",
+      "files": [
+        "tools/web/package_build.py",
+        "tools/web/prepared_style_audit.py"
+      ],
+      "packages": 43,
+      "handling": "keep-frozen",
+      "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
       "minutes": 0
     }
   ]

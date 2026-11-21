@@ -154,6 +154,76 @@ class SealGateTests(unittest.TestCase):
         released = ROOT / RELEASED_SOURCE_DRAWN
         self.assertTrue(require_prepared_style_admission(released, manifest_of(released))['baseline'])
 
+    def test_respect_baseline_admits_sealed_ir_without_issue_growth_and_rejects_growth(self):
+        baseline_entry = min(
+            (row for row in load_baseline()['entries'] if isinstance(row.get('issues'), int) and row['issues'] >= 1),
+            key=lambda row: row['issues'],
+        )
+        baseline_sha = str(baseline_entry['ir_content_sha256'])
+        allowed = int(baseline_entry['issues'])
+        with tempfile.TemporaryDirectory() as temp:
+            pkg = Path(temp) / 'pkg'
+            sealed = pkg / 'web' / 'xx'
+            rebuilt = Path(temp) / 'rebuilt' / 'xx'
+            sealed.mkdir(parents=True)
+            rebuilt.mkdir(parents=True)
+            (sealed / PathSegments.MANUAL_IR_JSON).write_text(
+                json.dumps({'content_sha256': baseline_sha, 'language': 'xx'}),
+                encoding='utf-8',
+            )
+            rebuilt_ir = {
+                **ir(node('paragraph', [text('x')], css='ht-cell')),
+                'content_sha256': '0' * 64,
+                'metadata': {},
+            }
+            (rebuilt / PathSegments.MANUAL_IR_JSON).write_text(json.dumps(rebuilt_ir), encoding='utf-8')
+            with self.assertRaisesRegex(RuntimeError, 'shared style admission failed'):
+                require_prepared_style_admission(rebuilt, {})
+            with self.assertRaisesRegex(RuntimeError, 'shared style admission failed'):
+                require_prepared_style_admission(rebuilt, {}, respect_baseline=True)
+
+            admitted = require_prepared_style_admission(
+                rebuilt,
+                {},
+                respect_baseline=True,
+                source_ir_path=sealed / PathSegments.MANUAL_IR_JSON,
+            )
+            self.assertTrue(admitted['baseline'])
+            self.assertEqual(admitted['baseline_source'], 'sealed-ir')
+            self.assertEqual(admitted['issues'], [])
+
+            # Growth above recorded baseline count must fail closed
+            grown_blocks = [node('paragraph', [text('x')], css='ht-cell') for _ in range(allowed + 1)]
+            rebuilt_ir['pages'][0]['blocks'] = [
+                {'block_id': f'b{idx}', 'kind': 'flow', 'payload': blk}
+                for idx, blk in enumerate(grown_blocks)
+            ]
+            (rebuilt / PathSegments.MANUAL_IR_JSON).write_text(json.dumps(rebuilt_ir), encoding='utf-8')
+            with self.assertRaisesRegex(RuntimeError, 'shared style admission failed'):
+                require_prepared_style_admission(
+                    rebuilt,
+                    {},
+                    respect_baseline=True,
+                    source_ir_path=sealed / PathSegments.MANUAL_IR_JSON,
+                )
+
+            # Unbaselined sealed IR must also fail closed even with respect_baseline=True
+            (sealed / PathSegments.MANUAL_IR_JSON).write_text(
+                json.dumps({'content_sha256': '9' * 64, 'language': 'xx'}),
+                encoding='utf-8',
+            )
+            rebuilt_ir['pages'][0]['blocks'] = [
+                {'block_id': 'b0', 'kind': 'flow', 'payload': node('paragraph', [text('x')], css='ht-cell')}
+            ]
+            (rebuilt / PathSegments.MANUAL_IR_JSON).write_text(json.dumps(rebuilt_ir), encoding='utf-8')
+            with self.assertRaisesRegex(RuntimeError, 'shared style admission failed'):
+                require_prepared_style_admission(
+                    rebuilt,
+                    {},
+                    respect_baseline=True,
+                    source_ir_path=sealed / PathSegments.MANUAL_IR_JSON,
+                )
+
 
 if __name__ == '__main__':
     unittest.main()

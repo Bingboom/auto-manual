@@ -340,6 +340,7 @@ class BuildWebIrCliTests(unittest.TestCase):
                             lang="en",
                             output_dir=Path(".tmp/out"),
                             skip_pin_check=True,
+                            respect_baseline=True,
                             json=True,
                         ),
                         repo_root=root,
@@ -348,6 +349,7 @@ class BuildWebIrCliTests(unittest.TestCase):
                 self.assertTrue(payload["ok"])
                 build_mock.assert_called_once()
                 self.assertTrue(build_mock.call_args.kwargs["skip_pin_check"])
+                self.assertTrue(build_mock.call_args.kwargs["respect_baseline"])
 
     def test_ir_qc_all_ir_audit_max_warnings_strict_and_provenance(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
