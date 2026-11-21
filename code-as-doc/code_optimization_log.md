@@ -45,12 +45,20 @@ For current rules, see:
 - **Strict `mypy` Web-first core expansion (`#1802`)**: cleared all 312
   `mypy --disallow-untyped-defs` errors across `tools/corpus` (0),
   `tools/product_matrix_base` (8 → 0), `tools/manual_knowledge` (22 → 0),
-  `tools/rtd` (124 → 0), and `tools/web` (158 → 0; `tools/web_publish` does not
-  exist), enrolling all five packages in `pyproject.toml` and
-  [`tools/check_mypy_ratchet.py`](../tools/check_mypy_ratchet.py) (now 8
-  enrolled ratchet packages + `tools/utils`: `98 → 260` files,
-  `19,603 → 61,306` LOC = `30.18%` of `tools/` at `0` baselined errors;
-  `keep-frozen` recorded in `data/frozen_package_registry.json`).
+  `tools/rtd` (124 → 0), and `tools/web` (158 → 0), enrolling them alongside
+  CQ-4.5 packages `tools/manual_ir`, `tools/component_specs`, and
+  `tools/csv_pages` in `pyproject.toml` and
+  [`tools/check_mypy_ratchet.py`](../tools/check_mypy_ratchet.py) (`8` ratchet
+  packages + separately configured `tools/utils` = `9` strict-checked packages:
+  `98 → 260` files, `19,603 → 61,306` LOC = `30.18%` of `tools/`'s `733` files /
+  `203,108` LOC at `0` baselined errors; `keep-frozen` recorded in
+  `data/frozen_package_registry.json`).
+- **Catalog & asset-registry sync (`#1804`, `#1805`, `#1806`)**: added
+  bot-accessible catalog table fallback in
+  [`.agents/skills/product-manual-catalog/SKILL.md`](../.agents/skills/product-manual-catalog/SKILL.md)
+  (`#1804`), synced verified Feishu asset definitions/sources into
+  `data/asset_registry.csv` and `data/asset_sources.csv` (`#1805`), and preserved
+  CN App sizing after Web asset hashing (`#1806`).
 
 ## 2026-11-18 to 2026-11-19: Binary externalization, mirror pruning, and repo slimming
 

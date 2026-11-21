@@ -125,7 +125,7 @@ As of 2026-11-20, the repo has working baselines for:
 - target-scoped runtime outputs under `docs/_build/<model>/<region>/` (gitignored runtime build artifact, untracked in `#1798`) and review bundles under [`docs/_review/<model>/<region>/`](../docs/_review)
 - explicit `--data-root` snapshot selection for build, check, diff-report, and release-manifest, plus `Approved`-only TM-B filtering/pagination (`#1729`), TM-B schema manifest alignment (`#1776`), Feishu `429` retry + `O(1)` `record-get` (`#1746`), attachment inventory + `restore-links` (`#1747`), nightly 50-field product-matrix projected backup (`#1761`), and live `产品` manifest alignment (`#1796`)
 - Node 24 GitHub Actions across `17` workflows + `3` composite actions, `fetch-depth: 1` `refs/sync/snapshot` mirror sync, and `filter: blob:none` sparse/blobless read-only checks (`#1801`)
-- strict zero-error `mypy` gate expanded across `9` core packages (`tools/utils`, `tools/corpus`, `tools/product_matrix_base`, `tools/manual_knowledge`, `tools/rtd`, `tools/web`, `tools/web_publish`, plus typed subpackages — `260` files / `61,306` LOC, `30.18%` of `tools/`'s `203,108` LOC, `#1802`), backed by `data/frozen_package_registry.json` (`keep-frozen` legacy boundaries)
+- strict zero-error `mypy` gate across `9` packages (`8` enrolled in [`tools/check_mypy_ratchet.py`](../tools/check_mypy_ratchet.py) — `tools/manual_ir`, `tools/component_specs`, `tools/csv_pages`, `tools/corpus`, `tools/product_matrix_base`, `tools/manual_knowledge`, `tools/rtd`, `tools/web` at `0` baselined errors — plus separately configured `tools/utils` in `pyproject.toml`: `260` files / `61,306` LOC = `30.18%` of `tools/`'s `733` files / `203,108` LOC, `#1802`), backed by `data/frozen_package_registry.json` (`keep-frozen` legacy boundaries)
 - retired legacy surfaces (`site/` + review-preview packager `#1728`, DingTalk & Wukong adapters `#1733`, automatic triggers on `8` legacy template queue/cron workflows gated behind `LEGACY_TEMPLATE_QUEUE_ENABLED` `#1756`, and governed skill lifecycle frontmatter `#1773`)
 - `message-control-dry-run`, OpenClaw repo-local control surfaces (`queue-query`, `queue-resolve-action`, `queue-execute`), [`integrations/openclaw/`](../integrations/openclaw), phase2 snapshot completeness validation, and config contract validation
 - data-driven rendering for reference/tabular/safety pages (`symbols`, `lcd_icons`, `troubleshooting`, `spec`, safety blocks) through [`tools/csv_pages/`](../tools/csv_pages) renderers, `page_registry.csv` composition, and `content_blocks.csv`
@@ -488,7 +488,7 @@ Exit criteria:
 
 ### Workstream Y: Code Quality And Iterability
 
-Status: active — phase 1 (#1318–#1322), CQ-1/2/3/5/7/4.5 hardening, and Web-first strict `mypy` gate expansion (#1802: `9` core packages, `260` files / `61,306` LOC = `30.18%` of `tools/`) done; remaining type coverage and test/validator paydowns continue incrementally
+Status: active — phase 1 (#1318–#1322), CQ-1/2/3/5/7/4.5 hardening, and Web-first strict `mypy` gate expansion (#1802: `8` ratchet-enrolled packages + `tools/utils` = `9` strict-checked packages, `260` files / `61,306` LOC = `30.18%` of `tools/`) done; remaining type coverage and test/validator paydowns continue incrementally
 
 PR-level breakdown and the authoritative checklist:
 [`dev/code_quality_iterability_plan.md`](dev/code_quality_iterability_plan.md)
