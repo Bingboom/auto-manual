@@ -55,6 +55,11 @@ _MODEL_CODE_RE = re.compile(
 _ADMONITION_CLASSES = frozenset(
     {"admonition", "callout", "note", "warning", "caution", "tip", "important"}
 )
+_CANONICAL_CALLOUT_SEVERITIES = frozenset({"warning", "danger", "caution", "note", "tip"})
+_CALLOUT_VARIANT_ALIASES = {"notice": "note", "tips": "tip", "info": "note"}
+_CJK_INTER_CHAR_SPACE_RE = re.compile(
+    r"(?<=[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff])\s+(?=[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff])"
+)
 _SKIP_LEAF_KINDS = frozenset(
     {"comment", "image", "column", "line_break", "thematic_break"}
 )
@@ -122,6 +127,9 @@ _CJK_KR_CALLOUT_SEVERITY: dict[str, str] = {
     "危险": "danger",
     "注意": "caution",
     "ご注意": "caution",
+    "使用上のご注意": "caution",
+    "充電に関する安全上のご注意": "caution",
+    "mise en garde": "caution",
     "小心": "caution",
     "주의": "caution",
     "注記": "note",
@@ -130,15 +138,21 @@ _CJK_KR_CALLOUT_SEVERITY: dict[str, str] = {
     "備考": "note",
     "説明": "note",
     "重要": "note",
+    "ご使用前の確認": "note",
     "提示": "note",
     "备注": "note",
     "说明": "note",
     "備註": "note",
     "說明": "note",
+    "remark": "note",
+    "remarks": "note",
+    "info": "note",
     "참고": "note",
     "중요": "note",
     "ヒント": "tip",
     "팁": "tip",
+    "warm tip": "tip",
+    "warm tips": "tip",
 }
 
 
@@ -498,18 +512,21 @@ def _check_untranslated_residue(
 def resolve_callout_severity(label: str) -> str:
     """Resolve localized callout label to severity using identity + CJK/KR + callout spec."""
 
-    cleaned = (label or "").strip().lstrip("*").strip().rstrip(":：-").strip()
+    cleaned = normalize_space(label).lstrip("*").strip().rstrip(":：-").strip()
     if not cleaned:
         return "unknown"
-    sev = callout_severity(cleaned)
-    if sev != "unknown":
-        return sev
-    cjk_match = _CJK_KR_CALLOUT_SEVERITY.get(cleaned.casefold())
-    if cjk_match:
-        return cjk_match
-    variant = variant_for_label(cleaned)
-    if variant:
-        return variant
+    normalized_cjk = _CJK_INTER_CHAR_SPACE_RE.sub("", cleaned)
+    candidates = (cleaned, normalized_cjk) if normalized_cjk != cleaned else (cleaned,)
+    for candidate in candidates:
+        sev = callout_severity(candidate)
+        if sev != "unknown":
+            return sev
+        cjk_match = _CJK_KR_CALLOUT_SEVERITY.get(candidate.casefold())
+        if cjk_match:
+            return cjk_match
+        variant = variant_for_label(candidate)
+        if variant:
+            return variant
     return "unknown"
 
 
@@ -572,6 +589,22 @@ def _callout_label_if_callout(node: dict[str, Any]) -> str | None:
     return None
 
 
+def _is_icon_only_callout_label(label: str) -> bool:
+    return label.strip().replace("\ufe0f", "") == "⚠"
+
+
+def _explicit_callout_variant(node: dict[str, Any]) -> str | None:
+    raw_variant = (node.get("component_spec") or {}).get("variant")
+    if not raw_variant:
+        attrs = ((node.get("presentation") or {}).get("html") or {}).get("attributes") or {}
+        raw_variant = attrs.get("data-callout-variant")
+    norm = str(raw_variant or "").strip().casefold()
+    norm = _CALLOUT_VARIANT_ALIASES.get(norm, norm)
+    if norm in _CANONICAL_CALLOUT_SEVERITIES:
+        return norm
+    return None
+
+
 def _walk_callouts(node: Any, out: list[tuple[str, str]]) -> None:
     if isinstance(node, list):
         for item in node:
@@ -581,7 +614,12 @@ def _walk_callouts(node: Any, out: list[tuple[str, str]]) -> None:
         return
     label = _callout_label_if_callout(node)
     if label is not None:
-        out.append((label, resolve_callout_severity(label)))
+        severity = resolve_callout_severity(label)
+        if severity == "unknown" and _is_icon_only_callout_label(label):
+            explicit = _explicit_callout_variant(node)
+            if explicit is not None:
+                severity = explicit
+        out.append((label, severity))
         return
     for child in node.get("children") or ():
         _walk_callouts(child, out)

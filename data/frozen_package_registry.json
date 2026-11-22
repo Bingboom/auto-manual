@@ -5561,6 +5561,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "tools/web/ir_qc.py": {
+          "handling": "keep-frozen",
+          "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
+          "since": "2026-11-21"
         }
       }
     },
@@ -5576,6 +5581,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "tools/web/ir_qc.py": {
+          "handling": "keep-frozen",
+          "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
           "since": "2026-11-21"
         }
       }
@@ -13482,6 +13492,16 @@
       "packages": 43,
       "handling": "keep-frozen",
       "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-21",
+      "files": [
+        "tools/web/ir_qc.py"
+      ],
+      "packages": 2,
+      "handling": "keep-frozen",
+      "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
       "minutes": 0
     }
   ]

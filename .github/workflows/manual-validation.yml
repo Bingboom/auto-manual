@@ -117,7 +117,7 @@ jobs:
       - name: Audit sealed web package styles
         run: python build.py web-package --package-command audit-styles --all-packages --respect-baseline
       - name: Audit ManualIR v2 bundles
-        run: python build.py ir-qc --ir-command audit --all-ir --output-path "$RUNNER_TEMP/ir_qc_audit.json"
+        run: python build.py ir-qc --ir-command audit --all-ir --max-warnings 422 --output-path "$RUNNER_TEMP/ir_qc_audit.json"
       - name: Smoke-test all-region IR knowledge export
         run: python build.py ir-export --output-corpus "$RUNNER_TEMP/corpus.json" --output-observations "$RUNNER_TEMP/observations.json"
 
