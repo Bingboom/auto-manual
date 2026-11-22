@@ -62,7 +62,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "9b410784665cde0a47569fda259b43bb5bc754498fcd1e649a381439501ee3f3",
-  "content_sha256": "9ec1d62538344db5cb3f536475c5d02c297d58a88ea32688ea822ca9ff84218f",
+  "content_sha256": "09fa0838f7962feb9416f56b92277bf60601ae30befa7c51f1dbd6dc1b76d0ee",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -10151,7 +10151,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0002",
-          "content_sha256": "b86cf5a3c61742473e1d4b0dab84b94b17e6752dd7c7b783eae4b90c60fbae51",
+          "content_sha256": "e60ef772616777a532728b0d7da1d341e2d5f812b413d0118d444ef9a22d2771",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -10165,7 +10165,7 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "WAARSCHU"
+                                "text": "WAARSCHUWING"
                               }
                             ],
                             "header": false,
@@ -10186,7 +10186,7 @@
                                     "children": [
                                       {
                                         "kind": "text",
-                                        "text": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN UWING"
+                                        "text": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN"
                                       }
                                     ],
                                     "kind": "strong"
@@ -10230,12 +10230,12 @@
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "WAARSCHU",
+                  "content": "WAARSCHUWING",
                   "content_kind": "inline_text",
                   "role": "label"
                 },
                 {
-                  "content": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN UWING",
+                  "content": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN",
                   "content_kind": "rich_text",
                   "role": "body"
                 }

@@ -365,13 +365,13 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 587956,
-      "sha256": "3a11ec75550a77275158d6e497fa8bea14c14c091995e2505a881d5d1810e47d"
+      "size": 587947,
+      "sha256": "a62f5693d763926f6da2d13839d884892c63e5ba0ac06e19b1cb58b0ea7a7ca4"
     },
     {
       "path": "web/nl/manual_je2000e_eu_nl.md",
       "size": 79083,
-      "sha256": "838d6d9f1c653169616e856ca92eb4f43bf3604049534cbdafc3a16ed1034bfb"
+      "sha256": "90941ad153c86ce834d1d22bf35628e0d90e363d53b453c5dff5cba398ebae3c"
     },
     {
       "path": "web/pl/_static/web_manual.css",

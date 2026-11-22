@@ -12,7 +12,7 @@
 
 # WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA
 
-<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">OSTRZE</td><td class="manual-callout-body"><p><strong>INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA EŻENIE</strong></p></td></tr></tbody></table>
+<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">OSTRZEŻENIE</td><td class="manual-callout-body"><p><strong>INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA</strong></p></td></tr></tbody></table>
 
 <p>Podczas korzystania z tego produktu należy zawsze przestrzegać wskazanych podstawowych środków ostrożności.</p>
 

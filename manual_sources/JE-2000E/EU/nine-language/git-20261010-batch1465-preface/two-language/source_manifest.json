@@ -19,7 +19,7 @@
   },
   "recipe_source": {
     "path": "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language",
-    "manifest_sha256": "b3566417fedfed4bf4d81853a8d7d84584e4610ff6fb8e0f1f5d1cd6e1e6069e"
+    "manifest_sha256": "98c47fefc864b38dfe10632c0d9f1d45c79e12580f2a67ffdd3e26e587e12a0f"
   },
   "web_roots": {
     "pt": "web/pt",
@@ -419,13 +419,13 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 591190,
-      "sha256": "7db45651e7858701c500ca7f87573c8320128bb7eb83bf966f00ec55f3376c0d"
+      "size": 591181,
+      "sha256": "a2bad3b10af0b6c8ab86b6ecb143c6656189f6a9db1936b46c4a1f4a4c512ab8"
     },
     {
       "path": "web/nl/manual_je2000e_eu_nl.md",
       "size": 79084,
-      "sha256": "470cbf8b61eee7ab50e26251c32599f8a416ee461eb1a34ca710611a33f67d87"
+      "sha256": "3cef2c5c336894d60c29641ca96680e3d2c03284ff6527f277fe3bb4a6077da6"
     },
     {
       "path": "web/pt/_static/web_manual.css",

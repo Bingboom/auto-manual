@@ -61,7 +61,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "7fd166adaa47686d37cce46077d863ebea758a005832220215a85d3d53138c95",
-  "content_sha256": "1d6afd1d082ffbc1f87d7c969f4e8d84ad0ad70a5e660ec4882952c59bce7e65",
+  "content_sha256": "4ddf1e378f915f3e08edf26ec9e6fc40a106a892195ee2edbb7c137a68b3d726",
   "language": "pl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -10123,7 +10123,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0002",
-          "content_sha256": "bf2c5703235d8c40f840dc05cffe65e7364998c05dff135aa4726fe6128719c5",
+          "content_sha256": "c7c630b6b21a71c83190ac407747a6e58e7e088c73c2fa7eac2f3d1f70cde820",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -10137,7 +10137,7 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "OSTRZE"
+                                "text": "OSTRZEŻENIE"
                               }
                             ],
                             "header": false,
@@ -10158,7 +10158,7 @@
                                     "children": [
                                       {
                                         "kind": "text",
-                                        "text": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA EŻENIE"
+                                        "text": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA"
                                       }
                                     ],
                                     "kind": "strong"
@@ -10202,12 +10202,12 @@
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "OSTRZE",
+                  "content": "OSTRZEŻENIE",
                   "content_kind": "inline_text",
                   "role": "label"
                 },
                 {
-                  "content": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA EŻENIE",
+                  "content": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA",
                   "content_kind": "rich_text",
                   "role": "body"
                 }

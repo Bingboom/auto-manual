@@ -251,6 +251,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -471,6 +476,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -1100,6 +1110,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -1320,6 +1335,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -2590,6 +2610,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -4015,6 +4040,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -5505,6 +5535,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -5566,6 +5601,11 @@
           "handling": "keep-frozen",
           "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -5586,6 +5626,11 @@
         "tools/web/ir_qc.py": {
           "handling": "keep-frozen",
           "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -6008,6 +6053,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -6218,6 +6268,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -6444,6 +6499,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -7111,6 +7171,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -7321,6 +7386,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -7543,6 +7613,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -7753,6 +7828,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -7969,6 +8049,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -8191,6 +8276,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -8401,6 +8491,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -8623,6 +8718,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -8844,6 +8944,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -9055,6 +9160,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -9225,6 +9335,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -9557,6 +9672,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -9778,6 +9898,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -9994,6 +10119,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -10204,6 +10334,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -10426,6 +10561,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -10642,6 +10782,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -10852,6 +10997,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -11079,6 +11229,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -11295,6 +11450,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -11505,6 +11665,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -11781,6 +11946,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -12544,6 +12714,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -12714,6 +12889,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -12886,6 +13066,11 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
+          "since": "2026-11-21"
         }
       }
     },
@@ -13056,6 +13241,11 @@
         "tools/web/prepared_style_audit.py": {
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
+          "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/prepared_style_baseline.json": {
+          "handling": "keep-frozen",
+          "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
           "since": "2026-11-21"
         }
       }
@@ -13502,6 +13692,16 @@
       "packages": 2,
       "handling": "keep-frozen",
       "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-21",
+      "files": [
+        "docs/renderers/contracts/prepared_style_baseline.json"
+      ],
+      "packages": 38,
+      "handling": "keep-frozen",
+      "reason": "Update JHP-3000D baseline IR hash after repairing malformed CAUTION callout label; existing frozen package outputs unchanged",
       "minutes": 0
     }
   ]

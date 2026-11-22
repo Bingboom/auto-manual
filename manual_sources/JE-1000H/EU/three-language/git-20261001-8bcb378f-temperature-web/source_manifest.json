@@ -330,13 +330,13 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 645521,
-      "sha256": "b3d1008702f4ecc95ae6790a77c5d44cdab4a1c4da35da436b02c996c0139738"
+      "size": 645517,
+      "sha256": "98e27d0b9cf9f518a61f466729bbf344352975c819164ba2242c1e4ab2cc0086"
     },
     {
       "path": "web/nl/manual_je1000h_eu_nl.md",
-      "size": 74904,
-      "sha256": "279d7339a74adf6aefe1a630a4a09556a7e0ab8a970dd506c2faa9e62c58c349"
+      "size": 74902,
+      "sha256": "523a688d5fc172c1cb92679a5415b28f8c7d7d1e200d570d6054b3cb1c4f266c"
     },
     {
       "path": "web/pl/_static/web_manual.css",
@@ -650,13 +650,13 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 651119,
-      "sha256": "3666ec2c88ac697091a40ea10124cfcde6df495a520628e95e7013fa5faab72e"
+      "size": 651115,
+      "sha256": "63e1cb485348e7d4b318934477df07785cb200616468f8c4d3c2e046f113d104"
     },
     {
       "path": "web/pl/manual_je1000h_eu_pl.md",
-      "size": 78004,
-      "sha256": "bc4ced6ad6e1b717b2da024b3a6db9d5ae6744d4b3b0b7cacd8ec190db6aed17"
+      "size": 78002,
+      "sha256": "1b696953e5891ce82a0d04d432aa8fbafd52eb8c78c13ac0904f904f5194f442"
     },
     {
       "path": "web/pt/_static/web_manual.css",

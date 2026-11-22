@@ -282,9 +282,9 @@
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">OPMERKING</td><td class="manual-callout-body"><p>Als tijdens het bindingsproces "het apparaat is al gebonden" wordt gemeld, kunnen de volgende twee methoden worden gebruikt voor de verbinding:</p><ul><li>De eigenaar van het apparaat deelt dit apparaat via de app met andere gebruikers.</li><li>Houd de AAN/UIT-knop en de DC/USB-knop 3 seconden ingedrukt om de wiﬁ en Bluetooth van het apparaat te resetten en het apparaat vervolgens opnieuw te koppelen.</li></ul></td></tr></tbody></table>
 
-<p>2.4 Nadat het apparaat succesvol is verbonden, voert u uw wiﬁ-wachtwoord in en tikt u op de</p>
+<p>2.4 Nadat het apparaat succesvol is verbonden, voert u uw wiﬁ-wachtwoord in en tikt u op de OK-knop.</p>
 
-<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">OK-knop. OPMERKING</td><td class="manual-callout-body"><p>Selecteer een wiﬁ-netwerk in de 2,4 GHz-band. Het apparaat ondersteunt geen</p></td></tr></tbody></table>
+<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">OPMERKING</td><td class="manual-callout-body"><p>Selecteer een wiﬁ-netwerk in de 2,4 GHz-band. Het apparaat ondersteunt geen</p></td></tr></tbody></table>
 
 <p>2.5 Nadat het apparaat succesvol aan de app is toegevoegd, is het wiﬁ-pictogram op het apparaat</p>
 

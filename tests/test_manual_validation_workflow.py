@@ -100,7 +100,7 @@ class WebIrChecksWorkflowTests(unittest.TestCase):
             run_scripts,
         )
         self.assertIn(
-            'python build.py ir-qc --ir-command audit --all-ir --max-warnings 422 --output-path "$RUNNER_TEMP/ir_qc_audit.json"',
+            'python build.py ir-qc --ir-command audit --all-ir --max-warnings 411 --output-path "$RUNNER_TEMP/ir_qc_audit.json"',
             run_scripts,
         )
         self.assertIn(

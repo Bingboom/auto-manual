@@ -2370,8 +2370,8 @@
     },
     {
       "path": "source/en/content.json",
-      "size": 409315,
-      "sha256": "73035bdcf40d3845c6c1d1d9eed27b49e3941c2583d93d61a507761324a90bbf"
+      "size": 409251,
+      "sha256": "4fac836bf21054b0eecf632b8fee9a7eb575f7720d7304b15b72e3a3bbe5aae4"
     },
     {
       "path": "source/en/coverage.json",
@@ -2840,13 +2840,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 531803,
-      "sha256": "069db40d0c3471261102adde229e9b0197bfa502f0f6a009341e9f10cdd1ca64"
+      "size": 531739,
+      "sha256": "0fd4564bb82a66537cccd990f796092e106ede070edee32249e204b44ff54352"
     },
     {
       "path": "web/en/manual_jhp3000d_us_en.md",
-      "size": 77956,
-      "sha256": "88061beb2d6a6fa2f9237f1f6f8c69191da3e4d9af055a98c3eb8cfaad29d084"
+      "size": 77924,
+      "sha256": "e2575777c76379b1bd4d85807acc43c4e0169e2ccf1fde296273789196358cc5"
     },
     {
       "path": "web/es/_static/source_presentation.css",
