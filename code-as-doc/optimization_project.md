@@ -50,6 +50,7 @@ record](dev/manual_ir_operation_warranty_lcd_plan.md), and [cut-4
 record](dev/manual_ir_lcd_troubleshooting_symbols_plan.md), and [cut-5
 record](dev/manual_ir_app_reference_plan.md). The 5B source/crop/hash evidence is
 recorded in the [EU finished-panel closeout](dev/je1000f_eu_finished_panels_discovery_2026-09.md).
+For the post-migration InDesign print convergence path (`Web ManualIR + Feishu Bitable uploaded textless base art -> .idml / .indd`), see [`dev/shared_ir_bitable_indesign_plan.md`](dev/shared_ir_bitable_indesign_plan.md) (paired with [`dev/manual_ir_p1_decisions_2026-11.md`](dev/manual_ir_p1_decisions_2026-11.md)).
 
 
 Updated: 2026-11-20
@@ -592,7 +593,7 @@ validation; (e) template applicability and drafting guidance for people/agents;
 1. **Declarative `web-package` migration & `frozen_package_registry` tightening**: migrate the `171` `custom_script_count` packages (`267` total: `224` under `manual_sources/`, `43` under `data/manual_sources/`, `16` currently `declarative_ready_count`, `140` `approved_count`, `224` `sealed_package_count`, `191` `external_source_pointer_count` across `187` packages, `large_binary_bytes=0`) toward declarative `web-package` builds and close the `146` unpinned packages (`121` currently pin shared inputs) in `data/frozen_package_registry.json`.
 2. **Static `.png`/`.svg` asset deduplication & optimization**: shrink the `2.41 GiB` (`2,472.07 MiB`, `26,441` files) static image/SVG footprint across `manual_sources/` and `data/manual_sources/` via shared-asset deduplication, external pointer reuse, or lossless optimization.
 3. **IR QC warning burn-down toward `--strict` / ratchet enforcement**: pay down the `517` non-blocking warnings across `120` of `330` IR bundles (`60` paired; `210` clean, `0` errors — `389` `untranslated_english_residue`, `95` `unknown_callout_severity`, `33` `callout_severity_mismatch`) so `build.py ir-qc` can ratchet warnings in CI.
-4. **Dormant legacy print/IDML module isolation & retirement**: keep `tools/idml/` (`125` files, `40,041` LOC) and `tools/build_queue/` (`48` files, `12,994` LOC) frozen under `data/frozen_package_registry.json` (`keep-frozen`) and schedule retirement once legacy print/InDesign maintenance closes.
+4. **Dormant legacy print/IDML module isolation & post-migration Shared-IR transition**: keep legacy RST→IDML (`tools/idml/` `ir_projection.py` / `prepared_rst.py` and `tools/build_queue/`) isolated under `data/frozen_package_registry.json` (`keep-frozen`), and execute the three-stage post-migration transition to **Web Shared IR (`manual.ir.json`) + Feishu Bitable uploaded textless base art → InDesign (`.idml` / `.indd`)** per [`dev/shared_ir_bitable_indesign_plan.md`](dev/shared_ir_bitable_indesign_plan.md).
 
 The numbered sequence below retains earlier engineering dependencies as a
 historical workstream order, **not an instruction to execute deferred

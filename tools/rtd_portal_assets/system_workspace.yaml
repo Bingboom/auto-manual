@@ -121,8 +121,8 @@ focus:
     - id: shared_ir
       horizon: deferred
       title: Shared IR（共享底稿）
-      goal: 先明确公共语义与各格式排版边界，再用代表目标验证共享收益
-      action: REV-39 暂缓（操作者 2026-10-19），边界摸底草稿 #1278 保留作输入；REV-20 或 REV-40 开工、启动共享层收敛，或共享修改因缺少公共语义契约无法传到冻结整本包时再启动。IDML 独立验收不阻塞 Web 交付
+      goal: 明确公共语义与排版边界后，以「网页共享 IR（manual.ir.json）+ 飞书多维表无字底图」驱动 InDesign（.idml / .indd）交付
+      action: REV-39 仍暂缓（2026-11-15 已补充答复 #1278 §6 A1–A9 与 N1–N4）；基于「网页共享 IR + 飞书多维表无字底图」生成 InDesign 的迁仓后三阶段实施计划（shared_ir_bitable_indesign_plan.md）已定稿，待迁仓后 Day 0 起按 REV-40 试点 JBP-2000B/JP 与 JE-3000C/KR 推进；IDML 独立验收不阻塞 Web 交付
       card: document_production
       items: [document_production.shared_ir]
       revs: [REV-39..REV-40]
@@ -280,19 +280,25 @@ capabilities:
       - id: shared_ir
         label: Shared IR（共享底稿）
         status: validated
-        note: 代表手册的各格式从同一套语义组件生成；不代表版面逐像素一致
+        verified_on: 2026-11-23
+        note: Web 整本 Shared IR（manual-ir/v2）与语义组件已收敛；基于网页活文字加飞书多维表无字底图直出 InDesign 的迁仓后三阶段计划已定稿
         evidence:
           - "pr:auto-manual#1057"
           - "file:auto-manual:code-as-doc/dev/ir_document_closeout.md"
+          - "file:auto-manual:code-as-doc/dev/manual_ir_p1_decisions_2026-11.md"
+          - "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"
       - id: idml
         label: 印刷排版（IDML）
         short: IDML
         status: in_progress
-        note: 可导出可编辑的 IDML 交给设计；原生验收未完成，出货书仍有 InDesign 手工处理
+        verified_on: 2026-11-23
+        note: 旧 RST 路径可导出可编辑 IDML 并经 K7 InDesign 落盘 .indd 与 PDF/X-4；迁仓后将切换为消费网页共享 IR 与飞书多维表无字底图自动叠字出包，原生验收待完成
         evidence:
           - "pr:auto-manual#548"
           - "pr:auto-manual#615"
           - "pr:auto-manual#955"
+          - "file:auto-manual:tools/indesign_finalize.py"
+          - "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"
           - "rev:REV-20=planned"
 
   - id: content_foundation
@@ -337,12 +343,15 @@ capabilities:
       - id: asset_library
         label: 插图资产库
         status: in_progress
-        note: 插图登记并做哈希校验；按目标的覆盖和去文字化仍在推进
+        verified_on: 2026-11-23
+        note: 飞书多维表统一登记源文件、资产定义并上传无字底图导出物，做哈希校验与按需缓存拉取，以支撑网页与 InDesign 双端复用
         evidence:
           - "pr:auto-manual#662"
           - "pr:auto-manual#670"
           - "pr:auto-manual#1236"
+          - "file:auto-manual:data/asset_base_bindings.json"
           - "file:auto-manual:code-as-doc/dev/asset_ai_master_intake_plan.md"
+          - "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"
 
   - id: review_backport
     title: 评审回写
@@ -488,8 +497,17 @@ flow:
     group: produce
     status: in_progress
     mode: manual
-    note: 导出后由设计在 InDesign 完成；原生验收未做
-    evidence: ["pr:auto-manual#615", "rev:REV-20=planned"]
+    verified_on: 2026-11-23
+    note: 旧 RST 路径导出后由设计在 InDesign 完成，原生验收待做；迁仓后将切换为网页共享 IR 与多维表无字底图直出
+    evidence: ["pr:auto-manual#615", "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md", "rev:REV-20=planned"]
+  - from: 共享底稿 + 多维表底图
+    to: IDML / InDesign
+    group: produce
+    status: planned
+    mode: automated
+    verified_on: 2026-11-23
+    note: 读取网页 manual.ir.json 活文字与飞书多维表上传无字底图缓存，自动叠放可编辑引线框出 .idml 与 K7 .indd（迁仓后三阶段计划）
+    evidence: ["file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md", "file:auto-manual:data/asset_base_bindings.json", "rev:REV-40=planned"]
   - from: 翻译记忆库
     to: 构建短文案
     group: language

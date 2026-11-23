@@ -170,9 +170,12 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertIn("现有 hooks：什么时候自动检查", page)
         architecture_panel = page.split('id="tab-architecture"', 1)[1].split('id="tab-evolution"', 1)[0]
         self.assertIn("多维表 · 业务数据层", architecture_panel)
+        self.assertIn("上传无字底图", architecture_panel)
         self.assertIn("数据校验与快照", architecture_panel)
         self.assertIn("同步与映射", architecture_panel)
         self.assertIn("Content Authority → Assembly → Renderers → Publish", architecture_panel)
+        self.assertIn("飞书多维表上传无字底图", architecture_panel)
+        self.assertNotIn("04_资产", architecture_panel)
         self.assertNotIn("内容与能力平台", architecture_panel)
         self.assertNotIn("读到内容以后", architecture_panel)
         self.assertNotIn("产品知识 · 阅读与理解", architecture_panel)

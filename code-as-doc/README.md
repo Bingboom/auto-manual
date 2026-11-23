@@ -92,6 +92,8 @@ Use these together; do not split operator guidance across older phase plans.
   - Workstream Y checklist: lint baseline, complexity ratchet, test seams, logging contracts, test feedback, doc lifecycle, package layout
 - [`dev/workstream_y_parallel_lanes.md`](dev/workstream_y_parallel_lanes.md)
   - Workstream Y remaining items split into eight non-overlapping lanes for parallel agents
+- [`dev/shared_ir_bitable_indesign_plan.md`](dev/shared_ir_bitable_indesign_plan.md)
+  - post-migration three-stage implementation plan for generating InDesign (`.idml` / `.indd`) from Web Shared IR (`manual.ir.json`) and Feishu Bitable uploaded textless base art
 
 ## 5. Historical Or Archived Docs
 
