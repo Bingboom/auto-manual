@@ -344,7 +344,7 @@ capabilities:
         label: 插图资产库
         status: in_progress
         verified_on: 2026-11-23
-        note: 飞书 04_资产三表登记源文件、定义与导出物并做哈希校验；正推进印刷无字底图按需缓存拉取，以支撑网页与 InDesign 双端复用
+        note: 飞书多维表统一登记源文件、资产定义并上传无字底图导出物，做哈希校验与按需缓存拉取，以支撑网页与 InDesign 双端复用
         evidence:
           - "pr:auto-manual#662"
           - "pr:auto-manual#670"
@@ -506,7 +506,7 @@ flow:
     status: planned
     mode: automated
     verified_on: 2026-11-23
-    note: 读取网页 manual.ir.json 活文字与飞书 04_资产* 无字底图缓存，自动叠放可编辑引线框出 .idml 与 K7 .indd（迁仓后三阶段计划）
+    note: 读取网页 manual.ir.json 活文字与飞书多维表上传无字底图缓存，自动叠放可编辑引线框出 .idml 与 K7 .indd（迁仓后三阶段计划）
     evidence: ["file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md", "file:auto-manual:data/asset_base_bindings.json", "rev:REV-40=planned"]
   - from: 翻译记忆库
     to: 构建短文案

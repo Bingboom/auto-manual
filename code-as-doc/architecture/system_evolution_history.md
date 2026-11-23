@@ -310,7 +310,7 @@ Product Knowledge 与 Market Policy 是阅读与应用页面，各自保留内�
 IR 与共享组件随网页手册录入持续完善；
 长期线是扩大共同语义的覆盖，让 Web、Word、IDML 和 Machine Surface 直接消费
 同一份公共语义，各自负责表达。其中印刷端已定稿「基于网页共享 IR（`manual.ir.json`）+
-飞书多维表无字底图（`04_资产*`）生成 InDesign（`.idml` / `.indd`）」的迁仓后三阶段实施路线
+飞书多维表上传无字底图生成 InDesign（`.idml` / `.indd`）」的迁仓后三阶段实施路线
 （见[落地实施计划](../dev/shared_ir_bitable_indesign_plan.md)），并逐步替换 HTML → Machine
 的兼容路径，用现有机读语料作语义迁移基线，而不是一次重写所有 Renderer。
 代表试点、边界与各格式验收仍按 REV-39/REV-40 和独立方案推进。
@@ -380,7 +380,7 @@ architecture:
   - id: enterprise_tables
     title: 多维表（业务数据层）
     status: recorded
-    summary: 业务人员在多维表中维护产品信息、内容模块、规格参数、多语言内容，以及 04_资产* 无字底图与导出物，并开展维护与评审；生产系统读取经检查后导出的快照或按需拉取本地缓存。
+    summary: 业务人员在多维表中维护产品信息、内容模块、规格参数、多语言内容以及上传无字底图与导出物，并开展维护与评审；生产系统读取经检查后导出的快照或按需拉取本地缓存。
     evidence:
     - file:auto-manual:user-guide/two_plane_map.md
     - file:auto-manual:tools/data/sync_data.py

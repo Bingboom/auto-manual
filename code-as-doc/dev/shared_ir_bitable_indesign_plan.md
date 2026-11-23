@@ -6,7 +6,7 @@ Status: proposed · Created: 2026-11-23
 - **前置审计依据**：`eval_20261122_ir_to_indesign.md`（2026-11-22 只读基线审计报告）
 - **核心架构指令**：**「基于 网页文档 + 多维表存底图 的方式 出 InDesign」**
   1. **网页文档（`manual.ir.json` / `manual-ir/v2` → `v2.1`）** = **唯一内容、结构与多语种活文字源**（包含章节正文、提示框、规格表、以及插图对应的多语种引线词条文字；**Git 仓内不重复塞入 `.ai` / 矢量 `.pdf` / 无字印刷底图大文件**）。
-  2. **飞书多维表格（`04_资产源文件` / `04_资产定义` / `04_资产导出物`）** = **唯一「无字底图（`.ai` / 矢量 `.pdf` / ≥300 DPI 无字底图）」存储、审批与映射中心**（通过 `asset_key` / `web_replace_key` / Web 图 `content_sha256` 映射到 `text_policy="textless"` 的印刷导出附件，构建时按 SHA-256 拉取至本地缓存，绝不污染 Git）。
+  2. **飞书多维表上传无字底图** = **唯一「无字底图（`.ai` / 矢量 `.pdf` / ≥300 DPI 无字底图）」存储、审批与映射中心**（底层表结构与字段契约见 §2.1；通过 `asset_key` / `web_replace_key` / Web 图 `content_sha256` 映射到 `text_policy="textless"` 的印刷导出附件，构建时按 SHA-256 拉取至本地缓存，绝不污染 Git）。
   3. **InDesign 合成器（`tools/idml/from_manual_ir.py`）** = **读取「网页文档活文字与语义结构」+ 从「多维表本地 SHA-256 缓存拉取无字底图」→ 自动叠放可编辑多语种引线/标签文本框 → 合成自包含 `.idml` → macOS K7 主机（`Adobe InDesign 2026 21.0.1.6`）输出 `.indd` 与 `PDF/X-4`**。
 - **适用阶段与红线**：三仓库（`auto-manual` / `Hello-Docs` / `Hello-Docs-Review`）迁至公司内网 GitLab 服务器后，自 Day 0 起按本计划逐 PR 推进。在 Stage 3 旧栈退场前，所有新能力均挂载在增量入口（`--from-ir` / 新建模块）之后，**保持既有 `build.py idml`（旧 `v1` RST→IDML）、`build.py web-package`、`ir-qc` 全绿可随时秒级回退**；严格遵守 `tools/check_maintainability_guardrails.py` 上限（`build.py <= 761`、`tools/export_idml.py <= 230`、`tools/idml/primitives.py <= 300`、`tools/idml/styles.py <= 220`、`tools/idml/package.py <= 160`）、`tools/utils/path_utils.py` 路径构造规范及 `tools/check_mypy_ratchet.py` 严格类型门禁。
 

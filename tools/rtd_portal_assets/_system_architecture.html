@@ -35,7 +35,7 @@
       {{ graph_box(architecture.diagram.enterprise_systems, 365, 35, 350, 80, 'PLM／ERP', ['企业权威数据']) }}
       <path class="map-edge is-planned" d="M540 115 V149"/>
       <text class="map-edge-label" x="552" y="139">同步与映射</text>
-      {{ graph_box(architecture.diagram.enterprise_tables, 330, 150, 420, 72, '多维表 · 业务数据层', ['产品 · 内容 · 参数 · 多语言 · 无字底图']) }}
+      {{ graph_box(architecture.diagram.enterprise_tables, 330, 150, 420, 72, '多维表 · 业务数据层', ['产品 · 内容 · 参数 · 多语言 · 上传无字底图']) }}
       <path class="map-edge" d="M540 222 V247"/>
       {{ graph_box(architecture.diagram.data_snapshot, 390, 248, 300, 56, '数据校验与快照', []) }}
       <path class="map-edge" d="M540 304 V344"/>
@@ -81,7 +81,7 @@
       <details class="access-hook-details"><summary>现有 hooks：什么时候自动检查</summary><div class="access-surfaces">{% for row in architecture.hooks %}{{ node(row) }}{% endfor %}</div></details>
     </section>
     <details class="access-hook-details"><summary>入口、内容与输出的来源依据</summary>
-      <p>Shared IR（共享底稿）把章节、文字、表格、步骤与素材整理为结构化底稿。Web 整本复用已实现，印刷端已定稿「网页共享 IR 活文字 + 飞书多维表无字底图（04_资产*）→ InDesign（.idml / .indd）」迁仓后三阶段实施路线（Git 仓不存大体积印刷底图），更多格式的共用覆盖持续完善。文档生产链路为 Content Authority → Assembly → Renderers → Publish；多维表、Git 原稿与批准素材各有内容权威。PLM／ERP 接入后，企业正式记录仍以上游为准。</p>
+      <p>Shared IR（共享底稿）把章节、文字、表格、步骤与素材整理为结构化底稿。Web 整本复用已实现，印刷端已定稿「网页共享 IR 活文字 + 飞书多维表上传无字底图 → InDesign（.idml / .indd）」迁仓后三阶段实施路线（Git 仓不存大体积印刷底图），更多格式的共用覆盖持续完善。文档生产链路为 Content Authority → Assembly → Renderers → Publish；多维表（含上传无字底图）、Git 原稿与批准素材各有内容权威。PLM／ERP 接入后，企业正式记录仍以上游为准。</p>
       <div class="access-surfaces">{% for group in ['human', 'agent', 'enterprise', 'core', 'surfaces'] %}{% for row in architecture[group] %}{{ node(row) }}{% endfor %}{% endfor %}</div>
     </details>
   </details>
