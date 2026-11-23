@@ -1,0 +1,170 @@
+[
+  {
+    "slot": "main-power",
+    "physical_page": 8,
+    "clip_points": [
+      25.85,
+      69.63,
+      340.99,
+      256.76
+    ],
+    "delivery_name": "01-电源开关",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "ac-power",
+    "physical_page": 8,
+    "clip_points": [
+      24.4,
+      307.6,
+      339.54,
+      495.93
+    ],
+    "delivery_name": "02-AC输出",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "dc-usb-power",
+    "physical_page": 9,
+    "clip_points": [
+      30.63,
+      42.95,
+      345.77,
+      232.38
+    ],
+    "delivery_name": "03-DC-USB输出",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "energy-buttons",
+    "physical_page": 10,
+    "clip_points": [
+      26.59,
+      29.12,
+      341.72,
+      172.05
+    ],
+    "delivery_name": "04-节能模式",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "led-light",
+    "physical_page": 10,
+    "clip_points": [
+      23.89,
+      276.72,
+      344.76,
+      496.86
+    ],
+    "delivery_name": "05-LED灯",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "lcd-display-reference",
+    "physical_page": 11,
+    "clip_points": [
+      24.94,
+      49.19,
+      346.72,
+      165.87
+    ],
+    "delivery_name": "06-屏幕显示-原稿参考",
+    "format": "svg",
+    "usage": "reference-only; Web table stays native",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "ups",
+    "physical_page": 12,
+    "clip_points": [
+      23.56,
+      82,
+      338.69,
+      238.3
+    ],
+    "delivery_name": "07-UPS",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "ac-charge",
+    "physical_page": 13,
+    "clip_points": [
+      25.79,
+      56.18,
+      344.46,
+      171.84
+    ],
+    "delivery_name": "08-市电充电",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "solar-direct",
+    "physical_page": 13,
+    "clip_points": [
+      26.94,
+      335.42,
+      342.07,
+      470.93
+    ],
+    "delivery_name": "09-两块太阳能板充电",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "solar-four",
+    "physical_page": 14,
+    "clip_points": [
+      26.27,
+      29.21,
+      341.4,
+      148.54
+    ],
+    "delivery_name": "10-四块太阳能板充电",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "car-charge",
+    "physical_page": 14,
+    "clip_points": [
+      22.73,
+      320.92,
+      344.82,
+      438.09
+    ],
+    "delivery_name": "11-车充充电",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  },
+  {
+    "slot": "app-controls",
+    "physical_page": 17,
+    "clip_points": [
+      28.97,
+      357.48,
+      331.73,
+      425.9
+    ],
+    "delivery_name": "12-App操作按键",
+    "format": "svg",
+    "usage": "complete-finished-source-panel",
+    "text_policy": "localized-finished-panel"
+  }
+]

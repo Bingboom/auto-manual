@@ -1,0 +1,23 @@
+{
+  "schema": "caption-overflow-repair/v1",
+  "authorization": "MA-481",
+  "prior_package": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r1",
+  "prior_measured_mobile": {
+    "viewport_px": 390,
+    "client_width_px": 375,
+    "scroll_width_px": 379,
+    "offending_caption": "2.2",
+    "span_right_px": 378.5509948730469
+  },
+  "selector": ".hb-reference-figure[data-reference-id=\"app-phones\"] .hb-reference-caption-grid",
+  "fix": "overflow-x: clip",
+  "preserves_caption_offsets": true,
+  "copy_and_artwork_unchanged": true,
+  "verification_required": [
+    "1440px desktop",
+    "390x844 mobile",
+    "caption glyph positions and complete text",
+    "wide-table internal scrolling",
+    "assembled hash-path page"
+  ]
+}

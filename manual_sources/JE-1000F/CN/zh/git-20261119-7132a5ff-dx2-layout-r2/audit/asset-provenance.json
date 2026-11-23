@@ -1,0 +1,797 @@
+[
+  {
+    "slot": "inbox-unit",
+    "physical_page": 4,
+    "clip_points": [
+      39,
+      385,
+      122,
+      439
+    ],
+    "caption": "便携式储能电源1000 Pro 3",
+    "local_path": "assets/cn-inbox-unit.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "24c8388aa4054b0ce5f54fd2acf92f7f0ff3c080b678b04f9a44e48ac32d06e6",
+    "asset_key": "candidate/je1000f_cn/inbox-unit",
+    "status": "source-specific-review-candidate",
+    "role": "product-art",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "registration-qr",
+    "physical_page": 3,
+    "clip_points": [
+      293,
+      91,
+      342,
+      140
+    ],
+    "caption": "电小二户外电源服务小程序",
+    "local_path": "assets/cn-registration-qr.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "9056cd8ac8dcb4c93d60a0439b4f46d9cb90c9b0fc61a4aa7548be2d231b2ea9",
+    "asset_key": "candidate/je1000f_cn/registration-qr",
+    "status": "source-specific-review-candidate",
+    "role": "qr",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "overview-front",
+    "physical_page": 5,
+    "clip_points": [
+      23,
+      67,
+      346,
+      290
+    ],
+    "caption": "产品介绍：正面接口、按键与额定值",
+    "local_path": "assets/cn-overview-front.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "221219900ab8a5dd4a15251d087e323003486c3f073a17eea0d68921c4de5b41",
+    "asset_key": "candidate/je1000f_cn/overview-front",
+    "status": "source-specific-review-candidate",
+    "role": "dense-leader-diagram",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "overview-input",
+    "physical_page": 5,
+    "clip_points": [
+      24,
+      310,
+      346,
+      362
+    ],
+    "caption": "产品介绍：AC与DC8020输入接口",
+    "local_path": "assets/cn-overview-input.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "a6c18276aef48270c6cdce0481e0dc4da8cbc525d97cbae8ce839e287afcd792",
+    "asset_key": "candidate/je1000f_cn/overview-input",
+    "status": "source-specific-review-candidate",
+    "role": "dense-leader-diagram",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 6,
+    "clip_points": [
+      52,
+      51,
+      316,
+      219
+    ],
+    "caption": "显示屏界面及编号",
+    "local_path": "assets/cn-lcd-display.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "fb88fd189d5088439453f050745ec368137ded69a0bd9c552c31c7ddc6037eb9",
+    "asset_key": "candidate/je1000f_cn/lcd-display",
+    "status": "source-specific-review-candidate",
+    "role": "numbered-device-screen",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "main-power",
+    "physical_page": 8,
+    "clip_points": [
+      42,
+      93,
+      333,
+      197
+    ],
+    "caption": "总电源开关：短按一次开机，长按3秒关机",
+    "local_path": "assets/cn-main-power.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "bc992922ca04b915b1c7e83beeb7c0b3402a725f0d4399382ab86868007cb4ac",
+    "asset_key": "candidate/je1000f_cn/main-power",
+    "status": "source-specific-review-candidate",
+    "role": "finished-operation-panel",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "ac-power",
+    "physical_page": 8,
+    "clip_points": [
+      43,
+      350,
+      333,
+      493
+    ],
+    "caption": "AC输出按键和连接示意",
+    "local_path": "assets/cn-ac-power.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "91a82f9469fd2e4e46ae3ee644759f88dd0ffaa1d99bb50c94fa015a9ba1aeae",
+    "asset_key": "candidate/je1000f_cn/ac-power",
+    "status": "source-specific-review-candidate",
+    "role": "finished-operation-panel",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "dc-usb-power",
+    "physical_page": 9,
+    "clip_points": [
+      41,
+      74,
+      335,
+      222
+    ],
+    "caption": "DC/USB输出按键和连接示意",
+    "local_path": "assets/cn-dc-usb-power.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "0f0beba65c90e432e686f9ebb1f9641f4c24db3ee8d06df55095ceb22485cc9c",
+    "asset_key": "candidate/je1000f_cn/dc-usb-power",
+    "status": "source-specific-review-candidate",
+    "role": "finished-operation-panel",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "energy-buttons",
+    "physical_page": 10,
+    "clip_points": [
+      48,
+      77,
+      328,
+      162
+    ],
+    "caption": "总电源与AC组合按键",
+    "local_path": "assets/cn-energy-buttons.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "6ba8304f91d4b706395d72989d97fc6c70f1b182dadb6aabb68da6224758c4c4",
+    "asset_key": "candidate/je1000f_cn/energy-buttons",
+    "status": "source-specific-review-candidate",
+    "role": "fixed-product-markings",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "led-light",
+    "physical_page": 10,
+    "clip_points": [
+      96,
+      317,
+      294,
+      400
+    ],
+    "caption": "LED灯按键示意",
+    "local_path": "assets/cn-led-light.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "8d01826971cccd14e3e8ae2c3a6a6474fa76c9085042be50c29b09e64bda2cdc",
+    "asset_key": "candidate/je1000f_cn/led-light",
+    "status": "source-specific-review-candidate",
+    "role": "fixed-product-markings",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "lcd-button",
+    "physical_page": 11,
+    "clip_points": [
+      35,
+      65,
+      136,
+      150
+    ],
+    "caption": "总电源开关键与屏幕显示",
+    "local_path": "assets/cn-lcd-button.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "c7e95d0a2428448165b2cea904ececcd493378c2ebcdf747df0c33aaea17d147",
+    "asset_key": "candidate/je1000f_cn/lcd-button",
+    "status": "source-specific-review-candidate",
+    "role": "fixed-product-markings",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "ups",
+    "physical_page": 12,
+    "clip_points": [
+      25,
+      84,
+      341,
+      239
+    ],
+    "caption": "UPS连接示意",
+    "local_path": "assets/cn-ups.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "ca55a303e43848ee52e26d804de8b2680dbe1755220bd14f3d32f3de1d331858",
+    "asset_key": "candidate/je1000f_cn/ups",
+    "status": "source-specific-review-candidate",
+    "role": "finished-connection-panel",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "ac-charge",
+    "physical_page": 13,
+    "clip_points": [
+      27,
+      57,
+      343,
+      172
+    ],
+    "caption": "市电充电连接示意",
+    "local_path": "assets/cn-ac-charge.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "56a8d9d2905edce51d2465ae9824cb133e9c3bf0de7f80d77e4453364f8b03f0",
+    "asset_key": "candidate/je1000f_cn/ac-charge",
+    "status": "source-specific-review-candidate",
+    "role": "fixed-product-markings",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "solar-direct",
+    "physical_page": 13,
+    "clip_points": [
+      28,
+      338,
+      342,
+      474
+    ],
+    "caption": "SolarSaga 200 ×2太阳能充电",
+    "local_path": "assets/cn-solar-direct.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "6390c41ff4cd1498c4cfc0cd612b679cc34ce70d059d197791c74c48b110af95",
+    "asset_key": "candidate/je1000f_cn/solar-direct",
+    "status": "source-specific-review-candidate",
+    "role": "finished-connection-panel",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "solar-four",
+    "physical_page": 14,
+    "clip_points": [
+      23,
+      31,
+      342,
+      147
+    ],
+    "caption": "SolarSaga 100 Air ×4太阳能充电",
+    "local_path": "assets/cn-solar-four.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "765389a8314998a72ab8e3b0d4adab19084300e0f947bdb0af29c0d75d1467e2",
+    "asset_key": "candidate/je1000f_cn/solar-four",
+    "status": "source-specific-review-candidate",
+    "role": "finished-connection-panel",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "car-charge",
+    "physical_page": 14,
+    "clip_points": [
+      23,
+      326,
+      342,
+      437
+    ],
+    "caption": "12V车型车充连接示意",
+    "local_path": "assets/cn-car-charge.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "f67c8b5711804e21674ddf4d77867ff3e5faac600f1b940a9e09f2de70682121",
+    "asset_key": "candidate/je1000f_cn/car-charge",
+    "status": "source-specific-review-candidate",
+    "role": "finished-connection-panel",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "app-download",
+    "physical_page": 17,
+    "clip_points": [
+      256,
+      57,
+      320,
+      121
+    ],
+    "caption": "电小二App下载二维码",
+    "local_path": "assets/cn-app-download.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "7cad55026ad904d41abdcb53e2080aed90a090b1b8c64578ac2c74173316e09a",
+    "asset_key": "candidate/je1000f_cn/app-download",
+    "status": "source-specific-review-candidate",
+    "role": "qr",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "app-phones",
+    "physical_page": 17,
+    "clip_points": [
+      89,
+      174,
+      273,
+      325
+    ],
+    "caption": "电小二App添加设备：2.1与2.2",
+    "local_path": "assets/cn-app-phones.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "50b8902964de2f73517c2f98bccf7b7a73e148ad1498561f318d0937b1dd5303",
+    "asset_key": "candidate/je1000f_cn/app-phones",
+    "status": "source-specific-review-candidate",
+    "role": "app-ui-complete-frames",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "app-controls",
+    "physical_page": 17,
+    "clip_points": [
+      30,
+      359,
+      332,
+      425
+    ],
+    "caption": "总电源、DC/USB、AC输出按键",
+    "local_path": "assets/cn-app-controls.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "569b177e904b7906b4d2f86a8a9a914d99441288f326e8689a885a2e5221a5b1",
+    "asset_key": "candidate/je1000f_cn/app-controls",
+    "status": "source-specific-review-candidate",
+    "role": "dense-leader-diagram",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "app-results",
+    "physical_page": 1,
+    "clip_points": [
+      2802,
+      1299,
+      3110,
+      1475
+    ],
+    "caption": "App连接设备、2.4GHz配网与连接结果",
+    "local_path": "assets/cn-app-results.png",
+    "embedded_words": true,
+    "printed_notes": [],
+    "sha256": "b4b71fa7fce6082e9858edf6c06407a9be5c076270f8c26110a5a23986510911",
+    "asset_key": "candidate/je1000f_cn/app-results",
+    "status": "source-specific-review-candidate",
+    "role": "app-ui-complete-frames",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "slot": "service-qr",
+    "physical_page": 18,
+    "clip_points": [
+      32,
+      439,
+      75,
+      482
+    ],
+    "caption": "电小二官方品牌公众号",
+    "local_path": "assets/cn-service-qr.png",
+    "embedded_words": false,
+    "printed_notes": [],
+    "sha256": "d582f739307be257a9d92f027d4d1da4f05eec7288b2c13f6c4bd69e689689f3",
+    "asset_key": "candidate/je1000f_cn/service-qr",
+    "status": "source-specific-review-candidate",
+    "role": "qr",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "decision": "new-exact-source-crop",
+    "reason": "CN socket/device branding or exact Simplified Chinese App/UI differs from inventoried sibling assets"
+  },
+  {
+    "local_path": "assets/shared-manual.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/87ac44e52863_87ac44e52863_87ac44e52863_manual_icon1.png",
+    "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+    "asset_key": "in_the_box/manual",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/cn-ac-cable.png",
+    "clip_points": [
+      166,
+      381,
+      223,
+      441
+    ],
+    "physical_page": 4,
+    "sha256": "43a059232499e3352cd361de0e09839c828401d36eb1a812121aeded7a780594",
+    "asset_key": "candidate/je1000f_cn/inbox-ac",
+    "status": "source-specific-review-candidate",
+    "decision": "new-exact-source-crop",
+    "role": "product-art",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56"
+  },
+  {
+    "local_path": "assets/shared-lcd-01.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/fc4cc02b42ef_fc4cc02b42ef_fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "asset_key": "lcd/1_Wi-Fi",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-02.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/7e1392ba6a45_7e1392ba6a45_7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "asset_key": "lcd/2_Bluetooth",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-03.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/7f743182c050_7f743182c050_7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "asset_key": "lcd/3_Quiet_Charging",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-04.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/71017f43bab4_71017f43bab4_71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "asset_key": "lcd/4_Charging_Plan",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-05.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/73225cf9faa8_73225cf9faa8_73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "asset_key": "lcd/5_Self-powered",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-06.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/f4cdcb551105_f4cdcb551105_f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "asset_key": "lcd/6_TOU_Mode",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-07.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/e422a56922eb_e422a56922eb_e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "asset_key": "lcd/7_UPS",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-08.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/8be87c5a0849_8be87c5a0849_8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "asset_key": "lcd/8_AC_Power",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-09.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/7623ef10e229_7623ef10e229_7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "asset_key": "lcd/9_Output_Voltage",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-10.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/d5100a538e96_d5100a538e96_d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "asset_key": "lcd/10_Input_Power",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-11.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/cfb69b1ffc0b_cfb69b1ffc0b_cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "asset_key": "lcd/11_Remaining_Charge",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-12.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/28f3cad42ae3_28f3cad42ae3_28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "asset_key": "lcd/12_AC_Wall",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-13.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/eed3299c3f6a_eed3299c3f6a_eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "asset_key": "lcd/13_Car_Charging",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-14.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/91cec82eeaa5_91cec82eeaa5_91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "asset_key": "lcd/14_Solar_Charging",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-15.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/e32e6ae96321_e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "asset_key": "lcd/15_Battery_Saving",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-16.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/21b5f19ca9a6_21b5f19ca9a6_21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "asset_key": "lcd/16_Charging_Power",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-17.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/85921a9ad7fb_85921a9ad7fb_85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "asset_key": "lcd/17_Battery_Power",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-18.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/c7862a87e742_c7862a87e742_c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "asset_key": "lcd/19_Low_Battery",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-19.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/747147be99d7_747147be99d7_747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "asset_key": "lcd/18_Remaining_Battery",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-20.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/6aab9a14900a_6aab9a14900a_6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "asset_key": "lcd/20_Discharge_Timer",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-21.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/c4b830c769a3_c4b830c769a3_c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "asset_key": "lcd/22_Energy_Saving",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-22.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/f548c6504f49_f548c6504f49_f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "asset_key": "lcd/23_High_Temperature",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-23.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/bdbf602db74a_bdbf602db74a_bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "asset_key": "lcd/24_Low_Temperature",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-24.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/ce913ebfc775_ce913ebfc775_ce913ebfc775_25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+    "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+    "asset_key": "lcd/25_Fault",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-25.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/58c1d3604ca7_58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "asset_key": "lcd/26_Output_Power",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-lcd-26.png",
+    "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20261102-30bcad90-shared-symbols/four-language/web/nl/assets/9b148ea95d3a_9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "asset_key": "lcd/27_Remaining_Discharge",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-symbol-1.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "asset_key": "warning/outline-triangle-tinted",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-symbol-2.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "asset_key": "read-manual/book-information",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-symbol-3.png",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "asset_key": "weee/crossed-bin-bar",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-symbol-4.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "asset_key": "li-ion/recycle-li-ion",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-button-power.svg",
+    "source_path": "docs/renderers/web/assets/shared/buttons/power.svg",
+    "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+    "asset_key": "button/power",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-button-ac.svg",
+    "source_path": "docs/renderers/web/assets/shared/buttons/ac.svg",
+    "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+    "asset_key": "button/ac",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-button-dc_usb.svg",
+    "source_path": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+    "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+    "asset_key": "button/dc_usb",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/shared-button-led.svg",
+    "source_path": "docs/renderers/web/assets/shared/buttons/led.svg",
+    "sha256": "9bfcc75dae807c470b6a6647de0112a986804e82abfede0c93cc2b100dcd3268",
+    "asset_key": "button/led",
+    "status": "reused-byte-identical",
+    "decision": "reuse",
+    "role": "shared-icon-or-fixed-marking"
+  },
+  {
+    "local_path": "assets/cn-efup10-candidate.png",
+    "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+    "physical_page": 4,
+    "clip_points": [
+      190.5,
+      124.0,
+      220.0,
+      150.5
+    ],
+    "drawing_indices": [
+      849,
+      850,
+      851,
+      852
+    ],
+    "sha256": "307727a1a231e1bab706c6689bff87fb25f331627273c6aef5758fdc44a3646f",
+    "asset_key": "candidate/je1000f_cn/environmental-use-period-10",
+    "status": "source-specific-review-candidate",
+    "role": "standalone-symbol",
+    "decision": "no-suitable-reusable-asset-found",
+    "background_policy": "transparent; original source path colors and opacity retained"
+  }
+]

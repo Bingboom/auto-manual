@@ -1,0 +1,20 @@
+{
+  "reason": "Bind the new immutable revision to current approved main without changing shared files.",
+  "updates": [
+    {
+      "path": "tools/web/ir_qc.py",
+      "previous_sha256": "9b52747a1705880d496ea3048fc041dd2a82724d5e94971a633de1702383ff3b",
+      "sha256": "0db6840affa5ae964a8b4fe3455588309ab61f14bb268c4a1716acc80a59ed36"
+    },
+    {
+      "path": "tools/web/package_build.py",
+      "previous_sha256": "ddc99e03358ec69e6646a4fb8bae4bb13ec96a9347d744420024ce784c9b9777",
+      "sha256": "a39ada8223f460df6fef806b7715db35b725641a9da7b48a9e187dd7fea357d6"
+    },
+    {
+      "path": "tools/web/prepared_style_audit.py",
+      "previous_sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121",
+      "sha256": "394ff8906cd4ca793f55a1bf931bceedcc8d98cefa0e5be7e2ae7b4e00e347dc"
+    }
+  ]
+}
