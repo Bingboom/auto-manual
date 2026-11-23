@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-19",
+  "request": "Remove the added introductory title/frame and adjust registration layout to the source.",
+  "changes": [
+    "Removed the non-source introductory heading and warranty frame.",
+    "Reused shared hb-registration-panel styles: benefits left; steps and 96px QR right; stacked panels on mobile."
+  ],
+  "source_copy_changed": false,
+  "other_13_chapters_unchanged": true,
+  "qr_sha256": "9056cd8ac8dcb4c93d60a0439b4f46d9cb90c9b0fc61a4aa7548be2d231b2ea9",
+  "validation": "Strict Sphinx, shared style audit, native IR, resource closure and actual 1440px/390px browser checks passed."
+}

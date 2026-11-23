@@ -5590,6 +5590,11 @@
         }
       }
     },
+    "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2": {
+      "approval": "MA-481: operator-requested mobile caption overflow repair and publication",
+      "registered": "2026-11-22",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000F/EU/en-fr/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",

@@ -1,0 +1,23 @@
+/* Geometry only; the shared theme owns every visual token. */
+.hb-reference-figure[data-reference-id="app-phones"] { max-width: 26rem; margin-inline: auto; }
+
+/* Source-bound geometry: compact phone pair and top-aligned QR download copy. */
+#furo-main-content .hb-app-download-qr-only { align-items: start; }
+#furo-main-content .hb-app-download-qr-only > .hb-app-download-copy { max-width: 30rem; }
+@media (min-width: 481px) {
+  #furo-main-content .hb-app-download-qr-only { grid-template-columns: minmax(0, 1fr) 7rem; }
+}
+
+/* Back-cover geometry: compact QR and caption beside two native address groups. */
+#native-contact-layout { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1.25rem; align-items: start; margin-block: 1rem; }
+#native-contact-code { width: 8rem; margin: 0; }
+#native-contact-code > img { display: block; width: 6rem; height: auto; margin-inline: auto; }
+#native-contact-code > figcaption { text-align: center; margin-top: .4rem; }
+#native-contact-details > p { margin-top: 0; margin-bottom: 1rem; }
+#native-contact-details > p:last-child { margin-bottom: 0; }
+@media (max-width: 600px) {
+  #native-contact-layout { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+}
+
+/* Keep translated caption cells inside this source figure without shifting the text. */
+.hb-reference-figure[data-reference-id="app-phones"] .hb-reference-caption-grid { overflow-x: clip; }

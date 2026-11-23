@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-19",
+  "request": "Back-cover QR left with caption; manufacturer and factory details right, matching supplied reference.",
+  "qr_width_px": 96,
+  "layout": "two columns on desktop; stacked at <=600px",
+  "source_copy_changed": false,
+  "other_13_chapters_unchanged": true,
+  "qr_sha256": "d582f739307be257a9d92f027d4d1da4f05eec7288b2c13f6c4bd69e689689f3",
+  "checks": [
+    "strict Sphinx",
+    "ManualIR",
+    "shared style audit",
+    "local resources",
+    "1440x1000 browser",
+    "390x844 browser"
+  ]
+}

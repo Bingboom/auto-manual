@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-20",
+  "source_sha256": "7132a5ff27529c9edd60b501d147ade477445c3942a57008a7c8019fdc149b56",
+  "pdf_backed": true,
+  "source_filename": "original.pdf",
+  "results": [
+    {
+      "asset_ref": "assets/shared-symbol-1.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.019966
+    },
+    {
+      "asset_ref": "assets/shared-symbol-2.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.013161
+    },
+    {
+      "asset_ref": "assets/shared-symbol-3.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.389901,
+      "canonical_group": "weee",
+      "canonical_decision": "SCG-20261103"
+    },
+    {
+      "asset_ref": "assets/shared-symbol-4.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.065697,
+      "canonical_group": "li-ion",
+      "canonical_decision": "SCG-20261104"
+    },
+    {
+      "asset_ref": "assets/cn-efup10-candidate.png",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.016129
+    }
+  ]
+}
