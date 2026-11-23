@@ -231,7 +231,11 @@ The operator decides the focus. Since 2026-09-26 the sequence is:
    translation hits/corrections; source authority, writers, approvers and frozen
    release inputs are established as real data needs arise.
 3. Shared IR is deferred (REV-39, operator 2026-10-19); the #1278 boundary draft
-   stays as input. It restarts when REV-20 or REV-40 starts, shared-layer
+   stays as input (with the 2026-11 A1–A9 and N1–N4 replies recorded in
+   [manual_ir_p1_decisions_2026-11.md](../manual_ir_p1_decisions_2026-11.md) and
+   the post-migration three-stage `Web ManualIR + Bitable 04_资产* textless base art -> InDesign`
+   plan recorded in [shared_ir_bitable_indesign_plan.md](../shared_ir_bitable_indesign_plan.md)).
+   It restarts when REV-20 or REV-40 starts, shared-layer
    consolidation starts, or a shared change cannot reach frozen packages for
    lack of a common semantic contract. IDML acceptance does not block Web.
 4. Skeleton expansion is deferred by the REV-41 decision (done 2026-10-19):
