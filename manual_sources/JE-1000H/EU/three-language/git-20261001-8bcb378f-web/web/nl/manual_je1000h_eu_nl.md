@@ -12,7 +12,7 @@
 
 # BELANGRIJKE VEILIGHEIDSINFORMATIE
 
-<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">WAARSCHU</td><td class="manual-callout-body"><p><strong>AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN UWING</strong></p></td></tr></tbody></table>
+<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">WAARSCHUWING</td><td class="manual-callout-body"><p><strong>AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN</strong></p></td></tr></tbody></table>
 
 <p>Volg altijd deze basisvoorzorgsmaatregelen wanneer u dit product gebruikt.</p>
 

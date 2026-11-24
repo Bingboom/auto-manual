@@ -62,7 +62,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "ff13cb704221f7c5d9e8980bb4ed7678a1792a243f5c26b03642624cce805537",
-  "content_sha256": "6dae2fa4aa6c1c5184f78197442fdd81ddb69524c8250fee245a86f4f6934af4",
+  "content_sha256": "fa719f4512ef97d50697a26874b8966d9dd7df7d19c327c7ad450d351dc55c0c",
   "language": "pl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2187,8 +2187,8 @@
         "candidate_commit": "04dad55a",
         "engineering_pr": "Bingboom/auto-manual#1608",
         "markdown_sha256": {
-          "nl": "91eec6f9cc5a19606488aed4dc86a38a5ebf97f7463068b07804719ff569da33",
-          "pl": "f9e4d011cd03283917f924e558e38706f4055a8d0115c17fc3dfec9d264a5e82",
+          "nl": "2ad753298cca9d8d0b20d61c54e1d6c01821c136e8b11099e67267e0f494fe9d",
+          "pl": "cd1e547ea82a463d581f689a3252e2f8d7dcab163203c8f549218a524d431032",
           "pt": "a0ba371848b2b14b55945a4371e38cb0d2cb4abeeed410593e1679f7f86bb663"
         },
         "renderings": "before/after symbol table at 1280 and 390 px, pt/nl/pl seven shared rows (Li-ion native-dark)"
@@ -10265,7 +10265,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0002",
-          "content_sha256": "bf2c5703235d8c40f840dc05cffe65e7364998c05dff135aa4726fe6128719c5",
+          "content_sha256": "c7c630b6b21a71c83190ac407747a6e58e7e088c73c2fa7eac2f3d1f70cde820",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -10279,7 +10279,7 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "OSTRZE"
+                                "text": "OSTRZEŻENIE"
                               }
                             ],
                             "header": false,
@@ -10300,7 +10300,7 @@
                                     "children": [
                                       {
                                         "kind": "text",
-                                        "text": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA EŻENIE"
+                                        "text": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA"
                                       }
                                     ],
                                     "kind": "strong"
@@ -10344,12 +10344,12 @@
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "OSTRZE",
+                  "content": "OSTRZEŻENIE",
                   "content_kind": "inline_text",
                   "role": "label"
                 },
                 {
-                  "content": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA EŻENIE",
+                  "content": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA PRĄDEM LUB OBRAŻEŃ CIAŁA",
                   "content_kind": "rich_text",
                   "role": "body"
                 }

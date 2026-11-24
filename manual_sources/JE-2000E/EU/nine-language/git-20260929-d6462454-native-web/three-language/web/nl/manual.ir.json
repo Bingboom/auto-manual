@@ -63,7 +63,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "33336e87649891ea32bb8ac7c19570970760b32467cd991f6ca9c772a04b3ad4",
-  "content_sha256": "31ed951fbe5d26bf7ad43956b56f1e4eb5a28ad28b208a40b5b22c5e31c964f1",
+  "content_sha256": "612749f7f7ae9178dec30a548a9fa26712f48a4f0ec6dc3bc40696cf12f981aa",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -16098,13 +16098,13 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0010",
-          "content_sha256": "d9890cfe17055fa2057963ac4cbdfb5c334d2ea2391c2f8ba23e71126fe7adc0",
+          "content_sha256": "efa6d8c63897b87b4276063823aefff9fa1d200389184a5b8911892418f14e24",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "2.4 Nadat het apparaat succesvol is verbonden, voert u uw wiﬁ-wachtwoord in en tikt u op de"
+                "text": "2.4 Nadat het apparaat succesvol is verbonden, voert u uw wiﬁ-wachtwoord in en tikt u op de OK-knop."
               }
             ],
             "kind": "paragraph",
@@ -16115,7 +16115,7 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0011",
-          "content_sha256": "f98e5dc1f073b61a250c6b00b15b203d9073076ca045e79308a30234f54f8193",
+          "content_sha256": "83b12ef7b923566a163c61b7f7b51521cb4f1307bf9f8e7de8d849dd1822d2e7",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -16129,7 +16129,7 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "OK-knop. OPMERKING"
+                                "text": "OPMERKING"
                               }
                             ],
                             "header": false,
@@ -16189,7 +16189,7 @@
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "OK-knop. OPMERKING",
+                  "content": "OPMERKING",
                   "content_kind": "inline_text",
                   "role": "label"
                 },

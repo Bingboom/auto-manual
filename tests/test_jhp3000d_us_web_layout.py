@@ -52,7 +52,6 @@ HOLD_TIMES = ['3s', '3s', '1s']  # p13 clock labels
 FAULT_SEPARATORS = ['/'] * 3  # p17 prints F0-F3 one per line
 COPY_DELTA = {
     'en': {'removed': ['FCC',  # p6 prints no such title
-                       'The product can cable, which is',  # p11 words read into the CAUTION label
                        *FAULT_SEPARATORS],
            'added': HOLD_TIMES},
     'fr': {'removed': ['FCC', *FAULT_SEPARATORS], 'added': HOLD_TIMES},

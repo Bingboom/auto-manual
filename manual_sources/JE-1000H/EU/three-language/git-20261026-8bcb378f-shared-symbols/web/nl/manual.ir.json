@@ -62,7 +62,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "9b410784665cde0a47569fda259b43bb5bc754498fcd1e649a381439501ee3f3",
-  "content_sha256": "688f3c31226990af6dd856ff6f2bfbdd61fcab216e7be743f5f010ddbb9e2da5",
+  "content_sha256": "ebf3c97ef6bf6119e8caa44c15fbc75d37c17267c4ed22d948c42f751988f667",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2187,8 +2187,8 @@
         "candidate_commit": "04dad55a",
         "engineering_pr": "Bingboom/auto-manual#1608",
         "markdown_sha256": {
-          "nl": "91eec6f9cc5a19606488aed4dc86a38a5ebf97f7463068b07804719ff569da33",
-          "pl": "f9e4d011cd03283917f924e558e38706f4055a8d0115c17fc3dfec9d264a5e82",
+          "nl": "2ad753298cca9d8d0b20d61c54e1d6c01821c136e8b11099e67267e0f494fe9d",
+          "pl": "cd1e547ea82a463d581f689a3252e2f8d7dcab163203c8f549218a524d431032",
           "pt": "a0ba371848b2b14b55945a4371e38cb0d2cb4abeeed410593e1679f7f86bb663"
         },
         "renderings": "before/after symbol table at 1280 and 390 px, pt/nl/pl seven shared rows (Li-ion native-dark)"
@@ -10263,7 +10263,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0002",
-          "content_sha256": "b86cf5a3c61742473e1d4b0dab84b94b17e6752dd7c7b783eae4b90c60fbae51",
+          "content_sha256": "e60ef772616777a532728b0d7da1d341e2d5f812b413d0118d444ef9a22d2771",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -10277,7 +10277,7 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "WAARSCHU"
+                                "text": "WAARSCHUWING"
                               }
                             ],
                             "header": false,
@@ -10298,7 +10298,7 @@
                                     "children": [
                                       {
                                         "kind": "text",
-                                        "text": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN UWING"
+                                        "text": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN"
                                       }
                                     ],
                                     "kind": "strong"
@@ -10342,12 +10342,12 @@
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "WAARSCHU",
+                  "content": "WAARSCHUWING",
                   "content_kind": "inline_text",
                   "role": "label"
                 },
                 {
-                  "content": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN UWING",
+                  "content": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN",
                   "content_kind": "rich_text",
                   "role": "body"
                 }

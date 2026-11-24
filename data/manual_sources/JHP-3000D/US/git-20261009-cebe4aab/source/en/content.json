@@ -5843,7 +5843,7 @@
                   {
                     "role": "label",
                     "content_kind": "inline_text",
-                    "content": "The product can cable, which is CAUTION"
+                    "content": "CAUTION"
                   },
                   {
                     "role": "body",
@@ -5897,7 +5897,7 @@
                               "children": [
                                 {
                                   "kind": "text",
-                                  "text": "The product can cable, which is CAUTION"
+                                  "text": "CAUTION"
                                 }
                               ]
                             },
