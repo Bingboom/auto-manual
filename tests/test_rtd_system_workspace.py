@@ -841,6 +841,30 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
         self.assertEqual([item["lane_name"] for item in doing], ["网页发布与维护闭环", "资料开发工作台"])
         self.assertFalse(any("REV-" in item["text"] for item in doing))
 
+    def test_shipped_print_route_cites_its_decision_and_ledger_rows(self):
+        # 2026-11-24 print route decision, confirmed 2026-11-25: the direct .ai lane has its own ledger row (REV-55),
+        # the IDML/InDesign line is frozen, and the lane cites the operator's confirmation, not a portal template.
+        data = sw.load_contract(sw.DEFAULT_CONTRACT)
+        self.assertIn("ack:操作者 2026-11-25「都按建议」", data["focus"]["evidence"])
+        flow = next(row for row in data["flow"] if row["to"] == "直接改 .ai 印刷稿")
+        self.assertEqual(flow["status"], "available")
+        self.assertIn("rev:REV-55=active", flow["evidence"])
+        self.assertTrue(any(ref.startswith("ack:操作者 2026-11-25") and "ExtendScript" in ref for ref in flow["evidence"]))
+        self.assertTrue(any(ref.startswith("file:auto-manual:.claude/skills/ai-manual-pagenum-fix/") for ref in flow["evidence"]))
+        everything = yaml.safe_dump(data, allow_unicode=True)
+        self.assertNotIn("asset_language.html", everything)
+        self.assertNotIn("1465", flow["note"])
+        lane = next(row for row in data["focus"]["lanes"] if row["id"] == "workbench")
+        self.assertEqual(lane["revs"], ["REV-47", "REV-48", "REV-55"])
+        idml = next(item for card in data["capabilities"] for item in card.get("items", []) if item["id"] == "idml")
+        self.assertIn("rev:REV-20=deferred", idml["evidence"])
+        self.assertNotIn("rev:REV-54=done", idml["evidence"])
+        ledger = sw.parse_ledger((REPO / sw.ledger_ref(data)[1]).read_text(encoding="utf-8"))
+        self.assertEqual(ledger.statuses["REV-55"], "active")
+        for rev in ("REV-20", "REV-26", "REV-40"):
+            self.assertEqual(ledger.statuses[rev], "deferred", rev)
+        self.assertEqual(ledger.statuses["REV-54"], "done")
+
     def test_cli_exit_codes(self):
         with redirect_stdout(io.StringIO()) as out:
             self.assertEqual(sw.main(["check", "--today", "2026-09-24"]), 0)
@@ -1007,7 +1031,8 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('id="evolution-shared_ir"', page)
             self.assertIn("shared_ir_bitable_indesign_plan.md", page)
             self.assertIn("直接改 .ai 印刷稿", page)
-            self.assertIn("Web 主力 · 印刷直接改 .ai", page)
+            self.assertIn("印刷直接改 .ai · IDML 冻结", page)
+            self.assertNotIn("Web 主力", page)
             self.assertIn("飞书多维表上传无字底图", page)
             self.assertIn("远期备选", page)
             self.assertNotIn("IDML 迁仓后切 Shared IR", page)

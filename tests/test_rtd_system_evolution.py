@@ -53,6 +53,22 @@ class SystemEvolutionTests(unittest.TestCase):
         self.write_story()
         self.assertEqual(self.view()["stages"][0]["summary"], self.data["stages"][0]["summary"])
 
+    def test_print_route_reads_as_decided_and_names_no_portal_template_as_evidence(self):
+        # 2026-11-24 decision, confirmed 2026-11-25: .ai editing is the print route (印刷主线), IDML is kept but frozen.
+        production = next(s for s in DATA["stages"] if s["id"] == "production")
+        self.assertIn("IDML 冻结", production["title"])
+        self.assertNotIn("REV-54", production["detail"])
+        self.assertIn("尚未入库", production["detail"])
+        self.assertNotIn("file:auto-manual:tools/rtd_portal_assets/asset_language.html", production["evidence"])
+        self.assertIn("file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md", production["evidence"])
+        self.assertNotIn("asset_language.html", TEXT)
+        self.assertFalse(any("试生产" in row["state"] for row in DATA["now"]))
+        self.assertNotIn("试生产单独验证", TEXT)
+        expansion = next(s for s in DATA["stages"] if s["id"] == "ir_expansion")
+        for condition in ("REV-20 或 REV-40 开工", "启动共享层收敛", "公共语义契约", "没有现存 .ai 母版的新产品线", "多语种重排"):
+            self.assertIn(condition, expansion["detail"])
+        self.assertNotIn("产品信息中台", TEXT)
+
     def test_crosscutting_work_is_separate_and_older_summaries_remain_readable(self):
         self.write_story()
         self.assertEqual(self.view()["crosscutting"][0]["id"], "engineering")
@@ -174,8 +190,9 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertIn("数据校验与快照", architecture_panel)
         self.assertIn("同步与映射", architecture_panel)
         self.assertIn("Content Authority → Assembly → Renderers → Publish", architecture_panel)
-        self.assertIn("Web 主力 · 印刷直接改 .ai", architecture_panel)
-        self.assertIn("直接修改现存 .ai 印刷设计稿", architecture_panel)
+        self.assertIn("印刷直接改 .ai · IDML 冻结", architecture_panel)
+        self.assertIn("直接修改现存 .ai 印刷稿", architecture_panel)
+        self.assertIn("IDML 保留但冻结", architecture_panel)
         self.assertIn("飞书多维表上传无字底图", architecture_panel)
         self.assertNotIn("04_资产", architecture_panel)
         self.assertNotIn("内容与能力平台", architecture_panel)
