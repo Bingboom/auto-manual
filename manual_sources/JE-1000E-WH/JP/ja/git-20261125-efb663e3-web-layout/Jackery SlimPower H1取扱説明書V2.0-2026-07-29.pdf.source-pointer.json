@@ -1,0 +1,15 @@
+{
+  "schema_version": "external-source-pointer/v1",
+  "storage_role": "published_docs",
+  "file_name": "Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf",
+  "sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+  "size_bytes": 12367319,
+  "feishu": {
+    "table_id": "tbljbjaXaTD6V9PO",
+    "record_id": "reczz28SfbsHcodN",
+    "field_name": "说明书文件 副本",
+    "file_token": "S9Kebj6dCoIs9KxJ0OacsyDUn0e"
+  },
+  "local_relpath": "Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf",
+  "notes": "Phase 3C-1 externalized Feishu-verified manual source PDF from published_docs."
+}

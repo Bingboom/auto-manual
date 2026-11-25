@@ -1,0 +1,15 @@
+{
+  "instruction": "封面 不要放进去网页版里面啊",
+  "authorization": "MA-277",
+  "baseline_source_ref": "5e1de68efb780b6a5c529b66e9f6544741c8642c",
+  "baseline_package": "git-20261008-efb663e3-reviewed",
+  "omitted_web_chapter": "introduction",
+  "omitted_physical_pages": [
+    1
+  ],
+  "retained_print_cover": "source/print-cover.json",
+  "remaining_chapters": 16,
+  "remaining_chapters_sha256": "7b3bd50e1d4022ee95854c7334b6dd9a38ca976ed2aa9478971832a59e27d052",
+  "body_bytes_unchanged": true,
+  "artwork_bytes_unchanged": true
+}
