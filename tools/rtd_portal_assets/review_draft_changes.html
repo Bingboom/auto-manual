@@ -1,0 +1,21 @@
+{#- What changed in one line's Web copy from its previous version (web-changes.json). -#}
+{% extends "review_drafts_layout.html" %}
+{% block title %}{{ line.model }} {{ line.label }} 网页改动{% endblock %}
+{% block crumb %}说明书生产 <span>/</span> <a href="{{ root }}index.html">审核稿</a> <span>/</span> <a href="{{ root }}{{ line.page }}">{{ line.model }} {{ line.label }}</a> <span>/</span> <b>网页改动</b>{% endblock %}
+{% block main %}{% set c = changes.counts %}
+    <section class="rd-head">
+      <h1>{{ line.model }} {{ line.label }} 网页改动</h1>
+      <p>{{ changes.head_version }} 相对 {{ changes.base_version }}：改 {{ c.changed }} · 增 {{ c.added }} · 删 {{ c.removed }}。比对的是网页候选稿的正文（去掉审阅层后的文字，插图按文件名），<del>删除</del>、<ins>新增</ins>。</p>
+    </section>
+    {% for page in changes.pages %}
+    <section class="rd-section">
+      <h2>{{ page.title or page.page_id }}（{{ page.changes|length }}）</h2>
+      <ol class="rd-changes">
+        {% for change in page.changes %}<li class="rd-change rd-change-{{ change.kind }}">
+          {%- if change.kind == "changed" %}{% for op, text in change.segments %}{% if op == "=" %}{{ text }}{% elif op == "-" %}<del>{{ text }}</del>{% else %}<ins>{{ text }}</ins>{% endif %}{% endfor %}
+          {%- elif change.kind == "added" %}<ins>{{ change.after }}</ins>{% else %}<del>{{ change.before }}</del>{% endif -%}
+        </li>{% endfor %}
+      </ol>
+    </section>
+    {% else %}<p class="rd-empty">两版的网页正文相同。</p>{% endfor %}
+{% endblock %}

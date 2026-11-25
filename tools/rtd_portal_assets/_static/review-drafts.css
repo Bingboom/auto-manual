@@ -31,6 +31,12 @@
 .rd-button:hover {background:var(--brand-strong)}
 .rd-button-secondary {margin-left:8px;background:transparent;color:var(--brand);border:1px solid var(--brand)}
 .rd-button-secondary:hover {color:#fff}
+.rd-web-note {margin:12px 0 0;color:var(--app-muted)}
+.rd-web-note a {color:var(--brand-strong);font-weight:600}
+.rd-changes {margin:0;padding:14px 18px 14px 40px;background:#fff;border:1px solid var(--app-line);border-radius:12px;
+  display:grid;gap:8px;line-height:1.7}
+.rd-head del, .rd-change del {background:#fde8e8;color:#9b1c1c}
+.rd-head ins, .rd-change ins {background:#e3f4e7;color:#1b6e2d;text-decoration:none}
 .rd-section {margin-bottom:26px}
 .rd-section h2 {margin:0 0 10px;font-size:18px}
 .rd-questions {margin:0;padding:14px 18px 14px 40px;background:#fff;border:1px solid var(--app-line);border-radius:12px;

@@ -6,76 +6,13 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from bs4 import BeautifulSoup
-from PIL import Image
 
+from tests.review_draft_fixture import CARD, CLEAN, DRAFT, write_draft
 from tools.manual_ir.hashing import file_sha256
 from tools.web import review_draft_web
 from tools.web.review_draft_blocks import column_texts, lines_of
+from tools.web.review_draft_changes import CHANGES_JSON, changes_record, compare, pages_of, previous_version
 from tools.web.review_draft_overlay import strip_review_layer
-
-CARD = ('<figure class="jp-inbox-card"><span class="jp-inbox-number">{n}</span>'
-        '<div class="jp-inbox-art"><img src="assets/card{n}.png" alt="审阅用图"/></div>'
-        '<figcaption>品目{n}</figcaption></figure>')
-
-DRAFT = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>审核稿</title></head><body>
-<header class="preview-toolbar">工具栏</header><div class="preview-layout"><aside class="toc"><a href="#safety">目录</a></aside>
-<div class="reading-column"><div class="draft-banner"><strong>v0.02</strong></div><p class="print-note">打印说明</p>
-<article id="furo-main-content"><nav class="manual-locale-nav"><span>XX · JP</span></nav><div>
-<section id="safety"><h1 class="jp-original" data-jp-original-source="t.rst" title="来源">安全上のご注意<span class="zh-translation" lang="zh-CN">安全注意事项</span></h1>
-<div class="jp-review" lang="zh-CN"><strong>审阅：</strong>审阅备注<small class="jp-review-source">来源</small></div>
-<h2 class="jp-safety-band">絵表示について</h2>
-<div class="jp-signal-wrap"><table class="jp-signal-table"><tbody>
-<tr class="row-even"><th><p><svg class="jp-alert-icon" viewBox="0 0 1 1"></svg><strong>警告</strong></p></th><td><p>警告の意味です。</p></td></tr>
-<tr class="row-odd"><th><p>説明</p></th><td><p>説明の意味です。</p></td></tr></tbody></table></div>
-<section id="symbols"><h2 class="jp-safety-band">絵表示の説明</h2><div class="jp-symbol-grid">
-<table class="jp-symbol-panel"><tbody><tr><td><img src="assets/symbol1.png" alt="x"/></td><td><p>記号一の説明です。</p></td></tr></tbody></table>
-<table class="jp-symbol-panel"><tbody><tr><td><img src="assets/symbol2.png" alt="x"/></td><td><p>記号二の説明です。</p></td></tr></tbody></table></div></section>
-<section id="warning"><h2 class="jp-warning-heading"><svg class="jp-alert-icon" viewBox="0 0 1 1"></svg>警告</h2>
-<table class="jp-symbol-panel jp-safety-detail"><tbody><tr><td><img src="assets/symbol1.png" alt=""/></td>
-<td class="jp-safety-copy"><p>分解しない</p><p>火災の原因になります。</p></td></tr></tbody></table></section>
-<table class="manual-callout-table"><tbody><tr><td class="manual-callout-label"><p>注意</p><span class="manual-callout-label-sizer">ご注意</span></td>
-<td class="manual-callout-body"><p>注意の本文です。<span class="jp-parameter">【未入力】</span></p></td></tr></tbody></table>
-<p class="en-new" data-needs-translation="sentence" data-previous-english="A new sentence." style="color:red">新しい文です。<span class="zh-translation">新句子。</span></p>
-</section>
-<section id="box"><h1>同梱品</h1><div><div class="jp-inbox-grid">{CARD.format(n=1)}{CARD.format(n=2)}{CARD.format(n=3)}</div></div></section>
-<section id="specifications"><h1>主な仕様</h1><div><section><h2>基本情報</h2><figure class="hb-spec-table-composition">
-<table class="hb-spec-table manual-table manual-spec-table"><tbody>
-<tr><th class="hb-spec-label manual-spec-label">型番</th><td class="hb-spec-value manual-spec-value">XX-1</td></tr>
-<tr><th class="hb-spec-label manual-spec-label">入力</th><td class="hb-spec-value manual-spec-value">100V ~ 50/60Hz<br/>最大15A</td></tr>
-</tbody></table></figure></section>
-<h2>接続図</h2><figure class="us-review-figure"><div class="jp-ts-art"><img src="assets/figure1.png" alt="连接图"/>
-<div class="jp-ts-slot jp-ts-caption" style="left:1%"><p>ケーブルを接続します。</p></div></div>
-<figcaption class="jp-review">审阅：图注</figcaption></figure></div></section>
-</div></article></div></div><details class="change-log"><summary>记录</summary></details><script>void 0</script></body></html>"""
-
-CLEAN = """<!DOCTYPE html><html><body><article id="furo-main-content"><div>
-<section id="symbols"><h1>安全上のご注意</h1><h2>絵表示について</h2>
-<div class="jp-signal-wrap"><table class="jp-signal-table"><thead><tr><th>表示</th><th>意味</th></tr></thead><tbody>
-<tr><th><p><strong>警告</strong></p></th><td><p>警告の意味です。</p></td></tr></tbody></table></div>
-<table class="manual-callout-table"><tbody><tr><td class="manual-callout-label"><p>説明</p></td>
-<td class="manual-callout-body"><p>説明の本文です。</p></td></tr></tbody></table></section>
-</div></article></body></html>"""
-
-
-def _png(path: Path, shade: int) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    Image.new("RGB", (6, 4), (shade, 40, 90)).save(path)
-
-
-def write_draft(root: Path, html: str = DRAFT, **manifest) -> Path:
-    root.mkdir(parents=True)
-    (root / "draft.html").write_text(html, encoding="utf-8")
-    for shade, name in enumerate(("symbol1", "symbol2", "card1", "card2", "card3", "figure1")):
-        _png(root / "assets" / f"{name}.png", 20 * shade)
-    (root / "issues.json").write_text(json.dumps({"schema": "review-issues/1", "issues": [
-        {"id": "Q1", "title": "open question", "kind": "rd", "status": "open"},
-        {"id": "Q2", "title": "settled", "kind": "rd", "status": "confirmed"},
-    ]}), encoding="utf-8")
-    fields = {"model": "XX-1", "region": "JP", "language": "ja", "version": "v0.02", "date": "2026-11-01",
-              "status": "审阅中", "html": "draft.html", "issues": "issues.json", "tools_sha": "1a2b3c4", **manifest}
-    (root / "draft.json").write_text(json.dumps(fields, ensure_ascii=False), encoding="utf-8")
-    return root
-
 
 class ReviewLayerTests(unittest.TestCase):
     def test_strips_the_review_layer_and_lists_what_blocks_release(self):
@@ -148,7 +85,7 @@ class ConversionTests(unittest.TestCase):
     def test_an_approved_draft_with_evidence_converts_publication_eligible(self):
         with TemporaryDirectory() as temp:
             root = Path(temp) / "draft"
-            write_draft(root, CLEAN, issues="", web_title="テスト取扱説明書")
+            write_draft(root, CLEAN, issues=False, web_title="テスト取扱説明書")
             html_sha = hashlib.sha256((root / "draft.html").read_bytes()).hexdigest()
             for name in ("typeset_compare", "parameter_check"):
                 (root / f"{name}.json").write_text(json.dumps({"status": "pass"}), encoding="utf-8")
@@ -174,6 +111,54 @@ class ConversionTests(unittest.TestCase):
             (draft / "draft.html").write_text(html, encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "not a packaged local asset"):
                 review_draft_web.convert(draft, Path(temp) / "out", title="テスト")
+
+
+class ChangesTests(unittest.TestCase):
+    def test_compare_reports_changed_added_and_removed_blocks(self):
+        head = (DRAFT.replace("警告の意味です。", "警告の意味を示します。")
+                .replace('<p class="en-new"', '<p>追加の段落です。</p><p class="en-new"')
+                .replace(CARD.format(n=3), ""))
+        pages = compare(pages_of(DRAFT), pages_of(head))
+        kinds = [(page["page_id"], change["kind"]) for page in pages for change in page["changes"]]
+        self.assertEqual(kinds, [("safety", "changed"), ("safety", "added"),
+                                 ("box", "removed"), ("box", "removed"), ("box", "removed")])
+        changed = pages[0]["changes"][0]
+        self.assertEqual(changed["segments"], [["=", "警告の意味"], ["-", "で"], ["+", "を示しま"], ["=", "す。"]])
+        self.assertEqual([change["before"] for change in pages[1]["changes"]], ["3", "［図］card3.png", "品目3"])
+        self.assertNotIn("审阅备注", json.dumps(pages, ensure_ascii=False))  # the review layer never counts
+
+    def test_previous_version_is_the_newest_commit_naming_another_version(self):
+        with TemporaryDirectory() as temp:
+            top = Path(temp).resolve()
+            relative = "docs/review-drafts/XX-1/JP"
+            line = write_draft(top / relative, issues=False, version="v0.03")
+            calls = {
+                ("rev-parse", "--show-toplevel"): f"{top}\n",
+                ("log", "--format=%H", "--", f"{relative}/draft.json"): "c3\nc2\nc1\n",
+                ("show", f"c3:{relative}/draft.json"): json.dumps({"version": "v0.03", "html": "draft.html"}),
+                ("show", f"c2:{relative}/draft.json"): json.dumps({"version": "v0.02", "html": "draft.html"}),
+                ("show", f"c2:{relative}/draft.html"): DRAFT.replace("警告の意味です。", "警告の意味です（旧）。"),
+            }
+
+            def git(args, cwd):
+                # The top-level lookup runs in the line; history reads run at the top.
+                self.assertEqual(Path(cwd).resolve(), line.resolve() if args[0] == "rev-parse" else top)
+                return calls[tuple(args)]
+
+            self.assertEqual(previous_version(line, git=git)[0], "c2")
+            record = changes_record(line, git=git)
+            self.assertEqual(record["base"], {"version": "v0.02", "from": "git c2"})
+            self.assertEqual(record["head"]["version"], "v0.03")
+            self.assertEqual(record["counts"], {"changed": 1, "added": 0, "removed": 0})
+
+    def test_changes_command_writes_the_record_beside_the_draft(self):
+        with TemporaryDirectory() as temp:
+            line = write_draft(Path(temp) / "line", issues=False, version="v0.03")
+            previous = write_draft(Path(temp) / "previous", DRAFT.replace("品目2", "品目二"), issues=False, version="v0.02")
+            self.assertEqual(review_draft_web.main(["changes", str(line), "--base-dir", str(previous), "--write"]), 0)
+            record = json.loads((line / CHANGES_JSON).read_text(encoding="utf-8"))
+            self.assertEqual((record["base"]["version"], record["base"]["from"]), ("v0.02", "directory"))
+            self.assertEqual(record["counts"]["changed"], 1)
 
 
 if __name__ == "__main__":

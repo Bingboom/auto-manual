@@ -120,6 +120,7 @@ metadata:
   - 问题清单 `issues.json`（`review-issues/1`）：操作者决定只写入该项 `adoption`；`status` 只在负责方（研发、母语审校人等）答复后改，并写 `resolution`。操作者采用上一代内容不等于研发确认技术适用性，不能据此关闭研发项。有问题清单时 `rd_open` 由它派生，`draft.json` 不再手写。
   - 操作者决定追加到决定文件（`decisions`），不改写已有条目；被替代的写 `superseded_by`。
   - 没有问题清单的旧稿线在下一次修改时迁移到 `review-issues/1`。
+- 稿线开了网页候选稿（`draft.json` 写 `"web_candidate": true`）时，站点构建会按当前工作稿自动重转候选稿，不提交生成的网页。每出一个新版本，提交前在 auto-manual 工程仓库根目录运行 `python -m tools.web.review_draft_web changes <克隆目录>/docs/review-drafts/<MODEL>/<REGION> --write`（上一版取 Git 历史里最近一个版本号不同的提交，也可用 `--base-dir <scratch 上一版>`），把生成的 `web-changes.json` 随本版一起提交；稿线页据此列出本版网页改动。
 - 推送前在 auto-manual 工程仓库根目录运行 `python -m tools.rtd.review_site <克隆目录>/docs/review-drafts <scratch 输出目录>`（稀疏克隆里没有工具代码），确认构建通过并打开该稿页面。构建错误本轮修好；`WARNING … topic …`（同型号另一稿线对同一主题已确认或仍待确认）本轮核对并同步问题清单，或写入审核意见，不改另一条稿线。
 - 操作者要求修改已在该仓库的工作稿，即是本轮在该仓库提交的请求。以 `<MODEL> <REGION> vX.YY: <summary>` 提交到该仓库 `main` 并推送，回读远端 `main` 的提交。推送后在 auto-manual 运行 `python -m tools.rtd.review_table_sync <克隆目录>/docs/review-drafts --line <MODEL>/<REGION>` 预览，再加 `--write` 同步飞书「审核稿（工作台输出）」行，向操作者报告回读的 `record_id 字段=值`；该行缺失时请操作者手建，不手改工具管理的字段。私有站点需要登录，打不开时请操作者确认构建结果，不声称已上线。中间版本由 Git 历史保留，不堆成目录。此处不授权向公共 auto-manual／Hello-Docs 提交审核稿。
 - 仅在操作者指定里程碑时复制工作目录（排除已有 `milestones/`）到 `milestones/<version>/` 并设置 `milestone`；不自动冻结每一版。

@@ -203,6 +203,7 @@ draft is the only text source
 ```bash
 python -m tools.web.review_draft_web convert <workbench>/docs/review-drafts/<MODEL>/<REGION> --output <unused dir> [--title "<Web title>"]
 python -m tools.web.review_draft_web gate <workbench>/docs/review-drafts/<MODEL>/<REGION>
+python -m tools.web.review_draft_web changes <workbench>/docs/review-drafts/<MODEL>/<REGION> --write
 ```
 
 `convert` strips the review layer the `manual-review-draft` skill writes
@@ -215,9 +216,11 @@ the adapter list in `review_draft_blocks.py` and `review_draft_figures.py`;
 the shapes are the skill's `references/jp-style-mapping.md`.
 
 A candidate is a private preview: it is never publication-eligible, and
-`pending_source_review` and the report list what blocks release. It stays in
-the workbench beside the draft ([Web candidate](../rtd_manual_portal/review-drafts-site.md#web-candidate))
-and enters neither auto-manual nor Hello-Docs. `gate` and `convert --release`
+`pending_source_review` and the report list what blocks release. The private
+review site builds it from the working draft at every build and shows the
+version's Web changes (`changes --write`, see
+[Web candidate](../rtd_manual_portal/review-drafts-site.md#web-candidate)); it
+enters neither auto-manual nor Hello-Docs. `gate` and `convert --release`
 refuse while anything blocks: an open issue in the draft's register, a
 pending marker, copy awaiting native review (new translations, JP-only
 inserts), fallback copy a component needs but the draft lacks
