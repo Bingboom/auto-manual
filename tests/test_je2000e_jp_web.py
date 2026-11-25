@@ -155,9 +155,18 @@ class Je2000eJpWebTests(unittest.TestCase):
         historical = stylesheets.get_paths().renderer_contracts_dir / "web_manual.css"
         live = (ROOT / "docs/renderers/contracts/web_manual.css").resolve()
         pinned_sha256 = rebuild.file_sha256
+        historical_paths = {live: historical}
+        pins = {row["path"]: row["sha256"] for row in read(PACKAGE / "source_manifest.json")["repo_inputs"]}
+        # Type-only changes keep released packages immutable. Supply their exact
+        # original bytes for the hash guard, then still compare every replay output.
+        for name in ("document_ir.py", "embedded_components.py", "frozen_ai_web.py", "prepared_style_audit.py"):
+            relative = "tools/web/" + name
+            fixture = ROOT / "tests/fixtures/historical_web_inputs/je2000e_jp" / name
+            self.assertEqual(pinned_sha256(fixture), pins[relative], relative)
+            historical_paths[(ROOT / relative).resolve()] = fixture
         with tempfile.TemporaryDirectory() as temp, mock.patch.object(
                 rebuild, "file_sha256",
-                lambda path: pinned_sha256(historical if Path(path).resolve() == live else path)):
+                lambda path: pinned_sha256(historical_paths.get(Path(path).resolve(), path))):
             output = Path(temp) / "replay"
             rebuild.assemble(output)
             for name in (MARKDOWN, "manual.ir.json", "_static/source_geometry.css"):

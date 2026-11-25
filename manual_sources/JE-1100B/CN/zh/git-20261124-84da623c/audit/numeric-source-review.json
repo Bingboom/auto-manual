@@ -1,0 +1,32 @@
+{
+  "source_pdf_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+  "verified_from_rendered_physical_page_2": {
+    "model": "JE-1100B",
+    "battery_energy": "30.4Ah / 35.2V DC (1070Wh)",
+    "AC_rated_output_energy": "835Wh (220V~, 6.81A)",
+    "size": "32.7 x 22.4 x 24.7 cm",
+    "weight": "10.8kg",
+    "cycles": "4000 (70%+)",
+    "AC_input": "220-240V~ 50Hz 10A Max",
+    "PV_input": "16-60V/10.5A; dual 21A/400W Max",
+    "car_input": "12-16V/8A Max; dual 8A Max",
+    "AC_output": "1500W rated / 3000W peak",
+    "parallel_output": "2200W per port; combined rated3000W / peak6000W",
+    "USB_C1": "30W",
+    "USB_C2": "100W",
+    "USB_A": "18W",
+    "car_output": "12V10A",
+    "charge_temperature": "0 to45 C",
+    "discharge_temperature": "-10 to45 C",
+    "certification": "UN38.3"
+  },
+  "verified_other_pages": {
+    "physical_page5_UPS": "20ms; not0ms",
+    "physical_page4_saving": "AC<=25W; USB<=2W; car<=2W;12H",
+    "physical_page6_parallel": "noACcharging;DCcharging allowed; output indicator flashes10times, once persecond; singleAC2200W, fourAC3000W;DCstillone device",
+    "physical_page7_parallel": "FA; wait5seconds beforeACrestart",
+    "physical_page9_car": "12V only,not24V; do not combine solar and car input",
+    "physical_page10_erratum": "App step2.2 short press by explicit operator confirmation"
+  },
+  "normalization": "Print wrapping, range dashes and lettered markers only; no cross-model parameter substitution."
+}

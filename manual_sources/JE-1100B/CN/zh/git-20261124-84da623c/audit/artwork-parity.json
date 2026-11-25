@@ -1,0 +1,160 @@
+{
+  "status": "passed",
+  "scale": 12,
+  "assets": [
+    {
+      "slot": "overview",
+      "scale": 12,
+      "pixel_size": [
+        3876,
+        3156
+      ],
+      "mean_rgb_error_fraction": 0.0027838073898207097,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "045acf1e972304b2534c6fd7a12ba0fb820ce28bdca0120fdccb0d1bc2d5ce71"
+    },
+    {
+      "slot": "lcd-display",
+      "scale": 12,
+      "pixel_size": [
+        3372,
+        1872
+      ],
+      "mean_rgb_error_fraction": 0.002506923955619092,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "0e0475d91b681d1f7cce810a9f25e1bc2d7217b78ac945d6d70fc6aabc1732f3"
+    },
+    {
+      "slot": "parallel",
+      "scale": 12,
+      "pixel_size": [
+        3900,
+        2520
+      ],
+      "mean_rgb_error_fraction": 0.0013988552116003098,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "e911f6ac0b1a145a7e193fe98924fea0ba6aeec982f89bd629695312c2b5344d"
+    },
+    {
+      "slot": "ac-charge",
+      "scale": 12,
+      "pixel_size": [
+        1380,
+        1092
+      ],
+      "mean_rgb_error_fraction": 0.00021663923837836883,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "f901886ba0f0e0f117e7caa135f9a813e4014f586f4e9ae532a3f69e6a5e7d9f"
+    },
+    {
+      "slot": "solar-direct",
+      "scale": 12,
+      "pixel_size": [
+        2832,
+        972
+      ],
+      "mean_rgb_error_fraction": 0.00014477600577326094,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "ef4709a78f307052bed92e67a499c607eabdfd2ec46d173e913f9bac471df9ce"
+    },
+    {
+      "slot": "solar-four",
+      "scale": 12,
+      "pixel_size": [
+        3768,
+        1068
+      ],
+      "mean_rgb_error_fraction": 0.000597115567469808,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "f4d431dd818f9cde6479e5fc79dbe0cc93b4d665ec7a84f36243e21ca1e3c690"
+    },
+    {
+      "slot": "solar-mismatch",
+      "scale": 12,
+      "pixel_size": [
+        3912,
+        1074
+      ],
+      "mean_rgb_error_fraction": 0.0035909434663035913,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "fa7453ed7d2d4f4c3ad113a2f0ae5c3b0551e73cc0e144e7480c2353e55acc07"
+    },
+    {
+      "slot": "solar-car-mixed",
+      "scale": 12,
+      "pixel_size": [
+        3912,
+        1038
+      ],
+      "mean_rgb_error_fraction": 0.003548062861049554,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "538c8bb51b0f222f1860fc82d5747579d42ad8cce6bdc4bf037c6f7364ca7706"
+    },
+    {
+      "slot": "car-charge",
+      "scale": 12,
+      "pixel_size": [
+        2640,
+        936
+      ],
+      "mean_rgb_error_fraction": 0.00014040818779380873,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "4f4f0c574da28a913a22bbf47d8a0400ec0c124d90a0a211f90bd8e534eb17d6"
+    },
+    {
+      "slot": "inbox-unit",
+      "scale": 12,
+      "pixel_size": [
+        1092,
+        840
+      ],
+      "mean_rgb_error_fraction": 0.0023916176157072516,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "1a8759730b236770f77f79f302d2e78f8e8a988a85135ab219fa4ab6d4b05117"
+    },
+    {
+      "slot": "app-download",
+      "scale": 12,
+      "pixel_size": [
+        675,
+        669
+      ],
+      "mean_rgb_error_fraction": 0.007787726255129559,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "dc02616ede025840cc33d7e19b449906dec9e2fa8fb8bc2664768562db9a17b9"
+    },
+    {
+      "slot": "app-controls",
+      "scale": 12,
+      "pixel_size": [
+        3480,
+        1008
+      ],
+      "mean_rgb_error_fraction": 0.004198828424515826,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "058055eff62e5eb475a622d39169ab7c0586a08fbbe020be26e622b5ed2b1fbc"
+    },
+    {
+      "slot": "app-results",
+      "scale": 12,
+      "pixel_size": [
+        2940,
+        1656
+      ],
+      "mean_rgb_error_fraction": 0.004418381415905063,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "1989ebd6b19176d52ebb9cd3f4884276c918c2585772538c1b6af4c94f8c8810"
+    },
+    {
+      "slot": "certificate",
+      "scale": 12,
+      "pixel_size": [
+        1740,
+        1752
+      ],
+      "mean_rgb_error_fraction": 0.0057479947576574335,
+      "four_edges": "source crop preserved; clipping candidates checked against original drawing bounds",
+      "sha256": "ccb2efc9da1c5b57a8171c3a013454451390bf839e3d20a0c3e13259baaf53e6"
+    }
+  ]
+}
