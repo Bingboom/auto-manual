@@ -27,7 +27,7 @@ from urllib.parse import unquote, urlparse
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
 
-from tools.web.review_draft_overlay import strip_review_layer
+from tools.web.review_draft_shell import manual_chapters
 
 SCHEMA = "review-draft-web-changes/v1"
 CHANGES_JSON = "web-changes.json"
@@ -79,18 +79,12 @@ def blocks_of(section: Tag) -> tuple[str, ...]:
 
 
 def pages_of(html: str) -> list[Page]:
-    soup = BeautifulSoup(html, "html.parser")
-    article = soup.select_one("article#furo-main-content")
-    if article is None:
-        raise ValueError("review draft has no manual article (article#furo-main-content)")
-    strip_review_layer(article)
-    body = article.find("div", recursive=False) or article
+    sections, _ = manual_chapters(BeautifulSoup(html, "html.parser"), source="review draft")
     pages = []
-    for section in body.find_all("section", recursive=False):
-        if section.get("id"):
-            heading = section.find(["h1", "h2"])
-            title = _SPACE.sub(" ", heading.get_text(" ", strip=True)) if heading else ""
-            pages.append(Page(str(section["id"]), title, blocks_of(section)))
+    for section in sections:
+        heading = section.find(["h1", "h2"])
+        title = _SPACE.sub(" ", heading.get_text(" ", strip=True)) if heading else ""
+        pages.append(Page(str(section["id"]), title, blocks_of(section)))
     return pages
 
 

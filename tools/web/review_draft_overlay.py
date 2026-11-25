@@ -8,11 +8,19 @@ banner, change log), Chinese glosses and review notes, colour marks on reused,
 new or updated copy, and hover provenance attributes. A Web candidate keeps
 only the manual copy.
 
+Newer drafts copy the published Web manual instead (``main`` shells): their
+review layer is review notes and appendix (``review-only``, ``review-note``,
+``chapter-review``), Chinese glosses on figures, review-only tables, and marks
+on target parameters, changed and new copy. Their shared components keep the
+attributes the Web renderer wrote (``data-component-id``, positions) until
+``review_draft_rendered`` reads them back.
+
 ``strip_review_layer`` removes that layer in place and reports what it removed.
 Pending markers (a parameter still to fill, a review placeholder) leave the
 candidate too; the report lists them so the release gate can refuse them.
-Copy still awaiting native review (new translations, JP-only inserts) stays in
-the candidate and is counted for the same gate.
+Copy or artwork a newer draft marks as still to confirm stays visible and is
+listed the same way. Copy still awaiting native review (new translations,
+JP-only inserts) stays in the candidate and is counted for the same gate.
 """
 from __future__ import annotations
 
@@ -29,24 +37,44 @@ REVIEW_NODES = (
     "header.preview-toolbar", "aside.toc", ".draft-banner", ".print-note",
     "details.change-log", ".footer-note", "script", "style",
     ".zh-translation", ".jp-review", ".jp-review-source", "nav.manual-locale-nav",
+    ".review-only", ".review-note", ".chapter-review", ".review-appendix",
+    ".figure-gloss", ".operation-gloss", ".review-table-scroll", "del", "[hidden]",
 )
 # Copy that is not final: removed, and listed for the release gate.
 PENDING_NODES = (".jp-parameter", "[data-review-placeholder]")
+# Copy or artwork a newer draft still has to confirm: kept, and listed by what it is.
+PENDING_KEPT = {
+    ".review-pending": "copy to confirm",
+    '[data-status^="pending"]': "pending parameters",
+    '[data-status="reference-only"]': "reference-only content",
+    '[data-art-status*="reference-only"]': "reference-only artwork",
+}
+PENDING_CLASS = re.compile(r"^v\d+-pending$")
 # Copy awaiting native review: kept, and counted for the release gate.
 UNREVIEWED_COPY = {
-    "new_translations": ".en-new[data-needs-translation]",
+    "new_translations": "[data-needs-translation]",
     "draft_inserts": ".jp-draft-insert",
 }
 # Colour marks over final copy: the mark goes, the copy stays.
 COLOUR_MARK = re.compile(
     r"^(?:jp-original|en-new|jp-spec-updated|jp-spec-filled|jp-change|jp-v\d{3}-fix"
     r"|jp-draft-insert|jp-template-value|jp-name-ref|jp-\d{4}-ref|us-difference"
-    r"|us-review-figure|jp-typeset-figure)$"
+    r"|us-review-figure|jp-typeset-figure"
+    r"|new-copy|ref-change|us-parameter|spec-value|h2s-diff|variant-diff|g-rose"
+    r"|live-label-copy|review-table|reference-illustration|review-pending|v\d+-pending)$"
 )
 # Attributes a Web candidate keeps; everything else is review provenance,
 # hover text or inline presentation.
 KEPT_ATTRIBUTES = frozenset({
     "id", "class", "src", "alt", "href", "colspan", "rowspan", "scope", "start", "type",
+})
+# What a rendered shared component wrote and its re-binding reads: kept inside
+# a component until ``review_draft_rendered`` replaces the component.
+COMPONENT_ROOTS = "[data-component-id], .hb-reference-figure"
+COMPONENT_ATTRIBUTES = frozenset({
+    "data-component-id", "aria-label", "style", "data-reference-id", "data-source-line",
+    "data-preserve-art-frame", "data-mobile-labels", "data-step-captions", "data-step-id",
+    "data-step-part", "data-callout-id",
 })
 _VERSION_ATTRIBUTE = re.compile(r"^data-v\d+")
 
@@ -73,6 +101,22 @@ def _text(node: Tag) -> str:
     return re.sub(r"\s+", " ", node.get_text(" ", strip=True))
 
 
+def _pending_kept(root: Tag) -> list[tuple[str, Tag]]:
+    found = [(label, node) for selector, label in PENDING_KEPT.items() for node in root.select(selector)]
+    for node in root.find_all(True):
+        found += [(f"copy to confirm (.{name})", node) for name in node.get_attribute_list("class")
+                  if name and PENDING_CLASS.match(str(name))]
+    return found
+
+
+def _what(node: Tag) -> str:
+    """The marked copy, or the artwork it marks."""
+
+    images = [str(image.get("alt") or "").strip() or str(image.get("src") or "").rsplit("/", 1)[-1][:40]
+              for image in node.find_all("img")]
+    return _text(node) or ", ".join(images)
+
+
 def _remove_nodes(root: Tag, report: ReviewLayerReport) -> None:
     for selector in PENDING_NODES:
         for node in root.select(selector):
@@ -86,7 +130,7 @@ def _remove_nodes(root: Tag, report: ReviewLayerReport) -> None:
         comment.extract()
 
 
-def _unmark(node: Tag, report: ReviewLayerReport) -> None:
+def _unmark(node: Tag, report: ReviewLayerReport, kept_attributes: frozenset[str] = KEPT_ATTRIBUTES) -> None:
     classes = [str(name) for name in node.get_attribute_list("class") if name]
     marks = [name for name in classes if COLOUR_MARK.match(name)]
     for name in marks:
@@ -100,7 +144,7 @@ def _unmark(node: Tag, report: ReviewLayerReport) -> None:
     elif "class" in node.attrs:
         del node["class"]
     for name in list(node.attrs):
-        if name.casefold() not in KEPT_ATTRIBUTES:
+        if name.casefold() not in kept_attributes:
             report.dropped_attributes[_VERSION_ATTRIBUTE.sub("data-vNNN", name)] += 1
             del node[name]
 
@@ -113,13 +157,22 @@ def strip_review_layer(root: Tag) -> ReviewLayerReport:
         name: len(root.select(selector)) for name, selector in UNREVIEWED_COPY.items()
     }
     _remove_nodes(root, report)
+    for marker, node in _pending_kept(root):
+        report.pending.append({"marker": marker, "text": _what(node)})
+    component_scope = {
+        id(node) for component in root.select(COMPONENT_ROOTS)
+        for node in (component, *component.find_all(True))
+    }
+    component_attributes = KEPT_ATTRIBUTES | COMPONENT_ATTRIBUTES
     for node in list(root.find_all(True)):
-        _unmark(node, report)
+        _unmark(node, report, component_attributes if id(node) in component_scope else KEPT_ATTRIBUTES)
     return report
 
 
 __all__ = [
     "COLOUR_MARK",
+    "COMPONENT_ATTRIBUTES",
+    "PENDING_KEPT",
     "PENDING_NODES",
     "REVIEW_NODES",
     "ReviewLayerReport",

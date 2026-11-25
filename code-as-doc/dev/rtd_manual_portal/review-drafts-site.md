@@ -142,9 +142,11 @@ into `<MODEL>/<REGION>/web/` of the site output and keeps
 Nothing generated is committed, so each pushed draft version refreshes its
 candidate; a committed `web/` copy in the line directory is replaced in the
 output. The line page links it as 「打开网页候选稿（未发布）」 with its
-component count and release-blocker count. A draft the converter cannot read
-yet gets a note on its line page and a build warning; the rest of the site
-still builds.
+component count and release-blocker count. Both workbench draft shells
+convert (the JHP-3600C typeset shell and the newer shells built from published
+Web manuals); each opted-in line adds about 5–8 s to the build. A draft the
+converter cannot read gets a note on its line page and a build warning; the
+rest of the site still builds.
 
 It is a preview, not a release: `review_draft_conversion.json` lists what
 blocks release, and `python -m tools.web.review_draft_web gate <line>` prints

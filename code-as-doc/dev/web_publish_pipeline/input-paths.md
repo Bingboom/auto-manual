@@ -211,9 +211,25 @@ python -m tools.web.review_draft_web changes <workbench>/docs/review-drafts/<MOD
 provenance), binds every printed block to a registered shared component with
 the shared builders and parsers, and writes `manual.ir.json` (manual-ir/v2,
 `whole-document-components/v1`, `prepared-document`), its MyST replay and
-`review_draft_conversion.json`. Which draft shape becomes which component is
-the adapter list in `review_draft_blocks.py` and `review_draft_figures.py`;
-the shapes are the skill's `references/jp-style-mapping.md`.
+`review_draft_conversion.json`. Two draft shells are read
+(`review_draft_shell.py`):
+
+- the JHP-3600C shell (`article#furo-main-content > div > section`), whose
+  JP-only shapes are the skill's `references/jp-style-mapping.md` and become
+  components through the adapter lists in `review_draft_blocks.py` and
+  `review_draft_figures.py`;
+- newer shells (`main#furo-main-content > section`, or the single-file
+  `article` shell with `data:` images, which are packaged by content). They
+  copy the published Web manual, so their blocks are the shared renderers'
+  own markup: `review_draft_rendered.py` reads every
+  `[data-component-id]` root back into its ComponentSpec with the shared
+  builder. Live labels on base art keep the rectangles, pill tones and panel
+  the renderer wrote (`base_art_layout`). A Word print layout
+  (`manual-two-col-table`) flows in one column, and its signal-word lead
+  becomes a callout. Copy outside any chapter joins the next chapter; a run
+  that opens with an identified heading (a preface) is its own page. A table
+  no component fits (no own section heading, a header row or a third column)
+  is declared in `shared_component_exceptions` with its reason.
 
 A candidate is a private preview: it is never publication-eligible, and
 `pending_source_review` and the report list what blocks release. The private
@@ -222,10 +238,15 @@ version's Web changes (`changes --write`, see
 [Web candidate](../rtd_manual_portal/review-drafts-site.md#web-candidate)); it
 enters neither auto-manual nor Hello-Docs. `gate` and `convert --release`
 refuse while anything blocks: an open issue in the draft's register, a
-pending marker, copy awaiting native review (new translations, JP-only
-inserts), fallback copy a component needs but the draft lacks
+pending marker (a magenta placeholder; copy to confirm, `review-pending` or
+`vNNN-pending`; `data-status` pending parameters or reference-only content;
+reference-only artwork), copy awaiting native review (new translations,
+JP-only inserts), fallback copy a component needs but the draft lacks
 ([`review_draft_fallback_copy.json`](../../../docs/renderers/contracts/review_draft_fallback_copy.json)),
-a shared-style issue (including an undeclared plain table), or a missing
+a presentation gap (an operation panel without a Web presentation contract, a
+figure whose label density only the draft's own stylesheet sets, figure copy
+a component does not carry), a shared-style issue (including an undeclared
+plain table), or a missing
 `draft.json` `approval` (operator, date, quote and the approved HTML's
 `html_sha256`), `web_title` or `release_evidence` (`typeset_compare` and
 `parameter_check` result files with `"status": "pass"`). After 定稿,
