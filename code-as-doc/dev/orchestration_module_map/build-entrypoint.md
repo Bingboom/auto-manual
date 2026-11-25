@@ -206,6 +206,7 @@ analytics is configured; unknown alias shapes pass through unchanged.
 - [`tools/web/review_draft_web.py`](../../../tools/web/review_draft_web.py)
   - `python -m tools.web.review_draft_web convert|gate`: a workbench review draft (审核稿) to a never-eligible manual-ir/v2 Web candidate, and the release gate
   - [`review_draft_overlay.py`](../../../tools/web/review_draft_overlay.py) strips the review layer; [`review_draft_blocks.py`](../../../tools/web/review_draft_blocks.py) and [`review_draft_figures.py`](../../../tools/web/review_draft_figures.py) bind the draft's block shapes to registered components through the shared builders and parsers
+  - `changes` and [`review_draft_changes.py`](../../../tools/web/review_draft_changes.py): the Web copy of the working draft against its previous version (`web-changes.json`); [`tools/rtd/review_web_candidate.py`](../../../tools/rtd/review_web_candidate.py) builds opted-in candidates during the private review-site build
 - [`tools/manual_knowledge/ir_commands.py`](../../../tools/manual_knowledge/ir_commands.py)
   - `build.py ir-export` facade over [`tools/manual_knowledge/ir_export.py`](../../../tools/manual_knowledge/ir_export.py) (`export_ir_knowledge`) for all-region `manual-ir/v2` corpus and observation export
 - [`tools/asset_registry.py`](../../../tools/asset_registry.py)

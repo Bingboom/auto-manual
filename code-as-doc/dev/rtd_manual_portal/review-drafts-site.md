@@ -133,25 +133,43 @@ Every build error names the offending file.
 
 ## Web candidate
 
-A line may carry a Web candidate of its working draft: the draft converted to
-the shared Web components by `python -m tools.web.review_draft_web convert`
-and built for preview inside the line directory, named by `draft.json`
-`web_candidate` (for example `web/manual_jhp3600c_jp_ja.html`). The line page
-links it beside the draft as 「打开网页候选稿（未发布）」; a missing or
-symlinked target fails the build like any other record path.
+A line opts in with `draft.json` `"web_candidate": true`. Every site build then
+converts the working draft to the shared Web components
+(`python -m tools.web.review_draft_web convert`), builds it with strict Sphinx
+into `<MODEL>/<REGION>/web/` of the site output and keeps
+`review_draft_conversion.json` beside it
+([`review_web_candidate.py`](../../../tools/rtd/review_web_candidate.py)).
+Nothing generated is committed, so each pushed draft version refreshes its
+candidate; a committed `web/` copy in the line directory is replaced in the
+output. The line page links it as 「打开网页候选稿（未发布）」 with its
+component count and release-blocker count. A draft the converter cannot read
+yet gets a note on its line page and a build warning; the rest of the site
+still builds.
 
-```bash
-python -m tools.web.review_draft_web convert <line> --output <scratch>/candidate --title "<Web title>"
-python -m sphinx -n -W -b html <scratch>/candidate <line>/web
-cp <scratch>/candidate/review_draft_conversion.json <line>/web/
-```
-
-Commit it with the draft version it was converted from. It is a preview, not a
-release: `review_draft_conversion.json` lists what blocks release, and
-`python -m tools.web.review_draft_web gate <line>` prints the same list. The
-`draft.json` fields the gate reads (`web_title`, `approval`,
+It is a preview, not a release: `review_draft_conversion.json` lists what
+blocks release, and `python -m tools.web.review_draft_web gate <line>` prints
+the same list. The `draft.json` fields the gate reads (`web_title`, `approval`,
 `release_evidence`) are described with the
 [Git-only review-draft source](../web_publish_pipeline/input-paths.md#review-draft-source).
+
+### Web changes
+
+With each new version the writer records what changed in the Web copy since the
+previous version, so reviewers read only that:
+
+```bash
+python -m tools.web.review_draft_web changes <clone>/docs/review-drafts/<MODEL>/<REGION> --write
+```
+
+It compares the working draft with the newest commit whose `draft.json` names
+another version (`--base-dir` takes the scratch copy of the previous version
+instead), drops the review layer from both, and writes `web-changes.json`
+(`review-draft-web-changes/v1`): per chapter, the blocks changed (with a
+character diff), added and removed; figures count by file name
+([`review_draft_changes.py`](../../../tools/web/review_draft_changes.py)).
+Commit it with the version. The line page links 「本版网页改动（相对 vX.YY）」
+and its counts to a `web-changes.html` page; when the file still names an
+earlier version, the page says the current version has none yet.
 
 ## Issue register
 
