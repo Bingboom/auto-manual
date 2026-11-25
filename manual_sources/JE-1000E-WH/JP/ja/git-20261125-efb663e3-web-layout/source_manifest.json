@@ -539,8 +539,8 @@
       "reason": "Printed TOC already represented by Web navigation"
     }
   ],
-  "publication_eligible": false,
-  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": true,
+  "publication_status": "operator-approved-git-only-release",
   "derived_from": {
     "package": "git-20261016-efb663e3-solar-voc",
     "authorization": "MA-312",
@@ -561,9 +561,7 @@
       "instruction": "operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer (不删免责句); the opening accessory warning is dropped (删掉第①句, 2026-10-16); the printed source and its native text stay unchanged"
     }
   ],
-  "pending_source_review": [
-    "operator review of the Web-layout corrections before Git-only release"
-  ],
+  "pending_source_review": [],
   "revision_of": "manual_sources/JE-1000E-WH/JP/ja/git-20261016-efb663e3-solar-voc",
   "layout_changes": [
     "safety pictogram items: printed bold lead, then the explanation on its own line",
@@ -586,8 +584,8 @@
     },
     {
       "path": "README.md",
-      "size": 3660,
-      "sha256": "b30311ebdf39d4f3aaa25f7932e8ff09ced0cbf2f714538c0ae914f28c9913d2"
+      "size": 3980,
+      "sha256": "d09b0a49eb79758416b6b8883a861fb75cf4234ecebac37959ce75a6907b2a47"
     },
     {
       "path": "artwork/ac-charge.png",
@@ -896,8 +894,8 @@
     },
     {
       "path": "derive_web_layout.py",
-      "size": 45929,
-      "sha256": "cd5cb828f7e3aeb481475365af94c5ce253e1856236438d2e49a5a8fee647bad"
+      "size": 46008,
+      "sha256": "fd4204adf83fa0caadbcab97a68f0a81755bd897c2b8b72eb0b2f9d691520a4c"
     },
     {
       "path": "rebuild.py",
@@ -908,6 +906,11 @@
       "path": "source/admission.json",
       "size": 1403,
       "sha256": "42980c0c9abeece3b47e980441fe55c1b1f3a63d07ea58ff3f1c92c16dd98ad0"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 13634,
+      "sha256": "bc225b7c43736af33e232fddda51ba1c5e0af5b86de7ccd9b8f4e504d9d00ce5"
     },
     {
       "path": "source/asset-recipe.json",
@@ -1296,8 +1299,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 504538,
-      "sha256": "d71a447bd16f2ed1d580c3a6c9fa844d41f16385e70e00510d204b7d037b4259"
+      "size": 519819,
+      "sha256": "4b997eb6b6d168bf870f141beff3307b821a289177a6b3aef52551e55099c8cb"
     },
     {
       "path": "web/ja/manual.md",

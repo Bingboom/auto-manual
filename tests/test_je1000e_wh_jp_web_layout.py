@@ -48,11 +48,14 @@ class WebLayoutEditionTest(unittest.TestCase):
         expected = expected.replace(badges.group(0), '保証期間' + badges.group(1) + badges.group(2))
         self.assertEqual(visible(self.edition), expected)
 
-    def test_candidate_status_and_derivation(self):
-        self.assertEqual(self.manifest['publication_status'], 'review-candidate-no-release-authorization')
-        self.assertFalse(self.manifest['publication_eligible'])
+    def test_acceptance_and_derivation(self):
+        self.assertEqual(self.manifest['publication_status'], 'operator-approved-git-only-release')
+        self.assertTrue(self.manifest['publication_eligible'])
         self.assertEqual(self.manifest['derived_from']['package'], APPROVED.name)
-        self.assertFalse((EDITION / 'source/approval.json').exists())
+        approval = json.loads((EDITION / 'source/approval.json').read_text(encoding='utf-8'))
+        self.assertEqual((approval['operator_quote'], approval['merge_authorization']), ('上线', 'MA-486'))
+        ir = json.loads((EDITION / 'web/ja/manual.ir.json').read_text(encoding='utf-8'))
+        self.assertTrue(ir['metadata']['publication_eligible'])
 
     def test_layout_markup(self):
         md = self.edition
