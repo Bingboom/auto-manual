@@ -236,8 +236,7 @@ The operator decides the focus. Since 2026-09-26 the sequence is:
    The `Web ManualIR + Feishu Bitable uploaded textless base art -> InDesign`
    plan in [shared_ir_bitable_indesign_plan.md](../shared_ir_bitable_indesign_plan.md)
    is on hold since the operator's 2026-11-24 decision, confirmed in review on
-   2026-11-25, when the operator froze the whole IDML/InDesign line (ledger
-   decision log; REV-20, REV-26 and REV-40 deferred). Alongside Web documents,
+   2026-11-25 (ledger decision log; REV-20, REV-26 and REV-40 deferred). Alongside Web documents,
    the main print route (印刷主线) is now editing existing `.ai` print masters
    directly from review drafts or the corpus (REV-55). The operator has verified
    it locally; its editing scripts are not in the repository yet, which today

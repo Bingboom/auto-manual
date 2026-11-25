@@ -125,7 +125,7 @@ focus:
       horizon: deferred
       title: Shared IR（共享底稿 · 远期备选挂起）
       goal: Web 整本 Shared IR 已落地；跨格式延伸至「网页共享 IR + 飞书多维表上传无字底图 → InDesign」暂挂为远期备选储备
-      action: REV-39 保持暂缓；shared_ir_bitable_indesign_plan.md 于 2026-11-24 决定挂起，IDML/InDesign 整条线冻结，REV-20、REV-40 同步暂缓（当前零研发投入）；印刷主线是按审核稿或语料直接修改现存 .ai 印刷稿（REV-55）。重启条件（任一满足即复评）：REV-20 或 REV-40 开工、启动共享层收敛、共享修改因缺少公共语义契约无法可控地传到已冻结的整本包、出现没有现存 .ai 母版的新产品线、多语种重排成为明显的人力瓶颈；IDML 验收不阻塞 Web 交付
+      action: REV-39 保持暂缓；shared_ir_bitable_indesign_plan.md 于 2026-11-24 决定挂起，REV-20、REV-40 同步暂缓（当前零研发投入）；印刷主线是按审核稿或语料直接修改现存 .ai 印刷稿（REV-55）。重启条件（任一满足即复评）：REV-20 或 REV-40 开工、启动共享层收敛、共享修改因缺少公共语义契约无法可控地传到已冻结的整本包、出现没有现存 .ai 母版的新产品线、多语种重排成为明显的人力瓶颈；IDML 验收不阻塞 Web 交付
       card: document_production
       items: [document_production.shared_ir]
       revs: [REV-39..REV-40]
@@ -254,7 +254,7 @@ capabilities:
     title: 多格式生产
     en: Document Production
     status: in_progress
-    summary: 网页文档是主要交付形态，印刷主线是直接修改现存 .ai 印刷稿；PDF、Word 按需产出，IDML 保留但冻结，Shared IR 转 InDesign 暂挂
+    summary: 网页文档是主要交付形态，印刷主线是直接修改现存 .ai 印刷稿；PDF、Word 按需产出，Shared IR 转 InDesign 暂挂
     items:
       - id: web
         label: 网页手册
@@ -277,7 +277,7 @@ capabilities:
         label: PDF（LaTeX 排版）
         short: PDF
         status: available
-        note: 由构建队列产出；印刷主线是直接修改现存 .ai 印刷稿，IDML 保留但冻结
+        note: 由构建队列产出；印刷主线是直接修改现存 .ai 印刷稿
         evidence:
           - "file:auto-manual:tools/build_queue/build_execution.py"
           - "file:auto-manual:.github/workflows/feishu-build-queue.yml"
@@ -292,11 +292,11 @@ capabilities:
           - "file:auto-manual:code-as-doc/dev/manual_ir_p1_decisions_2026-11.md"
           - "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"
       - id: idml
-        label: 印刷交付（直接改 .ai / IDML 冻结）
-        short: .ai / IDML
+        label: 印刷交付（直接改 .ai）
+        short: .ai
         status: in_progress
         verified_on: 2026-11-25
-        note: 印刷主线是按审核稿或语料直接修改现存 .ai 印刷稿（原位改文字，刀版、出血与版面不动）；旧 RST→IDML 路径保留但冻结，「网页共享 IR + 飞书多维表上传无字底图 → InDesign」方案暂挂为远期备选
+        note: 印刷主线是按审核稿或语料直接修改现存 .ai 印刷稿（工作规则：原位改文字，刀版、出血与版面不动）；「网页共享 IR + 飞书多维表上传无字底图 → InDesign」方案暂挂为远期备选
         evidence:
           - "pr:auto-manual#548"
           - "pr:auto-manual#615"
@@ -513,7 +513,7 @@ flow:
     status: in_progress
     mode: manual
     verified_on: 2026-11-25
-    note: 旧 RST→IDML 路径保留但冻结，原生验收随 REV-20 暂缓；印刷主线是直接修改现存 .ai 印刷稿
+    note: 印刷主线是直接修改现存 .ai 印刷稿
     evidence: ["pr:auto-manual#615", "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md", "rev:REV-20=deferred"]
   - from: 共享底稿 + 多维表底图
     to: IDML / InDesign

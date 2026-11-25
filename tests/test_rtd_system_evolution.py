@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import datetime as dt
+import re
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -56,7 +57,7 @@ class SystemEvolutionTests(unittest.TestCase):
     def test_print_route_reads_as_decided_and_names_no_portal_template_as_evidence(self):
         # 2026-11-24 decision, confirmed 2026-11-25: .ai editing is the print route (印刷主线), IDML is kept but frozen.
         production = next(s for s in DATA["stages"] if s["id"] == "production")
-        self.assertIn("IDML 冻结", production["title"])
+        self.assertEqual(production["title"], "印刷交付：直接改现存 .ai")
         self.assertNotIn("REV-54", production["detail"])
         self.assertIn("尚未入库", production["detail"])
         self.assertNotIn("file:auto-manual:tools/rtd_portal_assets/asset_language.html", production["evidence"])
@@ -190,9 +191,9 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertIn("数据校验与快照", architecture_panel)
         self.assertIn("同步与映射", architecture_panel)
         self.assertIn("Content Authority → Assembly → Renderers → Publish", architecture_panel)
-        self.assertIn("印刷直接改 .ai · IDML 冻结", architecture_panel)
+        self.assertIn("Web 主力 · 印刷直接改 .ai", architecture_panel)
         self.assertIn("直接修改现存 .ai 印刷稿", architecture_panel)
-        self.assertIn("IDML 保留但冻结", architecture_panel)
+        self.assertIsNone(re.search(r"IDML[^。；<]{0,12}冻结|冻结[^。；<]{0,12}IDML", page))
         self.assertIn("飞书多维表上传无字底图", architecture_panel)
         self.assertNotIn("04_资产", architecture_panel)
         self.assertNotIn("内容与能力平台", architecture_panel)
