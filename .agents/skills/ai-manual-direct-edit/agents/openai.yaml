@@ -1,0 +1,4 @@
+interface:
+  display_name: "Direct-Edit AI Manual"
+  short_description: "Edit .ai or AI-editable .pdf manuals natively in Illustrator against a review draft or corpus"
+  default_prompt: "Use $ai-manual-direct-edit to update this Illustrator manual directly against the review draft or corpus, highlight edits in CMYK red, preserve AI editability, and run full automated and visual QA."
