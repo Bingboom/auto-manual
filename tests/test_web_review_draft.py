@@ -195,11 +195,18 @@ class RenderedShellTests(unittest.TestCase):
                               "--hb-panel-top:4%;--hb-panel-fill:#f4f4f4", 'data-label-density="compact"',
                               'data-mobile-labels="scroll"'):
                 self.assertIn(placement, markdown)
+            # the operation panel keeps the anchors its base-art renderer wrote, and its supporting copy shows once
+            for placement in ("--hb-step-x:76.5%;--hb-step-y:21%;--hb-step-width:22.5%",
+                              "--hb-step-x:76.5%;--hb-step-y:34%;--hb-step-width:22.5%",
+                              '<div aria-hidden="true" class="hb-operation-duration" style="--hb-x:82%;--hb-y:43%">3s',
+                              'hb-operation-supporting-panels" data-callout-id="operation.main-power.supporting-copy"'
+                              ' style="--hb-x:43%;--hb-y:57%;--hb-width:52%"'):
+                self.assertIn(placement, markdown)
+            self.assertEqual(markdown.count("It turns off after an idle period."), 1)
             blockers = "\n".join(report["release_blockers"])
-            for expected in ("copy to confirm: To be confirmed", "pending parameters: Store it for",
-                             "operation main-power renders without its Web presentation"):
+            for expected in ("copy to confirm: To be confirmed", "pending parameters: Store it for"):
                 self.assertIn(expected, blockers)
-            self.assertEqual([gap["component"] for gap in report["presentation_gaps"]], ["operation main-power"])
+            self.assertEqual(report["presentation_gaps"], [])
             embedded = hashlib.sha256(base64.b64decode(EMBEDDED_PNG)).hexdigest()
             ir = json.loads((output / "manual.ir.json").read_text(encoding="utf-8"))
             self.assertIn(f"assets/ir/{embedded}/image.png", ir["metadata"]["asset_sha256"])

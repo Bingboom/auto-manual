@@ -11,9 +11,8 @@ troubleshooting, warranty lead and sections, callouts) are left to them.
 Reference figures keep their live labels: the positions the base-art
 renderer wrote (``--hb-x`` … on each label, the panel's top band and tone)
 become the figure's ``base_art_layout`` again, and the shell's dense layouts
-become the shared ``mobile_labels`` and ``label_density`` options. An
-operation panel has no Web presentation contract for these models, so it
-renders as artwork and lines, and the gap is listed for the release gate.
+become the shared ``mobile_labels`` and ``label_density`` options. Operation
+panels keep their layout the same way (``review_draft_operations``).
 """
 from __future__ import annotations
 
@@ -27,7 +26,6 @@ from tools.component_specs.auto_resume import auto_resume_component_spec
 from tools.component_specs.fcc import fcc_blocks_from_text, fcc_component_spec
 from tools.component_specs.key_combinations import key_combinations_component_spec
 from tools.component_specs.manual_tables import symbol_icon_component_spec, symbol_signal_component_spec
-from tools.component_specs.operation import operation_component_spec
 from tools.component_specs.warranty import warranty_years_component_spec
 from tools.manual_ir.flow import flow_nodes_to_html, html_to_flow_nodes
 from tools.web.review_draft_blocks import (
@@ -36,9 +34,11 @@ from tools.web.review_draft_blocks import (
     bind_inbox,
     classes_of,
     column_texts,
+    css_variables,
     heading_before,
     inner_html,
     need,
+    percent,
     text_of,
 )
 from tools.web.review_draft_figures import (
@@ -48,9 +48,8 @@ from tools.web.review_draft_figures import (
     figure_slug,
     unique_reference_id,
 )
+from tools.web.review_draft_operations import operations
 from tools.web.review_draft_overlay import COMPONENT_ATTRIBUTES, KEPT_ATTRIBUTES
-
-_CSS_VARIABLE = re.compile(r"(--[\w-]+)\s*:\s*([^;]+)")
 
 
 def _components(chapter: DraftChapter, component_id: str) -> list[Tag]:
@@ -59,17 +58,6 @@ def _components(chapter: DraftChapter, component_id: str) -> list[Tag]:
 
 def _label(node: Tag) -> str:
     return attribute(node, "aria-label").strip() or heading_before(node)
-
-
-def _css(node: Tag) -> dict[str, str]:
-    return {name: value.strip() for name, value in _CSS_VARIABLE.findall(attribute(node, "style"))}
-
-
-def _percent(style: dict[str, str], name: str, owner: str) -> float:
-    value = style.get(name, "")
-    if not value.endswith("%"):
-        raise ValueError(f"{owner}: rendered position {name} is not a percentage")
-    return float(value[:-1])
 
 
 def _plain(chapter: DraftChapter, node: Tag) -> Tag:
@@ -288,19 +276,19 @@ def _base_art_lines(chapter: DraftChapter, semantic: Tag, labels: list[Tag]) -> 
     owner = f"{chapter.page_id}: reference figure"
     ordered = sorted(labels, key=lambda label: int(attribute(label, "data-source-line") or 0))
     for index, label in enumerate(ordered):
-        style = _css(label)
+        style = css_variables(label)
         line = shell.new_tag("div", attrs={"class": "line"})
         line.extend(list(label.contents))
         block.append(_plain(chapter, line))
         entry: dict[str, Any] = {"line": index, "rect": [
-            _percent(style, name, owner) for name in ("--hb-x", "--hb-y", "--hb-width", "--hb-height")]}
+            percent(style, name, owner) for name in ("--hb-x", "--hb-y", "--hb-width", "--hb-height")]}
         if "--hb-fill" in style:
             entry["fill"] = style["--hb-fill"]
         if "--hb-label-color" in style:
             entry["color"] = style["--hb-label-color"]
         placed.append(entry)
-    panel = _css(need(semantic.select_one(".hb-reference-art-panel"), "art panel"))
-    layout: dict[str, Any] = {"panel_top": _percent(panel, "--hb-panel-top", owner),
+    panel = css_variables(need(semantic.select_one(".hb-reference-art-panel"), "art panel"))
+    layout: dict[str, Any] = {"panel_top": percent(panel, "--hb-panel-top", owner),
                               "panel_fill": panel.get("--hb-panel-fill", ""), "labels": placed}
     if attribute(semantic, "data-preserve-art-frame") == "true":
         layout["preserve_frame"] = True
@@ -359,46 +347,6 @@ def reference_figures(chapter: DraftChapter) -> None:
     for figure in chapter.root.select(".hb-reference-figure"):
         if not figure.decomposed and figure.find_parent(class_="hb-reference-figure") is None:
             _rendered_reference(chapter, figure)
-
-
-def _step_role(line: Tag) -> str:
-    declared = attribute(line, "data-step-part")
-    if declared:
-        return declared
-    roles = [role for role in ("label", "instruction") if f"hb-operation-step-{role}" in classes_of(line)]
-    return roles[0] if roles else "summary"
-
-
-def operations(chapter: DraftChapter) -> None:
-    for figure in _components(chapter, "HB-SPECIAL-OPERATION"):
-        art = need(figure.select_one("img.hb-operation-art") or figure.find("img"), "operation artwork")
-        steps: list[dict[str, Any]] = []
-        for index, step in enumerate(figure.select(".hb-operation-step"), start=1):
-            parts = [{"role": _step_role(line), "html": inner_html(line), "text": text_of(line)}
-                     for line in step.select(".line")]
-            steps.append({"id": attribute(step, "data-step-id") or f"step-{index}", "parts": parts})
-        support = [inner_html(line) for line in figure.select(".hb-operation-supporting-copy .line")]
-        layout = next((name.removeprefix("hb-operation-layout-") for name in classes_of(figure)
-                       if name.startswith("hb-operation-layout-")), "")
-        callout = attribute(figure.select_one("[data-callout-id]") or figure, "data-callout-id")
-        operation_id = callout.split(".")[1] if callout.count(".") >= 2 else f"{chapter.page_id}-operation"
-        shell = BeautifulSoup('<div class="line-block"></div>', "html.parser")
-        image = shell.new_tag("img", attrs={"alt": heading_before(figure), "src": attribute(art, "src")})
-        block = need(shell.div, "operation lines")
-        for html in [part["html"] for step in steps for part in step["parts"]] + support:
-            block.append(need(BeautifulSoup(f'<div class="line">{html}</div>', "html.parser").div, "line"))
-        spec = operation_component_spec(
-            operation_id=operation_id, accessibility_label=heading_before(figure) or operation_id,
-            layout=layout, steps=steps, prerequisite_html="", supporting_copy=support,
-            artwork_ref=attribute(art, "src"), source_ref=chapter.source_ref("operation"),
-            language=chapter.language, artwork_locale_policy="exact",
-        )
-        figure.replace_with(image, block)
-        chapter.claim(spec, (image, block), (("artwork", image),))
-        chapter.presentation_gaps.append({
-            "page_id": chapter.page_id, "component": f"operation {operation_id}",
-            "missing": "its Web presentation (artwork and step lines show without the live-copy layout)",
-        })
 
 
 def release_component_attributes(chapter: DraftChapter) -> None:
