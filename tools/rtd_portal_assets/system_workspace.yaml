@@ -83,14 +83,14 @@ focus:
     # (§4.1) and the ledger's scope-change row; the 2026-11-06 quote above stays as it was said.
     - "file:auto-manual:code-as-doc/architecture/Hello_Docs_Positioning.md"
   doing:
-    - {lead: 网页化, text: 印刷版说明书持续转成网页版, lane: web}
-    - {lead: 多格式输出, text: Agent 复用积累的语料、图片素材和设计规范，一份内容出多种格式, lane: workbench}
+    - {lead: 网页化, text: 印刷版说明书与审核稿持续转成网页版, lane: web}
+    - {lead: 多格式输出, text: Agent 复用语料与审核稿，主力产出网页文档并直接修改现存 .ai 印刷设计稿, lane: workbench}
   lanes:
     - id: workbench
       horizon: now
       title: 资料开发工作台
       goal: 在 Hello-Docs-Review 调用现有的基础设施、数据、模板和语料写作，由人审核；自动构建正在退出
-      action: 用参考稿复用写作技能出审核稿、在私有审核站审阅；并行写稿按 REV-47 规则（一条稿线一个写者、写稿会话对公开仓库只读），下一批 2–3 条稿线做并行试点；审核稿定稿后作为批准原稿转网页是主路线（定位文档 §5.1），2026-11-06 已用 JHP-3600C 日规完成本地预演，正式衔接随首例定稿建设
+      action: 用参考稿复用写作技能出审核稿、在私有审核站审阅；审核稿转网页候选及差异追踪已启动（REV-48）；印刷端主力基于语料与审核稿直接修改现存 .ai 印刷设计稿（REV-54）；并行写稿按 REV-47 规则（一条稿线一个写者、写稿会话对公开仓库只读）执行
       items: [agent_operations.workbench]
       metrics: [reviews]
       revs: [REV-47]
@@ -120,9 +120,9 @@ focus:
       revs: [REV-44]
     - id: shared_ir
       horizon: deferred
-      title: Shared IR（共享底稿）
-      goal: 明确公共语义与排版边界后，以「网页共享 IR（manual.ir.json）+ 飞书多维表无字底图」驱动 InDesign（.idml / .indd）交付
-      action: REV-39 仍暂缓（2026-11-15 已补充答复 #1278 §6 A1–A9 与 N1–N4）；基于「网页共享 IR + 飞书多维表无字底图」生成 InDesign 的迁仓后三阶段实施计划（shared_ir_bitable_indesign_plan.md）已定稿，待迁仓后 Day 0 起按 REV-40 试点 JBP-2000B/JP 与 JE-3000C/KR 推进；IDML 独立验收不阻塞 Web 交付
+      title: Shared IR（共享底稿 · 远期备选挂起）
+      goal: Web 整本 Shared IR 已落地；跨格式延伸至「网页共享 IR + 飞书多维表上传无字底图 → InDesign」暂挂为远期备选储备
+      action: REV-39 保持暂缓，shared_ir_bitable_indesign_plan.md 于 2026-11-24 决定挂起（当前零研发投入）；现行印刷主力走「网页文档 + 基于语料/审核稿直接修改现存 .ai 印刷设计稿」（REV-54），仅在未来遇到无现存 .ai 母版新品或重度跨页重排瓶颈时再评估按 REV-40 启用；IDML 验收不阻塞 Web 交付
       card: document_production
       items: [document_production.shared_ir]
       revs: [REV-39..REV-40]
@@ -251,16 +251,18 @@ capabilities:
     title: 多格式生产
     en: Document Production
     status: in_progress
-    summary: 同一份内容产出网页、Word、PDF 和印刷用 IDML；印刷路径仍在验收
+    summary: 网页文档为主力交付形态，印刷端优先基于语料与审核稿直接修改现存 .ai 设计稿；PDF/Word 按需产出，Shared IR 转 InDesign 暂挂为远期备选
     items:
       - id: web
         label: 网页手册
         short: 网页
         status: available
-        note: 网页说明书由构建产出并发布
+        verified_on: 2026-11-24
+        note: 网页说明书为主力交付形态，由构建发布与审核稿转网页候选路径共同支撑
         evidence:
           - "file:hello-docs:docs/publish/publish_manifest.json"
           - "pr:hello-docs#119"
+          - "rev:REV-48=active"
       - id: word
         label: Word
         short: Word
@@ -273,32 +275,35 @@ capabilities:
         label: PDF（LaTeX 排版）
         short: PDF
         status: available
-        note: 由构建队列产出；出货印刷走 IDML
+        verified_on: 2026-11-24
+        note: 由构建队列产出，用于审阅与内部校对；正式印刷主力为直接修改现存 .ai 设计稿，传统 IDML 路径冻结保留
         evidence:
           - "file:auto-manual:tools/build_queue/build_execution.py"
           - "file:auto-manual:.github/workflows/feishu-build-queue.yml"
       - id: shared_ir
         label: Shared IR（共享底稿）
         status: validated
-        verified_on: 2026-11-23
-        note: Web 整本 Shared IR（manual-ir/v2）与语义组件已收敛；基于网页活文字加飞书多维表无字底图直出 InDesign 的迁仓后三阶段计划已定稿
+        verified_on: 2026-11-24
+        note: Web 整本 Shared IR（manual-ir/v2）与语义组件已稳定复用；基于网页活文字加飞书多维表上传无字底图生成 InDesign 的方案已暂挂为远期备选（当前零研发投入）
         evidence:
           - "pr:auto-manual#1057"
           - "file:auto-manual:code-as-doc/dev/ir_document_closeout.md"
           - "file:auto-manual:code-as-doc/dev/manual_ir_p1_decisions_2026-11.md"
           - "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"
       - id: idml
-        label: 印刷排版（IDML）
-        short: IDML
+        label: 印刷交付（直接改 .ai 主力 / IDML 备选）
+        short: .ai / IDML
         status: in_progress
-        verified_on: 2026-11-23
-        note: 旧 RST 路径可导出可编辑 IDML 并经 K7 InDesign 落盘 .indd 与 PDF/X-4；迁仓后将切换为消费网页共享 IR 与飞书多维表无字底图自动叠字出包，原生验收待完成
+        verified_on: 2026-11-24
+        note: 现行印刷主力基于语料与审核稿直接修改现存 .ai 设计母版（保留刀版、出血与版面）；旧 RST→IDML 路径冻结保留，「网页共享 IR + 飞书多维表上传无字底图 → InDesign」方案暂挂为远期备选
         evidence:
           - "pr:auto-manual#548"
           - "pr:auto-manual#615"
           - "pr:auto-manual#955"
           - "file:auto-manual:tools/indesign_finalize.py"
+          - "file:auto-manual:tools/rtd_portal_assets/asset_language.html"
           - "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"
+          - "rev:REV-54=done"
           - "rev:REV-20=planned"
 
   - id: content_foundation
@@ -343,8 +348,8 @@ capabilities:
       - id: asset_library
         label: 插图资产库
         status: in_progress
-        verified_on: 2026-11-23
-        note: 飞书多维表统一登记源文件、资产定义并上传无字底图导出物，做哈希校验与按需缓存拉取，以支撑网页与 InDesign 双端复用
+        verified_on: 2026-11-24
+        note: 飞书多维表统一登记源文件、资产定义并支持上传无字底图导出物与哈希校验；现行印刷主力直接修改现存 .ai 源文件，多维表无字底图同步支撑网页复用与远期 InDesign 备选
         evidence:
           - "pr:auto-manual#662"
           - "pr:auto-manual#670"
@@ -412,20 +417,24 @@ capabilities:
       - id: skills
         label: 技能库
         status: available
-        note: Agent 查语料后编辑飞书原文或 Illustrator 稿件，也可调用仓库工具。技能清单标明适用任务及维护状态。
+        verified_on: 2026-11-24
+        note: Agent 基于语料与审核稿直接改写飞书云文档或现存 Illustrator（.ai）印刷设计稿（保留刀版与版面），也可调用仓库工具核验。技能清单标明适用任务及维护状态。
         evidence:
           - "file:auto-manual:.agents/skills"
           - "file:auto-manual:AGENTS.md"
+          - "file:auto-manual:tools/rtd_portal_assets/asset_language.html"
+          - "rev:REV-54=done"
       - id: workbench
         label: 资料开发工作台
         status: in_progress
-        verified_on: 2026-10-23
-        note: Agent 在私有的 Hello-Docs-Review 以参考说明书、规格书、模板和语料起草审核稿，在私有审核站审阅；审核通过的稿件转入发布的衔接尚未建设
+        verified_on: 2026-11-24
+        note: Agent 在私有的 Hello-Docs-Review 以参考说明书、规格书、模板和语料起草审核稿，在私有审核站审阅；审核稿转网页候选与差异追踪已启动接入
         evidence:
           - "file:auto-manual:code-as-doc/dev/rtd_manual_portal/review-drafts-site.md"
           - "file:auto-manual:.agents/skills/manual-review-draft/SKILL.md"
           - "file:auto-manual:tools/rtd/review_site.py"
           - "rev:REV-47=active"
+          - "rev:REV-48=active"
           - "ack:操作者 2026-10-23「基于数据+模版 自动构建 这个过程 可以 退却为 按需使用了 我需要 把 Hello-Docs-Review工作台推出」"
       - id: source_registry
         label: 来源登记（SSOT）
@@ -439,7 +448,8 @@ capabilities:
       - id: agent_dispatch
         label: 工作台协作设计储备（暂缓）
         status: planned
-        note: 写作成为主线后重新定位为工作台协作；仅保留设计参考，是否重启由 REV-47 并行试点数据决定并须另行批准，不阻塞网页化、语料、SSOT、IR 或 IDML 工作
+        verified_on: 2026-11-24
+        note: 写作成为主线后重新定位为工作台协作；仅保留设计参考，是否重启由 REV-47 并行试点数据决定并须另行批准，不阻塞网页化、语料、SSOT 或直接改 .ai 印刷工作
         evidence:
           - "rev:REV-45=deferred"
           - "file:auto-manual:code-as-doc/dev/multi_agent_dispatch_design.md"
@@ -492,21 +502,29 @@ flow:
     mode: automated
     note: 构建队列生成并上传
     evidence: ["file:auto-manual:.github/workflows/feishu-draft-build-queue.yml"]
+  - from: 语料与审核稿
+    to: 直接改 .ai 印刷稿
+    group: produce
+    status: available
+    mode: manual
+    verified_on: 2026-11-24
+    note: 现行印刷主力：基于语料与审核稿直接修改现存 Illustrator（.ai）设计母版，保留原有刀版、出血与精排版面
+    evidence: ["file:auto-manual:tools/rtd_portal_assets/asset_language.html", "rev:REV-54=done", "rev:REV-48=active"]
   - from: 模板组装
     to: IDML 印刷
     group: produce
     status: in_progress
     mode: manual
-    verified_on: 2026-11-23
-    note: 旧 RST 路径导出后由设计在 InDesign 完成，原生验收待做；迁仓后将切换为网页共享 IR 与多维表无字底图直出
+    verified_on: 2026-11-24
+    note: 旧 RST→IDML 路径冻结保留；现行印刷主力为直接修改现存 .ai 印刷设计稿
     evidence: ["pr:auto-manual#615", "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md", "rev:REV-20=planned"]
   - from: 共享底稿 + 多维表底图
     to: IDML / InDesign
     group: produce
     status: planned
     mode: automated
-    verified_on: 2026-11-23
-    note: 读取网页 manual.ir.json 活文字与飞书多维表上传无字底图缓存，自动叠放可编辑引线框出 .idml 与 K7 .indd（迁仓后三阶段计划）
+    verified_on: 2026-11-24
+    note: 远期挂起备选（当前零研发投入）：读取网页 manual.ir.json 活文字与飞书多维表上传无字底图缓存合成 .idml 与 K7 .indd，仅在无 .ai 母版新品或跨页重排瓶颈时再评估启用
     evidence: ["file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md", "file:auto-manual:data/asset_base_bindings.json", "rev:REV-40=planned"]
   - from: 翻译记忆库
     to: 构建短文案

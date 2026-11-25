@@ -174,6 +174,8 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertIn("数据校验与快照", architecture_panel)
         self.assertIn("同步与映射", architecture_panel)
         self.assertIn("Content Authority → Assembly → Renderers → Publish", architecture_panel)
+        self.assertIn("Web 主力 · 印刷直接改 .ai", architecture_panel)
+        self.assertIn("直接修改现存 .ai 印刷设计稿", architecture_panel)
         self.assertIn("飞书多维表上传无字底图", architecture_panel)
         self.assertNotIn("04_资产", architecture_panel)
         self.assertNotIn("内容与能力平台", architecture_panel)
