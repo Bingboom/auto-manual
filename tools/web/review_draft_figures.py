@@ -13,8 +13,11 @@ prepared-document shared-style gate.
 """
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
+import hashlib
 from pathlib import Path
 import re
+from typing import Any
 from urllib.parse import unquote, urlparse
 
 from bs4 import BeautifulSoup, Tag
@@ -52,17 +55,52 @@ def _claimed(chapter: DraftChapter, node: Tag) -> bool:
     return any(id(candidate) in owned for candidate in (node, *node.parents))
 
 
-def _slug(source: str) -> str:
+def figure_slug(source: str) -> str:
+    if source.startswith("data:"):  # an embedded image is named by its content
+        return "figure-" + hashlib.sha256(source.encode("utf-8")).hexdigest()[:12]
     stem = Path(unquote(urlparse(source).path)).stem
     return re.sub(r"[^a-z0-9]+", "-", stem.casefold()).strip("-") or "figure"
+
+
+def unique_reference_id(chapter: DraftChapter, base: str) -> str:
+    """A page shows the same artwork twice under two reference ids."""
+
+    taken = {str(claim.spec.slot("reference_id").content) for claim in chapter.claims
+             if claim.spec.component_id == "HB-SPECIAL-REFERENCE-FIGURE"}
+    candidate, index = base, 1
+    while candidate in taken:
+        index += 1
+        candidate = f"{base}-{index}"
+    return candidate
+
+
+def bind_reference(
+    chapter: DraftChapter, owner: Tag, nodes: Sequence[Tag], image: Tag, config: dict[str, Any],
+) -> None:
+    """Replace ``owner`` with a reference figure in governed source shape, and claim it.
+
+    The carrier is parsed apart from the page, so the art's neighbours are
+    only its own copy (an adjacent paragraph cannot be the page's next one).
+    """
+    wrapper = BeautifulSoup("", "html.parser")
+    marker = wrapper.new_tag("span")
+    owner.replace_with(marker)
+    wrapper.extend(list(nodes))
+    spec, owned, assets, _ = parse_reference_figure_html(
+        wrapper, image=image, config=config, source_path=Path(f"{chapter.page_id}.html"),
+        language=chapter.language, composite_locale=None, approved_entry=None, approved_path=None,
+    )
+    marker.replace_with(*nodes)
+    chapter.claims.append(ComponentClaim(spec=spec, owned_nodes=owned, asset_tags=assets))
 
 
 def _reference_figure(chapter: DraftChapter, owner: Tag, art: Tag) -> None:
     """Replace ``owner`` with the governed source shape and bind it with the shared parser."""
 
     source = attribute(art, "src")
-    slug = _slug(source)
+    slug = unique_reference_id(chapter, figure_slug(source))
     captions = [_clean_html(node) for node in owner.select(LIVE_CAPTIONS) if text_of(node)]
+    chapter.keep_copy(owner, [text_of(node) for node in owner.select(LIVE_CAPTIONS)], f"figure {slug}")
     shell = BeautifulSoup("", "html.parser")
     image = shell.new_tag("img", attrs={"alt": heading_before(owner) or slug, "src": source})
     nodes: list[Tag] = [image]
@@ -82,45 +120,79 @@ def _reference_figure(chapter: DraftChapter, owner: Tag, art: Tag) -> None:
     chapter.claims.append(ComponentClaim(spec=spec, owned_nodes=owned, asset_tags=assets))
 
 
+def bind_app_download(
+    chapter: DraftChapter, owner: Tag, columns: Mapping[str, tuple[Sequence[Tag], str]], *,
+    source_art: str, accessibility_label: str,
+) -> None:
+    """Replace ``owner`` with the store and QR copy and art the App renderer checks, and claim them.
+
+    ``columns`` maps ``store`` and ``qr`` to the column's paragraphs and art;
+    an artwork used for two roles is one tag.
+    """
+    shell = BeautifulSoup("", "html.parser")
+    nodes: list[Tag] = []
+    images: dict[str, Tag] = {}
+
+    def image_for(source: str, alt: str) -> Tag:
+        if source not in images:
+            images[source] = shell.new_tag("img", attrs={"alt": alt, "src": source})
+            nodes.append(images[source])
+        return images[source]
+
+    copy = []
+    for role in ("store", "qr"):
+        paragraphs, art = columns[role]
+        paragraph = shell.new_tag("p")
+        for child in [node for p in paragraphs for node in list(p.contents)]:
+            paragraph.append(child.extract())
+        copy.append({"role": role, "html": paragraph.decode_contents().strip(), "text": text_of(paragraph)})
+        nodes.append(paragraph)
+        image_for(art, text_of(paragraph))
+    image_for(source_art, accessibility_label)
+    spec = app_download_component_spec(
+        accessibility_label=accessibility_label, columns=copy, source_art_ref=source_art,
+        store_art_ref=columns["store"][1], qr_art_ref=columns["qr"][1],
+        source_ref=chapter.source_ref("app-download"), language=chapter.language,
+    )
+    owner.replace_with(*nodes)
+    chapter.claim(spec, nodes, (("source_art", images[source_art]), ("store_art", images[columns["store"][1]]),
+                                ("qr_art", images[columns["qr"][1]])))
+
+
 def app_downloads(chapter: DraftChapter) -> None:
     for figure in chapter.root.select("figure.jp-app-download"):
         columns = figure.select("div.jp-app-col")
         store, qr = figure.select_one("img.jp-app-badges"), figure.select_one("img.jp-app-qr")
         if len(columns) != 2 or store is None or qr is None:
             raise ValueError(f"{chapter.page_id}: App download needs two columns, badges and QR")
-        shell = BeautifulSoup("", "html.parser")
-        nodes: list[Tag] = []
-        copy = []
-        for role, column, art in zip(("store", "qr"), columns, (store, qr), strict=True):
-            paragraph = shell.new_tag("p")
-            for child in [node for p in column.find_all("p") for node in list(p.contents)]:
-                paragraph.append(child.extract())
-            copy.append({"role": role, "html": paragraph.decode_contents().strip(), "text": text_of(paragraph)})
-            nodes += [paragraph, shell.new_tag("img", attrs={"alt": text_of(paragraph), "src": attribute(art, "src")})]
-        spec = app_download_component_spec(
-            accessibility_label=heading_before(figure), columns=copy,
-            source_art_ref=attribute(nodes[1], "src"), store_art_ref=attribute(nodes[1], "src"),
-            qr_art_ref=attribute(nodes[3], "src"),
-            source_ref=chapter.source_ref("app-download"), language=chapter.language,
+        bind_app_download(
+            chapter, figure,
+            {"store": (columns[0].find_all("p"), attribute(store, "src")),
+             "qr": (columns[1].find_all("p"), attribute(qr, "src"))},
+            source_art=attribute(store, "src"), accessibility_label=heading_before(figure),
         )
-        figure.replace_with(*nodes)
-        chapter.claim(spec, nodes, (("source_art", nodes[1]), ("store_art", nodes[1]), ("qr_art", nodes[3])))
+
+
+def bind_inline_control(chapter: DraftChapter, paragraph: Tag, icon: Tag, label: str) -> None:
+    """The control's label replaces its icon as the paragraph's only emphasis."""
+
+    for emphasis in paragraph.find_all("strong"):
+        emphasis.unwrap()
+    strong = BeautifulSoup("", "html.parser").new_tag("strong")
+    strong.string = label
+    icon.replace_with(strong)
+    paragraph.attrs.pop("class", None)
+    spec = app_inline_control_component_spec(
+        accessibility_label=label, paragraph_html=str(paragraph), paragraph_text=text_of(paragraph),
+        source_ref=chapter.source_ref("app-control"), language=chapter.language,
+    )
+    chapter.claim(spec, (paragraph,))
 
 
 def app_inline_controls(chapter: DraftChapter) -> None:
     for icon in chapter.root.select("p img.jp-inline-plus"):
         paragraph = need(icon.find_parent("p"), "App control paragraph")
-        label = attribute(icon, "alt").strip() or "+"
-        for emphasis in paragraph.find_all("strong"):
-            emphasis.unwrap()  # the shared control owns the paragraph's only emphasis
-        strong = need(BeautifulSoup(f"<strong>{label}</strong>", "html.parser").strong, "App control label")
-        icon.replace_with(strong)
-        paragraph.attrs.pop("class", None)
-        spec = app_inline_control_component_spec(
-            accessibility_label=label, paragraph_html=str(paragraph), paragraph_text=text_of(paragraph),
-            source_ref=chapter.source_ref("app-control"), language=chapter.language,
-        )
-        chapter.claim(spec, (paragraph,))
+        bind_inline_control(chapter, paragraph, icon, attribute(icon, "alt").strip() or "+")
 
 
 def native_panels(chapter: DraftChapter) -> None:
@@ -177,6 +249,11 @@ __all__ = [
     "LIVE_CAPTIONS",
     "app_downloads",
     "app_inline_controls",
+    "bind_app_download",
+    "bind_inline_control",
+    "bind_reference",
+    "figure_slug",
+    "unique_reference_id",
     "finish",
     "native_panels",
     "reference_figures",

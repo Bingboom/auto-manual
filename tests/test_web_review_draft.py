@@ -1,4 +1,5 @@
 """Review draft (审核稿) → Web candidate conversion and its release gate."""
+import base64
 import hashlib
 import json
 import unittest
@@ -7,10 +8,10 @@ from tempfile import TemporaryDirectory
 
 from bs4 import BeautifulSoup
 
-from tests.review_draft_fixture import CARD, CLEAN, DRAFT, write_draft
+from tests.review_draft_fixture import CARD, CLEAN, DRAFT, EMBEDDED_PNG, RENDERED, write_draft
 from tools.manual_ir.hashing import file_sha256
 from tools.web import review_draft_web
-from tools.web.review_draft_blocks import column_texts, lines_of
+from tools.web.review_draft_blocks import DraftChapter, column_texts, lcd_icon_tables, lines_of, spec_tables
 from tools.web.review_draft_changes import CHANGES_JSON, changes_record, compare, pages_of, previous_version
 from tools.web.review_draft_overlay import strip_review_layer
 
@@ -31,10 +32,59 @@ class ReviewLayerTests(unittest.TestCase):
         self.assertIsNone(article.select_one(".en-new, .jp-original, .us-review-figure"))
 
 
+class NewerShellLayerTests(unittest.TestCase):
+    def test_renderer_attributes_survive_only_inside_components(self):
+        root = BeautifulSoup(
+            '<main><figure data-component-id="X" aria-label="A" style="--hb-x:1%" data-v12="1">'
+            '<span class="hb-reference-live-label ref-change" style="--hb-y:2%">copy</span></figure>'
+            '<p aria-label="B" style="color:red">plain <span class="us-parameter">value</span></p>'
+            '<p data-status="pending-parameters">(— months)</p><p><span class="v004-pending">later</span></p>'
+            '<div data-art-status="first-generation-reference-only"><img alt="Old art" src="a.png"/></div>'
+            '<del>struck</del><span hidden="">hidden</span><aside class="chapter-review review-only">note</aside></main>',
+            "html.parser").main
+        report = strip_review_layer(root)
+        figure = root.figure
+        self.assertEqual((figure["data-component-id"], figure["aria-label"], figure["style"]), ("X", "A", "--hb-x:1%"))
+        self.assertNotIn("data-v12", figure.attrs)
+        self.assertEqual((figure.span["class"], figure.span["style"]), (["hb-reference-live-label"], "--hb-y:2%"))
+        self.assertIsNone(root.select_one("p[aria-label], p[style], .ref-change, .us-parameter"))
+        self.assertEqual([row["marker"] for row in report.pending],
+                         ["pending parameters", "reference-only artwork", "copy to confirm (.v004-pending)"])
+        self.assertEqual(report.pending[1]["text"], "Old art")
+        for gone in ("struck", "hidden", "note"):
+            self.assertNotIn(gone, root.get_text())
+
+
 class HelperTests(unittest.TestCase):
     def test_lines_end_at_breaks_and_paragraphs(self):
         cell = BeautifulSoup("<td>一行目<br/>二行目<p>三行目</p></td>", "html.parser").td
         self.assertEqual(lines_of(cell), ["一行目", "二行目", "三行目"])
+
+    def test_lcd_rows_keep_spanned_numbers_and_descriptions(self):
+        chapter = DraftChapter(root=BeautifulSoup(
+            '<h1>LCD</h1><figure class="hb-lcd-table-composition"><table class="hb-lcd-icon-table"><tbody>'
+            '<tr><td class="hb-lcd-number" rowspan="2">1</td><td><img src="a.png" alt=""/></td>'
+            '<td class="hb-lcd-name">Wi-Fi</td><td class="hb-lcd-description" rowspan="2">Connected</td></tr>'
+            '<tr><td><img src="b.png" alt=""/></td><td class="hb-lcd-name">Bluetooth</td></tr>'
+            '</tbody></table></figure>', "html.parser"), page_id="lcd", language="en", image_key_prefix="XX/US")
+        lcd_icon_tables(chapter)
+        spec = chapter.claims[0].spec
+        self.assertEqual(spec.metadata, {"number_cell_layout": "span-adjacent-equal",
+                                         "description_cell_layout": "span-adjacent-equal"})
+        self.assertEqual([row["description_text"] for row in spec.slot("rows").content], ["Connected", "Connected"])
+
+    def test_tables_without_their_own_heading_or_two_columns_are_declared(self):
+        chapter = DraftChapter(root=BeautifulSoup(
+            '<h1>Specs</h1><figure class="hb-spec-table-composition"><table class="hb-spec-table"><tbody>'
+            '<tr><th>Weight</th><td>1 kg</td></tr></tbody></table></figure>'
+            '<h2>Compare</h2><figure class="hb-spec-table-composition"><table class="manual-spec-table">'
+            '<thead><tr><th></th><th>A</th><th>B</th></tr></thead><tbody><tr><th>Size</th><td>1</td><td>2</td></tr>'
+            '</tbody></table></figure>', "html.parser"), page_id="specs", language="en", image_key_prefix="XX/US")
+        spec_tables(chapter)
+        self.assertEqual(chapter.claims, [])
+        self.assertEqual([row["reason"].split(":")[0] for row in chapter.exceptions],
+                         ["Label/value table without its own section heading",
+                          "Specification-style table with a header row or more than two columns"])
 
     def test_column_texts_follow_row_spans(self):
         table = BeautifulSoup(
@@ -111,6 +161,52 @@ class ConversionTests(unittest.TestCase):
             (draft / "draft.html").write_text(html, encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "not a packaged local asset"):
                 review_draft_web.convert(draft, Path(temp) / "out", title="テスト")
+
+
+class RenderedShellTests(unittest.TestCase):
+    """A newer shell copies the published Web manual: its blocks are rendered shared components."""
+
+    def test_rendered_components_are_read_back_into_shared_specs(self):
+        with TemporaryDirectory() as temp:
+            draft = write_draft(Path(temp) / "draft", RENDERED, language="en", region="US")
+            output = Path(temp) / "candidate"
+            report = review_draft_web.convert(draft, output, title="Test manual")
+            self.assertEqual(report["component_inventory"], {
+                "HB-CALLOUT-STRIP": 1, "HB-SPECIAL-APP": 2, "HB-SPECIAL-FCC": 1, "HB-SPECIAL-INBOX": 1,
+                "HB-SPECIAL-OPERATION": 1, "HB-SPECIAL-REFERENCE-FIGURE": 3, "HB-TABLE-AUTO-RESUME": 1,
+                "HB-TABLE-KEY-COMBINATIONS": 1, "HB-TABLE-SYMBOL-ICON": 1, "HB-TABLE-SYMBOL-SIGNAL": 1,
+                "HB-WARRANTY-SECTION": 1, "HB-WARRANTY-YEARS": 1,
+            })
+            self.assertEqual(report["shared_style"]["issues"], [])
+            # a preface heading opens its own page; a loose note joins the next chapter
+            self.assertEqual(report["pages"], ["preface", "safety", "box", "overview", "operations", "fcc", "app",
+                                               "warranty"])
+            markdown = (output / "manual_xx1_us_en.md").read_text(encoding="utf-8")
+            for manual_copy in ("Read this manual first.", "INSTRUCTIONS ABOUT RISKS", "Follow these precautions.",
+                                "This note applies to both models.", "Severe injury may result.", "Keep the box.",
+                                "The side has two ports.", "Hold for 3s", "MODIFICATION:", "Or scan the code.",
+                                "The warranty does not cover:", "Misuse.", "The standard period is 36 months."):
+                self.assertIn(manual_copy, markdown)
+            for review_copy in ("中文对照", "审阅", "Struck copy.", "Hidden copy.", "开机", "临时图", "已定", "data:image"):
+                self.assertNotIn(review_copy, markdown)
+            # live labels keep the rectangles, pill tone and panel the base-art renderer wrote
+            for placement in ("--hb-x:12%;--hb-y:30%;--hb-width:20%;--hb-height:0%", "--hb-fill:#e0e0e0",
+                              "--hb-panel-top:4%;--hb-panel-fill:#f4f4f4"):
+                self.assertIn(placement, markdown)
+            blockers = "\n".join(report["release_blockers"])
+            for expected in ("copy to confirm: To be confirmed", "pending parameters: Store it for",
+                             "figure front renders without the dense label type",
+                             "operation main-power renders without its Web presentation"):
+                self.assertIn(expected, blockers)
+            embedded = hashlib.sha256(base64.b64decode(EMBEDDED_PNG)).hexdigest()
+            ir = json.loads((output / "manual.ir.json").read_text(encoding="utf-8"))
+            self.assertIn(f"assets/ir/{embedded}/image.png", ir["metadata"]["asset_sha256"])
+
+    def test_changes_read_the_newer_shell(self):
+        head = RENDERED.replace("Useful information.", "Helpful information.")
+        pages = compare(pages_of(RENDERED), pages_of(head))
+        self.assertEqual([(page["page_id"], [change["kind"] for change in page["changes"]]) for page in pages],
+                         [("safety", ["changed"])])
 
 
 class ChangesTests(unittest.TestCase):
