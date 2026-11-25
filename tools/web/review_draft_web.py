@@ -2,6 +2,7 @@
 
     python -m tools.web.review_draft_web convert DRAFT_DIR --output UNUSED_DIR [--title TITLE] [--release]
     python -m tools.web.review_draft_web gate DRAFT_DIR
+    python -m tools.web.review_draft_web changes DRAFT_DIR [--base-dir PREVIOUS_COPY] [--write]
 
 The draft is the only text source (positioning §5.1). ``convert`` strips its
 review layer (``review_draft_overlay``), binds every printed block to a
@@ -18,6 +19,10 @@ undeclared plain table), or a missing 定稿 approval, Web title or release
 evidence (typeset full-text compare, parameter cross-check) in ``draft.json``.
 Freezing an eligible package under ``manual_sources/``, registering, sealing
 and publishing then follow the Git-only release path.
+
+``changes`` compares the working draft's Web copy with its previous version
+(``review_draft_changes``); with ``--write`` it records ``web-changes.json``,
+which the private review site shows as the version's Web changes.
 """
 from __future__ import annotations
 
@@ -54,6 +59,7 @@ from tools.web.frozen_ai_web import replay_package
 from tools.web.prepared_style_audit import audit_prepared_document_styles
 from tools.web.presentation import load_web_manual_contract
 from tools.web.review_draft_blocks import TABLE_ADAPTERS, DraftChapter
+from tools.web.review_draft_changes import CHANGES_JSON, changes_record, write_changes
 from tools.web.review_draft_figures import FIGURE_ADAPTERS
 from tools.web.review_draft_overlay import ReviewLayerReport, strip_review_layer
 
@@ -81,6 +87,12 @@ class ReviewDraft:
     @property
     def language(self) -> str:
         return str(self.manifest["language"])
+
+
+def markdown_filename(model: str, region: str, language: str) -> str:
+    """The candidate's MyST file name; its built page has the same stem."""
+
+    return f"manual_{model.replace('-', '').lower()}_{region.lower()}_{language}.md"
 
 
 def load_draft(root: Path) -> ReviewDraft:
@@ -252,7 +264,7 @@ def convert(draft_root: Path, output: Path, *, title: str | None = None, release
     converted = [convert_chapter(draft, section, packager) for section in sections]
     pages = [page for page, _ in converted]
     chapters = [chapter for _, chapter in converted]
-    filename = f"manual_{draft.model.replace('-', '').lower()}_{draft.region.lower()}_{draft.language}.md"
+    filename = markdown_filename(draft.model, draft.region, draft.language)
     _write_myst_sphinx_scaffold(output / filename, title=title, presentation_profile="web")
     with (output / "conf.py").open("a", encoding="utf-8") as stream:
         stream.write("\nlanguage = " + repr(draft.language) + "\n")
@@ -300,7 +312,16 @@ def main(argv: Sequence[str] | None = None) -> int:
     convert_parser.add_argument("--release", action="store_true", help="refuse unless nothing blocks release")
     gate_parser = commands.add_parser("gate", help="list what blocks releasing the draft")
     gate_parser.add_argument("draft", type=Path)
+    changes_parser = commands.add_parser(
+        "changes", help="compare the working draft's Web copy with its previous version")
+    changes_parser.add_argument("draft", type=Path)
+    changes_parser.add_argument("--base-dir", type=Path, help="a copy of the previous version (default: Git history)")
+    changes_parser.add_argument("--write", action="store_true", help=f"write {CHANGES_JSON} beside draft.json")
     args = parser.parse_args(argv)
+    if args.command == "changes":
+        record = (write_changes if args.write else changes_record)(args.draft.resolve(), base_dir=args.base_dir)
+        print(json.dumps({key: record[key] for key in ("base", "head", "counts")}, ensure_ascii=False, indent=2))
+        return 0
     if args.command == "gate":
         blockers = gate(args.draft)
         print(json.dumps({"release_blockers": blockers}, ensure_ascii=False, indent=2))

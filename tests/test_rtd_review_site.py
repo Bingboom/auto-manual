@@ -9,7 +9,9 @@ from tempfile import TemporaryDirectory
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
+from tests import review_draft_fixture
 from tools.rtd import review_site
+from tools.web.review_draft_changes import write_changes
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -120,24 +122,66 @@ class ReviewSiteTests(unittest.TestCase):
             for name in review_site.STYLESHEETS:
                 self.assertTrue((out / "_static" / name).is_file(), name)
 
-    def test_line_page_links_a_web_candidate_inside_the_line(self):
+    def test_site_builds_and_links_the_web_candidate_of_an_opted_in_line(self):
         with TemporaryDirectory() as temp:
-            drafts = Path(temp) / "drafts"
-            line = write_draft(drafts / "JHP-3600C" / "JP", "v0.69", web_candidate="web/manual.html")
+            drafts, out = Path(temp) / "drafts", Path(temp) / "out"
+            line = review_draft_fixture.write_draft(drafts / "XX-1" / "JP", issues=False, web_candidate=True)
             (line / "web").mkdir()
-            (line / "web" / "manual.html").write_text("<title>candidate</title>", encoding="utf-8")
-            review_site.build(drafts, Path(temp) / "out")
-            page = BeautifulSoup((Path(temp) / "out/JHP-3600C/JP.html").read_text(encoding="utf-8"), "html.parser")
-            self.assertEqual(page.select_one("a.rd-button-secondary")["href"], "../JHP-3600C/JP/web/manual.html")
-            self.assertTrue((Path(temp) / "out/JHP-3600C/JP/web/manual.html").is_file())
+            (line / "web" / "stale.html").write_text("<p>old preview</p>", encoding="utf-8")
+            _, warnings = review_site.build(drafts, out)
+            self.assertEqual(warnings, [])
+            page = BeautifulSoup((out / "XX-1/JP.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual(page.select_one("a.rd-button-secondary")["href"], "../XX-1/JP/web/manual_xx1_jp_ja.html")
+            self.assertIn("发布前还有", page.select_one("#web-candidate").get_text())
+            built = out / "XX-1/JP/web"
+            self.assertTrue((built / "manual_xx1_jp_ja.html").is_file())
+            self.assertTrue((built / "review_draft_conversion.json").is_file())
+            self.assertFalse((built / "stale.html").exists())  # a committed preview never outlives the build
+            self.assertFalse((line / "web" / "manual_xx1_jp_ja.html").exists())  # nothing is written into the drafts
             plain = write_draft(drafts / "JE-1000F" / "US", "v0.3", model="JE-1000F", region="US")
             review_site.build(drafts, Path(temp) / "plain")
             page = BeautifulSoup((Path(temp) / "plain/JE-1000F/US.html").read_text(encoding="utf-8"), "html.parser")
-            self.assertIsNone(page.select_one("a.rd-button-secondary"))
+            self.assertIsNone(page.select_one("#web-candidate"))
             self.assertTrue(plain.is_dir())
-            (line / "web" / "manual.html").unlink()
-            with self.assertRaisesRegex(ValueError, "web_candidate must name a regular file"):
-                review_site.build(drafts, Path(temp) / "missing")
+
+    def test_a_candidate_that_cannot_be_built_is_reported_without_failing_the_site(self):
+        with TemporaryDirectory() as temp:
+            drafts, out = Path(temp) / "drafts", Path(temp) / "out"
+            review_draft_fixture.write_draft(drafts / "XX-1" / "JP", "<html><body><p>no article</p></body></html>",
+                                             issues=False, web_candidate=True)
+            _, warnings = review_site.build(drafts, out)
+            self.assertEqual(len(warnings), 1)
+            self.assertIn("XX-1/JP: Web candidate not built", warnings[0])
+            page = BeautifulSoup((out / "XX-1/JP.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertIsNone(page.select_one("a.rd-button-secondary"))
+            self.assertIn("没有生成", page.select_one("#web-candidate").get_text())
+            self.assertTrue((out / "index.html").is_file())
+
+    def test_line_page_links_the_recorded_web_changes_while_current(self):
+        with TemporaryDirectory() as temp:
+            drafts, out = Path(temp) / "drafts", Path(temp) / "out"
+            line = review_draft_fixture.write_draft(drafts / "XX-1" / "JP", issues=False, version="v0.03")
+            previous = review_draft_fixture.write_draft(
+                Path(temp) / "previous", review_draft_fixture.DRAFT.replace("警告の意味です。", "警告の意味です（旧）。"),
+                issues=False, version="v0.02")
+            write_changes(line, base_dir=previous)
+            review_site.build(drafts, out)
+            page = BeautifulSoup((out / "XX-1/JP.html").read_text(encoding="utf-8"), "html.parser")
+            link = page.select_one("#web-changes a")
+            self.assertEqual(link["href"], "../XX-1/JP/web-changes.html")
+            self.assertIn("相对 v0.02", link.get_text())
+            self.assertIn("改 1 · 增 0 · 删 0", page.select_one("#web-changes").get_text())
+            changes = BeautifulSoup((out / "XX-1/JP/web-changes.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual([tag.get_text() for tag in changes.select(".rd-change del")], ["（旧）"])
+            for href, target in local_targets(out / "XX-1/JP/web-changes.html"):
+                self.assertTrue(target.is_file(), href)
+            manifest = json.loads((line / review_site.MANIFEST).read_text(encoding="utf-8"))
+            manifest["version"] = "v0.04"
+            (line / review_site.MANIFEST).write_text(json.dumps(manifest, ensure_ascii=False), encoding="utf-8")
+            review_site.build(drafts, Path(temp) / "stale")
+            page = BeautifulSoup((Path(temp) / "stale/XX-1/JP.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertIsNone(page.select_one("#web-changes a"))
+            self.assertIn("停在 v0.03", page.select_one("#web-changes").get_text())
 
     def test_empty_root_renders_an_empty_list(self):
         with TemporaryDirectory() as temp:

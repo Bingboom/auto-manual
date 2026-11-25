@@ -34,14 +34,18 @@ App 截图保留手机顶部状态栏及四边。透明底要求只用于 LCD／
 交付时核对实际绑定文件的来源与哈希，并检查桌面、手机中的裁切、标签位置及重复
 编号。上述是执行和审查顺序，尚不代表构建程序会自动发现裁切或去底错误。
 
-### 审核稿转网页（候选稿与定稿门禁）
+### 审核稿转网页（候选稿、改动对比与定稿门禁）
 
-审核稿是网页的唯一文字源。`python -m tools.web.review_draft_web convert <工作台>/docs/review-drafts/<型号>/<区域> --output <新目录>`
-去掉审阅层（中文对照、审阅备注、颜色标记、悬停来源），把每个版块绑到共享组件，生成网页候选稿和
-`review_draft_conversion.json`。候选稿只放在私有工作台、挂在稿线页上预览，不进入 auto-manual 或 Hello-Docs，也不能发布。
+审核稿是网页的唯一文字源。稿线在 `draft.json` 写上 `"web_candidate": true` 后，私有审核站每次构建都会把当前工作稿
+转成网页候选稿：去掉审阅层（中文对照、审阅备注、颜色标记、悬停来源），把每个版块绑到共享组件，在稿线页挂出
+「打开网页候选稿（未发布）」和发布阻断数。生成的网页不提交；推送新版本，候选稿就跟着更新。转换不了的稿件只在
+稿线页写明原因，不影响整站。候选稿只在私有工作台预览，不进入 auto-manual 或 Hello-Docs，也不能发布。
+
+每出一个新版本，提交前运行 `python -m tools.web.review_draft_web changes <稿线目录> --write`，与上一版比对网页正文，
+写入 `web-changes.json` 一并提交；稿线页的「本版网页改动」只列改了、加了、删了的段落。
 `python -m tools.web.review_draft_web gate <稿线目录>` 列出发布前还缺什么：未关闭的问题、待填参数、待日方审核的新译文、
 借用的组件文字、样式问题，以及 `draft.json` 里的定稿批准、网页标题和排版稿比对、参数核对结果。全部清零后才可用
-`--release` 生成可发布的源包，再走 Git-only 发布。步骤见
+`convert --release` 生成可发布的源包，再走 Git-only 发布。步骤见
 [审核稿来源](../../code-as-doc/dev/web_publish_pipeline/input-paths.md#review-draft-source)。
 
 ### 单语身份、语言切换与说明书资料库

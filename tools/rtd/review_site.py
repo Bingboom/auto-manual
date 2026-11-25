@@ -16,9 +16,11 @@ the milestone versions frozen beside it::
      "issues": "issues.json", "decisions": "decisions.json"}
 
 A working draft records ``tools_sha``, the auto-manual commit it was made with.
-``web_candidate`` (optional) names the built page of the line's Web candidate
-(``python -m tools.web.review_draft_web``) inside the line directory; the line
-page links it beside the draft. A candidate is a private preview, never a release.
+``web_candidate: true`` (optional) has the site build the line's Web candidate
+from the working draft at every build (``review_web_candidate``): the line page
+links it beside the draft, or shows why it could not be built, and links the
+version's Web changes when the line records them (``web-changes.json``). A
+candidate is a private preview, never a release.
 ``issues`` (optional) names the line's issue register, ``{"schema":
 "review-issues/1", "issues": [...]}``: each item has an ``id``, ``title``,
 ``kind`` (rd, language, compliance, design, content) and ``status`` (open,
@@ -50,6 +52,7 @@ from typing import Any
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from tools.rtd.deliverables import region_code, region_labels
+from tools.rtd.review_web_candidate import build_candidate, candidate_page, changes_summary
 from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).resolve().parents[1] / "rtd_portal_assets"
@@ -89,7 +92,7 @@ def load_draft(directory: Path, drafts_root: Path, *, milestone: bool) -> dict:
     _page(directory, manifest)
     issues = _issues(directory, manifest)
     decisions = _decisions(directory, manifest)
-    candidate = _record_file(directory, manifest, "web_candidate") if "web_candidate" in manifest else None
+    candidate = bool(manifest.get("web_candidate")) and not milestone
     counts = _open_counts(issues)
     return {
         **{field: manifest[field] for field in _TEXT_FIELDS},
@@ -106,7 +109,9 @@ def load_draft(directory: Path, drafts_root: Path, *, milestone: bool) -> dict:
         "decisions_url": "/".join((*expected, manifest["decisions"])) if decisions is not None else "",
         "volume": _volume(directory),
         "url": "/".join((*expected, manifest["html"])),
-        "web_candidate_url": "/".join((*expected, manifest["web_candidate"])) if candidate is not None else "",
+        "web_title": str(manifest.get("web_title") or ""),
+        "web_candidate_url": "/".join((*expected, candidate_page(manifest))) if candidate else "",
+        "web_changes": None if milestone else changes_summary(directory, manifest, expected),
     }
 
 
@@ -355,11 +360,27 @@ def build(drafts_root: Path, output: Path) -> tuple[list[dict], list[str]]:
         )
         for draft in (line["current"], *line["milestones"]):
             add_overview_link(output / draft["url"], output)
+        _web_candidate(drafts_root, output, line, warnings, shell)
         page = render("review_draft_line.html", line=line, root="../", active=line["page"], **shell)
         (output / line["page"]).write_text(page, encoding="utf-8")
     page = render("review_drafts.html", root="", active="index.html", **shell)
     (output / "index.html").write_text(page, encoding="utf-8")
     return lines, warnings
+
+
+def _web_candidate(drafts_root: Path, output: Path, line: dict, warnings: list[str], shell: dict) -> None:
+    """Build the line's Web candidate and render its recorded Web changes, if it has them."""
+    current, where = line["current"], (line["model"], line["region"])
+    if current["web_candidate_url"]:
+        built = build_candidate(drafts_root.joinpath(*where), output.joinpath(*where), current)
+        current.update(web_error=built["error"], web_blockers=built["blockers"],
+                       web_components=built.get("components"))
+        if built["error"]:
+            warnings.append(f"WARNING {'/'.join(where)}: Web candidate not built: {built['error']}")
+    if current["web_changes"]:
+        page = render("review_draft_changes.html", line=line, changes=current["web_changes"],
+                      root="../../", active=line["page"], **shell)
+        (output / current["web_changes"]["url"]).write_text(page, encoding="utf-8")
 
 
 def overview_link(page_html: str, index: str) -> str:
