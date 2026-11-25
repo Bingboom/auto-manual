@@ -5548,6 +5548,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1000E-WH/JP/ja/git-20261125-efb663e3-web-layout": {
+      "approval": "operator request 2026-11-25 「这个卫士1代 有些版面 要调整的 你调整一下」 (review candidate)",
+      "registered": "2026-11-25",
+      "known_drift": {}
+    },
     "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2": {
       "approval": "MA-475: operator-approved CN DX2 Web source, archive and EFUP10 confirmation 2026-11-20",
       "registered": "2026-11-20",
