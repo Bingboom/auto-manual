@@ -3,11 +3,15 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
+import re
 import shutil
 from datetime import datetime
+from html.parser import HTMLParser
 from pathlib import Path
 import sys
 from typing import Any
+from urllib.parse import unquote, urlsplit
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -117,14 +121,131 @@ def _write_root_index(output_dir: Path, entries: list[tuple[Path, dict[str, Any]
     )
 
 
+def _css_references(text: str) -> list[str]:
+    urls = re.findall(r'''url\(\s*(?:"([^"]*)"|'([^']*)'|([^\s)]+))\s*\)''', text)
+    return [next(value for value in match if value) for match in urls if any(match)] + re.findall(
+        r'''@import\s+["']([^"']+)["']''', text)
+
+
+def _script_references(text: str) -> list[str]:
+    # Also covers Sphinx's Search.loadIndex("searchindex.js"), JS imports,
+    # fetch("data.json") and filenames inside the JSON that scripts fetch.
+    # These are candidates, not mandatory links: scripts contain many other
+    # string literals and resolve some URLs against the document, not the JS.
+    return re.findall(r'''["']([^"'\n\r\\]+\.[a-zA-Z0-9]{1,8}(?:[?#][^"']*)?)["']''', text)
+
+
+class _SiteReferences(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.required: list[str] = []
+        self.candidates: list[str] = []
+        self.text_tag = ""
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "base":
+            raise ValueError("Static preview cannot resolve an HTML base URL override")
+        values = dict(attrs)
+        for key in ("src", "href", "xlink:href", "poster"):
+            if values.get(key):
+                self.required.append(values[key])
+        if tag == "object" and values.get("data"):
+            self.required.append(values["data"])
+        # Remove data URIs before splitting candidates; their internal comma
+        # is not a second file. Width/density descriptors are not URLs either.
+        srcset = re.sub(r"data:[^\s]+", "", values.get("srcset") or "")
+        for candidate in srcset.split(","):
+            url = candidate.strip().split()
+            if url and not re.fullmatch(r"[\d.]+[wx]", url[0]):
+                self.required.append(url[0])
+        self.required.extend(_css_references(values.get("style") or ""))
+        if tag in {"script", "style"}:
+            self.text_tag = tag
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == self.text_tag:
+            self.text_tag = ""
+
+    def handle_data(self, data: str) -> None:
+        if self.text_tag == "style":
+            self.required.extend(_css_references(data))
+        elif self.text_tag == "script":
+            self.candidates.extend(_script_references(data))
+
+
+def _local_resource(root: Path, parent: Path, url: str, *, required: bool) -> Path | None:
+    parsed = urlsplit(url)
+    if parsed.scheme or parsed.netloc or not parsed.path:
+        return None
+    decoded = unquote(parsed.path)
+    candidate = root / decoded.lstrip("/") if decoded.startswith("/") else parent / decoded
+    if not candidate.resolve().is_relative_to(root):
+        if required:
+            raise ValueError(f"Static preview dependency escapes target root: {url}")
+        return None
+    # Keep the URL's path even for an in-root symlink; resolving it for the
+    # destination would copy the bytes under a different, broken URL.
+    path = Path(os.path.normpath(candidate))
+    if path.is_dir():
+        path = path / "index.html"
+    if path.is_file():
+        return path
+    if required:
+        raise FileNotFoundError(f"Static preview dependency not found: {url} (from {parent})")
+    return None
+
+
+def _site_files(root: Path) -> set[Path]:
+    if not (root / "index.html").is_file():
+        raise FileNotFoundError(f"Static preview is missing index.html under {root}")
+    # Keep every rendered page, including pages reached via the search index.
+    # Never seed the closure with source/print files or entire asset folders.
+    pending = set(root.rglob("*.html"))
+    pending.update(root.rglob("generated/publish_meta.json"))
+    pending.update(root.rglob("generated/publish_targets.json"))
+    if (root / "searchindex.js").is_file():
+        pending.add(root / "searchindex.js")
+    selected: set[Path] = set()
+    while pending:
+        path = pending.pop()
+        if not path.resolve().is_relative_to(root):
+            raise ValueError(f"Static preview page escapes target root: {path}")
+        if path in selected:
+            continue
+        selected.add(path)
+        required: list[str] = []
+        candidates: list[str] = []
+        if path.suffix.lower() in {".html", ".htm", ".svg"}:
+            parser = _SiteReferences()
+            parser.feed(path.read_text(encoding="utf-8"))
+            required, candidates = parser.required, parser.candidates
+        elif path.suffix.lower() == ".css":
+            required = _css_references(path.read_text(encoding="utf-8"))
+        elif (path.suffix.lower() in {".js", ".mjs", ".json"}
+              and path.name not in {"publish_meta.json", "publish_targets.json"}):
+            # Provenance may name print/source outputs. Keeping that record
+            # must not promote those files back into the browser payload.
+            candidates = _script_references(path.read_text(encoding="utf-8"))
+        for url in required:
+            resource = _local_resource(root, path.parent, url, required=True)
+            if resource is not None:
+                pending.add(resource)
+        for url in candidates:
+            resource = (_local_resource(root, path.parent, url, required=False)
+                        or _local_resource(root, root, url, required=False))
+            if resource is not None:
+                pending.add(resource)
+    return selected
+
+
 def copy_contents(src: Path, dst: Path) -> None:
-    dst.mkdir(parents=True, exist_ok=True)
-    for item in src.iterdir():
-        target = dst / item.name
-        if item.is_dir():
-            shutil.copytree(item, target)
-        else:
-            shutil.copy2(item, target)
+    root = src.resolve()
+    files = _site_files(root)
+    for path in sorted(files):
+        target = dst / path.relative_to(root)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, target)
+    print(f"[publish-latest] staged {len(files)} browser files ({sum(p.stat().st_size for p in files)} bytes)")
 
 
 def _copy_target_site(*, meta_path: Path, payload: dict[str, Any], target_dir: Path) -> None:

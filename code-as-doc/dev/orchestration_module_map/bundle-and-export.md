@@ -47,6 +47,10 @@ empty-cell policies are recorded in
   - HTML postprocess handoff
 - [`tools/build/docs_html.py`](../../../tools/build/docs_html.py)
   - manual HTML metadata and switcher helpers
+- [`tools/process_docs/build_publish_latest_site.py`](../../../tools/process_docs/build_publish_latest_site.py)
+  - retained latest-publish static-site assembly; `copy_contents` owns the local browser-dependency selection and byte-preserving copy, including linked downloads and provenance metadata
+- [`tools/process_docs/vercel_build_publish_latest.py`](../../../tools/process_docs/vercel_build_publish_latest.py)
+  - Vercel adapter; reuses that same collector for prebuilt sites, validates into a temporary directory before replacing the old output, and does not reactivate the retired review-preview workflow
 - [`tools/web/presentation.py`](../../../tools/web/presentation.py)
   - compatibility facade for web-profile figure/table composition and Pandoc-safe semantic restoration
 - [`tools/web/presentation_contract.py`](../../../tools/web/presentation_contract.py)

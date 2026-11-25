@@ -34,6 +34,22 @@ active. See the [audit, cost method and rollback](../reviews/hello-docs-lightwei
 for P0 scope, current failures and deferred executor/private-repository checks.
 Review Actions were disabled at audit time; the guards apply if enabled later.
 
+Artifact storage policy:
+
+Actions artifacts are expiring inspection/delivery copies. All non-backup
+uploads keep at most 3 days, except the formal print Publish delivery artifact
+(`feishu-build-queue-output`), which keeps 7 days. The nightly phase2 restore
+backup keeps its separate 90-day window. These settings affect newly uploaded
+artifacts; they do not delete existing artifacts or reset accrued billing usage.
+
+[`test_workflow_artifact_policy.py`](../../tests/test_workflow_artifact_policy.py)
+enforces these ceilings and prevents the retired `review-preview-workspace`
+whole-site upload from returning. The retained static-site builder collects
+browser dependencies and explicit downloads instead of copying an entire build
+tree; its behavior and prebuilt-site reuse are covered by
+[`test_build_publish_latest_site.py`](../../tests/test_build_publish_latest_site.py).
+See the [static-site packaging guide](../dev/vercel_review_preview_guide.md).
+
 GitHub validation note:
 
 - `Manual Validation` is the repository CI workflow

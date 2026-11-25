@@ -92,7 +92,7 @@ jobs:
         with:
           name: product-matrix-check-${{ github.run_attempt }}
           path: .tmp/product-matrix/
-          retention-days: 30
+          retention-days: 3
       - name: Report a failed or lagging check
         if: ${{ !cancelled() && steps.check.outcome == 'failure' }}
         run: |

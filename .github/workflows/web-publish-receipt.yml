@@ -125,7 +125,7 @@ jobs:
         with:
           name: web-publish-receipt-report
           path: web_publish_receipt_report.json
-          retention-days: 7
+          retention-days: 3
           if-no-files-found: ignore
 
       - name: Receipt failure sentinel

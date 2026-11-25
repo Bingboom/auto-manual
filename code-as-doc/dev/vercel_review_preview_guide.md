@@ -77,8 +77,27 @@ That builder:
 
 - scans `reports/releases/*/*/*/latest/publish_meta.json`
 - picks the newest publish snapshot by `built_at`
-- copies that HTML tree into `site/publish-latest/dist`
+- stages rendered HTML pages and their local dependencies into `site/publish-latest/dist`:
+  HTML/SVG resource links, linked downloads, CSS imports/images/fonts, literal
+  local JS/JSON asset references, and Sphinx's `searchindex.js`
+- preserves each selected file's URL and bytes; unused source/print PDFs,
+  unreferenced images and Sphinx build state are not copied
+- rejects missing explicit local resources, HTML base URL overrides and links
+  escaping the target's HTML root, rather than producing an incomplete preview
 - copies `publish_meta.json` into `site/publish-latest/dist/generated/`
+
+The Vercel adapter applies the same collection to an already staged site before
+reusing it. It validates into a temporary directory first, so a missing resource
+leaves the original staged site intact. Per-target/root publish metadata survives
+this pass. JavaScript references assembled dynamically must resolve to files
+already linked by a page, stylesheet or literal JS/JSON filename; generated
+previews should be checked with their actual runtime assets before delivery.
+
+The old `review-preview.yml` / `review-preview-workspace` artifact route is
+retired. Do not restore whole-workspace uploads to obtain a preview. Temporary
+Actions inspection copies keep 3 days; formal print Publish delivery copies keep
+7 days. The independent phase2 restore backup retains 90 days. See the
+[artifact policy tests](../../tests/test_workflow_artifact_policy.py).
 
 ## 5. Maintainer Rule
 

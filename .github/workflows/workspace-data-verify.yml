@@ -47,7 +47,7 @@ jobs:
         with:
           name: workspace-online-verification
           path: .tmp/workspace-refresh/verification.json
-          retention-days: 30
+          retention-days: 3
       - name: Publication failure notice
         if: ${{ !cancelled() }}
         env:

@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import subprocess
+import shutil
 import sys
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -12,7 +14,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
-from tools.process_docs.build_publish_latest_site import build_site
+from tools.process_docs.build_publish_latest_site import build_site, copy_contents
 from tools.utils.path_utils import Paths
 
 
@@ -42,7 +44,14 @@ def existing_publish_site_is_ready() -> bool:
 
 def main() -> int:
     if existing_publish_site_is_ready():
-        print("[vercel-publish-latest] Reusing existing static site under site/publish-latest/dist")
+        # A staged site can come from an older whole-tree artifact. Validate
+        # and trim it before reuse, retaining the original until copy succeeds.
+        with TemporaryDirectory(dir=DIST_DIR.parent) as temporary:
+            staged = Path(temporary) / "dist"
+            copy_contents(DIST_DIR, staged)
+            shutil.rmtree(DIST_DIR)
+            shutil.move(str(staged), str(DIST_DIR))
+        print("[vercel-publish-latest] Reusing trimmed static site under site/publish-latest/dist")
         return 0
 
     if RELEASES_ROOT.exists():

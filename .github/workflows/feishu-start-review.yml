@@ -257,7 +257,7 @@ jobs:
             .tmp/openclaw/review-start-output.log
             .tmp/review-start/phase2/snapshot_manifest.json
             .tmp/review-start/phase2/row_key_mapping.csv
-          retention-days: 7
+          retention-days: 3
           if-no-files-found: ignore
 
       - name: Upload OpenClaw run metadata
@@ -266,7 +266,7 @@ jobs:
         with:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-start-review-run.json
-          retention-days: 7
+          retention-days: 3
           if-no-files-found: error
 
       # Milestone K5: a failed review-start run must alert on its own instead

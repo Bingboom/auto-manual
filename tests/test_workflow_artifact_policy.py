@@ -79,7 +79,7 @@ class WorkflowArtifactPolicyTests(unittest.TestCase):
         }
 
         draft = uploads["feishu-draft-build-queue-output"]
-        self.assertEqual(7, draft["with"]["retention-days"])
+        self.assertEqual(3, draft["with"]["retention-days"])
         self.assertEqual(
             [
                 "docs/_build/**/word/*.docx",
@@ -91,12 +91,12 @@ class WorkflowArtifactPolicyTests(unittest.TestCase):
         )
 
         review = uploads["feishu-start-review-output"]
-        self.assertEqual(7, review["with"]["retention-days"])
+        self.assertEqual(3, review["with"]["retention-days"])
         self.assertNotIn("docs/_review", _path_lines(review))
         self.assertIn("docs/_review/**/page/**", _path_lines(review))
 
         publish = uploads["feishu-build-queue-output"]
-        self.assertEqual(14, publish["with"]["retention-days"])
+        self.assertEqual(7, publish["with"]["retention-days"])
         self.assertEqual(
             [
                 "reports/releases/**/versions/**",
@@ -110,7 +110,7 @@ class WorkflowArtifactPolicyTests(unittest.TestCase):
         )
 
         web_publish = uploads["feishu-web-publish-queue-output"]
-        self.assertEqual(7, web_publish["with"]["retention-days"])
+        self.assertEqual(3, web_publish["with"]["retention-days"])
         self.assertEqual(
             [
                 "reports/releases/**/versions/**/web/**",
@@ -136,6 +136,19 @@ class WorkflowArtifactPolicyTests(unittest.TestCase):
         ]
         self.assertEqual(1, len(backup_steps))
         self.assertEqual(90, backup_steps[0]["with"]["retention-days"])
+
+    def test_temporary_artifacts_cannot_grow_into_long_term_archives(self) -> None:
+        for workflow, step in _upload_steps():
+            if workflow.name == "phase2-content-backup.yml":
+                continue
+            name = str(step["with"]["name"])
+            limit = 7 if name == "feishu-build-queue-output" else 3
+            with self.subTest(workflow=workflow.name, artifact=name):
+                self.assertGreater(step["with"]["retention-days"], 0)
+                self.assertLessEqual(step["with"]["retention-days"], limit)
+                self.assertNotIn("review-preview-workspace", name)
+                self.assertNotIn("site/review-preview", str(step["with"]["path"]))
+        self.assertFalse((WORKFLOW_ROOT / "review-preview.yml").exists())
 
 
 class WorkflowStepMatchingTests(unittest.TestCase):
