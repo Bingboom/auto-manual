@@ -1,0 +1,2402 @@
+[
+  {
+    "physical_page": 1,
+    "block": 0,
+    "role": "operator-web-excluded-cover",
+    "reason": "MA-277: operator explicitly excludes the printed cover from the Web edition; retained in original PDF and source/print-cover.json"
+  },
+  {
+    "physical_page": 1,
+    "block": 1,
+    "role": "operator-web-excluded-cover",
+    "reason": "MA-277: operator explicitly excludes the printed cover from the Web edition; retained in original PDF and source/print-cover.json"
+  },
+  {
+    "physical_page": 1,
+    "block": 2,
+    "role": "operator-web-excluded-cover",
+    "reason": "MA-277: operator explicitly excludes the printed cover from the Web edition; retained in original PDF and source/print-cover.json"
+  },
+  {
+    "physical_page": 1,
+    "block": 3,
+    "role": "operator-web-excluded-cover",
+    "reason": "MA-277: operator explicitly excludes the printed cover from the Web edition; retained in original PDF and source/print-cover.json"
+  },
+  {
+    "physical_page": 1,
+    "block": 4,
+    "role": "operator-web-excluded-cover",
+    "reason": "MA-277: operator explicitly excludes the printed cover from the Web edition; retained in original PDF and source/print-cover.json"
+  },
+  {
+    "physical_page": 1,
+    "block": 5,
+    "role": "operator-web-excluded-cover",
+    "reason": "MA-277: operator explicitly excludes the printed cover from the Web edition; retained in original PDF and source/print-cover.json"
+  },
+  {
+    "physical_page": 1,
+    "block": 6,
+    "role": "operator-web-excluded-cover",
+    "reason": "MA-277: operator explicitly excludes the printed cover from the Web edition; retained in original PDF and source/print-cover.json"
+  },
+  {
+    "physical_page": 1,
+    "block": 7,
+    "role": "operator-web-excluded-cover",
+    "reason": "MA-277: operator explicitly excludes the printed cover from the Web edition; retained in original PDF and source/print-cover.json"
+  },
+  {
+    "physical_page": 2,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 1,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 2,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 3,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 4,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 5,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 6,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 7,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 8,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 9,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 10,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 11,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 12,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 13,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 14,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 15,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 16,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 2,
+    "block": 17,
+    "role": "excluded-or-artwork",
+    "reason": "printed table of contents replaced by Sphinx semantic navigation; exact original retained in snapshot"
+  },
+  {
+    "physical_page": 3,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 16,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 17,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 18,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 19,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 20,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 21,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 3,
+    "block": 22,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 23,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 24,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 25,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 26,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 27,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 28,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 3,
+    "block": 29,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 6,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 4,
+    "block": 7,
+    "role": "excluded-or-artwork",
+    "reason": "empty whitespace"
+  },
+  {
+    "physical_page": 4,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 16,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 17,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 18,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 19,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 4,
+    "block": 20,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 5,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 5,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 6,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 6,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 3,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 7,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 7,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 8,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 8,
+    "block": 12,
+    "role": "excluded-or-artwork",
+    "reason": "source LCD-map callout numbers retained in native diagram"
+  },
+  {
+    "physical_page": 8,
+    "block": 13,
+    "role": "excluded-or-artwork",
+    "reason": "source LCD-map callout numbers retained in native diagram"
+  },
+  {
+    "physical_page": 9,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 9,
+    "block": 1,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 9,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 4,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 9,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 6,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 9,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 14,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 9,
+    "block": 15,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 9,
+    "block": 16,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 9,
+    "block": 17,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 9,
+    "block": 18,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 19,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 20,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 21,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 22,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 23,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 24,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 25,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 26,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 9,
+    "block": 27,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 10,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 1,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 10,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 3,
+    "role": "excluded-or-artwork",
+    "reason": "3s artwork duration marker represented by native 3秒間長押し label"
+  },
+  {
+    "physical_page": 10,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 10,
+    "block": 16,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 10,
+    "block": 17,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 10,
+    "block": 18,
+    "role": "excluded-or-artwork",
+    "reason": "LCD table number generated by native row order"
+  },
+  {
+    "physical_page": 11,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 14,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 11,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 16,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 17,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 11,
+    "block": 18,
+    "role": "excluded-or-artwork",
+    "reason": "diagram port-step markers retained in source art"
+  },
+  {
+    "physical_page": 11,
+    "block": 19,
+    "role": "excluded-or-artwork",
+    "reason": "diagram port-step markers retained in source art"
+  },
+  {
+    "physical_page": 12,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 12,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 12,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 12,
+    "block": 3,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 12,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 12,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 12,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 12,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 12,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 13,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 13,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 13,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 13,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 13,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 13,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 13,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 13,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 14,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 14,
+    "block": 1,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 14,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 14,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 14,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 14,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 14,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 14,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 14,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 15,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 15,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 15,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 15,
+    "block": 3,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 15,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 15,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 16,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 16,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 16,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 16,
+    "block": 3,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 16,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 16,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 16,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 17,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 17,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 17,
+    "block": 2,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 17,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 17,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 17,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 17,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 18,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 18,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 19,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 19,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 20,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 20,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 21,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 16,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 21,
+    "block": 17,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 0,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 16,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 17,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 18,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 19,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 20,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 21,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 22,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 23,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 24,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 25,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 26,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 27,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 28,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 29,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 30,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 31,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 32,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 33,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 34,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 22,
+    "block": 35,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 23,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 23,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 16,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 17,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 18,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 23,
+    "block": 19,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 24,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 24,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 25,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 25,
+    "block": 16,
+    "role": "excluded-or-artwork",
+    "reason": "App screenshot step numbers retained as selectable adjacent heading labels 2.1 / 2.2"
+  },
+  {
+    "physical_page": 26,
+    "block": 0,
+    "role": "excluded-or-artwork",
+    "reason": "printed footer folio"
+  },
+  {
+    "physical_page": 26,
+    "block": 1,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 2,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 3,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 4,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 5,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 6,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 7,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 8,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 9,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 10,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 11,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 12,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 13,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 14,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 15,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 16,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 17,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 18,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 19,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 20,
+    "role": "excluded-or-artwork",
+    "reason": "step tags and actual SlimPower H1 screen UI retained in complete phone screenshot"
+  },
+  {
+    "physical_page": 26,
+    "block": 21,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 22,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 23,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 24,
+    "role": "selectable-semantic-copy",
+    "reason": "used in native prose, component or editable figure labels"
+  },
+  {
+    "physical_page": 26,
+    "block": 25,
+    "role": "excluded-or-artwork",
+    "reason": "step tags and actual SlimPower H1 screen UI retained in complete phone screenshot"
+  },
+  {
+    "physical_page": 26,
+    "block": 26,
+    "role": "excluded-or-artwork",
+    "reason": "step tags and actual SlimPower H1 screen UI retained in complete phone screenshot"
+  }
+]
