@@ -16,6 +16,9 @@ the milestone versions frozen beside it::
      "issues": "issues.json", "decisions": "decisions.json"}
 
 A working draft records ``tools_sha``, the auto-manual commit it was made with.
+``web_candidate`` (optional) names the built page of the line's Web candidate
+(``python -m tools.web.review_draft_web``) inside the line directory; the line
+page links it beside the draft. A candidate is a private preview, never a release.
 ``issues`` (optional) names the line's issue register, ``{"schema":
 "review-issues/1", "issues": [...]}``: each item has an ``id``, ``title``,
 ``kind`` (rd, language, compliance, design, content) and ``status`` (open,
@@ -86,6 +89,7 @@ def load_draft(directory: Path, drafts_root: Path, *, milestone: bool) -> dict:
     _page(directory, manifest)
     issues = _issues(directory, manifest)
     decisions = _decisions(directory, manifest)
+    candidate = _record_file(directory, manifest, "web_candidate") if "web_candidate" in manifest else None
     counts = _open_counts(issues)
     return {
         **{field: manifest[field] for field in _TEXT_FIELDS},
@@ -102,6 +106,7 @@ def load_draft(directory: Path, drafts_root: Path, *, milestone: bool) -> dict:
         "decisions_url": "/".join((*expected, manifest["decisions"])) if decisions is not None else "",
         "volume": _volume(directory),
         "url": "/".join((*expected, manifest["html"])),
+        "web_candidate_url": "/".join((*expected, manifest["web_candidate"])) if candidate is not None else "",
     }
 
 

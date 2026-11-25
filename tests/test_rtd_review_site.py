@@ -120,6 +120,25 @@ class ReviewSiteTests(unittest.TestCase):
             for name in review_site.STYLESHEETS:
                 self.assertTrue((out / "_static" / name).is_file(), name)
 
+    def test_line_page_links_a_web_candidate_inside_the_line(self):
+        with TemporaryDirectory() as temp:
+            drafts = Path(temp) / "drafts"
+            line = write_draft(drafts / "JHP-3600C" / "JP", "v0.69", web_candidate="web/manual.html")
+            (line / "web").mkdir()
+            (line / "web" / "manual.html").write_text("<title>candidate</title>", encoding="utf-8")
+            review_site.build(drafts, Path(temp) / "out")
+            page = BeautifulSoup((Path(temp) / "out/JHP-3600C/JP.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertEqual(page.select_one("a.rd-button-secondary")["href"], "../JHP-3600C/JP/web/manual.html")
+            self.assertTrue((Path(temp) / "out/JHP-3600C/JP/web/manual.html").is_file())
+            plain = write_draft(drafts / "JE-1000F" / "US", "v0.3", model="JE-1000F", region="US")
+            review_site.build(drafts, Path(temp) / "plain")
+            page = BeautifulSoup((Path(temp) / "plain/JE-1000F/US.html").read_text(encoding="utf-8"), "html.parser")
+            self.assertIsNone(page.select_one("a.rd-button-secondary"))
+            self.assertTrue(plain.is_dir())
+            (line / "web" / "manual.html").unlink()
+            with self.assertRaisesRegex(ValueError, "web_candidate must name a regular file"):
+                review_site.build(drafts, Path(temp) / "missing")
+
     def test_empty_root_renders_an_empty_list(self):
         with TemporaryDirectory() as temp:
             drafts, out = Path(temp) / "drafts", Path(temp) / "out"

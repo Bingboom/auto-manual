@@ -194,7 +194,8 @@ Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明
    [`closed_loop_ops_guide.md`](closed_loop_ops_guide.md) §4.5。
 6. **稿件只写 Hello-Docs-Review 的 `docs/review-drafts/**`**。审核稿含未发布内容，不进入两个公开仓库；
    两个镜像同步任务都会拦截源仓库里的 `docs/review-drafts`。审核通过的稿件作为批准原稿进入
-   Hello-Docs 发布与追溯，这一衔接尚未建设。
+   Hello-Docs 发布与追溯：转换器与发布门禁已建（网页候选稿只留在私有工作台），封存与发布随首例定稿建设，见
+   [审核稿来源](../code-as-doc/dev/web_publish_pipeline/input-paths.md#review-draft-source)。
 
 ## 6. 收口清单（2026-07-02 遗留，做完删本节）
 

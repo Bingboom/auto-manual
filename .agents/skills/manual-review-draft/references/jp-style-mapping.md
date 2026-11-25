@@ -33,6 +33,11 @@ draft's older inline review styles (they override the manual look).
 
 Worked transformation: `examples/jhp3600c/make_v018.py`.
 
+These shapes are also the input contract of the Web candidate converter
+(`tools/web/review_draft_blocks.py`, `review_draft_figures.py`): a new JP-only
+block or a renamed class needs an adapter there, or `python -m tools.web.review_draft_web`
+will report it as plain flow or refuse it.
+
 ## Overlay rules that are easy to get wrong
 
 - A generic `.jp-original { color: inherit }` turns white text on the dark H1 /
