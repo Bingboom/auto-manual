@@ -1,0 +1,11 @@
+{
+  "schema_version": "review-draft-fallback-copy/v1",
+  "purpose": "Copy a shared component requires but a review draft does not hold yet. A Web candidate may use it and lists every use; a release refuses any use until the draft itself carries the copy.",
+  "languages": {
+    "ja": {
+      "symbol_signal_headers": ["表示", "意味"],
+      "symbol_icon_headers": ["記号", "説明", "記号", "説明"],
+      "source": "Header row of the published JP Web manuals built with HB-TABLE-SYMBOL-SIGNAL and HB-TABLE-SYMBOL-ICON (for example JE-2000E/JP)."
+    }
+  }
+}

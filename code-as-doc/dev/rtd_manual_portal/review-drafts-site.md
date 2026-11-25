@@ -13,8 +13,10 @@ carry unreleased content: unpublished regional editions, R&D values and open
 questions. auto-manual and Hello-Docs are both **public** repositories, so the
 drafts never enter either of them. They live in the private workbench repository
 and are served by a private Read the Docs project. Promoting an approved draft
-into Hello-Docs publication and traceability as an approved original is planned,
-not built.
+into Hello-Docs publication and traceability as an approved original starts
+with a [Web candidate](#web-candidate) and its release gate; freezing, sealing
+and publishing follow the Git-only path and are first exercised with the first
+line to reach 定稿.
 
 The Feishu 审核稿（工作台输出） table, one row per draft line (model, product
 name, market, version, date, status, the 待研发确认 count and the links here),
@@ -128,6 +130,28 @@ docs/review-drafts/JHP-3600C/JP/
   the file. Without a register `rd_open` stays hand-written in `draft.json`.
 
 Every build error names the offending file.
+
+## Web candidate
+
+A line may carry a Web candidate of its working draft: the draft converted to
+the shared Web components by `python -m tools.web.review_draft_web convert`
+and built for preview inside the line directory, named by `draft.json`
+`web_candidate` (for example `web/manual_jhp3600c_jp_ja.html`). The line page
+links it beside the draft as 「打开网页候选稿（未发布）」; a missing or
+symlinked target fails the build like any other record path.
+
+```bash
+python -m tools.web.review_draft_web convert <line> --output <scratch>/candidate --title "<Web title>"
+python -m sphinx -n -W -b html <scratch>/candidate <line>/web
+cp <scratch>/candidate/review_draft_conversion.json <line>/web/
+```
+
+Commit it with the draft version it was converted from. It is a preview, not a
+release: `review_draft_conversion.json` lists what blocks release, and
+`python -m tools.web.review_draft_web gate <line>` prints the same list. The
+`draft.json` fields the gate reads (`web_title`, `approval`,
+`release_evidence`) are described with the
+[Git-only review-draft source](../web_publish_pipeline/input-paths.md#review-draft-source).
 
 ## Issue register
 

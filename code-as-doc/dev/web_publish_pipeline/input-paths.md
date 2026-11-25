@@ -193,6 +193,43 @@ Docs build commit, and the verified production URLs. `Document_link.HTML_link`
 readback belongs only to the queue-driven transaction. A Git-only transaction
 does not write online staging, source, asset, build, or link records.
 
+#### Review-draft source
+
+A workbench review draft (审核稿) becomes a Git-only source through
+[`tools/web/review_draft_web.py`](../../../tools/web/review_draft_web.py); the
+draft is the only text source
+([positioning §5.1](../../architecture/Hello_Docs_Positioning.md#51-网页说明书的三条路线)):
+
+```bash
+python -m tools.web.review_draft_web convert <workbench>/docs/review-drafts/<MODEL>/<REGION> --output <unused dir> [--title "<Web title>"]
+python -m tools.web.review_draft_web gate <workbench>/docs/review-drafts/<MODEL>/<REGION>
+```
+
+`convert` strips the review layer the `manual-review-draft` skill writes
+(page chrome, Chinese glosses and review notes, colour marks, hover
+provenance), binds every printed block to a registered shared component with
+the shared builders and parsers, and writes `manual.ir.json` (manual-ir/v2,
+`whole-document-components/v1`, `prepared-document`), its MyST replay and
+`review_draft_conversion.json`. Which draft shape becomes which component is
+the adapter list in `review_draft_blocks.py` and `review_draft_figures.py`;
+the shapes are the skill's `references/jp-style-mapping.md`.
+
+A candidate is a private preview: it is never publication-eligible, and
+`pending_source_review` and the report list what blocks release. It stays in
+the workbench beside the draft ([Web candidate](../rtd_manual_portal/review-drafts-site.md#web-candidate))
+and enters neither auto-manual nor Hello-Docs. `gate` and `convert --release`
+refuse while anything blocks: an open issue in the draft's register, a
+pending marker, copy awaiting native review (new translations, JP-only
+inserts), fallback copy a component needs but the draft lacks
+([`review_draft_fallback_copy.json`](../../../docs/renderers/contracts/review_draft_fallback_copy.json)),
+a shared-style issue (including an undeclared plain table), or a missing
+`draft.json` `approval` (operator, date, quote and the approved HTML's
+`html_sha256`), `web_title` or `release_evidence` (`typeset_compare` and
+`parameter_check` result files with `"status": "pass"`). After 定稿,
+`convert --release` writes the locale root of a new package under
+`manual_sources/`, which then follows steps 1–6 above with the draft identity
+as its source authority.
+
 ### 2.3 Catalog mirror and continuous reconciliation (M1/M2)
 
 The operations catalog sheet 「说明书目录」 (spreadsheet

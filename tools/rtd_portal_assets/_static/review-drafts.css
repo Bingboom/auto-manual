@@ -29,6 +29,8 @@
 .rd-button {display:inline-block;padding:8px 18px;border-radius:8px;background:var(--brand);color:#fff;
   font-weight:600;text-decoration:none}
 .rd-button:hover {background:var(--brand-strong)}
+.rd-button-secondary {margin-left:8px;background:transparent;color:var(--brand);border:1px solid var(--brand)}
+.rd-button-secondary:hover {color:#fff}
 .rd-section {margin-bottom:26px}
 .rd-section h2 {margin:0 0 10px;font-size:18px}
 .rd-questions {margin:0;padding:14px 18px 14px 40px;background:#fff;border:1px solid var(--app-line);border-radius:12px;
