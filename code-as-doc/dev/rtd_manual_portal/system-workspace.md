@@ -232,17 +232,23 @@ The operator decides the focus. Since 2026-09-26 the sequence is:
    release inputs are established as real data needs arise.
 3. Shared IR is deferred (REV-39, operator 2026-10-19); the #1278 boundary draft
    stays as input (with the 2026-11 A1–A9 and N1–N4 replies recorded in
-   [manual_ir_p1_decisions_2026-11.md](../manual_ir_p1_decisions_2026-11.md), while
-   the `Web ManualIR + Feishu Bitable uploaded textless base art -> InDesign`
+   [manual_ir_p1_decisions_2026-11.md](../manual_ir_p1_decisions_2026-11.md)).
+   The `Web ManualIR + Feishu Bitable uploaded textless base art -> InDesign`
    plan in [shared_ir_bitable_indesign_plan.md](../shared_ir_bitable_indesign_plan.md)
-   is parked on hold as a deferred contingency with 0 current engineering
-   investment). Per the 2026-11-24 strategic decision, the active mainline
-   pairs Web documents (including review-draft -> Web candidate conversion
-   under REV-48) with corpus- and review-draft-driven direct editing of
-   existing `.ai` Illustrator masters (REV-54, preserving dielines, bleeds,
-   and layouts). Shared IR -> InDesign only restarts if REV-20 or REV-40 is
-   explicitly triggered (for example, greenfield products without `.ai` masters
-   or heavy multi-language reflow bottlenecks). IDML acceptance does not block Web.
+   is on hold since the operator's 2026-11-24 decision, confirmed in review on
+   2026-11-25 (ledger decision log; REV-20, REV-26 and REV-40 deferred). Alongside Web documents,
+   the main print route (印刷主线) is now editing existing `.ai` print masters
+   directly from review drafts or the corpus (REV-55). The operator has verified
+   it locally; its editing scripts are not in the repository yet, which today
+   holds the page-number skill, translation-memory lookup and text-free art
+   extraction. Text is edited in place and
+   dielines, bleeds and layout stay as they are; that is the lane's working
+   rule, not a checked guarantee. Shared IR and the InDesign route are
+   re-evaluated when any of these holds: REV-20 or REV-40 starts, shared-layer
+   consolidation starts, a shared change cannot reach frozen packages for lack
+   of a common semantic contract, a new product line has no `.ai` masters, or
+   multi-language reflow becomes a heavy staffing bottleneck. IDML acceptance
+   does not block Web.
 4. Skeleton expansion is deferred by the REV-41 decision (done 2026-10-19):
    existing skeletons are maintained, and the decision record's §4 restart
    conditions reopen it.
