@@ -151,15 +151,18 @@ class Je2000eJpWebTests(unittest.TestCase):
         except (OSError, RuntimeError, subprocess.CalledProcessError):
             self.skipTest("Pandoc unavailable")
         rebuild = load("je2000e_jp_rebuild", PACKAGE / "rebuild.py")
-        # The package pins web_manual.css by hash; verify the historical copy the decorator supplies.
-        historical = stylesheets.get_paths().renderer_contracts_dir / "web_manual.css"
-        live = (ROOT / "docs/renderers/contracts/web_manual.css").resolve()
+        # The package pins web_manual.css and the base-art stylesheet by hash; verify the
+        # historical copies the decorator supplies.
+        contracts = stylesheets.get_paths().renderer_contracts_dir
         pinned_sha256 = rebuild.file_sha256
-        historical_paths = {live: historical}
+        historical_paths = {(ROOT / "docs/renderers/contracts" / name).resolve(): contracts / name
+                            for name in ("web_manual.css", "web_base_art_components.css")}
         pins = {row["path"]: row["sha256"] for row in read(PACKAGE / "source_manifest.json")["repo_inputs"]}
-        # Type-only changes keep released packages immutable. Supply their exact
-        # original bytes for the hash guard, then still compare every replay output.
-        for name in ("document_ir.py", "embedded_components.py", "frozen_ai_web.py", "prepared_style_audit.py"):
+        # Type-only changes and additive options this edition does not use keep
+        # released packages immutable. Supply their exact original bytes for the
+        # hash guard, then still compare every replay output.
+        for name in ("document_ir.py", "embedded_components.py", "frozen_ai_web.py", "prepared_style_audit.py",
+                     "base_art_reference.py"):
             relative = "tools/web/" + name
             fixture = ROOT / "tests/fixtures/historical_web_inputs/je2000e_jp" / name
             self.assertEqual(pinned_sha256(fixture), pins[relative], relative)
