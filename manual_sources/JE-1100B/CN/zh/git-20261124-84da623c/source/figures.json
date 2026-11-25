@@ -1,0 +1,262 @@
+[
+  {
+    "slot": "overview",
+    "physical_page": 3,
+    "clip_points": [
+      23,
+      56,
+      346,
+      319
+    ],
+    "caption": "产品外观、接口及按键介绍",
+    "local_path": "assets/cn-overview.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "总电源开关键；车充输出端口；USB-C1输出端口；USB-C2输出端口；USB-A输出端口；DC/USB输出电源键；LCD显示屏；LED灯开关；LED灯；AC输出端口；AC输出电源键。",
+      "右侧面：AC输入端口；DC输入端口（2×8020端口，太阳能输入和车充输入）；AC并机口。"
+    ],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 3,
+    "clip_points": [
+      47,
+      343,
+      328,
+      499
+    ],
+    "caption": "显示屏界面及①至⑲编号",
+    "local_path": "assets/cn-lcd-display.svg",
+    "embedded_words": false,
+    "printed_notes": [],
+    "presentation": "complete-source-artwork"
+  },
+  {
+    "slot": "parallel",
+    "physical_page": 6,
+    "clip_points": [
+      28,
+      185,
+      353,
+      395
+    ],
+    "caption": "并机连接与操作步骤",
+    "local_path": "assets/cn-parallel.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "a. 连接并机线前，确保两台户外电源的AC输出均处于关闭状态；b. 插入并机线；c. 依次打开两台户外电源的AC输出。",
+      "并机成功后，显示屏上的输出功率指示将以每秒一次的频率闪烁10次。同时会在App中点亮并机图标。",
+      "并机后，单个AC输出口的最大输出功率为2200W，四个AC输出口的最大输出功率为3000W。",
+      "并机状态下，AC负载由两台设备共同供电，DC负载仍由单台设备供电。"
+    ],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "ac-charge",
+    "physical_page": 7,
+    "clip_points": [
+      219,
+      277,
+      334,
+      368
+    ],
+    "caption": "AC电源线与市电充电连接",
+    "local_path": "assets/cn-ac-charge.svg",
+    "embedded_words": true,
+    "printed_notes": [],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "solar-direct",
+    "physical_page": 7,
+    "clip_points": [
+      74,
+      422,
+      310,
+      503
+    ],
+    "caption": "太阳能板直接连接充电",
+    "local_path": "assets/cn-solar-direct.svg",
+    "embedded_words": true,
+    "printed_notes": [],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "solar-four",
+    "physical_page": 8,
+    "clip_points": [
+      22,
+      18,
+      336,
+      107
+    ],
+    "caption": "两个DC8020输入端口连接四块同型号太阳能板",
+    "local_path": "assets/cn-solar-four.svg",
+    "embedded_words": true,
+    "printed_notes": [],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "solar-mismatch",
+    "physical_page": 8,
+    "clip_points": [
+      21,
+      176,
+      347,
+      265.5
+    ],
+    "caption": "错误示例：两个输入端口连接不同数量的太阳能板",
+    "local_path": "assets/cn-solar-mismatch.svg",
+    "embedded_words": true,
+    "printed_notes": [],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "solar-car-mixed",
+    "physical_page": 8,
+    "clip_points": [
+      20,
+      268,
+      346,
+      354.5
+    ],
+    "caption": "错误示例：同时使用太阳能和车充",
+    "local_path": "assets/cn-solar-car-mixed.svg",
+    "embedded_words": true,
+    "printed_notes": [],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "car-charge",
+    "physical_page": 8,
+    "clip_points": [
+      95,
+      426,
+      315,
+      504
+    ],
+    "caption": "车充连接；车载充电线需单独购买",
+    "local_path": "assets/cn-car-charge.svg",
+    "embedded_words": true,
+    "printed_notes": [],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "inbox-unit",
+    "physical_page": 9,
+    "clip_points": [
+      46,
+      356,
+      137,
+      426
+    ],
+    "caption": "户外电源1100 Pro 2",
+    "local_path": "assets/cn-inbox-unit.svg",
+    "embedded_words": false,
+    "printed_notes": [],
+    "presentation": "complete-source-artwork"
+  },
+  {
+    "slot": "app-download",
+    "physical_page": 10,
+    "clip_points": [
+      132.5,
+      83.3,
+      188.7,
+      139.0
+    ],
+    "caption": "电小二App下载二维码",
+    "local_path": "assets/cn-app-download.svg",
+    "embedded_words": false,
+    "printed_notes": [],
+    "presentation": "complete-source-artwork"
+  },
+  {
+    "slot": "app-controls",
+    "physical_page": 10,
+    "clip_points": [
+      45,
+      404,
+      335,
+      488
+    ],
+    "caption": "DC/USB输出电源键、AC输出电源键、POWER开关键",
+    "local_path": "assets/cn-app-controls.svg",
+    "embedded_words": true,
+    "printed_notes": [],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "app-results",
+    "physical_page": 11,
+    "clip_points": [
+      56,
+      122,
+      301,
+      260
+    ],
+    "caption": "App连接结果：2.3、2.4、2.5，1100 Pro 2",
+    "local_path": "assets/cn-app-results.svg",
+    "embedded_words": true,
+    "printed_notes": [],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "certificate",
+    "physical_page": 12,
+    "clip_points": [
+      113,
+      284,
+      258,
+      430
+    ],
+    "caption": "合格证：QC PASS 01，广东电小二科技有限公司",
+    "local_path": "assets/cn-certificate.svg",
+    "embedded_words": true,
+    "printed_notes": [
+      "检验员：QC PASS 01；检验日期：________；广东电小二科技有限公司。"
+    ],
+    "presentation": "complete-finished-source-panel"
+  },
+  {
+    "slot": "registration-qr",
+    "physical_page": 2,
+    "caption": "电小二产品注册二维码",
+    "local_path": "assets/reused-cn-registration-qr.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "app-phones",
+    "physical_page": 10,
+    "caption": "电小二App添加设备：2.1与2.2",
+    "local_path": "assets/reused-cn-app-phones.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "service-qr",
+    "physical_page": 12,
+    "caption": "电小二官方品牌公众号二维码",
+    "local_path": "assets/reused-cn-service-qr.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "inbox-ac",
+    "physical_page": 9,
+    "caption": "AC电源线",
+    "local_path": "assets/reused-cn-ac-cable.png",
+    "embedded_words": false,
+    "printed_notes": []
+  },
+  {
+    "slot": "inbox-manual",
+    "physical_page": 9,
+    "caption": "用户指南",
+    "local_path": "assets/reused-shared-manual.png",
+    "embedded_words": false,
+    "printed_notes": []
+  }
+]

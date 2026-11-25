@@ -1,0 +1,305 @@
+{
+  "target": {
+    "model": "JE-1100B",
+    "region": "CN",
+    "technical_version": "git-20261124-84da623c"
+  },
+  "original_source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+  "operator_quote": "这本也按刚才的流程转，公共图直接复用，手机端一起检查，全部通过后发布。",
+  "operator_date": "2026-11-24",
+  "operator_confirmed_errata": "App step2.2 short press; source original unchanged",
+  "operator_confirmed_archive": "one 000071 original to asset_sources/source_file, exact download hash verified",
+  "authorization": "MA-483",
+  "reviewed_inputs": [
+    {
+      "path": ".gitignore",
+      "size": 26,
+      "sha256": "d4fdfd3954b54eb0d1f64262d401d3d9f2b565dcf23b2b23a373217fe003a2b5"
+    },
+    {
+      "path": "README.md",
+      "size": 4572,
+      "sha256": "e099231c0c8550cfdfd21b606d301a2f65b512c34664d35cde51afc3ed1bc811"
+    },
+    {
+      "path": "assets/cn-ac-charge.svg",
+      "size": 49525,
+      "sha256": "f901886ba0f0e0f117e7caa135f9a813e4014f586f4e9ae532a3f69e6a5e7d9f"
+    },
+    {
+      "path": "assets/cn-app-controls.svg",
+      "size": 37697,
+      "sha256": "058055eff62e5eb475a622d39169ab7c0586a08fbbe020be26e622b5ed2b1fbc"
+    },
+    {
+      "path": "assets/cn-app-download.svg",
+      "size": 35301,
+      "sha256": "dc02616ede025840cc33d7e19b449906dec9e2fa8fb8bc2664768562db9a17b9"
+    },
+    {
+      "path": "assets/cn-app-results.svg",
+      "size": 230443,
+      "sha256": "1989ebd6b19176d52ebb9cd3f4884276c918c2585772538c1b6af4c94f8c8810"
+    },
+    {
+      "path": "assets/cn-car-charge.svg",
+      "size": 90796,
+      "sha256": "4f4f0c574da28a913a22bbf47d8a0400ec0c124d90a0a211f90bd8e534eb17d6"
+    },
+    {
+      "path": "assets/cn-certificate.svg",
+      "size": 21768,
+      "sha256": "ccb2efc9da1c5b57a8171c3a013454451390bf839e3d20a0c3e13259baaf53e6"
+    },
+    {
+      "path": "assets/cn-inbox-unit.svg",
+      "size": 82193,
+      "sha256": "1a8759730b236770f77f79f302d2e78f8e8a988a85135ab219fa4ab6d4b05117"
+    },
+    {
+      "path": "assets/cn-lcd-display.svg",
+      "size": 64691,
+      "sha256": "0e0475d91b681d1f7cce810a9f25e1bc2d7217b78ac945d6d70fc6aabc1732f3"
+    },
+    {
+      "path": "assets/cn-overview.svg",
+      "size": 178894,
+      "sha256": "045acf1e972304b2534c6fd7a12ba0fb820ce28bdca0120fdccb0d1bc2d5ce71"
+    },
+    {
+      "path": "assets/cn-parallel.svg",
+      "size": 2181704,
+      "sha256": "e911f6ac0b1a145a7e193fe98924fea0ba6aeec982f89bd629695312c2b5344d"
+    },
+    {
+      "path": "assets/cn-solar-car-mixed.svg",
+      "size": 108589,
+      "sha256": "538c8bb51b0f222f1860fc82d5747579d42ad8cce6bdc4bf037c6f7364ca7706"
+    },
+    {
+      "path": "assets/cn-solar-direct.svg",
+      "size": 68627,
+      "sha256": "ef4709a78f307052bed92e67a499c607eabdfd2ec46d173e913f9bac471df9ce"
+    },
+    {
+      "path": "assets/cn-solar-four.svg",
+      "size": 335762,
+      "sha256": "f4d431dd818f9cde6479e5fc79dbe0cc93b4d665ec7a84f36243e21ca1e3c690"
+    },
+    {
+      "path": "assets/cn-solar-mismatch.svg",
+      "size": 217181,
+      "sha256": "fa7453ed7d2d4f4c3ad113a2f0ae5c3b0551e73cc0e144e7480c2353e55acc07"
+    },
+    {
+      "path": "assets/reused-cn-ac-cable.png",
+      "size": 5509,
+      "sha256": "43a059232499e3352cd361de0e09839c828401d36eb1a812121aeded7a780594"
+    },
+    {
+      "path": "assets/reused-cn-app-phones.png",
+      "size": 97462,
+      "sha256": "50b8902964de2f73517c2f98bccf7b7a73e148ad1498561f318d0937b1dd5303"
+    },
+    {
+      "path": "assets/reused-cn-registration-qr.png",
+      "size": 21720,
+      "sha256": "9056cd8ac8dcb4c93d60a0439b4f46d9cb90c9b0fc61a4aa7548be2d231b2ea9"
+    },
+    {
+      "path": "assets/reused-cn-service-qr.png",
+      "size": 14580,
+      "sha256": "d582f739307be257a9d92f027d4d1da4f05eec7288b2c13f6c4bd69e689689f3"
+    },
+    {
+      "path": "assets/reused-shared-manual.png",
+      "size": 1614,
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a"
+    },
+    {
+      "path": "assets/shared-lcd-01.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "assets/shared-lcd-02.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "assets/shared-lcd-03.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "assets/shared-lcd-08.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "assets/shared-lcd-10.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "assets/shared-lcd-11.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "assets/shared-lcd-12.png",
+      "size": 2223,
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c"
+    },
+    {
+      "path": "assets/shared-lcd-13.png",
+      "size": 1599,
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
+    },
+    {
+      "path": "assets/shared-lcd-14.png",
+      "size": 3059,
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4"
+    },
+    {
+      "path": "assets/shared-lcd-15.png",
+      "size": 1481,
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
+    },
+    {
+      "path": "assets/shared-lcd-17.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "assets/shared-lcd-18.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "assets/shared-lcd-19.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "assets/shared-lcd-21.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "assets/shared-lcd-22.png",
+      "size": 2248,
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "path": "assets/shared-lcd-23.png",
+      "size": 2206,
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    {
+      "path": "assets/shared-lcd-24.png",
+      "size": 3966,
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579"
+    },
+    {
+      "path": "assets/shared-lcd-25.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "assets/shared-lcd-26.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "audit/artwork-parity.json",
+      "size": 5145,
+      "sha256": "535b7ec7b04f60273a46989395098e10162304bb682adee2c82beb6cc416389a"
+    },
+    {
+      "path": "audit/artwork-reuse.md",
+      "size": 5426,
+      "sha256": "57b57b8cb08cff9e27d3489e67ba8a8fb6b144a4c69203ba2c83193ec78012ec"
+    },
+    {
+      "path": "audit/asset-provenance.json",
+      "size": 17794,
+      "sha256": "13a8d3cbb6dcf72b5893a5f7a6640f99f551e472aa8d4800915728760b99382d"
+    },
+    {
+      "path": "audit/component-map.json",
+      "size": 1619,
+      "sha256": "00c28df350711ab5a91a7cb2943dfbdb2d0ce2ae3f7c1f59778b0f68bae6e736"
+    },
+    {
+      "path": "audit/numeric-source-review.json",
+      "size": 1481,
+      "sha256": "974a644e61d3a5fdd64ba720418f375db013aff1813471e054297b2b10a74581"
+    },
+    {
+      "path": "audit/original-archive-readback.json",
+      "size": 420,
+      "sha256": "5a62f7eaf771431faea5e5a261b449d32afea10d049ae7f9e6b89a4601383f87"
+    },
+    {
+      "path": "audit/preflight.json",
+      "size": 4125,
+      "sha256": "b2b6246e014158ee944c1d2a14a71294711edefaae9c497cd128d79d5014f50b"
+    },
+    {
+      "path": "audit/source-review.md",
+      "size": 3932,
+      "sha256": "bd4960a085a051f73821d17bf3fda9d4f3b31b3bcfbdc46b810a9aa3e205dab5"
+    },
+    {
+      "path": "original.pdf.source-pointer.json",
+      "size": 621,
+      "sha256": "4ef4536efa59fdf00e7af24cb8f48f458cef9e43a8a58aada74113778d56ce26"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 8611,
+      "sha256": "35daf96ac051f9c8e2aafd0d9ee3d21994be093a5e976c16029bfc471a0774d0"
+    },
+    {
+      "path": "source/export_panels.py",
+      "size": 2198,
+      "sha256": "c60c883dcfc402d11502ff4eaa6c15f967ac23d036fb3300cba04c0df252ed26"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 6835,
+      "sha256": "8dcce2870058c0c1df1d3a1af69d174b080a5498962da5b609ea78f297a9a7ad"
+    },
+    {
+      "path": "source/intake.py",
+      "size": 25868,
+      "sha256": "0b250f885e1ed95f7273572e840f46caab155d4e5fb1f4f15f4946ecf01a19a4"
+    },
+    {
+      "path": "source/kit.py",
+      "size": 10784,
+      "sha256": "95e553424af4e6b821535e97aa59db26cd2d201b9d0527cf785aba2ccb2c403b"
+    },
+    {
+      "path": "source/panel-recipe.json",
+      "size": 18216,
+      "sha256": "489c34823627c9c97d2a828e62cd805d8d5f01e16387d0dc4140c156791037fd"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 2012,
+      "sha256": "f370b13dd5860efe2631d143d97bb3f73f19ed88ed9102b4650966a5b5b603ef"
+    },
+    {
+      "path": "source/reused-assets.json",
+      "size": 626,
+      "sha256": "bee753403bf81834a47d2355132b8332c120c62a349a7ab7e8a84de3a947704f"
+    },
+    {
+      "path": "source/zh/content.json",
+      "size": 175378,
+      "sha256": "2dbd09ae03c34a3107a1bb5cfbd313723305bfd46a9f12030eb511849f22aeb3"
+    }
+  ]
+}

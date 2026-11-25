@@ -1,0 +1,442 @@
+[
+  {
+    "slot": "overview",
+    "asset_key": "source/je1100b-cn-84da623c/overview",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 3,
+    "bbox_pt": [
+      23,
+      56,
+      346,
+      319
+    ],
+    "local_path": "assets/cn-overview.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "045acf1e972304b2534c6fd7a12ba0fb820ce28bdca0120fdccb0d1bc2d5ce71"
+  },
+  {
+    "slot": "lcd-display",
+    "asset_key": "source/je1100b-cn-84da623c/lcd-display",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 3,
+    "bbox_pt": [
+      47,
+      343,
+      328,
+      499
+    ],
+    "local_path": "assets/cn-lcd-display.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "0e0475d91b681d1f7cce810a9f25e1bc2d7217b78ac945d6d70fc6aabc1732f3"
+  },
+  {
+    "slot": "parallel",
+    "asset_key": "source/je1100b-cn-84da623c/parallel",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 6,
+    "bbox_pt": [
+      28,
+      185,
+      353,
+      395
+    ],
+    "local_path": "assets/cn-parallel.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "e911f6ac0b1a145a7e193fe98924fea0ba6aeec982f89bd629695312c2b5344d"
+  },
+  {
+    "slot": "ac-charge",
+    "asset_key": "source/je1100b-cn-84da623c/ac-charge",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 7,
+    "bbox_pt": [
+      219,
+      277,
+      334,
+      368
+    ],
+    "local_path": "assets/cn-ac-charge.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "f901886ba0f0e0f117e7caa135f9a813e4014f586f4e9ae532a3f69e6a5e7d9f"
+  },
+  {
+    "slot": "solar-direct",
+    "asset_key": "source/je1100b-cn-84da623c/solar-direct",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 7,
+    "bbox_pt": [
+      74,
+      422,
+      310,
+      503
+    ],
+    "local_path": "assets/cn-solar-direct.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "ef4709a78f307052bed92e67a499c607eabdfd2ec46d173e913f9bac471df9ce"
+  },
+  {
+    "slot": "solar-four",
+    "asset_key": "source/je1100b-cn-84da623c/solar-four",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 8,
+    "bbox_pt": [
+      22,
+      18,
+      336,
+      107
+    ],
+    "local_path": "assets/cn-solar-four.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "f4d431dd818f9cde6479e5fc79dbe0cc93b4d665ec7a84f36243e21ca1e3c690"
+  },
+  {
+    "slot": "solar-mismatch",
+    "asset_key": "source/je1100b-cn-84da623c/solar-mismatch",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 8,
+    "bbox_pt": [
+      21,
+      176,
+      347,
+      265.5
+    ],
+    "local_path": "assets/cn-solar-mismatch.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "fa7453ed7d2d4f4c3ad113a2f0ae5c3b0551e73cc0e144e7480c2353e55acc07"
+  },
+  {
+    "slot": "solar-car-mixed",
+    "asset_key": "source/je1100b-cn-84da623c/solar-car-mixed",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 8,
+    "bbox_pt": [
+      20,
+      268,
+      346,
+      354.5
+    ],
+    "local_path": "assets/cn-solar-car-mixed.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "538c8bb51b0f222f1860fc82d5747579d42ad8cce6bdc4bf037c6f7364ca7706"
+  },
+  {
+    "slot": "car-charge",
+    "asset_key": "source/je1100b-cn-84da623c/car-charge",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 8,
+    "bbox_pt": [
+      95,
+      426,
+      315,
+      504
+    ],
+    "local_path": "assets/cn-car-charge.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "4f4f0c574da28a913a22bbf47d8a0400ec0c124d90a0a211f90bd8e534eb17d6"
+  },
+  {
+    "slot": "inbox-unit",
+    "asset_key": "source/je1100b-cn-84da623c/inbox-unit",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 9,
+    "bbox_pt": [
+      46,
+      356,
+      137,
+      426
+    ],
+    "local_path": "assets/cn-inbox-unit.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "1a8759730b236770f77f79f302d2e78f8e8a988a85135ab219fa4ab6d4b05117"
+  },
+  {
+    "slot": "app-download",
+    "asset_key": "source/je1100b-cn-84da623c/app-download",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 10,
+    "bbox_pt": [
+      132.5,
+      83.3,
+      188.7,
+      139.0
+    ],
+    "local_path": "assets/cn-app-download.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "dc02616ede025840cc33d7e19b449906dec9e2fa8fb8bc2664768562db9a17b9"
+  },
+  {
+    "slot": "app-controls",
+    "asset_key": "source/je1100b-cn-84da623c/app-controls",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 10,
+    "bbox_pt": [
+      45,
+      404,
+      335,
+      488
+    ],
+    "local_path": "assets/cn-app-controls.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "058055eff62e5eb475a622d39169ab7c0586a08fbbe020be26e622b5ed2b1fbc"
+  },
+  {
+    "slot": "app-results",
+    "asset_key": "source/je1100b-cn-84da623c/app-results",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 11,
+    "bbox_pt": [
+      56,
+      122,
+      301,
+      260
+    ],
+    "local_path": "assets/cn-app-results.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "1989ebd6b19176d52ebb9cd3f4884276c918c2585772538c1b6af4c94f8c8810"
+  },
+  {
+    "slot": "certificate",
+    "asset_key": "source/je1100b-cn-84da623c/certificate",
+    "decision": "source-specific-complete-panel",
+    "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "physical_page": 12,
+    "bbox_pt": [
+      113,
+      284,
+      258,
+      430
+    ],
+    "local_path": "assets/cn-certificate.svg",
+    "status": "source-bound-candidate-not-shared-promotion",
+    "sha256": "ccb2efc9da1c5b57a8171c3a013454451390bf839e3d20a0c3e13259baaf53e6"
+  },
+  {
+    "slot": "registration-qr",
+    "asset_key": "reused/registration-qr",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/cn-registration-qr.png",
+    "sha256": "9056cd8ac8dcb4c93d60a0439b4f46d9cb90c9b0fc61a4aa7548be2d231b2ea9",
+    "local_path": "assets/reused-cn-registration-qr.png",
+    "reason": "embedded image digests db411e2f820e979799169b6632be40e6 and 7be010960be7be5c4d746227c98d1fa1 match source PDF page3"
+  },
+  {
+    "slot": "app-phones",
+    "asset_key": "reused/app-phones",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/cn-app-phones.png",
+    "sha256": "50b8902964de2f73517c2f98bccf7b7a73e148ad1498561f318d0937b1dd5303",
+    "local_path": "assets/reused-cn-app-phones.png",
+    "reason": "three embedded image digests match 825e878e21ecccc5ed64e45de0197f33, 1fa9bfbcd7d13c8635951632adfdb9e8, 0a200c8afab3e805277069d5b3d4c56b; preserve complete phone frames"
+  },
+  {
+    "slot": "service-qr",
+    "asset_key": "reused/service-qr",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/cn-service-qr.png",
+    "sha256": "d582f739307be257a9d92f027d4d1da4f05eec7288b2c13f6c4bd69e689689f3",
+    "local_path": "assets/reused-cn-service-qr.png",
+    "reason": "embedded image digest 4b978066bd7f489f0392d9983f4ddbb4 matches previous source"
+  },
+  {
+    "slot": "inbox-ac",
+    "asset_key": "reused/inbox-ac",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/cn-ac-cable.png",
+    "sha256": "43a059232499e3352cd361de0e09839c828401d36eb1a812121aeded7a780594",
+    "local_path": "assets/reused-cn-ac-cable.png",
+    "reason": "same CN two-prong AC power cable"
+  },
+  {
+    "slot": "inbox-manual",
+    "asset_key": "reused/inbox-manual",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-manual.png",
+    "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+    "local_path": "assets/reused-shared-manual.png",
+    "reason": "shared generic manual icon; no model data is taken from donor"
+  },
+  {
+    "slot": "lcd/1",
+    "asset_key": "shared/lcd/shared-lcd-01",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-01.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "local_path": "assets/shared-lcd-01.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/2",
+    "asset_key": "shared/lcd/shared-lcd-02",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-02.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "local_path": "assets/shared-lcd-02.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/3",
+    "asset_key": "shared/lcd/shared-lcd-03",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-03.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "local_path": "assets/shared-lcd-03.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/4",
+    "asset_key": "shared/lcd/shared-lcd-15",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-15.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "local_path": "assets/shared-lcd-15.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/5",
+    "asset_key": "shared/lcd/shared-lcd-10",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-10.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "local_path": "assets/shared-lcd-10.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/6",
+    "asset_key": "shared/lcd/shared-lcd-11",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-11.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "local_path": "assets/shared-lcd-11.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/7",
+    "asset_key": "shared/lcd/shared-lcd-12",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-12.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "local_path": "assets/shared-lcd-12.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/8",
+    "asset_key": "shared/lcd/shared-lcd-13",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-13.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "local_path": "assets/shared-lcd-13.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/9",
+    "asset_key": "shared/lcd/shared-lcd-14",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-14.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "local_path": "assets/shared-lcd-14.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/10",
+    "asset_key": "shared/lcd/shared-lcd-17",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-17.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "local_path": "assets/shared-lcd-17.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/11",
+    "asset_key": "shared/lcd/shared-lcd-18",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-18.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "local_path": "assets/shared-lcd-18.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/12",
+    "asset_key": "shared/lcd/shared-lcd-19",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-19.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "local_path": "assets/shared-lcd-19.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/13",
+    "asset_key": "shared/lcd/shared-lcd-24",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-24.png",
+    "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+    "local_path": "assets/shared-lcd-24.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/14",
+    "asset_key": "shared/lcd/shared-lcd-22",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-22.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "local_path": "assets/shared-lcd-22.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/15",
+    "asset_key": "shared/lcd/shared-lcd-23",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-23.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "local_path": "assets/shared-lcd-23.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/16",
+    "asset_key": "shared/lcd/shared-lcd-21",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-21.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "local_path": "assets/shared-lcd-21.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/17",
+    "asset_key": "shared/lcd/shared-lcd-08",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-08.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "local_path": "assets/shared-lcd-08.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/18",
+    "asset_key": "shared/lcd/shared-lcd-25",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-25.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "local_path": "assets/shared-lcd-25.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  },
+  {
+    "slot": "lcd/19",
+    "asset_key": "shared/lcd/shared-lcd-26",
+    "decision": "reuse-byte-identical",
+    "source_path": "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2/assets/shared-lcd-26.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "local_path": "assets/shared-lcd-26.png",
+    "reason": "shared LCD semantic role matched to source physical pages3-5"
+  }
+]

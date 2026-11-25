@@ -1,0 +1,5161 @@
+{
+  "title": "电小二户外电源 1100 Pro 2 · JE-1100B 用户指南",
+  "model": "JE-1100B",
+  "region": "CN",
+  "language": "zh",
+  "source_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+  "transcription": "outlined-pdf-manual-transcription",
+  "approved_errata": [
+    {
+      "physical_page": 10,
+      "section": "App 2.2",
+      "before": "长按设备上的“POWER”键开机",
+      "after": "短按设备上的“POWER”键开机",
+      "operator_quote": "统一为“短按”（推荐）",
+      "operator_date": "2026-11-24"
+    }
+  ],
+  "source_copy_note": "App step2.2 corrected to short press by explicit operator confirmation; remaining source wording preserved.",
+  "chapters": [
+    {
+      "id": "introduction",
+      "title": "前言",
+      "pages": [
+        2
+      ],
+      "nodes": [
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "感谢您选择购买电小二产品。在使用之前请您务必仔细阅读本用户指南，按照指引正确使用并妥善保管。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "在遵从法律法规的情况下，本公司享有对本文档及本产品所有相关文档的最终解释权。如有更新改版或终止请以官方发布最新通知为准。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "您现在可以通过微信注册您的产品，激活质保服务。注册过程轻松快速，注册后您将享有："
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-registration-panel"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-registration-benefits"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "自购买日起享质保3年+注册延保2年"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "电小二售后专家技术支持"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "真伪查询服务"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "售后维修进度实时查看"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-registration-steps"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "image",
+                  "source": "assets/reused-cn-registration-qr.png",
+                  "alt": "电小二产品注册二维码",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-registration-qr"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "list",
+                  "ordered": true,
+                  "children": [
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "打开微信，点击“发现”中的“扫一扫”"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "扫描右方的二维码"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "按照提示完成注册激活"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "如您未能成功注册，您可以联系电小二官方服务热线 "
+            },
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "400-668-9293"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 或联系在线客服进行注册，产品具体保修条款和注册细则，请登录 "
+            },
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "电小二户外电源服务小程序"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 查看。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "以下情况不在保修范围内：产品使用后外观损坏；自行拆机或维修；因人为原因造成产品性能故障；由于自然灾害、雷电、事故等不可抗拒的因素造成的损害。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "1.技术参数",
+      "pages": [
+        2
+      ],
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-specifications",
+          "children": [
+            {
+              "kind": "text",
+              "text": "1.技术参数"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "source_ref": "transcribed-pdf/specifications/1",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "content": "技术参数"
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "content": [
+                  {
+                    "label": "名称",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "户外电源1100 Pro 2",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "型号",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "JE-1100B",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "电芯类型",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "磷酸铁锂电芯",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "电池组能量",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "30.4Ah / 35.2V DC (1070Wh)",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "AC 额定输出能量",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "835Wh（220V~，6.81A）",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "尺寸&重量",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "约32.7 × 22.4 × 24.7 cm（约10.8kg）",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "循环寿命",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "4000次循环（70%+）",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "AC 输入",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "220V–240V~ 50Hz，10A Max",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "DC 输入(8020端口)",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "光伏 16V–60V/10.5A，双路21A/400W Max\n车充12V–16V/8A Max，双路8A Max",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "2 × AC 输出",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "220V~ 50Hz",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "AC 总输出",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "额定1500W，峰值3000W\n并机模式下，单口额定2200W，两个口合计额定3000W，峰值6000W",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "USB-C1 输出",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "30W Max，5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "USB-C2 输出",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "100W Max，5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "USB-A 输出",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "18W Max，5–6V⎓3A，6–9V⎓2A，9–12V⎓1.5A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "车充输出",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "12V⎓10A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "充电温度",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "0°C – 45°C",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "放电温度",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "−10°C – 45°C",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "认证",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "UN38.3",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-spec-section hb-spec-group"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-spec-section-text"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "技术参数"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "名称"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "户外电源1100 Pro 2"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "型号"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "JE-1100B"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "电芯类型"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "磷酸铁锂电芯"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "电池组能量"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "30.4Ah / 35.2V DC (1070Wh)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "AC 额定输出能量"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "835Wh（220V~，6.81A）"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "尺寸&重量"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "约32.7 × 22.4 × 24.7 cm（约10.8kg）"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "循环寿命"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "4000次循环（70%+）"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "AC 输入"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "220V–240V~ 50Hz，10A Max"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "DC 输入(8020端口)"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "光伏 16V–60V/10.5A，双路21A/400W Max\n车充12V–16V/8A Max，双路8A Max"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "2 × AC 输出"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "220V~ 50Hz"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "AC 总输出"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "额定1500W，峰值3000W\n并机模式下，单口额定2200W，两个口合计额定3000W，峰值6000W"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "USB-C1 输出"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "30W Max，5V⎓3A，9V⎓3A，12V⎓2.5A，15V⎓2A，20V⎓1.5A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "USB-C2 输出"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "100W Max，5V⎓3A，9V⎓3A，12V⎓3A，15V⎓3A，20V⎓5A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "USB-A 输出"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "18W Max，5–6V⎓3A，6–9V⎓2A，9–12V⎓1.5A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "车充输出"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "12V⎓10A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "充电温度"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "0°C – 45°C"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "放电温度"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "−10°C – 45°C"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "认证"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "UN38.3"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "※USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "product_overview",
+      "title": "2.产品介绍",
+      "pages": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-product_overview",
+          "children": [
+            {
+              "kind": "text",
+              "text": "2.产品介绍"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "2.1产品外观介绍"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-3/overview",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "overview"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "产品外观、接口及按键介绍. 总电源开关键；车充输出端口；USB-C1输出端口；USB-C2输出端口；USB-A输出端口；DC/USB输出电源键；LCD显示屏；LED灯开关；LED灯；AC输出端口；AC输出电源键。 右侧面：AC输入端口；DC输入端口（2×8020端口，太阳能输入和车充输入）；AC并机口。"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-overview.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "overview",
+              "web_replace_key": "",
+              "source_fragment_sha256": "dd44d99525c828fcdf3961cd4fc8f075fab73a2058db0ec4ddc1750f0cfed48b",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-overview.svg",
+              "alt": "产品外观、接口及按键介绍. 总电源开关键；车充输出端口；USB-C1输出端口；USB-C2输出端口；USB-A输出端口；DC/USB输出电源键；LCD显示屏；LED灯开关；LED灯；AC输出端口；AC输出电源键。 右侧面：AC输入端口；DC输入端口（2×8020端口，太阳能输入和车充输入）；AC并机口。"
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "2.2显示屏界面介绍"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-3/lcd-display",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "lcd-display"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "显示屏界面及①至⑲编号"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "none"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-lcd-display.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "lcd-display",
+              "web_replace_key": "",
+              "source_fragment_sha256": "9e3947c3d268791bac37d6e6f02e55ad0dcd693013e9def37c92e817257d3199",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-lcd-display.svg",
+              "alt": "显示屏界面及①至⑲编号"
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "manual-table"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "table_body",
+              "children": [
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": true,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "序号"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": true,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "图标"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": true,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "名称"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-01.png",
+                          "alt": "Wi-Fi",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Wi-Fi"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "2"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-02.png",
+                          "alt": "蓝牙",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "蓝牙"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "3"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-03.png",
+                          "alt": "静音充电模式",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "静音充电模式"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "4"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-15.png",
+                          "alt": "浅充浅放模式",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "浅充浅放模式"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "5"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-10.png",
+                          "alt": "充电功率显示",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "充电功率显示"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "6"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-11.png",
+                          "alt": "剩余充电时间",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "剩余充电时间"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "7"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-12.png",
+                          "alt": "市电充电接入",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "市电充电接入"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "8"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-13.png",
+                          "alt": "车充充电接入",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "车充充电接入"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "9"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-14.png",
+                          "alt": "太阳能（绿色能源）充电接入",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "太阳能（绿色能源）充电接入"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "10"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-17.png",
+                          "alt": "电池电量图标",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "电池电量图标"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "11"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-18.png",
+                          "alt": "低电量提醒",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "低电量提醒"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "12"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-19.png",
+                          "alt": "电池电量百分比",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "电池电量百分比"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "13"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-24.png",
+                          "alt": "故障代码",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "故障代码"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "14"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-22.png",
+                          "alt": "高温警告",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "高温警告"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "15"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-23.png",
+                          "alt": "低温警告",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "低温警告"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "16"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-21.png",
+                          "alt": "节能模式",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "节能模式"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "17"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-08.png",
+                          "alt": "交流输出符号",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "交流输出符号"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "18"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-25.png",
+                          "alt": "放电功率显示",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "放电功率显示"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "19"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "image",
+                          "source": "assets/shared-lcd-26.png",
+                          "alt": "剩余放电时间",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "width": "40",
+                                "height": "40"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "剩余放电时间"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "电池电量图标："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 当本产品处于充电状态时，该图标顺时针转动；当产品处于放电状态时，该图标显示当前电量。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "低电量提醒："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 当电池容量低于20%时，低电量图标显示；当电池容量低于5%时，低电量图标闪烁；充电状态时，该图标不显示。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "节能模式："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 为避免使用过程中忘记关闭输出，导致电池电量耗完，产品默认是开启节能模式，即不连接任何设备或者连接的设备小于等于某个值时（详情参考下表），12H后系统自动关闭输出。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-REFERENCE",
+            "variant": "lcd-actions",
+            "source_ref": "transcribed-pdf/product_overview/2",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "节能模式默认关闭阈值"
+              },
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "content": [
+                  {
+                    "html": "放电方式",
+                    "text": "放电方式"
+                  },
+                  {
+                    "html": "功率设定值",
+                    "text": "功率设定值"
+                  },
+                  {
+                    "html": "默认设置",
+                    "text": "默认设置"
+                  }
+                ]
+              },
+              {
+                "role": "rows",
+                "content_kind": "ordered_rows",
+                "content": [
+                  [
+                    {
+                      "html": "AC输出",
+                      "text": "AC输出"
+                    },
+                    {
+                      "html": "≤25W",
+                      "text": "≤25W"
+                    },
+                    {
+                      "html": "12H后自动关闭输出",
+                      "text": "12H后自动关闭输出"
+                    }
+                  ],
+                  [
+                    {
+                      "html": "USB输出",
+                      "text": "USB输出"
+                    },
+                    {
+                      "html": "≤2W",
+                      "text": "≤2W"
+                    },
+                    {
+                      "html": "12H后自动关闭输出",
+                      "text": "12H后自动关闭输出"
+                    }
+                  ],
+                  [
+                    {
+                      "html": "车充输出",
+                      "text": "车充输出"
+                    },
+                    {
+                      "html": "≤2W",
+                      "text": "≤2W"
+                    },
+                    {
+                      "html": "12H后自动关闭输出",
+                      "text": "12H后自动关闭输出"
+                    }
+                  ]
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.reference"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "关闭“节能模式”："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 任意输出打开时，长按“AC输出电源键+总电源开关键”直至节能模式图标消失。在非节能模式状态下，不使用本产品时请注意关闭电源，避免因为忘记关闭输出导致电量耗尽。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "开启“节能模式”："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 任意输出打开时，长按“AC输出电源键+总电源开关键”直至节能模式图标在屏幕出现。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "故障代码："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 为了快速解决用户反馈，我们在系统中设置故障代码F0–FE：如果出现F8代码，请移除负载或者拔掉充电插头，产品可以自行恢复，如果不能，请联系售后处理；如果出现F9故障代码，请移除负载，产品可以自行恢复，如果不能，请联系售后处理。如果出现其他故障代码，请联系我们售后处理。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "高温警告："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 如果屏幕上出现高温警告图标，请勿担心，电池降温后可自行恢复。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "低温警告："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 如果屏幕上出现低温警告图标，请勿担心，环境温度恢复后自动恢复。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "静音充电："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 静音充电模式开启后，充电功率降低，充电速度减缓，同时显著降低充电时的噪音（请在APP中开启/关闭该功能）。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "浅充浅放："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 浅充浅放模式开启后，产品的可用电量减少，电芯使用寿命延长（请在APP中开启/关闭该功能）。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "2.3产品使用介绍"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 4,
+          "children": [
+            {
+              "kind": "text",
+              "text": "2.3.1电源开机/关机"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "总电源开机/关机："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 短按“总电源开关键”同时工作指示灯亮起，LCD显示屏被点亮。当本产品持续2分钟没有任何操作时，产品进入休眠状态，显示屏自动熄灭。如需关闭总电源，请长按“总电源开关键”直至工作指示灯熄灭。本产品的默认待机时间为2小时，若产品无任何充电输入或放电输出，2小时后将自动关机，自动关机时间可以在APP上设置。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "*节能模式下，开启DC输出或AC输出，若产品无任何充电输入或放电输出，12小时后将自动关机，请在APP中设置节能模式的自动关闭时间。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "AC输出开/关："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 确保总电源开启后，短按AC输出电源键，AC输出工作指示灯亮起，此时可连接需要交流电的设备使用。再次短按AC输出电源键可关闭AC输出。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "DC输出开/关："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 短按DC/USB输出电源键打开直流电源，此时USB-A、USB-C和车充输出端口可以连接负载设备使用。再次短按DC/USB输出电源键关闭输出。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "caution",
+            "source_ref": "transcribed-pdf/product_overview/caution-3",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "注意"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "本产品可通过电小二12V汽车电池充电线为汽车电池充电。该充电线需单独购买，可前往电小二官网选购。设备通过12V DC输出（车充口）为汽车电池补电时，请勿启动汽车，否则可能造成产品损坏。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "注意"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "本产品可通过电小二12V汽车电池充电线为汽车电池充电。该充电线需单独购买，可前往电小二官网选购。设备通过12V DC输出（车充口）为汽车电池补电时，请勿启动汽车，否则可能造成产品损坏。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 4,
+          "children": [
+            {
+              "kind": "text",
+              "text": "UPS"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "本产品通过AC电源线连接电网，电器可以使用本产品的交流输出端口工作（此时交流电来自电网，而不是电池），当电网突然断电后，产品可以在20ms内自动切换为本产品电池供电模式。由于本产品不支持0ms的切换，请勿接到需要不间断供电要求高的设备上，例如数据服务器和工作站，或者请多次测试后确认是否兼容后再使用，且使用过程中建议只使用一台设备，不要同时使用多台设备以免引发本产品过载保护，如果没有按照指示操作造成设备不能正常运行或者数据丢失，本公司不承担相应的责任。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "停电前，储能的最高输出功率是1500W，因为这边应用下采用的是旁路功率，虽然额定功率是1500W，但在这种特定模式下，实际输出功率会低于额定功率；停电时，储能的输出功率为额定功率1500W。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 4,
+          "children": [
+            {
+              "kind": "text",
+              "text": "2.3.2显示屏亮起/熄灭"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "短按总电源开关键或者有充电输入时，屏幕都会亮起，再按一下，屏幕会熄灭，或者持续2分钟无任何操作后，产品进入休眠状态，显示屏也会自动熄灭。在充电或者放电状态下如需要屏幕常亮，操作步骤如下：在显示屏亮起后，双击“总电源开关键”，屏幕进入常亮模式。如需关闭屏幕的常亮模式，操作步骤如下：短按“总电源开关键”，屏幕将自动熄灭。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "caution",
+            "source_ref": "transcribed-pdf/product_overview/caution-4",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "注意"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "在屏幕常亮模式下，不进行任何充电输入或连接负载的放电操作，持续2H后屏幕自动熄灭。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "注意"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "在屏幕常亮模式下，不进行任何充电输入或连接负载的放电操作，持续2H后屏幕自动熄灭。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 4,
+          "children": [
+            {
+              "kind": "text",
+              "text": "2.3.3 LED照明灯开启及关闭"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "LED照明灯共有三种模式："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 低亮模式、高亮模式和SOS模式。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "短按LED开关键同时LED灯亮起，默认为低亮模式，再次短按LED开关键依次切换为高亮、SOS模式及关闭LED灯。在其中任何一种模式开启期间，长按LED开关键都可以关闭LED灯。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "parallel",
+      "title": "3.并机操作说明",
+      "pages": [
+        6,
+        7
+      ],
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-parallel",
+          "children": [
+            {
+              "kind": "text",
+              "text": "3.并机操作说明"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "warning",
+            "source_ref": "transcribed-pdf/parallel/warning-5",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "警告"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "并机模式下无法进行AC充电，可进行DC充电。\n请勿在AC输出开启时（AC按键指示灯亮起时）用手触摸并机线插入口，此处为220V高压，存在触电风险！"
+              },
+              {
+                "role": "items",
+                "content_kind": "list_items",
+                "content": [
+                  "并机模式下无法进行AC充电，可进行DC充电。",
+                  "请勿在AC输出开启时（AC按键指示灯亮起时）用手触摸并机线插入口，此处为220V高压，存在触电风险！"
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "警告"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "list",
+                              "ordered": false,
+                              "children": [
+                                {
+                                  "kind": "list_item",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "并机模式下无法进行AC充电，可进行DC充电。"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "list_item",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "请勿在AC输出开启时（AC按键指示灯亮起时）用手触摸并机线插入口，此处为220V高压，存在触电风险！"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "3.1 并机"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-6/parallel",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "parallel"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "并机连接与操作步骤. a. 连接并机线前，确保两台户外电源的AC输出均处于关闭状态；b. 插入并机线；c. 依次打开两台户外电源的AC输出。 并机成功后，显示屏上的输出功率指示将以每秒一次的频率闪烁10次。同时会在App中点亮并机图标。 并机后，单个AC输出口的最大输出功率为2200W，四个AC输出口的最大输出功率为3000W。 并机状态下，AC负载由两台设备共同供电，DC负载仍由单台设备供电。"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-parallel.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "parallel",
+              "web_replace_key": "",
+              "source_fragment_sha256": "c0dbcfff1dd82b457a19069f3579b0e171c730ae4a71e1d261ef3bb8bc2ba58c",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-parallel.svg",
+              "alt": "并机连接与操作步骤. a. 连接并机线前，确保两台户外电源的AC输出均处于关闭状态；b. 插入并机线；c. 依次打开两台户外电源的AC输出。 并机成功后，显示屏上的输出功率指示将以每秒一次的频率闪烁10次。同时会在App中点亮并机图标。 并机后，单个AC输出口的最大输出功率为2200W，四个AC输出口的最大输出功率为3000W。 并机状态下，AC负载由两台设备共同供电，DC负载仍由单台设备供电。"
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "3.2 退出并机"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "退出并机前，先移除所有负载设备，关闭两台户外电源的AC输出，然后依次拔出并机线。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "3.3 注意事项"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "并机线需单独购买，"
+                    }
+                  ]
+                },
+                {
+                  "kind": "text",
+                  "text": " 请访问电小二官方网站购买，或联系电小二官方客服获取帮助。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "连接并机线前，请确保两台设备的AC输出已关闭（AC按键指示灯熄灭），否则可能损坏设备。并机成功后，如未关闭AC输出就拔掉并机线，可能会触发过载保护。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "插入并机线后，两台设备会默认进入并机准备模式。此时，需两台设备的AC输出均打开后，才能进行并机输出；仅打开其中一台设备的AC输出无法进行并机输出。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "若插上并机线且并机失败，显示屏将显示故障代码FA。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "并机过程中，如任意一台设备的AC输出被关闭或出现故障，系统将自动退出并机模式，另一台设备也会自动关闭AC输出，并显示故障代码FA。此过程不会影响DC输出。如需重新并机，请再次按下两台设备的AC按键。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "关闭AC输出后，如需重新开启，必须等待5秒，以确保正常输出电压。若未按此操作，AC输出可能无法正常工作。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "charging",
+      "title": "4.充电方式",
+      "pages": [
+        7,
+        8,
+        9
+      ],
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-charging",
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.充电方式"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "绿色能源优先模式："
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 本产品倡导优先使用绿色能源，本产品支持太阳能充电与市电充电同时使用。当同时开启市电充电与太阳能充电时，产品会优先太阳能充电且太阳能充电与市电充电同时以电池最大允许功率充电。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "温馨提示："
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": true,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "产品充电环境温度为0°C–45°C，放电环境温度为−10°C–45°C，超出此温度范围会限制产品充放电，甚至无法充放电。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "产品的充电功率和电池能量会因温度的变化有所差异。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "tip",
+            "source_ref": "transcribed-pdf/charging/tip-6",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "提示"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "首次使用前请先将本设备充满电！"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "提示"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "首次使用前请先将本设备充满电！"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.1市电充电"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "请使用官方标配的AC电源线。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 4,
+          "children": [
+            {
+              "kind": "text",
+              "text": "应急闪充模式"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "储能可以通过AC充电方式实现超速充电，"
+            },
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "请在电小二App上激活或关闭此功能。"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " 应急闪充模式下，显示剩余电量的环形灯闪烁速度加快。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "*以正常充电速度充电能最大程度保护电池。我们建议仅在必要时使用应急充电，不建议长期使用此功能。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-7/ac-charge",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "ac-charge"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "AC电源线与市电充电连接"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-ac-charge.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "ac-charge",
+              "web_replace_key": "",
+              "source_fragment_sha256": "25a71d80808d2c3b86e142fc43b68b2cb871e893987c1b095904ab4e6a03f775",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-ac-charge.svg",
+              "alt": "AC电源线与市电充电连接"
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.2太阳能充电"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "本产品有两个DC8020直流输入端口，每个DC8020直流输入口支持一块100W或一块200W太阳能板直接接入使用，当一个DC8020输入口需要同时接入两块100W太阳能板时，需要搭配太阳能串联转接盒（单独售卖）使用。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-7/solar-direct",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "solar-direct"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "太阳能板直接连接充电"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-solar-direct.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "solar-direct",
+              "web_replace_key": "",
+              "source_fragment_sha256": "00c8983164fb1b9b3defaf51986fb1073fcd6dc9c80c9f127c37c5f311b90831",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-solar-direct.svg",
+              "alt": "太阳能板直接连接充电"
+            }
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-8/solar-four",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "solar-four"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "两个DC8020输入端口连接四块同型号太阳能板"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-solar-four.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "solar-four",
+              "web_replace_key": "",
+              "source_fragment_sha256": "2fd9eeb7610beed9311cbe288101e14029ace748c19c3a090c75646b3f484d69",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-solar-four.svg",
+              "alt": "两个DC8020输入端口连接四块同型号太阳能板"
+            }
+          ]
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "caution",
+            "source_ref": "transcribed-pdf/charging/caution-7",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "注意"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "请确保DC输入端口的电压一致，连接到两个DC输入端口的电源，其电压必须保持一致，否则可能导致产品异常或损坏。\n例如：\n连接太阳能板至两个DC8020输入端口时，必须使用相同型号的Jackery太阳能板，并确保连接的数量一致。否则，不同型号或数量不匹配可能导致电压不一致，从而损坏产品。\n给产品充电时，请勿同时使用车充充电与光伏充电，否则可能烧坏车内保险丝或导致充电失败。"
+              },
+              {
+                "role": "items",
+                "content_kind": "list_items",
+                "content": [
+                  "连接太阳能板至两个DC8020输入端口时，必须使用相同型号的Jackery太阳能板，并确保连接的数量一致。否则，不同型号或数量不匹配可能导致电压不一致，从而损坏产品。",
+                  "给产品充电时，请勿同时使用车充充电与光伏充电，否则可能烧坏车内保险丝或导致充电失败。"
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "注意"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "请确保DC输入端口的电压一致，连接到两个DC输入端口的电源，其电压必须保持一致，否则可能导致产品异常或损坏。"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "例如："
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list",
+                              "ordered": true,
+                              "children": [
+                                {
+                                  "kind": "list_item",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "连接太阳能板至两个DC8020输入端口时，必须使用相同型号的Jackery太阳能板，并确保连接的数量一致。否则，不同型号或数量不匹配可能导致电压不一致，从而损坏产品。"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "list_item",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "给产品充电时，请勿同时使用车充充电与光伏充电，否则可能烧坏车内保险丝或导致充电失败。"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-8/solar-mismatch",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "solar-mismatch"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "错误示例：两个输入端口连接不同数量的太阳能板"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-solar-mismatch.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "solar-mismatch",
+              "web_replace_key": "",
+              "source_fragment_sha256": "51bdca4b51f0a876adb9084d9cf5baf7846fb90ce448c63c9b38d44e7eb468b8",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-solar-mismatch.svg",
+              "alt": "错误示例：两个输入端口连接不同数量的太阳能板"
+            }
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-8/solar-car-mixed",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "solar-car-mixed"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "错误示例：同时使用太阳能和车充"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-solar-car-mixed.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "solar-car-mixed",
+              "web_replace_key": "",
+              "source_fragment_sha256": "825999bde34c106737c51dd6a8a61716273801238db5808caeb3f49439286938",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-solar-car-mixed.svg",
+              "alt": "错误示例：同时使用太阳能和车充"
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.3车充充电"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "本产品适用12V车型车充口对本产品进行充电，请在汽车点火启动后使用车充充电，以免造成汽车电瓶亏电无法启动。同时请确保汽车车充口和车充线的点烟器接触良好，确保点烟器完全插入到位，如汽车在行驶过程中，路况颠簸，禁止使用车充充电，防止车充接触不良，引起接触点烧坏。若因不按规范操作而造成损失，本公司不予承担相应责任。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-8/car-charge",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "car-charge"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "车充连接；车载充电线需单独购买"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-car-charge.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "car-charge",
+              "web_replace_key": "",
+              "source_fragment_sha256": "05911036c0d09768c64e3b7a990c3d2077a0a9f25076d3492bc48a29ac8b9dde",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-car-charge.svg",
+              "alt": "车充连接；车载充电线需单独购买"
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.4充电注意安全事项"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": true,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "请勿同时使用车充与太阳能充电，否则，会损坏车内保险丝。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "车充充电只支持12V车型，不支持24V车型，请勿用24V车型的车给本产品充电以免造成人身伤害及财产损失。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "请勿使用非电小二品牌的配件进行充电，尤其在使用太阳能板充电时，建议使用电小二品牌的太阳能板进行充电，对于使用其他品牌的太阳能板充电造成的损失，本司概不负责。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "title": "5.使用注意安全事项",
+      "pages": [
+        9
+      ],
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-safety",
+          "children": [
+            {
+              "kind": "text",
+              "text": "5.使用注意安全事项"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "使用本产品时，应始终遵循基本注意事项，包括："
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": true,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "使用本产品之前，请阅读所有说明。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "为了降低风险，当在儿童附近使用本产品时，需要进行密切监督。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "使用非专业产品制造商推荐或销售的配件可能会导致触电的风险。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "产品在未使用时，请将电源插头拔出产品插座。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "禁止对产品进行拆机，产品拆机后可能会导致火灾、爆炸或触电等不可预测的风险。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "禁止使用损坏的电线或插头，或损坏的输出电缆来使用产品，有触电的危险。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "请在通风良好的地方对产品进行充电，请勿以任何方式限制产品的通风。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "请将产品放置在干燥的地方，不得淋雨，不得使产品进水，这会有触电风险（非预定仅在室外安装使用）。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "禁止将产品撞击或投入火中，这可能导致产品发生起火，爆炸等安全事故。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "禁止在高温下（直热的阳光下或很热的汽车车内）使用或放置产品，否则可能会引起内部电池过热、起火或功能失效，寿命减短等风险。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "首次使用时，请在使用前将设备充满电。如果本产品在电量耗尽的情况下长时间（3个月–6个月）存放，其性能会下降，甚至无法充电。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "title": "6.包装清单",
+      "pages": [
+        9
+      ],
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-in_the_box",
+          "children": [
+            {
+              "kind": "text",
+              "text": "6.包装清单"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-INBOX",
+            "variant": "three-card-responsive",
+            "source_ref": "transcribed-pdf/in_the_box/8",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "包装清单"
+              },
+              {
+                "role": "cards",
+                "content_kind": "ordered_cards",
+                "content": [
+                  {
+                    "number": 1,
+                    "image_asset_role": "card_1_art",
+                    "alt": "户外电源1100 Pro 2",
+                    "label": "户外电源1100 Pro 2"
+                  },
+                  {
+                    "number": 2,
+                    "image_asset_role": "card_2_art",
+                    "alt": "AC电源线",
+                    "label": "AC电源线"
+                  },
+                  {
+                    "number": 3,
+                    "image_asset_role": "card_3_art",
+                    "alt": "用户指南",
+                    "label": "用户指南"
+                  }
+                ]
+              },
+              {
+                "role": "tip_label",
+                "content_kind": "inline_text",
+                "content": "说明"
+              },
+              {
+                "role": "tip_body",
+                "content_kind": "rich_text",
+                "content": "车载充电线需单独购买，请前往电小二官网购买或联系电小二售后客服寻求帮助。"
+              }
+            ],
+            "assets": [
+              {
+                "role": "card_1_art",
+                "asset_ref": "assets/cn-inbox-unit.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_2_art",
+                "asset_ref": "assets/reused-cn-ac-cable.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_3_art",
+                "asset_ref": "assets/reused-shared-manual.png",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.special.inbox"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/cn-inbox-unit.svg",
+                              "alt": "户外电源1100 Pro 2"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "户外电源1100 Pro 2"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/reused-cn-ac-cable.png",
+                              "alt": "AC电源线"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "AC电源线"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/reused-shared-manual.png",
+                              "alt": "用户指南"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "用户指南"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "说明"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "车载充电线需单独购买，请前往电小二官网购买或联系电小二售后客服寻求帮助。"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "title": "APP操作说明书",
+      "pages": [
+        10,
+        11
+      ],
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-app",
+          "children": [
+            {
+              "kind": "text",
+              "text": "APP操作说明书"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "1. 下载并登录App"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-APP",
+            "variant": "download-qr-only",
+            "source_ref": "transcribed-pdf/app/9",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "下载电小二App"
+              },
+              {
+                "role": "paragraph",
+                "content_kind": "rich_text",
+                "content": {
+                  "html": "在App Store或者国内各大应用市场搜索“电小二”App安装并注册登录。或扫描下图二维码下载安装。",
+                  "text": "在App Store或者国内各大应用市场搜索“电小二”App安装并注册登录。或扫描下图二维码下载安装。"
+                }
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-app-download.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.app"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "在App Store或者国内各大应用市场搜索“电小二”App安装并注册登录。或扫描下图二维码下载安装。"
+                }
+              ]
+            },
+            {
+              "kind": "image",
+              "source": "assets/cn-app-download.svg",
+              "alt": "电小二App下载二维码"
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "2. 添加设备"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "2.1 在App内点击 ＋ 添加设备。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "2.2 短按设备上的“POWER”键开机，设备上的WiFi和蓝牙图标闪烁后表示设备已进入配网模式，在App内点击“图标已快闪”按钮并允许应用连接附近的设备和打开蓝牙权限。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-10/app-phones",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "app-phones"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "电小二App添加设备：2.1与2.2"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "live"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              },
+              {
+                "role": "captions",
+                "content_kind": "ordered_labels",
+                "content": [
+                  {
+                    "html": "2.1",
+                    "text": "2.1"
+                  },
+                  {
+                    "html": "2.2",
+                    "text": "2.2"
+                  }
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/reused-cn-app-phones.png",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "app-phones",
+              "web_replace_key": "",
+              "source_fragment_sha256": "e86eb7f3ba383c0d925641d2bb7256ae6fed6e6d54d33f8ffd552e84b3c03698",
+              "capture_following_lines": 0,
+              "captions_origin": "configured",
+              "caption_centers_pct": [
+                19.3,
+                80.7
+              ]
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/reused-cn-app-phones.png",
+              "alt": "电小二App添加设备：2.1与2.2"
+            }
+          ]
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "source_ref": "transcribed-pdf/app/note-10",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "备注"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "打开设备，如果两小时内未连接到APP，设备会自动关闭Wi-Fi和蓝牙，长按“DC/USB输出电源键”和“AC输出电源键”重新打开Wi-Fi和蓝牙。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "备注"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "打开设备，如果两小时内未连接到APP，设备会自动关闭Wi-Fi和蓝牙，长按“DC/USB输出电源键”和“AC输出电源键”重新打开Wi-Fi和蓝牙。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-10/app-controls",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "app-controls"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "DC/USB输出电源键、AC输出电源键、POWER开关键"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-app-controls.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "app-controls",
+              "web_replace_key": "",
+              "source_fragment_sha256": "0f1c8a80bf5125916025af02db886e6c235ebae395b28886cedcea3dbe399d87",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-app-controls.svg",
+              "alt": "DC/USB输出电源键、AC输出电源键、POWER开关键"
+            }
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "2.3 点击搜索到的设备图标后App通过蓝牙自动连接设备。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "source_ref": "transcribed-pdf/app/note-11",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "备注"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "如果在绑定过程中提示“设备已被绑定”，可通过以下两种方式连接：\n设备拥有者通过App将此设备分享给其他用户；\n长按“POWER开关键”和“DC/USB输出电源键”3秒重置设备后可重新绑定设备。"
+              },
+              {
+                "role": "items",
+                "content_kind": "list_items",
+                "content": [
+                  "设备拥有者通过App将此设备分享给其他用户；",
+                  "长按“POWER开关键”和“DC/USB输出电源键”3秒重置设备后可重新绑定设备。"
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "备注"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "如果在绑定过程中提示“设备已被绑定”，可通过以下两种方式连接："
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list",
+                              "ordered": false,
+                              "children": [
+                                {
+                                  "kind": "list_item",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "设备拥有者通过App将此设备分享给其他用户；"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "list_item",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "长按“POWER开关键”和“DC/USB输出电源键”3秒重置设备后可重新绑定设备。"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "2.4 设备连接成功后输入设备将要连接的WiFi名称和密码，设备自动连接到WiFi网络。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "source_ref": "transcribed-pdf/app/note-12",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "备注"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "请选择2.4GHz频段的Wi-Fi网络，设备不支持5GHz频段的Wi-Fi网络。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "备注"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "请选择2.4GHz频段的Wi-Fi网络，设备不支持5GHz频段的Wi-Fi网络。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "2.5 设备添加成功后进入设备主页面，设备上的Wi-Fi图标会常亮。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-11/app-results",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "app-results"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "App连接结果：2.3、2.4、2.5，1100 Pro 2"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "live"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              },
+              {
+                "role": "captions",
+                "content_kind": "ordered_labels",
+                "content": [
+                  {
+                    "html": "2.3",
+                    "text": "2.3"
+                  },
+                  {
+                    "html": "2.4",
+                    "text": "2.4"
+                  },
+                  {
+                    "html": "2.5",
+                    "text": "2.5"
+                  }
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-app-results.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "app-results",
+              "web_replace_key": "",
+              "source_fragment_sha256": "47ea371aa7ab63c3e254e72623b8aefda8c1dce563091031b3fb2a4d3dbd8ab9",
+              "capture_following_lines": 0,
+              "captions_origin": "configured",
+              "caption_centers_pct": [
+                14.9,
+                49.9,
+                85.1
+              ]
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-app-results.svg",
+              "alt": "App连接结果：2.3、2.4、2.5，1100 Pro 2"
+            }
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "图片仅供参考"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "3. 解绑设备"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "点击设备主界面右上角的设置按钮进入设置页面，点击页面最下方的解除绑定按钮解绑设备。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4. 其他说明"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 4,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.1 打开WiFi&蓝牙："
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "开机后自动打开WiFi&蓝牙，屏幕上的WiFi&蓝牙图标点亮表示WiFi&蓝牙已被打开。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "同时按DC/USB输出电源按键和AC输出电源按键，直到屏幕上的WiFi&蓝牙图标点亮表示WiFi&蓝牙已被打开。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 4,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.2 关闭WiFi&蓝牙："
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "同时按DC/USB输出电源按键和AC输出电源按键，直到屏幕上的WiFi&蓝牙图标熄灭表示WiFi&蓝牙已被关闭。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "两小时内未连接WiFi或蓝牙，设备上的WiFi&蓝牙图标会自动关闭。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 4,
+          "children": [
+            {
+              "kind": "text",
+              "text": "4.3 重置WiFi&蓝牙："
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "同时按下“POWER开关键”和“DC/USB输出电源按键”3秒，已连接的APP账号会被解绑，系统会重置Wi-Fi和蓝牙，同时清除所有数据。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "title": "制造商与服务信息",
+      "pages": [
+        12
+      ],
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-contact",
+          "children": [
+            {
+              "kind": "text",
+              "text": "制造商与服务信息"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "transcribed-pdf/page-12/certificate",
+            "language": "zh",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "certificate"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "合格证：QC PASS 01，广东电小二科技有限公司. 检验员：QC PASS 01；检验日期：________；广东电小二科技有限公司。"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "embedded"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/cn-certificate.svg",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "image_key": "certificate",
+              "web_replace_key": "",
+              "source_fragment_sha256": "869cd79a2619b91dcb181244e6ae52fa9df3e91605249e7baa231f37917f8f2a",
+              "capture_following_lines": 0
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/cn-certificate.svg",
+              "alt": "合格证：QC PASS 01，广东电小二科技有限公司. 检验员：QC PASS 01；检验日期：________；广东电小二科技有限公司。"
+            }
+          ]
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "anchor": "native-contact-layout",
+          "children": [
+            {
+              "kind": "figure",
+              "anchor": "native-contact-code",
+              "children": [
+                {
+                  "kind": "image",
+                  "source": "assets/reused-cn-service-qr.png",
+                  "alt": "电小二官方品牌公众号二维码"
+                },
+                {
+                  "kind": "caption",
+                  "children": [
+                    {
+                      "kind": "small_text",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "关注官方品牌公众号，"
+                        },
+                        {
+                          "kind": "line_break"
+                        },
+                        {
+                          "kind": "text",
+                          "text": "获取更多资讯服务。"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "anchor": "native-contact-details",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "制造商/生产厂：深圳市华宝新能源股份有限公司"
+                    },
+                    {
+                      "kind": "line_break"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "地址：深圳市龙华区大浪街道同胜社区华繁路东侧嘉安达科技工业园"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "www.dx2.cn"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    }
+  ]
+}

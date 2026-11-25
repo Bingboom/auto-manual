@@ -1,0 +1,78 @@
+[
+  {
+    "physical_pages": [
+      2
+    ],
+    "content": "specification",
+    "component": "HB-TABLE-SPEC/vertical",
+    "expected_rows": 18
+  },
+  {
+    "physical_pages": [
+      3,
+      4
+    ],
+    "content": "LCD number/icon/name catalog",
+    "component": "declared-native-table",
+    "reason": "Source has no separate description slot; text reference adapter rejects icons; no descriptions are fabricated.",
+    "expected_rows": 19
+  },
+  {
+    "physical_pages": [
+      4
+    ],
+    "content": "energy-saving thresholds",
+    "component": "HB-TABLE-REFERENCE/lcd-actions",
+    "expected_rows": 3
+  },
+  {
+    "physical_pages": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "content": "source warnings/cautions/notes",
+    "component": "HB-CALLOUT-STRIP",
+    "policy": "source-specific informational heading 温馨提示 stays native prose/list"
+  },
+  {
+    "physical_pages": [
+      9
+    ],
+    "content": "inbox",
+    "component": "HB-SPECIAL-INBOX",
+    "expected_cards": 3
+  },
+  {
+    "physical_pages": [
+      10,
+      11
+    ],
+    "content": "App download, exact frames and native captions",
+    "component": "HB-SPECIAL-APP; HB-SPECIAL-REFERENCE-FIGURE",
+    "expected_captions": [
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5"
+    ]
+  },
+  {
+    "physical_pages": [
+      3,
+      6,
+      7,
+      8,
+      10,
+      11,
+      12
+    ],
+    "content": "source-specific complete panels and source forms",
+    "component": "HB-SPECIAL-REFERENCE-FIGURE",
+    "policy": "preserve gray frames/borders/full phone edges; searchable accessible panel copy"
+  }
+]

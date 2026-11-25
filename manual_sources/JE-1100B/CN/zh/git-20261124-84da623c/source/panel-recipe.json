@@ -1,0 +1,893 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_je1100b_cn_000071",
+    "expected_sha256": "84da623c6424a0fe3d48475c76094422025c8e9b18972f6373c316c08ab396d9",
+    "expected_page_count": 12
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 12
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.5,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "page_001",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "page_002",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "page_003",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "page_004",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "page_005",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "page_006",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "page_007",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "page_008",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "page_009",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "page_010",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "page_011",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "page_012",
+      "role": "manual_page",
+      "locale": "zh",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "je1100b-cn-84da623c/overview",
+      "page": 3,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            23,
+            56,
+            346,
+            319
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/overview.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/overview.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/lcd-display",
+      "page": 3,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            47,
+            343,
+            328,
+            499
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/lcd-display.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/lcd-display.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/parallel",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            185,
+            353,
+            395
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/parallel.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/parallel.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/ac-charge",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            219,
+            277,
+            334,
+            368
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/ac-charge.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/ac-charge.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/solar-direct",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            74,
+            422,
+            310,
+            503
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/solar-direct.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/solar-direct.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/solar-four",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            22,
+            18,
+            336,
+            107
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/solar-four.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/solar-four.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/solar-mismatch",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21,
+            176,
+            347,
+            265.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/solar-mismatch.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/solar-mismatch.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/solar-car-mixed",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            20,
+            268,
+            346,
+            354.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/solar-car-mixed.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/solar-car-mixed.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/car-charge",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            95,
+            426,
+            315,
+            504
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/car-charge.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/car-charge.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/inbox-unit",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            46,
+            356,
+            137,
+            426
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/inbox-unit.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/inbox-unit.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/app-download",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            132.5,
+            83.3,
+            188.7,
+            139.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/app-download.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/app-download.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/app-controls",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45,
+            404,
+            335,
+            488
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/app-controls.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/app-controls.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/app-results",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            56,
+            122,
+            301,
+            260
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/app-results.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/app-results.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    },
+    {
+      "asset_key": "je1100b-cn-84da623c/certificate",
+      "page": 12,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1100B"
+        ],
+        "regions": [
+          "CN"
+        ],
+        "locales": [
+          "zh"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            113,
+            284,
+            258,
+            430
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "panels/certificate.pdf"
+        },
+        {
+          "format": "png",
+          "path": "panels/certificate.png",
+          "scale": 3
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Source-specific complete panel; no shared registry promotion."
+        ]
+      },
+      "risk_tags": [
+        "localized-text",
+        "complete-panel"
+      ]
+    }
+  ]
+}

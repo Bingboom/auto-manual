@@ -5775,6 +5775,11 @@
       "registered": "2026-11-03",
       "known_drift": {}
     },
+    "manual_sources/JE-1100B/CN/zh/git-20261124-84da623c": {
+      "approval": "MA-483; operator-supplied PDF, confirmed short press and archive, responsive verification and green-gated release",
+      "registered": "2026-11-24",
+      "known_drift": {}
+    },
     "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
       "registered": "2026-11-03",
