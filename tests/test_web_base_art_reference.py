@@ -3,9 +3,14 @@ from __future__ import annotations
 from pathlib import Path
 import unittest
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
-from tools.web.base_art_reference import arrange_base_art_reference
+from tools.utils.path_utils import get_paths
+from tools.web.base_art_reference import (
+    LABEL_DENSITIES,
+    MOBILE_LABEL_MODES,
+    arrange_base_art_reference,
+)
 
 
 SOURCE = Path("page/08_charging_methods.rst")
@@ -43,6 +48,48 @@ def _semantic(*lines: str) -> tuple[BeautifulSoup, object, object, object]:
 
 def _text(tag: object) -> str:
     return " ".join(tag.get_text().split())  # type: ignore[attr-defined]
+
+
+def _arrange(**layout: object) -> Tag:
+    soup, semantic, image, label_block = _semantic("Vehicle", "Note")
+    assert isinstance(semantic, Tag)
+    arrange_base_art_reference(
+        soup, semantic=semantic, image=image, label_block=label_block,
+        spec=_spec(**layout), source_path=SOURCE, error_type=ValueError,
+    )
+    return semantic
+
+
+class LabelOptionTests(unittest.TestCase):
+    def test_label_options_mark_the_semantic_wrapper(self) -> None:
+        marks = ("data-mobile-labels", "tabindex", "data-label-density")
+        cases = (
+            ({}, {}),
+            ({"mobile_labels": "stack", "label_density": "regular"}, {}),
+            ({"mobile_labels": "overlay"}, {"data-mobile-labels": "overlay"}),
+            ({"mobile_labels": "scroll", "label_density": "compact"},
+             {"data-mobile-labels": "scroll", "tabindex": "0", "data-label-density": "compact"}),
+        )
+        for layout, expected in cases:
+            with self.subTest(layout=layout):
+                semantic = _arrange(**layout)
+                self.assertEqual(
+                    {name: semantic.get(name) for name in marks if semantic.has_attr(name)},
+                    expected,
+                )
+
+    def test_unknown_label_options_are_refused(self) -> None:
+        for layout in ({"mobile_labels": "shrink"}, {"label_density": "dense"}):
+            with self.subTest(layout=layout):
+                with self.assertRaisesRegex(ValueError, "mobile_labels .* label_density"):
+                    _arrange(**layout)
+
+    def test_the_shared_stylesheet_styles_every_option_the_renderer_writes(self) -> None:
+        css = (get_paths().renderer_contracts_dir / "web_base_art_components.css").read_text(encoding="utf-8")
+        for mode in MOBILE_LABEL_MODES[1:]:
+            self.assertIn(f'[data-mobile-labels="{mode}"]', css)
+        for density in LABEL_DENSITIES[1:]:
+            self.assertIn(f'[data-label-density="{density}"]', css)
 
 
 class BaseArtReferenceTests(unittest.TestCase):

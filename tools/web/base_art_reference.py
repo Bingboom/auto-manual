@@ -58,6 +58,38 @@ def _tone(value: Any, *, field: str, source_path: Path, error_type: type[Excepti
     return tone
 
 
+# Narrow-screen policy for the live labels: stack under the art (default),
+# stay on it and shrink with it (overlay), or stay on it at a readable width
+# the reader scrolls sideways (scroll).
+MOBILE_LABEL_MODES = ("stack", "overlay", "scroll")
+# Label type: regular, or compact for long copy on a crowded drawing.
+LABEL_DENSITIES = ("regular", "compact")
+
+
+def _apply_label_options(
+    semantic: Tag,
+    layout: Mapping[str, Any],
+    *,
+    reference_id: str,
+    source_path: Path,
+    error_type: type[Exception],
+) -> None:
+    mobile = str(layout.get("mobile_labels") or "stack")
+    density = str(layout.get("label_density") or "regular")
+    if mobile not in MOBILE_LABEL_MODES or density not in LABEL_DENSITIES:
+        raise error_type(
+            f"{source_path}: base-art reference figure {reference_id!r} declares "
+            f"mobile_labels {mobile!r} / label_density {density!r}; expected one of "
+            f"{MOBILE_LABEL_MODES} / {LABEL_DENSITIES}"
+        )
+    if mobile != "stack":
+        semantic["data-mobile-labels"] = mobile
+    if mobile == "scroll":
+        semantic["tabindex"] = "0"  # a scrolling region is reachable from the keyboard
+    if density != "regular":
+        semantic["data-label-density"] = density
+
+
 def arrange_base_art_reference(
     soup: BeautifulSoup,
     *,
@@ -127,8 +159,9 @@ def arrange_base_art_reference(
     image["alt"] = ""
     if layout.get("preserve_frame"):
         semantic["data-preserve-art-frame"] = "true"
-    if layout.get("mobile_labels") == "overlay":
-        semantic["data-mobile-labels"] = "overlay"
+    _apply_label_options(
+        semantic, layout, reference_id=reference_id, source_path=source_path, error_type=error_type
+    )
     panel = soup.new_tag(
         "div",
         attrs={
@@ -190,4 +223,4 @@ def arrange_base_art_reference(
         )
 
 
-__all__ = ["arrange_base_art_reference"]
+__all__ = ["LABEL_DENSITIES", "MOBILE_LABEL_MODES", "arrange_base_art_reference"]

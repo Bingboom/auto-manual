@@ -224,7 +224,9 @@ the shared builders and parsers, and writes `manual.ir.json` (manual-ir/v2,
   own markup: `review_draft_rendered.py` reads every
   `[data-component-id]` root back into its ComponentSpec with the shared
   builder. Live labels on base art keep the rectangles, pill tones and panel
-  the renderer wrote (`base_art_layout`). A Word print layout
+  the renderer wrote (`base_art_layout`); the shell's own dense layouts take
+  the shared `mobile_labels=scroll` (`native-dense`) and
+  `label_density=compact` (`native-overview`) options. A Word print layout
   (`manual-two-col-table`) flows in one column, and its signal-word lead
   becomes a callout. Copy outside any chapter joins the next chapter; a run
   that opens with an identified heading (a preface) is its own page. A table
@@ -243,9 +245,8 @@ pending marker (a magenta placeholder; copy to confirm, `review-pending` or
 reference-only artwork), copy awaiting native review (new translations,
 JP-only inserts), fallback copy a component needs but the draft lacks
 ([`review_draft_fallback_copy.json`](../../../docs/renderers/contracts/review_draft_fallback_copy.json)),
-a presentation gap (an operation panel without a Web presentation contract, a
-figure whose label density only the draft's own stylesheet sets, figure copy
-a component does not carry), a shared-style issue (including an undeclared
+a presentation gap (an operation panel without a Web presentation contract,
+figure copy or artwork a component does not carry), a shared-style issue (including an undeclared
 plain table), or a missing
 `draft.json` `approval` (operator, date, quote and the approved HTML's
 `html_sha256`), `web_title` or `release_evidence` (`typeset_compare` and

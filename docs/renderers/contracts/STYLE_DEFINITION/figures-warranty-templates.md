@@ -53,6 +53,12 @@ HTML/CSS 按 `prerequisite_fill` 绘制；只有前缀加粗，不把说明移�
 `preserve_frame=true` 保留源图边界，禁止默认裁边。JE-2000F/CN 的两张太阳能图
 和车充图使用这两个选项，车充白色提示框由 `.hb-reference-live-pill` 绘制。
 
+标注很密的底图（如完整接口总览）可声明两个共享选项，不写目标专属样式：
+`label_density=compact` 让标注按常规字号的四分之三排、最小 10px，行距收紧并从
+矩形顶部起排（窄屏堆叠在图下时仍用堆叠字号）；`mobile_labels=scroll` 让窄屏
+仍按底图坐标放置，底图保持 660px 宽度横向滚动，滚动区可用键盘聚焦，文字不缩到
+不可读。省略时分别为 `regular` 与 `stack`；其它取值在合同校验和渲染时都会拒绝。
+
 原稿同时有应用商店徽章和二维码时，使用已有 `HB-SPECIAL-APP/download` 双栏组件。
 源图声明 `hb-source-app-download`，`data-app-download` 绑定 `artwork.store` 与
 `artwork.qr`，后接两段原语种说明；共享 IR 固定两栏和素材角色，不依赖型号白名单。
