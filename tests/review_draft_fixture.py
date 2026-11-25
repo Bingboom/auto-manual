@@ -95,7 +95,7 @@ RENDERED = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>审核稿
 <div class="hb-inbox-tip"><div class="hb-inbox-tip-label"><p>TIP</p></div><div class="hb-inbox-tip-body"><p>Keep the box.</p></div></div></figure>
 </section>
 <section id="overview"><h1>OVERVIEW</h1>
-<div class="native-figure native-dense"><figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="front" data-web-presentation-mode="base-art-live-copy">
+<div class="native-figure native-overview native-dense"><figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="front" data-web-presentation-mode="base-art-live-copy">
 <div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="front.semantic">
 <div class="hb-reference-art-panel" style="--hb-panel-top:4%;--hb-panel-fill:#f4f4f4"><img alt="" class="hb-reference-art hb-composite-art" src="assets/figure1.png"/>
 {_LABEL.format(n=0, x=12, y=30, fill='', text='<span class="live-label-copy"><b>Power</b> button</span>')}

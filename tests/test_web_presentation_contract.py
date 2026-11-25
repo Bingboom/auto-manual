@@ -745,6 +745,10 @@ class WebPresentationContractTests(unittest.TestCase):
             {"reference.charging-car": ["base-art-live-copy"]},
             contract["figure_coverage"]["requirements"][0]["slot_status_overrides"],
         )
+        dense = {**layout, "mobile_labels": "scroll", "label_density": "compact"}
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(Path(td), overlays=[overlay(dense)])
+            load_web_manual_contract(entry, model="MODEL", region="REGION")
         rejected = (
             ("grant missing for a declared mode", overlay(layout, granted=False), "exactly match"),
             ("unknown mode", overlay(layout, mode="base-art"), "unsupported presentation_mode"),
@@ -760,6 +764,10 @@ class WebPresentationContractTests(unittest.TestCase):
             ("pill tone that is not #rrggbb", overlay(placed(fill="white")), "fill must be a #rrggbb tone"),
             ("foreground that is not #rrggbb", overlay(placed(color="white")), "color must be a #rrggbb tone"),
             ("label names a leader", overlay(placed(leader=[1, 2])), "must name only"),
+            ("unknown phone label mode", overlay({**layout, "mobile_labels": "shrink"}),
+             "mobile_labels must be stack, overlay or scroll"),
+            ("unknown label density", overlay({**layout, "label_density": "dense"}),
+             "label_density must be regular or compact"),
         )
         for label, candidate, message in rejected:
             with self.subTest(label), tempfile.TemporaryDirectory() as td:

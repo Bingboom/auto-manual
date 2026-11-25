@@ -10,9 +10,10 @@ troubleshooting, warranty lead and sections, callouts) are left to them.
 
 Reference figures keep their live labels: the positions the base-art
 renderer wrote (``--hb-x`` … on each label, the panel's top band and tone)
-become the figure's ``base_art_layout`` again. An operation panel has no Web
-presentation contract for these models, so it renders as artwork and lines,
-and the gap is listed for the release gate.
+become the figure's ``base_art_layout`` again, and the shell's dense layouts
+become the shared ``mobile_labels`` and ``label_density`` options. An
+operation panel has no Web presentation contract for these models, so it
+renders as artwork and lines, and the gap is listed for the release gate.
 """
 from __future__ import annotations
 
@@ -308,6 +309,18 @@ def _base_art_lines(chapter: DraftChapter, semantic: Tag, labels: list[Tag]) -> 
     return block, layout
 
 
+# The newer shell's own label layouts and the shared options that express them:
+# a dense figure keeps its labels on the art and scrolls sideways on phones; an
+# overview's long port copy uses the compact label type.
+_SHELL_LABEL_OPTIONS = (("native-dense", "mobile_labels", "scroll"),
+                        ("native-overview", "label_density", "compact"))
+
+
+def _shell_label_options(figure: Tag) -> dict[str, str]:
+    return {option: value for wrapper, option, value in _SHELL_LABEL_OPTIONS
+            if figure.find_parent(class_=wrapper) is not None}
+
+
 def _rendered_reference(chapter: DraftChapter, figure: Tag) -> None:
     semantic = figure.select_one(".hb-reference-semantic") or figure
     art = need(semantic.find("img"), "reference artwork")
@@ -331,14 +344,9 @@ def _rendered_reference(chapter: DraftChapter, figure: Tag) -> None:
     if labels:
         block, layout = _base_art_lines(chapter, semantic, labels)
         nodes.append(block)
+        layout.update(_shell_label_options(figure))
         config.update(captions_embedded=False, capture_following_lines=len(labels),
                       presentation_mode="base-art-live-copy", base_art_layout=layout)
-        if figure.find_parent(class_="native-dense") is not None:
-            chapter.presentation_gaps.append({
-                "page_id": chapter.page_id, "component": f"figure {reference_id}",
-                "missing": "the dense label type its draft stylesheet sets (native-dense); "
-                           "shared labels use the default size and may overlap",
-            })
     else:
         config["captions_embedded"] = True
         if len(paragraphs) == 1:

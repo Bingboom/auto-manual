@@ -1,4 +1,4 @@
-"""Keep pre-#1382 cold-replay comparisons on their reviewed stylesheet list.
+"""Keep pre-#1382 cold-replay comparisons on their reviewed stylesheet list and rules.
 
 The original tests still compare every output byte, including CSS and its IR
 hash. Current-style assembly and four-control layouts are tested separately.
@@ -20,6 +20,24 @@ _ROWSPAN_DIVIDER_RULE = (
 )
 _PRE_ROWSPAN_DIVIDER_RULE = "#furo-main-content table.hb-troubleshooting-table tr > *:last-child {"
 
+# The base-art label options (mobile_labels=scroll, label_density=compact) came
+# later still; every edition frozen before #1666 was reviewed without them.
+_BASE_ART_STYLESHEET = "web_base_art_components.css"
+_LABEL_OPTION_SELECTOR = ':is([data-mobile-labels="overlay"], [data-mobile-labels="scroll"])'
+_PRE_LABEL_OPTION_SELECTOR = '[data-mobile-labels="overlay"]'
+_LABEL_OPTION_RULES = (
+    "\n/* Scroll keeps the labels on the art at a readable size:",
+    "\n/* Source-declared empty artwork region;",
+)
+
+
+def _pre_label_option_rules(text: str) -> str:
+    start = text.find(_LABEL_OPTION_RULES[0])
+    end = text.find(_LABEL_OPTION_RULES[1], start)
+    if start < 0 or end < 0 or _LABEL_OPTION_SELECTOR not in text:
+        raise AssertionError("base-art label option rules changed; update the historical stylesheet")
+    return (text[:start] + text[end:]).replace(_LABEL_OPTION_SELECTOR, _PRE_LABEL_OPTION_SELECTOR)
+
 
 def _pre_rowspan_divider_contracts(target: Path) -> Path:
     source = stylesheets.get_paths().renderer_contracts_dir
@@ -29,6 +47,8 @@ def _pre_rowspan_divider_contracts(target: Path) -> Path:
             if _ROWSPAN_DIVIDER_RULE not in text:
                 raise AssertionError("troubleshooting divider rule changed; update the historical stylesheet")
             text = text.replace(_ROWSPAN_DIVIDER_RULE, _PRE_ROWSPAN_DIVIDER_RULE)
+        if name == _BASE_ART_STYLESHEET:
+            text = _pre_label_option_rules(text)
         (target / name).write_text(text, encoding="utf-8")
     return target
 
