@@ -27,12 +27,13 @@ which the private review site shows as the version's Web changes.
 from __future__ import annotations
 
 import argparse
+import base64
 from collections import Counter
 from dataclasses import dataclass, field
 import hashlib
 import json
 from pathlib import Path
-import shutil
+import re
 import sys
 import tempfile
 from typing import Any, Sequence
@@ -61,7 +62,9 @@ from tools.web.presentation import load_web_manual_contract
 from tools.web.review_draft_blocks import TABLE_ADAPTERS, DraftChapter
 from tools.web.review_draft_changes import CHANGES_JSON, changes_record, write_changes
 from tools.web.review_draft_figures import FIGURE_ADAPTERS
-from tools.web.review_draft_overlay import ReviewLayerReport, strip_review_layer
+from tools.web.review_draft_rendered import RENDERED_ADAPTERS
+from tools.web.review_draft_overlay import ReviewLayerReport
+from tools.web.review_draft_shell import manual_chapters
 
 DRAFT_MANIFEST = "draft.json"
 REPORT_JSON = "review_draft_conversion.json"
@@ -107,29 +110,48 @@ def load_draft(root: Path) -> ReviewDraft:
     return ReviewDraft(root=root, manifest=manifest, html_path=html_path)
 
 
+_DATA_IMAGE = re.compile(r"^data:image/(png|jpeg|gif|webp|svg\+xml);base64,(.+)$", re.DOTALL)
+
+
 @dataclass
 class AssetPackager:
-    """Copy each draft image once, by content, into the package."""
+    """Copy each draft image once, by content, into the package.
+
+    A single-file draft embeds its images as base64 ``data:`` URIs; they are
+    written out by content the same way.
+    """
 
     draft_root: Path
     output: Path
     hashes: dict[str, str] = field(default_factory=dict)
 
+    def _write(self, data: bytes, name: str) -> str:
+        digest = hashlib.sha256(data).hexdigest()
+        relative = f"assets/ir/{digest}/{name}"
+        target = self.output / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if not target.exists():
+            target.write_bytes(data)
+        self.hashes[relative] = digest
+        return relative
+
+    def _source_bytes(self, source: str) -> tuple[bytes, str]:
+        embedded = _DATA_IMAGE.match(source)
+        if embedded is not None:
+            extension = {"jpeg": "jpg", "svg+xml": "svg"}.get(embedded.group(1), embedded.group(1))
+            payload = re.sub(r"\s+", "", embedded.group(2))  # HTML may wrap a long URI
+            return base64.b64decode(payload, validate=True), f"image.{extension}"
+        parsed = urlparse(source)
+        file = (self.draft_root / unquote(parsed.path)).resolve()
+        if parsed.scheme or parsed.netloc or not file.is_relative_to(self.draft_root) or not file.is_file():
+            raise ValueError(f"draft image is not a packaged local asset: {source[:120]}")
+        return file.read_bytes(), file.name
+
     def __call__(self, image: Tag) -> str:
         source = str(image.get("src") or "")
         if source.startswith("assets/ir/"):
             return source
-        parsed = urlparse(source)
-        file = (self.draft_root / unquote(parsed.path)).resolve()
-        if parsed.scheme or parsed.netloc or not file.is_relative_to(self.draft_root) or not file.is_file():
-            raise ValueError(f"draft image is not a packaged local asset: {source}")
-        digest = file_sha256(file)
-        relative = f"assets/ir/{digest}/{file.name}"
-        target = self.output / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        if not target.exists():
-            shutil.copy2(file, target)
-        self.hashes[relative] = digest
+        relative = self._write(*self._source_bytes(source))
         image["src"] = relative
         return relative
 
@@ -140,15 +162,7 @@ def _no_file(path: Path) -> str:
 
 def chapters_of(draft: ReviewDraft) -> tuple[list[Tag], ReviewLayerReport]:
     soup = BeautifulSoup(draft.html_path.read_text(encoding="utf-8"), "html.parser")
-    article = soup.select_one("article#furo-main-content")
-    if article is None:
-        raise ValueError(f"{draft.html_path}: no manual article (article#furo-main-content)")
-    layer = strip_review_layer(article)
-    body = article.find("div", recursive=False) or article
-    sections = [node for node in body.find_all("section", recursive=False) if node.get("id")]
-    if not sections:
-        raise ValueError(f"{draft.html_path}: the manual article has no chapter sections")
-    return sections, layer
+    return manual_chapters(soup, source=str(draft.html_path))
 
 
 def convert_chapter(draft: ReviewDraft, section: Tag, packager: AssetPackager) -> tuple[SourcePage, DraftChapter]:
@@ -157,7 +171,7 @@ def convert_chapter(draft: ReviewDraft, section: Tag, packager: AssetPackager) -
         root=BeautifulSoup(section.decode_contents(), "html.parser"), page_id=str(section["id"]),
         language=draft.language, image_key_prefix=f"{draft.model}/{draft.region}",
     )
-    for adapter in (*TABLE_ADAPTERS, *FIGURE_ADAPTERS):
+    for adapter in (*RENDERED_ADAPTERS, *TABLE_ADAPTERS, *FIGURE_ADAPTERS):
         adapter(chapter)
     for image in chapter.root.find_all("img"):
         packager(image)
@@ -211,6 +225,8 @@ def release_blockers(
                  for name, count in layer.unreviewed.items() if count]
     blockers += [f"{row['page_id']}: {row['copy']} uses fallback copy ({row['values']})"
                  for chapter in chapters for row in chapter.fallbacks]
+    blockers += [f"{row['page_id']}: {row['component']} renders without {row['missing']}"
+                 for chapter in chapters for row in chapter.presentation_gaps]
     blockers += [f"shared style: {issue}" for issue in style.get("issues", [])]
     return blockers + _evidence_blockers(draft, file_sha256(draft.html_path))
 
@@ -264,6 +280,8 @@ def convert(draft_root: Path, output: Path, *, title: str | None = None, release
     converted = [convert_chapter(draft, section, packager) for section in sections]
     pages = [page for page, _ in converted]
     chapters = [chapter for _, chapter in converted]
+    for chapter in chapters:
+        layer.dropped_attributes.update(chapter.dropped_attributes)
     filename = markdown_filename(draft.model, draft.region, draft.language)
     _write_myst_sphinx_scaffold(output / filename, title=title, presentation_profile="web")
     with (output / "conf.py").open("a", encoding="utf-8") as stream:
@@ -286,6 +304,7 @@ def convert(draft_root: Path, output: Path, *, title: str | None = None, release
         "component_inventory": metadata["component_inventory"],
         "review_layer": layer.as_json(), "shared_component_exceptions": exceptions,
         "fallback_copy": [row for chapter in chapters for row in chapter.fallbacks],
+        "presentation_gaps": [row for chapter in chapters for row in chapter.presentation_gaps],
         "notes": dict(sum((chapter.notes for chapter in chapters), Counter())),
         "shared_style": {key: style.get(key) for key in ("profile", "declared_tables", "issues")},
         "pages": [page.page_id for page in pages],

@@ -53,7 +53,7 @@ class WebLayoutEditionTest(unittest.TestCase):
         self.assertTrue(self.manifest['publication_eligible'])
         self.assertEqual(self.manifest['derived_from']['package'], APPROVED.name)
         approval = json.loads((EDITION / 'source/approval.json').read_text(encoding='utf-8'))
-        self.assertEqual((approval['operator_quote'], approval['merge_authorization']), ('上线', 'MA-486'))
+        self.assertEqual((approval['operator_quote'], approval['merge_authorization']), ('上线', 'MA-487'))
         ir = json.loads((EDITION / 'web/ja/manual.ir.json').read_text(encoding='utf-8'))
         self.assertTrue(ir['metadata']['publication_eligible'])
 

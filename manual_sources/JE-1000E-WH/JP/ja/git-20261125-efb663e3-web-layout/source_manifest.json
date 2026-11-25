@@ -585,7 +585,7 @@
     {
       "path": "README.md",
       "size": 3980,
-      "sha256": "d09b0a49eb79758416b6b8883a861fb75cf4234ecebac37959ce75a6907b2a47"
+      "sha256": "2cd211e82ba670ef9a0f7f7d9d1ae1357240f295b83e00da53a7891517c5b2e4"
     },
     {
       "path": "artwork/ac-charge.png",
@@ -895,7 +895,7 @@
     {
       "path": "derive_web_layout.py",
       "size": 46008,
-      "sha256": "fd4204adf83fa0caadbcab97a68f0a81755bd897c2b8b72eb0b2f9d691520a4c"
+      "sha256": "c05031c9e0f7a1b893fc1b56895732730f00d637002f7d7b4837f3284ef0be8d"
     },
     {
       "path": "rebuild.py",
@@ -910,7 +910,7 @@
     {
       "path": "source/approval.json",
       "size": 13634,
-      "sha256": "bc225b7c43736af33e232fddda51ba1c5e0af5b86de7ccd9b8f4e504d9d00ce5"
+      "sha256": "ba74955b68ae4b6d8552677db3d083f536ae5f57bc85a2dcb363ba40f70a3ff8"
     },
     {
       "path": "source/asset-recipe.json",
@@ -1300,7 +1300,7 @@
     {
       "path": "web/ja/manual.ir.json",
       "size": 519819,
-      "sha256": "4b997eb6b6d168bf870f141beff3307b821a289177a6b3aef52551e55099c8cb"
+      "sha256": "44640ae5e256a83e8c88b8d0808bc45fe21a6a46376aadc7cd377062ab4d0137"
     },
     {
       "path": "web/ja/manual.md",

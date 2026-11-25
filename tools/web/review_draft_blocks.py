@@ -25,7 +25,7 @@ import re
 from typing import Any
 
 from bs4 import BeautifulSoup, Tag
-from bs4.element import AttributeValueList
+from bs4.element import AttributeValueList, PageElement
 
 from tools.component_specs.auto_resume import auto_resume_component_spec
 from tools.component_specs.inbox import CARD_ASSET_ROLES, VARIABLE_CARD_ASSET_ROLE, inbox_component_spec
@@ -63,6 +63,8 @@ class DraftChapter:
     claims: list[ComponentClaim] = field(default_factory=list)
     fallbacks: list[dict[str, str]] = field(default_factory=list)
     exceptions: list[dict[str, str]] = field(default_factory=list)
+    presentation_gaps: list[dict[str, str]] = field(default_factory=list)
+    dropped_attributes: Counter = field(default_factory=Counter)
     notes: Counter = field(default_factory=Counter)
     _families: Counter = field(default_factory=Counter)
 
@@ -74,6 +76,16 @@ class DraftChapter:
         self, spec: ComponentSpec, owned: Iterable[Tag], assets: Iterable[tuple[str, Tag]] = (),
     ) -> None:
         self.claims.append(ComponentClaim(spec=spec, owned_nodes=tuple(owned), asset_tags=tuple(assets)))
+
+    def keep_copy(self, owner: Tag, carried: Iterable[str], component: str) -> None:
+        """List copy ``owner`` shows that its component does not carry, so a release cannot lose it."""
+
+        left = "".join(owner.get_text("").split())
+        for text in carried:
+            left = left.replace("".join(text.split()), "", 1)
+        if left:
+            self.presentation_gaps.append({"page_id": self.page_id, "component": component,
+                                           "missing": f"part of its copy («{left[:60]}»)"})
 
 
 def text_of(node: Tag | None) -> str:
@@ -227,32 +239,49 @@ def symbol_panels(chapter: DraftChapter) -> None:
         chapter.claim(spec, (grid,), assets)
 
 
+def bind_inbox(
+    chapter: DraftChapter, owner: Tag, cards: Sequence[tuple[str, Sequence[PageElement | str]]], *,
+    accessibility_label: str, tip: tuple[Tag, Tag] | None = None,
+) -> None:
+    """Replace ``owner`` with the card (and TIP) tables the Inbox renderer checks, and claim them."""
+
+    roles = CARD_ASSET_ROLES if len(cards) == len(CARD_ASSET_ROLES) else (
+        (VARIABLE_CARD_ASSET_ROLE,) * len(cards))
+    carrier = BeautifulSoup("<table><tbody><tr></tr></tbody></table>", "html.parser")
+    row = need(carrier.tr, "inbox row")
+    items: list[dict[str, Any]] = []
+    assets: list[tuple[str, Tag]] = []
+    for role, (source, label) in zip(roles, cards, strict=True):
+        cell = carrier.new_tag("td")
+        cell.extend(list(label))
+        image = carrier.new_tag("img", attrs={"alt": text_of(cell), "src": source})
+        cell.insert(0, image)
+        if cell.find(["p", "div"]) is None:
+            image.insert_after(carrier.new_tag("br"))
+        row.append(cell)
+        items.append({"image_ref": source, "label": text_of(cell), "alt": text_of(cell)})
+        assets.append((role, image))
+    tables = [need(carrier.table, "inbox table")]
+    if tip is not None:
+        tip_table = need(BeautifulSoup("<table><tbody><tr><td></td><td></td></tr></tbody></table>",
+                                       "html.parser").table, "inbox tip")
+        for cell, source_cell in zip(tip_table.find_all("td"), tip, strict=True):
+            cell.extend(list(source_cell.contents))
+        tables.append(tip_table)
+    spec = inbox_component_spec(
+        accessibility_label=accessibility_label, cards=items,
+        tip_label=text_of(tables[1].td) if tip else "", tip_body=text_of(tables[1].find_all("td")[1]) if tip else "",
+        source_ref=chapter.source_ref("inbox"), language=chapter.language, require_tip=False,
+    )
+    owner.replace_with(*tables)
+    chapter.claim(spec, tables, assets)
+
+
 def inbox_cards(chapter: DraftChapter) -> None:
     for grid in chapter.root.select("div.jp-inbox-grid"):
-        figures = grid.select("figure.jp-inbox-card")
-        roles = CARD_ASSET_ROLES if len(figures) == len(CARD_ASSET_ROLES) else (
-            (VARIABLE_CARD_ASSET_ROLE,) * len(figures))
-        carrier = BeautifulSoup("<table><tbody><tr></tr></tbody></table>", "html.parser")
-        row = need(carrier.tr, "inbox row")
-        cards: list[dict[str, Any]] = []
-        assets: list[tuple[str, Tag]] = []
-        for role, card in zip(roles, figures, strict=True):
-            label, source = text_of(card.find("figcaption")), attribute(need(card.find("img"), "inbox image"), "src")
-            image = carrier.new_tag("img", attrs={"alt": label, "src": source})
-            cell = carrier.new_tag("td")
-            cell.append(image)
-            cell.append(carrier.new_tag("br"))
-            cell.append(label)
-            row.append(cell)
-            cards.append({"image_ref": source, "label": label, "alt": label})
-            assets.append((role, image))
-        spec = inbox_component_spec(
-            accessibility_label=heading_before(grid, ("h1",)), cards=cards, tip_label="", tip_body="",
-            source_ref=chapter.source_ref("inbox"), language=chapter.language, require_tip=False,
-        )
-        table = need(carrier.table, "inbox table")
-        grid.replace_with(table)
-        chapter.claim(spec, (table,), assets)
+        cards = [(attribute(need(card.find("img"), "inbox image"), "src"), [text_of(card.find("figcaption"))])
+                 for card in grid.select("figure.jp-inbox-card")]
+        bind_inbox(chapter, grid, cards, accessibility_label=heading_before(grid, ("h1",)))
 
 
 def lcd_icon_tables(chapter: DraftChapter) -> None:
@@ -261,10 +290,12 @@ def lcd_icon_tables(chapter: DraftChapter) -> None:
         refs: list[str] = []
         assets: list[tuple[str, Tag]] = []
         number: Tag | None = None
+        description: Tag | None = None
         for row in figure.select("table.hb-lcd-icon-table tbody > tr"):
-            number = row.select_one("td.hb-lcd-number") or number  # a spanned number serves both rows
+            number = row.select_one("td.hb-lcd-number") or number  # a spanned cell serves each row it spans
+            description = row.select_one("td.hb-lcd-description") or description
             icon = need(row.select_one("img"), "LCD icon")
-            name, description = row.select_one("td.hb-lcd-name"), row.select_one("td.hb-lcd-description")
+            name = row.select_one("td.hb-lcd-name")
             rows.append({
                 "number_html": text_of(number), "number_text": text_of(number),
                 "name_html": inner_html(name), "name_text": text_of(name),
@@ -273,9 +304,11 @@ def lcd_icon_tables(chapter: DraftChapter) -> None:
             })
             refs.append(attribute(icon, "src"))
             assets.append(("icons", icon))
+        spans = {f"{role}_cell_layout": "span-adjacent-equal" for role in ("number", "description")
+                 if figure.select_one(f"td.hb-lcd-{role}[rowspan]") is not None}
         spec = lcd_icon_component_spec(
             accessibility_label=heading_before(figure), rows=rows, icon_refs=refs,
-            source_ref=chapter.source_ref("lcd-icons"), language=chapter.language,
+            source_ref=chapter.source_ref("lcd-icons"), language=chapter.language, metadata=spans,
         )
         chapter.claim(spec, (figure,), assets)
 
@@ -376,14 +409,35 @@ def _continuations(rows: Sequence[Sequence[str]], index: int) -> Iterator[int]:
         following += 1
 
 
+def declare_plain_table(chapter: DraftChapter, table: Tag, reason: str) -> None:
+    chapter.exceptions.append({
+        "page_id": chapter.page_id, "language": chapter.language, "kind": "table",
+        "text_sha256": table_text_sha256(table), "reason": reason,
+    })
+
+
+def _label_value_rows(table: Tag) -> bool:
+    return table.thead is None and all(
+        len(row.find_all("td", recursive=False)) == 1 and len(row.find_all("th", recursive=False)) <= 1
+        for row in table.find_all("tr"))
+
+
 def spec_tables(chapter: DraftChapter) -> None:
+    """Label/value rows under their own H2 are ``HB-TABLE-SPEC``; any other table is declared."""
+
     for figure in chapter.root.select("figure.hb-spec-table-composition"):
-        table = figure.select_one("table.manual-spec-table")
+        table = figure.select_one("table.manual-spec-table, table.hb-spec-table")
         heading = figure.find_previous_sibling()
         if table is None:
             continue
+        if not _label_value_rows(table):
+            declare_plain_table(chapter, table, "Specification-style table with a header row or more "
+                                "than two columns: no registered table component fits.")
+            continue
         if heading is None or heading.name != "h2":
-            raise ValueError(f"{chapter.page_id}: specification table has no adjacent H2")
+            declare_plain_table(chapter, table, "Label/value table without its own section heading: "
+                                "HB-TABLE-SPEC needs a source-authored section title.")
+            continue
         rows: list[list[str]] = []
         for row in table.find_all("tr"):
             values = lines_of(need(row.find("td"), "specification value")) or [""]
@@ -416,17 +470,39 @@ def troubleshooting_tables(chapter: DraftChapter) -> None:
         chapter.claim(spec, (figure,))
 
 
+_WARRANTY_BLOCK_TAGS = frozenset({"p", "ul", "ol", "h3", "h4", "div", "table"})
+
+
+def _warranty_block(child: Tag) -> dict[str, Any] | None:
+    if child.name in {"ul", "ol"}:
+        return {"kind": "list", "html": str(child),
+                "items": [text_of(item) for item in child.find_all("li", recursive=False)]}
+    if child.name in {"h3", "h4"}:
+        return {"kind": "paragraph", "html": f"<p><strong>{inner_html(child)}</strong></p>", "text": text_of(child)}
+    return {"kind": "paragraph", "html": str(child), "text": text_of(child)} if text_of(child) else None
+
+
 def _warranty_blocks(card: Tag) -> list[dict[str, Any]]:
+    """Paragraphs and lists in order; copy between blocks (or a text-only card) is a paragraph."""
+
     blocks: list[dict[str, Any]] = []
-    for child in card.find_all(True, recursive=False):
-        if child.name in {"ul", "ol"}:
-            blocks.append({"kind": "list", "html": str(child),
-                           "items": [text_of(item) for item in child.find_all("li", recursive=False)]})
-        elif child.name in {"h3", "h4"}:
-            blocks.append({"kind": "paragraph", "html": f"<p><strong>{inner_html(child)}</strong></p>",
-                           "text": text_of(child)})
-        elif text_of(child):
-            blocks.append({"kind": "paragraph", "html": str(child), "text": text_of(child)})
+    loose: list[str] = []
+
+    def flush() -> None:
+        paragraph = BeautifulSoup(f"<p>{''.join(loose).strip()}</p>", "html.parser").p
+        if paragraph is not None and text_of(paragraph):
+            blocks.append({"kind": "paragraph", "html": str(paragraph), "text": text_of(paragraph)})
+        loose.clear()
+
+    for child in card.contents:
+        if isinstance(child, Tag) and child.name in _WARRANTY_BLOCK_TAGS:
+            flush()
+            block = _warranty_block(child)
+            if block is not None:
+                blocks.append(block)
+        else:
+            loose.append(str(child))
+    flush()
     return blocks
 
 
@@ -460,12 +536,8 @@ def declared_plain_tables(chapter: DraftChapter) -> None:
     """The energy-saving threshold table has no registered table component."""
 
     for table in chapter.root.select("div.jp-energy-table table"):
-        chapter.exceptions.append({
-            "page_id": chapter.page_id, "language": chapter.language, "kind": "table",
-            "text_sha256": table_text_sha256(table),
-            "reason": "Energy-saving threshold table: no registered table component fits; "
-                      "declared like the published JP energy-saving tables.",
-        })
+        declare_plain_table(chapter, table, "Energy-saving threshold table: no registered table component "
+                            "fits; declared like the published JP energy-saving tables.")
 
 
 TABLE_ADAPTERS = (
@@ -478,6 +550,8 @@ TABLE_ADAPTERS = (
 __all__ = [
     "DraftChapter",
     "TABLE_ADAPTERS",
+    "bind_inbox",
+    "declare_plain_table",
     "column_texts",
     "heading_before",
     "inner_html",

@@ -61,7 +61,7 @@
     "assets/back-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "e2da075774ee1515fe690709fd840b8863b81491b7f55bee8377c333a42d529b",
+  "bundle_sha256": "efec4d88b89a9da491cfc285b86e661b12fcce8451e0e815308fdc9b633450da",
   "content_sha256": "75b8bf3e116dd6404ca0390ff46d6d33d92a1df7e3da06c79c3989065e243798",
   "language": "ja",
   "layout_params_sha256": "331c7281c01238f5d817abd8e43a7eeb02c3c899d3564bba00a1c0b1b4131956",
@@ -1417,7 +1417,7 @@
         },
         {
           "path": "README.md",
-          "sha256": "d09b0a49eb79758416b6b8883a861fb75cf4234ecebac37959ce75a6907b2a47",
+          "sha256": "2cd211e82ba670ef9a0f7f7d9d1ae1357240f295b83e00da53a7891517c5b2e4",
           "size": 3980
         },
         {
@@ -1727,7 +1727,7 @@
         },
         {
           "path": "derive_web_layout.py",
-          "sha256": "fd4204adf83fa0caadbcab97a68f0a81755bd897c2b8b72eb0b2f9d691520a4c",
+          "sha256": "c05031c9e0f7a1b893fc1b56895732730f00d637002f7d7b4837f3284ef0be8d",
           "size": 46008
         },
         {
@@ -1742,7 +1742,7 @@
         },
         {
           "path": "source/approval.json",
-          "sha256": "bc225b7c43736af33e232fddda51ba1c5e0af5b86de7ccd9b8f4e504d9d00ce5",
+          "sha256": "ba74955b68ae4b6d8552677db3d083f536ae5f57bc85a2dcb363ba40f70a3ff8",
           "size": 13634
         },
         {
@@ -2937,7 +2937,7 @@
     "operator_source_acceptance": {
       "date": "2026-11-25",
       "instruction_quote": "这个卫士1代 有些版面 要调整的 你调整一下",
-      "merge_authorization": "MA-486",
+      "merge_authorization": "MA-487",
       "operator_decisions": [
         "保証期間：去掉原稿没有的「3 年間 / 2 年間」徽章，改为与其他条款一致的卡片（默认，未改）",
         "主電源ボタン：补回原稿时钟旁的「3s」（默认，未改）",

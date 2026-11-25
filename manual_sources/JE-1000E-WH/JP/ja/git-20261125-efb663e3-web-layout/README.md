@@ -15,7 +15,7 @@ Operator instruction, 2026-11-25: 「这个卫士1代 有些版面 要调整的 
 This edition fixes those blocks against the same PDF, together with every block of the same kinds elsewhere on the page.
 It is derived from the [approved solar-Voc edition](../git-20261016-efb663e3-solar-voc/README.md) (MA-312). That edition, its printed source and its release evidence remain immutable.
 
-**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `95d63489` on the per-chapter comparison page (print, current Web, new desktop, new phone) and answered 「上线」 on 2026-11-25 (MA-486). The four declared copy differences keep their defaults. `source/approval.json` binds the chapters, presentation, component requirements and every reviewed input, and the IR is publication-eligible. Release is the Git-only Web Publish sealed at the merged `main` commit.
+**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `95d63489` on the per-chapter comparison page (print, current Web, new desktop, new phone) and answered 「上线」 on 2026-11-25 (MA-487). The four declared copy differences keep their defaults. `source/approval.json` binds the chapters, presentation, component requirements and every reviewed input, and the IR is publication-eligible. Release is the Git-only Web Publish sealed at the merged `main` commit.
 
 ## What changed
 

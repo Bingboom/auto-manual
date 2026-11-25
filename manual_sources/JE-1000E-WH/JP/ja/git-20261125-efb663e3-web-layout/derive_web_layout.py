@@ -38,7 +38,7 @@ sys.path.insert(0, str(REPO))
 
 CANDIDATE = 'review-candidate-no-release-authorization'
 APPROVED = 'operator-approved-git-only-release'
-STATUS = APPROVED  # operator 2026-11-25 「上线」 after reviewing candidate 95d63489 (MA-486)
+STATUS = APPROVED  # operator 2026-11-25 「上线」 after reviewing candidate 95d63489 (MA-487)
 PDF = 'Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf'
 PDF_SHA256 = 'efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be'
 # Copied byte-for-byte; the base edition's derivation script, docs, approval and web are not.
