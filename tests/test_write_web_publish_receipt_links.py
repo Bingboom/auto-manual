@@ -162,6 +162,8 @@ class ReceiptLaneManifestTests(unittest.TestCase):
         ]
         for record_id in overrides.pop("record_ids", ()):
             argv += ["--record-id", record_id]
+        if "changed_since" in overrides:
+            argv += ["--changed-since", overrides.pop("changed_since")]
         args = receipt_links.parse_args(argv)
         return args
 
@@ -176,7 +178,9 @@ class ReceiptLaneManifestTests(unittest.TestCase):
             mock.patch.object(receipt_links, "fetch_field_id_map", return_value={"HTML_link": "fld1"}),
         )
 
-    def _run(self, *, args, verify_fn, store: _FieldStore) -> tuple[int, dict, _RecordingSource]:
+    def _run(
+        self, *, args, verify_fn, store: _FieldStore, changed_paths: list[str] | None = None
+    ) -> tuple[int, dict, _RecordingSource]:
         source = _RecordingSource()
         store.attach(source)
         patches = self._lark_patches()
@@ -189,6 +193,7 @@ class ReceiptLaneManifestTests(unittest.TestCase):
             sleep_fn=lambda _seconds: None,
             fetch_fields=store.fetch,
             lark_source_factory=lambda **_kwargs: source,
+            changed_paths_fn=(lambda _root, _since: list(changed_paths or ())),
         )
         return exit_code, report, source
 
@@ -330,6 +335,97 @@ class ReceiptLaneManifestTests(unittest.TestCase):
             self.assertEqual("no-queue-rows", report["status"])
             forbidden.assert_not_called()
 
+    # --- push scope: only the targets this push changed -------------------
+
+    SINCE = "e027ead1" + "0" * 32
+    QUEUE_PAGE = "web/JE-1000F/US/en/md/manual_je1000f_us_en.md"
+    GIT_ONLY_PAGE = "web/JE-500A/EU/en/md/manual_je500a_eu_en.md"
+
+    @staticmethod
+    def _recording_verify(seen: list[str]):
+        def verify(web_root, *, base_url, targets, project_slug, session, include_dependency):
+            seen.extend("/".join((t["model"], t["region"], t["lang"])) for t in targets)
+            return ReceiptLaneManifestTests._verify_ok(
+                web_root, base_url=base_url, targets=targets, project_slug=project_slug,
+                session=session, include_dependency=include_dependency,
+            )
+        return verify
+
+    def test_push_verifies_a_changed_git_only_target_without_touching_feishu(self) -> None:
+        seen: list[str] = []
+        forbidden = mock.MagicMock(
+            side_effect=AssertionError("a Git-only push must not read or write Feishu")
+        )
+        exit_code, report = receipt_links.run(
+            self._args(changed_since=self.SINCE),
+            verify_fn=self._recording_verify(seen),
+            sleep_fn=lambda _seconds: None,
+            fetch_fields=forbidden,
+            lark_source_factory=forbidden,
+            changed_paths_fn=lambda _root, _since: [
+                self.GIT_ONLY_PAGE,
+                "sources/web/JE-500A/EU/en/md/source.json",
+                "web/_static/manual-assets/_pool/ab/" + "ab" * 32 + ".png",
+                "publish_manifest.json",
+            ],
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual(["JE-500A/EU/en"], seen)
+        self.assertEqual("registered", report["status"])
+        self.assertEqual(["JE-500A/EU/en"], report["scope"]["changed_targets"])
+        self.assertEqual(0, report["scope"]["shared_path_count"])
+        self.assertEqual([], report["targets"][0]["records"])
+        forbidden.assert_not_called()
+
+    def test_push_registers_only_the_changed_queue_backed_target(self) -> None:
+        seen: list[str] = []
+        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""})
+        exit_code, report, source = self._run(
+            args=self._args(changed_since=self.SINCE),
+            verify_fn=self._recording_verify(seen),
+            store=store,
+            changed_paths=[self.QUEUE_PAGE],
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual(["JE-1000F/US/en"], seen)
+        self.assertEqual(
+            ["rec_web_1", "rec_web_2"], [upsert[2] for upsert in source.upserts]
+        )
+
+    def test_shared_change_also_verifies_every_queue_backed_target(self) -> None:
+        seen: list[str] = []
+        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""})
+        exit_code, report, source = self._run(
+            args=self._args(changed_since=self.SINCE),
+            verify_fn=self._recording_verify(seen),
+            store=store,
+            changed_paths=[self.GIT_ONLY_PAGE, "web/_static/web_manual.css"],
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual(["JE-1000F/US/en", "JE-500A/EU/en"], seen)
+        self.assertEqual(["JE-500A/EU/en"], report["scope"]["changed_targets"])
+        self.assertEqual(["web/_static/web_manual.css"], report["scope"]["shared_paths"])
+        # Only the queue-backed target has rows to register.
+        self.assertEqual(2, report["records_written"])
+
+    def test_push_without_a_changed_target_verifies_nothing(self) -> None:
+        forbidden = mock.MagicMock(side_effect=AssertionError("nothing changed"))
+        exit_code, report = receipt_links.run(
+            self._args(changed_since=self.SINCE),
+            verify_fn=forbidden,
+            fetch_fields=forbidden,
+            lark_source_factory=forbidden,
+            changed_paths_fn=lambda _root, _since: ["publish_manifest.json", "web/index.md"],
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual("no-changed-targets", report["status"])
+        forbidden.assert_not_called()
+
+    def test_changed_since_cannot_be_combined_with_record_ids(self) -> None:
+        args = self._args(changed_since=self.SINCE, record_ids=["rec_web_1"])
+        with self.assertRaisesRegex(ValueError, "cannot be combined"):
+            receipt_links.run(args, changed_paths_fn=lambda _root, _since: [])
+
     # --- url-field rendering (Hello-Docs run 35492573107) -------------------
     # HTML_link is a Bitable ``url``-type field: lark-cli reads a stored URL
     # back as ``[url](url)``. The lane must accept that rendering and still
@@ -424,6 +520,91 @@ class ReceiptLaneManifestTests(unittest.TestCase):
             [{"HTML_link": self.RENDERED_URL}, {"HTML_link": self.RENDERED_URL}],
             [upsert[3] for upsert in source.upserts],
         )
+
+
+class ChangedTargetScopeTests(unittest.TestCase):
+    PAYLOAD = {
+        "targets": [
+            {"model": "JE-1000F", "region": "US", "lang": "en",
+             "legacy_default": True, "legacy_route": "JE-1000F/US/md"},
+            {"model": "JE-1000F", "region": "US", "lang": "es",
+             "legacy_route": "JE-1000F/US/md"},
+            {"model": "JE-500A", "region": "EU", "lang": "en"},
+        ]
+    }
+
+    def test_paths_map_to_their_target_or_stay_shared(self) -> None:
+        changed, shared = receipt_links.changed_target_scope(
+            self.PAYLOAD,
+            [
+                "web/JE-1000F/US/es/md/manual_je1000f_us_es.md",
+                "sources/web/JE-500A/EU/en/md/source.json",
+                # The legacy region route belongs to the default target only.
+                "web/JE-1000F/US/md/index.md",
+                # Pool, catalog, library index and alias pages widen nothing.
+                "web/_static/manual-assets/_pool/0b/" + "0b" * 32 + ".png",
+                "publish_manifest.json",
+                "web/index.md",
+                "web/manual_je500a_eu_en.md",
+                # Shared files and routes no target owns widen the scope.
+                "web/_static/web_manual.css",
+                "web/conf.py",
+                "web/JE-9999X/US/en/md/orphan.md",
+            ],
+        )
+        self.assertEqual(
+            {("JE-1000F", "US", "es"), ("JE-500A", "EU", "en"), ("JE-1000F", "US", "en")},
+            changed,
+        )
+        self.assertEqual(
+            ["web/_static/web_manual.css", "web/conf.py", "web/JE-9999X/US/en/md/orphan.md"],
+            shared,
+        )
+
+    def test_a_route_prefix_needs_the_path_separator(self) -> None:
+        changed, shared = receipt_links.changed_target_scope(
+            self.PAYLOAD, ["web/JE-500A/EU/en-GB/md/manual.md"]
+        )
+        self.assertEqual(set(), changed)
+        self.assertEqual(["web/JE-500A/EU/en-GB/md/manual.md"], shared)
+
+
+class ChangedPublishPathsTests(unittest.TestCase):
+    """The diff runs against a real repository: renames count on both routes."""
+
+    def _git(self, repo: Path, *args: str) -> str:
+        return subprocess.run(
+            ["git", "-C", str(repo), "-c", "user.name=t", "-c", "user.email=t@example.invalid",
+             *args],
+            check=True, capture_output=True, text=True,
+        ).stdout.strip()
+
+    def test_lists_publish_relative_changes_since_the_base_commit(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = Path(td)
+            publish_root = repo / "docs" / "publish"
+            old_page = publish_root / "web" / "A" / "US" / "en" / "md" / "old.md"
+            kept = publish_root / "web" / "B" / "US" / "en" / "md" / "kept.md"
+            for path in (old_page, kept):
+                path.parent.mkdir(parents=True)
+                path.write_text("v1\n", encoding="utf-8")
+            self._git(repo, "init", "-q")
+            self._git(repo, "add", ".")
+            self._git(repo, "commit", "-q", "-m", "base")
+            base = self._git(repo, "rev-parse", "HEAD")
+            self._git(repo, "mv", str(old_page), str(old_page.with_name("new.md")))
+            (repo / "outside.txt").write_text("not published\n", encoding="utf-8")
+            self._git(repo, "add", ".")
+            self._git(repo, "commit", "-q", "-m", "rename")
+
+            self.assertEqual(
+                ["web/A/US/en/md/new.md", "web/A/US/en/md/old.md"],
+                receipt_links.changed_publish_paths(publish_root, base),
+            )
+            with self.assertRaisesRegex(ValueError, "40-character commit SHA"):
+                receipt_links.changed_publish_paths(publish_root, "HEAD~1")
+            with self.assertRaisesRegex(RuntimeError, "Cannot list publish changes"):
+                receipt_links.changed_publish_paths(publish_root, "f" * 40)
 
 
 class FetchRecordFieldsTests(unittest.TestCase):

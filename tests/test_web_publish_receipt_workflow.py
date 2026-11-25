@@ -49,7 +49,28 @@ class TestWebPublishReceiptWorkflow(unittest.TestCase):
         self.assertIn("--publish-root docs/publish", run)
         self.assertIn("AUTO_MANUAL_RTD_BASE_URL", run)
         self.assertIn("--rps", run)
-        self.assertIn("--report-json", run)
+        # The run log carries every per-target outcome; no report artifact.
+        self.assertNotIn("--report-json", run)
+
+    def test_no_artifact_upload_step(self) -> None:
+        for step in self.job["steps"]:
+            self.assertNotIn("upload-artifact", str(step.get("uses", "")))
+
+    def test_push_runs_verify_only_the_targets_their_commits_changed(self) -> None:
+        register = next(
+            step
+            for step in self.job["steps"]
+            if step.get("name") == "Verify deployment and register HTML_link"
+        )
+        # The before SHA reaches the script through env only, and only for a push.
+        self.assertEqual(
+            "${{ github.event_name == 'push' && github.event.before || '' }}",
+            register["env"]["PUSH_BEFORE_SHA"],
+        )
+        run = str(register["run"])
+        self.assertIn('--changed-since "${PUSH_BEFORE_SHA}"', run)
+        self.assertNotIn("github.event.before", run)
+        self.assertIn("^[0-9a-f]{40}$", run)
 
     def test_only_the_document_link_binding_env_is_granted(self) -> None:
         env = self.job["env"]
