@@ -558,11 +558,11 @@
 
 /* Explicit source-bound labels remain on the illustration at every width.
    Other approved layouts retain their readable stacked mobile treatment. */
-.hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-art-panel {
+.hb-reference-figure.hb-base-art-live-copy :is([data-mobile-labels="overlay"], [data-mobile-labels="scroll"]) .hb-reference-art-panel {
   padding-top: var(--hb-panel-top);
   padding-bottom: 0;
 }
-.hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-live-label {
+.hb-reference-figure.hb-base-art-live-copy :is([data-mobile-labels="overlay"], [data-mobile-labels="scroll"]) .hb-reference-live-label {
   position: absolute;
   display: flex;
   width: var(--hb-width);
@@ -570,18 +570,46 @@
   margin: 0;
   font-size: max(.5rem, 1.99cqw);
 }
-.hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-live-pill {
+.hb-reference-figure.hb-base-art-live-copy :is([data-mobile-labels="overlay"], [data-mobile-labels="scroll"]) .hb-reference-live-pill {
   max-width: none;
   padding: 0.3cqw 1.2cqw;
 }
 
 /* Explicit source-foreground badges remain readable within their art edge.
    Legacy measured overlays keep their existing sizing. */
-.hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-live-pill.hb-reference-source-badge {
+.hb-reference-figure.hb-base-art-live-copy :is([data-mobile-labels="overlay"], [data-mobile-labels="scroll"]) .hb-reference-live-pill.hb-reference-source-badge {
   width: max-content;
   max-width: calc(100% - var(--hb-x));
   padding: 0.15rem 0.45rem;
   font-size: max(0.875rem, 1.99cqw);
+}
+
+/* Scroll keeps the labels on the art at a readable size: on narrow screens the
+   panel holds a minimum width and the figure scrolls sideways, so a crowded
+   drawing never shrinks its copy below reading size. */
+@media (max-width: 760px) {
+  .hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="scroll"] {
+    overflow-x: auto;
+  }
+  .hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="scroll"] .hb-reference-art-panel {
+    min-width: 660px;
+  }
+}
+
+/* Compact label type (base_art_layout.label_density=compact) for long copy on
+   a crowded drawing, such as a full port overview: three quarters of the
+   regular size, never below 10px, lines set tight from the top of their
+   rectangle. Labels stacked under the art keep the stacked size. */
+.hb-reference-figure.hb-base-art-live-copy [data-label-density="compact"] .hb-reference-live-label {
+  align-items: flex-start;
+  font-size: max(10px, 1.5cqw);
+  line-height: 1.12;
+}
+@media (max-width: 760px) {
+  .hb-reference-figure.hb-base-art-live-copy [data-label-density="compact"]:not([data-mobile-labels]) .hb-reference-live-label {
+    font-size: 0.88rem;
+    line-height: 1.16;
+  }
 }
 
 /* Source-declared empty artwork region; all bubbles and their copy remain live. */

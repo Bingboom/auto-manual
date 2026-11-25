@@ -251,6 +251,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -472,6 +482,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -708,6 +728,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -879,6 +909,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -1100,6 +1140,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -1321,6 +1371,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -1542,6 +1602,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -1763,6 +1833,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -2123,6 +2203,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -2349,6 +2439,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -2591,6 +2691,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -2612,6 +2722,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -2633,6 +2748,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -2854,6 +2974,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -2875,6 +3005,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -2896,6 +3031,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -3117,6 +3257,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -3338,6 +3488,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -3559,6 +3719,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -3795,6 +3965,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -4016,6 +4196,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -4042,6 +4232,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -4298,6 +4493,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -4554,6 +4759,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -4790,6 +5005,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -5011,6 +5236,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -5505,6 +5740,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -5566,6 +5811,21 @@
           "handling": "keep-frozen",
           "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/presentation_contract.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -5587,13 +5847,44 @@
           "handling": "keep-frozen",
           "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/presentation_contract.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
     "manual_sources/JE-1000F/CN/zh/git-20261119-7132a5ff-dx2-layout-r2": {
       "approval": "MA-481: operator-requested mobile caption overflow repair and publication",
       "registered": "2026-11-22",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/presentation_contract.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        }
+      }
     },
     "manual_sources/JE-1000F/EU/en-fr/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -5778,7 +6069,23 @@
     "manual_sources/JE-1100B/CN/zh/git-20261124-84da623c": {
       "approval": "MA-483; operator-supplied PDF, confirmed short press and archive, responsive verification and green-gated release",
       "registered": "2026-11-24",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/presentation_contract.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        }
+      }
     },
     "manual_sources/JE-1500B/JP/ja/git-20261103-f61d0d68": {
       "approval": "Operator 「上‘线提交发布：JE-1000C、JE-1000G、JE-1000H、JE-1500B」 2026-11-03 in the window session, after review of the PR #1653 1280/390 renders beside the reference editions; requested by 「继续 转日语说明书」 (JP batch relayed by the coordinator window): Git-only JP ja single-language Web release, source copy verbatim; symbol rows pending the shared dedupe PR are withheld (see source/approval.json); merge not yet authorized",
@@ -6018,6 +6325,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -6229,6 +6546,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -6455,6 +6782,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -6581,6 +6918,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -6752,6 +7099,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -6803,6 +7155,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -6854,6 +7211,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -6910,6 +7272,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -7121,6 +7493,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -7332,6 +7714,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -7553,6 +7945,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -7764,6 +8166,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -7980,6 +8392,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -8201,6 +8623,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -8412,6 +8844,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -8633,6 +9075,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -8854,6 +9306,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -9065,6 +9527,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -9236,6 +9708,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -9567,6 +10049,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -9788,6 +10280,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -10004,6 +10506,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -10215,6 +10727,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -10436,6 +10958,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -10652,6 +11184,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -10863,6 +11405,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -11089,6 +11641,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -11305,6 +11867,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -11516,6 +12088,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -11792,6 +12374,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -11823,6 +12415,11 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -12039,6 +12636,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -12250,6 +12857,16 @@
           "handling": "keep-frozen",
           "reason": "Expand strict mypy type annotations across tools/web (zero runtime or rendered output changes); historical frozen packages remain immutable.",
           "since": "2026-11-19"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -12554,6 +13171,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -12725,6 +13352,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -12896,6 +13533,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -13067,6 +13714,16 @@
           "handling": "keep-frozen",
           "reason": "Opt-in respect_baseline declarative build admission; existing frozen package pins unchanged",
           "since": "2026-11-21"
+        },
+        "docs/renderers/contracts/web_base_art_components.css": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
+        },
+        "tools/web/base_art_reference.py": {
+          "handling": "keep-frozen",
+          "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+          "since": "2026-11-25"
         }
       }
     },
@@ -13512,6 +14169,18 @@
       "packages": 2,
       "handling": "keep-frozen",
       "reason": "tools/web/ir_qc.py callout severity normalization only affects QC reporting, not rendered package HTML/assets",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-25",
+      "files": [
+        "docs/renderers/contracts/web_base_art_components.css",
+        "tools/web/base_art_reference.py",
+        "tools/web/presentation_contract.py"
+      ],
+      "packages": 68,
+      "handling": "keep-frozen",
+      "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
       "minutes": 0
     }
   ]

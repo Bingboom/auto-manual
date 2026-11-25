@@ -189,15 +189,17 @@ class RenderedShellTests(unittest.TestCase):
                 self.assertIn(manual_copy, markdown)
             for review_copy in ("中文对照", "审阅", "Struck copy.", "Hidden copy.", "开机", "临时图", "已定", "data:image"):
                 self.assertNotIn(review_copy, markdown)
-            # live labels keep the rectangles, pill tone and panel the base-art renderer wrote
+            # live labels keep the rectangles, pill tone and panel the base-art renderer wrote,
+            # and the shell's dense overview takes the shared phone-scroll and compact options
             for placement in ("--hb-x:12%;--hb-y:30%;--hb-width:20%;--hb-height:0%", "--hb-fill:#e0e0e0",
-                              "--hb-panel-top:4%;--hb-panel-fill:#f4f4f4"):
+                              "--hb-panel-top:4%;--hb-panel-fill:#f4f4f4", 'data-label-density="compact"',
+                              'data-mobile-labels="scroll"'):
                 self.assertIn(placement, markdown)
             blockers = "\n".join(report["release_blockers"])
             for expected in ("copy to confirm: To be confirmed", "pending parameters: Store it for",
-                             "figure front renders without the dense label type",
                              "operation main-power renders without its Web presentation"):
                 self.assertIn(expected, blockers)
+            self.assertEqual([gap["component"] for gap in report["presentation_gaps"]], ["operation main-power"])
             embedded = hashlib.sha256(base64.b64decode(EMBEDDED_PNG)).hexdigest()
             ir = json.loads((output / "manual.ir.json").read_text(encoding="utf-8"))
             self.assertIn(f"assets/ir/{embedded}/image.png", ir["metadata"]["asset_sha256"])

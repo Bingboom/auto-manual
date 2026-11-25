@@ -466,6 +466,7 @@ _REFERENCE_BASE_ART_LAYOUT_KEYS = frozenset({
     "labels",
     "preserve_frame",
     "mobile_labels",
+    "label_density",
 })
 _REFERENCE_LABEL_KEYS = frozenset({"line", "rect", "fill", "color"})
 
@@ -476,9 +477,13 @@ def _validate_reference_display_options(layout: Mapping[str, Any], *, field: str
         raise WebPresentationContractError(
             f"{field}.base_art_layout.preserve_frame must be a boolean"
         )
-    if layout.get("mobile_labels", "stack") not in {"stack", "overlay"}:
+    if layout.get("mobile_labels", "stack") not in {"stack", "overlay", "scroll"}:
         raise WebPresentationContractError(
-            f"{field}.base_art_layout.mobile_labels must be stack or overlay"
+            f"{field}.base_art_layout.mobile_labels must be stack, overlay or scroll"
+        )
+    if layout.get("label_density", "regular") not in {"regular", "compact"}:
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout.label_density must be regular or compact"
         )
 
 
