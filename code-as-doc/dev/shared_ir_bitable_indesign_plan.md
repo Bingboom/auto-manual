@@ -1,11 +1,12 @@
 # 基于「网页共享 IR + 多维表无字底图」生成 InDesign（`.idml` / `.indd`）—— 迁仓后三阶段落地实施计划
 
-Status: proposed · On-Hold / Deferred Reserve · Created: 2026-11-23 · Updated: 2026-11-24
+Status: proposed · on hold since 2026-11-24 · Created: 2026-11-23 · Updated: 2026-11-25
 
-> **当前状态：挂起备选（Deferred / On-Hold，2026-11-24 决策，当前零研发投入）**
+> **暂挂期间不启动本计划的 Day 0 及以后各步。** 重启条件（任一满足即由夏冰复评，见[执行台账 REV-39](manual_revitalization_execution.md#rev-39)）：REV-20 或 REV-40 开工、操作者启动共享层收敛、一次共享修改因缺少公共语义契约而无法可控地传到已冻结的整本包、出现没有现存 `.ai` 母版的新产品线，或多语种重排成为明显的人力瓶颈。
 >
-> - **现行主力路线（Active Primary）**：**「网页文档 + 基于语料 / 审核稿直接修改现存 `.ai` 印刷设计稿」**。数字与内容主线为网页文档（含 `REV-48` 审核稿转网页候选与差异追踪、以及 `TM-B` 语料库）；印刷交付优先通过语料与审核稿直接更新现存 Illustrator（`.ai`）设计母版（沿用既有刀版、出血与精排版面，见 `REV-54` 与 [`tools/rtd_portal_assets/asset_language.html`](../../tools/rtd_portal_assets/asset_language.html)），不以 InDesign 重建整本排印。
-> - **本方案定位（Deferred Contingency）**：保留为远期技术储备与契约参考，**当前不投入开发**；仅当未来出现「完全没有现存 `.ai` 母版的新品绿地开发」或「多语种长文跨页重排出现显著人力瓶颈」时，再按台账 `REV-39` / `REV-40` 重新评估启用。
+> - **决定**：2026-11-24 操作者决定印刷交付改走网页文档加直接修改现存 `.ai` 印刷母版，本计划暂挂、当前零研发投入；2026-11-25 操作者确认 IDML/InDesign 整条线先冻结，记录见[台账第 3 节决定表](manual_revitalization_execution.md)，REV-20、REV-26、REV-40 同步暂缓。
+> - **印刷主线**：按审核稿或语料直接修改现存 `.ai` 印刷母版（[REV-55](manual_revitalization_execution.md#rev-55)），原位改文字，刀版、出血与版面不动。网页文档仍按各自路线交付（含 `REV-48` 审核稿转网页候选）。
+> - **本计划定位**：保留为远期技术储备与契约参考；下文是 2026-11-23 制定的方案，正文未按暂挂改写。
 
 - **制定基线**：`origin/main` @ `0e7844f6e41c05b21c574dd52fa14ed28723cd75`（`#1809` 合入后）
 - **前置审计依据**：`eval_20261122_ir_to_indesign.md`（2026-11-22 只读基线审计报告）
