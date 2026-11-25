@@ -93,7 +93,7 @@ Use these together; do not split operator guidance across older phase plans.
 - [`dev/workstream_y_parallel_lanes.md`](dev/workstream_y_parallel_lanes.md)
   - Workstream Y remaining items split into eight non-overlapping lanes for parallel agents
 - [`dev/shared_ir_bitable_indesign_plan.md`](dev/shared_ir_bitable_indesign_plan.md)
-  - post-migration three-stage implementation plan for generating InDesign (`.idml` / `.indd`) from Web Shared IR (`manual.ir.json`) and Feishu Bitable uploaded textless base art
+  - on-hold deferred contingency plan (`deferred`, 0 current investment) for generating InDesign (`.idml` / `.indd`) from Web Shared IR (`manual.ir.json`) and Feishu Bitable uploaded textless base art; active print delivery prioritizes Web documents + direct `.ai` editing of existing Illustrator masters from corpus and review drafts
 
 ## 5. Historical Or Archived Docs
 
