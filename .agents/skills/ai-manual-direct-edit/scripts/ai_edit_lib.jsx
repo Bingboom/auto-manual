@@ -59,6 +59,38 @@ function aiMakePureRed(doc) {
     return rgb;
 }
 
+function aiMakePureYellow(doc) {
+    if (doc.documentColorSpace == DocumentColorSpace.CMYK) {
+        var c = new CMYKColor();
+        c.cyan = 0;
+        c.magenta = 0;
+        c.yellow = 100;
+        c.black = 0;
+        return c;
+    }
+    var rgb = new RGBColor();
+    rgb.red = 255;
+    rgb.green = 242;
+    rgb.blue = 0;
+    return rgb;
+}
+
+function aiMakePureBlack(doc) {
+    if (doc.documentColorSpace == DocumentColorSpace.CMYK) {
+        var c = new CMYKColor();
+        c.cyan = 0;
+        c.magenta = 0;
+        c.yellow = 0;
+        c.black = 100;
+        return c;
+    }
+    var rgb = new RGBColor();
+    rgb.red = 0;
+    rgb.green = 0;
+    rgb.blue = 0;
+    return rgb;
+}
+
 function aiPalette(doc) {
     return {
         text: aiMakeColor(doc, 64, 64, 65),
@@ -69,8 +101,48 @@ function aiPalette(doc) {
         card: aiMakeColor(doc, 210, 211, 213),
         shade: aiMakeColor(doc, 235, 236, 236),
         white: aiMakeColor(doc, 255, 255, 255),
-        red: aiMakePureRed(doc)
+        red: aiMakePureRed(doc),
+        yellow: aiMakePureYellow(doc),
+        black: aiMakePureBlack(doc)
     };
+}
+
+function aiCloseOpenDocByName(docName) {
+    var closed = 0;
+    for (var di = app.documents.length - 1; di >= 0; di--) {
+        if (app.documents[di].name === docName) {
+            app.documents[di].close(SaveOptions.DONOTSAVECHANGES);
+            closed++;
+        }
+    }
+    return closed;
+}
+
+function aiDocOf(item) {
+    var cur = item;
+    while (cur && cur.typename !== "Document") {
+        cur = cur.parent;
+    }
+    return cur || app.activeDocument;
+}
+
+// Illustrator 2026 (v30) can throw Error 1200 / 1346458189 ('MRAP') when
+// accessing tf.characters[i].characterAttributes right after mutating contents.
+// Reading via tf.textRange.characters[i] with a single retry refreshes the DOM handle.
+function aiSafeSetCharFill(tf, idx, color) {
+    try {
+        tf.textRange.characters[idx].characterAttributes.fillColor = color;
+    } catch (e) {
+        tf.textRange.characters[idx].characterAttributes.fillColor = color;
+    }
+}
+
+function aiSafeSetCharFont(tf, idx, fontObj) {
+    try {
+        tf.textRange.characters[idx].characterAttributes.textFont = fontObj;
+    } catch (e) {
+        tf.textRange.characters[idx].characterAttributes.textFont = fontObj;
+    }
 }
 
 function aiPagePoint(rect, px, py) {
@@ -118,7 +190,7 @@ function aiReplaceSub(tf, oldStr, newStr, opts) {
     var o = opts || {};
     var all = !!o.all;
     var markRed = (o.markRed === undefined) ? true : !!o.markRed;
-    var fillColor = o.color || aiMakePureRed(tf.layer.parent);
+    var fillColor = o.color || aiMakePureRed(aiDocOf(tf));
     var count = 0;
     var startPos = 0;
     while (true) {
@@ -126,17 +198,17 @@ function aiReplaceSub(tf, oldStr, newStr, opts) {
         if (idx === -1) break;
         if (newStr.length === 0) {
             for (var k = oldStr.length - 1; k >= 0; k--) {
-                tf.characters[idx + k].remove();
+                tf.textRange.characters[idx + k].remove();
             }
             startPos = idx;
         } else {
             for (var j = oldStr.length - 1; j >= 1; j--) {
-                tf.characters[idx + j].remove();
+                tf.textRange.characters[idx + j].remove();
             }
-            tf.characters[idx].contents = newStr;
+            tf.textRange.characters[idx].contents = newStr;
             if (markRed && fillColor) {
                 for (var r = 0; r < newStr.length; r++) {
-                    tf.characters[idx + r].characterAttributes.fillColor = fillColor;
+                    aiSafeSetCharFill(tf, idx + r, fillColor);
                 }
             }
             startPos = idx + newStr.length;
@@ -157,11 +229,61 @@ function aiColorSubstrings(tf, substrList, color) {
             var pos = full.indexOf(sub, start);
             if (pos === -1) break;
             for (var ci = 0; ci < sub.length; ci++) {
-                tf.characters[pos + ci].characterAttributes.fillColor = color;
+                aiSafeSetCharFill(tf, pos + ci, color);
             }
             start = pos + sub.length;
         }
     }
+}
+
+function aiAddHighlightPill(tf, fillColor, padX, padY, rad) {
+    if (!tf) return null;
+    var doc = aiDocOf(tf);
+    var bgCol = fillColor || aiMakePureYellow(doc);
+    var px = (padX === undefined || padX === null) ? 2.5 : padX;
+    var py = (padY === undefined || padY === null) ? 1.2 : padY;
+    var rr = (rad === undefined || rad === null) ? 2.0 : rad;
+    var gb = tf.geometricBounds;
+    var w = (gb[2] - gb[0]) + 2 * px;
+    var h = (gb[1] - gb[3]) + 2 * py;
+    var bg = tf.parent.pathItems.roundedRectangle(gb[1] + py, gb[0] - px, w, h, rr, rr);
+    bg.filled = true;
+    bg.fillColor = bgCol;
+    bg.stroked = false;
+    bg.move(tf, ElementPlacement.PLACEAFTER);
+    return bg;
+}
+
+function aiSetHighlightedText(tf, newText, opts) {
+    if (!tf) return null;
+    var o = opts || {};
+    var doc = aiDocOf(tf);
+    var usePill = (o.pill === undefined) ? true : !!o.pill;
+    var oldGb = tf.geometricBounds;
+    var oldCx = (oldGb[0] + oldGb[2]) / 2.0;
+    var oldRight = oldGb[2];
+    tf.contents = newText;
+    var ca = tf.textRange.characterAttributes;
+    if (o.font) ca.textFont = o.font;
+    if (o.size) ca.size = o.size;
+    if (o.leading) {
+        ca.autoLeading = false;
+        ca.leading = o.leading;
+    }
+    ca.fillColor = o.textColor || (usePill ? aiMakePureBlack(doc) : aiMakePureRed(doc));
+    if (o.centerOld) {
+        var newCx = (tf.geometricBounds[0] + tf.geometricBounds[2]) / 2.0;
+        tf.translate(oldCx - newCx, 0);
+    } else if (o.alignRightOld) {
+        tf.translate(oldRight - tf.geometricBounds[2], 0);
+    }
+    if (o.shiftX || o.shiftY) {
+        tf.translate(o.shiftX || 0, o.shiftY || 0);
+    }
+    if (usePill) {
+        return aiAddHighlightPill(tf, o.pillColor, o.padX, o.padY, o.rad);
+    }
+    return null;
 }
 
 function aiFixSpecialGlyphs(tf, opts) {
@@ -174,17 +296,18 @@ function aiFixSpecialGlyphs(tf, opts) {
     for (var i = s.length - 1; i >= 0; i--) {
         var ch = s.charAt(i);
         if (ch === "\u2393") {
-            tf.characters[i].characterAttributes.textFont = dcFont;
+            aiSafeSetCharFont(tf, i, dcFont);
         } else if (ch === "\u2460") {
-            tf.characters[i].characterAttributes.textFont = circleFont;
+            aiSafeSetCharFont(tf, i, circleFont);
         } else if (ch === "\u2084") {
-            var baseSize = tf.characters[i].characterAttributes.size;
-            var baseColor = tf.characters[i].characterAttributes.fillColor;
-            tf.characters[i].contents = "4";
-            tf.characters[i].characterAttributes.textFont = subFont;
-            tf.characters[i].characterAttributes.size = baseSize * 0.72;
-            tf.characters[i].characterAttributes.baselineShift = -baseSize * 0.22;
-            tf.characters[i].characterAttributes.fillColor = baseColor;
+            var cObj = tf.textRange.characters[i];
+            var baseSize = cObj.characterAttributes.size;
+            var baseColor = cObj.characterAttributes.fillColor;
+            cObj.contents = "4";
+            aiSafeSetCharFont(tf, i, subFont);
+            tf.textRange.characters[i].characterAttributes.size = baseSize * 0.72;
+            tf.textRange.characters[i].characterAttributes.baselineShift = -baseSize * 0.22;
+            aiSafeSetCharFill(tf, i, baseColor);
         }
     }
 }
@@ -231,7 +354,7 @@ function aiAddAreaText(layer, rect, px, py, w, h, text, font, size, color, opts)
             var pos = full.indexOf(sub);
             if (pos !== -1) {
                 for (var ci = 0; ci < sub.length; ci++) {
-                    tf.characters[pos + ci].characterAttributes.textFont = o.boldFont;
+                    aiSafeSetCharFont(tf, pos + ci, o.boldFont);
                 }
             }
         }

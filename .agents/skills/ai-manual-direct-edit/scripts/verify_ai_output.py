@@ -15,8 +15,11 @@ import fitz
 def normalize_text(raw: str) -> str:
     """Normalize common PDF ligatures, curly apostrophes, and whitespace."""
     cleaned = (
-        raw.replace("\ufb01", "fi")
+        raw.replace("\ufb00", "ff")
+        .replace("\ufb01", "fi")
         .replace("\ufb02", "fl")
+        .replace("\ufb03", "ffi")
+        .replace("\ufb04", "ffl")
         .replace("\u2019", "'")
         .replace("\u2018", "'")
         .replace("\u00a0", " ")
@@ -82,21 +85,37 @@ def verify_pdf(
         norm_texts = [normalize_text(txt) for txt in page_texts]
 
         rendered_files: list[str] = []
+        crop_errors: list[str] = []
+        crops = spec.get("crops", [])
         if render_dir is not None:
             render_dir.mkdir(parents=True, exist_ok=True)
-            targets = (
-                parse_page_selection(pages_spec, page_count)
-                if pages_spec
-                else list(range(1, page_count + 1))
-            )
-            for pno in targets:
-                out_png = render_dir / f"p{pno:02d}.png"
-                doc[pno - 1].get_pixmap(dpi=dpi).save(str(out_png))
+            if pages_spec or not crops:
+                targets = (
+                    parse_page_selection(pages_spec, page_count)
+                    if pages_spec
+                    else list(range(1, page_count + 1))
+                )
+                for pno in targets:
+                    out_png = render_dir / f"p{pno:02d}.png"
+                    doc[pno - 1].get_pixmap(dpi=dpi).save(str(out_png))
+                    rendered_files.append(str(out_png))
+            for crop in crops:
+                crop_name = str(crop["name"])
+                pno = int(crop.get("page", 1))
+                if pno < 1 or pno > page_count:
+                    crop_errors.append(
+                        f"Crop {crop_name!r} page {pno} out of bounds (1..{page_count})"
+                    )
+                    continue
+                rect_vals = crop["rect"]
+                crop_dpi = int(crop.get("dpi", dpi))
+                out_png = render_dir / f"{crop_name}.png"
+                doc[pno - 1].get_pixmap(clip=fitz.Rect(*rect_vals), dpi=crop_dpi).save(str(out_png))
                 rendered_files.append(str(out_png))
     finally:
         doc.close()
 
-    errors: list[str] = []
+    errors: list[str] = list(crop_errors)
     expected_pages = spec.get("expected_pages")
     if expected_pages is not None and page_count != int(expected_pages):
         errors.append(f"Page count mismatch: expected {expected_pages}, got {page_count}")
