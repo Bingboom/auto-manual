@@ -47,8 +47,24 @@ class AiManualDirectEditSkillTests(unittest.TestCase):
         runner = _load_script("run_illustrator_jsx")
         lib_path = SCRIPTS_DIR / "ai_edit_lib.jsx"
         self.assertTrue(lib_path.is_file())
-        errors = runner.check_pure_ascii(lib_path.read_text(encoding="utf-8"), label="ai_edit_lib.jsx")
+        lib_text = lib_path.read_text(encoding="utf-8")
+        errors = runner.check_pure_ascii(lib_text, label="ai_edit_lib.jsx")
         self.assertEqual(errors, [])
+        for symbol in (
+            "function aiMakePureYellow(",
+            "function aiMakePureBlack(",
+            "function aiCloseOpenDocByName(",
+            "function aiSafeSetCharFill(",
+            "function aiSafeSetCharFont(",
+            "function aiAddHighlightPill(",
+            "function aiSetHighlightedText(",
+        ):
+            self.assertIn(symbol, lib_text)
+        # Ensure executable character edits route via textRange.characters to avoid MRAP
+        code_lines = [
+            line for line in lib_text.splitlines() if not line.lstrip().startswith("//")
+        ]
+        self.assertNotIn("tf.characters[", "\n".join(code_lines))
 
     def test_runner_rejects_non_ascii_with_unicode_escape_hint(self) -> None:
         runner = _load_script("run_illustrator_jsx")
@@ -165,9 +181,36 @@ class AiManualDirectEditSkillTests(unittest.TestCase):
     def test_verify_normalize_text_handles_ligatures_quotes_and_whitespace(self) -> None:
         verifier = _load_script("verify_ai_output")
         self.assertEqual(
-            verifier.normalize_text("First\u00a0\ufb01le  \ufb02ow   user\u2019s\ncheck"),
-            "First file flow user's check",
+            verifier.normalize_text(
+                "First\u00a0\ufb01le  \ufb02ow  chi\ufb00re  o\ufb03ce  wa\ufb04e  user\u2019s\ncheck"
+            ),
+            "First file flow chiffre office waffle user's check",
         )
+
+    def test_verify_pdf_renders_spec_crops_without_full_page_raster(self) -> None:
+        verifier = _load_script("verify_ai_output")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            pdf_box = root / "box.pdf"
+            _make_sample_pdf(
+                pdf_box,
+                ["Model: JE-3000E-GY\nchiffre d'affaires"],
+                embed_illustrator_marker=True,
+            )
+            spec = {
+                "expected_pages": 1,
+                "require_illustrator": True,
+                "must_exist": [{"page": 1, "phrase": "JE-3000E-GY"}],
+                "crops": [
+                    {"name": "spec_panel", "page": 1, "rect": [0, 0, 200, 150], "dpi": 72},
+                ],
+            }
+            render_dir = root / "crops"
+            result = verifier.verify_pdf(pdf_box, qa_spec=spec, render_dir=render_dir)
+            self.assertTrue(result["ok"])
+            self.assertEqual(len(result["rendered_files"]), 1)
+            self.assertTrue((render_dir / "spec_panel.png").is_file())
+            self.assertFalse((render_dir / "p01.png").exists())
 
     def test_verify_pdf_checks_illustrator_marker_stale_values_and_renders_pngs(self) -> None:
         verifier = _load_script("verify_ai_output")

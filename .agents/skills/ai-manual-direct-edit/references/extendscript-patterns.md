@@ -31,18 +31,23 @@ Illustrator artboard/page rectangles are `[left, top, right, bottom]` where **Y 
 6. **Watch for `AreaText` bottom clipping.** When replacement copy is longer than the original, `AreaText` clips extra lines silently at `textPath.height`. Remove awkward hard `\r` breaks, expand `textPath.height`, or adjust leading slightly — then confirm via both `must_exist` (checking the final words!) and PNG visual inspection.
 7. **Special glyphs in Gilroy.** Gilroy lacks `⎓`, `①`, and subscript `₄`. `aiFixSpecialGlyphs(tf)` assigns `SegoeUISymbol` to `\u2393`, `NotoSansSymbols-Regular` to `\u2460`, and converts `\u2084` into `"4"` at `0.72×` size with `-0.22×` `baselineShift`.
 8. **Matching original dark banner charcoal.** Rather than guessing an RGB→CMYK approximation for dark header bars, call `aiSampleBannerColor(layer, rect)` to clone the exact CMYK `fillColor` of an existing dark banner on the document.
-9. **One-click red highlight reset for designers.** All highlighted edits share exact `CMYK 0/100/100/0`. In Illustrator, select any red text span and run `Select → Same → Fill Color` (`选择 → 相同 → 填色`) to reset all highlights back to body dark gray in one action.
+9. **One-click highlight reset for designers.** On white-background manuals, all red edits share exact `CMYK 0/100/100/0` (`Select → Same → Fill Color` resets them in one step). On colored packaging panels (e.g. Jackery orange), red text has poor contrast — use **pure yellow pill (`CMYK 0/0/100/0`) + pure black text (`CMYK 0/0/0/100`)** via `aiSetHighlightedText` / `aiAddHighlightPill` (`bg.move(tf, ElementPlacement.PLACEAFTER)`). Designers remove all pills at once via `Select → Same → Fill Color` on any yellow pill, then restore text fill. When an edited frame sits immediately beside a separate split-glyph frame (such as `⎓` on `16V-60V⎓` or `30W max., 5V⎓`), keep `padX` tight (`0.8–1.0 pt`) or add a `1.5–2.0 pt` `shiftX` so the pill never overlaps the glyph.
+10. **Illustrator 2026 (`v30`) `Error 1200 / 1346458189 ('MRAP')` on character attributes.** Immediately after mutating `tf.characters[idx].contents`, accessing `tf.characters[k].characterAttributes.fillColor` or `.textFont` directly can throw `'MRAP'` due to a stale character-range handle (and reading `characters[0].characterAttributes.textFont` on some imported PDFs also throws `'MRAP'`). Always access characters through `tf.textRange.characters[k]` via `aiSafeSetCharFill` / `aiSafeSetCharFont` (included in `aiReplaceSub`, `aiColorSubstrings`, `aiFixSpecialGlyphs`, and `aiAddAreaText`), and assign an explicit font object when replacing full text on compressed non-AI PDFs. Also call `aiCloseOpenDocByName(scratchName)` before `app.open()` so an aborted earlier run cannot leave a half-edited copy open in Illustrator.
+11. **Verify OCR-only discrepancies on high-res crops before editing.** PDF text extraction misses outlined vector graphics (e.g. a `3+2 YEAR` warranty badge whose `3+` was converted to outlines extracts as `2 YEAR`) and may split/drop ligatures (`ff`, `fi`, `fl`, `ffi`, `ffl`). Always inspect a high-res crop (`crops` in `verify_ai_output.py`) before trusting OCR-only findings on packaging boxes or graphic badges.
 
 ## 4. `scripts/ai_edit_lib.jsx` Function Summary
 
 | Helper | Purpose |
 | --- | --- |
-| `aiMakeColor(doc, r, g, b)` / `aiMakePureRed(doc)` | Create CMYK (or RGB) color matching `doc.documentColorSpace`; pure red is `CMYK 0/100/100/0`. |
+| `aiMakeColor(doc, r, g, b)` / `aiMakePureRed(doc)` / `aiMakePureYellow(doc)` / `aiMakePureBlack(doc)` | Create CMYK (or RGB) colors matching `doc.documentColorSpace`: pure red `0/100/100/0`, pure yellow `0/0/100/0`, pure black `0/0/0/100`. |
+| `aiCloseOpenDocByName(docName)` | Close any leftover open Illustrator document matching `docName` before reopening a scratch copy cleanly. |
+| `aiSafeSetCharFill(tf, idx, color)` / `aiSafeSetCharFont(tf, idx, fontObj)` | Set character color/font via `tf.textRange.characters[idx]` with retry to avoid Illustrator 2026 `MRAP` errors. |
 | `aiPagePoint(rect, px, py)` | Convert page-relative top-down `(px, py)` into Illustrator `[x, y]`. |
 | `aiFramesInBox(doc, rect)` | Return all `TextFrame` objects whose center falls inside `rect`. |
 | `aiFindFrame(doc, rect, substr, opts)` | Find a `TextFrame` containing `substr`, optionally constrained by `opts.yMin` / `opts.yMax` and `opts.log`. |
 | `aiReplaceSub(tf, oldStr, newStr, opts)` | Character-level substring replacement preserving surrounding styling; colors replaced span with `opts.color` (default pure red when `opts.markRed !== false`). |
 | `aiColorSubstrings(tf, substrList, color)` | Highlight exact substrings inside an existing `TextFrame`. |
+| `aiAddHighlightPill(tf, fillColor, padX, padY, rad)` / `aiSetHighlightedText(tf, newText, opts)` | Place a tight rounded highlight pill (default pure yellow) behind a `TextFrame` (`PLACEAFTER`) and style text (default pure black) for colored packaging panels. |
 | `aiFixSpecialGlyphs(tf, opts)` | Apply fallback fonts for `⎓` / `①` and subscript styling for `₄`. |
 | `aiAddPointText` / `aiAddAreaText` | Create native `PointText` (with optional `alignRightX` / `centerWidth`) or `AreaText` (with optional `leading`, `boldSubstrings`, `redSubstrings`). |
 | `aiAddRoundRect` / `aiAddLine` / `aiAddCalloutPill` / `aiDrawNativeTable` | Create native rounded cards, rules, callout pills, and styled 2-column tables. |
@@ -63,9 +68,13 @@ Illustrator artboard/page rectangles are `[left, top, right, bottom]` where **Y 
   "must_exist": [
     {"page": 1, "phrase": "NEW-MODEL"},
     {"page": 5, "phrase": "authority to operate the device."}
+  ],
+  "crops": [
+    {"name": "spec_panel", "page": 1, "rect": [5140, 3140, 6160, 3920], "dpi": 220}
   ]
 }
 ```
 
 - `page` and `ignore_pages` are **1-based** page numbers (`1..N`) so they match PDF viewer and Illustrator artboard numbering.
-- `verify_ai_output.py` automatically normalizes ligatures (`\ufb01` → `fi`, `\ufb02` → `fl`), curly apostrophes (`\u2019` → `'`), and collapsed whitespace before checking `must_exist`.
+- `crops` is optional and ideal for giant single-artboard packaging dielines (when `crops` is set and `--pages` is omitted, `--render-dir` renders only the specified high-res crops instead of rasterizing the full 9000+ pt sheet).
+- `verify_ai_output.py` automatically normalizes ligatures (`\ufb00` → `ff`, `\ufb01` → `fi`, `\ufb02` → `fl`, `\ufb03` → `ffi`, `\ufb04` → `ffl`), curly apostrophes (`\u2019` → `'`), and collapsed whitespace before checking `must_exist`.
