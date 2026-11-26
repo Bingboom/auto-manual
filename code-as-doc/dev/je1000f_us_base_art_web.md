@@ -137,7 +137,9 @@ overlays share one canvas; the overlays are transparent so no drawn line, pill o
 clock is covered. Summary steps such as `On: Press once.` split at the first colon
 into label and instruction (the IDML row rule); nothing is dropped when no colon
 exists. Main power adds the duration beside its drawn clock, taken from the step
-copy (`3s`, `3 secondes`, `3 segundos`). Energy saving renders a footer under the
+copy (`3s`, `3 secondes`, `3 segundos`, or a terse Japanese `3秒` as printed beside
+the clock). A duration inside a sentence (`1秒間押す`) is that step's own timing,
+not the clock's token. Energy saving renders a footer under the
 art with the duration, the source `mode_label` and the action.
 
 LED renders as a footer-panel card: the lead sits in its own soft panel above the

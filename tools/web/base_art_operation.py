@@ -20,9 +20,12 @@ BASE_ART_CLASS = "hb-base-art-live-copy"
 _HEX_COLOR_RE = re.compile(r"#[0-9a-f]{6}")
 # Compact duration token shown beside a clock, taken from the localized step
 # copy the same way the IDML operation panel derives its editable duration.
+# A terse Japanese duration (a number and the seconds sign, as printed beside
+# the clock) counts like "3s"; one inside a sentence, followed by more words,
+# is that step's own timing and never the clock's token.
 _DURATION_RE = re.compile(
     r"\b(?:(\d+)\s*(?:seconds?|secondes?|second[oi]|segundos?|seconden|"
-    r"sekunden?|sekund(?:y|ę)?|секунд(?:и|у)?|s|с)|drei\s+sekunden)\b",
+    r"sekunden?|sekund(?:y|ę)?|секунд(?:и|у)?|s|с|秒)|drei\s+sekunden)\b",
     re.IGNORECASE,
 )
 

@@ -43,6 +43,7 @@ class BaseArtOperationTests(unittest.TestCase):
             ("Tenere premuto per 3 secondi", "3s"),
             ("Tenere premuto per 5 secondi", "5s"),
             ("Press and hold for 3s.", "3s"),
+            ("3秒", "3s"),
         ):
             with self.subTest(copy=copy):
                 soup, figure, stage = _figure(
@@ -70,6 +71,41 @@ class BaseArtOperationTests(unittest.TestCase):
                 self.assertEqual(token, _text(clocks[0]))
                 self.assertEqual("clock", clocks[0]["data-duration-icon"])
                 self.assertEqual("true", clocks[0]["aria-hidden"])
+
+    def test_terse_japanese_duration_is_the_clock_token_not_sentence_timing(self) -> None:
+        # The print sets the clock beside the terse "3秒" under オフ; the
+        # 1-second press inside the sentence above it is that step's own timing.
+        soup, figure, stage = _figure(
+            "status-right",
+            '<img class="hb-operation-art" src="a.png">'
+            '<div class="line-block hb-operation-steps">'
+            + _step("on", ("label", "<strong>オン</strong>"), ("instruction", "1秒間押す"))
+            + _step("off", ("label", "<strong>オフ</strong>"), ("instruction", "3秒"))
+            + "</div>",
+        )
+        arrange_base_art_operation(
+            soup, figure=figure, stage=stage,
+            spec={"id": "power", "layout": "status-right", "base_art_layout": {
+                "art_sha256": "a" * 64, "step_anchors": [[77.9, 19.32], [77.9, 37.61]],
+                "step_width": 20, "duration_anchor": [82.4, 50.23]}},
+            source_path=SOURCE, error_type=ValueError,
+        )
+        self.assertEqual(["3s"], [_text(clock) for clock in stage.select(".hb-operation-duration")])
+
+        soup, figure, stage = _figure(
+            "status-right",
+            '<img class="hb-operation-art" src="a.png">'
+            '<div class="line-block hb-operation-steps">'
+            + _step("on", ("instruction", "1秒間押す")) + "</div>",
+        )
+        with self.assertRaisesRegex(ValueError, "state no duration"):
+            arrange_base_art_operation(
+                soup, figure=figure, stage=stage,
+                spec={"id": "power", "layout": "status-right", "base_art_layout": {
+                    "art_sha256": "a" * 64, "step_anchors": [[77.9, 19.32]],
+                    "step_width": 20, "duration_anchor": [82.4, 50.23]}},
+                source_path=SOURCE, error_type=ValueError,
+            )
 
     def test_summary_steps_sit_on_their_anchors_beside_one_duration(self) -> None:
         soup, figure, stage = _figure(
