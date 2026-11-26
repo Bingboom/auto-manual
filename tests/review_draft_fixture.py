@@ -107,11 +107,19 @@ RENDERED = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>审核稿
 <figure class="magd-figure"><img alt="Embedded view" src="data:image/png;base64,{EMBEDDED_PNG}"/><figcaption class="review-note">临时图</figcaption></figure>
 </section>
 <section id="operations"><h1>OPERATIONS</h1>
-<figure class="hb-operation-figure hb-operation-layout-status-right" data-component-id="HB-SPECIAL-OPERATION"><div class="hb-operation-stage">
-<img alt="" class="hb-operation-art" src="assets/card3.png"/><div class="line-block hb-operation-steps" data-callout-id="operation.main-power.steps">
-<div class="hb-operation-step" data-step-id="on" style="--hb-step-x:70%"><div class="line hb-operation-step-label" data-step-part="label"><strong>On</strong></div>
-<div class="line hb-operation-step-instruction" data-step-part="instruction">Press once</div></div></div>
-<div class="hb-operation-supporting-copy"><div class="line">It turns off after an idle period.</div></div></div></figure>
+<figure class="hb-operation-figure hb-operation-layout-status-right hb-base-art-live-copy" data-component-id="HB-SPECIAL-OPERATION"
+ data-operation-id="main-power" data-web-presentation-mode="base-art-live-copy"><div class="hb-operation-stage"><div class="hb-operation-canvas">
+<div class="hb-operation-art-box"><img alt="" class="hb-operation-art" src="assets/card3.png"/>
+<div aria-hidden="true" class="hb-operation-duration" style="--hb-x:82%;--hb-y:43%">3s</div></div>
+<div class="line-block hb-operation-steps" data-callout-id="operation.main-power.steps">
+<div class="hb-operation-step" data-step-id="on" style="--hb-step-x:76.5%;--hb-step-y:21%;--hb-step-width:22.5%">
+<div class="line hb-operation-step-label" data-step-part="label" data-source-unit="M1"><strong>On</strong><span class="zh-translation" lang="zh-CN">开机</span></div>
+<div class="line hb-operation-step-instruction" data-step-part="instruction">Press once</div></div>
+<div class="hb-operation-step" data-step-id="off" style="--hb-step-x:76.5%;--hb-step-y:34%;--hb-step-width:22.5%">
+<div class="line hb-operation-step-label" data-step-part="label"><strong>Off</strong></div>
+<div class="line hb-operation-step-instruction" data-step-part="instruction">Press and hold for 3s</div></div></div>
+<div class="hb-operation-supporting-copy hb-operation-supporting-panels" style="--hb-x:43%;--hb-y:57%;--hb-width:52%">
+<div class="line">It turns off after an idle period.</div></div></div></div></figure>
 <figure aria-label="Buttons" class="hb-key-combination-composition" data-component-id="HB-TABLE-KEY-COMBINATIONS"><table class="hb-key-combination-table"><thead><tr>
 <th class="hb-key-buttons" scope="col">Buttons</th><th class="hb-key-operation" scope="col">Operation</th><th class="hb-key-function" scope="col">Function</th></tr></thead><tbody>
 <tr><td class="hb-key-buttons"><div class="hb-key-button"><img alt="" src="assets/symbol1.png"/><p>A button</p></div></td><td class="hb-key-operation"><span class="hb-key-duration spec-value">3s</span><p>Hold for 3s</p></td><td class="hb-key-function">Saves energy</td></tr>
