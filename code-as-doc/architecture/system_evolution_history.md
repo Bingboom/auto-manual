@@ -1,6 +1,6 @@
 # 系统演进史（骨架与来路）
 
-Updated: 2026-11-24
+Updated: 2026-11-25
 
 ## 0. 本文角色
 
@@ -17,8 +17,8 @@ Updated: 2026-11-24
 维护规则：新增"环"、已记录环的关键验收或收官证据变化时更新本文；普通功能与修复不记。
 本文中的数量是注明日期和口径的历史快照，不是实时仪表盘。
 已形成的能力、仍在验收的建设、未来方向分别标注；合入不等于部署或线上验收。
-截至 2026-10-04，当前最成熟的是 Web 文档的生成、审核、发布与维护链条；
-IDML 文件用于印刷版试生产，相关工具和版式测试完成不等于正式印刷交付成熟。
+截至 2026-11-25，当前最成熟的是 Web 文档的生成、审核、发布与维护链条；
+印刷主线是直接修改现存 `.ai` 母版，相关工具和版式测试完成不等于正式印刷交付成熟。
 
 RTD `/workspace/system/` 的「系统演变」读取本文 §7 的同源摘要，
 按工作台能力逐步扩展的过程讲述。摘要随历史正文一起维护，不另设网页历史源。
@@ -59,9 +59,7 @@ flowchart LR
   G --> R[评审层 docs/_review]
   R -.批准后按对应编辑面回源.-> F
   G --> OUT1[Sphinx → PDF/Word/HTML]
-  G --> OUT2[IDML → InDesign → 印刷PDF<br/>试生产]
   OUT1 --> REL[发布<br/>manifest·血缘·tag]
-  OUT2 -.试制记录.-> REL
   Q[飞书构建队列] -.驱动.-> ASM
   REL --> WEB[冻结 Web 发布 → RTD HTML]
   WEB --> MACHINE[HTML 语义提取<br/>Machine JSON + Manifest]
@@ -174,10 +172,10 @@ Word 之外长出 InDesign 印刷线。IDML 导出 MVP 07-04（#548），
 记录了 14 个线上页面对比、217 次图片检查和 28 个桌面/手机案例。
 Web 整本样式与组件复用已经形成，Shared IR（共享底稿）复用随网页手册积累持续完善。
 现有 Web 入口先构建冻结整本包，再从包生成网页；包可脱离 RST、CSV 重放。
-Word 仍逐页转换 RST，IDML 现阶段仍从 prepared RST 另建 IR 并冻结保留。三者已有公共组件接口，
+Word 仍逐页转换 RST，IDML 现阶段仍从 prepared RST 另建 IR。三者已有公共组件接口，
 直接消费同一份冻结整本包已于 2026-11 完成前置决策（[A1–A9 与 N1–N4](../dev/manual_ir_p1_decisions_2026-11.md)）
 并记录三阶段技术方案（[网页共享 IR + 多维表无字底图 → InDesign](../dev/shared_ir_bitable_indesign_plan.md)）；
-按 2026-11-24 路线决策，当前交付主力定为**网页文档（含审核稿转网页候选）+ 基于语料与审核稿直接修改现存 `.ai` 印刷设计稿**（沿用现有刀版与版面），上述 InDesign 自动排印方案暂挂为远期备选储备（当前零研发投入）；
+按 2026-11-24 路线决策，交付为网页文档（含审核稿转网页候选），印刷主线为按审核稿或语料直接修改现存 `.ai` 母版（[REV-55](../dev/manual_revitalization_execution.md#rev-55)），上述 InDesign 方案暂挂（当前零研发投入）；
 布局、分页和交付仍分别验收。
 代码边界见 [Web 源适配](../../tools/web/document_source.py)、
 [Web 整本消费](../../tools/web/document_ir.py)、
@@ -307,12 +305,13 @@ Product Knowledge 与 Market Policy 是阅读与应用页面，各自保留内�
 它们不是所有产品参数、术语或政策事实的统一权威源。Machine Corpus 是已发布
 内容的派生面，当前 HTML compatibility 路径不因此改为 IR-native。
 
-**Shared IR（共享底稿）：巩固 Web 整本共享，跨格式延伸暂作远期备选。** Web 整本复用已经实现，
+**Shared IR（共享底稿）：巩固 Web 整本共享，跨格式延伸暂挂。** Web 整本复用已经实现，
 IR 与共享组件随网页手册录入（含审核稿转网页候选路径）持续完善；
-印刷交付当前主力采取基于语料与审核稿直接修改现存 `.ai` Illustrator 设计母版（保留既有刀版、出血与版面）。
-跨格式长期备选是扩大共同语义覆盖，其中「基于网页共享 IR（`manual.ir.json`）+ 飞书多维表上传无字底图生成 InDesign（`.idml` / `.indd`）」
-三阶段方案（见[技术备选方案](../dev/shared_ir_bitable_indesign_plan.md)）于 2026-11-24 决定暂挂为远期储备（当前零研发投入），
-仅在未来遇到无现存 `.ai` 母版新品或跨页重排瓶颈时再按 REV-39/REV-40 评估启用；现有机读语料仍保留 HTML 兼容提取基线，不一次重写所有 Renderer。
+印刷主线是按审核稿或语料直接修改现存 `.ai` 母版：原位改文字，刀版、出血与版面不动（工作规则，不是自动检查）。
+跨格式长期方向是扩大共同语义覆盖，其中「基于网页共享 IR（`manual.ir.json`）+ 飞书多维表上传无字底图生成 InDesign（`.idml` / `.indd`）」
+三阶段方案（见[技术备选方案](../dev/shared_ir_bitable_indesign_plan.md)）于 2026-11-24 暂挂（当前零研发投入）。
+重启条件同台账 REV-39，任一满足即复评：REV-20 或 REV-40 开工、启动共享层收敛、共享修改因缺少公共语义契约无法可控地传到已冻结的整本包、出现没有现存 `.ai` 母版的新产品线，或多语种重排成为明显的人力瓶颈；
+现有机读语料仍保留 HTML 兼容提取基线，不一次重写所有 Renderer。
 
 **Knowledge Feedback：让生产经验回到下一次生产。** 先观察 Safety / Warning /
 Compliance 的原文、差异与来源，再形成缺口候选，经人工评审决定适用范围和
@@ -346,7 +345,7 @@ flowchart LR
 <!-- system-evolution:start -->
 ```yaml
 schema: system-evolution/v1
-updated_on: 2026-11-24
+updated_on: 2026-11-25
 title: 从一条自动化脚本，到持续演进的说明书工作台
 intro: 从自动生成一份说明书开始，记录系统怎样逐步支持评审、发布、样式复用和 AI 查询，为什么发生这些变化，以及后续准备向哪些方向发展。
 architecture:
@@ -409,23 +408,22 @@ architecture:
   - id: document_production
     title: 文档生产与发布
     status: ongoing
-    summary: 按事实类型选定内容来源（Content Authority），按型号、区域和语言组装（Assembly），经各格式渲染器或设计工具输出（Renderers），审核后发布（Publish）。Web 已实现整本 Shared IR（共享底稿）与样式复用并承担数字主线，印刷端主力基于语料与审核稿直接修改现存 .ai 印刷设计稿；「网页共享 IR + 飞书多维表无字底图 → InDesign」方案暂挂为远期备选（当前零研发投入）。
+    summary: 按事实类型选定内容来源（Content Authority），按型号、区域和语言组装（Assembly），经各格式渲染器或设计工具输出（Renderers），审核后发布（Publish）。Web 已实现整本 Shared IR（共享底稿）与样式复用；印刷主线是直接修改现存 .ai 母版，「网页共享 IR + 飞书多维表无字底图 → InDesign」方案暂挂（当前零研发投入）。
     evidence:
     - file:auto-manual:tools/web/document_source.py
     - file:auto-manual:tools/web/document_ir.py
     - file:auto-manual:tools/word/bundle_html.py
     - file:auto-manual:tools/idml/ir_projection.py
-    - file:auto-manual:tools/rtd_portal_assets/asset_language.html
+    - file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md
     - file:auto-manual:code-as-doc/dev/manual_ir_p1_decisions_2026-11.md
     - file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md
   surfaces:
   - id: human_output
     title: 给人阅读：Web／Word／PDF／.ai
     status: ongoing
-    summary: Web 文档链条最成熟（含审核稿转网页候选）；印刷交付主力为基于语料与审核稿直接修改现存 .ai 设计稿（保留刀版与版面）；Word 与 PDF 有各自输出路径，旧 RST→IDML 路径冻结保留，「网页 Shared IR + 飞书多维表上传无字底图 → InDesign」方案暂挂为远期备选。Portal 和 Workspace 提供阅读与工作入口。
+    summary: Web 文档链条最成熟（含审核稿转网页候选）；印刷主线是直接修改现存 .ai 母版；Word 与 PDF 有各自输出路径，「网页 Shared IR + 飞书多维表上传无字底图 → InDesign」方案暂挂。Portal 和 Workspace 提供阅读与工作入口。
     evidence:
     - file:auto-manual:tools/rtd_portal_assets/system_workspace.yaml
-    - file:auto-manual:tools/rtd_portal_assets/asset_language.html
     - file:auto-manual:code-as-doc/dev/rtd_manual_portal.md
     - file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md
   - id: machine_output
@@ -502,7 +500,7 @@ architecture:
   - id: manual_generation
     title: 说明书构建与发布
     status: recorded
-    summary: build.py 提供检查、草稿、发布等入口；本地发布与队列排障有对应技能。Web 是成熟主线，印刷 IDML 仍按试生产单独验证。
+    summary: build.py 提供检查、草稿、发布等入口；本地发布与队列排障有对应技能。Web 链条最成熟；印刷主线是直接修改现存 .ai 母版。
     evidence:
     - file:auto-manual:build.py
     - file:auto-manual:.agents/skills/local-publish-queue-run/SKILL.md
@@ -527,7 +525,7 @@ architecture:
     - file:auto-manual:tools/check_review_branch_sync.py
 now:
   - {label: Web 文档, state: 已成熟，持续发布与维护, status: ongoing}
-  - {label: 印刷版 IDML, state: 试生产，逐项验证排版与印刷, status: in_progress}
+  - {label: 印刷版, state: 直接修改现存 .ai 母版，操作者本地实测可用，编辑脚本待入库, status: in_progress}
   - {label: 程序与 AI 查询, state: EU 机读语料第一阶段已验收，从网页整理；查询网关验收未完成, status: in_progress}
   - {label: 审核经验回馈, state: EU 发现台账与核验已实现，全量验收未完成；更广的经验回馈仍为规划, status: in_progress}
 chapters:
@@ -602,13 +600,13 @@ stages:
     start: "2026-07"
     period: 2026-07 起
     status: in_progress
-    title: 印刷交付：直接改现存 .ai 主力与 IDML 备选
-    metaphor: 印刷主线直接修改现存 .ai 母版，旧 IDML 路径冻结作备选
-    summary: 现行印刷交付主力已明确为基于语料与审核稿直接修改现存 .ai Illustrator 设计母版（保留既有刀版、出血与版面）；早期试制的 IDML 导出链冻结保留，「网页共享 IR + 飞书多维表上传无字底图 → InDesign」方案已暂挂为远期备选。
-    flow: [语料与审核稿源, 直接修改现存 .ai 设计稿, 保留刀版与版面校对, 印刷交付]
-    detail: 已有基于语料替换 Illustrator（.ai）设计源文件文字与自动修正页码的技能工具链（REV-54）；同时保留早期 IDML 导出、参考版式与工程测试证据作为冻结备选。2026-11 设计的「网页共享 IR + 飞书多维表上传无字底图 → InDesign」三阶段方案于 2026-11-24 决定暂挂（当前零研发投入），不阻塞现有 Web 与 .ai 印刷交付。
+    title: 印刷交付：直接改现存 .ai
+    metaphor: 印刷主线直接修改现存 .ai 母版
+    summary: 印刷主线是按审核稿或语料直接修改现存 .ai Illustrator 母版，工作规则是原位改文字，刀版、出血与版面不动；「网页共享 IR + 飞书多维表上传无字底图 → InDesign」方案已暂挂。
+    flow: [审核稿或语料, 直接修改现存 .ai 母版, 核对改后文件, 印刷交付]
+    detail: 操作者已在本地实测可用这条做法，编辑脚本尚未入库；仓库现有页码与目录修正技能和语料查询技能（REV-55）。2026-11 设计的「网页共享 IR + 飞书多维表上传无字底图 → InDesign」三阶段方案于 2026-11-24 决定暂挂（当前零研发投入），不阻塞 Web 与 .ai 印刷交付。
     invariant: 优先复用经过印刷验证的现存 .ai 刀版与版面，正式图稿改动须经核验与人工确认。
-    evidence: ["pr:auto-manual#548", "pr:auto-manual#722", "pr:auto-manual#837", "file:auto-manual:tools/rtd_portal_assets/asset_language.html", "file:auto-manual:tools/indesign_finalize.py", "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"]
+    evidence: ["pr:auto-manual#548", "pr:auto-manual#722", "pr:auto-manual#837", "file:auto-manual:.claude/skills/ai-manual-pagenum-fix/SKILL.md", "file:auto-manual:.agents/skills/bitable-translation-memory/SKILL.md", "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md", "file:auto-manual:tools/indesign_finalize.py", "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"]
   - id: style_components
     start: "2026-07"
     period: 2026-07 起
@@ -651,7 +649,7 @@ stages:
     metaphor: 先有一份完整底稿，各种格式都从它出发
     summary: 网页手册不再逐页拼装，而是先把整本内容（章节、正文、表格、步骤、插图和用到的样式组件）整理成 Shared IR（共享底稿），再由底稿生成网页。每录入一本新手册，底稿能表达的情况就更完整。Word 和印刷版目前仍各自生成，以后计划也从同一份底稿出发。
     flow: [录入一本手册, 整理成 Shared IR（共享底稿）, 由共享底稿生成网页, 补齐新遇到的情况]
-    detail: 技术上，这份底稿就是 Shared IR（共享底稿，技术上称中间表示），保存为 manual.ir.json，包含整本内容、组件定义、素材和所用规则；保存下来的底稿不依赖原始 RST、CSV 也能重新生成同样的网页。上一项的样式组件是这件事的起点。Word 目前仍逐页转换，印刷交付当前主力为基于语料与审核稿直接修改现存 .ai 设计稿；2026-11 完成前置决策并整理的「基于网页共享 IR + 飞书多维表上传无字底图生成 InDesign（.idml / .indd）」三阶段方案已于 2026-11-24 暂挂为远期备选（当前零研发投入），待条件触发时再按台账 REV-39、REV-40 评估。
+    detail: 技术上，这份底稿就是 Shared IR（共享底稿，技术上称中间表示），保存为 manual.ir.json，包含整本内容、组件定义、素材和所用规则；保存下来的底稿不依赖原始 RST、CSV 也能重新生成同样的网页。上一项的样式组件是这件事的起点。Word 目前仍逐页转换，印刷主线是直接修改现存 .ai 母版；2026-11 完成前置决策并整理的「基于网页共享 IR + 飞书多维表上传无字底图生成 InDesign（.idml / .indd）」三阶段方案已于 2026-11-24 暂挂（当前零研发投入），重启条件见台账 REV-39。
     invariant: 同一本手册只整理一份底稿；各格式从底稿生成，并各自负责排版与验收。
     evidence: ["file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md", "file:auto-manual:code-as-doc/dev/ir_document_closeout.md", "file:auto-manual:tools/web/document_source.py", "file:auto-manual:tools/web/document_ir.py", "file:auto-manual:tools/word/bundle_html.py", "file:auto-manual:tools/idml/ir_projection.py", "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md", "file:auto-manual:code-as-doc/dev/manual_ir_p1_decisions_2026-11.md", "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"]
   - id: enterprise_integration
@@ -675,13 +673,13 @@ stages:
     invariant: MCP 是访问适配层；AI 的判断不能替代业务事实，也不能跳过正式文件修改的人工批准。
     evidence: ["file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md", "file:auto-manual:integrations/openclaw/README.md", "file:auto-manual:code-as-doc/dev/eu_manual_query.md"]
   - id: ir_expansion
-    period: 后续方向 · 暂挂备选，按条件再评估
+    period: 后续方向 · 暂挂，按条件再评估
     status: planned
-    title: Shared IR（共享底稿）：远期跨格式扩展备选
+    title: Shared IR（共享底稿）：跨格式扩展（暂挂）
     metaphor: Web 整本共享已落地，跨格式自动排印保留为远期技术储备
-    summary: Web 的 Shared IR（共享底稿）和样式复用已经实现，当前与直接修改现存 .ai 设计稿共同构成主力交付链。「网页共享 IR + 飞书多维表上传无字底图 → InDesign（.idml / .indd）」方案于 2026-11-24 决定暂挂为远期备选（当前零研发投入），Word 与机读直出亦保留为后续扩展，当前机读语料仍从已发布 HTML 提取。
+    summary: Web 的 Shared IR（共享底稿）和样式复用已经实现；印刷主线是直接修改现存 .ai 母版。「网页共享 IR + 飞书多维表上传无字底图 → InDesign（.idml / .indd）」方案于 2026-11-24 随 IDML/InDesign 整条线暂挂（当前零研发投入），Word 与机读直出亦保留为后续扩展，当前机读语料仍从已发布 HTML 提取。
     flow: [已有 Web 的 Shared IR（共享底稿）, 触发条件满足后再评估启用, 对接飞书多维表无字底图或各格式消费, 分别验证与验收]
-    detail: 这是对现有 shared_ir 阶段的远期跨格式扩展储备，当前印刷交付不依赖此链路（优先直接修改现存 .ai 设计母版）。仅在未来出现完全无现存 .ai 母版的新品或重度多语种跨页重排瓶颈时，才评估启用 shared_ir_bitable_indesign_plan.md 的三阶段计划；Word 与机读输出保留现有兼容路径，不影响现有交付基线。
+    detail: 这是对现有 shared_ir 阶段的跨格式扩展储备，当前印刷交付不依赖此链路。重启条件同台账 REV-39，任一满足即复评：REV-20 或 REV-40 开工、启动共享层收敛、共享修改因缺少公共语义契约无法可控地传到已冻结的整本包、出现没有现存 .ai 母版的新产品线，或多语种重排成为明显的人力瓶颈；Word 与机读输出保留现有兼容路径，不影响现有交付基线。
     invariant: 共用内容结构，各格式负责自己的表达；兼容路径与新路径分别标明和验收。
     evidence: ["file:auto-manual:code-as-doc/dev/ir_document_closeout.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md", "file:auto-manual:code-as-doc/dev/manual_ir_p1_decisions_2026-11.md", "file:auto-manual:code-as-doc/dev/shared_ir_bitable_indesign_plan.md"]
   - id: review_experience

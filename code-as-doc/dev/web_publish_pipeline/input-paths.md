@@ -226,7 +226,15 @@ the shared builders and parsers, and writes `manual.ir.json` (manual-ir/v2,
   builder. Live labels on base art keep the rectangles, pill tones and panel
   the renderer wrote (`base_art_layout`); the shell's own dense layouts take
   the shared `mobile_labels=scroll` (`native-dense`) and
-  `label_density=compact` (`native-overview`) options. A Word print layout
+  `label_density=compact` (`native-overview`) options. Operation panels keep
+  their layout the same way (`review_draft_operations.py`): the variant and
+  step order, and on base art each step's anchor and width, the duration and
+  supporting-panel anchors, a prerequisite pill, the footer offset or the
+  panel's art width and step markers, become the `web_presentation` the
+  shared operation renderer reads. The renderer replays the read layout
+  before it is kept. A plain panel replays its overlay rectangles but stays a
+  presentation gap: its copy was written for a composite image, and only base
+  art places live copy on the drawing. A Word print layout
   (`manual-two-col-table`) flows in one column, and its signal-word lead
   becomes a callout. Copy outside any chapter joins the next chapter; a run
   that opens with an identified heading (a preface) is its own page. A table
@@ -245,8 +253,8 @@ pending marker (a magenta placeholder; copy to confirm, `review-pending` or
 reference-only artwork), copy awaiting native review (new translations,
 JP-only inserts), fallback copy a component needs but the draft lacks
 ([`review_draft_fallback_copy.json`](../../../docs/renderers/contracts/review_draft_fallback_copy.json)),
-a presentation gap (an operation panel without a Web presentation contract,
-figure copy or artwork a component does not carry), a shared-style issue (including an undeclared
+a presentation gap (a plain operation panel, a panel layout the shared
+renderer cannot replay, figure copy or artwork a component does not carry), a shared-style issue (including an undeclared
 plain table), or a missing
 `draft.json` `approval` (operator, date, quote and the approved HTML's
 `html_sha256`), `web_title` or `release_evidence` (`typeset_compare` and

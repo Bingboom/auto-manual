@@ -841,6 +841,31 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
         self.assertEqual([item["lane_name"] for item in doing], ["网页发布与维护闭环", "资料开发工作台"])
         self.assertFalse(any("REV-" in item["text"] for item in doing))
 
+    def test_shipped_print_route_cites_its_decision_and_ledger_rows(self):
+        # 2026-11-24 print route decision, confirmed 2026-11-25: the direct .ai lane has its own ledger row (REV-55)
+        # and cites the operator's confirmation, not a portal template. Every rev: ref matches the ledger as it stands.
+        data = sw.load_contract(sw.DEFAULT_CONTRACT)
+        ledger = sw.parse_ledger((REPO / sw.ledger_ref(data)[1]).read_text(encoding="utf-8"))
+        self.assertIn("ack:操作者 2026-11-25「都按建议」", data["focus"]["evidence"])
+        flow = next(row for row in data["flow"] if row["to"] == "直接改 .ai 印刷稿")
+        self.assertEqual(flow["status"], "available")
+        self.assertTrue(any(ref.startswith("rev:REV-55=") for ref in flow["evidence"]))
+        self.assertTrue(any(ref.startswith("ack:操作者 2026-11-25") and "ExtendScript" in ref for ref in flow["evidence"]))
+        self.assertTrue(any(ref.startswith("file:auto-manual:.claude/skills/ai-manual-pagenum-fix/") for ref in flow["evidence"]))
+        everything = yaml.safe_dump(data, allow_unicode=True)
+        self.assertNotIn("asset_language.html", everything)
+        self.assertNotIn("1465", flow["note"])
+        lane = next(row for row in data["focus"]["lanes"] if row["id"] == "workbench")
+        self.assertIn("REV-55", sw.expand_revs(lane["revs"]))
+        idml = next(item for card in data["capabilities"] for item in card.get("items", []) if item["id"] == "idml")
+        self.assertTrue(any(ref.startswith("rev:REV-55=") for ref in idml["evidence"]))
+        self.assertFalse(any(ref.startswith("rev:REV-54=") for ref in idml["evidence"]))
+        refs = [ref for ref in re.findall(r"rev:REV-\d+=[a-z]+", everything)]
+        self.assertTrue(refs)
+        for ref in refs:
+            rev, _, status = ref[len("rev:"):].partition("=")
+            self.assertEqual(ledger.statuses.get(rev), status, ref)
+
     def test_cli_exit_codes(self):
         with redirect_stdout(io.StringIO()) as out:
             self.assertEqual(sw.main(["check", "--today", "2026-09-24"]), 0)
@@ -1008,6 +1033,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn("shared_ir_bitable_indesign_plan.md", page)
             self.assertIn("直接改 .ai 印刷稿", page)
             self.assertIn("Web 主力 · 印刷直接改 .ai", page)
+            self.assertIsNone(re.search(r"IDML[^。；<]{0,12}冻结|冻结[^。；<]{0,12}IDML", page))
             self.assertIn("飞书多维表上传无字底图", page)
             self.assertIn("远期备选", page)
             self.assertNotIn("IDML 迁仓后切 Shared IR", page)

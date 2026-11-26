@@ -81,7 +81,7 @@
       <details class="access-hook-details"><summary>现有 hooks：什么时候自动检查</summary><div class="access-surfaces">{% for row in architecture.hooks %}{{ node(row) }}{% endfor %}</div></details>
     </section>
     <details class="access-hook-details"><summary>入口、内容与输出的来源依据</summary>
-      <p>Shared IR（共享底稿）把章节、文字、表格、步骤与素材整理为结构化底稿，当前已在 Web 整本复用落地。现行主力路径为「网页文档（含审核稿转网页）+ 基于语料与审核稿直接修改现存 .ai 印刷设计稿」，沿用原有刀版、出血与精排版面；「网页共享 IR 活文字 + 飞书多维表上传无字底图 → InDesign（.idml / .indd）」方案已暂挂为远期备选（当前零研发投入），仅在无 .ai 母版新品或重度跨页重排瓶颈时启用。文档生产链路为 Content Authority → Assembly → Renderers → Publish；多维表（含上传无字底图）、Git 原稿与批准素材各有内容权威。PLM／ERP 接入后，企业正式记录仍以上游为准。</p>
+      <p>Shared IR（共享底稿）把章节、文字、表格、步骤与素材整理为结构化底稿，当前已在 Web 整本复用落地。印刷主线是按审核稿或语料直接修改现存 .ai 印刷稿；「网页共享 IR 活文字 + 飞书多维表上传无字底图 → InDesign（.idml / .indd）」方案已暂挂（当前零研发投入），重启条件见执行台账。文档生产链路为 Content Authority → Assembly → Renderers → Publish；多维表（含上传无字底图）、Git 原稿与批准素材各有内容权威。PLM／ERP 接入后，企业正式记录仍以上游为准。</p>
       <div class="access-surfaces">{% for group in ['human', 'agent', 'enterprise', 'core', 'surfaces'] %}{% for row in architecture[group] %}{{ node(row) }}{% endfor %}{% endfor %}</div>
     </details>
   </details>

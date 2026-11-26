@@ -50,6 +50,7 @@ from tools.utils.path_utils import get_paths
 
 FALLBACK_COPY_JSON = "review_draft_fallback_copy.json"
 _SPACE = re.compile(r"\s+")
+_CSS_VARIABLE = re.compile(r"(--[\w-]+)\s*:\s*([^;]+)")
 
 
 @dataclass
@@ -111,6 +112,19 @@ def attribute(node: Tag, name: str) -> str:
 
 def classes_of(node: Tag) -> list[str]:
     return [str(name) for name in node.get_attribute_list("class") if name]
+
+
+def css_variables(node: Tag) -> dict[str, str]:
+    """The custom properties a shared renderer wrote on ``node``: its positions and tones."""
+
+    return {name: value.strip() for name, value in _CSS_VARIABLE.findall(attribute(node, "style"))}
+
+
+def percent(style: dict[str, str], name: str, owner: str) -> float:
+    value = style.get(name, "")
+    if not value.endswith("%"):
+        raise ValueError(f"{owner}: rendered position {name} is not a percentage")
+    return float(value[:-1])
 
 
 def heading_before(node: Tag, levels: Sequence[str] = ("h1", "h2", "h3")) -> str:
@@ -553,9 +567,11 @@ __all__ = [
     "bind_inbox",
     "declare_plain_table",
     "column_texts",
+    "css_variables",
     "heading_before",
     "inner_html",
     "lines_of",
+    "percent",
     "table_text_sha256",
     "text_of",
 ]
