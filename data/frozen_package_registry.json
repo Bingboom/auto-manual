@@ -5831,6 +5831,11 @@
           "handling": "keep-frozen",
           "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
           "since": "2026-11-25"
+        },
+        "tools/web/base_art_operation.py": {
+          "handling": "keep-frozen",
+          "reason": "Base-art duration token reads a terse Japanese seconds sign: the four drifted packages have no operation panel, and no frozen base-art operation step changes its token",
+          "since": "2026-11-26"
         }
       }
     },
@@ -5867,6 +5872,11 @@
           "handling": "keep-frozen",
           "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
           "since": "2026-11-25"
+        },
+        "tools/web/base_art_operation.py": {
+          "handling": "keep-frozen",
+          "reason": "Base-art duration token reads a terse Japanese seconds sign: the four drifted packages have no operation panel, and no frozen base-art operation step changes its token",
+          "since": "2026-11-26"
         }
       }
     },
@@ -5888,6 +5898,11 @@
           "handling": "keep-frozen",
           "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
           "since": "2026-11-25"
+        },
+        "tools/web/base_art_operation.py": {
+          "handling": "keep-frozen",
+          "reason": "Base-art duration token reads a terse Japanese seconds sign: the four drifted packages have no operation panel, and no frozen base-art operation step changes its token",
+          "since": "2026-11-26"
         }
       }
     },
@@ -6089,6 +6104,11 @@
           "handling": "keep-frozen",
           "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
           "since": "2026-11-25"
+        },
+        "tools/web/base_art_operation.py": {
+          "handling": "keep-frozen",
+          "reason": "Base-art duration token reads a terse Japanese seconds sign: the four drifted packages have no operation panel, and no frozen base-art operation step changes its token",
+          "since": "2026-11-26"
         }
       }
     },
@@ -14186,6 +14206,16 @@
       "packages": 68,
       "handling": "keep-frozen",
       "reason": "Additive base-art label options (label_density=compact, mobile_labels=scroll): overlay and stack figures render through unchanged rules and no frozen package declares the new values",
+      "minutes": 0
+    },
+    {
+      "date": "2026-11-26",
+      "files": [
+        "tools/web/base_art_operation.py"
+      ],
+      "packages": 4,
+      "handling": "keep-frozen",
+      "reason": "Base-art duration token reads a terse Japanese seconds sign: the four drifted packages have no operation panel, and no frozen base-art operation step changes its token",
       "minutes": 0
     }
   ]
