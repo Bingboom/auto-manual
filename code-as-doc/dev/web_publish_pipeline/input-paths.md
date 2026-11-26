@@ -60,13 +60,19 @@ other sections. Change this part of the contract here, not in the hub.
    [`web-publish-receipt.yml`](../../../.github/workflows/web-publish-receipt.yml)
    runs on the Hello-Docs `main` push (paths `docs/publish/**`):
    [`tools/write_web_publish_receipt_links.py`](../../../tools/write_web_publish_receipt_links.py)
-   reads the merged manifest, selects the targets that recorded
-   `queue_record_ids`, polls `verify_deployment` (frozen-source fingerprint,
+   reads the merged manifest and selects the targets to verify. A push run
+   verifies only the targets whose files changed since the push's `before`
+   commit, Git-only targets included. Asset-pool and navigation files follow
+   the targets that changed with them. Any other shared change (theme, Sphinx
+   configuration, an unmatched route) also brings in every target that
+   recorded `queue_record_ids`, which is the whole scope of a manual dispatch.
+   It polls `verify_deployment` (frozen-source fingerprint,
    byte identity, expected RTD project slug; fresh `FetchSession` per attempt)
    until the deployment verifies or the deploy timeout expires, and only then
-   writes the canonical URL to each queue row — idempotently (an equal stored
-   value is skipped, so reruns never re-register) and with a same-record
-   readback after every write. `HTML_link` is a Bitable URL field, which
+   writes the canonical URL to each queue row of a verified target; Git-only
+   targets have no row and are verified only. Writes are idempotent (an equal
+   stored value is skipped, so reruns never re-register), and every write is
+   followed by a same-record readback. `HTML_link` is a Bitable URL field, which
    `lark-cli base +record-get` reads back as a Markdown link whose label and
    target are both the stored URL. Both comparisons accept exactly that form
    (`document_link_queue.url_field_matches`); a link whose label or target
@@ -74,7 +80,8 @@ other sections. Change this part of the contract here, not in the hub.
    URL and a link to another page fails the readback. Verification failure or
    timeout registers nothing and opens the `queue-failure-web-receipt`
    sentinel; the retry is a `workflow_dispatch` re-run (optionally scoped by
-   `record_ids`), never a re-publish of the manual.
+   `record_ids`), never a re-publish of the manual. Per-target outcomes are in
+   the run log; the lane uploads no report artifact.
 
 ### 2.2 Git-only transaction
 

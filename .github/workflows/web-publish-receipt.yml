@@ -9,6 +9,12 @@ name: Web Publish Receipt
 # URL back to Document_link.HTML_link — idempotently (same value -> no write)
 # and with a same-record readback after every write.
 #
+# A push verifies only the targets its own commits changed (--changed-since
+# the push's before SHA), Git-only targets included; a shared theme/config
+# change also brings in every queue-backed target. A manual dispatch verifies
+# every queue-backed target, optionally narrowed by record_ids. The run log
+# carries every per-target outcome; no report artifact is uploaded.
+#
 # A failed or timed-out verification leaves the run red and registers nothing:
 # a deployment that cannot be proven live must not be registered as online
 # (plan §5.3 M2). Retry = re-run this workflow (workflow_dispatch), which
@@ -97,14 +103,20 @@ jobs:
         env:
           DEPLOY_TIMEOUT_SECONDS: ${{ inputs['deploy-timeout-seconds'] || '' }}
           RECORD_IDS: ${{ inputs.record_ids || '' }}
+          PUSH_BEFORE_SHA: ${{ github.event_name == 'push' && github.event.before || '' }}
           READTHEDOCS_API_TOKEN: ${{ secrets.READTHEDOCS_API_TOKEN }}
         run: |
           cmd=(python -m tools.write_web_publish_receipt_links
             --config configs/config.us.yaml
             --publish-root docs/publish
             --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
-            --rps "${AUTO_MANUAL_RTD_VERIFY_RPS}"
-            --report-json web_publish_receipt_report.json)
+            --rps "${AUTO_MANUAL_RTD_VERIFY_RPS}")
+          # Scope a push to the targets its own commits changed. An all-zero
+          # or missing before SHA has no base to compare, so it keeps the full
+          # queue-backed scope of a manual retry.
+          if [[ "${PUSH_BEFORE_SHA}" =~ ^[0-9a-f]{40}$ && ! "${PUSH_BEFORE_SHA}" =~ ^0+$ ]]; then
+            cmd+=(--changed-since "${PUSH_BEFORE_SHA}")
+          fi
           if [ -n "${DEPLOY_TIMEOUT_SECONDS}" ]; then
             cmd+=(--deploy-timeout-seconds "${DEPLOY_TIMEOUT_SECONDS}")
           fi
@@ -118,15 +130,6 @@ jobs:
             done
           fi
           "${cmd[@]}"
-
-      - name: Upload receipt report
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: web-publish-receipt-report
-          path: web_publish_receipt_report.json
-          retention-days: 7
-          if-no-files-found: ignore
 
       - name: Receipt failure sentinel
         if: always()

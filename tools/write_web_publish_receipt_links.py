@@ -8,18 +8,26 @@ on the Hello-Docs business plane when a ``main`` push touches
 ``docs/publish/**``:
 
 1. Read ``docs/publish/publish_manifest.json`` from the merged tree and select
-   the targets that carry ``queue_record_ids`` (threaded through assembly from
-   the queue run's release metadata). Git-only targets record no queue rows and
-   are deliberately out of scope — that path never writes ``HTML_link``.
+   the targets to verify. A push run passes ``--changed-since <before SHA>``:
+   only the targets whose published files changed in that push are verified,
+   Git-only targets included, so replacing one manual neither waits on nor
+   re-reads unrelated manuals. The content-addressed asset pool and portal
+   navigation files follow the targets that changed with them; any other
+   shared change (theme, Sphinx config, an unmatched route) widens the scope
+   to every queue-backed target as well. Without ``--changed-since`` (manual
+   retry) the scope is every target that carries ``queue_record_ids``,
+   optionally narrowed by ``--record-id``.
 2. Wait for the Read the Docs deployment of exactly this tree: poll
    ``verify_targets_against_source`` (frozen-source fingerprint, byte
    identity, and the expected RTD project slug) with a fresh ``FetchSession``
-   per attempt until every registrable target verifies or the deploy timeout
+   per attempt until every selected target verifies or the deploy timeout
    expires. A deployment that never verifies is never registered as online.
-3. For each verified target, write the canonical nested URL to every recorded
-   queue row idempotently: read the current value first (same value -> no
-   write), write through the shared upsert path otherwise, then read the same
-   record back and require the stored value to match. ``HTML_link`` is a
+3. For each verified target that carries ``queue_record_ids``, write the
+   canonical nested URL to every recorded queue row idempotently: read the
+   current value first (same value -> no write), write through the shared
+   upsert path otherwise, then read the same record back and require the
+   stored value to match. Git-only targets record no queue rows, so they are
+   verified but never touch Feishu. ``HTML_link`` is a
    ``url``-type field, which lark-cli renders as ``[url](url)``, so both
    comparisons normalize through ``document_link_queue.url_field_matches``
    rather than comparing raw strings. A failed registration leaves the run red
@@ -37,6 +45,8 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
+import subprocess
 import time
 from typing import Any
 
@@ -58,6 +68,7 @@ from tools.web.document_link_queue import (  # noqa: E402
 from tools.build_queue.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
+from tools.publish_asset_pool import POOL_SEGMENT  # noqa: E402
 from tools.publish_locale_identity import safe_queue_record_ids  # noqa: E402
 from tools.build_queue.bound_binding import (  # noqa: E402
     collect_queue_preflight_errors,
@@ -87,6 +98,18 @@ DEFAULT_DEPLOY_TIMEOUT_SECONDS = 1800.0
 DEFAULT_POLL_INTERVAL_SECONDS = 60.0
 # Bitable writes land with seconds of lag; pause before the verify read.
 DEFAULT_READBACK_DELAY_SECONDS = 2.0
+_COMMIT_RE = re.compile(r"[0-9a-f]{40}")
+# Paths below are relative to the publish root (docs/publish).
+_SOURCES = "sources"
+# Content-addressed images shared by every manual: a push adds the files its
+# changed targets reference and drops ones nothing references any more, and
+# the manifest file inventory is checked whole on every attempt. They follow
+# the targets that changed with them instead of widening the scope.
+_ASSET_POOL_PREFIX = f"{PathSegments.WEB}/{PathSegments.STATIC}/manual-assets/{POOL_SEGMENT}/"
+# Portal navigation: the catalog itself, the library index and the per-target
+# top-level alias pages written when a target is added or renamed.
+_NAVIGATION_PATHS = frozenset({PUBLISH_MANIFEST, f"{PathSegments.WEB}/index.md"})
+_ALIAS_PAGE_RE = re.compile(rf"{PathSegments.WEB}/manual_[a-z0-9_]+\.md")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -119,6 +142,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="append",
         default=[],
         help="Optional queue record_id filter for a scoped retry. Repeatable.",
+    )
+    parser.add_argument(
+        "--changed-since",
+        default=None,
+        help=(
+            "40-char commit SHA (the push's before SHA). Verify only the targets "
+            "whose published files changed since it; shared changes also include "
+            "every queue-backed target. Cannot be combined with --record-id."
+        ),
     )
     parser.add_argument("--rps", type=float, default=DEFAULT_RPS)
     parser.add_argument(
@@ -199,6 +231,121 @@ def filter_targets_by_record_ids(
             + ", ".join(sorted(explicit))
         )
     return selected
+
+
+def changed_publish_paths(
+    publish_root: Path, since: str, *, run_git: Any = subprocess.run
+) -> list[str]:
+    """Publish-root-relative paths that differ between ``since`` and ``HEAD``.
+
+    Renames are split into a deletion and an addition so both routes count.
+    An unreadable base commit fails the run: guessing a narrower scope would
+    skip the verification the push needs.
+    """
+    commit = str(since).strip().lower()
+    if not _COMMIT_RE.fullmatch(commit):
+        raise ValueError(f"--changed-since must be a 40-character commit SHA: {since!r}")
+    completed = run_git(
+        [
+            "git", "-C", str(publish_root), "diff", "--name-only", "-z",
+            "--no-renames", "--relative", commit, "HEAD", "--", ".",
+        ],
+        capture_output=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        detail = (completed.stderr or b"").decode("utf-8", errors="replace").strip()
+        raise RuntimeError(
+            f"Cannot list publish changes since {commit[:12]}: {detail or 'git diff failed'}"
+        )
+    return sorted(item for item in completed.stdout.decode("utf-8").split("\0") if item)
+
+
+def changed_target_scope(
+    payload: dict[str, Any], changed_paths: list[str]
+) -> tuple[set[tuple[str, str, str]], list[str]]:
+    """Split changed publish paths into changed target identities and shared paths.
+
+    A path under a target's route (``web/<model>/<region>/<lang>/``), its frozen
+    sources (``sources/web/...``) or its legacy route belongs to that target.
+    Asset-pool and navigation paths follow the targets that changed with them.
+    Anything else is shared and returned for the caller to widen the scope.
+    """
+    prefixes: list[tuple[str, tuple[str, str, str]]] = []
+    for item in payload.get("targets", []):
+        if not isinstance(item, dict):
+            continue
+        identity = (str(item.get("model")), str(item.get("region")), str(item.get("lang")))
+        routes = {"/".join(identity)}
+        legacy = item.get("legacy_route")
+        if item.get("legacy_default") and isinstance(legacy, str) and legacy.strip("/"):
+            routes.add(legacy.strip("/"))
+        for route in routes:
+            for root in (PathSegments.WEB, f"{_SOURCES}/{PathSegments.WEB}"):
+                prefixes.append((f"{root}/{route}/", identity))
+    # Longest prefix first, so a lang route wins over a legacy region route.
+    prefixes.sort(key=lambda entry: len(entry[0]), reverse=True)
+    changed: set[tuple[str, str, str]] = set()
+    shared: list[str] = []
+    for path in changed_paths:
+        if (
+            path in _NAVIGATION_PATHS
+            or path.startswith(_ASSET_POOL_PREFIX)
+            or _ALIAS_PAGE_RE.fullmatch(path)
+        ):
+            continue
+        owner = next((identity for prefix, identity in prefixes if path.startswith(prefix)), None)
+        if owner is None:
+            shared.append(path)
+        else:
+            changed.add(owner)
+    return changed, shared
+
+
+def changed_targets(
+    payload: dict[str, Any],
+    registrable: list[dict[str, Any]],
+    changed_paths: list[str],
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Targets a push must verify, with the queue rows each one may register.
+
+    Changed targets are verified whether or not they carry queue rows. A shared
+    change can alter every page, so it also brings in every queue-backed target
+    (the scope a manual retry covers).
+    """
+    changed, shared = changed_target_scope(payload, changed_paths)
+    record_ids = {
+        (target["model"], target["region"], target["lang"]): target["queue_record_ids"]
+        for target in registrable
+    }
+    selected = [
+        {**target, "queue_record_ids": record_ids.get(identity, ())}
+        for target in manifest_targets(payload)
+        for identity in [(target["model"], target["region"], target["lang"])]
+        if identity in changed or (shared and identity in record_ids)
+    ]
+    scope = {
+        "mode": "changed",
+        "changed_targets": ["/".join(identity) for identity in sorted(changed)],
+        "shared_path_count": len(shared),
+        "shared_paths": shared[:20],
+    }
+    return selected, scope
+
+
+def _scope_summary(scope: dict[str, Any]) -> str:
+    changed = scope["changed_targets"]
+    line = (
+        f"[web-receipt] scope: {len(changed)} changed target(s) since "
+        f"{str(scope.get('since', ''))[:12]}"
+        + (f": {', '.join(changed)}" if changed else "")
+    )
+    if scope["shared_path_count"]:
+        line += (
+            f"; {scope['shared_path_count']} shared path(s) changed (first: "
+            f"{scope['shared_paths'][0]}), so every queue-backed target is verified too"
+        )
+    return line
 
 
 def _new_session(args: argparse.Namespace) -> receipt.FetchSession:
@@ -443,6 +590,100 @@ def _register_verified_targets(
         entry["records"] = outcomes
 
 
+def _select_targets(
+    args: argparse.Namespace,
+    *,
+    payload: dict[str, Any],
+    manifest_path: Path,
+    publish_root: Path,
+    report: dict[str, Any],
+    changed_paths_fn: Any,
+) -> list[dict[str, Any]] | None:
+    """The targets this run verifies, or ``None`` when there is nothing to do."""
+    record_ids = tuple(str(item) for item in args.record_id if str(item).strip())
+    since = getattr(args, "changed_since", None)
+    registrable = registrable_targets(payload, manifest_path=manifest_path)
+    if since:
+        if record_ids:
+            raise ValueError("--changed-since and --record-id cannot be combined")
+        list_changes = changed_paths_fn or changed_publish_paths
+        targets, scope = changed_targets(payload, registrable, list_changes(publish_root, since))
+        report["scope"] = {**scope, "since": str(since).strip().lower()}
+        print(_scope_summary(report["scope"]))
+        if not targets:
+            report["status"] = "no-changed-targets"
+            print("[web-receipt] No published target changed in this push; nothing to verify.")
+            return None
+        return targets
+    targets = filter_targets_by_record_ids(registrable, record_ids)
+    report["scope"] = {"mode": "record-ids" if record_ids else "queue-backed"}
+    if not targets:
+        report["status"] = "no-queue-rows"
+        print(
+            "[web-receipt] No stored publish target records queue rows; nothing to "
+            "register (Git-only targets never write HTML_link)."
+        )
+        return None
+    return targets
+
+
+def _record_verification(
+    targets: list[dict[str, Any]],
+    results: list[dict[str, str]],
+    report: dict[str, Any],
+) -> list[dict[str, Any]]:
+    """Add one report entry per target and return the verified ones."""
+    verified_targets: list[dict[str, Any]] = []
+    # zip(strict=False): source data may differ in length; keep the existing truncation
+    for target, result in zip(targets, results, strict=False):
+        label = f"{target['model']}/{target['region']}/{target['lang']}"
+        entry: dict[str, Any] = {
+            "model": target["model"],
+            "region": target["region"],
+            "lang": target["lang"],
+            "page": target["page"],
+            "verify": result["status"],
+            "records": [],
+        }
+        if result["status"] == "ok":
+            verified_targets.append(target)
+            if not target["queue_record_ids"]:
+                print(
+                    f"[web-receipt] VERIFIED {label}: Git-only target, "
+                    "no HTML_link row to register"
+                )
+        else:
+            entry["error"] = result.get("error", "")
+            print(
+                f"[web-receipt] NOT REGISTERED {label}: deployment {result['status']} — "
+                f"{result.get('error', 'no detail')}"
+            )
+        report["targets"].append(entry)
+    return verified_targets
+
+
+def _finish(
+    report: dict[str, Any], *, status: str, targets: list[dict[str, Any]], attempts: int
+) -> int:
+    """Summarise the run in the report and the log; return the exit code."""
+    outcomes = [outcome["action"] for entry in report["targets"] for outcome in entry["records"]]
+    written = outcomes.count("written")
+    skipped = outcomes.count("already-registered")
+    report["records_written"] = written
+    report["records_already_registered"] = skipped
+    report["status"], exit_code = {
+        "verified": ("registered", EXIT_OK),
+        "throttled": ("throttled", EXIT_THROTTLED),
+    }.get(status, ("failed", EXIT_FAILED))
+    with_rows = sum(1 for target in targets if target["queue_record_ids"])
+    print(
+        f"[web-receipt] {report['status']}: {written} written, {skipped} already "
+        f"registered across {len(targets)} target(s), {with_rows} with queue rows "
+        f"(verify {status} via {report['verification_mode']} after {attempts} attempt(s))"
+    )
+    return exit_code
+
+
 def run(
     args: argparse.Namespace,
     *,
@@ -451,6 +692,7 @@ def run(
     monotonic_fn: Any = time.monotonic,
     fetch_fields: Any = None,
     lark_source_factory: Any = None,
+    changed_paths_fn: Any = None,
 ) -> tuple[int, dict[str, Any]]:
     publish_root = resolve_repo_path(args.publish_root)
     manifest_path = publish_root / PUBLISH_MANIFEST
@@ -467,18 +709,15 @@ def run(
         "expected_project_slug": project_slug,
         "targets": [],
     }
-
-    targets = registrable_targets(payload, manifest_path=manifest_path)
-    targets = filter_targets_by_record_ids(
-        targets,
-        tuple(str(item) for item in args.record_id),
+    targets = _select_targets(
+        args,
+        payload=payload,
+        manifest_path=manifest_path,
+        publish_root=publish_root,
+        report=report,
+        changed_paths_fn=changed_paths_fn,
     )
-    if not targets:
-        report["status"] = "no-queue-rows"
-        print(
-            "[web-receipt] No stored publish target records queue rows; nothing to "
-            "register (Git-only targets never write HTML_link)."
-        )
+    if targets is None:
         return EXIT_OK, report
 
     private_state: dict[str, Any] = {}
@@ -502,69 +741,19 @@ def run(
     )
     if private_state.get("rtd_build"):
         report["rtd_build"] = private_state["rtd_build"]
-    verified_targets: list[dict[str, Any]] = []
-    # zip(strict=False): source data may differ in length; keep the existing truncation
-    for target, result in zip(targets, results, strict=False):
-        entry: dict[str, Any] = {
-            "model": target["model"],
-            "region": target["region"],
-            "lang": target["lang"],
-            "page": target["page"],
-            "verify": result["status"],
-            "records": [],
-        }
-        if result["status"] == "ok":
-            verified_targets.append(target)
-        else:
-            entry["error"] = result.get("error", "")
-            print(
-                f"[web-receipt] NOT REGISTERED {target['model']}/{target['region']}/"
-                f"{target['lang']}: deployment {result['status']} — "
-                f"{result.get('error', 'no detail')}"
-            )
-        report["targets"].append(entry)
-
-    if verified_targets:
+    verified_targets = _record_verification(targets, results, report)
+    queue_backed = [target for target in verified_targets if target["queue_record_ids"]]
+    if queue_backed:
         _register_verified_targets(
             args=args,
             base_url=base_url,
-            verified_targets=verified_targets,
+            verified_targets=queue_backed,
             report=report,
             sleep_fn=sleep_fn,
             fetch_fields=fetch_fields,
             lark_source_factory=lark_source_factory,
         )
-
-    written = sum(
-        1
-        for entry in report["targets"]
-        for outcome in entry["records"]
-        if outcome["action"] == "written"
-    )
-    skipped = sum(
-        1
-        for entry in report["targets"]
-        for outcome in entry["records"]
-        if outcome["action"] == "already-registered"
-    )
-    report["records_written"] = written
-    report["records_already_registered"] = skipped
-    if status == "verified":
-        report["status"] = "registered"
-        exit_code = EXIT_OK
-    elif status == "throttled":
-        report["status"] = "throttled"
-        exit_code = EXIT_THROTTLED
-    else:
-        report["status"] = "failed"
-        exit_code = EXIT_FAILED
-    print(
-        f"[web-receipt] {report['status']}: {written} written, {skipped} already "
-        f"registered across {len(targets)} registrable target(s) "
-        f"(verify {status} via {report['verification_mode']} after {attempts} attempt(s))"
-    )
-    return exit_code, report
-
+    return _finish(report, status=status, targets=targets, attempts=attempts), report
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
